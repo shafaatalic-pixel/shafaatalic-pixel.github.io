@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</helmet>
+<div id="site-root" style="position:relative;overflow-x:clip;background:var(--surface-base);min-height:100vh;transition:background .3s ease;">
+
+  <!-- NAV -->
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px clamp(20px,4vw,48px);transition:background .24s,backdrop-filter .24s,border-color .24s,padding .24s;border-bottom:1px solid transparent;" data-nav>
+    <div style="display:flex;align-items:center;gap:14px;min-width:0;">
+      <a href="#top" style="font-family:var(--disp);font-weight:800;font-size:20px;letter-spacing:-.01em;text-decoration:none;color:var(--text-strong);white-space:nowrap;">Shafaat Choyon<span style="color:var(--accent-text);">.</span></a>
+      <button id="nav-lens" type="button" aria-label="Switch lens" style="display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 12px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:999px;cursor:pointer;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;color:var(--accent-text);transition:filter .15s;">
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--accent);"></span><span id="nav-lens-label">Full portfolio</span>
+        <span style="opacity:.6;">⇄</span>
+      </button>
+    </div>
+    <div class="nav-links" style="display:flex;align-items:center;gap:clamp(14px,1.8vw,28px);font-size:15px;font-weight:500;">
+      <a href="#cases" style="text-decoration:none;color:var(--text-muted);transition:color .12s;" data-navlink>Case Studies</a>
+      <a href="#experience" style="text-decoration:none;color:var(--text-muted);transition:color .12s;" data-navlink>Experience</a>
+      <a href="#voices" style="text-decoration:none;color:var(--text-muted);transition:color .12s;" data-navlink>Voices</a>
+      <a href="#writing" style="text-decoration:none;color:var(--text-muted);transition:color .12s;" data-navlink>Writing</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button id="theme-toggle" type="button" aria-label="Toggle light/dark" style="width:38px;height:38px;border-radius:8px;border:1px solid var(--border-strong);background:transparent;color:var(--text-strong);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:border-color .15s,background .15s;"><i id="theme-icon" data-lucide="moon" style="width:18px;height:18px;"></i></button>
+      <a href="#contact" style="display:inline-flex;align-items:center;height:38px;padding:0 18px;text-decoration:none;color:var(--accent-ink);background:var(--accent);border:1.5px solid var(--accent);border-radius:8px;font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:-.01em;transition:filter .12s;white-space:nowrap;" data-cta>Book a call</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" data-screen-label="Hero" style="position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:140px clamp(20px,4vw,48px) 90px;">
+    <div data-grid style="position:absolute;inset:0;background-image:linear-gradient(var(--obsidian-600) 1px,transparent 1px),linear-gradient(90deg,var(--obsidian-600) 1px,transparent 1px);background-size:64px 64px;opacity:.5;-webkit-mask-image:radial-gradient(circle at 26% 30%,#000,transparent 72%);mask-image:radial-gradient(circle at 26% 30%,#000,transparent 72%);"></div>
+    <div class="hero-grid" style="position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center;">
+      <div>
+        <div data-reveal style="display:flex;align-items:center;gap:12px;margin-bottom:22px;">
+          <span id="hero-eyebrow" style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);">The Strategist-Sage</span>
+          <span style="width:40px;height:3px;background:var(--accent);border-radius:2px;"></span>
+        </div>
+        <h1 id="hero-headline" data-reveal style="font-family:var(--disp);font-weight:700;font-size:clamp(38px,6.6vw,78px);line-height:1.02;letter-spacing:-.02em;color:var(--text-strong);margin:0;max-width:16ch;">Clarity under pressure that turns system complexity into <span style="color:var(--accent-text);">measurable results.</span></h1>
+        <p id="hero-subhead" data-reveal style="font-family:var(--body);font-size:clamp(17px,2vw,21px);line-height:1.55;color:var(--text-muted);margin:28px 0 0;max-width:60ch;">Growth &amp; marketing strategy leader with 16+ years across healthcare, fintech, e-commerce and consumer tech — grounded in public health (MPH, CHES®). I read complex systems, find the real constraint, and build what moves the number and improves health.</p>
+        <p data-reveal style="font-family:var(--mono);font-size:13px;color:var(--text-faint);margin:18px 0 0;letter-spacing:.02em;">MBA · MCIM · MPH · CHES® — Redford, Michigan</p>
+        <div data-reveal style="display:flex;flex-wrap:wrap;gap:14px;margin-top:38px;">
+          <a href="#cases" data-btn-solid style="display:inline-flex;align-items:center;gap:9px;height:54px;padding:0 28px;text-decoration:none;background:var(--accent);color:var(--accent-ink);border:1.5px solid var(--accent);border-radius:8px;font-family:var(--disp);font-weight:700;font-size:18px;letter-spacing:-.01em;transition:filter .12s,transform .12s;">See the proof <span aria-hidden="true">→</span></a>
+          <a href="#contact" data-btn-ghost style="display:inline-flex;align-items:center;height:54px;padding:0 28px;text-decoration:none;background:transparent;color:var(--text-strong);border:1.5px solid var(--border-strong);border-radius:8px;font-family:var(--disp);font-weight:700;font-size:18px;letter-spacing:-.01em;transition:border-color .12s,transform .12s;">Let's talk</a>
+        </div>
+        <div id="hero-pills" data-reveal style="display:flex;gap:10px;margin-top:40px;flex-wrap:wrap;"></div>
+      </div>
+      <div class="hero-photo" data-reveal style="justify-self:center;position:relative;">
+        <div style="position:absolute;inset:-12% -10%;background:radial-gradient(circle at 50% 40%,var(--accent-soft),transparent 70%);filter:blur(8px);z-index:0;"></div>
+        <div style="position:relative;z-index:1;width:clamp(230px,30vw,340px);border-radius:14px;overflow:hidden;border:1px solid var(--border-strong);box-shadow:var(--shadow-lg);background:#06080c;">
+          <img src="assets/headshot.png" alt="Md Shafaat Ali Choyon" style="display:block;width:100%;height:auto;object-fit:cover;" />
+        </div>
+        <div style="position:absolute;z-index:2;bottom:-14px;left:-14px;background:var(--surface-raised);border:1px solid var(--border-hairline);color:var(--text-muted);font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;padding:9px 13px;border-radius:8px;box-shadow:var(--shadow-card);">EST. 2009 → NOW</div>
+      </div>
+    </div>
+    <a href="#proof" style="position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;color:var(--text-faint);font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;z-index:3;">Scroll<span style="width:1px;height:30px;background:linear-gradient(var(--text-faint),transparent);"></span></a>
+  </header>
+
+  <!-- PROOF -->
+  <section id="proof" data-screen-label="Proof" style="padding:0 clamp(20px,4vw,48px) clamp(60px,8vh,96px);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div data-reveal style="background:var(--surface-authority);border:1px solid var(--navy-400);border-radius:12px;padding:clamp(36px,5vw,56px);box-shadow:var(--shadow-lg);">
+        <div id="proof-eyebrow" style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-400);">Proof, not promises</div>
+        <h2 id="impact-title" data-reveal style="font-family:var(--disp);font-weight:700;font-size:clamp(24px,3.4vw,34px);letter-spacing:-.02em;color:var(--ivory-100);margin:12px 0 40px;max-width:24ch;">Every engagement ships with a number attached.</h2>
+        <div id="impact-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:clamp(22px,3vw,38px);">
+          <div data-reveal><div style="font-family:var(--mono);font-weight:800;font-size:clamp(30px,3.6vw,46px);line-height:1.04;letter-spacing:-.03em;color:var(--amber);font-variant-numeric:tabular-nums;"><span data-count="16" data-suffix="+">0</span></div><div style="font-size:14px;color:var(--ivory-200);margin-top:10px;font-weight:600;">years · five industries</div></div>
+          <div data-reveal><div style="font-family:var(--mono);font-weight:800;font-size:clamp(30px,3.6vw,46px);line-height:1.04;letter-spacing:-.03em;color:var(--amber);font-variant-numeric:tabular-nums;"><span data-count="10" data-suffix="M">0</span></div><div style="font-size:14px;color:var(--ivory-200);margin-top:10px;font-weight:600;">beneficiaries reached (G2P)</div></div>
+          <div data-reveal><div style="font-family:var(--mono);font-weight:800;font-size:clamp(30px,3.6vw,46px);line-height:1.04;letter-spacing:-.03em;color:var(--teal-400);font-variant-numeric:tabular-nums;">#<span data-count="1">0</span></div><div style="font-size:14px;color:var(--ivory-200);margin-top:10px;font-weight:600;">globally — Note9 growth</div></div>
+          <div data-reveal><div style="font-family:var(--mono);font-weight:800;font-size:clamp(30px,3.6vw,46px);line-height:1.04;letter-spacing:-.03em;color:var(--amber);font-variant-numeric:tabular-nums;"><span data-count="1400" data-prefix="~">0</span></div><div style="font-size:14px;color:var(--ivory-200);margin-top:10px;font-weight:600;">corporate clients, from 342</div></div>
+          <div data-reveal><div style="font-family:var(--mono);font-weight:800;font-size:clamp(30px,3.6vw,46px);line-height:1.04;letter-spacing:-.03em;color:var(--amber);font-variant-numeric:tabular-nums;"><span data-count="13">0</span></div><div style="font-size:14px;color:var(--ivory-200);margin-top:10px;font-weight:600;">published articles</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section id="approach" data-screen-label="Approach" style="padding:clamp(70px,10vh,110px) clamp(20px,4vw,48px);border-top:1px solid var(--border-hairline);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div data-reveal style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);">Approach</div>
+      <div data-reveal style="width:40px;height:3px;background:var(--accent);border-radius:2px;margin-top:12px;"></div>
+      <h2 data-reveal style="font-family:var(--disp);font-weight:700;font-size:clamp(28px,4.4vw,48px);letter-spacing:-.02em;color:var(--text-strong);margin:18px 0 16px;max-width:18ch;">Read the system → find the lever → move the number.</h2>
+      <p data-reveal style="font-family:var(--body);font-size:clamp(16px,1.6vw,19px);line-height:1.6;color:var(--text-muted);max-width:64ch;margin:0 0 52px;">A career of both vertical growth (execution → commercial leadership) and horizontal growth (across industries, functions and markets). I step into ambiguous or underbuilt situations and ship measurable results. An MPH in Health Education &amp; Promotion and the CHES® credential ground that leadership in behavioral science — connecting what drives organizational growth with what drives healthier behavior.</p>
+      <div id="approach-cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;"></div>
+    </div>
+  </section>
+
+  <!-- BRANDS -->
+  <section data-screen-label="Brands" style="padding:clamp(44px,6vh,64px) clamp(20px,4vw,48px);border-top:1px solid var(--border-hairline);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div data-reveal style="font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint);text-align:center;margin-bottom:28px;">Brands &amp; institutions I've moved the number for</div>
+      <div id="brand-strip" data-reveal style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px;"></div>
+    </div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <section id="cases" data-screen-label="Case Studies" style="padding:clamp(70px,10vh,110px) clamp(20px,4vw,48px);border-top:1px solid var(--border-hairline);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div data-reveal style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);">Case Studies</div>
+      <div data-reveal style="width:40px;height:3px;background:var(--accent);border-radius:2px;margin-top:12px;"></div>
+      <h2 data-reveal style="font-family:var(--disp);font-weight:700;font-size:clamp(28px,4.4vw,48px);letter-spacing:-.02em;color:var(--text-strong);margin:18px 0 14px;max-width:20ch;">Challenge → insight → execution → result.</h2>
+      <p id="cases-sub" data-reveal style="font-family:var(--body);font-size:clamp(15px,1.5vw,18px);line-height:1.6;color:var(--text-muted);max-width:66ch;margin:0 0 16px;">The complete portfolio — sixteen initiatives across six organizations, each with its strategy infographic. Select any infographic to view it full-size.</p>
+      <div id="case-focus" data-reveal style="display:none;"></div>
+      <div data-reveal style="display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 56px;" id="case-nav"></div>
+      <div id="company-groups" style="display:flex;flex-direction:column;gap:clamp(56px,8vw,92px);"></div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" data-screen-label="Experience" style="padding:clamp(70px,10vh,110px) clamp(20px,4vw,48px);border-top:1px solid var(--border-hairline);">
+    <div style="max-width:1080px;margin:0 auto;">
+      <div data-reveal style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);">Experience</div>
+      <div data-reveal style="width:40px;height:3px;background:var(--accent);border-radius:2px;margin-top:12px;"></div>
+      <h2 id="exp-title" data-reveal style="font-family:var(--disp);font-weight:700;font-size:clamp(28px,4.4vw,48px);letter-spacing:-.02em;color:var(--text-strong);margin:18px 0 8px;">The full arc.</h2>
+      <p id="exp-sub" data-reveal style="font-family:var(--body);font-size:15px;color:var(--text-muted);margin:0 0 52px;">Fourteen roles, 2009 → today. Every role's complete scope — the case studies above expand the marquee initiatives.</p>
+      <div id="timeline" style="position:relative;"></div>
+    </div>
+  </section>
+
+  <!-- VOICES -->
+  <section id="voices" data-screen-label="Voices" style="padding:clamp(70px,10vh,110px) 0;border-top:1px solid var(--border-hairline);overflow:hidden;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 clamp(20px,4vw,48px);">
+      <div data-reveal style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);">In their words</div>
+      <div data-reveal style="width:40px;height:3px;background:var(--accent);border-radius:2px;margin-top:12px;"></div>
+      <h2 data-reveal style="font-family:var(--disp);font-weight:700;font-size:clamp(28px,4.4vw,48px);letter-spacing:-.02em;color:var(--text-strong);margin:18px 0 8px;">What senior leaders say.</h2>
+      <p data-reveal style="font-size:15px;color:var(--text-muted);margin:0;">Verbatim LinkedIn endorsements from managers and colleagues.</p>
+    </div>
+    <div data-reveal style="margin-top:44px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);">
+      <div id="rec-track" style="display:flex;gap:20px;width:max-content;align-items:stretch;animation:marq 95s linear infinite;" data-marquee></div>
+    </div>
+  </section>
+
+  <!-- WRITING -->
+  <section id="writing" data-screen-label="Writing" style="padding:clamp(70px,10vh,110px) clamp(20px,4vw,48px);border-top:1px solid var(--border-hairline);">
+    <div style="max-width:1080px;margin:0 auto;">
+      <div data-reveal style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);">Thought leadership</div>
+      <div data-reveal style="width:40px;height:3px;background:var(--accent);border-radius:2px;margin-top:12px;"></div>
+      <div data-reveal style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px;margin:18px 0 40px;">
+        <h2 style="font-family:var(--disp);font-weight:700;font-size:clamp(28px,4.4vw,48px);letter-spacing:-.02em;color:var(--text-strong);margin:0;">Published writing.</h2>
+        <span style="font-family:var(--mono);font-size:13px;color:var(--accent-text);">13 articles · health policy &amp; digital health</span>
+      </div>
+      <div id="article-list"></div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES + EDUCATION -->
+  <section data-screen-label="Capabilities" style="padding:clamp(60px,8vh,96px) clamp(20px,4vw,48px);border-top:1px solid var(--border-hairline);">
+    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(28px,5vw,72px);">
+      <div>
+        <h2 data-reveal style="font-family:var(--disp);font-weight:700;font-size:clamp(22px,3vw,32px);letter-spacing:-.02em;color:var(--text-strong);margin:0 0 28px;">Core competencies</h2>
+        <div id="comp-list" style="display:flex;flex-direction:column;gap:26px;"></div>
+      </div>
+      <div>
+        <h2 data-reveal style="font-family:var(--disp);font-weight:700;font-size:clamp(22px,3vw,32px);letter-spacing:-.02em;color:var(--text-strong);margin:0 0 28px;">Education &amp; credentials</h2>
+        <div id="edu-list" style="display:flex;flex-direction:column;gap:14px;"></div>
+        <h3 data-reveal style="font-family:var(--disp);font-weight:700;font-size:18px;color:var(--text-strong);margin:38px 0 16px;">Training &amp; memberships</h3>
+        <div id="extra-list" style="display:flex;flex-direction:column;gap:10px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <footer id="contact" data-screen-label="Contact" style="padding:clamp(70px,10vh,110px) clamp(20px,4vw,48px) 0;border-top:1px solid var(--border-hairline);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div data-reveal style="background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:12px;padding:clamp(36px,5vw,56px);box-shadow:var(--shadow-card);">
+        <div style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);">Let's work</div>
+        <div style="width:40px;height:3px;background:var(--accent);border-radius:2px;margin:10px 0 18px;"></div>
+        <h2 data-reveal style="font-family:var(--disp);font-weight:700;font-size:clamp(32px,5.4vw,56px);line-height:1.02;letter-spacing:-.02em;color:var(--text-strong);margin:0 0 36px;max-width:18ch;">Bring me the system others can't read.</h2>
+        <div data-reveal style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:48px;">
+          <a href="mailto:shafaatalichoyon@gmail.com" data-btn-solid style="display:inline-flex;align-items:center;gap:9px;height:54px;padding:0 28px;text-decoration:none;background:var(--accent);color:var(--accent-ink);border:1.5px solid var(--accent);border-radius:8px;font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:-.01em;transition:filter .12s,transform .12s;">Send the brief <span aria-hidden="true">→</span></a>
+          <a href="https://www.linkedin.com/in/sacgrowthspecialist" target="_blank" rel="noopener" data-btn-ghost style="display:inline-flex;align-items:center;height:54px;padding:0 26px;text-decoration:none;background:transparent;color:var(--text-strong);border:1.5px solid var(--border-strong);border-radius:8px;font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:-.01em;transition:border-color .12s,transform .12s;">LinkedIn</a>
+          <a href="{{ cvHref }}" download data-btn-ghost style="display:inline-flex;align-items:center;gap:8px;height:54px;padding:0 26px;text-decoration:none;background:transparent;color:var(--text-strong);border:1.5px solid var(--border-strong);border-radius:8px;font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:-.01em;transition:border-color .12s,transform .12s;">Download CV ↓</a>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:24px 48px;border-top:1px solid var(--border-hairline);padding-top:32px;font-size:14px;color:var(--text-body);">
+          <div><div style="font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);margin-bottom:6px;">Email</div>shafaatalichoyon@gmail.com</div>
+          <div><div style="font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);margin-bottom:6px;">Phone</div>(734) 219-1480</div>
+          <div><div style="font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);margin-bottom:6px;">Location</div>Redford, Michigan</div>
+          <div><div style="font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);margin-bottom:6px;">Credentials</div>MBA · MCIM · MPH · CHES®</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:32px 0;margin-top:24px;border-top:1px solid var(--border-hairline);">
+        <span style="font-family:var(--disp);font-weight:800;font-size:16px;color:var(--text-strong);">SHAFAAT CHOYON<span style="color:var(--accent-text);">.</span></span>
+        <button id="footer-lens" type="button" style="background:transparent;border:none;cursor:pointer;font-family:var(--body);font-size:14px;color:var(--text-faint);text-decoration:underline;text-underline-offset:3px;">Switch lens / view everything</button>
+        <span style="font-family:var(--body);font-size:14px;color:var(--text-faint);">Clarity under pressure · © 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" style="position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:rgba(6,9,13,.93);padding:clamp(16px,4vw,56px);cursor:zoom-out;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">
+    <button id="lightbox-close" aria-label="Close" style="position:absolute;top:20px;right:24px;width:44px;height:44px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface-raised);color:var(--text-strong);font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
+    <figure style="margin:0;max-width:1400px;width:100%;text-align:center;">
+      <img id="lightbox-img" alt="" style="max-width:100%;max-height:80vh;border-radius:8px;box-shadow:var(--shadow-lg);background:#fff;" />
+      <figcaption id="lightbox-cap" style="color:var(--ivory-200);font-family:var(--mono);font-size:12px;letter-spacing:.04em;margin-top:16px;"></figcaption>
+    </figure>
+  </div>
+
+  <!-- LANDING / LENS CHOOSER -->
+  <div id="landing" style="position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;background:var(--surface-base);padding:clamp(24px,5vw,64px);overflow-y:auto;">
+    <div style="position:absolute;inset:0;background-image:linear-gradient(var(--obsidian-600) 1px,transparent 1px),linear-gradient(90deg,var(--obsidian-600) 1px,transparent 1px);background-size:64px 64px;opacity:.4;-webkit-mask-image:radial-gradient(circle at 50% 18%,#000,transparent 70%);mask-image:radial-gradient(circle at 50% 18%,#000,transparent 70%);"></div>
+    <button id="landing-theme" type="button" aria-label="Toggle light/dark" style="position:absolute;top:22px;right:24px;width:40px;height:40px;border-radius:8px;border:1px solid var(--border-strong);background:transparent;color:var(--text-strong);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;z-index:2;"><i id="landing-icon" data-lucide="moon" style="width:18px;height:18px;"></i></button>
+    <div style="position:relative;z-index:1;width:100%;max-width:1080px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+        <span style="font-family:var(--disp);font-weight:800;font-size:22px;letter-spacing:-.01em;color:var(--text-strong);">Md Shafaat Ali Choyon<span style="color:var(--accent-text);">.</span></span>
+      </div>
+      <h1 style="font-family:var(--disp);font-weight:700;font-size:clamp(30px,5vw,52px);line-height:1.04;letter-spacing:-.02em;color:var(--text-strong);margin:0 0 14px;max-width:20ch;">One career, seen four ways.</h1>
+      <p style="font-family:var(--body);font-size:clamp(16px,1.7vw,19px);line-height:1.6;color:var(--text-muted);max-width:64ch;margin:0 0 40px;">16+ years turning complex systems into measurable results across growth, communication, product and public health. Choose the lens that fits why you're here — every lens shows the complete portfolio, just framed for what matters to you.</p>
+      <div id="landing-cards" class="landing-cards" style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px;"></div>
+      <div style="margin-top:30px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+        <button id="landing-all" type="button" style="display:inline-flex;align-items:center;gap:9px;height:50px;padding:0 26px;background:var(--accent);color:var(--accent-ink);border:1.5px solid var(--accent);border-radius:8px;cursor:pointer;font-family:var(--disp);font-weight:700;font-size:16px;letter-spacing:-.01em;">View the full portfolio <span aria-hidden="true">→</span></button>
+        <span style="font-family:var(--mono);font-size:12px;color:var(--text-faint);">You can switch lenses any time from the top bar.</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;100%&quot;}}">
+class Component extends DCLogic {
+  renderVals(){
+    return { cvHref: encodeURI('uploads/Shafaat_Choyon_Detailed_Strategic_CV 06.27.26-ea74b498.docx') };
+  }
+
+  componentDidMount(){
+    this._lenses = this.lensConfig();
+    this._dossiers = this.dossierData();
+    this._reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.buildContent();
+    this.cacheFull();
+    this.wire();
+    this.initTheme();
+    this.initRouting();
+    if(window.lucide) try{ window.lucide.createIcons(); }catch(e){}
+  }
+
+  esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  lensConfig(){
+    return {
+      full:{ id:'full', label:'Full portfolio', short:'Full portfolio', icon:'layers',
+        accent:'#0FB3B3', deep:'#0A7373', ink:'#042020', soft:'rgba(15,179,179,.14)',
+        eyebrow:'The Strategist-Sage',
+        headline:'Clarity under pressure that turns system complexity into <span>measurable results.</span>',
+        subhead:'Growth &amp; marketing strategy leader with 16+ years across healthcare, fintech, e-commerce and consumer tech — grounded in public health (MPH, CHES®). I read complex systems, find the real constraint, and build what moves the number and improves health.',
+        pills:['clear-eyed','pressure-tested','evidence-led','commercially sharp'],
+        order:['samsung','praava','surecash','ekhanei','acca','asiatic'], comp:[0,1,2],
+        focus:'', blurb:'See the complete body of work.' },
+      growth:{ id:'growth', label:'Growth &amp; Marketing', short:'Growth &amp; Marketing', icon:'trending-up',
+        accent:'#E0892E', deep:'#A85A12', ink:'#1c1303', soft:'rgba(224,137,46,.15)',
+        eyebrow:'Growth &amp; Marketing Strategy',
+        headline:'Clarity under pressure that turns system complexity into <span>measurable growth.</span>',
+        subhead:'Growth &amp; marketing strategy leader with 16+ years across healthcare, fintech, e-commerce and consumer tech. I find the real growth constraint and build the strategy, channels, products and teams that move the number.',
+        pills:['clear-eyed','pressure-tested','evidence-led','commercially sharp'],
+        order:['samsung','praava','surecash','ekhanei','asiatic','acca'], comp:[0,2,1],
+        focus:'Leading with the commercial wins — a record flagship launch, a corporate-sales engine from zero, the nation\u2019s #1 motorbike category, and a 10-million-person campaign.',
+        blurb:'Flagship launches, category builds and commercial engines that move the number.' },
+      healthcomm:{ id:'healthcomm', label:'Health Communication', short:'Health Comms', icon:'megaphone',
+        accent:'#0FB3B3', deep:'#0A7373', ink:'#042020', soft:'rgba(15,179,179,.14)',
+        eyebrow:'Health Communication',
+        headline:'Behavioral science that turns confusing health messages into <span>healthier decisions.</span>',
+        subhead:'MPH in Health Education &amp; Promotion and CHES®-credentialed, with 16+ years moving behavior at scale — a population-scale health hotline, award-winning campaigns, trust-by-design adoption, and 13 published health-policy articles.',
+        pills:['behavioral-science-grounded','audience-segmented','plain-language','CHES® credentialed'],
+        order:['praava','surecash','asiatic','ekhanei','acca','samsung'], comp:[1,0,2],
+        focus:'Leading with communication that changed behavior — embedded health hotlines, trust-by-design campaigns, harm-reduction and thought leadership. See Published Writing below for the 13 articles.',
+        blurb:'Behavior-change campaigns, health literacy and published thought leadership.' },
+      healthtech:{ id:'healthtech', label:'Health-Tech Product', short:'Health-Tech', icon:'cpu',
+        accent:'#3B82C4', deep:'#245C92', ink:'#f6fbff', soft:'rgba(59,130,196,.15)',
+        eyebrow:'Health-Tech Product &amp; Growth',
+        headline:'Strategy that turns digital health products into <span>compounding growth.</span>',
+        subhead:'Product, data and operations leader who builds digital health products and the growth loops behind them — home diagnostics, a 6-hour traveler-testing protocol, ERP/BI transformation, and decisions run on ARPU, CLV and cohorts.',
+        pills:['product-minded','data-driven','ops-literate','growth-loop builder'],
+        order:['praava','samsung','ekhanei','surecash','asiatic','acca'], comp:[2,0,1],
+        focus:'Leading with product and platform work — digital health products, e-commerce and loyalty platforms, marketplace quality systems and an end-to-end ERP/BI transformation.',
+        blurb:'Digital health products, data-driven growth loops and platform transformation.' },
+      pophealth:{ id:'pophealth', label:'Population Health', short:'Pop Health', icon:'globe',
+        accent:'#E85C42', deep:'#B23A26', ink:'#fff5f2', soft:'rgba(232,92,66,.14)',
+        eyebrow:'Population Health',
+        headline:'Systems thinking that turns population-scale problems into <span>measurable health impact.</span>',
+        subhead:'Public-health practitioner (MPH, CHES®) who has reached people at national scale — a 10-million-beneficiary disbursement, a hotline taking ~3,000 calls a day, district-level illness mapping shared with government, and health-system-resilience advocacy.',
+        pills:['access-focused','equity-minded','evidence-led','government-partnered'],
+        order:['praava','surecash','acca','asiatic','ekhanei','samsung'], comp:[1,2,0],
+        focus:'Leading with population-scale access and impact — a national disbursement, embedded health hotlines, government data-sharing and traveler-health infrastructure. See Published Writing below for health-policy work.',
+        blurb:'National-scale access, equity and health-system impact.' },
+    };
+  }
+
+  buildContent(){
+    const root = document.getElementById('site-root');
+    if(!root) return;
+    const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+    // APPROACH CARDS
+    const approach = [
+      { icon:'scan-search', t:'Read the system', d:"Map the real mechanics behind the dashboard — incentives, behavior, channels, and where growth actually leaks. Find the binding constraint, not the loudest symptom." },
+      { icon:'target', t:'Find the lever', d:"Evidence- and behavioral-science-led prioritization. The one move that moves the number — grounded in ARPU, CLV, cohorting, trust and adoption design." },
+      { icon:'trending-up', t:'Move the number', d:"Pressure-tested execution with a metric attached: go-to-market, pricing architecture, corporate sales, P&L ownership — commercial machines built from zero." },
+    ];
+    const ac = root.querySelector('#approach-cards');
+    if(ac){ ac.innerHTML = approach.map((it,i)=>`
+      <div data-reveal data-reveal-delay="${i*100}" data-card style="background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:8px;padding:30px;box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:16px;transition:transform .2s,border-color .2s;">
+        <span style="width:48px;height:48px;border-radius:8px;background:var(--accent-soft);display:inline-flex;align-items:center;justify-content:center;color:var(--accent-text);"><i data-lucide="${it.icon}" style="width:24px;height:24px;"></i></span>
+        <h3 style="font-family:var(--disp);font-weight:700;font-size:22px;letter-spacing:-.01em;color:var(--text-strong);margin:0;">${esc(it.t)}</h3>
+        <p style="font-family:var(--body);font-size:15.5px;line-height:1.55;color:var(--text-muted);margin:0;">${esc(it.d)}</p>
+      </div>`).join(''); }
+
+    // ===== FULL CASE STUDIES, GROUPED BY COMPANY =====
+    const companies = [
+      { id:'samsung', name:'Samsung India Electronics', logo:'assets/logos/samsung.png', role:'Manager, Product Planning · Bangladesh', date:'Sep 2017 – Dec 2018',
+        cases:[
+          { title:'Galaxy Note9 — engineering a record-setting flagship launch in a value-driven market', metric:'1.54× YoY · #1 globally for growth', img:'assets/cases/note9.jpg', tags:['Product planning','Pricing'],
+            challenge:"A ~Tk 110,000 ($1,000+) flagship is niche in Bangladesh, where bar phones (<$100) and Tk 30–50k ($300–500) mid-range handsets dominate. The prior year's Note8 sold only ~1,200 units in its 21-day preorder, almost entirely from retail, with no online channel — yet corporate targets demanded year-on-year growth (India, for scale, sold ~60,000 Note9 units in its preorder).",
+            insight:"The binding constraints were price perception and a narrow channel, not awareness. The play was to re-engineer affordability while protecting margin, and to multiply the number of distinct ways a customer could say yes.",
+            execution:"Negotiated a bKash cashback on the Tk 10,000 booking (~Tk 600 / Tk 400 split with co-marketing); injected Tk 5,000/device from the market development fund into landed cost to hold the preorder price at the prior-year ~Tk 95,000; stacked cardholder zero-EMI (6/12/24/36 months) with EBL, City Bank Amex, BRAC Bank and Standard Chartered; broke a non-transparent telco exclusivity by adding Robi as a competitive co-partner (which pushed Grameenphone to ~350 units vs. ~200); onboarded a first-ever e-commerce partner (Pickaboo) for a 100-unit lift; fixed grey-market (parallel-import) leakage with a still-profitable employee/distributor price shipped direct from the national-distributor warehouse — cutting out regional distributors and retailers (the model later used for online-specific pricing), which lifted employee + national-distributor preorder sales from 32 units (Note8) to 242 (Note9); added warranty and free first-year screen replacement (modeled on a 4-year breakage simulation); ran a low-cost JBL Flip 4 gift draw; and retargeted preorder drop-offs.",
+            result:"Hit the 1,500-unit target six days before the preorder closed, then deliberately let the device go out of stock — selling ~1,858 units over the 21-day preorder (vs. ~1,200 for Note8, 1.54× YoY) and staying off-shelf for ~3 months as a scarcity play to maximize sell-through before the Note10 launch. Growth rate recognized No. 1 globally. Still Samsung Bangladesh's benchmark preorder campaign as of 2026; recognized as Q3'18 Business Performer, IM Division." },
+          { title:'Galaxy J2 4G & J2 Core — winning the mass-market entry segment', metric:'~2,600 units/day run-rate', img:'assets/cases/j2.jpg', tags:['Positioning','Channel'],
+            challenge:"Convert feature-phone and low-end-Android users in the largest, most price-sensitive pool, where local brands beat Samsung on raw RAM/camera specs.",
+            insight:"Compete on trust and a single clear hook at a psychological price point, not a spec war — and make the retailer the conversion lever.",
+            execution:"Positioned at the Tk 8,000 (~$80) price point with one-line messaging ('4G-ready Samsung with Super AMOLED under Tk 8,000'); leaned on genuine warranty/service-center trust, Ultra Data Saving (up to 50% data), retailer 'default safe recommendation' conversion, and controlled SKU focus so J2 became the hero model retailers pushed daily.",
+            result:"~2,600 units/day run-rate, reflecting strong product-market fit in the value segment — which helped ramp up volume share in the market." },
+          { title:'New channels & market-first differentiation', metric:'New commercial channel · cross-segment lift', img:'assets/cases/samsung-digital.jpg', tags:['E-commerce','Loyalty'],
+            challenge:"Samsung had no owned online sales footprint and needed differentiation beyond price in a commoditized market.",
+            execution:"Partnered with national distributor Fair Distribution Ltd to design and launch an e-commerce marketplace (phones + home appliances) and online-specific SKUs across every major platform; built a market-first loyalty program with Samsung's R&D institute (SRBD) — points redeemable toward discounted devices; and created a monsoon 'water-damage' repair campaign — alongside screen-replacement for breakage — built off a multi-year water-damage and breakage simulation, redirecting spend from ATL to a novel offer no competitor ran.",
+            result:"Established an entirely new commercial channel and lifted online + home-appliance pull-through; seasonal sales boost across entry, mid and high segments." },
+        ] },
+      { id:'praava', name:'Praava Health', logo:'assets/logos/praava.jpg', role:'Head of Marketing & Corporate Sales (Head of Consumer Business)', date:'Jun 2021 – Oct 2023',
+        cases:[
+          { title:'Directing a healthcare startup through multi-year hypergrowth', metric:'~45% overall · ~57% B2C CAGR (2021–23)', img:'assets/cases/praava-engines.jpg', tags:['Health','Growth strategy'],
+            challenge:"A single-hub brand over-associated with COVID testing needed to grow its expensive, hard-to-scale non-COVID core, while the consumer portfolio carried 83% of revenue.",
+            insight:"Durable growth comes from three compounding engines, not campaigns: new products capturing latent demand, decisions driven by patient data, and automated growth loops so revenue recurs without restarting from zero.",
+            execution:"Launched market-first products via fast GTMs (Ghore Lab home diagnostics, Vitamin-D, traveler packages); kept BI/Data inside marketing and ran every decision on ARPU, CLV, cohorting and retention (65–70% of weekly meetings on data); and built 100+ products, automated reminders, re-outreach and ad loops for recurring revenue.",
+            result:"Core-business growth of 40% (2021), 20% (2022), 87% (2023, partial) — ~45% overall and ~57% B2C CAGR (2021–2023); during the pandemic Praava served ~2% of the national and ~8% of Dhaka's population." },
+          { title:'Building the corporate-sales engine from zero — 342 → ~1,400 clients', metric:'342 → ~1,400 clients · 3.1× programs', img:'assets/cases/praava-corp.jpg', tags:['Health','Corporate sales'],
+            challenge:"No corporate-sales function existed; most target employers lacked employee health insurance, and healthcare was not sold or serviced like a managed B2B category.",
+            insight:"Borrow the telco Key Account Manager playbook — treat each corporate as a managed account with custom bundles and one-stop service.",
+            execution:"Hired bilingual account managers; offered insured and uninsured employers on-site health-check activations, special corporate pricing, and one-stop employee assistance with per-contract custom bundles; professionalized the full commercial structure (corporate sales, product & product marketing, BI/Data, brand, PR/content, design).",
+            result:"Corporate clients grew 342 → ~1,400 and corporate health programs 3.1×, establishing that healthcare could be sold and serviced like the telecom industry." },
+          { title:'Population-scale access via the Lifebuoy partnership', metric:'~3,000 calls/day · population-scale reach', img:'assets/cases/praava-lifebuoy.jpg', tags:['Health','Access'],
+            challenge:"Extend quality primary care far beyond a single Dhaka hub, affordably, to people who rarely see a doctor.",
+            insight:"Embed the access point inside a product people already buy daily, then build a closed clinical loop behind it.",
+            execution:"Printed Praava's health hotline on the packaging of Lifebuoy — the market-leading 'health soap' — nationwide; doctors handled ~3,000 calls/day giving basic prescriptions, referred complex cases to the nearest government facility, routed lab needs to nationwide sample-collection booths (reports by email/booth pickup with doctor callbacks); amplified via Lifebuoy satellite-TV TVCs; mapped district-wise illness patterns and shared the summary with the Director General of Health Services (DGHS).",
+            result:"Population-scale teleconsultation reach, strong earned-media PR, and a public-health data contribution to government planning." },
+          { title:'COVID service innovation — door-to-door and 6-hour traveler testing', metric:'6-hour results · ~100% traveler capture', img:'assets/cases/praava-travel.jpg', tags:['Health','Operations'],
+            challenge:"During lockdowns patients couldn't travel; US-bound travelers needed certified tests on tight pre-departure timelines.",
+            execution:"Built a nationwide door-to-door sample-collection operation (24-hour reporting + immediate video consultation); created a first-in-Bangladesh traveler-testing protocol — dedicated lab batch, four daily slots, results in 6 hours, auto-updated to the government travel portal.",
+            result:"Captured essentially all Bangladesh-to-US travelers; a one-of-a-kind capability in the market." },
+          { title:'Ethical, affordable diagnostics — solving the kickback problem', metric:'Lab margin ~30% → ~50%', img:'assets/cases/praava-kickback.jpg', tags:['Health','Behavioral'],
+            challenge:"Customary ~40–50% physician kickbacks on investigations inflate costs for a largely uninsured population.",
+            insight:"If patients buy the right tests proactively, the kickback dynamic disappears and care becomes affordable — without conflicting with doctors.",
+            execution:"Co-designed organ-targeted diagnostic packages with the medical team (e.g., kidney panels) plus symptom-education campaigns guiding patients to the right tests at slashed prices with free consultation bundled.",
+            result:"Affordable proactive self-screening that avoided kickbacks and grew lab revenue (profit margin rose from ~30% to ~50%), and was later copied by competitors." },
+          { title:'2022–23 winter brand campaign — repositioning the brand and driving footfall', metric:'~+190% footfall · +68% Beauty & Wellness YoY', img:'assets/cases/praava-footfall.jpg', tags:['Health','Brand'],
+            challenge:"Shift perception from 'COVID testing center' to 'facilitator of quality healthcare' while tying brand spend to revenue.",
+            insight:"64% of a patient's lifetime value is captured in the first three visits — so the campaign had to acquire first visits, not just impressions.",
+            execution:"Ran a nationwide low-ticket Resident Physician video consult at Tk 275 (~$3), down from Tk 1,000 (~$10), via Lifebuoy; citywide door-to-door lab/medicine activation, a home blood-sample-collection network ('phlebo-web'), and Free Consultation Days, across all advertising channels (ATL/BTL/digital/PR) on a ~Tk 11.6M (~$113K) budget; authored the 'Praava Health Reimagined' market-sizing (TAM/SAM/SOM) strategy toward a ~Tk 1.03B revenue model. Wrote TVC stories and theme songs that were produced and aired.",
+            result:"~+190% hub footfall on Free Consultation Days and a measurable top-of-funnel lift; the Beauty & Wellness line grew 68% YoY and lab revenue 34% YoY across the tenure." },
+        ] },
+      { id:'surecash', name:'SureCash', logo:'assets/logos/surecash.png', role:'Marketing Manager · Mobile Financial Services', date:'Jun 2015 – Oct 2016',
+        cases:[
+          { title:'Delivering a government stipend to 10 million beneficiaries', metric:'~10M beneficiaries · Banking Fair Award of Excellence', img:'assets/cases/surecash-g2p.jpg', tags:['Fintech','Trade & PR'],
+            challenge:"Run brand, trade and PR for the country's largest-ever government-to-person (G2P) stipend disbursement — logistically frictional and trust-sensitive across a rural, low-literacy base — on a multi-bank platform that made branding far harder than single-bank rivals.",
+            insight:"At this scale, adoption is an access-and-trust problem, not an awareness problem: meet beneficiaries exactly where cash-out friction and information gaps occur.",
+            execution:"Mapped retailer cash-out points against beneficiary residence data to optimize point-of-sale materials (POSM) and promotional spend; partnered with a telco for automated voice-call (IVR) messages explaining disbursement and cash-out steps; used rural mosque activations for trusted local reach; built the in-house creative team and brand book from scratch; merged the digital team with the call center for real-time response.",
+            result:"Enabled a frictionless disbursement serving ~10 million beneficiaries; SureCash became the fastest-responding MFS brand on social media; won the Banking Fair Award of Excellence; brand awareness +~20%, engagement +~15%." },
+        ] },
+      { id:'ekhanei', name:'Ekhanei.com', logo:'assets/logos/ekhanei.png', role:'Brand & Vehicle Category Lead', date:'Oct 2016 – Sep 2017',
+        cases:[
+          { title:"Building the nation's #1 motorbike category from zero ('Project Laser Beam')", metric:'#1 in 2.5 months · +25% revenue · +15% share', img:'assets/cases/ekhanei-laser.jpg', tags:['Marketplace','Category build'],
+            challenge:"Selected to lead the vehicle category for a marketplace trailing the national leader, where second-hand bike buyers and sellers distrusted online transactions.",
+            insight:"A classifieds category is won on supply quality and trust, not ad spend — so it needs offline acquisition muscle plus a real-time quality-control loop.",
+            execution:"Led a ~60-person nationwide team; ran BTL activations at malls, parks and office hubs for aggressive ad acquisition; deployed territory managers with a live audit-call reconciliation loop tying every listing back to an accountable owner; added a semi-pro seller key-account team; wrote TVC stories that were produced and aired.",
+            result:"Overtook the national leader in motorbikes within 2.5 months and built the country's largest motorbike-ad inventory; 25% category revenue and 15% market-share growth." },
+          { title:"'Bike Bazaar' and a CPG-style offline trade play — trust by design", metric:'30% sold in a day · +50% users · +26% partner sales', img:'assets/cases/ekhanei-bikebazaar.jpg', tags:['Trust design','Trade'],
+            challenge:"Counter deep buyer distrust in second-hand bikes and create an offline presence with no trade budget to speak of.",
+            execution:"Conceived 'Bike Bazaar,' Bangladesh's first branded second-hand-motorcycle marketplace event uniting institutional and individual sellers in a secure venue with free mechanic evaluation and a vehicle-registration verification booth by the Bangladesh Road Transport Corporation (BRTC); established offline trade by supplying bike-shop partners with Ekhanei-branded light-boxes in exchange for covering 30% of their electricity bills.",
+            result:"30% inventory liquidation in a single day; lasting platform lift (50% user and 40% transaction-volume growth over six months); partner-shop sales +26% in 90 days." },
+        ] },
+      { id:'acca', name:'ACCA Bangladesh', logo:'assets/logos/acca.jpg', role:'Senior Manager, Employer & Member Affairs', date:'Jan 2019 – May 2021',
+        cases:[
+          { title:'Designing a member-growth ecosystem, not a calendar of events', metric:'100% of targets · approved employers 8 → 16', img:'assets/cases/acca-ecosystem.jpg', tags:['Institutional','Ecosystem'],
+            challenge:"Grow members, affiliates and approved employers against hard targets in a market with confidence, soft-skill and brand-recognition gaps.",
+            insight:"Map each stakeholder pain point to a recurring, KPI-linked activity portfolio with a multi-year roadmap so growth compounds rather than depending on one-off events.",
+            execution:"Designed and owned the Employer & Member Affairs operating model — 15+ activity types (round tables, CPD, networking, skill workshops, job mapping, PI sharing, MAC initiatives) each tied to KPIs and budget on a 19/20→24/25 roadmap; built a structured CPD slate (Data Analytics, Machine Learning, Excel, Tax as a Force for Good); initiated partnerships with BSHRM, CFO Forum, ICAB, ICMAB and FRC.",
+            result:"100% of all 2020–21 targets: new-member conversion 378→435 (+15.1%), member retention 98.2%, affiliate retention +2.4%; doubled big-corporate approved employers (8→16) — large MNCs and major local organizations with sizable finance teams." },
+          { title:"Flagship thought leadership — 'Business Partner of the Future' & New Member Ceremony", metric:'National media · finance C-suite positioning', img:'assets/cases/acca-leadership.jpg', tags:['Institutional','Events'],
+            challenge:"Build ACCA's institutional stature and certificate recognition among the finance C-suite and government.",
+            execution:"Planned (with ACCA's UK R&D) and executed the 'Business Partner of the Future' round table with PwC and The Daily Star — marking the launch of the joint ACCA–PwC report — and contributed on the panel alongside CFOs/finance heads of Unilever, Grameenphone, GSK, Pran-RFL, Nielsen, LankaBangla and the Comptroller & Auditor General; ran the ~400-person flagship New Member Ceremony (CAG as Chief Guest) and delivered the 'Smarter Cities, Simpler Cities' professional-insight keynote; designed the 'ACCA Next Leader' talk show with Channel i.",
+            result:"Elevated brand stature and earned full-scale national media coverage; positioned ACCA among the finance establishment." },
+        ] },
+      { id:'asiatic', name:'Asiatic (Bangladesh JWT) / Asiatic Digital', logo:'assets/logos/asiatic.png', role:'Senior Executive, Strategic Planning (ATL & Digital)', date:'Dec 2013 – May 2015',
+        cases:[
+          { title:'Lux Channel i Superstar 2014 — planning + executing a flagship branded-entertainment platform', metric:'~10,000 applicants · national platform', img:'assets/cases/asiatic-lux.jpg', tags:['Branded entertainment','Strategy'],
+            challenge:"Deliver Lux Bangladesh's flagship platform — one of the country's highest-budgeted and (to 2014) biggest-ever beauty-search shows, tied to Lux's 50-year celebration.",
+            execution:"Led both planning and execution of a 12-episode nationally televised reality format with a live prime-time grand finale at the Bangabandhu International Conference Center (BICC), ~10,000 nationwide applicants, online voting and major celebrity involvement; planned each episode's strategy and look, supervised shoots, secured client approvals, ensured on-time broadcast, owned the budget cap, and coordinated continuously with media-buying agencies, PR agencies and the client.",
+            result:"A flagship, nationally televised platform with national press (Daily Star, Dhaka Tribune, Prothom Alo) and long-tail digital exposure; the work earned a promotion to lead a wing of the new Asiatic Digital venture." },
+          { title:'Building Asiatic Digital — agency practice from the ground up', metric:'~$1M monthly revenue in 7 months', img:'assets/cases/asiatic-digital.jpg', tags:['Digital','Agency build'],
+            challenge:"Stand up a new digital practice and win retainer clients in a nascent market.",
+            execution:"Defined content strategy and pillars across Facebook, YouTube and the Google Display Network; launched Mirinda's Facebook presence from zero past 100,000 fans under a rare no-pre-approval mandate; managed a multi-brand F&B social portfolio (NESCAFÉ ~1.1M weekly reach, Finlay ~231K); drove research-led pitching for Shell, Nescafé and others; led the Cellbazar→Ekhanei rebrand; planned PepsiCo's 2015 World Cup activation, 7Up and Airtel's 3G launch.",
+            result:"Scaled the digital agency to ~$1M monthly revenue within seven months and converted prospects (Finlay, Nescafé) into retainer clients; led a 6-person team with full client autonomy." },
+        ] },
+    ];
+    this._companies = companies;
+
+    // BRAND STRIP
+    const brands = [
+      ['Samsung','assets/logos/samsung.png'],['Praava Health','assets/logos/praava.jpg'],
+      ['SureCash','assets/logos/surecash.png'],['Ekhanei.com','assets/logos/ekhanei.png'],
+      ['ACCA','assets/logos/acca.jpg'],['Asiatic','assets/logos/asiatic.png'],
+      ['Lux','assets/logos/lux.jpg'],['Laser Treat','assets/logos/lasertreat.jpeg'],
+    ];
+    const brandStrip = root.querySelector('#brand-strip');
+    if(brandStrip){ brandStrip.innerHTML = brands.map(b=>`
+      <div style="display:flex;align-items:center;justify-content:center;height:60px;padding:0 22px;background:var(--ivory-100);border:1px solid var(--border-hairline);border-radius:8px;">
+        <img src="${b[1]}" alt="${esc(b[0])}" loading="lazy" style="max-height:32px;max-width:124px;width:auto;object-fit:contain;display:block;" />
+      </div>`).join(''); }
+
+    // CASE NAV
+    const caseNav = root.querySelector('#case-nav');
+    if(caseNav){ caseNav.innerHTML = companies.map(co=>`
+      <a href="#co-${co.id}" data-casechip style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-size:13px;font-weight:600;color:var(--text-body);background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:999px;padding:8px 15px;transition:background .16s,border-color .16s,color .16s,transform .16s;">
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--accent);"></span>${esc(co.name.split(' (')[0].split(' / ')[0])}
+        <span style="font-family:var(--mono);font-size:11px;color:var(--text-faint);">${co.cases.length}</span>
+      </a>`).join(''); }
+
+    // COMPANY GROUPS + FULL CASES
+    let gn = 0;
+    const groupsEl = root.querySelector('#company-groups');
+    if(groupsEl){ groupsEl.innerHTML = companies.map(co=>{
+      const casesHTML = co.cases.map(c=>{
+        gn++; const num = String(gn).padStart(2,'0');
+        const rows = [['Challenge',c.challenge],c.insight?['Insight',c.insight]:null,['Execution',c.execution],['Result',c.result]].filter(Boolean);
+        const tags = (c.tags||[]).map(t=>`<span style="display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:4px;background:var(--obsidian-600);border:1px solid var(--border-hairline);color:var(--text-body);font-family:var(--body);font-size:12.5px;font-weight:500;">${esc(t)}</span>`).join('');
+        return `
+        <article data-reveal style="background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:12px;overflow:hidden;transition:border-color .2s,box-shadow .2s;box-shadow:var(--shadow-card);" data-case-card>
+          <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 18px;padding:clamp(24px,3vw,34px) clamp(24px,3vw,38px) clamp(14px,1.6vw,18px);">
+            <div style="display:flex;align-items:baseline;gap:16px;min-width:0;">
+              <span style="font-family:var(--mono);font-size:28px;font-weight:700;color:var(--steel-500);line-height:.9;">${num}</span>
+              <h3 style="font-family:var(--disp);font-weight:700;font-size:clamp(19px,2.1vw,27px);line-height:1.16;letter-spacing:-.01em;color:var(--text-strong);margin:0;">${esc(c.title)}</h3>
+            </div>
+            <div style="display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;font-weight:500;color:var(--amber-600);background:var(--amber-soft);border:1px solid rgba(244,162,76,.3);border-radius:999px;padding:7px 13px;white-space:nowrap;">▸ ${esc(c.metric)}</div>
+          </div>
+          ${tags?`<div style="display:flex;flex-wrap:wrap;gap:8px;padding:0 clamp(24px,3vw,38px) clamp(16px,2vw,20px);">${tags}</div>`:''}
+          <button data-zoom="${c.img}" data-cap="${esc(co.name.split(' (')[0])} — ${esc(c.title)}" style="display:block;width:100%;border:none;border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline);padding:0;margin:0;cursor:zoom-in;background:#fff;position:relative;line-height:0;">
+            <img src="${c.img}" alt="${esc(c.title)} strategy infographic" loading="lazy" style="display:block;width:100%;height:auto;" />
+            <span data-zoomhint style="position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;color:#fff;background:rgba(6,9,13,.72);border:1px solid var(--accent);backdrop-filter:blur(4px);padding:7px 12px;border-radius:999px;opacity:0;transition:opacity .2s;">⤢ View full size</span>
+          </button>
+          <div style="padding:clamp(22px,2.6vw,34px) clamp(24px,3vw,38px) clamp(26px,3vw,38px);display:flex;flex-direction:column;gap:15px;">
+            ${rows.map(([k,v])=>{const isResult=k==='Result';return `
+              <div style="display:grid;grid-template-columns:104px 1fr;gap:16px;align-items:start;">
+                <div style="font-family:var(--disp);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:${isResult?'var(--accent-text)':'var(--text-faint)'};padding-top:3px;">${k}</div>
+                <div style="font-family:var(--body);font-size:15px;line-height:1.62;color:${isResult?'var(--text-strong)':'var(--text-body)'};font-weight:${isResult?'500':'400'};">${esc(v)}</div>
+              </div>`;}).join('')}
+          </div>
+        </article>`;
+      }).join('');
+      return `
+      <div id="co-${co.id}" style="scroll-margin-top:90px;">
+        <div data-reveal style="display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-bottom:clamp(22px,3vw,32px);padding-bottom:20px;border-bottom:1px solid var(--border-hairline);position:relative;">
+          <div style="display:flex;align-items:center;justify-content:center;height:60px;min-width:60px;padding:0 18px;background:var(--ivory-100);border:1px solid var(--border-hairline);border-radius:8px;">
+            <img src="${co.logo}" alt="${esc(co.name)} logo" style="max-height:36px;max-width:124px;width:auto;object-fit:contain;display:block;" />
+          </div>
+          <div style="flex:1;min-width:220px;">
+            <h3 style="font-family:var(--disp);font-weight:800;font-size:clamp(22px,2.8vw,32px);letter-spacing:-.02em;color:var(--text-strong);margin:0;line-height:1.06;">${esc(co.name)}</h3>
+            <div style="font-family:var(--body);font-size:14px;color:var(--text-muted);margin-top:5px;">${esc(co.role)} <span style="font-family:var(--mono);font-size:12.5px;color:var(--text-faint);">· ${esc(co.date)}</span></div>
+          </div>
+          <div style="font-family:var(--mono);font-size:12px;color:var(--text-faint);white-space:nowrap;">${co.cases.length} case${co.cases.length>1?'s':''}</div>
+          <span style="position:absolute;left:0;bottom:-1px;width:64px;height:2px;background:var(--accent);"></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vw,26px);">${casesHTML}</div>
+      </div>`;
+    }).join(''); }
+
+    // TIMELINE
+    const tlLogo = {
+      'Laser Treat Group':'assets/logos/lasertreat.jpeg', 'Praava Health':'assets/logos/praava.jpg',
+      'ACCA':'assets/logos/acca.jpg', 'Samsung India Electronics Ltd (Bangladesh)':'assets/logos/samsung.png',
+      'Ekhanei.com (SnT Bangladesh)':'assets/logos/ekhanei.png', 'SureCash (Progoti Systems Ltd)':'assets/logos/surecash.png',
+      'Asiatic (Bangladesh JWT) / Asiatic Digital':'assets/logos/asiatic.png',
+      'Eastern Michigan University':'assets/logos/emu.png', 'EMU Housing & Residence Life':'assets/logos/emu.png',
+      'Eastern Michigan University — Office of Health Promotion':'assets/logos/emu.png',
+      'MGH Group':'assets/logos/mgh.png', 'Grey Advertising (Grey Dhaka · WPP)':'assets/logos/grey.png',
+      'Grameenphone Ltd (Telenor Bangladesh)':'assets/logos/grameenphone.png',
+      'BRAC University (UIHP)':'assets/logos/uihp.jpg',
+    };
+    const timeline = [
+      { role:'MPH Capstone — Health System Resilience & Economic Protection Campaign', org:'Eastern Michigan University', loc:'Ypsilanti, MI', date:'Feb 2026 – Apr 2026',
+        bullets:["Designed and executed a multi-article, multi-platform public-health advocacy campaign published across The Daily Star (Bangladesh's largest English-language national daily), Eastern Echo and the WellNest Watch column.","Documented a replicable ~3× Facebook reach amplification through strategic stakeholder tagging; built a rigorous analytics framework with locked methodology and APA-7 benchmarks.","Co-established the WellNest Watch column as a sustainable campus health-communication channel."] },
+      { role:'Graduate Hall Director (progressed Desk Assistant → Resident Advisor)', org:'EMU Housing & Residence Life', loc:'Ypsilanti, MI', date:'Aug 2024 – May 2026',
+        bullets:["As Graduate Hall Director at Walton Hall, supervised 9 Resident Advisors serving 230 residents; with 44% of the team new, designed an audience-segmentation communication training (tailoring outreach to different resident groups) that drove 541 logged resident engagements and the 2nd-highest resident-connection rate (39.1%) among all campus residence halls.","Built an automated duty-scheduling system and weekly data-informed insight reports; led crisis responses with DPS and Fire & Rescue; nominated for EMU's Student Gold Medallion Award for Exemplary Leadership."] },
+      { role:'Graduate Assistant, Health Promotion', org:'Eastern Michigan University — Office of Health Promotion', loc:'Ypsilanti, MI', date:'Aug 2024 – Jul 2025',
+        mandate:'Design and promote evidence-based campus health programs grounded in behavioral science.',
+        bullets:["Developed and executed campus-wide health-promotion programs with Public Health Education faculty, grounded in health-behavior theory and program-planning frameworks.","Designed a comprehensive harm-reduction campaign (alcohol & cannabis) — a year-long, multi-channel plan with a defined evaluation framework.","Created a reusable Public Health Event Framework for Eta Sigma Gamma (planning, execution, evaluation, sustainability).","Co-created the WellNest Watch public-health column in The Eastern Echo, shaping its messaging and engagement model; amplification reached 10,000+ individuals."] },
+      { role:'Startup Mentor — BRAC University Cohort, University Innovation Hub Program (UIHP)', org:'BRAC University (UIHP)', loc:'Dhaka, Bangladesh', date:'Mar 2024 – May 2024',
+        bullets:["Mentored early-stage startups on business-model refinement and competitive positioning.","Helped founders build actionable, sector-tailored growth strategies for scalability and market penetration.","Advised on product development, scaling and funding navigation — applying business-strategy and digital-transformation expertise across healthcare and technology ventures."] },
+      { role:'Chief Operating Officer', org:'Laser Treat Group', loc:'Dhaka, Bangladesh', date:'Nov 2023 – Aug 2024',
+        sub:'Laser Treat · DHI Bangladesh · Dhaka Dermatology Institute',
+        mandate:'Stabilize and grow a multi-entity clinical group by digitizing operations and sharpening the service portfolio.',
+        bullets:["Steered a comprehensive operational and growth strategy yielding 16% YTD revenue growth.","Launched clinical dermatology and sexual-health sub-brands that improved patient navigation and added 11% revenue within two months.","Implemented a centralized ERP (supply chain, inventory, clinical resources) and digitized patient files, BI dashboards, HR processes and CX logs — reducing delays and improving decision accuracy.","Introduced CSAT/NPS measurement systems, increasing patient retention 13% and establishing a continuous quality-improvement framework.","Cut annual operating expenses by $0.5M through process optimization, reinvesting savings into patient-facing services and care-quality upgrades.","Built and led a high-performing senior leadership team supporting service delivery, operational consistency and cross-department collaboration."] },
+      { role:'Head of Marketing & Corporate Sales (Head of Consumer Business)', org:'Praava Health', loc:'Dhaka, Bangladesh', date:'Jun 2021 – Oct 2023 · led a 30-person org',
+        mandate:'Own the consumer P&L (83% of revenue) and shift the business from COVID dependence to durable core-care growth.',
+        bullets:["Led the consumer business portfolio contributing 83% of total organizational revenue across retail and corporate channels.","Built corporate sales from zero, scaling clients 342 → ~1,400 via a telco-style KAM model and driving 3.1× growth in corporate health programs.","Stood up product marketing, BI/Data (housed inside marketing), PR, content and design functions — the commercial infrastructure for scale.","Launched the multidisciplinary Beauty & Wellness Center (dermatology, dentistry, nutrition, acupuncture, psychology) at 68% YoY growth.","Redesigned diagnostic packages and introduced a DIY health-testing category, increasing lab revenue 34% YoY; grew B2C preventive & primary care 24% YoY.","Engineered population-scale access (Lifebuoy hotline ~3,000 calls/day + DGHS data-sharing), nationwide door-to-door COVID collection, and a first-in-country 6-hour traveler-testing protocol integrated with the government portal.","Co-designed ethical, organ-targeted diagnostic packages that avoided physician kickbacks; launched the Ghore Lab home-diagnostics initiative.","Directed the consumer-business hypergrowth (~45% / ~57% B2C CAGR, 2021–2023) through product, metrics and growth-loop strategies.","Won a Silver at the Commward — Bangladesh Brand Forum's premier creative-communications award — for a mental-health awareness campaign, the only healthcare campaign recognized that year; secured Praava's status as a Gulf-recognized health center (authorized to issue medical clearances accepted by Gulf countries)."] },
+      { role:'Senior Manager, Employer & Member Affairs (Team Lead)', org:'ACCA', loc:'Dhaka, Bangladesh', date:'Jan 2019 – May 2021 · Business Development',
+        mandate:'Develop a sustainable country business ecosystem and grow members, affiliates and approved employers against hard targets.',
+        bullets:["Achieved 100% of all 2020–21 targets: new-member conversion 378→435 (+15.1%), member retention 98.2%, affiliate retention +2.4%.","Designed and owned the Employer & Member Affairs operating model — 15+ KPI-linked activity types on a 19/20→24/25 roadmap; doubled big-corporate approved employers (8→16), MNCs and large local organizations with sizable finance teams.","Planned and executed the 'Business Partner of the Future' round table (PwC, The Daily Star) and contributed on the panel alongside the finance C-suite; ran the Post-Budget 2020 round table (Kaler Kantho, 18 veterans).","Executed the ~400-person flagship New Member Ceremony (Comptroller & Auditor General as Chief Guest) and delivered the 'Smarter Cities' professional-insight keynote.","Initiated strategic partnerships (BSHRM, CFO Forum, ICAB, ICMAB, FRC); arranged a 17-country data-analytics training; partnered with Ex-Tax on an SDG tax study; designed the 'ACCA Next Leader' talk show with Channel i."] },
+      { role:'Manager, Product Planning', org:'Samsung India Electronics Ltd (Bangladesh)', loc:'Dhaka, Bangladesh', date:'Sep 2017 – Dec 2018 · Q3’18 Business Performer',
+        mandate:'Lead portfolio, pricing, positioning and go-to-market for flagship and mid-high smartphone segments.',
+        bullets:["Led the record-setting Note9 preorder launch (1.54× YoY, #1 globally for growth); defined GTM for entry-segment J2 4G / J2 Core (~2,600 units/day).","Built Samsung's online footprint via the national-distributor e-commerce marketplace and online-specific SKUs across every major platform.","Created a market-first consumer loyalty program with Samsung's R&D institute (SRBD) and a novel monsoon water-damage campaign off a multi-year breakage simulation.","Ran monthly market-transition planning with internal and distributor teams (volumes, allocations, ramp-ups, transition plans), liaising with regional management and HQ; owned localization of each product's key selling points and USP across all touchpoints."] },
+      { role:'Brand & Communications Manager (Brand & Vehicle Category Lead)', org:'Ekhanei.com (SnT Bangladesh)', loc:'Dhaka, Bangladesh', date:'Oct 2016 – Sep 2017 · Marketing',
+        mandate:'Build and lead the vehicle category for an online marketplace and own brand communications.',
+        bullets:["Built the nation's #1 motorbike category from zero (overtook the national leader in 2.5 months); led a ~60-person nationwide team plus a 3-person creative team.","Designed the territory-manager / live audit-call reconciliation quality system and a semi-pro seller key-account team.","Conceived the 'Bike Bazaar' trust event (free mechanic checks + Bangladesh Road Transport Corporation vehicle-registration verification) and a consumer-goods-style offline trade play (branded light-boxes for 30% of partner electricity bills).","Drove 25% category revenue and 15% market-share growth; wrote TVC stories produced and aired; served as lead planner for the Cellbazar→Ekhanei rebrand."] },
+      { role:'Marketing Manager (Marketing Lead)', org:'SureCash (Progoti Systems Ltd)', loc:'Dhaka, Bangladesh', date:'Jun 2015 – Oct 2016 · Marketing',
+        mandate:'Own brand, trade and digital for a multi-bank mobile-financial-services platform, including a population-scale G2P program.',
+        bullets:["Led the 10-million-beneficiary G2P stipend campaign via residence-mapped point-of-sale materials, automated telco voice calls (IVR) and rural mosque activations.","Built the in-house creative team (5) and brand book from scratch; merged digital with the call center for category-leading social responsiveness.","Owned ATL/BTL/digital strategy and the website revamp (35% bounce-rate reduction, 50% follower growth); brand awareness +~20%, engagement +~15%.","Ran national/international press events (Eden College launch with the Education Minister; Grameen Bank/Shakti signings); won the Banking Fair Award of Excellence."] },
+      { role:'Senior Executive, Strategic Planning (ATL & Digital)', org:'Asiatic (Bangladesh JWT) / Asiatic Digital', loc:'Dhaka, Bangladesh', date:'Dec 2013 – May 2015 · Strategic Planning',
+        mandate:"Plan integrated campaigns and help build the agency's new digital practice.",
+        bullets:["Led planning + execution of the flagship Lux Channel i Superstar 2014 platform; promoted to lead a wing of Asiatic Digital (6-person team, full client autonomy).","Scaled the digital practice to ~$1M monthly revenue in seven months; launched Mirinda past 100,000 Facebook fans; managed a multi-brand F&B portfolio (NESCAFÉ, Finlay).","Planned PepsiCo's 2015 World Cup activation, 7Up and Airtel's 3G launch; led the Cellbazar→Ekhanei rebrand; delivered comms for Mount Elizabeth Hospital and Kaler Kantho."] },
+      { role:'Executive, Brand', org:'MGH Group', loc:'Dhaka, Bangladesh', date:'May 2013 – Nov 2013 · Corporate Brands',
+        bullets:["Developed the group brand system across diverse business units (logistics, shipping, aviation, restaurant, radio), maintaining positioning consistency unit by unit.","Managed domestic and overseas vendors with end-to-end quality control of group brand collateral.","Secured and executed lead-sponsor presence at BATEXPO 2013 and MGH's Air Cargo & Logistics Asia 2013 (Singapore); created the 'Foortibaaz' Radio Foorti activation."] },
+      { role:'Account Executive', org:'Grey Advertising (Grey Dhaka · WPP)', loc:'Dhaka, Bangladesh', date:'Oct 2011 – May 2013 · Client Service',
+        bullets:["Owned retainer portfolios for Akij F&B and GSK (plus Pizza Inn, BDDL) with 95% client retention.","Distilled the 'purity/truthfulness' Frutika positioning from production insight; co-developed the Pizza Inn 'Bring Your Own Balish' challenger campaign.","Mastered full-cycle TVC production (pre/during/post), photoshoots and static creative; delivered 10+ launches in under two years; owned budgeting and vendor negotiation; trained 2 interns."] },
+      { role:'Customer Manager', org:'Grameenphone Ltd (Telenor Bangladesh)', loc:'Dhaka, Bangladesh', date:'May 2009 – Oct 2011 · Customer Service',
+        bullets:["Handled 90–100 daily interactions across premium, roaming, retailer and mass segments (90%+ CSAT, 85% first-call resolution).","Founding member of award-winning 'Team Sindbad' (Best Proactive Team 2010); Employee of the Month ×3; onboarded most of the team as it scaled 8→21 — while self-funding undergraduate studies."] },
+    ];
+    const tl = root.querySelector('#timeline');
+    if(tl){ tl.innerHTML = `<div style="position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:var(--border-hairline);"></div>` + timeline.map((t,i)=>{
+      const dot = i%2 ? 'var(--amber)' : 'var(--accent)';
+      return `
+      <div data-reveal style="position:relative;padding:0 0 ${i===timeline.length-1?'0':'clamp(28px,4vw,44px)'} 44px;">
+        <div style="position:absolute;left:0;top:5px;width:15px;height:15px;border-radius:50%;background:var(--surface-base);border:2px solid ${dot};"></div>
+        <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 18px;">
+          <h3 style="font-family:var(--disp);font-weight:700;font-size:clamp(18px,1.9vw,23px);letter-spacing:-.01em;color:var(--text-strong);margin:0;">${esc(t.role)}</h3>
+          <span style="font-family:var(--mono);font-size:12.5px;color:var(--text-faint);white-space:nowrap;">${esc(t.date)}</span>
+        </div>
+        <div style="font-family:var(--body);font-size:15px;font-weight:600;color:var(--text-body);margin:6px 0 ${t.mandate?'10px':'14px'};display:flex;align-items:center;gap:10px;flex-wrap:wrap;">${tlLogo[t.org]?`<img src="${tlLogo[t.org]}" alt="" style="height:22px;max-width:84px;width:auto;object-fit:contain;background:var(--ivory-100);border:1px solid var(--border-hairline);border-radius:6px;padding:3px 6px;box-sizing:content-box;">`:''}<span>${esc(t.org)} <span style="color:var(--text-faint);font-weight:400;">· ${esc(t.loc)}${t.sub?' · '+esc(t.sub):''}</span></span></div>
+        ${t.mandate?`<div style="font-family:var(--body);font-style:italic;font-size:14px;line-height:1.5;color:var(--accent-text);margin:0 0 14px;max-width:80ch;">Mandate — ${esc(t.mandate)}</div>`:''}
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px;">
+          ${t.bullets.map(b=>`<li style="position:relative;padding-left:18px;font-family:var(--body);font-size:14.5px;line-height:1.55;color:var(--text-muted);"><span style="position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:${dot};"></span>${esc(b)}</li>`).join('')}
+        </ul>
+      </div>`;}).join(''); }
+
+    // RECS (verbatim, 8)
+    const recs = [
+      { quote:"I am delighted to write this recommendation for Shafaat Ali Choyon, who has been an invaluable member of our Praava team for more than two years. Shafaat has a radiant personality that brings joy to our workplace and keeps the team morale high. In his professional capacity as a marketer, Shafaat has consistently demonstrated creativity and innovation. His unique ideas for marketing campaigns have significantly enhanced our brand identity and image. Shafaat is also an exceptional team leader — his leadership style is inclusive and supportive. Moreover, he has shown remarkable resilience in high-pressure situations. I wholeheartedly recommend him for any growth and marketing-related roles.", name:'Mohammad Abdul Matin Emon', title:'CEO, Praava Health · Founder, Innobig — managed Shafaat directly', yr:'2023' },
+      { quote:"Shafaat is a talented leader, creative thinker and team builder. He took over the marketing function at Praava and built a solid, highly effective team that delivers results. He has a steady hand, is very resilient and knows the market extremely well. He took over the Praava brand at an important inflection point and delivered significant growth, executing a complex strategy in very difficult pandemic operating circumstances. I trust Shafaat and would work with him again any minute.", name:'Kat Wendelstadt', title:"Founder & CMO · Shafaat's line manager at Praava", yr:'2022' },
+      { quote:"I had the great pleasure of working with Md Shafaat Ali during a period of great change in Ekhanei. I quickly identified him as one of the great potentials and a strong change agent, and during the implementation he proved instrumental in executing the new strategy. Choyon's strengths are in planning, execution, partnerships and project management, in addition to being a seasoned marketer and brand specialist. With Choyon you get a great guy who gives everything for his team and employer — highly recommended.", name:'Eivind Skibenes', title:'COO at Plick · managed Shafaat directly at Ekhanei', yr:'2017' },
+      { quote:"Choyon is an extremely capable and dedicated marketing professional. He has strong strategic, analytical and communication skills, further enhanced by his solid background in brand and communications and his enthusiasm to do better. I have seen his super ability in getting things done properly, even in a difficult environment. He is creative and structured, can connect with anyone in a business-effective manner, a great team manager and very persuasive.", name:'Shaahed Radwan', title:'Retail Marketing & Category Strategy Lead · Ekhanei', yr:'2017' },
+      { quote:"Shafaat Ali Choyon is a talented young professional. During his days in Samsung Electronics (Bangladesh), he was a key resource for campaign design and product management. He has great ability to manage things singlehandedly and at the same time lead complex projects with sheer quality. I am a real admirer of his people-management skill — he can take control over complex situations with his leadership proficiency.", name:'Mohammad Shahriar', title:'Sales Training, Product & Campaign Management · Samsung', yr:'2019' },
+      { quote:"Shafaat has proven himself to be a very valuable resource in just a year, in a completely different sector from his previous experiences — evidence of qualities such as high adaptability. He has always brought innovation and experience to the table. I highly regard him as a motivated professional.", name:'Prawma Taposhi Khan, FCCA', title:'Country Manager, ACCA Bangladesh', yr:'2020' },
+      { quote:"Md Shafaat is someone you will go to for a solution to your problems, and as an expert strategic planner he knows how to solve them intelligently in a planned way. I was lucky enough to work with him during his tenure in MGH Group and have observed him plan and implement big-scale local and foreign events.", name:'A K M Shafiqur Rahman', title:'Payments Product & Transformation, BNY · worked with Shafaat at MGH', yr:'2014' },
+      { quote:"I have had the opportunity to work with Shafaat on a number of occasions at MGH. I have found him to be very collected and detail oriented. He knows his strengths and gets the job done. He is a good listener as well — a friendly person by nature and a good team player. I wish him all the success in future. You deserve it!", name:'Samara Taylor', title:'Senior Director, Strategy & Transactions, EY-Parthenon · worked with Shafaat at MGH', yr:'2014' },
+    ];
+    const recTrack = root.querySelector('#rec-track');
+    if(recTrack){ const card = r=>`
+      <figure style="flex:0 0 auto;width:min(86vw,430px);background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:12px;padding:30px;margin:0;display:flex;flex-direction:column;box-shadow:var(--shadow-card);">
+        <div style="font-family:var(--disp);font-size:42px;line-height:0;color:var(--accent);height:24px;">“</div>
+        <blockquote style="margin:0 0 22px;font-family:var(--body);font-size:14.5px;line-height:1.62;color:var(--text-body);flex:1;">${esc(r.quote)}</blockquote>
+        <figcaption style="border-top:1px solid var(--border-hairline);padding-top:16px;">
+          <div style="font-family:var(--disp);font-weight:700;font-size:15.5px;color:var(--text-strong);">${esc(r.name)}</div>
+          <div style="font-family:var(--body);font-size:12.5px;color:var(--text-muted);margin-top:3px;">${esc(r.title)} · ${esc(r.yr)}</div>
+        </figcaption>
+      </figure>`;
+      recTrack.innerHTML = recs.map(card).join('') + recs.map(card).join(''); }
+
+    // ARTICLES
+    const articles = [
+      ["Running on Empty: America's Public Health Workforce Crisis","Eastern Echo / WellNest Watch","2026"],
+      ["Mixed Messages, Real Costs: How Confusing Health Communication Is Making America Sicker and Poorer","Eastern Echo / WellNest Watch","2026"],
+      ["Can We Use Private Healthcare to Improve Health Literacy","The Daily Star","2026"],
+      ["Increasing Public Health Investment Must Be a Top Priority","The Daily Star","2026"],
+      ["Health Policy Decisions Made Today Shape Michigan Tomorrow","Eastern Echo","2026"],
+      ["When Illness Becomes a Bill: Why Medical Debt Is a Public Health Crisis","Eastern Echo","2025"],
+      ["When We Ignore Public Health Prevention, We Pay the Price","Eastern Echo / WellNest Watch","2025"],
+      ["We Need Public Health Reform for Steady Economic Growth","The Daily Star","2025"],
+      ["Combating the Flood of Misinformation","Dhaka Tribune","2024"],
+      ["Exploring Comprehensive Digital Transformation in Bangladesh's Healthcare Sector","ICE Business Times","2023"],
+      ["Aiding Economy with Digital Health Services","The Financial Express","2021"],
+      ["Impact of Digital Health Services in the Economy","The Financial Express","2021"],
+      ["Digital Transformation and Adaptation for Securing Businesses","Daily Observer","2021"],
+    ];
+    const artList = root.querySelector('#article-list');
+    if(artList){ artList.innerHTML = articles.map((a,i)=>`
+      <div data-reveal style="display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;padding:18px 8px;border-top:1px solid var(--border-hairline);" data-article>
+        <span style="font-family:var(--mono);font-size:12px;color:var(--text-faint);">${String(i+1).padStart(2,'0')}</span>
+        <span style="font-family:var(--disp);font-weight:600;font-size:clamp(16px,1.8vw,21px);letter-spacing:-.01em;line-height:1.25;color:var(--text-strong);">${esc(a[0])}</span>
+        <span style="text-align:right;font-family:var(--body);font-size:12.5px;color:var(--text-muted);white-space:nowrap;"><span style="color:var(--accent-text);font-weight:500;">${esc(a[1])}</span> · ${esc(a[2])}</span>
+      </div>`).join('') + `<div style="border-top:1px solid var(--border-hairline);"></div>`; }
+
+    // COMPETENCIES
+    const comps = [
+      ["Strategy & Commercial","var(--amber)",["Growth strategy","Go-to-market & product launch","Market expansion","Pricing architecture","Corporate & institutional sales","P&L ownership","Business-model design","Brand strategy"]],
+      ["Behavioral Science & Communication","var(--teal)",["Health communication","Behavior-change strategy","Audience segmentation","Health promotion","Program planning & evaluation","Trust & adoption design","Health literacy"]],
+      ["Operations, Data & Transformation","var(--navy-400)",["ERP & workflow digitization","BI / CRM & analytics","ARPU · CLV · cohorting · retention","Data-driven decision-making","Cross-functional leadership","Change management","AI-assisted workflows"]],
+    ];
+    const compList = root.querySelector('#comp-list');
+    if(compList){ compList.innerHTML = comps.map((c,i)=>`
+      <div data-reveal data-comp="${i}">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><span style="width:10px;height:10px;border-radius:3px;background:${c[1]};"></span><h3 style="font-family:var(--disp);font-weight:700;font-size:16px;color:var(--text-strong);margin:0;letter-spacing:-.01em;">${esc(c[0])}</h3></div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          ${c[2].map(t=>`<span style="font-family:var(--body);font-size:13px;padding:7px 13px;border:1px solid var(--border-hairline);border-radius:999px;color:var(--text-body);background:var(--surface-raised);">${esc(t)}</span>`).join('')}
+        </div>
+      </div>`).join(''); }
+
+    // EDU
+    const edu = [
+      ["Master of Public Health (MPH), Health Education & Promotion","Eastern Michigan University, Ypsilanti, MI · May 2026"],
+      ["Certified Health Education Specialist (CHES®)","National Commission for Health Education Credentialing (NCHEC) · Apr 2026"],
+      ["MBA, Operations Management","American International University–Bangladesh · 2012"],
+      ["BBA, Marketing","American International University–Bangladesh · 2010"],
+    ];
+    const eduList = root.querySelector('#edu-list');
+    if(eduList){ eduList.innerHTML = edu.map(e=>`
+      <div data-reveal style="background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:8px;padding:18px 20px;">
+        <div style="font-family:var(--disp);font-weight:700;font-size:15.5px;line-height:1.3;letter-spacing:-.01em;color:var(--text-strong);">${esc(e[0])}</div>
+        <div style="font-family:var(--body);font-size:13px;color:var(--text-muted);margin-top:5px;">${esc(e[1])}</div>
+      </div>`).join(''); }
+    const extra = [
+      "Brand Strategy & Category Management — 4-day intensive, Vietnam (Chợ Tốt / Ekhanei)",
+      "Product Planning — 7-day program, Samsung Regional HQ, India",
+      "Regional Market Development Strategy — 3-day workshop, ACCA Office, Dubai",
+      "Member, Chartered Institute of Marketing (MCIM) — ID 40066640",
+      "Professional Member, American Marketing Association (AMA)",
+      "Student Member, SOPHE (ID 79507) & APHA (ID 11610404)",
+    ];
+    const extraList = root.querySelector('#extra-list');
+    if(extraList){ extraList.innerHTML = extra.map(x=>`
+      <div data-reveal style="display:flex;gap:10px;align-items:flex-start;font-family:var(--body);font-size:13.5px;line-height:1.5;color:var(--text-muted);"><span style="color:var(--accent-text);margin-top:1px;">→</span><span>${esc(x)}</span></div>`).join(''); }
+
+    // LANDING CARDS
+    const order = ['growth','healthcomm','healthtech','pophealth'];
+    const lc = root.querySelector('#landing-cards');
+    if(lc){ lc.innerHTML = order.map((id,i)=>{ const L=this._lenses[id]; return `
+      <button type="button" class="lens-card" data-lens-pick="${id}" style="animation-delay:${i*70}ms;text-align:left;cursor:pointer;background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:12px;padding:26px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow-card);transition:transform .2s,border-color .2s;">
+        <span style="width:46px;height:46px;border-radius:10px;background:${L.soft};display:inline-flex;align-items:center;justify-content:center;color:${L.accent};"><i data-lucide="${L.icon}" style="width:23px;height:23px;"></i></span>
+        <span style="font-family:var(--disp);font-weight:700;font-size:21px;letter-spacing:-.01em;color:var(--text-strong);">${L.label}</span>
+        <span style="font-family:var(--body);font-size:14.5px;line-height:1.5;color:var(--text-muted);">${L.blurb}</span>
+        <span style="margin-top:4px;display:inline-flex;align-items:center;gap:7px;font-family:var(--disp);font-weight:700;font-size:13.5px;color:${L.accent};">Enter this lens <span aria-hidden="true">→</span></span>
+      </button>`; }).join(''); }
+  }
+
+  // ---- lens + theme ----
+  setAccent(cfg){
+    const d=document.documentElement.style;
+    const light=document.documentElement.getAttribute('data-theme')==='light';
+    d.setProperty('--accent',cfg.accent);
+    d.setProperty('--accent-soft',cfg.soft);
+    d.setProperty('--accent-ink',cfg.ink);
+    d.setProperty('--accent-text', light?cfg.deep:cfg.accent);
+  }
+  applyLens(id, opts){
+    opts=opts||{};
+    const cfg=this._lenses[id]||this._lenses.full;
+    this._cfg=cfg; this.lens=id;
+    const root=document.getElementById('site-root'); if(!root) return;
+    this.setAccent(cfg);
+    const set=(sel,html)=>{ const el=root.querySelector(sel); if(el) el.innerHTML=html; };
+    set('#hero-eyebrow', cfg.eyebrow);
+    const h1=root.querySelector('#hero-headline'); if(h1){ h1.innerHTML=cfg.headline.replace('<span>','<span style="color:var(--accent-text);">'); }
+    set('#hero-subhead', cfg.subhead);
+    const pills=root.querySelector('#hero-pills');
+    if(pills){ pills.innerHTML=cfg.pills.map((p,i)=>`<span style="display:inline-flex;align-items:center;height:34px;padding:0 16px;border-radius:999px;border:1.5px solid ${i===0?'var(--accent)':'var(--border-strong)'};background:${i===0?'var(--accent-soft)':'transparent'};color:${i===0?'var(--accent-text)':'var(--text-body)'};font-family:var(--body);font-weight:600;font-size:14px;">${p}</span>`).join(''); }
+    const navLabel=root.querySelector('#nav-lens-label'); if(navLabel) navLabel.innerHTML=cfg.short;
+
+    if(id==='full'){ this.restoreFull(); }
+    else { this.renderLens(this._dossiers[id]); }
+
+    document.title = 'Md Shafaat Ali Choyon — '+cfg.short.replace(/&amp;/g,'&');
+    if(!opts.noUrl){ try{ history.replaceState(null,'', id==='full'?location.pathname:('?view='+id)); }catch(e){} }
+    try{ localStorage.setItem('shafaat_lens', id); }catch(e){}
+    this.wireDynamic();
+    if(window.lucide) try{ window.lucide.createIcons(); }catch(e){}
+  }
+  setTheme(t){
+    document.documentElement.setAttribute('data-theme', t);
+    try{ localStorage.setItem('shafaat_theme', t); }catch(e){}
+    const icon = t==='light' ? 'moon' : 'sun';
+    ['#theme-icon','#landing-icon'].forEach(sel=>{ const el=document.querySelector(sel); if(el){ el.setAttribute('data-lucide', icon); } });
+    if(this._cfg) this.setAccent(this._cfg);
+    if(window.lucide) try{ window.lucide.createIcons(); }catch(e){}
+  }
+  initTheme(){
+    let t='light';
+    try{ const s=localStorage.getItem('shafaat_theme'); if(s) t=s; }catch(e){}
+    this.setTheme(t);
+  }
+  showLanding(){ const l=document.getElementById('landing'); if(l) l.style.display='flex'; document.body.style.overflow='hidden'; }
+  hideLanding(){ const l=document.getElementById('landing'); if(l) l.style.display='none'; document.body.style.overflow=''; }
+  initRouting(){
+    let v=null;
+    try{ v=new URLSearchParams(location.search).get('view'); }catch(e){}
+    if(v && this._lenses[v]){ this._userPicked=true; this.applyLens(v,{noUrl:true}); this.hideLanding(); return; }
+    // neutral landing default
+    this.applyLens('full',{noUrl:true});
+    this.showLanding();
+    this.tryGeo();
+  }
+  tryGeo(){
+    if(this._userPicked) return;
+    let done=false;
+    const ctrl = (typeof AbortController!=='undefined') ? new AbortController() : null;
+    const to = setTimeout(()=>{ if(ctrl) try{ctrl.abort();}catch(e){} }, 2500);
+    try{
+      fetch('https://ipapi.co/country/', ctrl?{signal:ctrl.signal}:{})
+        .then(r=>r.ok?r.text():Promise.reject())
+        .then(txt=>{ clearTimeout(to); if(done) return; done=true;
+          if(!this._userPicked && String(txt).trim().toUpperCase()==='BD'){ this.applyLens('growth',{}); this.hideLanding(); } })
+        .catch(()=>{ clearTimeout(to); });
+    }catch(e){ clearTimeout(to); }
+  }
+
+  wire(){
+    const root = document.getElementById('site-root');
+    if(!root) return;
+    this._reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.wireDynamic();
+
+    // Nav state + parallax
+    const grid = root.querySelector('[data-grid]');
+    const nav = root.querySelector('[data-nav]');
+    const sections = [...root.querySelectorAll('section[id], header[id], footer[id]')];
+    let ticking=false;
+    const onScroll = ()=>{
+      if(ticking) return; ticking=true;
+      requestAnimationFrame(()=>{
+        const y = window.scrollY||window.pageYOffset;
+        if(!this._reduce && grid) grid.style.transform = `translateY(${y*-0.04}px)`;
+        if(nav){
+          if(y>40){ nav.style.background='var(--nav-bg)'; nav.style.backdropFilter='blur(12px)'; nav.style.webkitBackdropFilter='blur(12px)'; nav.style.borderBottomColor='var(--border-hairline)'; nav.style.padding='12px clamp(20px,4vw,48px)'; }
+          else { nav.style.background='transparent'; nav.style.backdropFilter='none'; nav.style.webkitBackdropFilter='none'; nav.style.borderBottomColor='transparent'; nav.style.padding='18px clamp(20px,4vw,48px)'; }
+        }
+        let active=null;
+        sections.forEach(s=>{ const r=s.getBoundingClientRect(); if(r.top<=120 && r.bottom>=120) active=s.id; });
+        this._active=active;
+        root.querySelectorAll('[data-navlink]').forEach(a=>{ const href=a.getAttribute('href'); const m=href==='#'+active; a.style.color = m? 'var(--accent-text)':'var(--text-muted)'; });
+        this._checkReveals(); this._checkCounters();
+        ticking=false;
+      });
+    };
+    window.addEventListener('scroll', onScroll, {passive:true});
+    window.addEventListener('resize', onScroll);
+    onScroll();
+    [120,400,900,1800].forEach(t=>setTimeout(()=>{ this._checkReveals(); this._checkCounters(); }, t));
+    this._onScroll = onScroll;
+
+    // Lightbox open/close (open reused by per-card buttons via wireDynamic)
+    const lb=document.getElementById('lightbox'); const lbImg=document.getElementById('lightbox-img'); const lbCap=document.getElementById('lightbox-cap'); const lbClose=document.getElementById('lightbox-close');
+    if(lb && lbImg){
+      this._lbOpen=(src,cap)=>{ lbImg.src=src; lbImg.alt=cap||''; if(lbCap) lbCap.textContent=cap||''; lb.style.display='flex'; document.body.style.overflow='hidden'; };
+      const close=()=>{ lb.style.display='none'; lbImg.src=''; document.body.style.overflow=''; };
+      lb.addEventListener('click', e=>{ if(e.target===lb || e.target===lbImg) close(); });
+      if(lbClose) lbClose.addEventListener('click', close);
+      document.addEventListener('keydown', e=>{ if(e.key==='Escape' && lb.style.display==='flex') close(); });
+    }
+
+    // Lens picks + chooser open
+    root.querySelectorAll('[data-lens-pick]').forEach(el=>{ el.addEventListener('click',()=>{ this._userPicked=true; this.applyLens(el.getAttribute('data-lens-pick'),{}); this.hideLanding(); window.scrollTo(0,0); }); });
+    const landingAll=document.getElementById('landing-all'); if(landingAll) landingAll.addEventListener('click',()=>{ this._userPicked=true; this.applyLens('full',{}); this.hideLanding(); window.scrollTo(0,0); });
+    const navLens=document.getElementById('nav-lens'); if(navLens) navLens.addEventListener('click',()=>{ this.showLanding(); });
+    const footerLens=document.getElementById('footer-lens'); if(footerLens) footerLens.addEventListener('click',()=>{ this.showLanding(); });
+
+    // Theme toggles
+    const toggle=()=>{ const cur=document.documentElement.getAttribute('data-theme')==='light'?'light':'dark'; this.setTheme(cur==='light'?'dark':'light'); };
+    ['#theme-toggle','#landing-theme'].forEach(sel=>{ const b=document.querySelector(sel); if(b) b.addEventListener('click', toggle); });
+  }
+
+  _fmt(v,prefix,suffix){ let s; if(v>=1000) s=Math.round(v).toLocaleString('en-US'); else s=String(Math.round(v)); return (prefix||'')+s+(suffix||''); }
+  _showEl(el){ if(el._shown) return; el._shown=true; el.style.opacity='1'; el.style.transform='none'; setTimeout(()=>{ el.style.transition='none'; el.style.willChange='auto'; el.style.opacity='1'; el.style.transform='none'; },700); }
+  _startCounter(el){
+    if(el._started) return; el._started=true;
+    const target=parseFloat(el.getAttribute('data-count'));
+    const prefix=el.getAttribute('data-prefix')||''; const suffix=el.getAttribute('data-suffix')||'';
+    if(this._reduce){ el.textContent=this._fmt(target,prefix,suffix); return; }
+    const self=this;
+    setTimeout(()=>{ el.textContent=self._fmt(target,prefix,suffix); }, 1700);
+    const dur=1500; const start=performance.now(); const ease=t=>1-Math.pow(1-t,3);
+    const step=now=>{ const t=Math.min(1,(now-start)/dur); el.textContent=self._fmt(target*ease(t),prefix,suffix); if(t<1) requestAnimationFrame(step); else el.textContent=self._fmt(target,prefix,suffix); };
+    requestAnimationFrame(step);
+  }
+  _checkReveals(){ const h=window.innerHeight||document.documentElement.clientHeight; document.querySelectorAll('[data-reveal]').forEach(el=>{ if(!el._rev||el._shown) return; const r=el.getBoundingClientRect(); if(r.top < h*0.92 && r.bottom > -60) this._showEl(el); }); }
+  _checkCounters(){ const h=window.innerHeight||document.documentElement.clientHeight; document.querySelectorAll('[data-count]').forEach(el=>{ if(!el._cnt||el._started) return; const r=el.getBoundingClientRect(); if(r.top < h*0.85 && r.bottom > 0) this._startCounter(el); }); }
+  _ensureIO(){ if(this._io || !('IntersectionObserver' in window)) return; const self=this; this._io=new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(!e.isIntersecting) return; const el=e.target; self._io.unobserve(el); if(el.hasAttribute('data-count')) self._startCounter(el); else self._showEl(el); }); }, {threshold:0.08, rootMargin:'0px 0px -5% 0px'}); }
+  wireDynamic(){
+    const root=document.getElementById('site-root'); if(!root) return;
+    const reduce=this._reduce; this._ensureIO();
+    root.querySelectorAll('[data-reveal]').forEach(el=>{ if(el._rev) return; el._rev=1; const d=el.getAttribute('data-reveal-delay')||0; el.style.opacity='0'; el.style.transform='translateY(22px)'; el.style.transition='opacity .6s cubic-bezier(.16,1,.3,1) '+d+'ms, transform .6s cubic-bezier(.16,1,.3,1) '+d+'ms'; el.style.willChange='opacity, transform'; el._shown=false; if(reduce) this._showEl(el); else if(this._io) this._io.observe(el); });
+    root.querySelectorAll('[data-count]').forEach(el=>{ if(el._cnt) return; el._cnt=1; el._started=false; if(reduce) this._startCounter(el); else if(this._io) this._io.observe(el); });
+    this._bindHovers(root);
+    this._checkReveals(); this._checkCounters();
+    this._pollUntil = performance.now()+6000;
+    if(!this._pollId){ const self=this; this._pollId=setInterval(()=>{ self._checkReveals(); self._checkCounters(); if(performance.now()>self._pollUntil){ document.querySelectorAll('[data-reveal]').forEach(el=>{ if(el._rev) self._showEl(el); }); document.querySelectorAll('[data-count]').forEach(el=>{ if(el._cnt) self._startCounter(el); }); clearInterval(self._pollId); self._pollId=null; } }, 250); }
+    if(window.lucide) try{ window.lucide.createIcons(); }catch(e){}
+  }
+  _bindHovers(root){
+    root.querySelectorAll('[data-card]').forEach(el=>{ if(el._hb) return; el._hb=1; el.addEventListener('mouseenter',()=>{ el.style.transform='translateY(-3px)'; el.style.borderColor='var(--accent)'; }); el.addEventListener('mouseleave',()=>{ el.style.transform='none'; el.style.borderColor='var(--border-hairline)'; }); });
+    root.querySelectorAll('[data-case-card]').forEach(el=>{ if(el._hb) return; el._hb=1; const hint=el.querySelector('[data-zoomhint]'); el.addEventListener('mouseenter',()=>{ el.style.borderColor='var(--accent)'; if(hint) hint.style.opacity='1'; }); el.addEventListener('mouseleave',()=>{ el.style.borderColor='var(--border-hairline)'; if(hint) hint.style.opacity='0'; }); });
+    root.querySelectorAll('[data-casechip]').forEach(el=>{ if(el._hb) return; el._hb=1; el.addEventListener('mouseenter',()=>{ el.style.background='var(--accent-soft)'; el.style.borderColor='var(--accent)'; el.style.color='var(--accent-text)'; el.style.transform='translateY(-2px)'; }); el.addEventListener('mouseleave',()=>{ el.style.background='var(--surface-raised)'; el.style.borderColor='var(--border-hairline)'; el.style.color='var(--text-body)'; el.style.transform='none'; }); });
+    root.querySelectorAll('[data-article]').forEach(el=>{ if(el._hb) return; el._hb=1; el.addEventListener('mouseenter',()=>{ el.style.background='var(--accent-soft)'; }); el.addEventListener('mouseleave',()=>{ el.style.background='transparent'; }); });
+    root.querySelectorAll('[data-btn-solid],[data-cta]').forEach(el=>{ if(el._hb) return; el._hb=1; el.addEventListener('mouseenter',()=>{ el.style.filter='brightness(1.08)'; }); el.addEventListener('mouseleave',()=>{ el.style.filter='none'; el.style.transform='none'; }); el.addEventListener('mousedown',()=>{ el.style.transform='translateY(1px)'; }); el.addEventListener('mouseup',()=>{ el.style.transform='none'; }); });
+    root.querySelectorAll('[data-btn-ghost]').forEach(el=>{ if(el._hb) return; el._hb=1; el.addEventListener('mouseenter',()=>{ el.style.borderColor='var(--accent)'; }); el.addEventListener('mouseleave',()=>{ el.style.borderColor='var(--border-strong)'; el.style.transform='none'; }); el.addEventListener('mousedown',()=>{ el.style.transform='translateY(1px)'; }); el.addEventListener('mouseup',()=>{ el.style.transform='none'; }); });
+    root.querySelectorAll('[data-navlink]').forEach(a=>{ if(a._hb) return; a._hb=1; a.addEventListener('mouseenter',()=>{ a.style.color='var(--accent-text)'; }); a.addEventListener('mouseleave',()=>{ const m=a.getAttribute('href')==='#'+(this._active||''); a.style.color = m?'var(--accent-text)':'var(--text-muted)'; }); });
+    root.querySelectorAll('[data-lens-pick]').forEach(el=>{ if(el._hb) return; el._hb=1; el.addEventListener('mouseenter',()=>{ el.style.transform='translateY(-3px)'; el.style.borderColor='var(--border-strong)'; }); el.addEventListener('mouseleave',()=>{ el.style.transform='none'; el.style.borderColor='var(--border-hairline)'; }); });
+    const mq=root.querySelector('[data-marquee]'); if(mq && !mq._hb){ mq._hb=1; mq.addEventListener('mouseenter',()=>{ mq.style.animationPlayState='paused'; }); mq.addEventListener('mouseleave',()=>{ mq.style.animationPlayState='running'; }); }
+    root.querySelectorAll('[data-zoom]').forEach(b=>{ if(b._zb) return; b._zb=1; b.addEventListener('click',()=>{ if(this._lbOpen) this._lbOpen(b.getAttribute('data-zoom'), b.getAttribute('data-cap')); }); });
+  }
+
+  cacheFull(){
+    const g=id=>{ const el=document.getElementById(id); return el?el.innerHTML:''; };
+    this._full={ eyebrow:g('proof-eyebrow'), impactTitle:g('impact-title'), impact:g('impact-grid'), casesSub:g('cases-sub'), caseNav:g('case-nav'), cases:g('company-groups'), comp:g('comp-list'), rec:g('rec-track'), expTitle:g('exp-title'), expSub:g('exp-sub'), tl:g('timeline') };
+  }
+  restoreFull(){
+    const s=(id,html)=>{ const el=document.getElementById(id); if(el) el.innerHTML=html; };
+    const f=this._full||{};
+    s('proof-eyebrow',f.eyebrow); s('impact-title',f.impactTitle); s('impact-grid',f.impact);
+    s('cases-sub',f.casesSub); s('case-nav',f.caseNav); s('company-groups',f.cases);
+    s('comp-list',f.comp); s('rec-track',f.rec); s('exp-title',f.expTitle); s('exp-sub',f.expSub); s('timeline',f.tl);
+    const cf=document.getElementById('case-focus'); if(cf){ cf.style.display='none'; cf.innerHTML=''; }
+  }
+  renderLens(d){
+    const s=(id,html)=>{ const el=document.getElementById(id); if(el) el.innerHTML=html; };
+    s('proof-eyebrow','Impact at a glance');
+    s('impact-title', d.impactTitle);
+    s('impact-grid', this.renderImpact(d.impact));
+    s('cases-sub', d.caseSub);
+    const cf=document.getElementById('case-focus');
+    if(cf){ if(d.focus){ cf.style.display='flex'; cf.style.gap='12px'; cf.style.alignItems='flex-start'; cf.style.maxWidth='66ch'; cf.style.padding='14px 18px'; cf.style.borderRadius='10px'; cf.style.background='var(--accent-soft)'; cf.style.border='1px solid var(--accent)'; cf.innerHTML='<span style="color:var(--accent-text);font-weight:700;flex:0 0 auto;">▸</span><span style="font-family:var(--body);font-size:14.5px;line-height:1.55;color:var(--text-body);">'+d.focus+'</span>'; } else { cf.style.display='none'; cf.innerHTML=''; } }
+    s('case-nav', this.renderCaseNav(d.groups));
+    s('company-groups', this.renderCases(d.groups));
+    s('comp-list', this.renderComps(d.comps));
+    s('rec-track', this.renderRecs(d.recKeys));
+    s('exp-title', d.expTitle||'Experience in focus.');
+    s('exp-sub', d.expSub||'');
+    s('timeline', this.renderExperience(d.experience));
+  }
+  renderImpact(arr){ const esc=s=>this.esc(s); return arr.map(t=>{ const val=t[0], lab=t[1]; const c=/\d/.test(val)?'var(--amber)':'var(--teal-400)'; return '<div data-reveal><div style="font-family:var(--mono);font-weight:800;font-size:clamp(22px,2.8vw,38px);line-height:1.1;letter-spacing:-.02em;color:'+c+';min-height:2.2em;display:flex;align-items:flex-end;">'+esc(val)+'</div><div style="font-size:13.5px;color:var(--ivory-200);margin-top:9px;font-weight:600;line-height:1.35;">'+esc(lab)+'</div></div>'; }).join(''); }
+  renderCaseNav(groups){ const esc=s=>this.esc(s); return groups.map((g,i)=>'<a href="#grp-'+i+'" data-casechip style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-size:13px;font-weight:600;color:var(--text-body);background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:999px;padding:8px 15px;transition:background .16s,border-color .16s,color .16s,transform .16s;"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent);"></span>'+esc(g.label)+'<span style="font-family:var(--mono);font-size:11px;color:var(--text-faint);">'+g.cases.length+'</span></a>').join(''); }
+  renderCases(groups){ const esc=s=>this.esc(s); let n=0; return groups.map((g,i)=>{
+    const cards=g.cases.map(c=>{ n++; const num=String(n).padStart(2,'0'); const rows=[['Challenge',c.ch],c.ins?['Insight',c.ins]:null,['Execution',c.ex],['Result',c.re]].filter(Boolean);
+      const img=c.img?('assets/cases/'+c.img+'.png'):'';
+      const imgBlock=img?('<button data-zoom="'+img+'" data-cap="'+esc(c.t)+'" style="display:block;width:100%;border:none;border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline);padding:0;margin:0;cursor:zoom-in;background:#fff;position:relative;line-height:0;"><img src="'+img+'" alt="'+esc(c.t)+' strategy infographic" loading="lazy" style="display:block;width:100%;height:auto;" /><span data-zoomhint style="position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;color:#fff;background:rgba(6,9,13,.72);border:1px solid var(--accent);backdrop-filter:blur(4px);padding:7px 12px;border-radius:999px;opacity:0;transition:opacity .2s;">⤢ View full size</span></button>'):'';
+      return '<article data-reveal data-case-card style="background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:12px;overflow:hidden;transition:border-color .2s,box-shadow .2s;box-shadow:var(--shadow-card);"><div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 18px;padding:clamp(22px,3vw,30px) clamp(22px,3vw,34px) '+(img?'clamp(14px,1.6vw,18px)':'clamp(4px,1vw,8px)')+';"><div style="display:flex;align-items:baseline;gap:14px;min-width:0;"><span style="font-family:var(--mono);font-size:22px;font-weight:700;color:var(--steel-500);line-height:.9;">'+num+'</span><h3 style="font-family:var(--disp);font-weight:700;font-size:clamp(18px,2vw,24px);line-height:1.18;letter-spacing:-.01em;color:var(--text-strong);margin:0;">'+esc(c.t)+'</h3></div><div style="display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;font-weight:500;color:var(--amber-600);background:var(--amber-soft);border:1px solid rgba(244,162,76,.3);border-radius:999px;padding:7px 13px;white-space:nowrap;">▸ '+esc(c.m)+'</div></div>'+imgBlock+'<div style="padding:clamp(20px,2.4vw,28px) clamp(22px,3vw,34px) clamp(24px,2.8vw,32px);display:flex;flex-direction:column;gap:14px;">'+rows.map(r=>{ const isR=r[0]==='Result'; return '<div style="display:grid;grid-template-columns:104px 1fr;gap:16px;align-items:start;"><div style="font-family:var(--disp);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:'+(isR?'var(--accent-text)':'var(--text-faint)')+';padding-top:3px;">'+r[0]+'</div><div style="font-family:var(--body);font-size:15px;line-height:1.62;color:'+(isR?'var(--text-strong)':'var(--text-body)')+';font-weight:'+(isR?'500':'400')+';">'+esc(r[1])+'</div></div>'; }).join('')+'</div></article>';
+    }).join('');
+    return '<div id="grp-'+i+'" style="scroll-margin-top:90px;"><div data-reveal style="position:relative;margin-bottom:clamp(20px,2.6vw,28px);padding-bottom:16px;border-bottom:1px solid var(--border-hairline);"><div style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-text);">'+esc(g.label)+'</div><span style="position:absolute;left:0;bottom:-1px;width:56px;height:2px;background:var(--accent);"></span></div><div style="display:flex;flex-direction:column;gap:clamp(16px,2.2vw,24px);">'+cards+'</div></div>';
+  }).join(''); }
+  renderComps(comps){ const esc=s=>this.esc(s); return comps.map(c=>'<div data-reveal><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><span style="width:10px;height:10px;border-radius:3px;background:'+c[1]+';"></span><h3 style="font-family:var(--disp);font-weight:700;font-size:16px;color:var(--text-strong);margin:0;letter-spacing:-.01em;">'+esc(c[0])+'</h3></div><div style="display:flex;flex-wrap:wrap;gap:8px;">'+c[2].map(t=>'<span style="font-family:var(--body);font-size:13px;padding:7px 13px;border:1px solid var(--border-hairline);border-radius:999px;color:var(--text-body);background:var(--surface-raised);">'+esc(t)+'</span>').join('')+'</div></div>').join(''); }
+  renderRecs(keys){ const esc=s=>this.esc(s); const pool=this._recs||(this._recs=this.recPool()); const card=r=>'<figure style="flex:0 0 auto;width:min(86vw,430px);background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:12px;padding:30px;margin:0;display:flex;flex-direction:column;box-shadow:var(--shadow-card);"><div style="font-family:var(--disp);font-size:42px;line-height:0;color:var(--accent);height:24px;">\u201C</div><blockquote style="margin:0 0 22px;font-family:var(--body);font-size:14.5px;line-height:1.62;color:var(--text-body);flex:1;">'+esc(r.q)+'</blockquote><figcaption style="border-top:1px solid var(--border-hairline);padding-top:16px;"><div style="font-family:var(--disp);font-weight:700;font-size:15.5px;color:var(--text-strong);">'+esc(r.n)+'</div><div style="font-family:var(--body);font-size:12.5px;color:var(--text-muted);margin-top:3px;">'+esc(r.t)+' · '+esc(r.y)+'</div></figcaption></figure>'; const cards=keys.map(k=>pool[k]).filter(Boolean); const html=cards.map(card).join(''); return html+html; }
+  renderExperience(list){ const esc=s=>this.esc(s); const logoFor=org=>{ const m=[[/Praava/i,'praava.jpg'],[/Samsung/i,'samsung.png'],[/ACCA/i,'acca.jpg'],[/SureCash/i,'surecash.png'],[/Ekhanei/i,'ekhanei.png'],[/Asiatic/i,'asiatic.png'],[/Laser Treat/i,'lasertreat.jpeg']]; for(const x of m){ if(x[0].test(org)) return 'assets/logos/'+x[1]; } return ''; };
+    return '<div style="position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:var(--border-hairline);"></div>'+list.map((t,i)=>{ const dot=i%2?'var(--amber)':'var(--accent)'; const logo=logoFor(t.org);
+      return '<div data-reveal style="position:relative;padding:0 0 '+(i===list.length-1?'0':'clamp(26px,3.6vw,40px)')+' 44px;"><div style="position:absolute;left:0;top:5px;width:15px;height:15px;border-radius:50%;background:var(--surface-base);border:2px solid '+dot+';"></div><div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 18px;"><h3 style="font-family:var(--disp);font-weight:700;font-size:clamp(17px,1.8vw,21px);letter-spacing:-.01em;color:var(--text-strong);margin:0;">'+esc(t.role)+'</h3><span style="font-family:var(--mono);font-size:12.5px;color:var(--text-faint);white-space:nowrap;">'+esc(t.date)+'</span></div><div style="font-family:var(--body);font-size:14.5px;font-weight:600;color:var(--text-body);margin:6px 0 10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">'+(logo?'<img src="'+logo+'" alt="" style="height:22px;max-width:84px;width:auto;object-fit:contain;background:var(--ivory-100);border:1px solid var(--border-hairline);border-radius:6px;padding:3px 6px;box-sizing:content-box;">':'')+'<span>'+esc(t.org)+' <span style="color:var(--text-faint);font-weight:400;">· '+esc(t.loc)+'</span></span></div><p style="margin:0;font-family:var(--body);font-size:14.5px;line-height:1.6;color:var(--text-muted);max-width:82ch;">'+esc(t.sum)+'</p></div>';
+    }).join(''); }
+
+  recPool(){
+    return {
+      emon:{q:"Shafaat has a radiant personality that brings joy to our workplace. In his professional capacity as a marketer, he has consistently demonstrated creativity and innovation — his unique ideas for campaigns significantly enhanced our brand identity and image. An exceptional, inclusive team leader with remarkable resilience under pressure. I wholeheartedly recommend him for any growth and marketing role.",n:'Mohammad Abdul Matin Emon',t:'CEO, Praava Health · Founder, Innobig — managed Shafaat directly',y:'2023'},
+      kat:{q:"Shafaat is a talented leader, creative thinker and team builder. He took over the Praava brand at an important inflection point and delivered significant growth, executing a complex strategy in very difficult pandemic operating circumstances. I trust Shafaat and would work with him again any minute.",n:'Kat Wendelstadt',t:"Founder & CMO · Shafaat's line manager at Praava",y:'2022'},
+      eivind:{q:"I quickly identified him as one of the great potentials and a strong change agent; during the implementation he proved instrumental in executing the new strategy. Choyon's strengths are planning, execution, partnerships and project management, in addition to being a seasoned marketer and brand specialist. Highly recommended.",n:'Eivind Skibenes',t:'COO at Plick · managed Shafaat directly at Ekhanei',y:'2017'},
+      shaahed:{q:"Choyon is an extremely capable and dedicated marketing professional with strong strategic, analytical and communication skills. I have seen his super ability in getting things done properly, even in a difficult environment — creative, structured, a great team manager and very persuasive.",n:'Shaahed Radwan',t:'Retail Marketing & Category Strategy Lead · Ekhanei',y:'2017'},
+      shahriar:{q:"During his days in Samsung Electronics (Bangladesh) he was a key resource for campaign design and product management. He has great ability to manage things singlehandedly and at the same time lead complex projects with sheer quality. I am a real admirer of his people-management skill.",n:'Mohammad Shahriar',t:'Sales Training, Product & Campaign Management · Samsung',y:'2019'},
+      prawma:{q:"Shafaat has proven himself a very valuable resource in just a year, in a completely different sector from his previous experiences — evidence of high adaptability. He has always brought innovation and experience to the table. I highly regard him as a motivated professional.",n:'Prawma Taposhi Khan, FCCA',t:'Country Manager, ACCA Bangladesh',y:'2020'},
+      shafiqur:{q:"Md Shafaat is someone you will go to for a solution to your problems, and as an expert strategic planner he knows how to solve them intelligently in a planned way. I observed him plan and implement big-scale local and foreign events during his tenure at MGH Group.",n:'A K M Shafiqur Rahman',t:'Payments Product & Transformation, BNY · worked with Shafaat at MGH',y:'2014'},
+      samara:{q:"I have found him to be very collected and detail oriented. He knows his strengths and gets the job done. He is a good listener as well — a friendly person by nature and a good team player. I wish him all the success in future.",n:'Samara Taylor',t:'Senior Director, Strategy & Transactions, EY-Parthenon · worked with Shafaat at MGH',y:'2014'},
+      rashed:{q:"Shafaat Ali Choyon is a dynamic masterclass of business development. He knows his strength and how to win the deal. He is a visionary and impactful leader who can hunt opportunity and derive growth of a business.",n:'GM Rashed, ACS',t:'Company Secretary',y:'2020'},
+      fazlul:{q:"Knows how to sell anything and everything — 'ridiculously efficient' at product planning and launching, with profound skills in online marketing and strong boardroom presentation skills. I could have learned a lot from this powerhouse.",n:'Fazlul Musawwir Choudhury',t:'Product & Portfolio Management, Ex-Samsung · Product Planning team',y:'2019'},
+      marufur:{q:"Choyon is a sharp and amicable project manager you can rely on. I worked with him on the My Galaxy project and discovered his business acumen to make a project, campaign or product successful; I got his utmost support whenever I needed the business or customer perspective.",n:'Md. Marufur Rahman',t:'Staff Engineer, Samsung Electronics (R&D Institute)',y:'2019'},
+    };
+  }
+
+  dossierData(){
+    return {
+      growth:{
+        impactTitle:'The numbers behind the growth.',
+        impact:[['83%','Praava revenue owned'],['45% / 57%','core / B2C CAGR'],['342 → 1,400','corporate clients (4×)'],['#1 globally','Samsung flagship launch'],['+190%','campaign footfall'],['$1M / mo','agency built in 7 months'],['10 million','campaign reach (SureCash)'],['#1 in 2.5 mo','category built (Ekhanei)'],['100%','ACCA growth targets']],
+        caseSub:'Selected growth work, grouped by where it moved the number — structured Challenge → Insight → Execution → Result. Switch to Full portfolio for all sixteen initiatives in depth.',
+        focus:'Grouped into Healthcare Growth · Brand & GTM · Scale, Membership & Digital Growth.',
+        groups:[
+          {label:'Healthcare Growth — Praava Health',cases:[
+            {t:'Directing multi-year hypergrowth',m:'~45% / ~57% B2C CAGR',img:'praava-engines',ch:'A single-hub brand over-associated with COVID needed durable, hard-to-scale non-COVID growth, with the consumer portfolio carrying 83% of revenue.',ins:'Durable growth comes from three compounding engines: new products, data-driven decisions and automated growth loops.',ex:'Launched 100+ market-first products via fast GTMs; ran every decision on ARPU, CLV and cohorting; built automated reminders, re-outreach and ad loops.',re:'40/20/87% yearly growth — ~45% overall and ~57% B2C CAGR (2021–23).'},
+            {t:'Building the corporate-sales engine from zero',m:'342 → ~1,400 · 3.1×',img:'praava-corp',ch:'No corporate-sales function existed; most employers were uninsured; healthcare was not sold as a managed B2B category.',ins:'Borrow the telco Key Account Manager playbook — treat each corporate as a managed account.',ex:'Hired bilingual account managers; offered on-site health checks, special pricing and custom bundles; built product marketing, BI/Data, PR and design.',re:'342 → ~1,400 clients (4×) and 3.1× corporate health programs.'},
+            {t:'Service-line & pricing-led growth',m:'+68% B&W · +34% lab',img:'praava-kickback',ch:'Expand high-margin services and accelerate non-COVID recovery.',ins:'',ex:'Launched the multidisciplinary Beauty & Wellness Center; redesigned diagnostic packages and introduced a DIY health-testing category.',re:'68% YoY Beauty & Wellness growth, +34% lab revenue, and 24% YoY growth in B2C preventive/primary care.'},
+            {t:'A brand-reposition & funnel campaign',m:'~+190% footfall',img:'praava-footfall',ch:"Reposition from 'COVID testing center' to 'quality healthcare' and convert awareness into first visits.",ins:'64% of patient lifetime value is captured in the first three visits — acquire the first visit.',ex:'Low-ticket Resident Physician video consult (Tk 275, from Tk 1,000), door-to-door activation, Free Consultation Days, across ATL/BTL/digital/PR.',re:'About +190% clinic footfall and a measurable top-of-funnel lift.'},
+            {t:'Partnership-channel growth (Lifebuoy)',m:'~3,000 calls/day',img:'praava-lifebuoy',ch:'Acquire patients nationwide, affordably, beyond a single hub.',ins:'',ex:'Embedded a health hotline in Lifebuoy soap packaging nationwide (~3,000 calls/day) with a closed clinical loop and government data-sharing.',re:'Population-scale acquisition through a partnership channel and strong earned-media PR.'},
+          ]},
+          {label:'Brand, GTM & Market Expansion',cases:[
+            {t:'Samsung — a record-setting flagship launch (Note9)',m:'1.54× YoY · #1 globally',img:'note9',ch:'Launch a niche flagship in a value market with a retail-only channel.',ins:'',ex:'Orchestrated an integrated preorder campaign — partner cashback, financing, telco co-marketing, a first e-commerce partner and digital remarketing.',re:'~1,858 preorder units (1.54× YoY) — recognized No. 1 globally for growth.'},
+            {t:'Ekhanei.com — building the #1 category from zero',m:'#1 in 2.5 months',img:'ekhanei-laser',ch:'Lead the vehicle category for a marketplace trailing the national leader, amid online distrust.',ins:'',ex:"Built a ~60-person operation, offline acquisition, a live audit-call quality loop and a trust event ('Bike Bazaar').",re:'#1 motorbike category in 2.5 months; +25% category revenue and +15% market share.'},
+          ]},
+          {label:'Scale, Membership & Digital Growth',cases:[
+            {t:'SureCash — population-scale brand & awareness',m:'~10M reached',img:'surecash-g2p',ch:'Build and brand a multi-bank fintech reaching ~10 million users, including a rural base.',ins:'',ex:'Ran a population-scale campaign (residence-mapped placement, IVR, rural activations); built the in-house creative team and brand book; revamped the website.',re:'~10 million reached; brand awareness +20% and engagement +15%; Banking Fair Award of Excellence.'},
+            {t:'ACCA — membership acquisition & retention growth',m:'100% of targets',img:'acca-ecosystem',ch:'Grow members, affiliates and employers against hard targets amid brand-recognition gaps.',ins:'',ex:'Designed a KPI-linked, multi-year activity ecosystem (round tables, CPD, networking, partnerships).',re:'100% of 2020–21 targets: +15.1% new-member conversion, 98.2% retention, big-corporate employers 8 → 16.'},
+            {t:'Asiatic — building a $1M/month digital practice',m:'$1M/mo in 7 months',img:'asiatic-digital',ch:'Stand up a new digital practice and grow audiences and revenue from scratch.',ins:'',ex:'Defined content pillars across Facebook, YouTube and the Google Display Network; launched Mirinda from 0 to 100,000+ fans; managed a multi-brand portfolio.',re:'~$1M monthly revenue within seven months and durable audience growth.'},
+          ]},
+        ],
+        comps:[
+          ['Brand & Marketing Strategy','var(--amber)',['Brand strategy','Positioning & messaging','Campaign strategy','Multi-channel (ATL/BTL/digital/social/broadcast)','Creative & content','PR & earned media']],
+          ['Growth & Commercial','var(--teal)',['Customer acquisition & retention','Funnel & lifecycle','Go-to-market & product launch','Pricing & packaging','Corporate & institutional sales','P&L ownership']],
+          ['Audience, Data & Adoption','var(--navy-400)',['Audience insight & segmentation','ARPU / CLV / cohorting','Experimentation & testing','Behavioral-science adoption design','Partnerships & alliances']],
+        ],
+        recKeys:['kat','emon','rashed','shaahed'],
+        expTitle:'Experience in focus.',
+        expSub:'Commercial leadership across healthcare and consumer sectors. Switch to Full portfolio for all fourteen roles in depth.',
+        experience:[
+          {role:'Head of Marketing & Corporate Sales (Head of Consumer Business)',org:'Praava Health',loc:'Dhaka, Bangladesh',date:'Jun 2021 – Oct 2023',sum:'Owned the consumer business (83% of revenue); built corporate sales from zero (342 → ~1,400, 3.1× programs); launched Beauty & Wellness (68% YoY) and a DIY testing category (+34% lab); drove 24% YoY preventive/primary care and ~57% B2C CAGR; led a 30-person commercial org.'},
+          {role:'Chief Operating Officer',org:'Laser Treat Group',loc:'Dhaka, Bangladesh',date:'Nov 2023 – Aug 2024',sum:'Steered 16% YTD revenue growth and launched sub-brands (+11% in two months); implemented ERP/BI and CSAT/NPS (+13% retention); cut $0.5M opex.'},
+          {role:'Manager, Product Planning',org:'Samsung India Electronics Ltd (Bangladesh)',loc:'Dhaka, Bangladesh',date:"Sep 2017 – Dec 2018 · Q3'18 Business Performer",sum:'Led the No. 1-globally Note9 launch and entry-segment GTM (~2,600/day); launched a national e-commerce platform and a market-first loyalty program.'},
+          {role:'Brand & Vehicle Category Lead',org:'Ekhanei.com',loc:'Dhaka, Bangladesh',date:'Oct 2016 – Sep 2017',sum:'Built the #1 motorbike category in 2.5 months (+25% revenue, +15% share) with a real-time quality system and the Bike Bazaar trust event.'},
+          {role:'Marketing Manager',org:'SureCash (Mobile Financial Services)',loc:'Dhaka, Bangladesh',date:'Jun 2015 – Oct 2016',sum:'Led a 10-million-reach population campaign (residence-mapped placement, IVR, rural activations); +20% awareness, +15% engagement; Banking Fair Award of Excellence.'},
+          {role:'Senior Manager, Employer & Member Affairs',org:'ACCA',loc:'Dhaka, Bangladesh',date:'Jan 2019 – May 2021',sum:'Grew members and approved employers via a KPI-linked engagement ecosystem (100% of 2020–21 targets; +15.1% conversion; 98.2% retention).'},
+          {role:'Senior Executive, Strategic Planning',org:'Asiatic (Bangladesh JWT) / Asiatic Digital',loc:'Dhaka, Bangladesh',date:'Dec 2013 – May 2015',sum:'Built a digital practice to ~$1M/month in seven months; grew brand audiences from zero (Mirinda past 100,000 fans).'},
+          {role:'Earlier commercial roles',org:'MGH Group · Grey/WPP · Grameenphone',loc:'Dhaka, Bangladesh',date:'2009 – 2013',sum:'Brand management, full-cycle creative/TVC production and high-volume customer service across conglomerate, agency and telco roles.'},
+        ],
+      },
+      healthcomm:{
+        impactTitle:'Communication that moved behavior.',
+        impact:[['MPH · CHES®','public-health credentials'],['13','published health articles'],['~3×','campaign reach amplification'],['Commward','Silver — mental-health campaign'],['10,000+','WellNest Watch reach'],['~3,000/day','Lifebuoy health-access calls'],['24% / 34%','preventive care / screening growth'],['10 million','public-campaign beneficiaries'],['#1 globally','integrated campaign (Samsung)']],
+        caseSub:'Selected health-communication work — audience-segmented, evidence-based, evaluated. Structured Challenge → Insight → Execution → Result.',
+        focus:'Grouped into Public Health & Health Communication · Communication at Scale · Transferable Campaign Work. See Published Writing below for the 13 articles.',
+        groups:[
+          {label:'Public Health & Health Communication',cases:[
+            {t:'Campus harm-reduction campaign — audience-segmented, evaluated communication',m:'Year-long · evaluated',img:'',ch:'Reduce alcohol and cannabis harm among university students — behavior shaped by culture, accessibility and stress, where elimination is unrealistic and stigma backfires.',ins:'Apply harm-reduction and audience segmentation: meet students with relevant, non-stigmatizing messages on the channels they actually use.',ex:'Designed a year-long, multi-channel communication plan (social, on-campus digital boards, residence-hall print, event touchpoints), grounded in behavioral-science and program-planning frameworks, with a defined evaluation plan.',re:'A reusable, audience-segmented harm-reduction model with built-in evaluation; informed the WellNest Watch column and a Public Health Event Framework for Eta Sigma Gamma.'},
+            {t:'MPH Capstone — a multi-platform public-health advocacy campaign',m:'~3× reach',img:'',ch:'Advance public understanding of health-system resilience and economic protection across diverse audiences and platforms.',ins:'',ex:'Designed and executed a multi-article, multi-platform advocacy campaign (The Daily Star, Eastern Echo, WellNest Watch); built a rigorous analytics framework — locked methodology, dual-measure engagement reporting, APA-7 benchmark citations.',re:'Documented a replicable ~3× reach amplification through strategic stakeholder tagging; co-established a sustainable campus health-communication channel.'},
+            {t:'Praava — population-scale access via the Lifebuoy partnership',m:'~3,000 calls/day',img:'praava-lifebuoy',ch:'Extend quality primary care nationwide, affordably, to people who rarely see a doctor.',ins:'Embed the access point inside a product people already buy daily, then build a closed clinical loop behind it.',ex:'Printed a health hotline on Lifebuoy soap nationwide; doctors handled ~3,000 calls/day, referred complex cases to government facilities and routed lab needs to local booths; amplified via satellite-TV; mapped district-wise illness and shared with the DGHS.',re:'Population-scale teleconsultation reach, strong earned-media PR, and a public-health data contribution to government planning.'},
+            {t:'Praava — health literacy & ethical, affordable diagnostics',m:'Margin ~30% → ~50%',img:'praava-kickback',ch:'Customary 40–50% physician kickbacks inflate test costs for an uninsured population, and patients lack guidance on what tests they need.',ins:'Health literacy plus proactive patient education removes the cost driver and empowers the patient — without conflicting with doctors.',ex:'Co-designed organ-targeted diagnostic packages with the medical team (e.g., kidney panels) and ran symptom-education campaigns guiding patients to the right tests at slashed prices with a free consultation bundled.',re:'Affordable, education-driven self-screening that avoided kickbacks and grew lab margin from ~30% to ~50%; later copied by competitors.'},
+            {t:'Praava — a multi-channel behavior-change campaign',m:'~+190% footfall',img:'praava-footfall',ch:"Reposition the brand from 'COVID testing center' to 'quality healthcare,' and convert awareness into first clinic visits.",ins:'64% of patient lifetime value is captured in the first three visits — so the campaign had to acquire first visits.',ex:'Ran a low-ticket Resident Physician video consult (Tk 275, down from Tk 1,000), citywide door-to-door and home sample collection, and Free Consultation Days, across ATL, BTL, digital and PR.',re:'About +190% clinic footfall on Free Consultation Days and a measurable top-of-funnel lift.'},
+          ]},
+          {label:'Public Communication at Scale',cases:[
+            {t:'SureCash — communicating a government stipend to 10 million beneficiaries',m:'~10M beneficiaries',img:'surecash-g2p',ch:"Reach ~10 million rural, low-literacy beneficiaries of the country's largest government-to-person (G2P) stipend, on a multi-bank platform that made branding harder.",ins:'At this scale, adoption is an access-and-trust problem — meet people exactly where information gaps and friction occur.',ex:'Mapped retailer cash-out points against beneficiary residence data; ran automated voice-call (IVR) messages explaining how to receive and cash out; used rural mosque activations; merged digital and call-center teams for real-time response.',re:'Frictionless disbursement to ~10 million; became the fastest-responding MFS brand on social media; won the Banking Fair Award of Excellence.'},
+          ]},
+          {label:'Transferable Marketing-Communications & Campaign Work',cases:[
+            {t:'ACCA — professional-audience thought leadership',m:'National media',img:'acca-leadership',ch:'Build institutional stature and recognition among finance professionals and government.',ins:'',ex:"Planned the 'Business Partner of the Future' roundtable (PwC, The Daily Star) with a finance-C-suite panel; ran a ~400-person ceremony (Comptroller & Auditor General as chief guest); designed the 'ACCA Next Leader' talk show with Channel i.",re:'Full-scale national media and positioning among the finance establishment — communication directed at professional and lay audiences.'},
+            {t:'Samsung — an integrated multi-channel product campaign (Note9)',m:'1.54× YoY · #1 globally',img:'note9',ch:'Launch a niche flagship in a value-driven market with a retail-only channel and no online presence.',ins:'',ex:'Orchestrated an integrated multi-channel preorder campaign — partner cashback, financing, telco co-marketing, a first e-commerce partner, and sequential digital remarketing of drop-offs.',re:'~1,858 preorder units (1.54× YoY), recognized No. 1 globally — message and channel orchestration at scale.'},
+          ]},
+        ],
+        comps:[
+          ['Health Communication & Behavioral Science','var(--teal)',['Health communication','Behavior-change strategy','Health literacy','Risk & crisis communication','Audience segmentation','Trust & adoption design','CHES®-grounded program planning']],
+          ['Audience Research, Data & Evaluation','var(--amber)',['Content & metrics analysis','Message development & testing','Formative & summative evaluation','ARPU / CLV / cohorting','Survey & feedback systems','APA-7 reporting']],
+          ['Multi-Channel Campaigns & Health-Media','var(--navy-400)',['Web · social · print · broadcast','Graphics & TV/broadcast production','PR & earned media','Publications','Partnerships & alliances']],
+        ],
+        recKeys:['kat','emon','shafiqur'],
+        expTitle:'Experience in focus.',
+        expSub:'Health-communication and public-health roles up front. Switch to Full portfolio for the complete fourteen-role arc.',
+        experience:[
+          {role:'Graduate Assistant, Health Promotion',org:'Eastern Michigan University — Office of Health Promotion',loc:'Ypsilanti, MI',date:'Aug 2024 – Jul 2025',sum:'Developed campus-wide health-promotion programs grounded in behavioral science; designed a multi-channel harm-reduction campaign with a defined evaluation plan; co-created the WellNest Watch column (10,000+ reach).'},
+          {role:'Public Health Campaign Lead (MPH Capstone)',org:'Eastern Michigan University',loc:'Ypsilanti, MI',date:'Feb 2026 – Apr 2026',sum:'Executed a multi-article, multi-platform public-health advocacy campaign; built a locked analytics methodology with APA-7 benchmarks and documented a replicable ~3× reach amplification.'},
+          {role:'Graduate Hall Director',org:'EMU Housing & Residence Life',loc:'Ypsilanti, MI',date:'Aug 2024 – May 2026',sum:'Supervised 9 RAs / 230 residents; designed audience-segmentation communication training that drove 541 engagements and the 2nd-highest campus connection rate (39.1%); nominated for the Student Gold Medallion Award.'},
+          {role:'Head of Marketing & Corporate Sales',org:'Praava Health',loc:'Dhaka, Bangladesh',date:'Jun 2021 – Oct 2023',sum:'Led health communication and preventive-care campaigns; grew B2C primary/preventive care 24% YoY and diagnostics 34% YoY; won a national communications award (Commward, Silver) for a mental-health campaign; engineered population-scale access (Lifebuoy hotline, ~3,000 calls/day; DGHS data-sharing).'},
+          {role:'Chief Operating Officer',org:'Laser Treat Group',loc:'Dhaka, Bangladesh',date:'Nov 2023 – Aug 2024',sum:'Introduced CSAT/NPS patient-experience measurement (+13% retention) and digitized clinical workflows and dashboards.'},
+          {role:'Senior Manager, Employer & Member Affairs',org:'ACCA',loc:'Dhaka, Bangladesh',date:'Jan 2019 – May 2021',sum:'Designed a KPI-linked stakeholder-engagement program; ran national thought-leadership events and publications (round tables, professional-insight content) with PwC and The Daily Star.'},
+          {role:'Marketing & Communications roles',org:'Samsung · SureCash · Ekhanei · Asiatic/JWT · MGH · Grey/WPP · Grameenphone',loc:'Dhaka, Bangladesh',date:'2009 – 2018',sum:'12+ years developing audience insight, message strategy and integrated multi-channel campaigns across ATL, BTL, digital, social and broadcast — including the SureCash 10-million-beneficiary government stipend campaign — plus end-to-end health-media production and partnerships.'},
+        ],
+      },
+      healthtech:{
+        impactTitle:'Products built, adopted, measured.',
+        impact:[['100+','digital-health products built'],['57% CAGR','B2C product growth (Praava)'],['Ghore Lab','home-diagnostics launch'],['6-hour','traveler-testing product'],['~2,600/day','Samsung product volume'],['$1M / mo','digital platform in 7 months'],['10 million','fintech product users'],['#1 in 2.5 mo','marketplace category built'],['MPH · CHES®','health + behavioral science']],
+        caseSub:'Selected digital-health product work — discovery, launch and adoption. Structured Challenge → Insight → Execution → Result.',
+        focus:'Grouped into Digital Health Products · Digital Products at Scale.',
+        groups:[
+          {label:'Digital Health Products',cases:[
+            {t:'Praava — building a 100+ product digital-health portfolio',m:'100+ products',img:'praava-engines',ch:'A single-hub healthcare brand needed new revenue from products customers actually wanted — fast — beyond its COVID-testing core.',ins:'Continuously sense unmet demand and ship products new to the company and the market, then market them with speedy go-to-market.',ex:'Built a product & product-marketing function that researched demand and launched market-first digital-health products — Ghore Lab (at-home diagnostics), Vitamin-D packages, traveler-specific products — with rapid GTM cycles.',re:'100+ products and growth loops that repeatedly seeded the top line and gave competitors products to copy.'},
+            {t:'Praava — a data engine for product decisions',m:'~57% B2C CAGR',img:'',ch:'Grow a hard-to-scale core with disciplined, evidence-based product decisions, not intuition.',ins:'Treat data as a product capability: keep analytics inside the product/marketing org and decide on real metrics.',ex:'Ran every product decision on ARPU, CLV, cohorting and retention (65–70% of weekly meetings on data); built automated reminders, re-outreach and ad loops so revenue recurs.',re:'~45% overall and ~57% B2C CAGR (2021–23) — product prioritization driven by metrics, not opinion.'},
+            {t:'Praava — launching and scaling a telehealth product',m:'~+190% footfall',img:'praava-footfall',ch:'Convert awareness into adoption (first clinic and virtual visits), affordably, at national scale.',ins:'64% of patient lifetime value is captured in the first three visits — so the product had to win the first visit.',ex:'Launched a low-ticket Resident Physician video-consult product (Tk 275, down from Tk 1,000), paired with door-to-door and home sample collection and Free Consultation Days across multiple channels.',re:'About +190% clinic footfall and a measurable top-of-funnel adoption lift.'},
+            {t:'Praava — a first-in-country traveler-testing digital service',m:'6-hour · gov-portal',img:'praava-travel',ch:'US-bound travelers needed certified tests within a narrow pre-departure window, during lockdowns.',ins:'',ex:'Designed a productized service: a dedicated lab batch with four daily slots, 6-hour result turnaround, and automated result upload to the government travel portal.',re:'Captured essentially all Bangladesh-to-US travelers — a one-of-a-kind digital-enabled service in the market.'},
+            {t:'Praava — distribution innovation & partnerships (Lifebuoy)',m:'~3,000 calls/day',img:'praava-lifebuoy',ch:'Distribute a primary-care product nationwide, affordably, beyond a single hub.',ins:'',ex:'Embedded the access point in a daily consumer product (a health hotline on Lifebuoy soap) and built a closed clinical loop — teleconsult (~3,000 calls/day) → referral or lab booth → report → doctor callback — with government data-sharing.',re:'Population-scale distribution through a partnership channel, plus a public-health data contribution.'},
+            {t:'Laser Treat Group — clinical-operations digitization',m:'+13% retention · −$0.5M opex',img:'',ch:'A multi-entity clinical group needed reliable operations, data and patient experience.',ins:'',ex:'Implemented a centralized ERP (supply chain, inventory, clinical resources); digitized patient records, BI dashboards, HR and CX logs; introduced CSAT/NPS measurement.',re:'+13% patient retention, reduced delays and improved decision accuracy; a $0.5M opex reduction reinvested in care.'},
+          ]},
+          {label:'Digital Products at Scale',cases:[
+            {t:'Samsung — product planning, GTM & a national e-commerce platform',m:'#1 globally · new channel',img:'samsung-digital',ch:'Plan, position and launch flagship and entry-segment devices, and build an online channel that did not exist.',ins:'',ex:"Led portfolio planning, pricing and go-to-market (entry-segment J2 at ~2,600 units/day; the Note9 flagship launch); partnered with the national distributor to design and launch an e-commerce platform plus online-specific SKUs; created a loyalty program with Samsung's R&D institute.",re:'Note9 recognized No. 1 globally for growth (1.54× YoY); an entirely new e-commerce commercial channel.'},
+            {t:'SureCash — a fintech product at population scale',m:'~10M users',img:'surecash-g2p',ch:'Operate a multi-bank mobile-financial-services platform and reach 10 million users, including a rural, low-literacy base.',ins:'',ex:'Ran a population-scale product rollout (government stipend disbursement) using residence-mapped placement, automated voice-call (IVR) onboarding and rural activations; merged digital and call-center teams for real-time support.',re:'~10 million users reached; the fastest-responding MFS brand on social; Banking Fair Award of Excellence.'},
+            {t:'Ekhanei.com — an online-marketplace product with real-time quality systems',m:'#1 in 2.5 months',img:'ekhanei-laser',ch:'Build a trusted marketplace category in a market that distrusted online second-hand transactions.',ins:'',ex:'Built the vehicle category with a ~60-person operation, a live audit-call reconciliation loop tying every listing to an accountable owner, and a semi-pro seller key-account program; wrote and aired category TV creative.',re:"#1 motorbike category in 2.5 months and the country's largest motorbike-ad inventory; +25% category revenue."},
+          ]},
+        ],
+        comps:[
+          ['Product Strategy & Launch','var(--navy-400)',['Product discovery & demand sensing','Roadmapping & prioritization','Go-to-market','Pricing & packaging','Launch management','Digital health (telehealth, diagnostics, e-commerce, MFS)']],
+          ['Data, Analytics & Experimentation','var(--amber)',['Product metrics (ARPU, CLV, retention, cohorting)','A/B & message testing','Funnel & adoption analysis','BI dashboards','Data-informed prioritization']],
+          ['Adoption, Behavioral Design & Delivery','var(--teal)',['Patient/user adoption','Behavior-change & trust design','Cross-functional leadership','Partnerships','Digital transformation & change management']],
+        ],
+        recKeys:['fazlul','marufur','eivind','kat'],
+        expTitle:'Experience in focus.',
+        expSub:'Product, data and platform roles up front. Switch to Full portfolio for the complete arc.',
+        experience:[
+          {role:'Head of Marketing & Corporate Sales (Head of Consumer Business)',org:'Praava Health',loc:'Dhaka, Bangladesh',date:'Jun 2021 – Oct 2023',sum:'Built a 100+ product digital-health portfolio (home diagnostics, telehealth, traveler products) and the product/BI/Data org behind it; ran decisions on ARPU, CLV, cohorting and retention; drove ~57% B2C CAGR; launched Ghore Lab and a first-in-country traveler-testing service.'},
+          {role:'Chief Operating Officer',org:'Laser Treat Group',loc:'Dhaka, Bangladesh',date:'Nov 2023 – Aug 2024',sum:'Implemented a centralized ERP and digitized patient records, BI dashboards and CX logs; introduced CSAT/NPS (+13% retention); cut $0.5M opex.'},
+          {role:'Manager, Product Planning',org:'Samsung India Electronics Ltd (Bangladesh)',loc:'Dhaka, Bangladesh',date:"Sep 2017 – Dec 2018 · Q3'18 Business Performer",sum:'Owned portfolio planning, pricing, positioning and GTM; led the No. 1-globally Note9 launch and entry-segment J2 (~2,600/day); designed and launched a national-distributor e-commerce platform and a market-first loyalty program.'},
+          {role:'Marketing Manager',org:'SureCash (Mobile Financial Services)',loc:'Dhaka, Bangladesh',date:'Jun 2015 – Oct 2016',sum:'Led a population-scale fintech product rollout reaching ~10 million users (residence-mapped placement, IVR onboarding, rural activations); merged digital with the call center for real-time support.'},
+          {role:'Brand & Vehicle Category Lead',org:'Ekhanei.com',loc:'Dhaka, Bangladesh',date:'Oct 2016 – Sep 2017',sum:'Built an online-marketplace category to #1 in 2.5 months with a live audit-call quality-control loop and a semi-pro seller key-account program.'},
+          {role:'Senior Executive, Strategic Planning',org:'Asiatic (Bangladesh JWT) / Asiatic Digital',loc:'Dhaka, Bangladesh',date:'Dec 2013 – May 2015',sum:'Built a multi-channel digital practice to ~$1M monthly revenue in seven months; grew brand audiences from zero across Facebook, YouTube and the Google Display Network.'},
+          {role:'Health domain & public-health work',org:'Eastern Michigan University (MPH, CHES®)',loc:'Ypsilanti, MI',date:'2024 – 2026',sum:'Graduate Assistant (Office of Health Promotion) and MPH candidate; designed evidence-based, evaluated health campaigns and authored 13 published digital-health and health-policy articles.'},
+        ],
+      },
+      pophealth:{
+        impactTitle:'Health impact at population scale.',
+        impact:[['~2% / ~8%','nation / Dhaka served (pandemic)'],['10 million','underserved reached'],['24% / 34%','preventive care / screening growth'],['~3×','campaign reach amplification'],['Commward','Silver — mental-health campaign'],['~3,000/day','primary-care access calls'],['DGHS','surveillance-data contribution'],['10,000+','health-campaign reach'],['MPH · CHES®','public-health credentials']],
+        caseSub:'Selected population-health work — program design, access, equity and scale. Structured Challenge → Insight → Execution → Result.',
+        focus:'Grouped into Health Promotion & Program Design · Access, Prevention & Equity · Population-Scale Response. See Published Writing below for health-policy work.',
+        groups:[
+          {label:'Health Promotion & Program Design',cases:[
+            {t:'Campus harm-reduction campaign — prevention, designed and evaluated',m:'Year-long · evaluated',img:'',ch:'Reduce alcohol and cannabis harm among students — behavior shaped by culture, stress and access, where elimination is unrealistic.',ins:'Apply harm-reduction and audience segmentation with non-stigmatizing, channel-appropriate messages.',ex:'Designed a year-long, multi-channel communication plan grounded in behavioral-science and program-planning frameworks, with a defined evaluation plan.',re:'A reusable, evaluated harm-reduction model; a Public Health Event Framework for Eta Sigma Gamma and the WellNest Watch column.'},
+            {t:'MPH Capstone — population-level health-system advocacy',m:'~3× reach',img:'',ch:'Advance public understanding of health-system resilience and economic protection across audiences and platforms.',ins:'',ex:'Executed a multi-article, multi-platform advocacy campaign; built a rigorous analytics framework (locked methodology, APA-7 benchmarks).',re:'Documented a replicable ~3× reach amplification and co-established a sustainable campus health-communication channel.'},
+            {t:'Community engagement & connection (EMU Housing)',m:'541 engagements · 39.1%',img:'',ch:'Strengthen connection and wellbeing across a 230-resident community with a 44%-new staff team.',ins:'',ex:'Designed an audience-segmentation engagement-training model and weekly data-informed reporting; coordinated crisis response with campus safety partners.',re:'541 documented engagement interactions and the 2nd-highest campus connection rate (39.1%); nominated for the Student Gold Medallion Award.'},
+          ]},
+          {label:'Access, Prevention & Equity',cases:[
+            {t:'Praava — prevention & screening growth at scale',m:'+24% / +34%',img:'praava-footfall',ch:'Accelerate non-COVID preventive and primary care across a population that under-uses screening.',ins:'',ex:'Launched preventive service lines, redesigned diagnostic packages and introduced an accessible DIY health-testing category with patient education.',re:'24% YoY growth in B2C preventive/primary care and +34% screening utilization.'},
+            {t:'Praava — population-scale access & surveillance data (Lifebuoy)',m:'~3,000/day · DGHS',img:'praava-lifebuoy',ch:'Extend primary care nationwide, affordably, to people who rarely see a doctor.',ins:'',ex:'Embedded a health hotline in a daily product (Lifebuoy soap); ~3,000 calls/day with triage, referral and local sample collection; mapped district-wise illness patterns and shared the summary with the DGHS.',re:'Population-scale access and a public-health surveillance-data contribution to government planning.'},
+            {t:'Praava — health literacy & equitable diagnostics',m:'Margin ~30% → ~50%',img:'praava-kickback',ch:'Customary 40–50% physician kickbacks inflate test costs for an uninsured population that lacks guidance on needed tests.',ins:'Health literacy and proactive education remove the cost driver and empower patients.',ex:'Co-designed organ-targeted packages with doctors and ran symptom-education campaigns at slashed prices with free consultation.',re:'Affordable, education-driven self-screening adopted at scale and copied across the sector.'},
+          ]},
+          {label:'Population-Scale Response & Reach',cases:[
+            {t:'Praava — population-scale pandemic response',m:'~2% of nation served',img:'praava-travel',ch:'Maintain testing and care for a population that could not travel during lockdowns.',ins:'',ex:'Built a nationwide door-to-door sample-collection operation (24-hour reporting + video consult) and a first-in-country traveler-testing protocol synced to the government portal.',re:"Served ~2% of the national and ~8% of Dhaka's population during the pandemic peak."},
+            {t:'SureCash — reaching 10 million underserved beneficiaries',m:'~10M underserved',img:'surecash-g2p',ch:'Communicate and deliver a government-to-person (G2P) stipend to ~10 million rural, low-literacy beneficiaries — an equity and access challenge.',ins:'Adoption is an access-and-trust problem — meet people where information gaps and friction occur.',ex:'Mapped cash-out points to residence data; ran automated voice-call (IVR) onboarding; used rural mosque activations for trusted, community-based reach.',re:'Frictionless reach to ~10 million underserved beneficiaries; the fastest-responding MFS brand on social; Banking Fair Award of Excellence.'},
+          ]},
+        ],
+        comps:[
+          ['Program Design & Evaluation','var(--teal)',['Evidence-based program planning','Behavior-change & prevention strategy','Formative & summative evaluation','CHES®-grounded frameworks','Analytics & surveillance-style data']],
+          ['Access, Equity & Health Literacy','var(--amber)',['Health access & equity','Health literacy','Reaching underserved & low-literacy populations','Social determinants','Risk & crisis communication']],
+          ['Partnerships & Population-Scale Delivery','var(--navy-400)',['Government & community partnerships','Multi-sector alliances','Population-scale operations','Stakeholder & community engagement']],
+        ],
+        recKeys:['kat','emon','shafiqur'],
+        expTitle:'Experience in focus.',
+        expSub:'Public-health and population-scale roles up front. Switch to Full portfolio for the complete arc.',
+        experience:[
+          {role:'Graduate Assistant, Health Promotion',org:'Eastern Michigan University — Office of Health Promotion',loc:'Ypsilanti, MI',date:'Aug 2024 – Jul 2025',sum:'Designed and evaluated evidence-based health-promotion programs (incl. a multi-channel harm-reduction campaign); co-created the WellNest Watch column (10,000+ reach).'},
+          {role:'Public Health Campaign Lead (MPH Capstone)',org:'Eastern Michigan University',loc:'Ypsilanti, MI',date:'Feb 2026 – Apr 2026',sum:'Executed a multi-platform health-advocacy campaign with a locked analytics methodology; documented a replicable ~3× reach amplification.'},
+          {role:'Graduate Hall Director',org:'EMU Housing & Residence Life',loc:'Ypsilanti, MI',date:'Aug 2024 – May 2026',sum:'Led community engagement and crisis response for 230 residents; drove 541 engagement interactions and the 2nd-highest connection rate (39.1%); nominated for the Student Gold Medallion Award.'},
+          {role:'Head of Marketing & Corporate Sales',org:'Praava Health',loc:'Dhaka, Bangladesh',date:'Jun 2021 – Oct 2023',sum:'Grew preventive/primary care 24% YoY and screening 34% YoY; engineered population-scale access (Lifebuoy, ~3,000 calls/day; DGHS data-sharing; ~2% of the nation served during the pandemic); won a national mental-health communications award (Commward, Silver).'},
+          {role:'Marketing Manager',org:'SureCash (Mobile Financial Services)',loc:'Dhaka, Bangladesh',date:'Jun 2015 – Oct 2016',sum:'Helped reach 10 million underserved beneficiaries of a government stipend program via residence-mapped placement, IVR onboarding and rural community activations.'},
+          {role:'Earlier commercial leadership',org:'Samsung · Ekhanei · Asiatic · MGH · Grey · Grameenphone',loc:'Dhaka, Bangladesh',date:'2009 – 2018',sum:'16+ years of marketing, brand and campaign leadership across healthcare and consumer sectors — audience insight, multi-channel campaigns and partnerships transferable to population-scale health programs.'},
+        ],
+      },
+    };
+  }
+
+  componentWillUnmount(){ if(this._onScroll){ window.removeEventListener('scroll', this._onScroll); window.removeEventListener('resize', this._onScroll); } if(this._pollId) clearInterval(this._pollId); }
+}
+</script>
+</body>
+</html>
