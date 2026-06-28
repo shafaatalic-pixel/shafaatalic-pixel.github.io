@@ -769,7 +769,14 @@ class Component extends DCLogic {
     if(id==='full'){ this.restoreFull(); }
     else { this.renderLens(this._dossiers[id]); }
 
-    document.title = 'Md Shafaat Ali Choyon — '+cfg.short.replace(/&amp;/g,'&');
+    var _seoTitles = {
+      full: 'Md Shafaat Ali Choyon — Growth, Marketing & Public Health Strategist',
+      growth: 'Md Shafaat Ali Choyon — Growth & Marketing Strategist | Healthcare, Fintech, Consumer',
+      healthcomm: 'Md Shafaat Ali Choyon — Health Communication & Behavior-Change Strategist (MPH, CHES®)',
+      healthtech: 'Md Shafaat Ali Choyon — Health-Tech & Digital Health Product Strategist',
+      pophealth: 'Md Shafaat Ali Choyon — Population & Public Health Strategist (MPH, CHES®)'
+    };
+    document.title = _seoTitles[id] || ('Md Shafaat Ali Choyon — '+cfg.short.replace(/&amp;/g,'&'));
     if(!opts.noUrl){ try{ history.replaceState(null,'', id==='full'?location.pathname:('?view='+id)); }catch(e){} }
     try{ localStorage.setItem('shafaat_lens', id); }catch(e){}
     this.wireDynamic();
