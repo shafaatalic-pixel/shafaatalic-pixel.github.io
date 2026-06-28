@@ -1036,5 +1036,57 @@ class Component extends DCLogic {
   componentWillUnmount(){ if(this._onScroll){ window.removeEventListener('scroll', this._onScroll); window.removeEventListener('resize', this._onScroll); } if(this._pollId) clearInterval(this._pollId); }
 }
 </script>
+<script>
+/* Wire up Published Writing article links (added post-design) */
+(function(){
+  var MAP = [
+    ["Running on Empty: America's Public Health Workforce Crisis","https://www.easternecho.com/article/2026/04/the-wellnest-watch-running-on-empty-america-s-public-health-workforce-crisis-and-what-it-will-cost-us-next-time"],
+    ["Mixed Messages, Real Costs: How Confusing Health Communication Is Making America Sicker and Poorer","https://www.easternecho.com/article/2026/03/the-wellnest-watch-mixed-messages-real-costs-how-confusing-health-communication-is-making-america-sicker-and-poorer"],
+    ["Can We Use Private Healthcare to Improve Health Literacy","https://www.thedailystar.net/opinion/views/news/can-we-use-private-healthcare-improve-health-literacy-4126746"],
+    ["Increasing Public Health Investment Must Be a Top Priority","https://www.thedailystar.net/opinion/views/news/increasing-public-health-investment-must-be-top-priority-4109586"],
+    ["Health Policy Decisions Made Today Shape Michigan Tomorrow","https://www.easternecho.com/article/2026/02/health-policy-decisions-made-today-shape-michigan-tomorrow"],
+    ["When Illness Becomes a Bill: Why Medical Debt Is a Public Health Crisis","https://www.easternecho.com/article/2025/12/when-illness-becomes-a-bill-why-medical-debt-is-a-public-health-crisis"],
+    ["When We Ignore Public Health Prevention, We Pay the Price","https://www.easternecho.com/article/2025/11/the-wellnest-watch-when-we-ignore-public-health-prevention-we-pay-the-price"],
+    ["We Need Public Health Reform for Steady Economic Growth","https://www.thedailystar.net/opinion/views/news/we-need-public-health-reform-steady-economic-growth-3816886"],
+    ["Combating the Flood of Misinformation","https://www.dhakatribune.com/opinion/op-ed/364000/combating-the-flood-of-misinformation"],
+    ["Exploring Comprehensive Digital Transformation in Bangladesh's Healthcare Sector","https://ibtbd.net/healthtech-horizons/"],
+    ["Aiding Economy with Digital Health Services","https://old.thefinancialexpress.com.bd/views/aiding-economy-with-digital-health-services-1614361817"],
+    ["Impact of Digital Health Services in the Economy","https://thefinancialexpress.com.bd/views/opinions/impact-of-digital-health-services-in-the-economy-1614141812"]
+  ];
+  function norm(s){ return (s||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim(); }
+  var NMAP = MAP.map(function(p){ return [norm(p[0]), p[1]]; });
+  function findUrl(text){
+    var t = norm(text);
+    for(var i=0;i<NMAP.length;i++){ if(NMAP[i][0] && t.indexOf(NMAP[i][0]) !== -1) return NMAP[i][1]; }
+    return null;
+  }
+  function apply(){
+    var cards = document.querySelectorAll('#article-list [data-article]');
+    if(!cards.length) cards = document.querySelectorAll('#article-list > div');
+    var n = 0;
+    cards.forEach(function(card){
+      if(card.__linkified) { n++; return; }
+      var url = findUrl(card.textContent);
+      if(url){
+        card.__linkified = true; n++;
+        card.style.cursor = 'pointer';
+        card.setAttribute('role','link');
+        card.setAttribute('tabindex','0');
+        card.setAttribute('title','Read article ↗');
+        card.addEventListener('click', function(){ window.open(url,'_blank','noopener'); });
+        card.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); window.open(url,'_blank','noopener'); } });
+      }
+    });
+    return n;
+  }
+  var tries = 0;
+  var iv = setInterval(function(){ tries++; if(apply() >= 12 || tries > 60) clearInterval(iv); }, 300);
+  (function startObs(){
+    var l = document.querySelector('#article-list');
+    if(l){ new MutationObserver(function(){ apply(); }).observe(l, {childList:true, subtree:true}); }
+    else setTimeout(startObs, 500);
+  })();
+})();
+</script>
 </body>
 </html>
