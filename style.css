@@ -42,4 +42,6 @@
   @media (max-width:860px){ #nav-lens-label{display:none!important;} #nav-lens{padding:0 9px!important;} [data-nav]{gap:8px!important;} [data-cta]{padding:0 13px!important;} }
   @media (max-width:380px){ [data-nav] a[href="#top"]{font-size:16px!important;} [data-cta]{font-size:13px!important;padding:0 11px!important;} }
   @media (max-width:920px){ .landing-main{grid-template-columns:1fr!important;} .video-wrap{order:-1;max-width:560px;} }
+  #landing{align-items:safe center!important;}
+  @media (max-height:1024px){ #landing{align-items:flex-start!important;} }
   @media (prefers-reduced-motion:reduce){ .lens-card,[data-marquee]{animation:none!important;} }
