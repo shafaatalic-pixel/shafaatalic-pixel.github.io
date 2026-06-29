@@ -1375,10 +1375,11 @@ class Component extends DCLogic {
   /* section views (each major section, once) */
   try{
     var seen={};
-    var secEls=[].slice.call(document.querySelectorAll('[data-screen-label]'));
     var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting && window.__gaOn){ var l=en.target.getAttribute('data-screen-label'); if(l&&!seen[l]){ seen[l]=1; T('section_view',{section:l}); } } }); },{threshold:0, rootMargin:'0px 0px -25% 0px'});
-    window.__reobserveSections=function(){ try{ io.disconnect(); secEls.forEach(function(s){ io.observe(s); }); }catch(e){} };
+    window.__reobserveSections=function(){ try{ io.disconnect(); document.querySelectorAll('[data-screen-label]').forEach(function(s){ io.observe(s); }); }catch(e){} };
     window.__reobserveSections();
+    setTimeout(window.__reobserveSections, 1500);   /* re-bind after the SPA re-renders the page */
+    setTimeout(window.__reobserveSections, 4000);
   }catch(e){}
 })();</script>
 </body>
