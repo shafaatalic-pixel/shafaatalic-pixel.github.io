@@ -41,4 +41,5 @@
   @media (max-width:680px){ .landing-cards{grid-template-columns:1fr!important;} .lens-card{padding:18px!important;gap:9px!important;} [data-case-card]{margin:0!important;} }
   @media (max-width:860px){ #nav-lens-label{display:none!important;} #nav-lens{padding:0 9px!important;} [data-nav]{gap:8px!important;} [data-cta]{padding:0 13px!important;} }
   @media (max-width:380px){ [data-nav] a[href="#top"]{font-size:16px!important;} [data-cta]{font-size:13px!important;padding:0 11px!important;} }
+  @media (max-width:920px){ .landing-main{grid-template-columns:1fr!important;} .video-wrap{order:-1;max-width:560px;} }
   @media (prefers-reduced-motion:reduce){ .lens-card,[data-marquee]{animation:none!important;} }
