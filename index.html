@@ -638,17 +638,19 @@ class Component extends DCLogic {
     let gn = 0;
     const groupsEl = root.querySelector('#company-groups');
     if(groupsEl){ groupsEl.innerHTML = companies.map(co=>{
-      const casesHTML = co.cases.map(c=>{
+      let cardsHTML='', detailsHTML='';
+      co.cases.forEach(c=>{
         gn++; const uid='f'+gn;
         const rows = [['Challenge',c.challenge],c.insight?['Insight',c.insight]:null,['Execution',c.execution],['Result',c.result]].filter(Boolean);
         const eb = esc(co.name.split(' (')[0].split(' / ')[0]);
-        return `
+        cardsHTML += `
         <button type="button" class="cg-card" data-cg="${uid}" data-reveal aria-expanded="false" aria-controls="cgd-${uid}">
           <div class="cg-crow"><span class="cg-chip"><img src="${co.logo}" alt="${esc(co.name)} logo" loading="lazy"></span><span class="cg-ind" aria-hidden="true">+</span></div>
           <div class="cg-ey">${eb}</div>
           <div class="cg-title">${esc(c.title)}</div>
           <div class="cg-metric">▸ ${esc(c.metric)}</div>
-        </button>
+        </button>`;
+        detailsHTML += `
         <div class="cg-detail" id="cgd-${uid}" role="region" aria-label="${esc(c.title)} — full case">
           <div class="cg-frame">
             <button type="button" class="cg-fimg" data-zoom="${c.img}" data-cap="${esc(co.name.split(' (')[0])} — ${esc(c.title)}">
@@ -660,9 +662,9 @@ class Component extends DCLogic {
             </div>
           </div>
         </div>`;
-      }).join('');
+      });
       return `
-      <div id="co-${co.id}" style="scroll-margin-top:90px;">
+      <div id="co-${co.id}" class="cg-group" style="scroll-margin-top:90px;">
         <div data-reveal style="display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-bottom:clamp(22px,3vw,32px);padding-bottom:20px;border-bottom:1px solid var(--border-hairline);position:relative;">
           <div style="display:flex;align-items:center;justify-content:center;height:60px;min-width:60px;padding:0 18px;background:var(--ivory-100);border:1px solid var(--border-hairline);border-radius:8px;">
             <img src="${co.logo}" alt="${esc(co.name)} logo" style="max-height:36px;max-width:124px;width:auto;object-fit:contain;display:block;" />
@@ -674,7 +676,8 @@ class Component extends DCLogic {
           <div style="font-family:var(--mono);font-size:12px;color:var(--text-faint);white-space:nowrap;">${co.cases.length} case${co.cases.length>1?'s':''}</div>
           <span style="position:absolute;left:0;bottom:-1px;width:64px;height:2px;background:var(--accent);"></span>
         </div>
-        <div class="cg-grid">${casesHTML}</div>
+        <div class="cg-grid">${cardsHTML}</div>
+        <div class="cg-detailwrap">${detailsHTML}</div>
       </div>`;
     }).join(''); }
 
@@ -1050,15 +1053,20 @@ class Component extends DCLogic {
   }
   renderImpact(arr){ const esc=s=>this.esc(s); return arr.map(t=>{ const val=t[0], lab=t[1]; const c=/\d/.test(val)?'var(--amber)':'var(--teal-400)'; return '<div data-reveal><div style="font-family:var(--mono);font-weight:800;font-size:clamp(22px,2.8vw,38px);line-height:1.1;letter-spacing:-.02em;color:'+c+';min-height:2.2em;display:flex;align-items:flex-end;">'+esc(val)+'</div><div style="font-size:13.5px;color:var(--ivory-200);margin-top:9px;font-weight:600;line-height:1.35;">'+esc(lab)+'</div></div>'; }).join(''); }
   renderCaseNav(groups){ const esc=s=>this.esc(s); return groups.map((g,i)=>'<a href="#grp-'+i+'" data-casechip style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-size:13px;font-weight:600;color:var(--text-body);background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:999px;padding:8px 15px;transition:background .16s,border-color .16s,color .16s,transform .16s;"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent);"></span>'+esc(g.label)+'<span style="font-family:var(--mono);font-size:11px;color:var(--text-faint);">'+g.cases.length+'</span></a>').join(''); }
-  renderCases(groups){ const esc=s=>this.esc(s); let n=0; return groups.map((g,i)=>{
-    const cards=g.cases.map(c=>{ n++; const num=String(n).padStart(2,'0'); const uid='l'+n; const rows=[['Challenge',c.ch],c.ins?['Insight',c.ins]:null,['Execution',c.ex],['Result',c.re]].filter(Boolean);
+  renderCases(groups){ const esc=s=>this.esc(s); let n=0;
+    const coOf=stem=>{ if(!stem) return null; const m=[[/^(note9|j2|samsung)/,['samsung.png','Samsung']],[/^praava/,['praava.jpg','Praava Health']],[/^surecash/,['surecash.png','SureCash']],[/^acca/,['acca.jpg','ACCA']],[/^asiatic/,['asiatic.png','Asiatic / JWT']],[/^ekhanei/,['ekhanei.png','Ekhanei.com']],[/^laser-treat/,['lasertreat.jpeg','Laser Treat Group']],[/^(harm-reduction|mph-capstone|emu)/,['emu.png','Eastern Michigan University']]]; for(const x of m){ if(x[0].test(stem)) return x[1]; } return null; };
+    return groups.map((g,i)=>{
+    let cardsStr='', detsStr='';
+    g.cases.forEach(c=>{ n++; const num=String(n).padStart(2,'0'); const uid='l'+n; const rows=[['Challenge',c.ch],c.ins?['Insight',c.ins]:null,['Execution',c.ex],['Result',c.re]].filter(Boolean);
       const img=c.img?('assets/cases/'+c.img+'.jpg'):'';
+      const info=coOf(c.img); const logo=info?('assets/logos/'+info[0]):''; const cn=info?info[1]:'';
+      const crow=logo?('<span class="cg-chip"><img src="'+logo+'" alt="'+esc(cn)+' logo" loading="lazy"></span>'):('<span class="cg-num">'+num+'</span>');
+      const eyeb=cn?('<div class="cg-ey">'+esc(cn)+'</div>'):'';
       const imgBlock=img?('<button type="button" class="cg-fimg" data-zoom="'+img+'" data-cap="'+esc(c.t)+'"><img src="'+img+'" alt="'+esc(c.t)+' strategy infographic" loading="lazy" /><span class="cg-zh">⤢ View full size</span></button>'):'';
-      const card='<button type="button" class="cg-card" data-cg="'+uid+'" data-reveal aria-expanded="false" aria-controls="cgd-'+uid+'"><div class="cg-crow"><span class="cg-num">'+num+'</span><span class="cg-ind" aria-hidden="true">+</span></div><div class="cg-title" style="margin-top:6px;">'+esc(c.t)+'</div><div class="cg-metric">▸ '+esc(c.m)+'</div></button>';
-      const detail='<div class="cg-detail" id="cgd-'+uid+'" role="region" aria-label="'+esc(c.t)+' — full case"><div class="cg-frame">'+imgBlock+'<div class="cg-rows">'+rows.map(r=>{ const isR=r[0]==='Result'; return '<div class="cg-row'+(isR?' res':'')+'"><div class="cg-k">'+r[0]+'</div><div class="cg-v">'+esc(r[1])+'</div></div>'; }).join('')+'</div></div></div>';
-      return card+detail;
-    }).join('');
-    return '<div id="grp-'+i+'" style="scroll-margin-top:90px;"><div data-reveal style="position:relative;margin-bottom:clamp(20px,2.6vw,28px);padding-bottom:16px;border-bottom:1px solid var(--border-hairline);"><div style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-text);">'+esc(g.label)+'</div><span style="position:absolute;left:0;bottom:-1px;width:56px;height:2px;background:var(--accent);"></span></div><div class="cg-grid">'+cards+'</div></div>';
+      cardsStr+='<button type="button" class="cg-card" data-cg="'+uid+'" data-reveal aria-expanded="false" aria-controls="cgd-'+uid+'"><div class="cg-crow">'+crow+'<span class="cg-ind" aria-hidden="true">+</span></div>'+eyeb+'<div class="cg-title">'+esc(c.t)+'</div><div class="cg-metric">▸ '+esc(c.m)+'</div></button>';
+      detsStr+='<div class="cg-detail" id="cgd-'+uid+'" role="region" aria-label="'+esc(c.t)+' — full case"><div class="cg-frame">'+imgBlock+'<div class="cg-rows">'+rows.map(r=>{ const isR=r[0]==='Result'; return '<div class="cg-row'+(isR?' res':'')+'"><div class="cg-k">'+r[0]+'</div><div class="cg-v">'+esc(r[1])+'</div></div>'; }).join('')+'</div></div></div>';
+    });
+    return '<div id="grp-'+i+'" class="cg-group" style="scroll-margin-top:90px;"><div data-reveal style="position:relative;margin-bottom:clamp(20px,2.6vw,28px);padding-bottom:16px;border-bottom:1px solid var(--border-hairline);"><div style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-text);">'+esc(g.label)+'</div><span style="position:absolute;left:0;bottom:-1px;width:56px;height:2px;background:var(--accent);"></span></div><div class="cg-grid">'+cardsStr+'</div><div class="cg-detailwrap">'+detsStr+'</div></div>';
   }).join(''); }
   renderComps(comps){ const esc=s=>this.esc(s); return comps.map(c=>'<div data-reveal><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><span style="width:10px;height:10px;border-radius:3px;background:'+c[1]+';"></span><h3 style="font-family:var(--disp);font-weight:700;font-size:16px;color:var(--text-strong);margin:0;letter-spacing:-.01em;">'+esc(c[0])+'</h3></div><div style="display:flex;flex-wrap:wrap;gap:8px;">'+c[2].map(t=>'<span style="font-family:var(--body);font-size:13px;padding:7px 13px;border:1px solid var(--border-hairline);border-radius:999px;color:var(--text-body);background:var(--surface-raised);">'+esc(t)+'</span>').join('')+'</div></div>').join(''); }
   renderRecs(keys){ const esc=s=>this.esc(s); const pool=this._recs||(this._recs=this.recPool()); const card=r=>'<figure style="flex:0 0 auto;width:min(86vw,430px);background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:12px;padding:30px;margin:0;display:flex;flex-direction:column;box-shadow:var(--shadow-card);"><div style="font-family:var(--disp);font-size:42px;line-height:0;color:var(--accent);height:24px;">\u201C</div><blockquote style="margin:0 0 22px;font-family:var(--body);font-size:14.5px;line-height:1.62;color:var(--text-body);flex:1;">'+esc(r.q)+'</blockquote><figcaption style="border-top:1px solid var(--border-hairline);padding-top:16px;"><div style="font-family:var(--disp);font-weight:700;font-size:15.5px;color:var(--text-strong);">'+esc(r.n)+'</div><div style="font-family:var(--body);font-size:12.5px;color:var(--text-muted);margin-top:3px;">'+esc(r.t)+' · '+esc(r.y)+'</div></figcaption></figure>'; const cards=keys.map(k=>pool[k]).filter(Boolean); const html=cards.map(card).join(''); return html+html; }
@@ -1304,16 +1312,16 @@ class Component extends DCLogic {
 </script>
 <script>(function(){function play(f){if(!f||f.querySelector('iframe'))return;f.innerHTML='<iframe style="position:absolute;inset:0;width:100%;height:100%;border:0;" src="https://www.youtube-nocookie.com/embed/FZLnsmMEXvo?autoplay=1&rel=0&modestbranding=1" title="Md Shafaat Ali Choyon — intro" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';}document.addEventListener('click',function(e){var f=e.target&&e.target.closest&&e.target.closest('#introvid');if(f)play(f);});document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&document.activeElement&&document.activeElement.id==='introvid'){e.preventDefault();play(document.activeElement);}});})();</script>
 <script>(function(){
-  function closeAll(grid){ grid.querySelectorAll('.cg-detail.open').forEach(function(d){d.classList.remove('open');});
-    grid.querySelectorAll('.cg-card.active').forEach(function(c){c.classList.remove('active');c.setAttribute('aria-expanded','false');}); }
+  function closeAll(scope){ scope.querySelectorAll('.cg-detail.open').forEach(function(d){d.classList.remove('open');});
+    scope.querySelectorAll('.cg-card.active').forEach(function(c){c.classList.remove('active');c.setAttribute('aria-expanded','false');}); }
   document.addEventListener('click',function(e){
     if(e.target.closest && e.target.closest('.cg-fimg')) return; /* infographic click -> existing lightbox */
     var card=e.target.closest && e.target.closest('.cg-card'); if(!card) return;
     var id=card.getAttribute('data-cg'); var d=document.getElementById('cgd-'+id); if(!d) return;
-    var grid=card.closest('.cg-grid'); var wasOpen=d.classList.contains('open');
-    if(grid) closeAll(grid);
+    var scope=card.closest('.cg-group')||document; var wasOpen=d.classList.contains('open');
+    closeAll(scope);
     if(!wasOpen){ d.classList.add('open'); card.classList.add('active'); card.setAttribute('aria-expanded','true');
-      setTimeout(function(){ try{card.scrollIntoView({behavior:'smooth',block:'nearest'});}catch(_){} },130); }
+      setTimeout(function(){ try{d.scrollIntoView({behavior:'smooth',block:'nearest'});}catch(_){} },140); }
   });
 })();</script>
 </body>
