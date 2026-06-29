@@ -1376,7 +1376,7 @@ class Component extends DCLogic {
   try{
     var seen={};
     var secEls=[].slice.call(document.querySelectorAll('[data-screen-label]'));
-    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting && window.__gaOn){ var l=en.target.getAttribute('data-screen-label'); if(l&&!seen[l]){ seen[l]=1; T('section_view',{section:l}); } } }); },{threshold:0.4});
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting && window.__gaOn){ var l=en.target.getAttribute('data-screen-label'); if(l&&!seen[l]){ seen[l]=1; T('section_view',{section:l}); } } }); },{threshold:0, rootMargin:'0px 0px -25% 0px'});
     window.__reobserveSections=function(){ try{ io.disconnect(); secEls.forEach(function(s){ io.observe(s); }); }catch(e){} };
     window.__reobserveSections();
   }catch(e){}
