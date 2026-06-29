@@ -3,13 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RN7EPJQQPC"></script>
+<!-- Analytics — Google Analytics 4 (consent-gated). Cloudflare Web Analytics is cookieless and enabled at the edge. -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-RN7EPJQQPC');
+  window.__gaOn = false;
+  window.loadGA = function(){
+    if(window.__gaOn) return; window.__gaOn = true;
+    var s=document.createElement('script'); s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-RN7EPJQQPC';
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    gtag('config', 'G-RN7EPJQQPC', { anonymize_ip: true });
+  };
+  window.track = function(name, params){ try{ if(window.__gaOn) gtag('event', name, params||{}); }catch(e){} };
+  try{ if(localStorage.getItem('analytics-consent')==='granted') window.loadGA(); }catch(e){}
 </script>
 
 <title>Md Shafaat Ali Choyon — Growth, Marketing &amp; Public Health Strategist</title>
@@ -1331,6 +1339,45 @@ class Component extends DCLogic {
     if(!wasOpen){ d.classList.add('open'); card.classList.add('active'); card.setAttribute('aria-expanded','true');
       setTimeout(function(){ try{d.scrollIntoView({behavior:'smooth',block:'nearest'});}catch(_){} },140); }
   });
+})();</script>
+<script>(function(){
+  /* ---------- cookie consent (gates Google Analytics; Cloudflare analytics are cookieless) ---------- */
+  function getC(){ try{return localStorage.getItem('analytics-consent');}catch(e){return null;} }
+  function setC(v){ try{localStorage.setItem('analytics-consent',v);}catch(e){} }
+  function hideBanner(){ var b=document.getElementById('cookie-consent'); if(!b)return; b.style.transform='translateY(160%)'; setTimeout(function(){ if(b&&b.parentNode) b.parentNode.removeChild(b); },420); }
+  function showBanner(){
+    if(document.getElementById('cookie-consent'))return;
+    var b=document.createElement('div'); b.id='cookie-consent'; b.setAttribute('role','dialog'); b.setAttribute('aria-label','Analytics consent');
+    b.style.cssText='position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:580px;margin:0 auto;background:var(--surface-raised,#141A22);color:var(--text-body,#D8DCE2);border:1px solid var(--border-hairline,#2A3340);border-radius:14px;box-shadow:0 16px 44px rgba(0,0,0,.5);padding:16px 18px;font-family:var(--body,Inter),system-ui,sans-serif;font-size:13.5px;line-height:1.5;display:flex;flex-wrap:wrap;align-items:center;gap:12px;transform:translateY(160%);transition:transform .45s cubic-bezier(.2,.7,.2,1);';
+    b.innerHTML='<span style="flex:1;min-width:230px;">This site uses Google Analytics cookies to understand which work resonates. Privacy-first (cookieless) analytics run either way. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--accent-text,#00A6A6);text-decoration:underline;">Learn more</a></span><span style="display:flex;gap:8px;flex:0 0 auto;"><button id="cc-no" type="button" style="cursor:pointer;font:inherit;font-weight:600;padding:8px 14px;border-radius:8px;border:1px solid var(--border-strong,#3A434E);background:transparent;color:var(--text-strong,#F7F2E8);">Decline</button><button id="cc-yes" type="button" style="cursor:pointer;font:inherit;font-weight:700;padding:8px 16px;border-radius:8px;border:1.5px solid var(--accent,#00A6A6);background:var(--accent,#00A6A6);color:var(--accent-ink,#04222A);">Accept</button></span>';
+    document.body.appendChild(b);
+    requestAnimationFrame(function(){ b.style.transform='translateY(0)'; });
+    b.querySelector('#cc-yes').addEventListener('click',function(){ setC('granted'); if(window.loadGA) window.loadGA(); hideBanner(); });
+    b.querySelector('#cc-no').addEventListener('click',function(){ setC('denied'); hideBanner(); });
+  }
+  if(!getC()) setTimeout(showBanner, 600);
+
+  /* ---------- engagement events (sent to GA4 only after consent) ---------- */
+  var T=function(n,p){ if(window.track) window.track(n,p); };
+  document.addEventListener('click',function(e){
+    var t=e.target; if(!t||!t.closest) return;
+    var card=t.closest('.cg-card');
+    if(card){ if(card.getAttribute('aria-expanded')!=='true'){ var ti=((card.querySelector('.cg-title')||{}).textContent||'').trim(), co=((card.querySelector('.cg-ey')||{}).textContent||'').trim(); T('case_open',{case_title:ti.slice(0,90),company:co}); } return; }
+    var fig=t.closest('.cg-fimg'); if(fig){ T('case_zoom',{case:(fig.getAttribute('data-cap')||'').slice(0,90)}); return; }
+    var cv=t.closest('#cv-download'); if(cv){ T('cv_download',{file:(cv.getAttribute('href')||'').split('/').pop()}); return; }
+    var vid=t.closest('#introvid'); if(vid){ T('video_play',{video:'intro'}); return; }
+    var art=t.closest('#article-list [data-article]'); if(art){ T('article_click',{title:(art.textContent||'').replace(/\s+/g,' ').trim().slice(0,90)}); return; }
+    var a=t.closest('a'); if(a){ var h=a.getAttribute('href')||''; if(/^mailto:/i.test(h)) T('contact_intent',{method:'email'}); else if(/calendly\.com/i.test(h)) T('contact_intent',{method:'book_call'}); else if(/^https?:/i.test(h) && a.closest('#writing')) T('article_click',{title:(a.textContent||'').trim().slice(0,90)}); }
+  });
+  /* lens switches (watch the nav lens label) */
+  var lbl=document.getElementById('nav-lens-label');
+  if(lbl){ var last=(lbl.textContent||'').trim(); try{ new MutationObserver(function(){ var v=(lbl.textContent||'').trim(); if(v&&v!==last){ last=v; T('lens_view',{lens:v}); } }).observe(lbl,{childList:true,subtree:true,characterData:true}); }catch(e){} }
+  /* section views (each major section, once) */
+  try{
+    var seen={};
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ var l=en.target.getAttribute('data-screen-label'); if(l&&!seen[l]){ seen[l]=1; T('section_view',{section:l}); } } }); },{threshold:0.4});
+    document.querySelectorAll('[data-screen-label]').forEach(function(s){ io.observe(s); });
+  }catch(e){}
 })();</script>
 </body>
 </html>
