@@ -1374,12 +1374,15 @@ class Component extends DCLogic {
   if(lbl){ var last=(lbl.textContent||'').trim(); try{ new MutationObserver(function(){ var v=(lbl.textContent||'').trim(); if(v&&v!==last){ last=v; T('lens_view',{lens:v}); } }).observe(lbl,{childList:true,subtree:true,characterData:true}); }catch(e){} }
   /* section views (each major section, once) */
   try{
-    var seen={};
-    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting && window.__gaOn){ var l=en.target.getAttribute('data-screen-label'); if(l&&!seen[l]){ seen[l]=1; T('section_view',{section:l}); } } }); },{threshold:0, rootMargin:'0px 0px -25% 0px'});
-    window.__reobserveSections=function(){ try{ io.disconnect(); document.querySelectorAll('[data-screen-label]').forEach(function(s){ io.observe(s); }); }catch(e){} };
-    window.__reobserveSections();
-    setTimeout(window.__reobserveSections, 1500);   /* re-bind after the SPA re-renders the page */
-    setTimeout(window.__reobserveSections, 4000);
+    var seen={}, ticking=false;
+    function checkSecs(){ ticking=false; if(!window.__gaOn) return; var vh=window.innerHeight||1;
+      document.querySelectorAll('[data-screen-label]').forEach(function(s){ var l=s.getAttribute('data-screen-label'); if(!l||seen[l]) return; var r=s.getBoundingClientRect(); if(r.top < vh*0.6 && r.bottom > vh*0.2){ seen[l]=1; T('section_view',{section:l}); } });
+    }
+    function onScroll(){ if(!ticking){ ticking=true; (window.requestAnimationFrame||setTimeout)(checkSecs); } }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    window.addEventListener('resize', onScroll, {passive:true});
+    window.__reobserveSections = checkSecs;   /* run once on consent + after SPA settles */
+    setTimeout(checkSecs, 1200); setTimeout(checkSecs, 3500);
   }catch(e){}
 })();</script>
 </body>
