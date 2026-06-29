@@ -126,6 +126,40 @@
 </script>
 
 <script src="./support.js"></script>
+<style id="cg-styles">
+.cg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media(max-width:900px){.cg-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.cg-grid{grid-template-columns:1fr;}}
+.cg-card{position:relative;display:flex;flex-direction:column;text-align:left;cursor:pointer;width:100%;
+ background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:14px;
+ padding:18px 18px 16px;min-height:152px;box-shadow:var(--shadow-card);font:inherit;color:inherit;
+ transition:transform .26s cubic-bezier(.2,.7,.2,1),border-color .2s,box-shadow .2s;}
+.cg-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 14px 32px rgba(0,0,0,.28);}
+.cg-card.active{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft),0 14px 32px rgba(0,0,0,.3);transform:translateY(-3px);}
+.cg-crow{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.cg-chip{width:48px;height:48px;border-radius:10px;background:var(--ivory-100);display:flex;align-items:center;justify-content:center;padding:7px;border:1px solid var(--border-hairline);flex:0 0 auto;}
+.cg-chip img{max-width:100%;max-height:100%;object-fit:contain;display:block;}
+.cg-num{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--steel-500);}
+.cg-ind{width:26px;height:26px;border-radius:50%;border:1px solid var(--border-hairline);color:var(--text-faint);display:flex;align-items:center;justify-content:center;font-size:17px;line-height:1;transition:transform .3s,color .2s,border-color .2s;flex:0 0 auto;}
+.cg-card.active .cg-ind{transform:rotate(45deg);color:var(--accent-text);border-color:var(--accent);}
+.cg-ey{font-family:var(--disp);font-weight:700;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-bottom:7px;}
+.cg-title{font-family:var(--disp);font-weight:700;font-size:16px;line-height:1.24;letter-spacing:-.01em;color:var(--text-strong);}
+.cg-metric{margin-top:auto;padding-top:12px;font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--amber-600);}
+.cg-detail{grid-column:1/-1;max-height:0;opacity:0;overflow:hidden;transition:max-height .5s cubic-bezier(.2,.7,.2,1),opacity .35s ease,margin .35s;}
+.cg-detail.open{max-height:6000px;opacity:1;margin:4px 0 10px;}
+.cg-frame{background:var(--surface-raised);border:1px solid var(--accent);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-card);}
+.cg-fimg{display:block;width:100%;border:none;border-bottom:1px solid var(--border-hairline);padding:0;margin:0;cursor:zoom-in;background:#fff;position:relative;line-height:0;}
+.cg-fimg img{display:block;width:100%;height:auto;}
+.cg-fimg .cg-zh{position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;color:#fff;background:rgba(6,9,13,.72);border:1px solid var(--accent);backdrop-filter:blur(4px);padding:7px 12px;border-radius:999px;opacity:0;transition:opacity .2s;}
+.cg-fimg:hover .cg-zh{opacity:1;}
+.cg-rows{padding:clamp(20px,2.4vw,30px) clamp(22px,3vw,34px);display:flex;flex-direction:column;gap:14px;}
+.cg-row{display:grid;grid-template-columns:104px 1fr;gap:16px;align-items:start;}
+.cg-k{font-family:var(--disp);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);padding-top:3px;}
+.cg-row.res .cg-k{color:var(--accent-text);}
+.cg-v{font-family:var(--body);font-size:15px;line-height:1.62;color:var(--text-body);}
+.cg-row.res .cg-v{color:var(--text-strong);font-weight:500;}
+@media(max-width:560px){.cg-row{grid-template-columns:1fr;gap:4px;}}
+</style>
 </head>
 <body>
 <noscript>
@@ -605,31 +639,27 @@ class Component extends DCLogic {
     const groupsEl = root.querySelector('#company-groups');
     if(groupsEl){ groupsEl.innerHTML = companies.map(co=>{
       const casesHTML = co.cases.map(c=>{
-        gn++; const num = String(gn).padStart(2,'0');
+        gn++; const uid='f'+gn;
         const rows = [['Challenge',c.challenge],c.insight?['Insight',c.insight]:null,['Execution',c.execution],['Result',c.result]].filter(Boolean);
-        const tags = (c.tags||[]).map(t=>`<span style="display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:4px;background:var(--obsidian-600);border:1px solid var(--border-hairline);color:var(--text-body);font-family:var(--body);font-size:12.5px;font-weight:500;">${esc(t)}</span>`).join('');
+        const eb = esc(co.name.split(' (')[0].split(' / ')[0]);
         return `
-        <article data-reveal style="background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:12px;overflow:hidden;transition:border-color .2s,box-shadow .2s;box-shadow:var(--shadow-card);" data-case-card>
-          <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 18px;padding:clamp(24px,3vw,34px) clamp(24px,3vw,38px) clamp(14px,1.6vw,18px);">
-            <div style="display:flex;align-items:baseline;gap:16px;min-width:0;">
-              <span style="font-family:var(--mono);font-size:28px;font-weight:700;color:var(--steel-500);line-height:.9;">${num}</span>
-              <h3 style="font-family:var(--disp);font-weight:700;font-size:clamp(19px,2.1vw,27px);line-height:1.16;letter-spacing:-.01em;color:var(--text-strong);margin:0;">${esc(c.title)}</h3>
+        <button type="button" class="cg-card" data-cg="${uid}" data-reveal aria-expanded="false" aria-controls="cgd-${uid}">
+          <div class="cg-crow"><span class="cg-chip"><img src="${co.logo}" alt="${esc(co.name)} logo" loading="lazy"></span><span class="cg-ind" aria-hidden="true">+</span></div>
+          <div class="cg-ey">${eb}</div>
+          <div class="cg-title">${esc(c.title)}</div>
+          <div class="cg-metric">▸ ${esc(c.metric)}</div>
+        </button>
+        <div class="cg-detail" id="cgd-${uid}" role="region" aria-label="${esc(c.title)} — full case">
+          <div class="cg-frame">
+            <button type="button" class="cg-fimg" data-zoom="${c.img}" data-cap="${esc(co.name.split(' (')[0])} — ${esc(c.title)}">
+              <img src="${c.img}" alt="${esc(c.title)} strategy infographic" loading="lazy" />
+              <span class="cg-zh">⤢ View full size</span>
+            </button>
+            <div class="cg-rows">
+              ${rows.map(([k,v])=>{const r=k==='Result';return `<div class="cg-row${r?' res':''}"><div class="cg-k">${k}</div><div class="cg-v">${esc(v)}</div></div>`;}).join('')}
             </div>
-            <div style="display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;font-weight:500;color:var(--amber-600);background:var(--amber-soft);border:1px solid rgba(244,162,76,.3);border-radius:999px;padding:7px 13px;white-space:nowrap;">▸ ${esc(c.metric)}</div>
           </div>
-          ${tags?`<div style="display:flex;flex-wrap:wrap;gap:8px;padding:0 clamp(24px,3vw,38px) clamp(16px,2vw,20px);">${tags}</div>`:''}
-          <button data-zoom="${c.img}" data-cap="${esc(co.name.split(' (')[0])} — ${esc(c.title)}" style="display:block;width:100%;border:none;border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline);padding:0;margin:0;cursor:zoom-in;background:#fff;position:relative;line-height:0;">
-            <img src="${c.img}" alt="${esc(c.title)} strategy infographic" loading="lazy" style="display:block;width:100%;height:auto;" />
-            <span data-zoomhint style="position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;color:#fff;background:rgba(6,9,13,.72);border:1px solid var(--accent);backdrop-filter:blur(4px);padding:7px 12px;border-radius:999px;opacity:0;transition:opacity .2s;">⤢ View full size</span>
-          </button>
-          <div style="padding:clamp(22px,2.6vw,34px) clamp(24px,3vw,38px) clamp(26px,3vw,38px);display:flex;flex-direction:column;gap:15px;">
-            ${rows.map(([k,v])=>{const isResult=k==='Result';return `
-              <div style="display:grid;grid-template-columns:104px 1fr;gap:16px;align-items:start;">
-                <div style="font-family:var(--disp);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:${isResult?'var(--accent-text)':'var(--text-faint)'};padding-top:3px;">${k}</div>
-                <div style="font-family:var(--body);font-size:15px;line-height:1.62;color:${isResult?'var(--text-strong)':'var(--text-body)'};font-weight:${isResult?'500':'400'};">${esc(v)}</div>
-              </div>`;}).join('')}
-          </div>
-        </article>`;
+        </div>`;
       }).join('');
       return `
       <div id="co-${co.id}" style="scroll-margin-top:90px;">
@@ -644,7 +674,7 @@ class Component extends DCLogic {
           <div style="font-family:var(--mono);font-size:12px;color:var(--text-faint);white-space:nowrap;">${co.cases.length} case${co.cases.length>1?'s':''}</div>
           <span style="position:absolute;left:0;bottom:-1px;width:64px;height:2px;background:var(--accent);"></span>
         </div>
-        <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vw,26px);">${casesHTML}</div>
+        <div class="cg-grid">${casesHTML}</div>
       </div>`;
     }).join(''); }
 
@@ -1021,12 +1051,14 @@ class Component extends DCLogic {
   renderImpact(arr){ const esc=s=>this.esc(s); return arr.map(t=>{ const val=t[0], lab=t[1]; const c=/\d/.test(val)?'var(--amber)':'var(--teal-400)'; return '<div data-reveal><div style="font-family:var(--mono);font-weight:800;font-size:clamp(22px,2.8vw,38px);line-height:1.1;letter-spacing:-.02em;color:'+c+';min-height:2.2em;display:flex;align-items:flex-end;">'+esc(val)+'</div><div style="font-size:13.5px;color:var(--ivory-200);margin-top:9px;font-weight:600;line-height:1.35;">'+esc(lab)+'</div></div>'; }).join(''); }
   renderCaseNav(groups){ const esc=s=>this.esc(s); return groups.map((g,i)=>'<a href="#grp-'+i+'" data-casechip style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-size:13px;font-weight:600;color:var(--text-body);background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:999px;padding:8px 15px;transition:background .16s,border-color .16s,color .16s,transform .16s;"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent);"></span>'+esc(g.label)+'<span style="font-family:var(--mono);font-size:11px;color:var(--text-faint);">'+g.cases.length+'</span></a>').join(''); }
   renderCases(groups){ const esc=s=>this.esc(s); let n=0; return groups.map((g,i)=>{
-    const cards=g.cases.map(c=>{ n++; const num=String(n).padStart(2,'0'); const rows=[['Challenge',c.ch],c.ins?['Insight',c.ins]:null,['Execution',c.ex],['Result',c.re]].filter(Boolean);
+    const cards=g.cases.map(c=>{ n++; const num=String(n).padStart(2,'0'); const uid='l'+n; const rows=[['Challenge',c.ch],c.ins?['Insight',c.ins]:null,['Execution',c.ex],['Result',c.re]].filter(Boolean);
       const img=c.img?('assets/cases/'+c.img+'.jpg'):'';
-      const imgBlock=img?('<button data-zoom="'+img+'" data-cap="'+esc(c.t)+'" style="display:block;width:100%;border:none;border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline);padding:0;margin:0;cursor:zoom-in;background:#fff;position:relative;line-height:0;"><img src="'+img+'" alt="'+esc(c.t)+' strategy infographic" loading="lazy" style="display:block;width:100%;height:auto;" /><span data-zoomhint style="position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;color:#fff;background:rgba(6,9,13,.72);border:1px solid var(--accent);backdrop-filter:blur(4px);padding:7px 12px;border-radius:999px;opacity:0;transition:opacity .2s;">⤢ View full size</span></button>'):'';
-      return '<article data-reveal data-case-card style="background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:12px;overflow:hidden;transition:border-color .2s,box-shadow .2s;box-shadow:var(--shadow-card);"><div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 18px;padding:clamp(22px,3vw,30px) clamp(22px,3vw,34px) '+(img?'clamp(14px,1.6vw,18px)':'clamp(4px,1vw,8px)')+';"><div style="display:flex;align-items:baseline;gap:14px;min-width:0;"><span style="font-family:var(--mono);font-size:22px;font-weight:700;color:var(--steel-500);line-height:.9;">'+num+'</span><h3 style="font-family:var(--disp);font-weight:700;font-size:clamp(18px,2vw,24px);line-height:1.18;letter-spacing:-.01em;color:var(--text-strong);margin:0;">'+esc(c.t)+'</h3></div><div style="display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;font-weight:500;color:var(--amber-600);background:var(--amber-soft);border:1px solid rgba(244,162,76,.3);border-radius:999px;padding:7px 13px;white-space:nowrap;">▸ '+esc(c.m)+'</div></div>'+imgBlock+'<div style="padding:clamp(20px,2.4vw,28px) clamp(22px,3vw,34px) clamp(24px,2.8vw,32px);display:flex;flex-direction:column;gap:14px;">'+rows.map(r=>{ const isR=r[0]==='Result'; return '<div style="display:grid;grid-template-columns:104px 1fr;gap:16px;align-items:start;"><div style="font-family:var(--disp);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:'+(isR?'var(--accent-text)':'var(--text-faint)')+';padding-top:3px;">'+r[0]+'</div><div style="font-family:var(--body);font-size:15px;line-height:1.62;color:'+(isR?'var(--text-strong)':'var(--text-body)')+';font-weight:'+(isR?'500':'400')+';">'+esc(r[1])+'</div></div>'; }).join('')+'</div></article>';
+      const imgBlock=img?('<button type="button" class="cg-fimg" data-zoom="'+img+'" data-cap="'+esc(c.t)+'"><img src="'+img+'" alt="'+esc(c.t)+' strategy infographic" loading="lazy" /><span class="cg-zh">⤢ View full size</span></button>'):'';
+      const card='<button type="button" class="cg-card" data-cg="'+uid+'" data-reveal aria-expanded="false" aria-controls="cgd-'+uid+'"><div class="cg-crow"><span class="cg-num">'+num+'</span><span class="cg-ind" aria-hidden="true">+</span></div><div class="cg-title" style="margin-top:6px;">'+esc(c.t)+'</div><div class="cg-metric">▸ '+esc(c.m)+'</div></button>';
+      const detail='<div class="cg-detail" id="cgd-'+uid+'" role="region" aria-label="'+esc(c.t)+' — full case"><div class="cg-frame">'+imgBlock+'<div class="cg-rows">'+rows.map(r=>{ const isR=r[0]==='Result'; return '<div class="cg-row'+(isR?' res':'')+'"><div class="cg-k">'+r[0]+'</div><div class="cg-v">'+esc(r[1])+'</div></div>'; }).join('')+'</div></div></div>';
+      return card+detail;
     }).join('');
-    return '<div id="grp-'+i+'" style="scroll-margin-top:90px;"><div data-reveal style="position:relative;margin-bottom:clamp(20px,2.6vw,28px);padding-bottom:16px;border-bottom:1px solid var(--border-hairline);"><div style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-text);">'+esc(g.label)+'</div><span style="position:absolute;left:0;bottom:-1px;width:56px;height:2px;background:var(--accent);"></span></div><div style="display:flex;flex-direction:column;gap:clamp(16px,2.2vw,24px);">'+cards+'</div></div>';
+    return '<div id="grp-'+i+'" style="scroll-margin-top:90px;"><div data-reveal style="position:relative;margin-bottom:clamp(20px,2.6vw,28px);padding-bottom:16px;border-bottom:1px solid var(--border-hairline);"><div style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-text);">'+esc(g.label)+'</div><span style="position:absolute;left:0;bottom:-1px;width:56px;height:2px;background:var(--accent);"></span></div><div class="cg-grid">'+cards+'</div></div>';
   }).join(''); }
   renderComps(comps){ const esc=s=>this.esc(s); return comps.map(c=>'<div data-reveal><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><span style="width:10px;height:10px;border-radius:3px;background:'+c[1]+';"></span><h3 style="font-family:var(--disp);font-weight:700;font-size:16px;color:var(--text-strong);margin:0;letter-spacing:-.01em;">'+esc(c[0])+'</h3></div><div style="display:flex;flex-wrap:wrap;gap:8px;">'+c[2].map(t=>'<span style="font-family:var(--body);font-size:13px;padding:7px 13px;border:1px solid var(--border-hairline);border-radius:999px;color:var(--text-body);background:var(--surface-raised);">'+esc(t)+'</span>').join('')+'</div></div>').join(''); }
   renderRecs(keys){ const esc=s=>this.esc(s); const pool=this._recs||(this._recs=this.recPool()); const card=r=>'<figure style="flex:0 0 auto;width:min(86vw,430px);background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:12px;padding:30px;margin:0;display:flex;flex-direction:column;box-shadow:var(--shadow-card);"><div style="font-family:var(--disp);font-size:42px;line-height:0;color:var(--accent);height:24px;">\u201C</div><blockquote style="margin:0 0 22px;font-family:var(--body);font-size:14.5px;line-height:1.62;color:var(--text-body);flex:1;">'+esc(r.q)+'</blockquote><figcaption style="border-top:1px solid var(--border-hairline);padding-top:16px;"><div style="font-family:var(--disp);font-weight:700;font-size:15.5px;color:var(--text-strong);">'+esc(r.n)+'</div><div style="font-family:var(--body);font-size:12.5px;color:var(--text-muted);margin-top:3px;">'+esc(r.t)+' · '+esc(r.y)+'</div></figcaption></figure>'; const cards=keys.map(k=>pool[k]).filter(Boolean); const html=cards.map(card).join(''); return html+html; }
@@ -1271,5 +1303,18 @@ class Component extends DCLogic {
 })();
 </script>
 <script>(function(){function play(f){if(!f||f.querySelector('iframe'))return;f.innerHTML='<iframe style="position:absolute;inset:0;width:100%;height:100%;border:0;" src="https://www.youtube-nocookie.com/embed/FZLnsmMEXvo?autoplay=1&rel=0&modestbranding=1" title="Md Shafaat Ali Choyon — intro" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';}document.addEventListener('click',function(e){var f=e.target&&e.target.closest&&e.target.closest('#introvid');if(f)play(f);});document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&document.activeElement&&document.activeElement.id==='introvid'){e.preventDefault();play(document.activeElement);}});})();</script>
+<script>(function(){
+  function closeAll(grid){ grid.querySelectorAll('.cg-detail.open').forEach(function(d){d.classList.remove('open');});
+    grid.querySelectorAll('.cg-card.active').forEach(function(c){c.classList.remove('active');c.setAttribute('aria-expanded','false');}); }
+  document.addEventListener('click',function(e){
+    if(e.target.closest && e.target.closest('.cg-fimg')) return; /* infographic click -> existing lightbox */
+    var card=e.target.closest && e.target.closest('.cg-card'); if(!card) return;
+    var id=card.getAttribute('data-cg'); var d=document.getElementById('cgd-'+id); if(!d) return;
+    var grid=card.closest('.cg-grid'); var wasOpen=d.classList.contains('open');
+    if(grid) closeAll(grid);
+    if(!wasOpen){ d.classList.add('open'); card.classList.add('active'); card.setAttribute('aria-expanded','true');
+      setTimeout(function(){ try{card.scrollIntoView({behavior:'smooth',block:'nearest'});}catch(_){} },130); }
+  });
+})();</script>
 </body>
 </html>
