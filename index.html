@@ -118,7 +118,9 @@
     { "@type": "NewsArticle", "headline": "Combating the Flood of Misinformation", "url": "https://www.dhakatribune.com/opinion/op-ed/364000/combating-the-flood-of-misinformation", "author": { "@id": "https://shafaatalichoyon.com/#person" }, "publisher": { "@type": "Organization", "name": "Dhaka Tribune" } },
     { "@type": "NewsArticle", "headline": "Exploring Comprehensive Digital Transformation in Bangladesh's Healthcare Sector", "url": "https://ibtbd.net/healthtech-horizons/", "author": { "@id": "https://shafaatalichoyon.com/#person" }, "publisher": { "@type": "Organization", "name": "IBT" } },
     { "@type": "NewsArticle", "headline": "Aiding Economy with Digital Health Services", "url": "https://old.thefinancialexpress.com.bd/views/aiding-economy-with-digital-health-services-1614361817", "author": { "@id": "https://shafaatalichoyon.com/#person" }, "publisher": { "@type": "Organization", "name": "The Financial Express" } },
-    { "@type": "NewsArticle", "headline": "Impact of Digital Health Services in the Economy", "url": "https://thefinancialexpress.com.bd/views/opinions/impact-of-digital-health-services-in-the-economy-1614141812", "author": { "@id": "https://shafaatalichoyon.com/#person" }, "publisher": { "@type": "Organization", "name": "The Financial Express" } }
+    { "@type": "NewsArticle", "headline": "Impact of Digital Health Services in the Economy", "url": "https://thefinancialexpress.com.bd/views/opinions/impact-of-digital-health-services-in-the-economy-1614141812", "author": { "@id": "https://shafaatalichoyon.com/#person" }, "publisher": { "@type": "Organization", "name": "The Financial Express" } },
+    { "@type": "NewsArticle", "headline": "Businesses in the VUCA World", "url": "https://thefinancialexpress.com.bd/views/analysis/businesses-in-the-vuca-world-1619200860", "author": { "@id": "https://shafaatalichoyon.com/#person" }, "publisher": { "@type": "Organization", "name": "The Financial Express" } },
+    { "@type": "NewsArticle", "headline": "Digital Transformation and Adaptation for Securing Businesses", "url": "https://www.observerbd.com/news.php?id=299498", "author": { "@id": "https://shafaatalichoyon.com/#person" }, "publisher": { "@type": "Organization", "name": "The Daily Observer" } }
   ]
 }
 </script>
@@ -155,6 +157,8 @@
 <li><a href="https://ibtbd.net/healthtech-horizons/">Exploring Comprehensive Digital Transformation in Bangladesh's Healthcare Sector</a> — IBT</li>
 <li><a href="https://old.thefinancialexpress.com.bd/views/aiding-economy-with-digital-health-services-1614361817">Aiding Economy with Digital Health Services</a> — The Financial Express</li>
 <li><a href="https://thefinancialexpress.com.bd/views/opinions/impact-of-digital-health-services-in-the-economy-1614141812">Impact of Digital Health Services in the Economy</a> — The Financial Express</li>
+<li><a href="https://thefinancialexpress.com.bd/views/analysis/businesses-in-the-vuca-world-1619200860">Businesses in the VUCA World</a> — The Financial Express</li>
+<li><a href="https://www.observerbd.com/news.php?id=299498">Digital Transformation and Adaptation for Securing Businesses</a> — The Daily Observer</li>
 </ul>
 <h2>Contact</h2>
 <p>Email: shafaatalichoyon@gmail.com · LinkedIn: https://www.linkedin.com/in/sacgrowthspecialist · Location: Redford, Michigan, USA</p>
@@ -749,6 +753,7 @@ class Component extends DCLogic {
       ["Exploring Comprehensive Digital Transformation in Bangladesh's Healthcare Sector","ICE Business Times","2023"],
       ["Aiding Economy with Digital Health Services","The Financial Express","2021"],
       ["Impact of Digital Health Services in the Economy","The Financial Express","2021"],
+      ["Businesses in the VUCA World","The Financial Express","2021"],
       ["Digital Transformation and Adaptation for Securing Businesses","Daily Observer","2021"],
     ];
     const artList = root.querySelector('#article-list');
@@ -1226,7 +1231,9 @@ class Component extends DCLogic {
     ["Combating the Flood of Misinformation","https://www.dhakatribune.com/opinion/op-ed/364000/combating-the-flood-of-misinformation"],
     ["Exploring Comprehensive Digital Transformation in Bangladesh's Healthcare Sector","https://ibtbd.net/healthtech-horizons/"],
     ["Aiding Economy with Digital Health Services","https://old.thefinancialexpress.com.bd/views/aiding-economy-with-digital-health-services-1614361817"],
-    ["Impact of Digital Health Services in the Economy","https://thefinancialexpress.com.bd/views/opinions/impact-of-digital-health-services-in-the-economy-1614141812"]
+    ["Impact of Digital Health Services in the Economy","https://thefinancialexpress.com.bd/views/opinions/impact-of-digital-health-services-in-the-economy-1614141812"],
+    ["Businesses in the VUCA World","https://thefinancialexpress.com.bd/views/analysis/businesses-in-the-vuca-world-1619200860"],
+    ["Digital Transformation and Adaptation for Securing Businesses","https://www.observerbd.com/news.php?id=299498"]
   ];
   function norm(s){ return (s||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim(); }
   var NMAP = MAP.map(function(p){ return [norm(p[0]), p[1]]; });
@@ -1255,7 +1262,7 @@ class Component extends DCLogic {
     return n;
   }
   var tries = 0;
-  var iv = setInterval(function(){ tries++; if(apply() >= 12 || tries > 60) clearInterval(iv); }, 300);
+  var iv = setInterval(function(){ tries++; if(apply() >= 14 || tries > 60) clearInterval(iv); }, 300);
   (function startObs(){
     var l = document.querySelector('#article-list');
     if(l){ new MutationObserver(function(){ apply(); }).observe(l, {childList:true, subtree:true}); }
