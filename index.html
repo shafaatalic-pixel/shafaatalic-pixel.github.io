@@ -1352,7 +1352,7 @@ class Component extends DCLogic {
     b.innerHTML='<span style="flex:1;min-width:230px;">This site uses Google Analytics cookies to understand which work resonates. Privacy-first (cookieless) analytics run either way. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--accent-text,#00A6A6);text-decoration:underline;">Learn more</a></span><span style="display:flex;gap:8px;flex:0 0 auto;"><button id="cc-no" type="button" style="cursor:pointer;font:inherit;font-weight:600;padding:8px 14px;border-radius:8px;border:1px solid var(--border-strong,#3A434E);background:transparent;color:var(--text-strong,#F7F2E8);">Decline</button><button id="cc-yes" type="button" style="cursor:pointer;font:inherit;font-weight:700;padding:8px 16px;border-radius:8px;border:1.5px solid var(--accent,#00A6A6);background:var(--accent,#00A6A6);color:var(--accent-ink,#04222A);">Accept</button></span>';
     document.body.appendChild(b);
     requestAnimationFrame(function(){ b.style.transform='translateY(0)'; });
-    b.querySelector('#cc-yes').addEventListener('click',function(){ setC('granted'); if(window.loadGA) window.loadGA(); hideBanner(); });
+    b.querySelector('#cc-yes').addEventListener('click',function(){ setC('granted'); if(window.loadGA) window.loadGA(); if(window.__reobserveSections) window.__reobserveSections(); hideBanner(); });
     b.querySelector('#cc-no').addEventListener('click',function(){ setC('denied'); hideBanner(); });
   }
   if(!getC()) setTimeout(showBanner, 600);
@@ -1362,7 +1362,7 @@ class Component extends DCLogic {
   document.addEventListener('click',function(e){
     var t=e.target; if(!t||!t.closest) return;
     var card=t.closest('.cg-card');
-    if(card){ if(card.getAttribute('aria-expanded')!=='true'){ var ti=((card.querySelector('.cg-title')||{}).textContent||'').trim(), co=((card.querySelector('.cg-ey')||{}).textContent||'').trim(); T('case_open',{case_title:ti.slice(0,90),company:co}); } return; }
+    if(card){ setTimeout(function(){ if(card.getAttribute('aria-expanded')==='true'){ var ti=((card.querySelector('.cg-title')||{}).textContent||'').trim(), co=((card.querySelector('.cg-ey')||{}).textContent||'').trim(); T('case_open',{case_title:ti.slice(0,90),company:co}); } },0); return; }
     var fig=t.closest('.cg-fimg'); if(fig){ T('case_zoom',{case:(fig.getAttribute('data-cap')||'').slice(0,90)}); return; }
     var cv=t.closest('#cv-download'); if(cv){ T('cv_download',{file:(cv.getAttribute('href')||'').split('/').pop()}); return; }
     var vid=t.closest('#introvid'); if(vid){ T('video_play',{video:'intro'}); return; }
@@ -1375,8 +1375,10 @@ class Component extends DCLogic {
   /* section views (each major section, once) */
   try{
     var seen={};
-    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ var l=en.target.getAttribute('data-screen-label'); if(l&&!seen[l]){ seen[l]=1; T('section_view',{section:l}); } } }); },{threshold:0.4});
-    document.querySelectorAll('[data-screen-label]').forEach(function(s){ io.observe(s); });
+    var secEls=[].slice.call(document.querySelectorAll('[data-screen-label]'));
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting && window.__gaOn){ var l=en.target.getAttribute('data-screen-label'); if(l&&!seen[l]){ seen[l]=1; T('section_view',{section:l}); } } }); },{threshold:0.4});
+    window.__reobserveSections=function(){ try{ io.disconnect(); secEls.forEach(function(s){ io.observe(s); }); }catch(e){} };
+    window.__reobserveSections();
   }catch(e){}
 })();</script>
 </body>
