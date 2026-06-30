@@ -178,6 +178,40 @@
 .cg-v{font-family:var(--body);font-size:15px;line-height:1.62;color:var(--text-body);}
 .cg-row.res .cg-v{color:var(--text-strong);font-weight:500;}
 @media(max-width:560px){.cg-row{grid-template-columns:1fr;gap:4px;}}
+/* ---- featured + filter case UI ---- */
+.cf-chip{font-family:var(--body);font-size:13px;font-weight:600;color:var(--text-body);background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:999px;padding:8px 15px;cursor:pointer;transition:background .15s,border-color .15s,color .15s;display:inline-flex;align-items:center;gap:7px;}
+.cf-chip:hover{border-color:var(--border-strong);}
+.cf-chip.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-text);}
+.cf-ct{font-family:var(--mono);font-size:11px;color:var(--text-faint);}
+.cf-chip.active .cf-ct{color:var(--accent-text);}
+.cf-all-chip{font-weight:700;}
+.cf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media(max-width:900px){.cf-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:620px){.cf-grid{grid-template-columns:1fr;}}
+.cf-all{margin-top:0;}
+.cf-card{background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:14px;padding:22px;display:flex;flex-direction:column;box-shadow:var(--shadow-card);}
+.cf-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;}
+.cf-logo{width:48px;height:48px;border-radius:10px;background:var(--ivory-100);border:1px solid var(--border-hairline);display:flex;align-items:center;justify-content:center;overflow:hidden;flex:0 0 auto;}
+.cf-logo img{max-width:34px;max-height:30px;object-fit:contain;display:block;}
+.cf-cat{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-text);text-align:right;max-width:130px;padding-top:5px;}
+.cf-title{font-family:var(--disp);font-weight:700;font-size:18.5px;letter-spacing:-.01em;color:var(--text-strong);margin:0 0 14px;line-height:1.18;}
+.cf-rows{display:flex;flex-direction:column;gap:9px;flex:1;}
+.cf-r{font-size:13px;line-height:1.45;border-top:1px solid var(--border-hairline);padding-top:9px;}
+.cf-r:first-child{border-top:none;padding-top:0;}
+.cf-k{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--text-faint);display:block;margin-bottom:2px;}
+.cf-k.cf-out{color:var(--accent-text);}
+.cf-v{color:var(--text-muted);}
+.cf-v.cf-vout{color:var(--text-strong);font-weight:500;}
+.cf-btns{display:flex;gap:9px;margin-top:16px;}
+.cf-btn{flex:1;text-align:center;font-family:var(--disp);font-weight:700;font-size:13px;border-radius:8px;padding:10px;cursor:pointer;border:1.5px solid var(--accent);}
+.cf-bp{background:var(--accent);color:var(--accent-ink);}
+.cf-bs{background:transparent;color:var(--accent-text);}
+.cf-mini{text-align:left;background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:12px;padding:18px;cursor:pointer;display:flex;flex-direction:column;gap:8px;transition:border-color .15s,transform .15s;box-shadow:var(--shadow-card);}
+.cf-mini:hover{border-color:var(--accent);transform:translateY(-2px);}
+.cf-mini-cat{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-text);}
+.cf-mini-t{font-family:var(--disp);font-weight:700;font-size:15px;color:var(--text-strong);line-height:1.25;}
+.cf-mini-m{font-family:var(--mono);font-size:12px;color:var(--accent-text);}
+.cf-mini[hidden]{display:none!important;}
 </style>
 </head>
 <body>
@@ -330,7 +364,7 @@
       <div data-reveal style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);">Case Studies</div>
       <div data-reveal style="width:40px;height:3px;background:var(--accent);border-radius:2px;margin-top:12px;"></div>
       <h2 data-reveal style="font-family:var(--disp);font-weight:700;font-size:clamp(28px,4.4vw,48px);letter-spacing:-.02em;color:var(--text-strong);margin:18px 0 14px;max-width:20ch;">Challenge → insight → execution → result.</h2>
-      <p id="cases-sub" data-reveal style="font-family:var(--body);font-size:clamp(15px,1.5vw,18px);line-height:1.6;color:var(--text-muted);max-width:66ch;margin:0 0 16px;">The complete portfolio — twenty-one initiatives across eight organizations, each with its strategy infographic. Select any infographic to view it full-size.</p>
+      <p id="cases-sub" data-reveal style="font-family:var(--body);font-size:clamp(15px,1.5vw,18px);line-height:1.6;color:var(--text-muted);max-width:66ch;margin:0 0 16px;">Start with the featured six — one per theme, each showing the constraint, the move and the outcome before you open it. Filter by theme, or explore all twenty-one initiatives across eight organizations, each with its strategy infographic.</p>
       <div id="case-focus" data-reveal style="display:none;"></div>
       <div data-reveal style="display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 56px;" id="case-nav"></div>
       <div id="company-groups" style="display:flex;flex-direction:column;gap:clamp(56px,8vw,92px);"></div>
@@ -763,61 +797,43 @@ class Component extends DCLogic {
         <img src="${b[1]}" alt="${esc(b[0])}" loading="lazy" style="max-height:32px;max-width:124px;width:auto;object-fit:contain;display:block;" />
       </div>`).join(''); }
 
-    // CASE NAV
-    const caseNav = root.querySelector('#case-nav');
-    if(caseNav){ caseNav.innerHTML = companies.map(co=>`
-      <a href="#co-${co.id}" data-casechip style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-size:13px;font-weight:600;color:var(--text-body);background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:999px;padding:8px 15px;transition:background .16s,border-color .16s,color .16s,transform .16s;">
-        <span style="width:7px;height:7px;border-radius:50%;background:var(--accent);"></span>${esc(co.name.split(' (')[0].split(' / ')[0])}
-        <span style="font-family:var(--mono);font-size:11px;color:var(--text-faint);">${co.cases.length}</span>
-      </a>`).join(''); }
+    // ===== THEME MAP + FEATURED COPY (full-portfolio case UI) =====
+    const CF_THEME = {note9:['consumer','brand'],j2:['consumer'],'samsung-digital':['digital','consumer','brand'],'praava-engines':['health'],'praava-corp':['health'],'praava-lifebuoy':['public','health'],'praava-travel':['digital','health'],'praava-kickback':['public','health'],'praava-footfall':['brand','health'],'praava-dataengine':['digital','health'],'laser-treat':['digital','health'],'surecash-g2p':['fintech'],'ekhanei-laser':['brand'],'ekhanei-bikebazaar':['brand'],'acca-ecosystem':['brand'],'acca-leadership':['brand'],'asiatic-lux':['brand'],'asiatic-digital':['digital','brand'],'harm-reduction':['public'],'mph-capstone':['public'],'emu-housing':['public']};
+    const CF_THEMES = [['health','Healthcare growth'],['public','Public health'],['digital','Digital transformation'],['brand','Brand & market'],['consumer','Consumer tech'],['fintech','Fintech / G2P']];
+    const CF_TLABEL = {}; CF_THEMES.forEach(t=>{CF_TLABEL[t[0]]=t[1];});
+    const CF_FEAT = {
+      'praava-engines':{cat:'Healthcare growth',c:"A COVID-associated brand had to grow its hard-to-scale non-COVID core, which carried 83% of revenue.",mv:"Built three compounding engines — new products, data-led decisions, automated growth loops — and a full commercial org.",o:"~45% overall / ~57% B2C CAGR (2021–23); lab margin ~30% → ~50%.",r:"Head of Marketing & Corporate Sales (Head of Consumer Business) — 83% P&L, 30-person org."},
+      'laser-treat':{cat:'Digital transformation',c:"A multi-entity clinical group needed clean operations, data and a measurable patient experience to grow.",mv:"Centralized ERP; digitized records, BI dashboards, HR & CX logs; launched sub-brands; introduced CSAT/NPS.",o:"+16% YTD revenue; +13% retention; −$0.5M opex reinvested into care.",r:"Chief Operating Officer — people, process, performance."},
+      'note9':{cat:'Consumer tech',c:"Launch a niche $1,000+ flagship in a value-driven, retail-only market with no online channel.",mv:"Re-engineered affordability (cashback, financing, MDF), broke telco exclusivity, added a first e-commerce partner.",o:"~1,858 preorders (1.54× YoY) — recognized #1 globally for growth.",r:"Manager, Product Planning — portfolio, pricing, go-to-market."},
+      'surecash-g2p':{cat:'Fintech / G2P',c:"Run brand, trade & PR for the country's largest G2P stipend on a multi-bank platform, for a rural, low-literacy base.",mv:"Mapped cash-out points to residence data; IVR onboarding; rural mosque activations; merged digital with the call center.",o:"~10M beneficiaries reached; fastest-responding MFS brand; Banking Fair Award of Excellence.",r:"Marketing Manager — brand, trade & digital."},
+      'mph-capstone':{cat:'Public health',c:"Advance public understanding of health-system resilience across diverse audiences and platforms.",mv:"Multi-article, multi-platform advocacy campaign with a locked analytics framework and APA-7 benchmarks.",o:"Documented a replicable ~3× reach amplification; co-established a sustainable campus health-comms channel.",r:"MPH candidate · CHES® — campaign design & evaluation."},
+      'ekhanei-laser':{cat:'Brand & market',c:"Lead a vehicle category for a marketplace trailing the national leader, in a market that distrusted online resale.",mv:"60-person field ops, a live audit-call quality loop, a semi-pro seller KAM team, and the 'Bike Bazaar' trust event.",o:"#1 motorbike category in 2.5 months; +25% category revenue; +15% market share.",r:"Brand & Vehicle Category Lead."}
+    };
+    let gn = 0; const cfFlat = [];
+    companies.forEach(co=>{ const eb=esc(co.name.split(' (')[0].split(' / ')[0]); co.cases.forEach(c=>{ gn++; const key=(c.img.split('/').pop()||'').replace(/\.[a-z]+$/i,''); cfFlat.push({c:c,co:co,eb:eb,key:key,uid:'f'+gn,themes:CF_THEME[key]||[],feat:CF_FEAT[key]||null}); }); });
 
-    // COMPANY GROUPS + FULL CASES
-    let gn = 0;
+    // CASE NAV → theme filter chips
+    const caseNav = root.querySelector('#case-nav');
+    if(caseNav){ caseNav.innerHTML =
+      '<button type="button" class="cf-chip active" data-cf-chip="featured">Featured 6</button>'+
+      CF_THEMES.map(t=>{ const n=cfFlat.filter(f=>f.themes.indexOf(t[0])>=0).length; return '<button type="button" class="cf-chip" data-cf-chip="'+t[0]+'">'+esc(t[1])+' <span class="cf-ct">'+n+'</span></button>'; }).join('')+
+      '<button type="button" class="cf-chip cf-all-chip" data-cf-chip="all">Explore all 21 initiatives</button>'; }
+
+    // FEATURED 6 + ALL 21 + shared detail panels
+    const cfDetails = cfFlat.map(f=>{ const c=f.c; const rows=[['Challenge',c.challenge],c.insight?['Insight',c.insight]:null,['Execution',c.execution],['Result',c.result]].filter(Boolean);
+      return '<div class="cg-detail" id="cgd-'+f.uid+'" role="region" aria-label="'+esc(c.title)+' — full case"><div class="cg-frame">'+
+        '<button type="button" class="cg-fimg" data-zoom="'+c.img+'" data-cap="'+esc(f.eb)+' — '+esc(c.title)+'"><img src="'+c.img+'" alt="'+esc(c.title)+' strategy infographic" loading="lazy" /><span class="cg-zh">⤢ View full size</span></button>'+
+        '<div class="cg-rows">'+rows.map(r=>{ const isR=r[0]==='Result'; return '<div class="cg-row'+(isR?' res':'')+'"><div class="cg-k">'+r[0]+'</div><div class="cg-v">'+esc(r[1])+'</div></div>'; }).join('')+'</div>'+
+        (c.link?'<div style="padding:0 clamp(22px,3vw,34px) clamp(20px,2.4vw,28px);"><a href="'+c.link+'" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--disp);font-weight:700;font-size:13.5px;color:var(--accent-ink);background:var(--accent);border:1.5px solid var(--accent);border-radius:8px;padding:9px 16px;text-decoration:none;">'+esc(c.linkLabel||'View document')+' ↗</a></div>':'')+
+        '</div></div>'; }).join('');
+    const cfFeatured = cfFlat.filter(f=>f.feat).map(f=>{ const fe=f.feat; return
+      '<div class="cf-card"><div class="cf-top"><span class="cf-logo"><img src="'+f.co.logo+'" alt="'+esc(f.co.name)+' logo" loading="lazy"></span><span class="cf-cat">'+esc(fe.cat)+'</span></div>'+
+      '<div class="cf-title">'+esc(f.c.title)+'</div>'+
+      '<div class="cf-rows"><div class="cf-r"><span class="cf-k">Constraint</span><span class="cf-v">'+esc(fe.c)+'</span></div><div class="cf-r"><span class="cf-k">Move</span><span class="cf-v">'+esc(fe.mv)+'</span></div><div class="cf-r"><span class="cf-k cf-out">Outcome</span><span class="cf-v cf-vout">'+esc(fe.o)+'</span></div><div class="cf-r"><span class="cf-k">Role</span><span class="cf-v">'+esc(fe.r)+'</span></div></div>'+
+      '<div class="cf-btns"><button type="button" class="cf-btn cf-bp" data-cf-open="'+f.uid+'">Open case</button><button type="button" class="cf-btn cf-bs" data-cf-fig="'+f.uid+'">View infographic</button></div></div>'; }).join('');
+    const cfAll = cfFlat.map(f=> '<button type="button" class="cf-mini" data-cf-open="'+f.uid+'" data-themes="'+f.themes.join(' ')+'"><span class="cf-mini-cat">'+esc((f.feat&&f.feat.cat)||CF_TLABEL[f.themes[0]]||f.eb)+'</span><span class="cf-mini-t">'+esc(f.c.title)+'</span><span class="cf-mini-m">▸ '+esc(f.c.metric)+'</span></button>').join('');
     const groupsEl = root.querySelector('#company-groups');
-    if(groupsEl){ groupsEl.innerHTML = companies.map(co=>{
-      let cardsHTML='', detailsHTML='';
-      co.cases.forEach(c=>{
-        gn++; const uid='f'+gn;
-        const rows = [['Challenge',c.challenge],c.insight?['Insight',c.insight]:null,['Execution',c.execution],['Result',c.result]].filter(Boolean);
-        const eb = esc(co.name.split(' (')[0].split(' / ')[0]);
-        cardsHTML += `
-        <button type="button" class="cg-card" data-cg="${uid}" data-reveal aria-expanded="false" aria-controls="cgd-${uid}">
-          <div class="cg-crow"><span class="cg-chip"><img src="${co.logo}" alt="${esc(co.name)} logo" loading="lazy"></span><span class="cg-ind" aria-hidden="true">+</span></div>
-          <div class="cg-ey">${eb}</div>
-          <div class="cg-title">${esc(c.title)}</div>
-          <div class="cg-metric">▸ ${esc(c.metric)}</div>
-        </button>`;
-        detailsHTML += `
-        <div class="cg-detail" id="cgd-${uid}" role="region" aria-label="${esc(c.title)} — full case">
-          <div class="cg-frame">
-            <button type="button" class="cg-fimg" data-zoom="${c.img}" data-cap="${esc(co.name.split(' (')[0])} — ${esc(c.title)}">
-              <img src="${c.img}" alt="${esc(c.title)} strategy infographic" loading="lazy" />
-              <span class="cg-zh">⤢ View full size</span>
-            </button>
-            <div class="cg-rows">
-              ${rows.map(([k,v])=>{const r=k==='Result';return `<div class="cg-row${r?' res':''}"><div class="cg-k">${k}</div><div class="cg-v">${esc(v)}</div></div>`;}).join('')}
-            </div>
-            ${c.link?`<div style="padding:0 clamp(22px,3vw,34px) clamp(20px,2.4vw,28px);"><a href="${c.link}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--disp);font-weight:700;font-size:13.5px;color:var(--accent-ink);background:var(--accent);border:1.5px solid var(--accent);border-radius:8px;padding:9px 16px;text-decoration:none;">${esc(c.linkLabel||'View document')} ↗</a></div>`:''}
-          </div>
-        </div>`;
-      });
-      return `
-      <div id="co-${co.id}" class="cg-group" style="scroll-margin-top:90px;">
-        <div data-reveal style="display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-bottom:clamp(22px,3vw,32px);padding-bottom:20px;border-bottom:1px solid var(--border-hairline);position:relative;">
-          <div style="display:flex;align-items:center;justify-content:center;height:60px;min-width:60px;padding:0 18px;background:var(--ivory-100);border:1px solid var(--border-hairline);border-radius:8px;">
-            <img src="${co.logo}" alt="${esc(co.name)} logo" style="max-height:36px;max-width:124px;width:auto;object-fit:contain;display:block;" />
-          </div>
-          <div style="flex:1;min-width:220px;">
-            <h3 style="font-family:var(--disp);font-weight:800;font-size:clamp(22px,2.8vw,32px);letter-spacing:-.02em;color:var(--text-strong);margin:0;line-height:1.06;">${esc(co.name)}</h3>
-            <div style="font-family:var(--body);font-size:14px;color:var(--text-muted);margin-top:5px;">${esc(co.role)} <span style="font-family:var(--mono);font-size:12.5px;color:var(--text-faint);">· ${esc(co.date)}</span></div>
-          </div>
-          <div style="font-family:var(--mono);font-size:12px;color:var(--text-faint);white-space:nowrap;">${co.cases.length} case${co.cases.length>1?'s':''}</div>
-          <span style="position:absolute;left:0;bottom:-1px;width:64px;height:2px;background:var(--accent);"></span>
-        </div>
-        <div class="cg-grid">${cardsHTML}</div>
-        <div class="cg-detailwrap">${detailsHTML}</div>
-      </div>`;
-    }).join(''); }
+    if(groupsEl){ groupsEl.innerHTML = '<div><div class="cf-featured cf-grid">'+cfFeatured+'</div><div class="cf-all cf-grid" hidden>'+cfAll+'</div><div class="cg-detailwrap" style="margin-top:clamp(20px,3vw,30px);">'+cfDetails+'</div></div>'; }
 
     // TIMELINE
     const tlLogo = {
@@ -1470,6 +1486,40 @@ class Component extends DCLogic {
     closeAll(scope);
     if(!wasOpen){ d.classList.add('open'); card.classList.add('active'); card.setAttribute('aria-expanded','true');
       setTimeout(function(){ try{d.scrollIntoView({behavior:'smooth',block:'nearest'});}catch(_){} },140); }
+  });
+})();</script>
+<script>(function(){
+  /* ---------- full-portfolio case filter + featured/all toggle + open ---------- */
+  function cfClose(){
+    document.querySelectorAll('#company-groups .cg-detail.open').forEach(function(d){ d.classList.remove('open'); });
+    document.querySelectorAll('#company-groups [data-cf-open].cf-on').forEach(function(c){ c.classList.remove('cf-on'); });
+  }
+  document.addEventListener('click', function(e){
+    var t=e.target; if(!t||!t.closest) return;
+    var chip=t.closest('[data-cf-chip]');
+    if(chip){
+      var f=chip.getAttribute('data-cf-chip'); var bar=chip.parentNode;
+      if(bar){ bar.querySelectorAll('[data-cf-chip]').forEach(function(x){ x.classList.remove('active'); }); }
+      chip.classList.add('active');
+      var feat=document.querySelector('#company-groups .cf-featured'), all=document.querySelector('#company-groups .cf-all');
+      if(!feat||!all) return;
+      if(f==='featured'){ feat.hidden=false; all.hidden=true; }
+      else { feat.hidden=true; all.hidden=false; all.querySelectorAll('.cf-mini').forEach(function(m){ var ok=(f==='all')||((m.getAttribute('data-themes')||'').split(' ').indexOf(f)>=0); m.hidden=!ok; }); }
+      if(window.track) window.track('case_filter',{filter:f});
+      return;
+    }
+    var fig=t.closest('[data-cf-fig]');
+    if(fig){ var u=fig.getAttribute('data-cf-fig'); var im=document.querySelector('#cgd-'+u+' .cg-fimg'); if(im) im.click(); return; }
+    var op=t.closest('[data-cf-open]');
+    if(op){
+      var id=op.getAttribute('data-cf-open'); var d=document.getElementById('cgd-'+id); if(!d) return;
+      var was=d.classList.contains('open'); cfClose();
+      if(!was){ d.classList.add('open'); op.classList.add('cf-on');
+        setTimeout(function(){ try{ d.scrollIntoView({behavior:'smooth',block:'nearest'}); }catch(_){} },140);
+        if(window.track){ var ti=''; var card=op.closest('.cf-card'); if(card){ var tt=card.querySelector('.cf-title'); ti=tt?tt.textContent:''; } else { var mt=op.querySelector('.cf-mini-t'); ti=mt?mt.textContent:''; } window.track('case_open',{case_title:(ti||'').trim().slice(0,90)}); }
+      }
+      return;
+    }
   });
 })();</script>
 <script>(function(){
