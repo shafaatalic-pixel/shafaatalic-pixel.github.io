@@ -488,7 +488,7 @@ class Component extends DCLogic {
         subhead:'Growth &amp; marketing strategy leader with 16+ years across telecom, advertising, fintech, e-commerce, consumer tech, education and healthcare — grounded in public health (MPH, CHES®). I read complex systems, find the real constraint, and build what moves the number and improves health.',
         pills:['clear-eyed','pressure-tested','evidence-led','commercially sharp'],
         order:['samsung','praava','surecash','ekhanei','acca','asiatic'], comp:[0,1,2],
-        focus:'', blurb:'See the complete body of work.' },
+        focus:'', blurb:'See the complete body of work.', forWho:'The complete picture' },
       growth:{ id:'growth', label:'Growth &amp; Marketing', short:'Growth &amp; Marketing', icon:'trending-up',
         accent:'#E0892E', deep:'#A85A12', ink:'#1c1303', soft:'rgba(224,137,46,.15)',
         eyebrow:'Growth &amp; Marketing Strategy',
@@ -497,7 +497,7 @@ class Component extends DCLogic {
         pills:['clear-eyed','pressure-tested','evidence-led','commercially sharp'],
         order:['samsung','praava','surecash','ekhanei','asiatic','acca'], comp:[0,2,1],
         focus:'Leading with the commercial wins — a record flagship launch, a corporate-sales engine from zero, the nation\u2019s #1 motorbike category, and a 10-million-person campaign.',
-        blurb:'Flagship launches, category builds and commercial engines that move the number.' },
+        blurb:'Flagship launches, category builds and commercial engines that move the number.', forWho:'For commercial & growth screeners' },
       healthcomm:{ id:'healthcomm', label:'Health Communication', short:'Health Comms', icon:'megaphone',
         accent:'#0FB3B3', deep:'#0A7373', ink:'#042020', soft:'rgba(15,179,179,.14)',
         eyebrow:'Health Communication',
@@ -506,7 +506,7 @@ class Component extends DCLogic {
         pills:['behavioral-science-grounded','audience-segmented','plain-language','CHES® credentialed'],
         order:['praava','surecash','asiatic','ekhanei','acca','samsung'], comp:[1,0,2],
         focus:'Leading with communication that changed behavior — embedded health hotlines, trust-by-design campaigns, harm-reduction and thought leadership. See Published Writing below for the 14 articles.',
-        blurb:'Behavior-change campaigns, health literacy and published thought leadership.' },
+        blurb:'Behavior-change campaigns, health literacy and published thought leadership.', forWho:'For behavior-change & comms roles' },
       healthtech:{ id:'healthtech', label:'Health-Tech Product', short:'Health-Tech', icon:'cpu',
         accent:'#3B82C4', deep:'#245C92', ink:'#f6fbff', soft:'rgba(59,130,196,.15)',
         eyebrow:'Health-Tech Product &amp; Growth',
@@ -515,7 +515,7 @@ class Component extends DCLogic {
         pills:['product-minded','data-driven','ops-literate','growth-loop builder'],
         order:['praava','samsung','ekhanei','surecash','asiatic','acca'], comp:[2,0,1],
         focus:'Leading with product and platform work — digital health products, e-commerce and loyalty platforms, marketplace quality systems and an end-to-end ERP/BI transformation.',
-        blurb:'Digital health products, data-driven growth loops and platform transformation.' },
+        blurb:'Digital health products, data-driven growth loops and platform transformation.', forWho:'For product & digital-health teams' },
       pophealth:{ id:'pophealth', label:'Population Health', short:'Pop Health', icon:'globe',
         accent:'#E85C42', deep:'#B23A26', ink:'#fff5f2', soft:'rgba(232,92,66,.14)',
         eyebrow:'Population Health',
@@ -524,7 +524,7 @@ class Component extends DCLogic {
         pills:['access-focused','equity-minded','evidence-led','government-partnered'],
         order:['praava','surecash','acca','asiatic','ekhanei','samsung'], comp:[1,2,0],
         focus:'Leading with population-scale access and impact — a national disbursement, embedded health hotlines, government data-sharing and traveler-health infrastructure. See Published Writing below for health-policy work.',
-        blurb:'Access, equity and prevention for hospitals, health systems and communities.' },
+        blurb:'Access, equity and prevention across public health, communities, hospitals and health systems.', forWho:'For public health & health systems' },
     };
   }
 
@@ -838,28 +838,33 @@ class Component extends DCLogic {
 
     // ARTICLES
     const articles = [
-      ["Running on Empty: America's Public Health Workforce Crisis","Eastern Echo / WellNest Watch","2026"],
-      ["Mixed Messages, Real Costs: How Confusing Health Communication Is Making America Sicker and Poorer","Eastern Echo / WellNest Watch","2026"],
-      ["Can We Use Private Healthcare to Improve Health Literacy","The Daily Star","2026"],
-      ["Increasing Public Health Investment Must Be a Top Priority","The Daily Star","2026"],
-      ["Health Policy Decisions Made Today Shape Michigan Tomorrow","Eastern Echo","2026"],
-      ["When Illness Becomes a Bill: Why Medical Debt Is a Public Health Crisis","Eastern Echo","2025"],
-      ["When We Ignore Public Health Prevention, We Pay the Price","Eastern Echo / WellNest Watch","2025"],
-      ["We Need Public Health Reform for Steady Economic Growth","The Daily Star","2025"],
-      ["Combating the Flood of Misinformation","Dhaka Tribune","2024"],
-      ["Exploring Comprehensive Digital Transformation in Bangladesh's Healthcare Sector","ICE Business Times","2023"],
-      ["Aiding Economy with Digital Health Services","The Financial Express","2021"],
-      ["Impact of Digital Health Services in the Economy","The Financial Express","2021"],
-      ["Businesses in the VUCA World","The Financial Express","2021"],
-      ["Digital Transformation and Adaptation for Securing Businesses","Daily Observer","2021"],
+      ["Running on Empty: America's Public Health Workforce Crisis","Eastern Echo / WellNest Watch","2026","policy"],
+      ["Mixed Messages, Real Costs: How Confusing Health Communication Is Making America Sicker and Poorer","Eastern Echo / WellNest Watch","2026","comm"],
+      ["Can We Use Private Healthcare to Improve Health Literacy","The Daily Star","2026","comm"],
+      ["Increasing Public Health Investment Must Be a Top Priority","The Daily Star","2026","policy"],
+      ["Health Policy Decisions Made Today Shape Michigan Tomorrow","Eastern Echo","2026","policy"],
+      ["When Illness Becomes a Bill: Why Medical Debt Is a Public Health Crisis","Eastern Echo","2025","policy"],
+      ["When We Ignore Public Health Prevention, We Pay the Price","Eastern Echo / WellNest Watch","2025","policy"],
+      ["We Need Public Health Reform for Steady Economic Growth","The Daily Star","2025","policy"],
+      ["Combating the Flood of Misinformation","Dhaka Tribune","2024","comm"],
+      ["Exploring Comprehensive Digital Transformation in Bangladesh's Healthcare Sector","ICE Business Times","2023","digital"],
+      ["Aiding Economy with Digital Health Services","The Financial Express","2021","digital"],
+      ["Impact of Digital Health Services in the Economy","The Financial Express","2021","digital"],
+      ["Businesses in the VUCA World","The Financial Express","2021","digital"],
+      ["Digital Transformation and Adaptation for Securing Businesses","Daily Observer","2021","digital"],
     ];
+    const artGroups = [['Public Health & Policy','policy'],['Health Communication','comm'],['Digital Health & Economy','digital']];
     const artList = root.querySelector('#article-list');
-    if(artList){ artList.innerHTML = articles.map((a,i)=>`
-      <div data-reveal style="display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;padding:18px 8px;border-top:1px solid var(--border-hairline);" data-article>
-        <span style="font-family:var(--mono);font-size:12px;color:var(--text-faint);">${String(i+1).padStart(2,'0')}</span>
+    if(artList){ let _an=0; artList.innerHTML = artGroups.map(([gl,gk],gi)=>{
+      const items = articles.filter(a=>a[3]===gk);
+      const head = `<div data-reveal style="font-family:var(--disp);font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-text);margin:${gi===0?'0':'30px'} 0 2px;">${gl} <span style="color:var(--text-faint);font-weight:500;letter-spacing:0;">· ${items.length}</span></div>`;
+      return head + items.map(a=>{ _an++; return `
+      <div data-reveal style="display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;padding:16px 8px;border-top:1px solid var(--border-hairline);" data-article>
+        <span style="font-family:var(--mono);font-size:12px;color:var(--text-faint);">${String(_an).padStart(2,'0')}</span>
         <span style="font-family:var(--disp);font-weight:600;font-size:clamp(16px,1.8vw,21px);letter-spacing:-.01em;line-height:1.25;color:var(--text-strong);">${esc(a[0])}</span>
         <span style="text-align:right;font-family:var(--body);font-size:12.5px;color:var(--text-muted);white-space:nowrap;"><span style="color:var(--accent-text);font-weight:500;">${esc(a[1])}</span> · ${esc(a[2])}</span>
-      </div>`).join('') + `<div style="border-top:1px solid var(--border-hairline);"></div>`; }
+      </div>`; }).join('');
+    }).join('') + `<div style="border-top:1px solid var(--border-hairline);"></div>`; }
 
     // COMPETENCIES
     const comps = [
@@ -909,6 +914,7 @@ class Component extends DCLogic {
     if(lc){ lc.innerHTML = order.map((id,i)=>{ const L=this._lenses[id]; return `
       <button type="button" class="lens-card" data-lens-pick="${id}" style="animation-delay:${i*70}ms;text-align:left;cursor:pointer;background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:12px;padding:26px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow-card);transition:transform .2s,border-color .2s;">
         <span style="width:46px;height:46px;border-radius:10px;background:${L.soft};display:inline-flex;align-items:center;justify-content:center;color:${L.accent};"><i data-lucide="${L.icon}" style="width:23px;height:23px;"></i></span>
+        ${L.forWho?`<span style="font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:${L.accent};margin:-2px 0 -4px;">${L.forWho}</span>`:''}
         <span style="font-family:var(--disp);font-weight:700;font-size:21px;letter-spacing:-.01em;color:var(--text-strong);">${L.label}</span>
         <span style="font-family:var(--body);font-size:14.5px;line-height:1.5;color:var(--text-muted);">${L.blurb}</span>
         <span style="margin-top:4px;display:inline-flex;align-items:center;gap:7px;font-family:var(--disp);font-weight:700;font-size:13.5px;color:${L.accent};">Enter this lens <span aria-hidden="true">→</span></span>
