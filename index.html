@@ -91,7 +91,8 @@
         "addressCountry": "US"
       },
       "alumniOf": [
-        { "@type": "CollegeOrUniversity", "name": "Eastern Michigan University" }
+        { "@type": "CollegeOrUniversity", "name": "Eastern Michigan University" },
+        { "@type": "CollegeOrUniversity", "name": "American International University–Bangladesh" }
       ],
       "hasCredential": [
         { "@type": "EducationalOccupationalCredential", "credentialCategory": "Postgraduate degree", "name": "Master of Public Health (MPH), Health Education & Promotion" },
@@ -102,7 +103,9 @@
       "knowsAbout": [
         "Growth marketing", "Brand strategy", "Health communication", "Public health",
         "Digital health", "Health literacy", "Behavior-change communication",
-        "Multi-channel campaigns", "Product marketing", "Health policy"
+        "Multi-channel campaigns", "Product marketing", "Health policy",
+        "Population health", "Health equity", "Preventive care", "Patient engagement",
+        "Go-to-market strategy", "Health promotion", "Program evaluation"
       ],
       "sameAs": [
         "https://www.linkedin.com/in/sacgrowthspecialist",
@@ -315,7 +318,7 @@
       <div data-reveal style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);">Case Studies</div>
       <div data-reveal style="width:40px;height:3px;background:var(--accent);border-radius:2px;margin-top:12px;"></div>
       <h2 data-reveal style="font-family:var(--disp);font-weight:700;font-size:clamp(28px,4.4vw,48px);letter-spacing:-.02em;color:var(--text-strong);margin:18px 0 14px;max-width:20ch;">Challenge → insight → execution → result.</h2>
-      <p id="cases-sub" data-reveal style="font-family:var(--body);font-size:clamp(15px,1.5vw,18px);line-height:1.6;color:var(--text-muted);max-width:66ch;margin:0 0 16px;">The complete portfolio — sixteen initiatives across six organizations, each with its strategy infographic. Select any infographic to view it full-size.</p>
+      <p id="cases-sub" data-reveal style="font-family:var(--body);font-size:clamp(15px,1.5vw,18px);line-height:1.6;color:var(--text-muted);max-width:66ch;margin:0 0 16px;">The complete portfolio — twenty-one initiatives across eight organizations, each with its strategy infographic. Select any infographic to view it full-size.</p>
       <div id="case-focus" data-reveal style="display:none;"></div>
       <div data-reveal style="display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 56px;" id="case-nav"></div>
       <div id="company-groups" style="display:flex;flex-direction:column;gap:clamp(56px,8vw,92px);"></div>
@@ -582,6 +585,37 @@ class Component extends DCLogic {
             insight:"64% of a patient's lifetime value is captured in the first three visits — so the campaign had to acquire first visits, not just impressions.",
             execution:"Ran a nationwide low-ticket Resident Physician video consult at Tk 275 (~$3), down from Tk 1,000 (~$10), via Lifebuoy; citywide door-to-door lab/medicine activation, a home blood-sample-collection network ('phlebo-web'), and Free Consultation Days, across all advertising channels (ATL/BTL/digital/PR) on a ~Tk 11.6M (~$113K) budget; authored the 'Praava Health Reimagined' market-sizing (TAM/SAM/SOM) strategy toward a ~Tk 1.03B revenue model. Wrote TVC stories and theme songs that were produced and aired.",
             result:"~+190% hub footfall on Free Consultation Days and a measurable top-of-funnel lift; the Beauty & Wellness line grew 68% YoY and lab revenue 34% YoY across the tenure." },
+          { title:'A data engine for product and growth decisions', metric:'~57% B2C CAGR · 65–70% of decisions on data', img:'assets/cases/praava-dataengine.jpg', tags:['Health','Data & BI'],
+            challenge:"Grow a hard-to-scale non-COVID core with disciplined, evidence-based decisions rather than intuition, while the consumer portfolio carried 83% of revenue.",
+            insight:"Treat data as a product capability — keep BI/Data inside the marketing/product org and decide on real metrics, so growth compounds instead of restarting from zero.",
+            execution:"Ran every decision on ARPU, CLV, cohorting and retention (65–70% of weekly meetings on data); built automated reminders, re-outreach and ad loops so revenue recurs; housed BI/Data inside marketing to keep the feedback loop tight.",
+            result:"~45% overall and ~57% B2C CAGR (2021–23) — product and growth prioritization driven by metrics, not opinion." },
+        ] },
+      { id:'lasertreat', name:'Laser Treat Group', logo:'assets/logos/lasertreat.jpeg', role:'Chief Operating Officer · Laser Treat · DHI · Dhaka Dermatology Institute', date:'Nov 2023 – Aug 2024',
+        cases:[
+          { title:'Digitizing a multi-entity clinical group — operations, data and patient experience', metric:'+16% revenue · +13% retention · −$0.5M opex', img:'assets/cases/laser-treat.jpg', tags:['Health','Operations & Data'],
+            challenge:"A multi-entity clinical group (dermatology, sexual health, diagnostics) needed reliable operations, clean data and a measurable patient experience to stabilize and grow.",
+            insight:"Treat operational data as the growth lever — digitize the back office first so clinical decisions and patient experience improve together.",
+            execution:"Implemented a centralized ERP (supply chain, inventory, clinical resources); digitized patient records, BI dashboards, HR processes and CX logs; launched clinical dermatology and sexual-health sub-brands; introduced CSAT/NPS measurement and a continuous quality-improvement framework.",
+            result:"16% YTD revenue growth and +11% revenue within two months from the new sub-brands; +13% patient retention; reduced delays and improved decision accuracy; a $0.5M opex reduction reinvested into patient-facing care." },
+        ] },
+      { id:'emu', name:'Eastern Michigan University', logo:'assets/logos/emu.png', role:'MPH · Graduate Assistant, Health Promotion · Graduate Hall Director', date:'2024 – 2026',
+        cases:[
+          { title:'Campus harm-reduction campaign — audience-segmented, evaluated prevention', metric:'Year-long · multi-channel · evaluated', img:'assets/cases/harm-reduction.jpg', tags:['Public health','Behavior change'],
+            challenge:"Reduce alcohol and cannabis harm among university students — behavior shaped by culture, accessibility and stress, where elimination is unrealistic and stigma backfires.",
+            insight:"Apply harm-reduction and audience segmentation: meet students with relevant, non-stigmatizing messages on the channels they actually use.",
+            execution:"Designed a year-long, multi-channel communication plan (social, on-campus digital boards, residence-hall print, event touchpoints), grounded in behavioral-science and program-planning frameworks, with a defined evaluation plan.",
+            result:"A reusable, audience-segmented harm-reduction model with built-in evaluation; informed the WellNest Watch column and a reusable Public Health Event Framework for Eta Sigma Gamma." },
+          { title:'MPH Capstone — a multi-platform public-health advocacy campaign', metric:'~3× reach amplification', img:'assets/cases/mph-capstone.jpg', tags:['Public health','Health communication'], link:'https://docs.google.com/presentation/d/1CRu6CU3c2G2oddrD3NxoD5M7rXVY48HfKJXmjCFkf4k/edit?usp=sharing', linkLabel:'View the MPH Capstone presentation',
+            challenge:"Advance public understanding of health-system resilience and economic protection across diverse audiences and platforms.",
+            insight:"Engineer reach with method, not luck — a locked analytics framework and strategic stakeholder tagging make advocacy measurably amplifiable.",
+            execution:"Designed and executed a multi-article, multi-platform advocacy campaign (The Daily Star, Eastern Echo, WellNest Watch); built a rigorous analytics framework — locked methodology, dual-measure engagement reporting and APA-7 benchmark citations.",
+            result:"Documented a replicable ~3× reach amplification through strategic stakeholder tagging; co-established WellNest Watch as a sustainable campus health-communication channel." },
+          { title:'Community engagement & connection at scale (Walton Hall)', metric:'541 engagements · 39.1% connection rate', img:'assets/cases/emu-housing.jpg', tags:['Program design','Leadership'],
+            challenge:"Strengthen connection and wellbeing across a 230-resident community served by a team that was 44% new.",
+            insight:"Apply audience segmentation and weekly data to community-building, so a largely new team can still drive measurable connection.",
+            execution:"Designed an audience-segmentation engagement-training model and weekly data-informed insight reporting; built an automated duty-scheduling system; coordinated crisis response with DPS and Fire & Rescue.",
+            result:"541 documented engagement interactions and the 2nd-highest campus connection rate (39.1%) among all residence halls; nominated for EMU's Student Gold Medallion Award for Exemplary Leadership." },
         ] },
       { id:'surecash', name:'SureCash', logo:'assets/logos/surecash.png', role:'Marketing Manager · Mobile Financial Services', date:'Jun 2015 – Oct 2016',
         cases:[
@@ -635,6 +669,7 @@ class Component extends DCLogic {
       ['SureCash','assets/logos/surecash.png'],['Ekhanei.com','assets/logos/ekhanei.png'],
       ['ACCA','assets/logos/acca.jpg'],['Asiatic','assets/logos/asiatic.png'],
       ['Lux','assets/logos/lux.jpg'],['Laser Treat','assets/logos/lasertreat.jpeg'],
+      ['Eastern Michigan University','assets/logos/emu.png'],
     ];
     const brandStrip = root.querySelector('#brand-strip');
     if(brandStrip){ brandStrip.innerHTML = brands.map(b=>`
@@ -676,6 +711,7 @@ class Component extends DCLogic {
             <div class="cg-rows">
               ${rows.map(([k,v])=>{const r=k==='Result';return `<div class="cg-row${r?' res':''}"><div class="cg-k">${k}</div><div class="cg-v">${esc(v)}</div></div>`;}).join('')}
             </div>
+            ${c.link?`<div style="padding:0 clamp(22px,3vw,34px) clamp(20px,2.4vw,28px);"><a href="${c.link}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--disp);font-weight:700;font-size:13.5px;color:var(--accent-ink);background:var(--accent);border:1.5px solid var(--accent);border-radius:8px;padding:9px 16px;text-decoration:none;">${esc(c.linkLabel||'View document')} ↗</a></div>`:''}
           </div>
         </div>`;
       });
@@ -712,8 +748,8 @@ class Component extends DCLogic {
     const timeline = [
       { role:'MPH Capstone — Health System Resilience & Economic Protection Campaign', org:'Eastern Michigan University', loc:'Ypsilanti, MI', date:'Feb 2026 – Apr 2026',
         bullets:["Designed and executed a multi-article, multi-platform public-health advocacy campaign published across The Daily Star (Bangladesh's largest English-language national daily), Eastern Echo and the WellNest Watch column.","Documented a replicable ~3× Facebook reach amplification through strategic stakeholder tagging; built a rigorous analytics framework with locked methodology and APA-7 benchmarks.","Co-established the WellNest Watch column as a sustainable campus health-communication channel."] },
-      { role:'Graduate Hall Director (progressed Desk Assistant → Resident Advisor)', org:'EMU Housing & Residence Life', loc:'Ypsilanti, MI', date:'Jul 2025 – May 2026 (progressed from Desk Assistant → Resident Advisor, Aug 2024 – Jun 2025)',
-        bullets:["As Graduate Hall Director at Walton Hall, supervised 9 Resident Advisors serving 230 residents; with 44% of the team new, designed an audience-segmentation communication training (tailoring outreach to different resident groups) that drove 541 logged resident engagements and the 2nd-highest resident-connection rate (39.1%) among all campus residence halls.","Built an automated duty-scheduling system and weekly data-informed insight reports; led crisis responses with DPS and Fire & Rescue; nominated for EMU's Student Gold Medallion Award for Exemplary Leadership."] },
+      { role:'Graduate Hall Director', org:'EMU Housing & Residence Life', loc:'Ypsilanti, MI', date:'Jul 2025 – May 2026',
+        bullets:["(Progressed from Desk Assistant → Resident Advisor, Aug 2024 – Jun 2025, before being appointed Graduate Hall Director.)","As Graduate Hall Director at Walton Hall, supervised 9 Resident Advisors serving 230 residents; with 44% of the team new, designed an audience-segmentation communication training (tailoring outreach to different resident groups) that drove 541 logged resident engagements and the 2nd-highest resident-connection rate (39.1%) among all campus residence halls.","Built an automated duty-scheduling system and weekly data-informed insight reports; led crisis responses with DPS and Fire & Rescue; nominated for EMU's Student Gold Medallion Award for Exemplary Leadership."] },
       { role:'Graduate Assistant, Health Promotion', org:'Eastern Michigan University — Office of Health Promotion', loc:'Ypsilanti, MI', date:'Aug 2024 – Jul 2025',
         mandate:'Design and promote evidence-based campus health programs grounded in behavioral science.',
         bullets:["Developed and executed campus-wide health-promotion programs with Public Health Education faculty, grounded in health-behavior theory and program-planning frameworks.","Designed a comprehensive harm-reduction campaign (alcohol & cannabis) — a year-long, multi-channel plan with a defined evaluation framework.","Created a reusable Public Health Event Framework for Eta Sigma Gamma (planning, execution, evaluation, sustainability).","Co-created the WellNest Watch public-health column in The Eastern Echo, shaping its messaging and engagement model; amplification reached 10,000+ individuals."] },
@@ -847,7 +883,9 @@ class Component extends DCLogic {
       "Regional Market Development Strategy — 3-day workshop, ACCA Office, Dubai",
       "Member, Chartered Institute of Marketing (MCIM) — ID 40066640",
       "Professional Member, American Marketing Association (AMA)",
-      "Student Member, SOPHE (ID 79507) & APHA (ID 11610404)",
+      "Member, Digital Marketing Institute (DMI)",
+      "Member, Society for Public Health Education (SOPHE) — ID 79507",
+      "Member, American Public Health Association (APHA) — ID 11610404",
     ];
     const extraList = root.querySelector('#extra-list');
     if(extraList){ extraList.innerHTML = extra.map(x=>`
@@ -1113,7 +1151,7 @@ class Component extends DCLogic {
       growth:{
         impactTitle:'The numbers behind the growth.',
         impact:[['83%','Praava revenue owned'],['45% / 57%','core / B2C CAGR'],['342 → 1,400','corporate clients (4×)'],['#1 globally','Samsung flagship launch'],['+190%','campaign footfall'],['$1M / mo','agency built in 7 months'],['10 million','campaign reach (SureCash)'],['#1 in 2.5 mo','category built (Ekhanei)'],['100%','ACCA growth targets']],
-        caseSub:'Selected growth work, grouped by where it moved the number — structured Challenge → Insight → Execution → Result. Switch to Full portfolio for all sixteen initiatives in depth.',
+        caseSub:'Selected growth work, grouped by where it moved the number — structured Challenge → Insight → Execution → Result. Switch to Full portfolio for all twenty-one initiatives in depth.',
         focus:'Grouped into Healthcare Growth · Brand & GTM · Scale, Membership & Digital Growth.',
         groups:[
           {label:'Healthcare Growth — Praava Health',cases:[
@@ -1184,7 +1222,7 @@ class Component extends DCLogic {
         experience:[
           {role:'Graduate Assistant, Health Promotion',org:'Eastern Michigan University — Office of Health Promotion',loc:'Ypsilanti, MI',date:'Aug 2024 – Jul 2025',sum:'Developed campus-wide health-promotion programs grounded in behavioral science; designed a multi-channel harm-reduction campaign with a defined evaluation plan; co-created the WellNest Watch column (10,000+ reach).'},
           {role:'Public Health Campaign Lead (MPH Capstone)',org:'Eastern Michigan University',loc:'Ypsilanti, MI',date:'Feb 2026 – Apr 2026',sum:'Executed a multi-article, multi-platform public-health advocacy campaign; built a locked analytics methodology with APA-7 benchmarks and documented a replicable ~3× reach amplification.'},
-          {role:'Graduate Hall Director (progressed Desk Assistant → Resident Advisor)',org:'EMU Housing & Residence Life',loc:'Ypsilanti, MI',date:'Jul 2025 – May 2026',sum:'Supervised 9 RAs / 230 residents; designed audience-segmentation communication training that drove 541 engagements and the 2nd-highest campus connection rate (39.1%); nominated for the Student Gold Medallion Award.'},
+          {role:'Graduate Hall Director',org:'EMU Housing & Residence Life',loc:'Ypsilanti, MI',date:'Jul 2025 – May 2026',sum:'(Progressed from Desk Assistant → Resident Advisor, Aug 2024 – Jun 2025.) Supervised 9 RAs / 230 residents; designed audience-segmentation communication training that drove 541 engagements and the 2nd-highest campus connection rate (39.1%); nominated for the Student Gold Medallion Award.'},
           {role:'Head of Marketing & Corporate Sales',org:'Praava Health',loc:'Dhaka, Bangladesh',date:'Jun 2021 – Oct 2023',sum:'Led health communication and preventive-care campaigns; grew B2C primary/preventive care 24% YoY and diagnostics 34% YoY; won a national communications award (Commward, Silver) for a mental-health campaign; engineered population-scale access (Lifebuoy hotline, ~3,000 calls/day; DGHS data-sharing).'},
           {role:'Chief Operating Officer',org:'Laser Treat Group',loc:'Dhaka, Bangladesh',date:'Nov 2023 – Aug 2024',sum:'Introduced CSAT/NPS patient-experience measurement (+13% retention) and digitized clinical workflows and dashboards.'},
           {role:'Senior Manager, Employer & Member Affairs',org:'ACCA',loc:'Dhaka, Bangladesh',date:'Jan 2019 – May 2021',sum:'Designed a KPI-linked stakeholder-engagement program; ran national thought-leadership events and publications (round tables, professional-insight content) with PwC and The Daily Star.'},
@@ -1261,7 +1299,7 @@ class Component extends DCLogic {
         experience:[
           {role:'Graduate Assistant, Health Promotion',org:'Eastern Michigan University — Office of Health Promotion',loc:'Ypsilanti, MI',date:'Aug 2024 – Jul 2025',sum:'Designed and evaluated evidence-based health-promotion programs (incl. a multi-channel harm-reduction campaign); co-created the WellNest Watch column (10,000+ reach).'},
           {role:'Public Health Campaign Lead (MPH Capstone)',org:'Eastern Michigan University',loc:'Ypsilanti, MI',date:'Feb 2026 – Apr 2026',sum:'Executed a multi-platform health-advocacy campaign with a locked analytics methodology; documented a replicable ~3× reach amplification.'},
-          {role:'Graduate Hall Director (progressed Desk Assistant → Resident Advisor)',org:'EMU Housing & Residence Life',loc:'Ypsilanti, MI',date:'Jul 2025 – May 2026',sum:'Led community engagement and crisis response for 230 residents; drove 541 engagement interactions and the 2nd-highest connection rate (39.1%); nominated for the Student Gold Medallion Award.'},
+          {role:'Graduate Hall Director',org:'EMU Housing & Residence Life',loc:'Ypsilanti, MI',date:'Jul 2025 – May 2026',sum:'(Progressed from Desk Assistant → Resident Advisor, Aug 2024 – Jun 2025.) Led community engagement and crisis response for 230 residents; drove 541 engagement interactions and the 2nd-highest connection rate (39.1%); nominated for the Student Gold Medallion Award.'},
           {role:'Head of Marketing & Corporate Sales',org:'Praava Health',loc:'Dhaka, Bangladesh',date:'Jun 2021 – Oct 2023',sum:'Grew preventive/primary care 24% YoY and screening 34% YoY; engineered population-scale access (Lifebuoy, ~3,000 calls/day; DGHS data-sharing; ~2% of the nation served during the pandemic); won a national mental-health communications award (Commward, Silver).'},
           {role:'Marketing Manager',org:'SureCash (Mobile Financial Services)',loc:'Dhaka, Bangladesh',date:'Jun 2015 – Oct 2016',sum:'Helped reach 10 million underserved beneficiaries of a government stipend program via residence-mapped placement, IVR onboarding and rural community activations.'},
           {role:'Earlier commercial leadership',org:'Samsung · Ekhanei · Asiatic · MGH · Grey · Grameenphone',loc:'Dhaka, Bangladesh',date:'2009 – 2018',sum:'16+ years of marketing, brand and campaign leadership across healthcare and consumer sectors — audience insight, multi-channel campaigns and partnerships transferable to population-scale health programs.'},
