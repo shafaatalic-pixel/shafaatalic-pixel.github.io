@@ -798,12 +798,16 @@ class Component extends DCLogic {
       ['ACCA','assets/logos/acca.jpg'],['Asiatic','assets/logos/asiatic.png'],
       ['Lux','assets/logos/lux.jpg'],['Laser Treat','assets/logos/lasertreat.jpeg'],
       ['Eastern Michigan University','assets/logos/emu.png'],
+      ['Frutika','assets/logos/frutika.jpg','tile'],['Sensodyne','assets/logos/sensodyne.jpg','tile'],
+      ['Glaxose-D','assets/logos/glaxose.jpg','tile'],['Speed','assets/logos/speed.jpg','tile'],
+      ['Spa','assets/logos/spa.jpg','tile'],['Wild Brew','assets/logos/wildbrew.jpg','tile'],
+      ['Farm Fresh','assets/logos/farmfresh.jpg','tile'],
     ];
     const brandStrip = root.querySelector('#brand-strip');
-    if(brandStrip){ brandStrip.innerHTML = brands.map(b=>`
-      <div style="display:flex;align-items:center;justify-content:center;height:60px;padding:0 22px;background:var(--ivory-100);border:1px solid var(--border-hairline);border-radius:8px;">
-        <img src="${b[1]}" alt="${esc(b[0])}" loading="lazy" style="max-height:32px;max-width:124px;width:auto;object-fit:contain;display:block;" />
-      </div>`).join(''); }
+    if(brandStrip){ brandStrip.innerHTML = brands.map(b=> b[2]==='tile'
+      ? `<div title="${esc(b[0])}" style="height:60px;width:60px;border-radius:10px;overflow:hidden;border:1px solid var(--border-hairline);flex:0 0 auto;"><img src="${b[1]}" alt="${esc(b[0])} — brand marketed" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>`
+      : `<div style="display:flex;align-items:center;justify-content:center;height:60px;padding:0 22px;background:var(--ivory-100);border:1px solid var(--border-hairline);border-radius:8px;"><img src="${b[1]}" alt="${esc(b[0])}" loading="lazy" style="max-height:32px;max-width:124px;width:auto;object-fit:contain;display:block;" /></div>`
+    ).join(''); }
 
     // ===== THEME MAP + FEATURED COPY (full-portfolio case UI) =====
     const CF_THEME = {note9:['consumer','brand'],j2:['consumer'],'samsung-digital':['digital','consumer','brand'],'praava-engines':['health'],'praava-corp':['health'],'praava-lifebuoy':['public','health'],'praava-travel':['digital','health'],'praava-kickback':['public','health'],'praava-footfall':['brand','health'],'praava-dataengine':['digital','health'],'laser-treat':['digital','health'],'surecash-g2p':['fintech'],'ekhanei-laser':['brand'],'ekhanei-bikebazaar':['brand'],'acca-ecosystem':['brand'],'acca-leadership':['brand'],'asiatic-lux':['brand'],'asiatic-digital':['digital','brand'],'harm-reduction':['public'],'mph-capstone':['public'],'emu-housing':['public']};
