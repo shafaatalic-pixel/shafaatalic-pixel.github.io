@@ -1170,7 +1170,7 @@ class Component extends DCLogic {
     try{ const s=localStorage.getItem('shafaat_theme'); if(s) t=s; }catch(e){}
     this.setTheme(t);
   }
-  showLanding(){ const l=document.getElementById('landing'); if(l) l.style.display='flex'; document.body.style.overflow='hidden'; }
+  showLanding(){ const l=document.getElementById('landing'); if(l) l.style.display='flex'; document.body.style.overflow='hidden'; this._userPicked=false; try{ localStorage.removeItem('shafaat_lens'); }catch(e){} try{ history.replaceState(null,'', location.pathname); }catch(e){} document.title='Md Shafaat Ali Choyon — Growth, Marketing & Public Health Strategist'; }
   hideLanding(){ const l=document.getElementById('landing'); if(l) l.style.display='none'; document.body.style.overflow=''; }
   initRouting(){
     let v=null;
