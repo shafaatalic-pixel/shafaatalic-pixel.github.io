@@ -1611,8 +1611,9 @@ class Component extends DCLogic {
     if(window.lucide) try{ window.lucide.createIcons(); }catch(e){}
   }
   initTheme(){
-    let t='light';
-    try{ const s=localStorage.getItem('shafaat_theme'); if(s) t=s; }catch(e){}
+    let t=null;
+    try{ t=localStorage.getItem('shafaat_theme'); }catch(e){}
+    if(!t){ try{ t=(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }catch(e){ t='light'; } }
     this.setTheme(t);
   }
   showLanding(){ const l=document.getElementById('landing'); if(l) l.style.display='flex'; document.body.style.overflow='hidden'; this._userPicked=false; try{ localStorage.removeItem('shafaat_lens'); }catch(e){} try{ history.replaceState(null,'', location.pathname); }catch(e){} document.title='Md Shafaat Ali Choyon — Growth, Marketing & Public Health Strategist'; }
