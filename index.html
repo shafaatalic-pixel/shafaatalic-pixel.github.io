@@ -271,7 +271,7 @@
   <!-- NAV -->
   <nav style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px clamp(20px,4vw,48px);transition:background .24s,backdrop-filter .24s,border-color .24s,padding .24s;border-bottom:1px solid transparent;" data-nav>
     <div style="display:flex;align-items:center;gap:14px;min-width:0;">
-      <a href="#top" style="font-family:var(--disp);font-weight:800;font-size:20px;letter-spacing:-.01em;text-decoration:none;color:var(--text-strong);white-space:nowrap;">Shafaat Choyon<span style="color:var(--accent-text);">.</span></a>
+      <a href="#top" aria-label="Shafaat Choyon — home" style="font-family:var(--disp);font-weight:800;font-size:20px;letter-spacing:-.01em;text-decoration:none;color:var(--text-strong);white-space:nowrap;display:inline-flex;align-items:center;gap:10px;"><img src="assets/logos/sc-mark.png" alt="Shafaat Choyon logo" width="32" height="32" style="width:32px;height:32px;border-radius:7px;display:block;flex:0 0 auto;" /><span>Shafaat Choyon<span style="color:var(--accent-text);">.</span></span></a>
       <button id="nav-lens" type="button" aria-label="Switch lens" style="display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 12px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:999px;cursor:pointer;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;color:var(--accent-text);transition:filter .15s;">
         <span style="width:7px;height:7px;border-radius:50%;background:var(--accent);"></span><span id="nav-lens-label">Full portfolio</span>
         <span style="opacity:.6;">⇄</span>
@@ -468,6 +468,14 @@
 
       <h3 data-reveal style="font-family:var(--disp);font-weight:700;font-size:clamp(17px,2vw,20px);color:var(--text-strong);margin:44px 0 16px;letter-spacing:-.01em;">…and the site itself is built on the same discipline.</h3>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;">
+        <div data-reveal style="grid-column:1/-1;background:#0B0F14;border:1px solid var(--border-hairline);border-radius:12px;padding:22px;display:flex;align-items:center;gap:22px;flex-wrap:wrap;">
+          <img src="assets/logos/sc-lockup-dark.jpg" alt="Shafaat Choyon — the SC signal logo, 'proof, not promises'" loading="lazy" style="height:118px;width:auto;border-radius:8px;display:block;flex:0 0 auto;" />
+          <div style="flex:1;min-width:220px;">
+            <div style="font-family:var(--mono);font-size:11px;letter-spacing:.13em;color:#8A93A0;">THE MARK</div>
+            <div style="font-family:var(--disp);font-weight:700;font-size:16px;color:#EDE6D6;margin-top:7px;">The SC signal — <span style="color:#00C4C4;">proof, not promises</span></div>
+            <p style="font-family:var(--body);font-size:12.5px;color:#A9B0B8;margin:8px 0 0;line-height:1.5;max-width:62ch;">Interlocked S and C read the system; the teal node and amber signal waves stand for turning attention into intelligence, and intelligence into measurable outcomes.</p>
+          </div>
+        </div>
         <div data-reveal style="background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:12px;padding:20px;">
           <div style="font-family:var(--mono);font-size:11px;letter-spacing:.13em;color:var(--text-faint);">THE PERSONA</div>
           <div style="font-family:var(--disp);font-weight:700;font-size:17px;color:var(--text-strong);margin-top:7px;">The Strategist-Sage</div>
