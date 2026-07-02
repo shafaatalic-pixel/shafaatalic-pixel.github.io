@@ -1067,9 +1067,14 @@
             <div id="introvid" role="button" tabindex="0" aria-label="Play Md Shafaat Ali Choyon intro video" style="position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;cursor:pointer;border:1px solid var(--border-strong);background:#000;">
               <img src="https://img.youtube.com/vi/FZLnsmMEXvo/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/FZLnsmMEXvo/hqdefault.jpg';" alt="Md Shafaat Ali Choyon — video intro" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
               <span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,15,20,.05),rgba(11,15,20,.45));"></span>
-              <span aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;background:rgba(15,179,179,.94);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 34px rgba(0,0,0,.55);"><svg width="30" height="30" viewBox="0 0 24 24" fill="#042020"><path d="M8 5v14l11-7z"/></svg></span>
+              <span aria-hidden="true" style="position:absolute;right:16px;bottom:16px;width:60px;height:60px;border-radius:50%;background:rgba(15,179,179,.94);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 34px rgba(0,0,0,.55);"><svg width="30" height="30" viewBox="0 0 24 24" fill="#042020"><path d="M8 5v14l11-7z"/></svg></span>
             </div>
             <p style="margin:0;font-family:var(--body);font-size:14.5px;line-height:1.55;color:var(--text-muted);">One career, seen four ways — here's the short version, in my own words.</p>
+            <div style="border-top:1px solid var(--border-hairline);padding-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+              <div><div style="font-family:var(--disp);font-weight:800;font-size:20px;color:var(--text-strong);">#1</div><div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin-top:3px;">Global launch growth</div></div>
+              <div><div style="font-family:var(--disp);font-weight:800;font-size:20px;color:var(--text-strong);">10M</div><div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin-top:3px;">G2P beneficiaries</div></div>
+              <div><div style="font-family:var(--disp);font-weight:800;font-size:20px;color:var(--text-strong);">~57%</div><div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin-top:3px;">B2C CAGR 2021–23</div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -1689,6 +1694,14 @@ class Component extends DCLogic {
     root.querySelectorAll('[data-lens-pick]').forEach(el=>{ el.addEventListener('click',()=>{ this._userPicked=true; this.applyLens(el.getAttribute('data-lens-pick'),{}); this.hideLanding(); window.scrollTo(0,0); }); });
     const landingAll=document.getElementById('landing-all'); if(landingAll) landingAll.addEventListener('click',()=>{ this._userPicked=true; this.applyLens('full',{}); this.hideLanding(); window.scrollTo(0,0); });
     const landingScroll=document.getElementById('landing-scroll'); if(landingScroll) landingScroll.addEventListener('click',()=>{ this._userPicked=true; this.applyLens('full',{}); this.hideLanding(); window.scrollTo(0,0); });
+    const landingEl=document.getElementById('landing');
+    if(landingEl){
+      const dismiss=()=>{ if(this._userPicked) return; this._userPicked=true; this.applyLens('full',{}); this.hideLanding(); window.scrollTo(0,0); };
+      landingEl.addEventListener('wheel',(e)=>{ const atBottom=landingEl.scrollHeight-landingEl.clientHeight-landingEl.scrollTop<4; if(e.deltaY>10&&atBottom) dismiss(); },{passive:true});
+      let _ty=null;
+      landingEl.addEventListener('touchstart',(e)=>{ _ty=e.touches[0].clientY; },{passive:true});
+      landingEl.addEventListener('touchmove',(e)=>{ const atBottom=landingEl.scrollHeight-landingEl.clientHeight-landingEl.scrollTop<4; if(_ty!==null&&_ty-e.touches[0].clientY>30&&atBottom) dismiss(); },{passive:true});
+    }
     const navLens=document.getElementById('nav-lens'); if(navLens) navLens.addEventListener('click',()=>{ this.showLanding(); });
     const footerLens=document.getElementById('footer-lens'); if(footerLens) footerLens.addEventListener('click',()=>{ this.showLanding(); });
 
