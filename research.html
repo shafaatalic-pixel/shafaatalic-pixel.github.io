@@ -57,6 +57,13 @@
   ul.plain b{color:var(--ivory);font-weight:500;}
   footer.foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);}
   footer.foot a{font-weight:500;}
+  .intro{display:flex;gap:30px;align-items:flex-start;flex-wrap:wrap;}
+  .intro-text{flex:1 1 340px;min-width:0;}
+  .portrait{flex:0 0 auto;width:152px;height:152px;border-radius:16px;object-fit:cover;border:1px solid var(--line);box-shadow:0 10px 34px rgba(0,0,0,.4);margin-top:8px;}
+  figure.rmap{margin:44px 0 0;padding:0;}
+  figure.rmap svg{width:100%;height:auto;display:block;}
+  figure.rmap figcaption{font-size:12.5px;color:var(--faint);margin-top:10px;font-style:italic;}
+  @media(max-width:620px){ .portrait{width:120px;height:120px;} }
 </style>
 
 <script type="application/ld+json">
@@ -93,10 +100,47 @@
     </nav>
   </header>
 
+  <div class="intro">
+  <div class="intro-text">
   <div class="eyebrow">Research · PhD applicant — Marketing (Consumer Behavior) · Fall 2027</div>
   <h1>Sixteen years of field experiments, looking for a theory.</h1>
   <p class="lede">I spent sixteen years building brands, categories and health services in one of the world's most trust-scarce consumer environments — and the same questions kept surfacing: <b>why do people trust, and what makes them change behavior?</b> My proposed research sits where those years point: <b>trust and behavior change in AI-mediated and low-trust markets</b> — how consumers decide when they cannot verify quality, from used motorbikes to flagship phones to healthcare. Consumer behavior first, with the firm-side (strategy) questions close behind.</p>
+  </div>
+  <img class="portrait" src="/assets/portrait.jpg" alt="Md Shafaat Ali Choyon — PhD applicant in Marketing" width="152" height="152" loading="lazy" />
+  </div>
   <div class="status"><b>Status:</b> Applying to PhD programs in Marketing for <b>Fall 2027</b> — consumer behavior track (marketing strategy where offered). MPH (Health Education &amp; Promotion), Eastern Michigan University, 2026 — <b>GPA 3.85</b> · CHES® · MBA · MCIM. Based in metro Detroit, Michigan. <a href="/assets/cv/Shafaat_Ali_Choyon_Detailed_Strategic_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a></div>
+
+  <figure class="rmap">
+  <svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Concept map: consumers choosing when quality cannot be verified, through trust, price and behavior mechanisms, grounded in field cases across marketplaces, consumer tech, fintech and healthcare.">
+    <g stroke="rgba(255,255,255,.16)" stroke-width="1.5" fill="none">
+      <path d="M450,104 C450,132 155,132 155,160"/>
+      <path d="M450,104 L450,160"/>
+      <path d="M450,104 C450,132 745,132 745,160"/>
+      <path d="M155,244 C155,274 450,274 450,300"/>
+      <path d="M450,244 L450,300"/>
+      <path d="M745,244 C745,274 450,274 450,300"/>
+    </g>
+    <rect x="250" y="22" width="400" height="82" rx="14" fill="#11161D" stroke="#1D9E9E" stroke-width="1.5"/>
+    <text x="450" y="52" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" letter-spacing="2.5" fill="#7f8894">THE THROUGH-LINE</text>
+    <text x="450" y="80" text-anchor="middle" font-family="Manrope,sans-serif" font-weight="800" font-size="19" fill="#F3EFE7">Choosing when quality can't be verified</text>
+    <rect x="40" y="160" width="230" height="84" rx="12" fill="#11161D" stroke="rgba(0,166,166,.5)" stroke-width="1.5"/>
+    <text x="155" y="192" text-anchor="middle" font-family="Manrope,sans-serif" font-weight="800" font-size="17" fill="#33C4C4">Trust</text>
+    <text x="155" y="216" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" fill="#AEB6C1">what substitutes for</text>
+    <text x="155" y="232" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" fill="#AEB6C1">verification</text>
+    <rect x="335" y="160" width="230" height="84" rx="12" fill="#11161D" stroke="rgba(244,162,76,.5)" stroke-width="1.5"/>
+    <text x="450" y="192" text-anchor="middle" font-family="Manrope,sans-serif" font-weight="800" font-size="17" fill="#F4A24C">Price</text>
+    <text x="450" y="216" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" fill="#AEB6C1">how price signals value</text>
+    <text x="450" y="232" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" fill="#AEB6C1">and integrity</text>
+    <rect x="630" y="160" width="230" height="84" rx="12" fill="#11161D" stroke="rgba(0,166,166,.5)" stroke-width="1.5"/>
+    <text x="745" y="192" text-anchor="middle" font-family="Manrope,sans-serif" font-weight="800" font-size="17" fill="#33C4C4">Behavior</text>
+    <text x="745" y="216" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" fill="#AEB6C1">framing that changes</text>
+    <text x="745" y="232" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" fill="#AEB6C1">resisted choices</text>
+    <rect x="90" y="300" width="720" height="60" rx="12" fill="#0E141B" stroke="rgba(255,255,255,.09)" stroke-width="1"/>
+    <text x="450" y="326" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" letter-spacing="2" fill="#7f8894">GROUNDED IN REAL FIELD CASES ACROSS</text>
+    <text x="450" y="349" text-anchor="middle" font-family="Manrope,sans-serif" font-weight="700" font-size="13.5" fill="#D2D8E0">Marketplaces &#183; Consumer tech &#183; Fintech &amp; inclusion &#183; Healthcare</text>
+  </svg>
+  <figcaption>A concept map of how the questions connect — an organization of ideas, not empirical results.</figcaption>
+  </figure>
 
   <h2 class="group">Research interests <span class="ct">· seven questions my career handed me</span></h2>
 
