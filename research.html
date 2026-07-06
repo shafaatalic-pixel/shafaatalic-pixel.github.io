@@ -57,13 +57,13 @@
   ul.plain b{color:var(--ivory);font-weight:500;}
   footer.foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);}
   footer.foot a{font-weight:500;}
-  .intro{display:flex;gap:30px;align-items:flex-start;flex-wrap:wrap;}
+  .intro{display:flex;gap:30px;align-items:center;flex-wrap:wrap;justify-content:space-between;margin-bottom:6px;}
   .intro-text{flex:1 1 340px;min-width:0;}
   .portrait{flex:0 0 auto;width:152px;height:152px;border-radius:16px;object-fit:cover;border:1px solid var(--line);box-shadow:0 10px 34px rgba(0,0,0,.4);margin-top:8px;}
   figure.rmap{margin:44px 0 0;padding:0;}
   figure.rmap svg{width:100%;height:auto;display:block;}
   figure.rmap figcaption{font-size:12.5px;color:var(--faint);margin-top:10px;font-style:italic;}
-  @media(max-width:620px){ .portrait{width:120px;height:120px;} }
+  @media(max-width:620px){ .intro{flex-direction:column;} .portrait{order:-1;width:128px;height:128px;margin-top:0;} }
 </style>
 
 <script type="application/ld+json">
@@ -104,10 +104,11 @@
   <div class="intro-text">
   <div class="eyebrow">Research · PhD applicant — Marketing (Consumer Behavior) · Fall 2027</div>
   <h1>Sixteen years of field experiments, looking for a theory.</h1>
-  <p class="lede">I spent sixteen years building brands, categories and health services in one of the world's most trust-scarce consumer environments — and the same questions kept surfacing: <b>why do people trust, and what makes them change behavior?</b> My proposed research sits where those years point: <b>trust and behavior change in AI-mediated and low-trust markets</b> — how consumers decide when they cannot verify quality, from used motorbikes to flagship phones to healthcare. Consumer behavior first, with the firm-side (strategy) questions close behind.</p>
   </div>
   <img class="portrait" src="/assets/portrait.jpg" alt="Md Shafaat Ali Choyon — PhD applicant in Marketing" width="152" height="152" loading="lazy" />
   </div>
+  <p class="lede">I spent sixteen years building brands, categories and health services in one of the world's most trust-scarce consumer environments — and the same questions kept surfacing: <b>why do people trust, and what makes them change behavior?</b> My proposed research sits where those years point: <b>trust and behavior change in AI-mediated and low-trust markets</b> — how consumers decide when they cannot verify quality, from used motorbikes to flagship phones to healthcare. Consumer behavior first, with the firm-side (strategy) questions close behind.</p>
+
   <div class="status"><b>Status:</b> Applying to PhD programs in Marketing for <b>Fall 2027</b> — consumer behavior track (marketing strategy where offered). MPH (Health Education &amp; Promotion), Eastern Michigan University, 2026 — <b>GPA 3.85</b> · CHES® · MBA · MCIM. Based in metro Detroit, Michigan. <a href="/assets/cv/Shafaat_Ali_Choyon_Detailed_Strategic_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a></div>
 
   <figure class="rmap">
