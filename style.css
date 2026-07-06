@@ -40,6 +40,7 @@
   @media (max-width:760px){ .hero-grid{grid-template-columns:1fr!important;gap:36px!important;} .hero-photo{order:-1;justify-self:start!important;} #landing{align-items:flex-start!important;} }
   @media (max-width:680px){ .landing-cards{grid-template-columns:1fr!important;} .lens-card{padding:18px!important;gap:9px!important;} [data-case-card]{margin:0!important;} }
   @media (max-width:860px){ #nav-lens-label{display:none!important;} #nav-lens{padding:0 9px!important;} [data-nav]{gap:8px!important;} [data-cta]{padding:0 13px!important;} }
+  @media (max-width:560px){ #nav-lens{display:none!important;} [data-nav]{padding-left:16px!important;padding-right:16px!important;} [data-nav]>div:last-child{gap:8px!important;} }
   @media (max-width:380px){ [data-nav] a[href="#top"]{font-size:16px!important;} [data-cta]{font-size:13px!important;padding:0 11px!important;} }
   @media (max-width:920px){ .landing-main{grid-template-columns:1fr!important;} .video-wrap{order:-1;max-width:560px;} }
   #landing{align-items:safe center!important;}
