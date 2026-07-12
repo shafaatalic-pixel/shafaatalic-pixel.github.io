@@ -2293,6 +2293,7 @@ class Component extends DCLogic {
   var wantCase=null;
   try{ wantCase=new URLSearchParams(location.search).get('case'); }catch(e){}
   if(!wantCase){ var h=(location.hash||'').replace(/^#/,''); if(/^case[-=]/.test(h)) wantCase=h.replace(/^case[-=]/,''); }
+  try{ window.__slWant=wantCase; }catch(e){}
 
   function map(){ var s2u={},u2s={};
     document.querySelectorAll('[data-cf-open]').forEach(function(b){ var uid=b.getAttribute('data-cf-open'); if(!uid) return;
@@ -2324,8 +2325,8 @@ class Component extends DCLogic {
   }
   function label(){ if(state.type==='case') return 'Copy link to this case'; if(state.type==='section') return 'Copy link · '+(SECLABEL[state.key]||state.key); return ''; }
   function render(){ if(!btn) return; if(state.type){ btn.textContent=label(); btn.style.display='inline-flex'; } else btn.style.display='none'; }
-  function update(){ ensureBtn(); var m=map(); var openDet=null;
-    document.querySelectorAll('[id^="cgd-"].open').forEach(function(d){ var r=d.getBoundingClientRect(); if(r.top<innerHeight*0.85&&r.bottom>0&&!openDet) openDet=d; });
+  function update(){ ensureBtn(); var m=map();
+    var openDet=document.querySelector('[id^="cgd-"].open'); /* one case opens at a time → case mode whenever open */
     if(openDet){ var uid=openDet.id.replace('cgd-',''); var slug=m.u2s[uid]; if(slug){ state={type:'case',key:slug}; render(); return; } }
     var best=null,bestTop=1e9;
     SECS.forEach(function(id){ var s=document.getElementById(id); if(!s) return; var r=s.getBoundingClientRect(); if(r.top<innerHeight*0.5&&r.bottom>innerHeight*0.25){ var d=Math.abs(r.top); if(d<bestTop){ bestTop=d; best=id; } } });
@@ -2342,7 +2343,7 @@ class Component extends DCLogic {
     if(t.closest('[data-cf-close]')) setParam(null);
   },true);
 
-  function openBySlug(slug){ var m=map(); var uid=m.s2u[slug]; if(!uid) return false; var det=document.getElementById('cgd-'+uid); if(det&&det.classList.contains('open')) return true; var b=document.querySelector('[data-cf-open="'+uid+'"]'); if(b){ b.click(); return true; } return false; }
+  function openBySlug(slug){ var m=map(); var uid=m.s2u[slug]; if(!uid) return false; var det=document.getElementById('cgd-'+uid); if(det&&det.classList.contains('open')) return true; var b=document.querySelector('[data-cf-open="'+uid+'"]'); if(b){ b.click(); setTimeout(function(){ var dd=document.getElementById('cgd-'+uid); if(dd){ try{ dd.scrollIntoView({behavior:'smooth',block:'center'}); }catch(e){} } },240); return true; } return false; }
 
   /* boot: wait for the JS-rendered cards; honor the captured ?case= (self-heal to full view if on landing) */
   var n=0;
