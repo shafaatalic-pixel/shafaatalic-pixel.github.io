@@ -2285,5 +2285,76 @@ class Component extends DCLogic {
     setTimeout(checkSecs, 1200); setTimeout(checkSecs, 3500);
   }catch(e){}
 })();</script>
+<script>/* ===== Shareable links — React-safe: overlay only, never mutates #site-root ===== */
+(function(){
+  var CANON='https://shafaatalichoyon.com';
+  function base(){ var o=location.origin; return (o&&o.indexOf('http')===0)?o:CANON; }
+  /* capture ?case= at PARSE TIME, before the SPA's replaceState strips the query */
+  var wantCase=null;
+  try{ wantCase=new URLSearchParams(location.search).get('case'); }catch(e){}
+  if(!wantCase){ var h=(location.hash||'').replace(/^#/,''); if(/^case[-=]/.test(h)) wantCase=h.replace(/^case[-=]/,''); }
+
+  function map(){ var s2u={},u2s={};
+    document.querySelectorAll('[data-cf-open]').forEach(function(b){ var uid=b.getAttribute('data-cf-open'); if(!uid) return;
+      var det=document.getElementById('cgd-'+uid); if(!det) return; var img=det.querySelector('img'); if(!img) return;
+      var slug=((img.getAttribute('src')||'').split('/').pop()||'').replace(/\.[a-z0-9]+$/i,''); if(slug){ s2u[slug]=uid; u2s[uid]=slug; } });
+    return {s2u:s2u,u2s:u2s};
+  }
+  function copy(text,cb){ function ok(){cb&&cb();}
+    try{ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(ok,function(){fb(text);ok();}); return; } }catch(e){}
+    fb(text); ok();
+  }
+  function fb(t){ try{ var ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }catch(e){} }
+
+  var SECS=['proof','approach','cases','experience','voices','writing','press','operating-logic'];
+  var SECLABEL={proof:'Proof',approach:'Approach',cases:'Case studies',experience:'Experience',voices:'Voices',writing:'Writing',press:'Press','operating-logic':'Operating logic'};
+  var btn, state={type:null,key:null};
+  /* the button is a direct child of <body>, OUTSIDE React's #site-root — safe from reconciliation */
+  function ensureBtn(){ if(btn) return;
+    btn=document.createElement('button'); btn.id='sl-fab'; btn.type='button'; btn.setAttribute('aria-label','Copy a shareable link');
+    btn.style.cssText='position:fixed;z-index:99999;right:18px;bottom:18px;display:none;align-items:center;gap:8px;'
+      +'font:600 13px/1 ui-monospace,Menlo,monospace;color:#F7F2E8;background:#11161D;border:1px solid #33C4C4;'
+      +'border-radius:999px;padding:10px 14px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.35);opacity:.94;';
+    btn.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation();
+      var url; if(state.type==='case') url=base()+'/case/'+state.key+'/'; else if(state.type==='section') url=base()+'/#'+state.key; else return;
+      copy(url,function(){ btn.textContent='Copied!'; setTimeout(render,1500); });
+      if(window.track) window.track('share_copy',{type:state.type,key:state.key});
+    });
+    document.body.appendChild(btn);
+  }
+  function label(){ if(state.type==='case') return 'Copy link to this case'; if(state.type==='section') return 'Copy link · '+(SECLABEL[state.key]||state.key); return ''; }
+  function render(){ if(!btn) return; if(state.type){ btn.textContent=label(); btn.style.display='inline-flex'; } else btn.style.display='none'; }
+  function update(){ ensureBtn(); var m=map(); var openDet=null;
+    document.querySelectorAll('[id^="cgd-"].open').forEach(function(d){ var r=d.getBoundingClientRect(); if(r.top<innerHeight*0.85&&r.bottom>0&&!openDet) openDet=d; });
+    if(openDet){ var uid=openDet.id.replace('cgd-',''); var slug=m.u2s[uid]; if(slug){ state={type:'case',key:slug}; render(); return; } }
+    var best=null,bestTop=1e9;
+    SECS.forEach(function(id){ var s=document.getElementById(id); if(!s) return; var r=s.getBoundingClientRect(); if(r.top<innerHeight*0.5&&r.bottom>innerHeight*0.25){ var d=Math.abs(r.top); if(d<bestTop){ bestTop=d; best=id; } } });
+    if(best){ state={type:'section',key:best}; render(); return; }
+    state={type:null,key:null}; render();
+  }
+  var tick=false; function onScroll(){ if(!tick){ tick=true; (window.requestAnimationFrame||setTimeout)(function(){ tick=false; update(); }); } }
+  addEventListener('scroll',onScroll,{passive:true}); addEventListener('resize',onScroll,{passive:true});
+  addEventListener('click',function(){ setTimeout(update,120); },true);
+
+  function setParam(v){ try{ var u=new URL(location.href); if(v==null) u.searchParams.delete('case'); else u.searchParams.set('case',v); history.replaceState(null,'',u.pathname+(u.search||'')+(u.hash||'')); }catch(e){} }
+  addEventListener('click',function(e){ var t=e.target; if(!t||!t.closest) return; var op=t.closest('[data-cf-open]');
+    if(op){ var uid=op.getAttribute('data-cf-open'); setTimeout(function(){ var det=document.getElementById('cgd-'+uid); var m=map(); if(det&&det.classList.contains('open')) setParam(m.u2s[uid]||null); else setParam(null); },90); return; }
+    if(t.closest('[data-cf-close]')) setParam(null);
+  },true);
+
+  function openBySlug(slug){ var m=map(); var uid=m.s2u[slug]; if(!uid) return false; var det=document.getElementById('cgd-'+uid); if(det&&det.classList.contains('open')) return true; var b=document.querySelector('[data-cf-open="'+uid+'"]'); if(b){ b.click(); return true; } return false; }
+
+  /* boot: wait for the JS-rendered cards; honor the captured ?case= (self-heal to full view if on landing) */
+  var n=0;
+  (function wait(){
+    if(document.querySelector('[data-cf-open]')){ ensureBtn(); update();
+      if(wantCase){ var tries=0; (function att(){ if(openBySlug(wantCase)){ setTimeout(update,250); return; } if(tries++<40) setTimeout(att,150); })(); }
+      return;
+    }
+    if(wantCase && n>8){ try{ var u=new URL(location.href); if(u.searchParams.get('view')!=='full'){ u.searchParams.set('view','full'); u.searchParams.set('case',wantCase); location.replace(u.pathname+u.search); return; } }catch(e){} }
+    if(n++<80) setTimeout(wait,150);
+  })();
+  setInterval(update,1200); /* keep the overlay in sync across SPA re-renders (read-only) */
+})();</script>
 </body>
 </html>
