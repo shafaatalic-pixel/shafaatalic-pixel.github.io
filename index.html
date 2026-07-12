@@ -2349,7 +2349,12 @@ class Component extends DCLogic {
   var n=0;
   (function wait(){
     if(document.querySelector('[data-cf-open]')){ ensureBtn(); update();
-      if(wantCase){ var tries=0; (function att(){ if(openBySlug(wantCase)){ setTimeout(update,250); return; } if(tries++<40) setTimeout(att,150); })(); }
+      if(wantCase){ var tries=0, stable=0; (function att(){
+        var mm=map(); var uid=mm.s2u[wantCase]; var det=uid?document.getElementById('cgd-'+uid):null;
+        if(det && det.classList.contains('open')){ update(); if(stable++<6) setTimeout(att,400); return; } /* keep it open through late SPA re-renders */
+        if(uid){ var b=document.querySelector('[data-cf-open="'+uid+'"]'); if(b){ b.click(); setTimeout(function(){ var dd=document.getElementById('cgd-'+uid); if(dd){ try{ dd.scrollIntoView({behavior:'smooth',block:'center'}); }catch(e){} } update(); },240); } }
+        if(tries++<50) setTimeout(att,200);
+      })(); }
       return;
     }
     if(wantCase && n>8){ try{ var u=new URL(location.href); if(u.searchParams.get('view')!=='full'){ u.searchParams.set('view','full'); u.searchParams.set('case',wantCase); location.replace(u.pathname+u.search); return; } }catch(e){} }
