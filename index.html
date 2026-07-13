@@ -2349,7 +2349,12 @@ class Component extends DCLogic {
   var _userScrolled=false;
   ['wheel','touchmove','keydown'].forEach(function(ev){ addEventListener(ev,function(){ _userScrolled=true; },{passive:true}); });
   function pinCase(dd){ if(!dd||_userScrolled) return; var _t=dd.getBoundingClientRect().top+window.pageYOffset-80; window.scrollTo({top:_t<0?0:_t,behavior:'instant'}); }
-  function pinCaseSettle(dd){ pinCase(dd); [150,450,900,1600].forEach(function(ms){ setTimeout(function(){ pinCase(dd); },ms); }); }
+  function pinCaseSettle(dd){ if(!dd) return; pinCase(dd);
+    [120,300,600,1000,1600,2400,3400].forEach(function(ms){ setTimeout(function(){ pinCase(dd); },ms); });
+    try{ addEventListener('load',function(){ pinCase(dd); },{once:true}); }catch(e){}
+    /* re-pin on any layout shift (late image loads push the case down) until it settles or the user scrolls */
+    try{ var ro=new ResizeObserver(function(){ pinCase(dd); }); ro.observe(document.body); setTimeout(function(){ try{ro.disconnect();}catch(e){} },4500); }catch(e){}
+  }
   function openBySlug(slug){ var m=map(); var uid=m.s2u[slug]; if(!uid) return false; var det=document.getElementById('cgd-'+uid); if(det&&det.classList.contains('open')) return true; var b=document.querySelector('[data-cf-open="'+uid+'"]'); if(b){ window.__slDeep=true; b.click(); setTimeout(function(){ var dd=document.getElementById('cgd-'+uid); if(dd){ try{ pinCaseSettle(dd); }catch(e){} } window.__slDeep=false; },240); return true; } return false; }
 
   /* boot: wait for the JS-rendered cards; honor the captured ?case= (self-heal to full view if on landing) */
