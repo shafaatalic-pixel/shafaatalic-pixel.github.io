@@ -2171,7 +2171,7 @@ class Component extends DCLogic {
     var scope=card.closest('.cg-group')||document; var wasOpen=d.classList.contains('open');
     closeAll(scope);
     if(!wasOpen){ d.classList.add('open'); card.classList.add('active'); card.setAttribute('aria-expanded','true');
-      setTimeout(function(){ try{d.scrollIntoView({behavior:'smooth',block:'nearest'});}catch(_){} },140); }
+      setTimeout(function(){ try{d.scrollIntoView({behavior:(window.__slDeep?'auto':'smooth'),block:'nearest'});}catch(_){} },140); }
   });
 })();</script>
 <script>(function(){
@@ -2208,7 +2208,7 @@ class Component extends DCLogic {
       var id=op.getAttribute('data-cf-open'); var d=document.getElementById('cgd-'+id); if(!d) return;
       var was=d.classList.contains('open'); cfClose();
       if(!was){ d.classList.add('open'); op.classList.add('cf-on');
-        setTimeout(function(){ try{ d.scrollIntoView({behavior:'smooth',block:'nearest'}); }catch(_){} },140);
+        setTimeout(function(){ try{ d.scrollIntoView({behavior:(window.__slDeep?'auto':'smooth'),block:'nearest'}); }catch(_){} },140);
         if(window.track){ var card=op.closest('.cf-card'); var tt=card?card.querySelector('.cf-title'):null; window.track('case_open',{case_title:((tt?tt.textContent:'')||'').trim().slice(0,90)}); }
       }
       return;
@@ -2346,7 +2346,7 @@ class Component extends DCLogic {
     if(t.closest('[data-cf-close]')) setParam(null);
   },true);
 
-  function openBySlug(slug){ var m=map(); var uid=m.s2u[slug]; if(!uid) return false; var det=document.getElementById('cgd-'+uid); if(det&&det.classList.contains('open')) return true; var b=document.querySelector('[data-cf-open="'+uid+'"]'); if(b){ b.click(); setTimeout(function(){ var dd=document.getElementById('cgd-'+uid); if(dd){ try{ dd.scrollIntoView({behavior:'auto',block:'center'}); }catch(e){} } },240); return true; } return false; }
+  function openBySlug(slug){ var m=map(); var uid=m.s2u[slug]; if(!uid) return false; var det=document.getElementById('cgd-'+uid); if(det&&det.classList.contains('open')) return true; var b=document.querySelector('[data-cf-open="'+uid+'"]'); if(b){ window.__slDeep=true; b.click(); setTimeout(function(){ var dd=document.getElementById('cgd-'+uid); if(dd){ try{ dd.scrollIntoView({behavior:'auto',block:'center'}); }catch(e){} } window.__slDeep=false; },240); return true; } return false; }
 
   /* boot: wait for the JS-rendered cards; honor the captured ?case= (self-heal to full view if on landing) */
   var n=0;
@@ -2355,7 +2355,7 @@ class Component extends DCLogic {
       if(wantCase){ var tries=0, stable=0; (function att(){
         var mm=map(); var uid=mm.s2u[wantCase]; var det=uid?document.getElementById('cgd-'+uid):null;
         if(det && det.classList.contains('open')){ update(); if(stable++<6) setTimeout(att,400); return; } /* keep it open through late SPA re-renders */
-        if(uid){ var b=document.querySelector('[data-cf-open="'+uid+'"]'); if(b){ b.click(); setTimeout(function(){ var dd=document.getElementById('cgd-'+uid); if(dd){ try{ dd.scrollIntoView({behavior:'auto',block:'center'}); }catch(e){} } update(); },240); } }
+        if(uid){ var b=document.querySelector('[data-cf-open="'+uid+'"]'); if(b){ window.__slDeep=true; b.click(); setTimeout(function(){ var dd=document.getElementById('cgd-'+uid); if(dd){ try{ dd.scrollIntoView({behavior:'auto',block:'center'}); }catch(e){} } update(); window.__slDeep=false; },240); } }
         if(tries++<50) setTimeout(att,200);
       })(); }
       return;
