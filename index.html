@@ -1716,13 +1716,13 @@ class Component extends DCLogic {
     else { this.renderLens(this._dossiers[id]); }
 
     var _seoTitles = {
-      full: 'Md Shafaat Ali Choyon — Growth, Marketing & Public Health Strategist',
-      growth: 'Md Shafaat Ali Choyon — Growth & Marketing Strategist | Healthcare, Fintech, Consumer',
-      healthcomm: 'Md Shafaat Ali Choyon — Health Communication & Behavior-Change Strategist (MPH, CHES®)',
-      healthtech: 'Md Shafaat Ali Choyon — Health-Tech & Digital Health Product Strategist',
-      pophealth: 'Md Shafaat Ali Choyon — Population & Public Health Strategist (MPH, CHES®)'
+      full: 'Shafaat Ali Choyon — Growth, Marketing & Public Health Strategist',
+      growth: 'Shafaat Ali Choyon — Growth & Marketing Strategist | Healthcare, Fintech, Consumer',
+      healthcomm: 'Shafaat Ali Choyon — Health Communication & Behavior-Change Strategist (MPH, CHES®)',
+      healthtech: 'Shafaat Ali Choyon — Health-Tech & Digital Health Product Strategist',
+      pophealth: 'Shafaat Ali Choyon — Population & Public Health Strategist (MPH, CHES®)'
     };
-    document.title = _seoTitles[id] || ('Md Shafaat Ali Choyon — '+cfg.short.replace(/&amp;/g,'&'));
+    document.title = _seoTitles[id] || ('Shafaat Ali Choyon — '+cfg.short.replace(/&amp;/g,'&'));
     if(!opts.noUrl){ try{ history.replaceState(null,'', id==='full'?location.pathname:('?view='+id)); }catch(e){} }
     try{ localStorage.setItem('shafaat_lens', id); }catch(e){}
     this.wireDynamic();
@@ -1742,7 +1742,7 @@ class Component extends DCLogic {
     if(!t){ try{ t=(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }catch(e){ t='light'; } }
     this.setTheme(t);
   }
-  showLanding(){ const l=document.getElementById('landing'); if(l) l.style.display='flex'; document.body.style.overflow='hidden'; this._userPicked=false; try{ localStorage.removeItem('shafaat_lens'); }catch(e){} try{ history.replaceState(null,'', location.pathname); }catch(e){} document.title='Md Shafaat Ali Choyon — Growth, Marketing & Public Health Strategist'; }
+  showLanding(){ const l=document.getElementById('landing'); if(l) l.style.display='flex'; document.body.style.overflow='hidden'; this._userPicked=false; try{ localStorage.removeItem('shafaat_lens'); }catch(e){} try{ history.replaceState(null,'', location.pathname); }catch(e){} document.title='Shafaat Ali Choyon — Growth, Marketing & Public Health Strategist'; }
   hideLanding(){ const l=document.getElementById('landing'); if(l) l.style.display='none'; document.body.style.overflow=''; }
   initRouting(){
     let v=null;
