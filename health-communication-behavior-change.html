@@ -100,6 +100,12 @@
   .bio b{color:var(--ivory);font-weight:500;}
   footer.foot{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);}
   footer.foot a{font-weight:500;}
+  figure.essay-fig{margin:30px 0;}
+  figure.essay-fig img{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line);background:#fff;cursor:zoom-in;}
+  figure.essay-fig figcaption{font-size:12.5px;color:var(--faint);margin-top:9px;text-align:center;}
+  .lb{position:fixed;inset:0;background:rgba(6,9,13,.93);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out;padding:18px;}
+  .lb.open{display:flex;}
+  .lb img{max-width:96vw;max-height:92vh;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.5);}
 </style>
 </head>
 <body>
@@ -121,6 +127,11 @@
     <p class="lede">For most of my career, the hardest problem in health has not been the medicine. It has been getting people to act on it. A leaflet is not a decision. A billboard is not a habit. The distance between <b>knowing</b> something and <b>doing</b> something is where public health is won or lost — and closing it is a craft, not a slogan.</p>
 
     <p>Over sixteen years I have designed communication for very different audiences: nationwide consumer campaigns, a healthcare startup reaching people who had never seen a doctor, and university students in Michigan navigating stress and risk. The tools differ every time. The underlying principles rarely do. Here are the ones I keep coming back to.</p>
+
+    <figure class="essay-fig">
+      <img src="/assets/cases/health-communication.jpg" alt="Infographic — Health communication that changes behavior: the five principles (segment first, reduce friction, drop the shame, measure on purpose, be relentlessly clear)" loading="lazy" id="hcfig">
+      <figcaption>The five principles at a glance — click to enlarge.</figcaption>
+    </figure>
 
     <h2>Meet people on the channels they actually use</h2>
     <p>Most campaigns broadcast where it is convenient for the sender, not where the audience is listening. That is backwards. When I designed a year-long <a href="/?view=healthcomm">campus harm-reduction campaign</a> around alcohol and cannabis, the first job was not the message — it was the map. Who are we actually talking to, what shapes their choices, and where do they already spend attention?</p>
@@ -161,5 +172,16 @@
   </footer>
 
 </div>
+
+<div class="lb" id="lb"><img src="" alt=""></div>
+<script>
+(function(){
+  var img=document.getElementById('hcfig'), lb=document.getElementById('lb'), lbimg=lb.querySelector('img');
+  if(!img) return;
+  img.addEventListener('click',function(){ lbimg.src=img.currentSrc||img.src; lbimg.alt=img.alt; lb.classList.add('open'); });
+  lb.addEventListener('click',function(){ lb.classList.remove('open'); lbimg.src=''; });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ lb.classList.remove('open'); lbimg.src=''; } });
+})();
+</script>
 </body>
 </html>
