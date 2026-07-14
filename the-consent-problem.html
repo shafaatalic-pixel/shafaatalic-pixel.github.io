@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The consent problem — health AI's real bottleneck isn't accuracy</title>
+<meta name="description" content="Every debate about health AI fixates on accuracy. The thing that actually stalls it in the real world is trust by design — consent, privacy, and provenance — the layer nobody demos." />
+<link rel="canonical" href="https://shafaatalichoyon.com/the-consent-problem.html" />
+<meta name="author" content="Md Shafaat Ali Choyon" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<meta name="keywords" content="health AI, consent, privacy, data governance, trust by design, provenance, HIPAA, AI in production, dual-market" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0B0F14" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Md Shafaat Ali Choyon" />
+<meta property="og:title" content="The consent problem — health AI's real bottleneck isn't accuracy" />
+<meta property="og:description" content="Every debate about health AI fixates on accuracy. The thing that actually stalls it in the real world is trust by design — consent, privacy, and provenance — the layer nobody demos." />
+<meta property="og:url" content="https://shafaatalichoyon.com/the-consent-problem.html" />
+<meta property="og:image" content="https://shafaatalichoyon.com/assets/og/the-consent-problem.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="article:published_time" content="2026-08-06" />
+<meta property="article:author" content="Md Shafaat Ali Choyon" />
+<meta property="article:section" content="Artificial Intelligence" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="The consent problem — health AI's real bottleneck isn't accuracy" />
+<meta name="twitter:description" content="Every debate about health AI fixates on accuracy. The thing that actually stalls it in the real world is trust by design — consent, privacy, and provenance — the layer nobody demos." />
+<meta name="twitter:image" content="https://shafaatalichoyon.com/assets/og/the-consent-problem.png" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "The consent problem — health AI's real bottleneck isn't accuracy",
+      "description": "Every debate about health AI fixates on accuracy. The thing that actually stalls it in the real world is trust by design — consent, privacy, and provenance — the layer nobody demos.",
+      "datePublished": "2026-08-06",
+      "dateModified": "2026-08-06",
+      "inLanguage": "en",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://shafaatalichoyon.com/the-consent-problem.html" },
+      "image": "https://shafaatalichoyon.com/assets/og/the-consent-problem.png",
+      "author": { "@type": "Person", "name": "Md Shafaat Ali Choyon", "url": "https://shafaatalichoyon.com/", "jobTitle": "Growth, Marketing & Public Health Strategist", "hasCredential": ["MPH","CHES®","MBA","MCIM"] },
+      "publisher": { "@type": "Person", "name": "Md Shafaat Ali Choyon", "url": "https://shafaatalichoyon.com/" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://shafaatalichoyon.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Essays", "item": "https://shafaatalichoyon.com/essays.html" },
+        { "@type": "ListItem", "position": 3, "name": "The consent problem — health AI's real bottleneck isn't accuracy", "item": "https://shafaatalichoyon.com/the-consent-problem.html" }
+      ]
+    }
+  ]
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{--bg:#0B0F14;--panel:#11161D;--tile:#06090D;--ivory:#F3EFE7;--body:#C7CDD6;--muted:#9AA3AE;--faint:#7f8894;--teal:#33C4C4;--amber:#F4A24C;--line:rgba(255,255,255,.09);}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--body);font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.66;}
+  a{color:var(--teal);text-decoration:none;} a:hover{text-decoration:underline;}
+  .wrap{max-width:760px;margin:0 auto;padding:34px 22px 80px;}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-bottom:24px;border-bottom:1px solid var(--line);margin-bottom:30px;flex-wrap:wrap;}
+  .brand{display:inline-flex;align-items:center;gap:10px;font-family:'Manrope';font-weight:800;font-size:19px;color:var(--ivory);}
+  .brand span.dot{color:var(--teal);}
+  .navlinks{display:flex;gap:9px;flex-wrap:wrap;}
+  .back{font-family:'Manrope';font-weight:700;font-size:13.5px;color:var(--ivory);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px 15px;}
+  .back:hover{border-color:var(--teal);text-decoration:none;}
+  .eyebrow{font-family:'Inter';font-size:11px;letter-spacing:.16em;color:var(--faint);text-transform:uppercase;}
+  h1{font-family:'Manrope';font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.1;letter-spacing:-.02em;color:var(--ivory);margin:12px 0 0;max-width:20ch;}
+  .byline{font-size:13px;color:var(--faint);margin:18px 0 0;letter-spacing:.01em;}
+  .byline b{color:var(--body);font-weight:500;}
+  .lede{font-size:17px;color:var(--body);margin:26px 0 6px;max-width:66ch;}
+  .lede b{color:var(--ivory);font-weight:500;}
+  article h2{font-family:'Manrope';font-weight:700;font-size:clamp(19px,2.6vw,24px);line-height:1.24;letter-spacing:-.01em;color:var(--ivory);margin:40px 0 10px;}
+  article p{font-size:15.5px;color:var(--body);margin:0 0 15px;max-width:68ch;}
+  article p b{color:var(--ivory);font-weight:500;}
+  .pull{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:10px;padding:16px 20px;font-size:16px;color:var(--ivory);margin:24px 0;max-width:66ch;}
+  .principles{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px 24px 8px;margin:30px 0 8px;}
+  .principles li{margin:14px 0;font-size:15px;max-width:64ch;}
+  .principles b{color:var(--ivory);font-weight:600;}
+  .bio{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);max-width:68ch;}
+  .bio b{color:var(--ivory);font-weight:500;}
+  footer.foot{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);}
+  footer.foot a{font-weight:500;}
+  figure.essay-fig{margin:30px 0;}
+  figure.essay-fig img{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line);background:#0B0F14;cursor:zoom-in;}
+  figure.essay-fig figcaption{font-size:12.5px;color:var(--faint);margin-top:9px;text-align:center;}
+  .lb{position:fixed;inset:0;background:rgba(6,9,13,.93);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out;padding:18px;}
+  .lb.open{display:flex;} .lb img{max-width:96vw;max-height:92vh;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+</style>
+<script defer src="/assets/analytics.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a class="brand" href="/">Shafaat Ali Choyon<span class="dot">.</span></a>
+    <div class="navlinks">
+      <a class="back" href="/">← Portfolio</a>
+      <a class="back" href="/essays.html">Essays</a>
+    </div>
+  </header>
+
+  <p class="eyebrow">Essay · Artificial Intelligence</p>
+  <h1>The consent problem — health AI's real bottleneck isn't accuracy</h1>
+  <p class="byline">By <b>Md Shafaat Ali Choyon</b> · builds &amp; runs AI in production · Growth &amp; health strategist · 6 min read</p>
+
+  <article>
+    <p class="lede">Every debate about health AI fixates on accuracy — is the model right often enough to be safe? It's the wrong obsession. The thing that actually stalls health AI in the real world isn't usually a wrong answer. It's an unanswered question: does the person know, and agree to, what's happening with their data? Accuracy is necessary. It has never been sufficient.</p>
+
+      <figure class="essay-fig">
+        <img src="/assets/og/the-consent-problem.png" alt="The consent problem — health AI's bottleneck isn't accuracy, it's consent, privacy and provenance; trust by design." loading="lazy" id="ogfig">
+        <figcaption>The real gate, at a glance — click to enlarge.</figcaption>
+      </figure>
+
+    <h2>Accuracy gets you a demo; consent gets you deployed</h2>
+
+    <p>A model can be brilliant and still be dead on arrival if patients, clinicians, or regulators don't trust what it does with information. The gate isn't "is it correct" — it's "who saw this, why, and with whose permission." That's a governance and design problem, not a modeling one, and it's exactly the part teams skip because it doesn't produce an impressive benchmark.</p>
+
+    <h2>Consent and provenance are the product, not the paperwork</h2>
+
+    <p>Real consent isn't a checkbox buried in an onboarding flow; it's a design commitment — the system is legible about what it collects, transparent about how it's used, and able to show where a given answer came from. I build AI in production with verification engineered in for exactly this reason: my systems ran <b>155 sessions with zero fabricated facts</b> by design, because in anything touching health, an untraceable answer is a liability whether or not it's correct.</p>
+
+    <div class="pull">Health AI's bottleneck isn't accuracy. It's consent, privacy, and provenance — trust, by design.</div>
+
+    <h2>I've handled trust at scale with sensitive data</h2>
+
+    <p>This is my lane. At SureCash we moved a government stipend to roughly <b>10 million people</b> — deeply sensitive financial data at national scale, where a single breach of trust would have collapsed adoption. You learn quickly that people don't hand over their money, or their health, to a system that feels opaque, no matter how clever it is. Trust is engineered up front or it's absent.</p>
+
+    <h2>The dual-market shape</h2>
+
+    <p>In the US, the risk is *consent theater* — heavy formal frameworks (HIPAA and the rest) that produce compliance without actually earning trust. In Bangladesh, formal frameworks are thinner but trust is intensely relational, so a system that mishandles data loses adoption instantly and by word of mouth. Different failure modes, same rule: design for real consent and provenance, or the smartest health AI in the room never gets used.</p>
+
+    <h2>The short version</h2>
+
+    <ul class="principles">
+      <li>Health AI stalls on consent and governance, not on accuracy — accuracy is necessary, not sufficient.</li>
+      <li>Real consent is a design commitment: legible collection, transparent use, traceable answers.</li>
+      <li>I engineer trust in: verification by design (0 fabricated), and sensitive data at scale (SureCash, ~10M).</li>
+      <li>US risk is consent theater; BD risk is relational trust lost instantly — both demand trust by design.</li>
+    </ul>
+
+    <p><b>Would your users still use your AI if they fully understood what it does with their data — and if not, is that an accuracy problem or a consent one?</b></p>
+
+    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+  </article>
+
+  <footer class="foot">
+    <a href="/">← Back to shafaatalichoyon.com</a> · <a href="/essays.html">All essays</a>
+  </footer>
+
+</div>
+<div class="lb" id="lb"><img src="" alt=""></div>
+<script>
+(function(){
+  var img=document.getElementById('ogfig'), lb=document.getElementById('lb'), lbimg=lb.querySelector('img');
+  if(!img) return;
+  img.addEventListener('click',function(){ lbimg.src=img.currentSrc||img.src; lbimg.alt=img.alt; lb.classList.add('open'); });
+  lb.addEventListener('click',function(){ lb.classList.remove('open'); lbimg.src=''; });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ lb.classList.remove('open'); lbimg.src=''; } });
+})();
+</script>
+</body>
+</html>
