@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://shafaatalichoyon.com/</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://shafaatalichoyon.com/writing.html</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://shafaatalichoyon.com/essays.html</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -31,8 +31,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://shafaatalichoyon.com/brand-vs-performance.html</loc>
-    <lastmod>2026-07-20</lastmod>
+    <loc>https://shafaatalichoyon.com/authenticity-dividend.html</loc>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -121,8 +121,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://shafaatalichoyon.com/retention-is-the-real-growth.html</loc>
-    <lastmod>2026-07-28</lastmod>
+    <loc>https://shafaatalichoyon.com/measure-what-you-avoid.html</loc>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -283,8 +283,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://shafaatalichoyon.com/measure-what-you-avoid.html</loc>
-    <lastmod>2026-09-07</lastmod>
+    <loc>https://shafaatalichoyon.com/retention-is-the-real-growth.html</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -331,8 +331,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://shafaatalichoyon.com/authenticity-dividend.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <loc>https://shafaatalichoyon.com/brand-vs-performance.html</loc>
+    <lastmod>2026-07-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
