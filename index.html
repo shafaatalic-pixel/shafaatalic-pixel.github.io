@@ -1754,7 +1754,7 @@ class Component extends DCLogic {
     else { this.renderLens(this._dossiers[id]); }
 
     var _seoTitles = {
-      full: 'Md Shafaat Ali Choyon — Growth, Marketing & Public Health Strategist',
+      full: 'Shafaat Ali Choyon — Growth, Marketing & Health Strategist',
       growth: 'Md Shafaat Ali Choyon — Growth & Marketing Strategist | Healthcare, Fintech, Consumer',
       healthcomm: 'Md Shafaat Ali Choyon — Health Communication & Behavior-Change Strategist (MPH, CHES®)',
       healthtech: 'Md Shafaat Ali Choyon — Health-Tech & Digital Health Product Strategist',
@@ -1780,7 +1780,7 @@ class Component extends DCLogic {
     if(!t){ try{ t=(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }catch(e){ t='light'; } }
     this.setTheme(t);
   }
-  showLanding(){ const l=document.getElementById('landing'); if(l) l.style.display='flex'; document.body.style.overflow='hidden'; this._userPicked=false; try{ localStorage.removeItem('shafaat_lens'); }catch(e){} try{ history.replaceState(null,'', location.pathname); }catch(e){} document.title='Md Shafaat Ali Choyon — Growth, Marketing & Public Health Strategist'; }
+  showLanding(){ const l=document.getElementById('landing'); if(l) l.style.display='flex'; document.body.style.overflow='hidden'; this._userPicked=false; try{ localStorage.removeItem('shafaat_lens'); }catch(e){} try{ history.replaceState(null,'', location.pathname); }catch(e){} document.title='Shafaat Ali Choyon — Growth, Marketing & Health Strategist'; }
   hideLanding(){ const l=document.getElementById('landing'); if(l) l.style.display='none'; document.body.style.overflow=''; }
   initRouting(){
     let v=null;
