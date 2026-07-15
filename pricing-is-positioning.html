@@ -104,6 +104,7 @@
     <div class="navlinks">
       <a class="back" href="/">← Portfolio</a>
       <a class="back" href="/essays.html">Essays</a>
+      <button class="back" type="button" id="copylink" style="background:transparent;cursor:pointer;font:inherit;">Copy link</button>
     </div>
   </header>
 
@@ -162,5 +163,6 @@
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ lb.classList.remove('open'); lbimg.src=''; } });
 })();
 </script>
+<script>(function(){var b=document.getElementById('copylink');if(!b)return;function fb(t){try{var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}catch(e){}}b.addEventListener('click',function(){var u=location.href.split('#')[0];function d(){var o=b.textContent;b.textContent='Copied!';setTimeout(function(){b.textContent=o;},1400);}try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(d,function(){fb(u);d();});return;}}catch(e){}fb(u);d();});})();</script>
 </body>
 </html>

@@ -775,7 +775,35 @@
     <div style="max-width:1080px;margin:0 auto;">
       <div data-reveal style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);">Thought leadership</div>
       <div data-reveal style="width:40px;height:3px;background:var(--accent);border-radius:2px;margin-top:12px;"></div>
-      <div data-reveal style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px;margin:18px 0 40px;">
+
+      <!-- ESSAY SHOWCASE — latest essay per theme (dynamic via essays.json; GA most-viewed can re-sort later) -->
+      <style>
+      #essay-showcase{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:20px 0 4px;}
+      @media(max-width:1000px){#essay-showcase{grid-template-columns:repeat(2,1fr);}}
+      @media(max-width:560px){#essay-showcase{grid-template-columns:1fr;}}
+      .es-card{display:flex;flex-direction:column;background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:12px;overflow:hidden;box-shadow:var(--shadow-card);transition:transform .2s,border-color .2s,box-shadow .2s;}
+      .es-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 14px 32px rgba(0,0,0,.22);}
+      .es-card .es-link{text-decoration:none;color:inherit;display:flex;flex-direction:column;flex:1;}
+      .es-thumb{aspect-ratio:1200/630;background:#0B0F14;overflow:hidden;}
+      .es-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+      .es-body{padding:13px 15px 6px;display:flex;flex-direction:column;gap:7px;flex:1;}
+      .es-cat{font-family:var(--disp);font-weight:700;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-text);}
+      .es-title{font-family:var(--disp);font-weight:700;font-size:15px;line-height:1.24;letter-spacing:-.01em;color:var(--text-strong);margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+      .es-dek{font-family:var(--body);font-size:12px;line-height:1.5;color:var(--text-muted);margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+      .es-foot{margin-top:auto;padding:9px 15px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+      .es-date{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);}
+      .es-copy,.art-copy{font-family:var(--mono);font-size:10.5px;color:var(--accent-text);background:transparent;border:1px solid var(--border-hairline);border-radius:6px;padding:4px 9px;cursor:pointer;transition:border-color .15s;white-space:nowrap;}
+      .es-copy:hover,.art-copy:hover{border-color:var(--accent);}
+      </style>
+      <div data-reveal style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px;margin:20px 0 4px;">
+        <h2 style="font-family:var(--disp);font-weight:700;font-size:clamp(28px,4.4vw,48px);letter-spacing:-.02em;color:var(--text-strong);margin:0;">Essays.</h2>
+        <a href="essays.html" style="font-family:var(--mono);font-size:13px;color:var(--accent-text);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px;">Browse all 59 essays →</a>
+      </div>
+      <p data-reveal style="font-family:var(--body);font-size:clamp(14px,1.4vw,16px);line-height:1.6;color:var(--text-muted);max-width:62ch;margin:0 0 14px;">Original, in-depth pieces — the latest from each of my four lenses: AI, growth, public health and health-tech.</p>
+      <div id="essay-showcase" data-reveal><a href="essays.html" style="font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;">Loading latest essays…</a></div>
+      <div data-reveal style="border-top:1px solid var(--border-hairline);margin:36px 0 0;"></div>
+
+      <div data-reveal style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px;margin:22px 0 40px;">
         <h2 style="font-family:var(--disp);font-weight:700;font-size:clamp(28px,4.4vw,48px);letter-spacing:-.02em;color:var(--text-strong);margin:0;">Published writing.</h2>
         <a href="/writing.html" style="font-family:var(--mono);font-size:13px;color:var(--accent-text);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px;">14 articles · read summaries &amp; sources →</a>
       </div>
@@ -1652,20 +1680,20 @@ class Component extends DCLogic {
 
     // ARTICLES
     const articles = [
-      ["Running on Empty: America's Public Health Workforce Crisis","Eastern Echo / WellNest Watch","2026","policy"],
-      ["Mixed Messages, Real Costs: How Confusing Health Communication Is Making America Sicker and Poorer","Eastern Echo / WellNest Watch","2026","comm"],
-      ["Can We Use Private Healthcare to Improve Health Literacy","The Daily Star","2026","comm"],
-      ["Increasing Public Health Investment Must Be a Top Priority","The Daily Star","2026","policy"],
-      ["Health Policy Decisions Made Today Shape Michigan Tomorrow","Eastern Echo","2026","policy"],
-      ["When Illness Becomes a Bill: Why Medical Debt Is a Public Health Crisis","Eastern Echo","2025","policy"],
-      ["When We Ignore Public Health Prevention, We Pay the Price","Eastern Echo / WellNest Watch","2025","policy"],
-      ["We Need Public Health Reform for Steady Economic Growth","The Daily Star","2025","policy"],
-      ["Combating the Flood of Misinformation","Dhaka Tribune","2024","comm"],
-      ["Exploring Comprehensive Digital Transformation in Bangladesh's Healthcare Sector","ICE Business Times","2023","digital"],
-      ["Aiding Economy with Digital Health Services","The Financial Express","2021","digital"],
-      ["Impact of Digital Health Services in the Economy","The Financial Express","2021","digital"],
-      ["Businesses in the VUCA World","The Financial Express","2021","digital"],
-      ["Digital Transformation and Adaptation for Securing Businesses","Daily Observer","2021","digital"],
+      ["Running on Empty: America's Public Health Workforce Crisis","Eastern Echo / WellNest Watch","2026","policy","https://www.easternecho.com/article/2026/04/the-wellnest-watch-running-on-empty-america-s-public-health-workforce-crisis-and-what-it-will-cost-us-next-time"],
+      ["Mixed Messages, Real Costs: How Confusing Health Communication Is Making America Sicker and Poorer","Eastern Echo / WellNest Watch","2026","comm","https://www.easternecho.com/article/2026/03/the-wellnest-watch-mixed-messages-real-costs-how-confusing-health-communication-is-making-america-sicker-and-poorer"],
+      ["Can We Use Private Healthcare to Improve Health Literacy","The Daily Star","2026","comm","https://www.thedailystar.net/opinion/views/news/can-we-use-private-healthcare-improve-health-literacy-4126746"],
+      ["Increasing Public Health Investment Must Be a Top Priority","The Daily Star","2026","policy","https://www.thedailystar.net/opinion/views/news/increasing-public-health-investment-must-be-top-priority-4109586"],
+      ["Health Policy Decisions Made Today Shape Michigan Tomorrow","Eastern Echo","2026","policy","https://www.easternecho.com/article/2026/02/health-policy-decisions-made-today-shape-michigan-tomorrow"],
+      ["When Illness Becomes a Bill: Why Medical Debt Is a Public Health Crisis","Eastern Echo","2025","policy","https://www.easternecho.com/article/2025/12/when-illness-becomes-a-bill-why-medical-debt-is-a-public-health-crisis"],
+      ["When We Ignore Public Health Prevention, We Pay the Price","Eastern Echo / WellNest Watch","2025","policy","https://www.easternecho.com/article/2025/11/the-wellnest-watch-when-we-ignore-public-health-prevention-we-pay-the-price"],
+      ["We Need Public Health Reform for Steady Economic Growth","The Daily Star","2025","policy","https://www.thedailystar.net/opinion/views/news/we-need-public-health-reform-steady-economic-growth-3816886"],
+      ["Combating the Flood of Misinformation","Dhaka Tribune","2024","comm","https://www.dhakatribune.com/opinion/op-ed/364000/combating-the-flood-of-misinformation"],
+      ["Exploring Comprehensive Digital Transformation in Bangladesh's Healthcare Sector","ICE Business Times","2023","digital","https://ibtbd.net/healthtech-horizons/"],
+      ["Aiding Economy with Digital Health Services","The Financial Express","2021","digital","https://old.thefinancialexpress.com.bd/views/aiding-economy-with-digital-health-services-1614361817"],
+      ["Impact of Digital Health Services in the Economy","The Financial Express","2021","digital","https://thefinancialexpress.com.bd/views/opinions/impact-of-digital-health-services-in-the-economy-1614141812"],
+      ["Businesses in the VUCA World","The Financial Express","2021","digital","https://thefinancialexpress.com.bd/views/analysis/businesses-in-the-vuca-world-1619200860"],
+      ["Digital Transformation and Adaptation for Securing Businesses","Daily Observer","2021","digital","https://www.observerbd.com/news.php?id=299498"],
     ];
     const artGroups = [['Public Health & Policy','policy'],['Health Communication','comm'],['Digital Health & Economy','digital']];
     const artList = root.querySelector('#article-list');
@@ -1673,10 +1701,11 @@ class Component extends DCLogic {
       const items = articles.filter(a=>a[3]===gk);
       const head = `<div data-reveal style="font-family:var(--disp);font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-text);margin:${gi===0?'0':'30px'} 0 2px;">${gl} <span style="color:var(--text-faint);font-weight:500;letter-spacing:0;">· ${items.length}</span></div>`;
       return head + items.map(a=>{ _an++; return `
-      <div data-reveal style="display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;padding:16px 8px;border-top:1px solid var(--border-hairline);" data-article>
+      <div data-reveal style="display:grid;grid-template-columns:auto 1fr auto auto;gap:14px;align-items:center;padding:16px 8px;border-top:1px solid var(--border-hairline);" data-article>
         <span style="font-family:var(--mono);font-size:12px;color:var(--text-faint);">${String(_an).padStart(2,'0')}</span>
-        <span style="font-family:var(--disp);font-weight:600;font-size:clamp(16px,1.8vw,21px);letter-spacing:-.01em;line-height:1.25;color:var(--text-strong);">${esc(a[0])}</span>
+        <a href="${esc(a[4])}" target="_blank" rel="noopener" style="font-family:var(--disp);font-weight:600;font-size:clamp(16px,1.8vw,21px);letter-spacing:-.01em;line-height:1.25;color:var(--text-strong);text-decoration:none;">${esc(a[0])}</a>
         <span style="text-align:right;font-family:var(--body);font-size:12.5px;color:var(--text-muted);white-space:nowrap;"><span style="color:var(--accent-text);font-weight:500;">${esc(a[1])}</span> · ${esc(a[2])}</span>
+        <button class="art-copy" type="button" data-copy="${esc(a[4])}" title="Copy article link" aria-label="Copy article link">Copy</button>
       </div>`; }).join('');
     }).join('') + `<div style="border-top:1px solid var(--border-hairline);"></div>`; }
 
@@ -2427,6 +2456,32 @@ class Component extends DCLogic {
     if(n++<80) setTimeout(wait,150);
   })();
   setInterval(update,1200); /* keep the overlay in sync across SPA re-renders (read-only) */
+})();</script>
+<script>/* ===== Essay showcase + per-item copy links ===== */
+(function(){
+  var ORDER=['ai','growth','public-health','healthtech'], DATA=null;
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function fmt(d){try{var p=(d||'').split('-'),M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return M[(+p[1])-1]+' '+(+p[2])+', '+p[0];}catch(e){return d||'';}}
+  function baseU(){var o=location.origin;return (o&&o.indexOf('http')===0)?o:'https://shafaatalichoyon.com';}
+  function fb(t){try{var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}catch(e){}}
+  /* shared per-item copy handler for essay cards (.es-copy) and article rows (.art-copy) */
+  document.addEventListener('click',function(ev){ var b=ev.target&&ev.target.closest&&ev.target.closest('.es-copy,.art-copy'); if(!b) return; ev.preventDefault(); ev.stopPropagation(); var t=b.getAttribute('data-copy'); if(!t) return;
+    function done(){var o=b.textContent;b.textContent='Copied!';setTimeout(function(){b.textContent=o;},1400);}
+    try{ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(done,function(){fb(t);done();}); if(window.track)window.track('item_copy',{url:t}); return; } }catch(e){}
+    fb(t); done(); if(window.track)window.track('item_copy',{url:t});
+  },true);
+  function build(list){
+    var byLens={}; list.forEach(function(e){ if(!byLens[e.lens]) byLens[e.lens]=e; }); /* list is newest-first → first per lens = latest. [GA hook: swap for most-viewed per lens] */
+    return ORDER.map(function(lens){ var e=byLens[lens]; if(!e) return '';
+      return '<div class="es-card"><a class="es-link" href="'+esc(e.url)+'">'
+        +'<div class="es-thumb"><img src="'+esc(e.og)+'" alt="'+esc(e.title)+'" loading="lazy"></div>'
+        +'<div class="es-body"><span class="es-cat">'+esc(e.lensLabel)+'</span><h4 class="es-title">'+esc(e.title)+'</h4><p class="es-dek">'+esc(e.dek)+'</p></div></a>'
+        +'<div class="es-foot"><span class="es-date">'+esc(fmt(e.date))+'</span><button class="es-copy" type="button" data-copy="'+esc(baseU()+e.url)+'" aria-label="Copy essay link">Copy link</button></div></div>';
+    }).join('');
+  }
+  function paint(){ var host=document.getElementById('essay-showcase'); if(!host||!DATA) return; if(host.querySelector('.es-card')) return; host.innerHTML=build(DATA); }
+  fetch('essays.json',{cache:'no-cache'}).then(function(r){return r.json();}).then(function(list){ DATA=list; paint(); setInterval(paint,1500); })
+    .catch(function(){ var host=document.getElementById('essay-showcase'); if(host) host.innerHTML='<a href="essays.html" style="font-family:var(--mono);font-size:13px;color:var(--accent-text);text-decoration:none;">Browse all essays →</a>'; });
 })();</script>
 </body>
 </html>
