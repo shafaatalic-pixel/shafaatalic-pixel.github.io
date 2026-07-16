@@ -1832,7 +1832,7 @@ class Component extends DCLogic {
     try{ v=new URLSearchParams(location.search).get('view'); }catch(e){}
     if(v && this._lenses[v]){ this._userPicked=true; this.applyLens(v,{noUrl:true}); this.hideLanding(); return; }
     /* shared SECTION link like /#writing (no ?view): open the full portfolio and scroll there — never behind the landing chooser */
-    try{ var _hsec=(location.hash||'').replace(/^#/,''); if(_hsec && _hsec!=='landing' && document.getElementById(_hsec)){ this._userPicked=true; this.applyLens('full',{noUrl:true}); this.hideLanding(); (function(id){ var _t=0; (function s(){ var e=document.getElementById(id); if(e){ var y=e.getBoundingClientRect().top+window.pageYOffset-70; try{window.scrollTo({top:y<0?0:y});}catch(x){} } if(_t++<12) setTimeout(s,300); })(); })(_hsec); return; } }catch(e){}
+    try{ var _hsec=(location.hash||'').replace(/^#/,''); var _known={proof:1,approach:1,cases:1,experience:1,voices:1,writing:1,faq:1,press:1,'operating-logic':1,contact:1}; if(_hsec && _known[_hsec]){ this._userPicked=true; this.applyLens('full',{noUrl:true}); this.hideLanding(); (function(id){ var _t=0,_hit=0; (function s(){ var e=document.getElementById(id); if(e){ var y=e.getBoundingClientRect().top+window.pageYOffset-70; try{window.scrollTo({top:y<0?0:y});}catch(x){} if(_hit++<8) setTimeout(s,350); } else if(_t++<25){ setTimeout(s,180); } })(); })(_hsec); return; } }catch(e){}
     // neutral landing default
     this.applyLens('full',{noUrl:true});
     this.showLanding();
