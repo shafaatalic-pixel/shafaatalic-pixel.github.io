@@ -2380,6 +2380,10 @@ class Component extends DCLogic {
   /* a shared ?case= link with no lens selected → jump straight to the full portfolio at parse time,
      so the case is visible instead of opening behind the landing overlay */
   if(wantCase){ try{ var _u=new URL(location.href); if(!_u.searchParams.get('view')){ _u.searchParams.set('view','full'); _u.searchParams.set('case',wantCase); location.replace(_u.pathname+_u.search); return; } }catch(e){} }
+  /* shared SECTION link (#writing, #faq, …): force full view so it doesn't open behind the landing chooser, then scroll to it */
+  var SEC_HASH={proof:1,approach:1,cases:1,experience:1,voices:1,writing:1,faq:1,press:1,'operating-logic':1,contact:1};
+  var wantSec=null; try{ var _sh=(location.hash||'').replace(/^#/,''); if(SEC_HASH[_sh]) wantSec=_sh; }catch(e){}
+  if(wantSec){ try{ var _us=new URL(location.href); if(!_us.searchParams.get('view')){ _us.searchParams.set('view','full'); location.replace(_us.pathname+_us.search+'#'+wantSec); return; } }catch(e){} }
 
   function map(){ var s2u={},u2s={};
     document.querySelectorAll('[data-cf-open]').forEach(function(b){ var uid=b.getAttribute('data-cf-open'); if(!uid) return;
@@ -2393,8 +2397,8 @@ class Component extends DCLogic {
   }
   function fb(t){ try{ var ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }catch(e){} }
 
-  var SECS=['proof','approach','cases','experience','voices','writing','press','operating-logic'];
-  var SECLABEL={proof:'Proof',approach:'Approach',cases:'Case studies',experience:'Experience',voices:'Voices',writing:'Writing',press:'Press','operating-logic':'Operating logic'};
+  var SECS=['proof','approach','cases','experience','voices','writing','faq','press','operating-logic'];
+  var SECLABEL={proof:'Proof',approach:'Approach',cases:'Case studies',experience:'Experience',voices:'Voices',writing:'Writing',faq:'FAQ',press:'Press','operating-logic':'Operating logic'};
   var btn, state={type:null,key:null};
   /* the button is a direct child of <body>, OUTSIDE React's #site-root — safe from reconciliation */
   function ensureBtn(){ if(btn) return;
@@ -2403,7 +2407,7 @@ class Component extends DCLogic {
       +'font:600 13px/1 ui-monospace,Menlo,monospace;color:#F7F2E8;background:#11161D;border:1px solid #33C4C4;'
       +'border-radius:999px;padding:10px 14px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.35);opacity:.94;';
     btn.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation();
-      var url; if(state.type==='case') url=base()+'/case/'+state.key+'/'; else if(state.type==='section') url=base()+'/#'+state.key; else return;
+      var url; if(state.type==='case') url=base()+'/case/'+state.key+'/'; else if(state.type==='section') url=base()+'/?view=full#'+state.key; else return;
       copy(url,function(){ btn.textContent='Copied!'; setTimeout(render,1500); });
       if(window.track) window.track('share_copy',{type:state.type,key:state.key});
     });
@@ -2455,6 +2459,7 @@ class Component extends DCLogic {
     if(wantCase && n>8){ try{ var u=new URL(location.href); if(u.searchParams.get('view')!=='full'){ u.searchParams.set('view','full'); u.searchParams.set('case',wantCase); location.replace(u.pathname+u.search); return; } }catch(e){} }
     if(n++<80) setTimeout(wait,150);
   })();
+  if(wantSec){ (function(){ var _t=0; (function s(){ var el=document.getElementById(wantSec); if(el){ var y=el.getBoundingClientRect().top+window.pageYOffset-70; try{window.scrollTo({top:y<0?0:y,behavior:'instant'});}catch(e){window.scrollTo(0,y<0?0:y);} } if(_t++<12) setTimeout(s,300); })(); })(); }
   setInterval(update,1200); /* keep the overlay in sync across SPA re-renders (read-only) */
 })();</script>
 <script>/* ===== Essay showcase + per-item copy links ===== */
@@ -2471,8 +2476,12 @@ class Component extends DCLogic {
     fb(t); done(); if(window.track)window.track('item_copy',{url:t});
   },true);
   function build(list){
-    var byLens={}; list.forEach(function(e){ if(!byLens[e.lens]) byLens[e.lens]=e; }); /* list is newest-first → first per lens = latest. [GA hook: swap for most-viewed per lens] */
-    return ORDER.map(function(lens){ var e=byLens[lens]; if(!e) return '';
+    var today=new Date().toISOString().slice(0,10);
+    function pick(lens){ var inl=list.filter(function(x){return x.lens===lens;}); /* newest-first */
+      for(var i=0;i<inl.length;i++){ if(inl[i].date<=today) return inl[i]; } /* latest PUBLISHED (date<=today) — drips as the calendar advances */
+      return inl.length?inl[inl.length-1]:null; /* none live yet → soonest upcoming, so the card stays filled. [GA hook: rank published by pageviews] */
+    }
+    return ORDER.map(function(lens){ var e=pick(lens); if(!e) return '';
       return '<div class="es-card"><a class="es-link" href="'+esc(e.url)+'">'
         +'<div class="es-thumb"><img src="'+esc(e.og)+'" alt="'+esc(e.title)+'" loading="lazy"></div>'
         +'<div class="es-body"><span class="es-cat">'+esc(e.lensLabel)+'</span><h4 class="es-title">'+esc(e.title)+'</h4><p class="es-dek">'+esc(e.dek)+'</p></div></a>'

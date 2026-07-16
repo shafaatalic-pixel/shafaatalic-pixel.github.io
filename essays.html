@@ -151,6 +151,9 @@
   .ecard h3{font-family:'Manrope';font-weight:700;font-size:17.5px;line-height:1.22;letter-spacing:-.01em;color:var(--ivory);margin:2px 0 0;}
   .edek{font-size:13.5px;color:var(--muted);margin:0;flex:1;}
   .edate{font-size:12px;color:var(--faint);margin-top:4px;}
+  .ecard.upcoming{opacity:.66;}
+  .ecard.upcoming:hover{opacity:1;}
+  .esched{display:inline-block;font-family:'Inter';font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:#F4A24C;border:1px solid rgba(244,162,76,.45);border-radius:999px;padding:2px 7px;margin-right:8px;vertical-align:middle;}
   .empty{display:none;color:var(--muted);font-size:15px;padding:30px 0;}
   footer.foot{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);}
   footer.foot a{font-weight:500;}
@@ -799,6 +802,9 @@
       lens='all', q='';
   cards.sort(function(a,b){ return (b.dataset.date||'').localeCompare(a.dataset.date||''); })
        .forEach(function(c){ grid.appendChild(c); });
+  /* tag essays scheduled ahead (date in the future) — full library stays visible, upcoming ones flagged */
+  var TODAY=new Date().toISOString().slice(0,10);
+  cards.forEach(function(c){ if((c.dataset.date||'')>TODAY){ c.classList.add('upcoming'); var d=c.querySelector('.edate'); if(d && d.textContent.indexOf('Scheduled')<0){ d.innerHTML='<span class="esched">Scheduled</span>'+d.textContent; } } });
   function apply(){
     var shown=0;
     cards.forEach(function(c){
