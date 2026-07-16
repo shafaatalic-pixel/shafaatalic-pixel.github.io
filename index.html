@@ -1832,7 +1832,7 @@ class Component extends DCLogic {
     try{ v=new URLSearchParams(location.search).get('view'); }catch(e){}
     if(v && this._lenses[v]){ this._userPicked=true; this.applyLens(v,{noUrl:true}); this.hideLanding(); return; }
     /* shared SECTION link like /#writing (no ?view): open the full portfolio and scroll there — never behind the landing chooser */
-    try{ var _hsec=(location.hash||'').replace(/^#/,''); var _known={proof:1,approach:1,cases:1,experience:1,voices:1,writing:1,faq:1,press:1,'operating-logic':1,contact:1}; if(_hsec && _known[_hsec]){ this._userPicked=true; this.applyLens('full',{noUrl:true}); this.hideLanding(); (function(id){ var _t=0,_hit=0; (function s(){ var e=document.getElementById(id); if(e){ var y=e.getBoundingClientRect().top+window.pageYOffset-70; try{window.scrollTo({top:y<0?0:y});}catch(x){} if(_hit++<8) setTimeout(s,350); } else if(_t++<25){ setTimeout(s,180); } })(); })(_hsec); return; } }catch(e){}
+    try{ var _hsec=(location.hash||'').replace(/^#/,''); var _known={proof:1,approach:1,cases:1,experience:1,voices:1,writing:1,faq:1,press:1,'operating-logic':1,contact:1}; if(_hsec && _known[_hsec]){ this._userPicked=true; this.applyLens('full',{noUrl:true}); this.hideLanding(); (function(id){ var _t=0,_hit=0; (function s(){ if(window.__secScrolled) return; var e=document.getElementById(id); if(e){ var y=e.getBoundingClientRect().top+window.pageYOffset-70; try{window.scrollTo({top:y<0?0:y});}catch(x){} if(_hit++<4) setTimeout(s,350); } else if(_t++<25){ setTimeout(s,180); } })(); })(_hsec); return; } }catch(e){}
     // neutral landing default
     this.applyLens('full',{noUrl:true});
     this.showLanding();
@@ -2436,7 +2436,7 @@ class Component extends DCLogic {
   },true);
 
   var _userScrolled=false;
-  ['wheel','touchmove','keydown'].forEach(function(ev){ addEventListener(ev,function(){ _userScrolled=true; },{passive:true}); });
+  ['wheel','touchmove','keydown'].forEach(function(ev){ addEventListener(ev,function(){ _userScrolled=true; try{window.__secScrolled=true;}catch(e){} },{passive:true}); });
   function pinCase(dd){ if(!dd||_userScrolled) return; var _t=dd.getBoundingClientRect().top+window.pageYOffset-80; window.scrollTo({top:_t<0?0:_t,behavior:'instant'}); }
   function pinCaseSettle(dd){ if(!dd) return; pinCase(dd);
     [120,300,600,1000,1600,2400,3400].forEach(function(ms){ setTimeout(function(){ pinCase(dd); },ms); });
@@ -2461,7 +2461,7 @@ class Component extends DCLogic {
     if(wantCase && n>8){ try{ var u=new URL(location.href); if(u.searchParams.get('view')!=='full'){ u.searchParams.set('view','full'); u.searchParams.set('case',wantCase); location.replace(u.pathname+u.search); return; } }catch(e){} }
     if(n++<80) setTimeout(wait,150);
   })();
-  if(wantSec){ (function(){ var _t=0; (function s(){ var el=document.getElementById(wantSec); if(el){ var y=el.getBoundingClientRect().top+window.pageYOffset-70; try{window.scrollTo({top:y<0?0:y,behavior:'instant'});}catch(e){window.scrollTo(0,y<0?0:y);} } if(_t++<12) setTimeout(s,300); })(); })(); }
+  if(wantSec){ (function(){ var _t=0; (function s(){ if(_userScrolled||window.__secScrolled) return; var el=document.getElementById(wantSec); if(el){ var y=el.getBoundingClientRect().top+window.pageYOffset-70; try{window.scrollTo({top:y<0?0:y,behavior:'instant'});}catch(e){window.scrollTo(0,y<0?0:y);} } if(_t++<8) setTimeout(s,300); })(); })(); }
   setInterval(update,1200); /* keep the overlay in sync across SPA re-renders (read-only) */
 })();</script>
 <script>/* ===== Essay showcase + per-item copy links ===== */
@@ -2498,12 +2498,12 @@ class Component extends DCLogic {
 (function(){
   var K={proof:1,approach:1,cases:1,experience:1,voices:1,writing:1,faq:1,press:1,'operating-logic':1,contact:1};
   var h=(location.hash||'').replace(/^#/,''); if(!h || !K[h]) return;
+  ['wheel','touchmove','keydown'].forEach(function(ev){ addEventListener(ev,function(){ try{window.__secScrolled=true;}catch(e){} },{passive:true}); });
   var t=0;
   (function s(){
     var land=document.getElementById('landing');
     if(land && getComputedStyle(land).display!=='none'){ land.style.display='none'; document.body.style.overflow=''; }
-    var el=document.getElementById(h);
-    if(el){ var y=el.getBoundingClientRect().top+window.pageYOffset-70; try{window.scrollTo({top:y<0?0:y});}catch(e){} }
+    if(!window.__secScrolled){ var el=document.getElementById(h); if(el){ var y=el.getBoundingClientRect().top+window.pageYOffset-70; try{window.scrollTo({top:y<0?0:y});}catch(e){} } }
     if(t++<24) setTimeout(s,180);
   })();
 })();</script>
