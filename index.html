@@ -2369,11 +2369,11 @@ class Component extends DCLogic {
     var t=e.target; if(!t||!t.closest) return;
     var card=t.closest('.cg-card');
     if(card){ setTimeout(function(){ if(card.getAttribute('aria-expanded')==='true'){ var ti=((card.querySelector('.cg-title')||{}).textContent||'').trim(), co=((card.querySelector('.cg-ey')||{}).textContent||'').trim(); T('case_open',{case_title:ti.slice(0,90),company:co}); } },0); return; }
-    var fig=t.closest('.cg-fimg'); if(fig){ T('case_zoom',{case:(fig.getAttribute('data-cap')||'').slice(0,90)}); return; }
+    var fig=t.closest('.cg-fimg'); if(fig){ var _fd=fig.closest('.cg-detail'); var _fm=(window.__caseMeta&&_fd)?window.__caseMeta(_fd):{}; T('case_zoom',{case:(fig.getAttribute('data-cap')||'').slice(0,90), case_id:_fm.case_id||'', category:_fm.category||''}); return; }
     var cv=t.closest('#cv-download'); if(cv){ T('cv_download',{file:(cv.getAttribute('href')||'').split('/').pop()}); return; }
     var vid=t.closest('#introvid'); if(vid){ T('video_play',{video:'intro'}); return; }
     var art=t.closest('#article-list [data-article]'); if(art){ T('article_click',{title:(art.textContent||'').replace(/\s+/g,' ').trim().slice(0,90)}); return; }
-    var a=t.closest('a'); if(a){ var h=a.getAttribute('href')||''; if(/^mailto:/i.test(h)) T('contact_intent',{method:'email'}); else if(/calendly\.com/i.test(h)) T('contact_intent',{method:'book_call'}); else if(/^https?:/i.test(h) && a.closest('#writing')) T('article_click',{title:(a.textContent||'').trim().slice(0,90)}); }
+    var a=t.closest('a'); if(a){ var h=a.getAttribute('href')||''; if(/^mailto:/i.test(h)) T('contact_intent',{method:'email'}); else if(/calendly\.com/i.test(h)) T('contact_intent',{method:'book_call'}); else if(/^https?:/i.test(h) && a.closest('#writing')){ var _pub=''; try{ _pub=new URL(h,location.href).hostname.replace(/^www\./,''); }catch(_){ } T('article_click',{title:(a.textContent||'').trim().slice(0,90), publisher:_pub}); } }
   });
   /* lens switches (watch the nav lens label) */
   var lbl=document.getElementById('nav-lens-label');
@@ -2390,6 +2390,32 @@ class Component extends DCLogic {
     window.__reobserveSections = checkSecs;   /* run once on consent + after SPA settles */
     setTimeout(checkSecs, 1200); setTimeout(checkSecs, 3500);
   }catch(e){}
+})();</script>
+<script>/* ===== qualified read: >=45s active dwell + >=50% of the open case detail scrolled through -> read_case_study (once per case per load; reuses registered case_id/case_title/category dimensions) ===== */
+(function(){
+  window.__caseMeta = function(d){
+    if(!d) return {};
+    try{
+      var id=(d.id||'').replace(/^cgd-/,'');
+      var im=d.querySelector('img');
+      var cid=im?((im.getAttribute('src')||'').split('/').pop()||'').replace(/\.[a-z0-9]+$/i,''):'';
+      var card=document.querySelector('[data-cf-open="'+id+'"]'); card=card?card.closest('.cf-card'):null;
+      if(!card){ var cg=document.querySelector('[data-cg="'+id+'"]'); card=cg?(cg.closest('.cg-card')||cg):null; }
+      var t=card?card.querySelector('.cf-title,.cg-title'):null;
+      var c=card?card.querySelector('.cf-cat,.cg-ey'):null;
+      return {case_id:cid, case_title:((t?t.textContent:'')||'').trim().slice(0,90), category:((c?c.textContent:'')||'').trim().slice(0,40)};
+    }catch(e){ return {}; }
+  };
+  var cur=null, dwell=0, maxFrac=0, seen={};
+  setInterval(function(){
+    var d=document.querySelector('.cg-detail.open');
+    var id=d?d.id:null;
+    if(id!==cur){ cur=id; dwell=0; maxFrac=0; return; }
+    if(!d||!cur||seen[cur]) return;
+    if(document.visibilityState==='visible') dwell++;
+    try{ var r=d.getBoundingClientRect(); var vh=window.innerHeight||document.documentElement.clientHeight||0; var frac=r.height>0?Math.min(1,Math.max(0,(vh-r.top)/r.height)):0; if(frac>maxFrac) maxFrac=frac; }catch(e){}
+    if(dwell>=45 && maxFrac>=0.5){ seen[cur]=1; if(window.track) window.track('read_case_study', window.__caseMeta(d)); }
+  },1000);
 })();</script>
 <script>/* ===== Shareable links — React-safe: overlay only, never mutates #site-root ===== */
 (function(){
