@@ -2494,5 +2494,18 @@ class Component extends DCLogic {
   fetch('essays.json',{cache:'no-cache'}).then(function(r){return r.json();}).then(function(list){ DATA=list; paint(); setInterval(paint,1500); })
     .catch(function(){ var host=document.getElementById('essay-showcase'); if(host) host.innerHTML='<a href="essays.html" style="font-family:var(--mono);font-size:13px;color:var(--accent-text);text-decoration:none;">Browse all essays →</a>'; });
 })();</script>
+<script>/* ===== Shared section deep-link guard: a bare /#section link must open the section, not the landing chooser ===== */
+(function(){
+  var K={proof:1,approach:1,cases:1,experience:1,voices:1,writing:1,faq:1,press:1,'operating-logic':1,contact:1};
+  var h=(location.hash||'').replace(/^#/,''); if(!h || !K[h]) return;
+  var t=0;
+  (function s(){
+    var land=document.getElementById('landing');
+    if(land && getComputedStyle(land).display!=='none'){ land.style.display='none'; document.body.style.overflow=''; }
+    var el=document.getElementById(h);
+    if(el){ var y=el.getBoundingClientRect().top+window.pageYOffset-70; try{window.scrollTo({top:y<0?0:y});}catch(e){} }
+    if(t++<24) setTimeout(s,180);
+  })();
+})();</script>
 </body>
 </html>
