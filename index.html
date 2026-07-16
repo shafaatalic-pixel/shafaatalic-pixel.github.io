@@ -1262,11 +1262,19 @@
   </div>
 
   <!-- LANDING / LENS CHOOSER -->
+  <style>
+    @keyframes lensIn{from{opacity:0;}to{opacity:1;}}
+    .lens-card{opacity:0;animation:lensIn .45s ease forwards;}
+    .lens-card:hover{transform:translateY(-4px);border-color:var(--accent)!important;box-shadow:0 16px 34px rgba(0,0,0,.30);}
+    .lens-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+    @media(prefers-reduced-motion:reduce){.lens-card{opacity:1;animation:none;}.lens-card:hover{transform:none;}}
+  </style>
   <div id="landing" style="position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;background:var(--surface-base);padding:clamp(24px,5vw,64px);overflow-y:auto;">
     <div style="position:absolute;inset:0;background-image:linear-gradient(var(--obsidian-600) 1px,transparent 1px),linear-gradient(90deg,var(--obsidian-600) 1px,transparent 1px);background-size:64px 64px;opacity:.4;-webkit-mask-image:radial-gradient(circle at 50% 18%,#000,transparent 70%);mask-image:radial-gradient(circle at 50% 18%,#000,transparent 70%);"></div>
     <button id="landing-theme" type="button" aria-label="Toggle light/dark" style="position:absolute;top:22px;right:24px;width:40px;height:40px;border-radius:8px;border:1px solid var(--border-strong);background:transparent;color:var(--text-strong);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;z-index:2;"><i id="landing-icon" data-lucide="moon" style="width:18px;height:18px;"></i></button>
     <div style="position:relative;z-index:1;width:100%;max-width:1180px;">
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+        <img src="assets/headshot-hero.jpg" alt="Md Shafaat Ali Choyon" width="40" height="40" style="width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:50% 20%;border:1px solid var(--border-strong);flex:0 0 auto;filter:saturate(.9) contrast(1.02);" />
         <span style="font-family:var(--disp);font-weight:800;font-size:22px;letter-spacing:-.01em;color:var(--text-strong);">Md Shafaat Ali Choyon<span style="color:var(--accent-text);">.</span></span>
       </div>
       <h2 style="font-family:var(--disp);font-weight:700;font-size:clamp(30px,5vw,52px);line-height:1.04;letter-spacing:-.02em;color:var(--text-strong);margin:0 0 14px;max-width:20ch;">One career, seen four ways.</h2>
