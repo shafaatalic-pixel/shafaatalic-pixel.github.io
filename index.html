@@ -16,7 +16,7 @@
     gtag('js', new Date());
     gtag('config', 'G-RN7EPJQQPC', { anonymize_ip: true });
   };
-  window.track = function(name, params){ try{ if(!window.__gaOn) return; var key=name+'|'+JSON.stringify(params||{}); var now=Date.now(); window.__lastEv=window.__lastEv||{}; if(window.__lastEv[key] && (now-window.__lastEv[key])<800) return; window.__lastEv[key]=now; gtag('event', name, params||{}); }catch(e){} };
+  window.track = function(name, params){ try{ if(!window.__gaOn) return; params=params||{}; var key = (name==='case_open') ? 'case_open' : (name+'|'+JSON.stringify(params)); var win = (name==='case_open') ? 1200 : 800; var now=Date.now(); window.__lastEv=window.__lastEv||{}; if(window.__lastEv[key] && (now-window.__lastEv[key])<win) return; window.__lastEv[key]=now; gtag('event', name, params); }catch(e){} };
   try{ if(localStorage.getItem('analytics-consent')==='granted') window.loadGA(); }catch(e){}
 </script>
 
