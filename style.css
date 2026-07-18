@@ -1,3 +1,30 @@
+
+/* ---- Metric-matched fallbacks (CLS fix) -------------------------------
+   Before the webfonts arrive the browser paints in a local fallback. These
+   overrides scale that fallback so it occupies the SAME space as the real
+   font, so the swap no longer reflows the page. Measured against real page
+   copy, then calibrated against real layout: Inter needs 109.5% to stop pushing
+   section down (~518px of cumulative document growth).
+   ---------------------------------------------------------------------- */
+@font-face{
+  font-family:'Manrope Fallback';
+  src:local('Arial'),local('Helvetica Neue'),local('Roboto');
+  unicode-range:U+0000-218F,U+2200-FFFF;
+  size-adjust:101.17%; ascent-override:105.76%; descent-override:29.65%; line-gap-override:0%;
+}
+@font-face{
+  font-family:'Inter Fallback';
+  src:local('Arial'),local('Helvetica Neue'),local('Roboto');
+  unicode-range:U+0000-218F,U+2200-FFFF;
+  size-adjust:109.50%; ascent-override:91.75%; descent-override:22.70%; line-gap-override:0%;
+}
+@font-face{
+  font-family:'JetBrains Mono Fallback';
+  src:local('Courier New'),local('Menlo'),local('DejaVu Sans Mono');
+  unicode-range:U+0000-218F,U+2200-FFFF;
+  size-adjust:99.98%; ascent-override:102.02%; descent-override:30.00%; line-gap-override:0%;
+}
+
   :root{
     --obsidian-900:#06090D; --obsidian-800:#0B0F14; --obsidian-700:#11161D; --obsidian-600:#1A212B; --obsidian-500:#2A333F;
     --teal:#00A6A6; --teal-700:#007E7E; --teal-600:#00A6A6; --teal-400:#33C4C4; --teal-200:#9CE0E0; --teal-soft:rgba(0,166,166,.14);
@@ -14,7 +41,7 @@
     --nav-bg:rgba(11,15,20,.80);
     --shadow-card:0 2px 0 rgba(255,255,255,.02), 0 12px 32px rgba(0,0,0,.45);
     --shadow-lg:0 18px 48px rgba(0,0,0,.55);
-    --disp:'Manrope',sans-serif; --body:'Inter',sans-serif; --mono:'JetBrains Mono',monospace;
+    --disp:'Manrope','Manrope Fallback',sans-serif; --body:'Inter','Inter Fallback',sans-serif; --mono:'JetBrains Mono','JetBrains Mono Fallback',monospace;
   }
   :root[data-theme="light"]{
     --obsidian-600:#E7E1D3; --obsidian-500:#D9D2C0;
