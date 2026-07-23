@@ -51,6 +51,10 @@ His 16+ years move through three modes of value: winning **attention** (agency a
 
 Full list with links: https://shafaatalichoyon.com/#press
 
+## HSREP — Health System Resilience & Economic Protection (founder)
+
+Md Shafaat Ali Choyon is the founder of HSREP (https://hsraep.org), an independent policy-research and advocacy platform arguing that health protection is economic infrastructure, not a residual budget line. Season 1 was an eight-week, two-country (US and Bangladesh) campaign of nine published pieces that reached 57,274 people at $0 ad spend (+3,536% LinkedIn and +2,121% Facebook reach, cold-start), with a locked APA-7 analytics framework and four replicable findings on how health arguments travel across platforms and borders. HSREP is developing the Prevention Adoption Initiative — a proposed colorectal-cancer screening completion pilot for safety-net settings in Southeast Michigan, with FHIR/TEFCA-ready dashboards and human-in-the-loop, fairness-audited AI outreach. Platform: https://hsraep.org
+
 ## Essays (original, on-site)
 
 59 original essays — dual-market field notes (US & Bangladesh) on AI, public health, health-tech and growth. Full filterable index: https://shafaatalichoyon.com/essays.html
