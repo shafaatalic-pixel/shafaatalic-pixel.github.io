@@ -1,5 +1,5 @@
 /* Shared GA4 + consent for shafaatalichoyon.com standalone pages (essays, writing, research).
-   Mirrors the homepage: geo-gated consent — GA loads immediately outside the EU/UK,
+   Mirrors the homepage: geo-gated consent, GA loads immediately outside the EU/UK,
    and is gated behind a consent banner inside. Consent is remembered in the same
    localStorage key ('analytics-consent') the homepage uses, so a visitor's choice
    carries across every page. Measurement ID G-RN7EPJQQPC. */

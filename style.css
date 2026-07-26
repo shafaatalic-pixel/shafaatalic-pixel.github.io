@@ -74,7 +74,7 @@
   @media (max-height:1024px){ #landing{align-items:flex-start!important;} }
   @media (prefers-reduced-motion:reduce){ .lens-card,[data-marquee]{animation:none!important;} }
 
-/* ===== Case "receipts" — big 2-up rounded tiles ===== */
+/* ===== Case "receipts": big 2-up rounded tiles ===== */
 .cg-photos{padding:6px clamp(22px,3vw,34px) clamp(12px,2vw,20px);}
 .cg-photos-h{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-400);margin:0 0 16px;}
 .cg-photos-h::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--border-hairline),transparent);}
