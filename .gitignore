@@ -5,7 +5,7 @@
 
 # --- large non-site working folders ---
 HSREP/
-.bak-*/
+.bak-*
 _local_archive/
 _DEPLOY_share/
 essays-src/
