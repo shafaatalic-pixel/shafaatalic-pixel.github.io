@@ -463,8 +463,8 @@
  <div data-reveal style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);display:flex;align-items:center;gap:11px;"><span style="width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber);flex:0 0 auto;"></span>Founder &middot; policy-research &amp; advocacy platform</div>
  <div data-reveal class="hsrep-card">
  <img src="assets/logos/hsrep-lockup-white.png" alt="HSREP: Health System Resilience &amp; Economic Protection" class="hsrep-logo" width="640" height="208" loading="lazy">
- <div class="hsrep-h">I founded HSREP, and grew it to a two-country audience at zero ad spend.<a class="hsrep-live" href="https://hsraep.org/" target="_blank" rel="noopener">&#9679; Live &middot; hsraep.org &#8599;</a></div>
- <p class="hsrep-sub"><a class="hsrep-inline" href="https://hsraep.org/" target="_blank" rel="noopener">HSREP, Health System Resilience &amp; Economic Protection</a> is an independent platform I founded that publishes health-system arguments and turns them into advocacy professionals can act on. Season&nbsp;1 was an eight-week, two-country campaign, built cold-start with no existing audience.</p>
+ <div class="hsrep-h">I founded HSREP, and grew it to a two-country audience at zero ad spend.<a class="hsrep-live" href="https://hsraep.org/" target="_blank" rel="noopener" data-hsrep="live">&#9679; Live &middot; hsraep.org &#8599;</a></div>
+ <p class="hsrep-sub"><a class="hsrep-inline" href="https://hsraep.org/" target="_blank" rel="noopener" data-hsrep="inline">HSREP, Health System Resilience &amp; Economic Protection</a> is an independent platform I founded that publishes health-system arguments and turns them into advocacy professionals can act on. Season&nbsp;1 was an eight-week, two-country campaign, built cold-start with no existing audience.</p>
  <div class="hsrep-metrics">
  <div class="hsrep-m"><div class="n">57,274</div><div class="l">people reached</div></div>
  <div class="hsrep-m"><div class="n">$0</div><div class="l">ad spend &middot; organic</div></div>
@@ -498,8 +498,9 @@
  </div>
  </div>
  <div class="hsrep-cta">
- <a class="hsrep-btn hsrep-btn-primary" href="https://hsraep.org/" target="_blank" rel="noopener">Visit HSREP &#8599;</a>
- <a class="hsrep-btn hsrep-btn-ghost" href="https://hsraep.org/season-1.html" target="_blank" rel="noopener">Read the Season&nbsp;1 record</a>
+ <a class="hsrep-btn hsrep-btn-primary" href="https://hsraep.org/" target="_blank" rel="noopener" data-hsrep="visit">Visit HSREP &#8599;</a>
+ <a class="hsrep-btn hsrep-btn-ghost" href="https://hsraep.org/season-1.html" target="_blank" rel="noopener" data-hsrep="season1">Read the Season&nbsp;1 record</a>
+ <a class="hsrep-btn hsrep-btn-ghost" href="https://hsraep.org/initiative.html" target="_blank" rel="noopener" data-hsrep="initiative">The initiative &#8599;</a>
  </div>
  </div>
  </div>
@@ -2461,6 +2462,7 @@ class Component extends DCLogic {
  var cv=t.closest('#cv-download'); if(cv){ T('cv_download',{file:(cv.getAttribute('href')||'').split('/').pop()}); return; }
  var vid=t.closest('#introvid'); if(vid){ T('video_play',{video:'intro'}); return; }
  var art=t.closest('#article-list [data-article]'); if(art){ T('article_click',{title:(art.textContent||'').replace(/\s+/g,' ').trim().slice(0,90)}); return; }
+ var hb=t.closest('[data-hsrep]'); if(hb){ T('hsrep_click',{target:hb.getAttribute('data-hsrep')||'', href:(hb.getAttribute('href')||'')}); return; }
  var a=t.closest('a'); if(a){ var h=a.getAttribute('href')||''; if(/^mailto:/i.test(h)) T('contact_intent',{method:'email'}); else if(/calendly\.com/i.test(h)) T('contact_intent',{method:'book_call'}); else if(/^https?:/i.test(h) && a.closest('#writing')){ var _pub=''; try{ _pub=new URL(h,location.href).hostname.replace(/^www\./,''); }catch(_){ } T('article_click',{title:(a.textContent||'').trim().slice(0,90), publisher:_pub}); } }
  });
  /* lens switches (watch the nav lens label) */
