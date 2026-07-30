@@ -148,3 +148,11 @@
 
 /* HSREP timeline logo is a square crest, not a wordmark: give it a square badge instead of the 84x22 pill */
 #timeline img[src*="hsrep-icon"]{width:22px!important;max-width:22px!important;padding:3px!important;}
+
+/* --- CLS: reserve the timeline photo box before lazy image loads (photos are 4:3) --- */
+.tl-photo img{width:100%!important;height:auto!important;aspect-ratio:4/3;object-fit:cover;display:block;}
+/* --- Mobile polish: 44px minimum tap targets --- */
+.hsrep-btn{min-height:44px;box-sizing:border-box;}
+.cf-btn{min-height:44px!important;}
+/* --- Mobile polish: stack the HSREP CTA buttons full-width on small phones --- */
+@media(max-width:480px){.hsrep-cta{flex-direction:column;}.hsrep-cta .hsrep-btn{width:100%;justify-content:center;}}
