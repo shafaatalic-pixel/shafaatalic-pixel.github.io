@@ -145,3 +145,6 @@
 @media(max-width:460px){.hsrep-metrics{grid-template-columns:repeat(2,1fr);}}
 .hsrep-logo{display:block;width:auto;height:46px;margin:0 0 20px;opacity:.96;}
 @media(max-width:560px){.hsrep-logo{height:38px;}}
+
+/* HSREP timeline logo is a square crest, not a wordmark: give it a square badge instead of the 84x22 pill */
+#timeline img[src*="hsrep-icon"]{width:22px!important;max-width:22px!important;padding:3px!important;}
