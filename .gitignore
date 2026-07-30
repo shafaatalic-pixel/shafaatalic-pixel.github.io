@@ -71,3 +71,8 @@ preview-hsrep-FINAL.html
 
 # local headshot working files (site uses headshot-hero.jpg / headshot.png)
 assets/Headshot*.png
+
+# npm (jsdom for local re-bake tests)
+node_modules/
+package-lock.json
+package.json
