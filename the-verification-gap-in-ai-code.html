@@ -53,7 +53,8 @@
         { "@type": "ListItem", "position": 2, "name": "Essays", "item": "https://shafaatalichoyon.com/essays.html" },
         { "@type": "ListItem", "position": 3, "name": "The Verification Gap in AI Code", "item": "https://shafaatalichoyon.com/the-verification-gap-in-ai-code.html" }
       ]
-    }
+    },
+    {"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the verification gap in AI-generated code?","acceptedAnswer":{"@type":"Answer","text":"Sonar's 2026 State of Code survey found 96% of developers don't fully trust AI-generated code, yet only 48% verify it every time before it ships. The gap is between what teams ship and what teams check."}},{"@type":"Question","name":"How do you stop AI output from shipping errors?","acceptedAnswer":{"@type":"Answer","text":"Engineer a verification layer into the workflow before trusting any output: source-checking, cross-referencing, and a standing rule that nothing ships without a human check against a primary source. Make verification a structural step, not a personal virtue."}},{"@type":"Question","name":"Is the real problem the AI model or the process?","acceptedAnswer":{"@type":"Answer","text":"The process. Developers ship code they say they don't fully trust close to half the time, without the review step that would catch the problem. It's a process failure hiding behind a technology headline."}}]}
   ]
 }
 </script>
@@ -84,6 +85,11 @@
   .principles{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px 24px 8px;margin:30px 0 8px;}
   .principles li{margin:14px 0;font-size:15px;max-width:64ch;}
   .principles b{color:var(--ivory);font-weight:600;}
+  .faq{margin:44px 0 0;padding-top:26px;border-top:1px solid var(--line);}
+  .faq>h2{margin-top:0;}
+  .faq-item{margin:0 0 6px;}
+  .faq-item h3{font-family:'Manrope';font-weight:700;font-size:16.5px;line-height:1.3;color:var(--ivory);margin:20px 0 6px;}
+  .faq-item p{font-size:15px;color:var(--body);margin:0;max-width:68ch;}
   .bio{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);max-width:68ch;}
   .bio b{color:var(--ivory);font-weight:500;}
   footer.foot{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);}
@@ -120,7 +126,7 @@
         <figcaption>At a glance, click to enlarge.</figcaption>
       </figure>
 
-    <h2>Adoption outran verification, on purpose</h2>
+    <h2>Why did AI-code adoption outrun verification?</h2>
 
     <p>The adoption story is old news by mid-2026: AI writes a large and growing share of committed code across most engineering orgs. What Sonar's data exposes is the part nobody wanted to admit, trust hasn't kept pace with usage, and process hasn't kept pace with either. Developers are shipping code they say they don't fully trust, at a rate close to half the time, without the review step that would catch what they don't trust about it. That's not a technology failure. It's a process failure hiding behind a technology headline.</p>
 
@@ -150,6 +156,21 @@
     </ul>
 
     <p><b>If verification depends on how careful someone feels on a Friday afternoon, is it verification at all, or just a hope with a process diagram?</b></p>
+    <section class="faq" aria-label="Frequently asked questions">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item">
+        <h3>What is the verification gap in AI-generated code?</h3>
+        <p>Sonar's 2026 State of Code survey found 96% of developers don't fully trust AI-generated code, yet only 48% verify it every time before it ships. The gap is between what teams ship and what teams check.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How do you stop AI output from shipping errors?</h3>
+        <p>Engineer a verification layer into the workflow before trusting any output: source-checking, cross-referencing, and a standing rule that nothing ships without a human check against a primary source. Make verification a structural step, not a personal virtue.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is the real problem the AI model or the process?</h3>
+        <p>The process. Developers ship code they say they don't fully trust close to half the time, without the review step that would catch the problem. It's a process failure hiding behind a technology headline.</p>
+      </div>
+    </section>
 
     <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
   </article>
