@@ -2008,9 +2008,9 @@ class Component extends DCLogic {
  }
 
  // Lens picks + chooser open
- root.querySelectorAll('[data-lens-pick]').forEach(el=>{ el.addEventListener('click',()=>{ this._userPicked=true; this.applyLens(el.getAttribute('data-lens-pick'),{}); this.hideLanding(); window.scrollTo(0,0); }); });
- const landingAll=document.getElementById('landing-all'); if(landingAll) landingAll.addEventListener('click',()=>{ this._userPicked=true; this.applyLens('full',{}); this.hideLanding(); window.scrollTo(0,0); });
- const landingScroll=document.getElementById('landing-scroll'); if(landingScroll) landingScroll.addEventListener('click',()=>{ this._userPicked=true; this.applyLens('full',{}); this.hideLanding(); window.scrollTo(0,0); });
+ root.querySelectorAll('[data-lens-pick]').forEach(el=>{ var _lid=el.getAttribute('data-lens-pick'); el.addEventListener('mouseenter',()=>{ this._lensHover=this._lensHover||{}; if(this._lensHover[_lid]) return; this._lensHover[_lid]=1; if(window.track) window.track('lens_hover',{lens:_lid}); }); el.addEventListener('click',()=>{ if(window.track) window.track('lens_pick',{lens:_lid}); this._userPicked=true; this.applyLens(_lid,{}); this.hideLanding(); window.scrollTo(0,0); }); });
+ const landingAll=document.getElementById('landing-all'); if(landingAll) landingAll.addEventListener('click',()=>{ if(window.track) window.track('lens_pick',{lens:'full'}); this._userPicked=true; this.applyLens('full',{}); this.hideLanding(); window.scrollTo(0,0); });
+ const landingScroll=document.getElementById('landing-scroll'); if(landingScroll) landingScroll.addEventListener('click',()=>{ if(window.track) window.track('lens_pick',{lens:'full'}); this._userPicked=true; this.applyLens('full',{}); this.hideLanding(); window.scrollTo(0,0); });
  const landingEl=document.getElementById('landing');
  if(landingEl){
  const dismiss=()=>{ if(this._userPicked) return; this._userPicked=true; this.applyLens('full',{}); this.hideLanding(); window.scrollTo(0,0); };
