@@ -2723,14 +2723,15 @@ class Component extends DCLogic {
 (function(){
   var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
   var small=matchMedia('(max-width:820px)').matches||('ontouchstart' in window);
-  var landing=document.getElementById('landing');
-  if(!landing||reduce||small) return;
+  if(reduce||small||!document.getElementById('landing')) return;
   var LENS={growth:{mode:'growth',ac:'#E0892E'},healthcomm:{mode:'comm',ac:'#14C3C3'},healthtech:{mode:'tech',ac:'#4C97DA'},pophealth:{mode:'pop',ac:'#F0705A'}};
   var ALL=[[224,137,46],[20,195,195],[76,151,218],[240,112,90]], BASE=[120,140,160];
   function hex2rgb(h){h=h.replace('#','');return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
   function init(){
+    var landing=document.getElementById('landing');
     var cardsWrap=document.getElementById('landing-cards');
-    if(!cardsWrap||cardsWrap.querySelectorAll('.lens-card').length<4){return setTimeout(init,120);}
+    if(!landing||!cardsWrap||cardsWrap.querySelectorAll('.lens-card').length<4){return setTimeout(init,120);}
+    if(landing._lensfx)return; landing._lensfx=1;
     var cv=document.createElement('canvas'); cv.setAttribute('aria-hidden','true'); cv.style.cssText='position:fixed;inset:0;z-index:0;pointer-events:none;';
     var spot=document.createElement('div'); spot.setAttribute('aria-hidden','true'); spot.style.cssText='position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .4s;';
     landing.appendChild(cv); landing.appendChild(spot);
@@ -2783,11 +2784,13 @@ class Component extends DCLogic {
     function setAc(ac){if(vlabel)vlabel.style.color=ac;if(vplay)vplay.style.background=ac;}
     function clrAc(){if(vlabel)vlabel.style.color='var(--accent-text)';if(vplay)vplay.style.background='rgba(15,179,179,.94)';}
     function moveSpot(x,y,c){spot.style.background='radial-gradient(440px circle at '+x+'px '+y+'px, '+c+', transparent 62%)';}
+    var hovered={};
     function enter(card){var cfg=LENS[card.getAttribute('data-lens-pick')];if(!cfg)return;var b=card.getBoundingClientRect();
       mode=cfg.mode;target={x:b.left+b.width/2,y:b.top+b.height/2};colTo=hex2rgb(cfg.ac);rings.length=0;popR=0;techBuild=0;
       card.style.boxShadow='0 22px 50px rgba(0,0,0,.5),0 0 0 1px '+cfg.ac+',0 0 44px -6px '+cfg.ac;card.style.borderColor=cfg.ac;
-      setAc(cfg.ac);moveSpot(target.x,target.y,'rgba('+hex2rgb(cfg.ac).join(',')+',.10)');spot.style.opacity='1';}
-    function leave(card){mode=null;target=null;colTo=BASE.slice();card.style.boxShadow='';card.style.borderColor='';clrAc();spot.style.opacity='0';}
+      setAc(cfg.ac);moveSpot(target.x,target.y,'rgba('+hex2rgb(cfg.ac).join(',')+',.10)');spot.style.opacity='1';
+      var _id=card.getAttribute('data-lens-pick');card._hovT=setTimeout(function(){if(!hovered[_id]){hovered[_id]=1;if(window.track)window.track('lens_hover',{lens:_id});}},350);}
+    function leave(card){clearTimeout(card._hovT);mode=null;target=null;colTo=BASE.slice();card.style.boxShadow='';card.style.borderColor='';clrAc();spot.style.opacity='0';}
     cardsWrap.addEventListener('mouseover',function(e){var c=e.target.closest('.lens-card');if(c)enter(c);});
     cardsWrap.addEventListener('mouseout',function(e){var c=e.target.closest('.lens-card');if(c&&!c.contains(e.relatedTarget))leave(c);});
     var cta=document.getElementById('landing-all');
