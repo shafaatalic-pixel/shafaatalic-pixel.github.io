@@ -2740,7 +2740,7 @@ class Component extends DCLogic {
     var parts=[],mouse={x:-999,y:-999},target=null,mode=null,rings=[],popR=0,techBuild=0,tt=0,fr=0,col=BASE.slice(),colTo=BASE.slice(),trailRGB=[11,15,20];
     function rr(x,y,s,rad){ctx.beginPath();ctx.moveTo(x+rad,y);ctx.arcTo(x+s,y,x+s,y+s,rad);ctx.arcTo(x+s,y+s,x,y+s,rad);ctx.arcTo(x,y+s,x,y,rad);ctx.arcTo(x,y,x+s,y,rad);ctx.closePath();}
     function size(){W=innerWidth;H=innerHeight;cv.width=W*DPR;cv.height=H*DPR;cv.style.width=W+'px';cv.style.height=H+'px';ctx.setTransform(DPR,0,0,DPR,0,0);}
-    function seed(){parts=[];var n=Math.min(460,Math.floor(W*H/2900));for(var i=0;i<n;i++)parts.push({x:Math.random()*W,y:Math.random()*H,vx:0,vy:0,act:0,ci:i%4});}
+    function seed(){parts=[];var n=Math.min(820,Math.floor(W*H/1600));for(var i=0;i<n;i++)parts.push({x:Math.random()*W,y:Math.random()*H,vx:0,vy:0,act:0,ci:i%4});}
     size();seed(); addEventListener('resize',function(){size();seed();});
     function hidden(){return getComputedStyle(landing).display==='none'||document.hidden;}
     function field(){
@@ -2768,7 +2768,7 @@ class Component extends DCLogic {
         if(mode==='growth'){p.vy-=0.18;p.vx+=0.07;}
         else if(mode==='comm'&&target){rings.forEach(function(rg){var rd=Math.hypot(p.x-rg.x,p.y-rg.y);if(Math.abs(rd-rg.r)<12){var aa=Math.atan2(p.y-rg.y,p.x-rg.x);p.vx+=Math.cos(aa)*0.6;p.vy+=Math.sin(aa)*0.6;}});}
         else if(mode==='tech'&&target){var dxt=target.x-p.x,dyt=target.y-p.y,dtt=Math.hypot(dxt,dyt)+.001;p.vx+=dxt/dtt*0.055;p.vy+=dyt/dtt*0.055;}
-        else if(mode==='pop'&&target){var dd=Math.hypot(p.x-target.x,p.y-target.y);if(Math.abs(dd-popR)<44)p.act=1;p.act*=0.995;}
+        else if(mode==='pop'&&target){var dd=Math.hypot(p.x-target.x,p.y-target.y);if(Math.abs(dd-popR)<56)p.act=1;p.act*=0.9965;}
         else if(mode==='all'){var a2=tt*2+pi;p.vx+=Math.cos(a2)*0.05-(p.x-W/2)*0.00018;p.vy+=Math.sin(a2)*0.05-(p.y-H/2)*0.00018;}
         else if(mouse.x>-500){var dxm=mouse.x-p.x,dym=mouse.y-p.y,dmm=Math.hypot(dxm,dym)+.001;p.vx+=dxm/dmm*0.014;p.vy+=dym/dmm*0.014;}
         p.vx*=0.90;p.vy*=0.90;p.x+=p.vx;p.y+=p.vy;
