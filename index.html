@@ -2818,5 +2818,23 @@ class Component extends DCLogic {
   if(document.readyState!=='loading')init();else document.addEventListener('DOMContentLoaded',init);
 })();
 </script>
+<script>
+/* Lens landing — light touch for mobile / reduced-motion: static v7 icons + CSS CTA colour cycle, NO canvas (perf-safe). Desktop is handled by the main script above. */
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var small=matchMedia('(max-width:820px)').matches||('ontouchstart' in window);
+  if(!(small||reduce)) return;
+  if(!document.getElementById('landing')) return;
+  var ICONSVG={growth:'<svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>',healthcomm:'<svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l11-6v14L3 13z"/></svg>',healthtech:'<svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1.5"/><circle cx="12" cy="7" r="1.4" fill="currentColor" stroke="none"/><path d="M4 10v4M20 10v4M10 4h4M10 20h4"/></svg>',pophealth:'<svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>'};
+  function go(){
+    var cw=document.getElementById('landing-cards');
+    if(!cw||cw.querySelectorAll('.lens-card').length<4){return setTimeout(go,150);}
+    if(cw._ltouch)return; cw._ltouch=1;
+    cw.querySelectorAll('.lens-card').forEach(function(c){var id=c.getAttribute('data-lens-pick'),ic=ICONSVG[id];if(ic){var sp=c.querySelector('span');if(sp)sp.innerHTML=ic;}});
+    if(!reduce){var cta=document.getElementById('landing-all');if(cta){var st=document.createElement('style');st.textContent='@keyframes lensCtaCycleM{0%{background-position:0% 50%}100%{background-position:300% 50%}}';document.head.appendChild(st);cta.style.background='linear-gradient(90deg,#E0892E,#14C3C3,#4C97DA,#F0705A,#E0892E)';cta.style.backgroundSize='300% 100%';cta.style.animation='lensCtaCycleM 7s linear infinite';cta.style.border='none';}}
+  }
+  if(document.readyState!=='loading')go();else document.addEventListener('DOMContentLoaded',go);
+})();
+</script>
 </body>
 </html>
