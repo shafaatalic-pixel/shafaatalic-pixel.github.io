@@ -2896,8 +2896,9 @@ class Component extends DCLogic {
 (function(){
   'use strict';
   var KEY='shafaat_lens_hint_v1';
-  function seen(){try{return localStorage.getItem(KEY)==='1';}catch(e){return false;}}
-  function mark(){try{localStorage.setItem(KEY,'1');}catch(e){}}
+  // Per-session (not permanent): a direct/geo visitor is guided once each visit, reappears on the next session. Essential for the BD audience journey.
+  function seen(){try{return sessionStorage.getItem(KEY)==='1';}catch(e){return false;}}
+  function mark(){try{sessionStorage.setItem(KEY,'1');}catch(e){}}
   if(seen()) return;
   var userChose=false;
   document.addEventListener('click',function(e){
