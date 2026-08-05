@@ -3005,12 +3005,13 @@ class Component extends DCLogic {
       clearTimeout(auto); cleanup();
       c.classList.remove('on'); setTimeout(function(){ if(c.parentNode) c.parentNode.removeChild(c); }, 300);
     }
-    function onDoc(e){ if(c.contains(e.target)) return; if(t.contains&&t.contains(e.target)){ done(true); return; } done(false); }
+    function onDoc(e){ if(!e.isTrusted) return; if(c.contains(e.target)) return; if(t.contains&&t.contains(e.target)){ done(true); return; } done(false); }
     function onKey(e){ if((e.key||'')==='Escape') done(false); }
     function onResize(){ var nt=target(); if(nt) position(c,nt); }
     function cleanup(){ document.removeEventListener('click',onDoc,true); document.removeEventListener('keydown',onKey); window.removeEventListener('resize',onResize); }
     c.querySelector('.c-ok').addEventListener('click',function(){ done(false); });
-    setTimeout(function(){ document.addEventListener('click',onDoc,true); document.addEventListener('keydown',onKey); window.addEventListener('resize',onResize); }, 60);
+    // Grace period + trusted-only guard: page-load scripts fire synthetic clicks that were dismissing the tip instantly.
+    setTimeout(function(){ document.addEventListener('click',onDoc,true); document.addEventListener('keydown',onKey); window.addEventListener('resize',onResize); }, 1200);
   }
   // Show on every visit, once a lens view is actually on screen (landing chooser closed). Auto-dismisses.
   var tries=0;
