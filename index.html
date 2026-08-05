@@ -2019,12 +2019,15 @@ class Component extends DCLogic {
  landingEl.addEventListener('touchstart',(e)=>{ _ty=e.touches[0].clientY; },{passive:true});
  landingEl.addEventListener('touchmove',(e)=>{ const atBottom=landingEl.scrollHeight-landingEl.clientHeight-landingEl.scrollTop<4; if(_ty!==null&&_ty-e.touches[0].clientY>30&&atBottom) dismiss(); },{passive:true});
  }
- const navLens=document.getElementById('nav-lens'); if(navLens) navLens.addEventListener('click',()=>{ this.showLanding(); });
- const footerLens=document.getElementById('footer-lens'); if(footerLens) footerLens.addEventListener('click',()=>{ this.showLanding(); });
-
- // Theme toggles
+ // Nav lens, footer lens and theme toggles. Delegated on document so they survive the
+ // dc-root re-render during hydration (which replaces these nodes and would orphan direct listeners).
  const toggle=()=>{ const cur=document.documentElement.getAttribute('data-theme')==='light'?'light':'dark'; this.setTheme(cur==='light'?'dark':'light'); };
- ['#theme-toggle','#landing-theme'].forEach(sel=>{ const b=document.querySelector(sel); if(b) b.addEventListener('click', toggle); });
+ document.addEventListener('click',(e)=>{
+   const t=(e.target&&e.target.closest)?e.target.closest('#nav-lens,#footer-lens,#theme-toggle,#landing-theme'):null;
+   if(!t) return;
+   if(t.id==='nav-lens'||t.id==='footer-lens'){ this.showLanding(); }
+   else { toggle(); }
+ });
  }
 
  _fmt(v,prefix,suffix){ let s; if(v>=1000) s=Math.round(v).toLocaleString('en-US'); else s=String(Math.round(v)); return (prefix||'')+s+(suffix||''); }
