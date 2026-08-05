@@ -297,9 +297,9 @@
  <nav style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px clamp(20px,4vw,48px);transition:background .24s,backdrop-filter .24s,border-color .24s,padding .24s;border-bottom:1px solid transparent;" data-nav>
  <div style="display:flex;align-items:center;gap:14px;min-width:0;">
  <a href="#top" aria-label="Shafaat Choyon: home" style="font-family:var(--disp);font-weight:800;font-size:20px;letter-spacing:-.01em;text-decoration:none;color:var(--text-strong);white-space:nowrap;display:inline-flex;align-items:center;gap:10px;"><img src="assets/logos/sc-mark.png" alt="Shafaat Choyon logo" width="32" height="32" style="width:32px;height:32px;border-radius:7px;display:block;flex:0 0 auto;" /><span>Shafaat Choyon<span style="color:var(--accent-text);">.</span></span></a>
- <button id="nav-lens" type="button" aria-label="Switch lens or view the full portfolio" title="Switch lens or view the full portfolio" style="display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 5px 0 12px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:999px;cursor:pointer;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;color:var(--accent-text);transition:filter .15s;">
+ <button id="nav-lens" type="button" aria-label="Switch lens or view the full portfolio" title="Switch lens or view the full portfolio" style="display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 10px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:999px;cursor:pointer;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;color:var(--accent-text);transition:filter .15s;">
  <span aria-hidden="true" style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex:0 0 auto;"></span><span id="nav-lens-label" style="white-space:nowrap;">Full portfolio</span>
- <span aria-hidden="true" style="display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;">Switch <span style="font-size:12px;line-height:1;">⇄</span></span>
+ <span aria-hidden="true" style="display:inline-flex;align-items:center;margin-left:3px;padding-left:8px;border-left:1px solid var(--accent);font-size:14px;line-height:1;">⇄</span>
  </button>
  </div>
  <div class="nav-links" style="display:flex;align-items:center;gap:clamp(14px,1.8vw,28px);font-size:15px;font-weight:500;">
@@ -3010,7 +3010,7 @@ class Component extends DCLogic {
   // One-time desktop nudge so the nav lens chip reads as an interactive switcher (people were missing it).
   try{
     if(!sessionStorage.getItem('sc_lens_nudge') && window.matchMedia('(min-width:861px)').matches){
-      var nt=0;(function nudge(){ var el=document.getElementById('nav-lens'); if(el){ sessionStorage.setItem('sc_lens_nudge','1'); el.classList.add('lens-nudge'); setTimeout(function(){ if(el) el.classList.remove('lens-nudge'); },5500); } else if(nt++<30){ setTimeout(nudge,200); } })();
+      var nt=0; function nudge(){ var el=document.getElementById('nav-lens'); if(el){ sessionStorage.setItem('sc_lens_nudge','1'); el.classList.add('lens-nudge'); setTimeout(function(){ if(el) el.classList.remove('lens-nudge'); },5500); } else if(nt++<30){ setTimeout(nudge,200); } } setTimeout(nudge,700);
     }
   }catch(e){}
 })();
