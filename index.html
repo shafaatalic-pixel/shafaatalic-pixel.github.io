@@ -2996,11 +2996,9 @@ class Component extends DCLogic {
       +'</div><div class="c-row"><button class="c-ok" type="button">Got it</button></div>';
     document.body.appendChild(c);
     position(c,t);
-    try{ new MutationObserver(function(muts){ muts.forEach(function(mm){ Array.prototype.forEach.call(mm.removedNodes,function(n){ if(n&&n.id==='sc-coach') console.log('COACH_REMOVED_BY_DOM', (new Error()).stack); }); }); }).observe(document.body,{childList:true}); }catch(e){}
     if(window.track) window.track('coachmark',{action:'shown'});
     var auto=setTimeout(function(){ done(false); }, 9000);
     function done(engaged){
-      console.log('COACH_DONE', engaged, (new Error()).stack);
       if(done._d) return; done._d=true;
       if(window.track) window.track('coachmark',{action:engaged?'engaged':'dismiss'});
       clearTimeout(auto); cleanup();
