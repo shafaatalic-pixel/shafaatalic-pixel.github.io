@@ -3015,5 +3015,67 @@ class Component extends DCLogic {
   }catch(e){}
 })();
 </script>
+<!-- First-run coachmark: points at the lens switcher (desktop) or menu (mobile), once per browser, auto-dismisses. Additive + crawl-safe. -->
+<style>
+#sc-coach{position:fixed;z-index:6500;max-width:300px;background:var(--surface-raised);border:1px solid var(--accent);border-radius:12px;box-shadow:var(--shadow-lg);padding:13px 14px;font-family:var(--body);opacity:0;transform:translateY(-6px);transition:opacity .3s ease,transform .3s cubic-bezier(.2,.7,.2,1);}
+#sc-coach.on{opacity:1;transform:none;}
+#sc-coach .c-txt{font-size:13.5px;line-height:1.45;color:var(--text-strong);}
+#sc-coach .c-txt b{color:var(--accent-text);}
+#sc-coach .c-row{display:flex;justify-content:flex-end;margin-top:10px;}
+#sc-coach .c-ok{height:32px;padding:0 14px;border:none;border-radius:8px;background:var(--accent);color:var(--accent-ink);font-family:var(--disp);font-weight:700;font-size:13px;cursor:pointer;}
+#sc-coach .c-arrow{position:absolute;top:-7px;width:12px;height:12px;background:var(--surface-raised);border-left:1px solid var(--accent);border-top:1px solid var(--accent);transform:rotate(45deg);}
+@media(prefers-reduced-motion:reduce){#sc-coach{transition:opacity .3s ease;}}
+</style>
+<script>
+(function(){
+  'use strict';
+  var KEY='sc_coach_v1';
+  try{ if(localStorage.getItem(KEY)==='1') return; }catch(e){}
+  function target(){ var m=window.matchMedia('(max-width:860px)').matches; return document.getElementById(m?'sc-menu-btn':'nav-lens'); }
+  var built=false;
+  function position(c,t){
+    var r=t.getBoundingClientRect();
+    var cw=Math.min(300, window.innerWidth-20);
+    c.style.width=cw+'px';
+    var left=r.left+r.width/2-cw/2;
+    left=Math.max(10, Math.min(left, window.innerWidth-cw-10));
+    c.style.left=left+'px';
+    c.style.top=(r.bottom+10)+'px';
+    var ax=r.left+r.width/2-left-6;
+    ax=Math.max(12, Math.min(ax, cw-24));
+    c.querySelector('.c-arrow').style.left=ax+'px';
+  }
+  function build(){
+    if(built) return;
+    if(document.getElementById('lens-hint')) return; // arrival hint already explains + points; avoid doubling up
+    var t=target(); if(!t) return;
+    var m=window.matchMedia('(max-width:860px)').matches;
+    built=true;
+    var c=document.createElement('div'); c.id='sc-coach'; c.setAttribute('role','dialog'); c.setAttribute('aria-live','polite'); c.setAttribute('aria-label','Tip: switching views');
+    c.innerHTML='<div class="c-arrow"></div><div class="c-txt">'+(m
+      ? '<b>Tap Menu</b> to switch lenses, search, or open the full portfolio.'
+      : '<b>Four lenses, one career.</b> Click here to switch views, or open the full portfolio.')
+      +'</div><div class="c-row"><button class="c-ok" type="button">Got it</button></div>';
+    document.body.appendChild(c);
+    position(c,t);
+    requestAnimationFrame(function(){ c.classList.add('on'); });
+    if(window.track) window.track('coachmark',{action:'shown'});
+    var auto=setTimeout(function(){ done(false); }, 9000);
+    function done(engaged){
+      try{ localStorage.setItem(KEY,'1'); }catch(e){}
+      if(window.track) window.track('coachmark',{action:engaged?'engaged':'dismiss'});
+      clearTimeout(auto); cleanup();
+      c.classList.remove('on'); setTimeout(function(){ if(c.parentNode) c.parentNode.removeChild(c); }, 300);
+    }
+    function onDoc(e){ if(c.contains(e.target)) return; if(t.contains&&t.contains(e.target)){ done(true); return; } done(false); }
+    function onKey(e){ if((e.key||'')==='Escape') done(false); }
+    function onResize(){ var nt=target(); if(nt) position(c,nt); }
+    function cleanup(){ document.removeEventListener('click',onDoc,true); document.removeEventListener('keydown',onKey); window.removeEventListener('resize',onResize); }
+    c.querySelector('.c-ok').addEventListener('click',function(){ done(false); });
+    setTimeout(function(){ document.addEventListener('click',onDoc,true); document.addEventListener('keydown',onKey); window.addEventListener('resize',onResize); }, 60);
+  }
+  setTimeout(build, 1400);
+})();
+</script>
 </body>
 </html>
