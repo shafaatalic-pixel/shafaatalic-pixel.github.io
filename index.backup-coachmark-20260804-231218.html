@@ -2880,6 +2880,64 @@ class Component extends DCLogic {
   })();
 })();
 </script>
+<!-- Lens arrival hint: path clarity for direct/geo visitors who skip the four-lens chooser. Additive + crawl-safe. -->
+<style>
+#lens-hint{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(16px);z-index:4000;width:min(560px,calc(100vw - 26px));display:flex;align-items:center;gap:13px;padding:13px 15px;background:var(--surface-raised);border:1px solid var(--border-strong);border-radius:15px;box-shadow:var(--shadow-lg);opacity:0;transition:opacity .5s ease,transform .55s cubic-bezier(.2,.7,.2,1);font-family:var(--body);}
+#lens-hint.on{opacity:1;transform:translateX(-50%) translateY(0);}
+#lens-hint .lh-badge{flex:0 0 auto;width:36px;height:36px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;background:var(--accent-soft);color:var(--accent-text);font-family:var(--disp);font-weight:800;font-size:17px;}
+#lens-hint .lh-msg{flex:1 1 auto;min-width:0;font-size:14px;line-height:1.4;color:var(--text-muted);}
+#lens-hint .lh-msg b{color:var(--text-strong);}
+#lens-hint .lh-see{flex:0 0 auto;height:37px;padding:0 16px;border:none;border-radius:9px;background:var(--accent);color:var(--accent-ink);font-family:var(--disp);font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap;}
+#lens-hint .lh-x{flex:0 0 auto;width:30px;height:37px;border:none;background:transparent;color:var(--text-faint);font-size:21px;line-height:1;cursor:pointer;}
+@media(prefers-reduced-motion:reduce){#lens-hint{transition:none;}}
+@media(max-width:560px){#lens-hint{flex-wrap:wrap;bottom:12px;}#lens-hint .lh-msg{order:3;flex:1 0 100%;}}
+</style>
+<script>
+(function(){
+  'use strict';
+  var KEY='shafaat_lens_hint_v1';
+  // Per-session (not permanent): a direct/geo visitor is guided once each visit, reappears on the next session. Essential for the BD audience journey.
+  function seen(){try{return sessionStorage.getItem(KEY)==='1';}catch(e){return false;}}
+  function mark(){try{sessionStorage.setItem(KEY,'1');}catch(e){}}
+  if(seen()) return;
+  var userChose=false;
+  document.addEventListener('click',function(e){
+    var t=(e.target&&e.target.closest)?e.target.closest('[data-lens-pick],#landing-all'):null;
+    if(t) userChose=true;
+  },true);
+  function landingClosed(){var l=document.getElementById('landing');return !l || getComputedStyle(l).display==='none';}
+  function build(){
+    if(seen()||document.getElementById('lens-hint')) return;
+    var lbl=document.getElementById('nav-lens-label');
+    var name=lbl?(lbl.textContent||'').trim():'';
+    if(!name||/full portfolio/i.test(name)) name='Growth & Marketing';
+    var bar=document.createElement('div');
+    bar.id='lens-hint';bar.setAttribute('role','region');bar.setAttribute('aria-label','Lens navigation help');
+    bar.innerHTML='<span class="lh-badge" aria-hidden="true">4</span>'
+      +'<span class="lh-msg">You are seeing the <b></b> lens, one of four ways to read the same career.</span>'
+      +'<button class="lh-see" type="button">See all four</button>'
+      +'<button class="lh-x" type="button" aria-label="Dismiss">&times;</button>';
+    bar.querySelector('.lh-msg b').textContent=name;
+    document.body.appendChild(bar);
+    requestAnimationFrame(function(){bar.classList.add('on');});
+    if(window.track) window.track('lens_hint',{action:'shown'});
+    function remove(){if(bar.parentNode)bar.parentNode.removeChild(bar);}
+    bar.querySelector('.lh-x').addEventListener('click',function(){if(window.track)window.track('lens_hint',{action:'dismiss'});mark();bar.classList.remove('on');setTimeout(remove,550);});
+    bar.querySelector('.lh-see').addEventListener('click',function(){
+      if(window.track)window.track('lens_hint',{action:'see_all'});
+      mark();bar.classList.remove('on');setTimeout(remove,400);
+      var nl=document.getElementById('nav-lens');if(nl)nl.click();
+    });
+    setTimeout(mark,15000);
+  }
+  var tries=0;
+  (function poll(){
+    if(seen()||userChose) return;
+    if(document.getElementById('nav-lens') && landingClosed()){ setTimeout(function(){ if(!userChose && landingClosed()) build(); }, 900); return; }
+    if(tries++<40) setTimeout(poll,200);
+  })();
+})();
+</script>
 <!-- Mobile menu (<=860px): folds nav links, lens switch, search, theme + Book a call into one sheet. Also fixes the nav theme-toggle icon (inline SVG, robust to dc-root hydration re-render). Additive + crawl-safe. -->
 <style id="sc-mobilemenu-css">
 @media(max-width:860px){ #nav-lens,#qs-btn,#theme-toggle,[data-cta]{display:none!important;} #sc-menu-btn{display:inline-flex!important;} }
@@ -2955,67 +3013,6 @@ class Component extends DCLogic {
       var nt=0; function nudge(){ var el=document.getElementById('nav-lens'); if(el){ sessionStorage.setItem('sc_lens_nudge','1'); el.classList.add('lens-nudge'); setTimeout(function(){ if(el) el.classList.remove('lens-nudge'); },5500); } else if(nt++<30){ setTimeout(nudge,200); } } setTimeout(nudge,700);
     }
   }catch(e){}
-})();
-</script>
-<!-- Lens coachmark: points at the lens switcher (desktop) or menu (mobile) on every visit once a lens view is on screen, auto-dismisses. Replaces the old arrival hint bar. Additive + crawl-safe. -->
-<style>
-#sc-coach{position:fixed;z-index:6500;max-width:300px;background:var(--surface-raised);border:1px solid var(--accent);border-radius:12px;box-shadow:var(--shadow-lg);padding:13px 14px;font-family:var(--body);opacity:0;transform:translateY(-6px);transition:opacity .3s ease,transform .3s cubic-bezier(.2,.7,.2,1);}
-#sc-coach.on{opacity:1;transform:none;}
-#sc-coach .c-txt{font-size:13.5px;line-height:1.45;color:var(--text-strong);}
-#sc-coach .c-txt b{color:var(--accent-text);}
-#sc-coach .c-row{display:flex;justify-content:flex-end;margin-top:10px;}
-#sc-coach .c-ok{height:32px;padding:0 14px;border:none;border-radius:8px;background:var(--accent);color:var(--accent-ink);font-family:var(--disp);font-weight:700;font-size:13px;cursor:pointer;}
-#sc-coach .c-arrow{position:absolute;top:-7px;width:12px;height:12px;background:var(--surface-raised);border-left:1px solid var(--accent);border-top:1px solid var(--accent);transform:rotate(45deg);}
-@media(prefers-reduced-motion:reduce){#sc-coach{transition:opacity .3s ease;}}
-</style>
-<script>
-(function(){
-  'use strict';
-  function target(){ var m=window.matchMedia('(max-width:860px)').matches; return document.getElementById(m?'sc-menu-btn':'nav-lens'); }
-  var built=false;
-  function position(c,t){
-    var r=t.getBoundingClientRect();
-    var cw=Math.min(300, window.innerWidth-20);
-    c.style.width=cw+'px';
-    var left=r.left+r.width/2-cw/2;
-    left=Math.max(10, Math.min(left, window.innerWidth-cw-10));
-    c.style.left=left+'px';
-    c.style.top=(r.bottom+10)+'px';
-    var ax=r.left+r.width/2-left-6;
-    ax=Math.max(12, Math.min(ax, cw-24));
-    c.querySelector('.c-arrow').style.left=ax+'px';
-  }
-  function build(){
-    if(built) return;
-    var t=target(); if(!t) return;
-    var m=window.matchMedia('(max-width:860px)').matches;
-    built=true;
-    var c=document.createElement('div'); c.id='sc-coach'; c.setAttribute('role','dialog'); c.setAttribute('aria-live','polite'); c.setAttribute('aria-label','Tip: switching views');
-    c.innerHTML='<div class="c-arrow"></div><div class="c-txt">'+(m
-      ? '<b>Tap Menu</b> to switch lenses, search, or open the full portfolio.'
-      : '<b>Four lenses, one career.</b> Click here to switch views, or open the full portfolio.')
-      +'</div><div class="c-row"><button class="c-ok" type="button">Got it</button></div>';
-    document.body.appendChild(c);
-    position(c,t);
-    requestAnimationFrame(function(){ c.classList.add('on'); });
-    if(window.track) window.track('coachmark',{action:'shown'});
-    var auto=setTimeout(function(){ done(false); }, 9000);
-    function done(engaged){
-      if(window.track) window.track('coachmark',{action:engaged?'engaged':'dismiss'});
-      clearTimeout(auto); cleanup();
-      c.classList.remove('on'); setTimeout(function(){ if(c.parentNode) c.parentNode.removeChild(c); }, 300);
-    }
-    function onDoc(e){ if(c.contains(e.target)) return; if(t.contains&&t.contains(e.target)){ done(true); return; } done(false); }
-    function onKey(e){ if((e.key||'')==='Escape') done(false); }
-    function onResize(){ var nt=target(); if(nt) position(c,nt); }
-    function cleanup(){ document.removeEventListener('click',onDoc,true); document.removeEventListener('keydown',onKey); window.removeEventListener('resize',onResize); }
-    c.querySelector('.c-ok').addEventListener('click',function(){ done(false); });
-    setTimeout(function(){ document.addEventListener('click',onDoc,true); document.addEventListener('keydown',onKey); window.addEventListener('resize',onResize); }, 60);
-  }
-  // Show on every visit, once a lens view is actually on screen (landing chooser closed). Auto-dismisses.
-  var tries=0;
-  function landingClosed(){ var l=document.getElementById('landing'); return !l || getComputedStyle(l).display==='none'; }
-  (function wait(){ if(built) return; if(landingClosed() && target()){ setTimeout(build, 500); return; } if(tries++<80) setTimeout(wait, 250); })();
 })();
 </script>
 </body>

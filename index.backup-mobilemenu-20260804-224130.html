@@ -297,9 +297,9 @@
  <nav style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px clamp(20px,4vw,48px);transition:background .24s,backdrop-filter .24s,border-color .24s,padding .24s;border-bottom:1px solid transparent;" data-nav>
  <div style="display:flex;align-items:center;gap:14px;min-width:0;">
  <a href="#top" aria-label="Shafaat Choyon: home" style="font-family:var(--disp);font-weight:800;font-size:20px;letter-spacing:-.01em;text-decoration:none;color:var(--text-strong);white-space:nowrap;display:inline-flex;align-items:center;gap:10px;"><img src="assets/logos/sc-mark.png" alt="Shafaat Choyon logo" width="32" height="32" style="width:32px;height:32px;border-radius:7px;display:block;flex:0 0 auto;" /><span>Shafaat Choyon<span style="color:var(--accent-text);">.</span></span></a>
- <button id="nav-lens" type="button" aria-label="Switch lens or view the full portfolio" title="Switch lens or view the full portfolio" style="display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 10px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:999px;cursor:pointer;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;color:var(--accent-text);transition:filter .15s;">
- <span aria-hidden="true" style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex:0 0 auto;"></span><span id="nav-lens-label" style="white-space:nowrap;">Full portfolio</span>
- <span aria-hidden="true" style="display:inline-flex;align-items:center;margin-left:3px;padding-left:8px;border-left:1px solid var(--accent);font-size:14px;line-height:1;">⇄</span>
+ <button id="nav-lens" type="button" aria-label="Switch lens" style="display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 12px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:999px;cursor:pointer;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;color:var(--accent-text);transition:filter .15s;">
+ <span style="width:7px;height:7px;border-radius:50%;background:var(--accent);"></span><span id="nav-lens-label">Full portfolio</span>
+ <span style="opacity:.6;">⇄</span>
  </button>
  </div>
  <div class="nav-links" style="display:flex;align-items:center;gap:clamp(14px,1.8vw,28px);font-size:15px;font-weight:500;">
@@ -2880,142 +2880,62 @@ class Component extends DCLogic {
   })();
 })();
 </script>
-<!-- Mobile menu (<=860px): folds nav links, lens switch, search, theme + Book a call into one sheet. Also fixes the nav theme-toggle icon (inline SVG, robust to dc-root hydration re-render). Additive + crawl-safe. -->
-<style id="sc-mobilemenu-css">
-@media(max-width:860px){ #nav-lens,#qs-btn,#theme-toggle,[data-cta]{display:none!important;} #sc-menu-btn{display:inline-flex!important;} }
-#sc-menu-btn{display:none;width:40px;height:40px;border-radius:9px;border:1px solid var(--border-strong);background:transparent;color:var(--text-strong);cursor:pointer;align-items:center;justify-content:center;flex:0 0 auto;}
-#sc-menu-ov{position:fixed;inset:0;z-index:6000;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s;}
-#sc-menu-ov.on{opacity:1;pointer-events:auto;}
-#sc-menu{position:fixed;top:0;right:0;height:100%;width:min(87vw,350px);background:var(--surface-base);border-left:1px solid var(--border-strong);box-shadow:-20px 0 50px -20px rgba(0,0,0,.55);transform:translateX(102%);transition:transform .28s cubic-bezier(.2,.7,.2,1);z-index:6001;display:flex;flex-direction:column;padding:16px 16px calc(20px + env(safe-area-inset-bottom));overflow-y:auto;font-family:var(--body);}
-#sc-menu.on{transform:none;}
-#sc-menu .m-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
-#sc-menu .m-title{font-family:var(--disp);font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);}
-#sc-menu .m-x{width:38px;height:38px;border:none;background:transparent;color:var(--text-strong);font-size:26px;line-height:1;cursor:pointer;}
-#sc-menu .m-lens{display:block;width:100%;margin:2px 0 8px;padding:13px 14px;border-radius:12px;border:1px solid var(--accent);background:var(--accent-soft);color:var(--accent-text);font-family:var(--disp);font-weight:700;font-size:15px;cursor:pointer;text-align:left;}
-#sc-menu .m-lens small{display:block;font-weight:500;font-size:12px;opacity:.85;margin-top:2px;}
-#sc-menu .m-full{display:block;width:100%;margin:0 0 14px;padding:12px 14px;border-radius:12px;border:1px solid var(--border-strong);background:transparent;color:var(--text-strong);font-family:var(--disp);font-weight:700;font-size:15px;cursor:pointer;text-align:left;}
-#sc-menu .m-full small{display:block;font-weight:500;font-size:12px;color:var(--text-faint);margin-top:2px;}
-#sc-menu .m-link{display:block;padding:13px 6px;text-decoration:none;color:var(--text-strong);font-family:var(--disp);font-weight:600;font-size:17px;border-bottom:1px solid rgba(128,128,128,.16);}
-#sc-menu .m-row{display:flex;gap:10px;margin:16px 0 0;}
-#sc-menu .m-row button{flex:1;height:46px;border-radius:11px;border:1px solid var(--border-strong);background:transparent;color:var(--text-strong);font-family:var(--disp);font-weight:600;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;}
-#sc-menu .m-cta{display:inline-flex;align-items:center;justify-content:center;margin-top:14px;height:52px;border-radius:12px;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-family:var(--disp);font-weight:700;font-size:16px;}
-@keyframes lensNudge{0%{box-shadow:0 0 0 0 var(--accent-soft);}65%{box-shadow:0 0 0 9px transparent;}100%{box-shadow:0 0 0 0 transparent;}}
-#nav-lens.lens-nudge{animation:lensNudge 1.7s ease-out 3;}
-[data-navlink],#nav-lens{white-space:nowrap;}
-</style>
-<script>
-(function(){
-  'use strict';
-  var MOON='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>';
-  var SUN='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
-  function themeIcon(){ var b=document.getElementById('theme-toggle'); if(!b) return; var dark=document.documentElement.getAttribute('data-theme')!=='light'; var want=dark?'sun':'moon'; if(b.getAttribute('data-ic')!==want){ b.innerHTML=dark?SUN:MOON; b.setAttribute('data-ic',want); } }
-  try{ new MutationObserver(themeIcon).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']}); }catch(e){}
-  function placeBtn(){ var tt=document.getElementById('theme-toggle'); if(tt&&tt.parentNode&&!document.getElementById('sc-menu-btn')){ var b=document.createElement('button'); b.id='sc-menu-btn'; b.type='button'; b.setAttribute('aria-label','Menu'); b.setAttribute('aria-expanded','false'); b.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>'; tt.parentNode.insertBefore(b,tt); } themeIcon(); }
-  placeBtn();
-  // dc-root is re-rendered on hydration + lens switch, wiping injected nodes and lucide icons; keep the button + theme icon healthy (debounced).
-  var pending=false; function schedule(){ if(pending) return; pending=true; requestAnimationFrame(function(){ pending=false; if(!document.getElementById('sc-menu-btn')) placeBtn(); themeIcon(); }); }
-  try{ new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true}); }catch(e){}
-  var n=0,iv=setInterval(function(){ placeBtn(); if(++n>20) clearInterval(iv); },300);
-
-  var ov=document.createElement('div'); ov.id='sc-menu-ov';
-  var mn=document.createElement('div'); mn.id='sc-menu'; mn.setAttribute('role','dialog'); mn.setAttribute('aria-label','Site menu'); mn.setAttribute('aria-hidden','true');
-  mn.innerHTML=''
-    +'<div class="m-head"><span class="m-title">Menu</span><button class="m-x" type="button" aria-label="Close menu">&times;</button></div>'
-    +'<button class="m-lens" type="button" data-act="lenses">See all four lenses<small>Switch between the four views</small></button>'
-    +'<button class="m-full" type="button" data-act="full">See full portfolio<small>Everything in one view</small></button>'
-    +'<a class="m-link" href="#cases">Case Studies</a>'
-    +'<a class="m-link" href="#experience">Experience</a>'
-    +'<a class="m-link" href="#voices">Voices</a>'
-    +'<a class="m-link" href="#writing">Writing</a>'
-    +'<a class="m-link" href="essays.html">Essays</a>'
-    +'<div class="m-row"><button type="button" data-act="search">Search</button><button type="button" data-act="theme">Light / Dark</button></div>'
-    +'<a class="m-cta" href="https://calendly.com/shafaat-alic/30min" target="_blank" rel="noopener" data-act="book">Book a call</a>';
-  document.body.appendChild(ov); document.body.appendChild(mn);
-
-  function open(){ ov.classList.add('on'); mn.classList.add('on'); mn.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; var b=document.getElementById('sc-menu-btn'); if(b) b.setAttribute('aria-expanded','true'); if(window.track) window.track('mobile_menu',{action:'open'}); }
-  function close(){ ov.classList.remove('on'); mn.classList.remove('on'); mn.setAttribute('aria-hidden','true'); document.body.style.overflow=''; var b=document.getElementById('sc-menu-btn'); if(b) b.setAttribute('aria-expanded','false'); }
-  document.addEventListener('click',function(e){
-    var t=e.target.closest?e.target.closest('#sc-menu-btn,#sc-menu .m-x,#sc-menu [data-act],#sc-menu .m-link'):null;
-    if(!t) return;
-    if(t.id==='sc-menu-btn'){ open(); return; }
-    if(t.classList.contains('m-x')){ close(); return; }
-    var act=t.getAttribute('data-act');
-    if(t.classList.contains('m-link')||act==='book'){ if(window.track&&act) window.track('mobile_menu',{action:act}); close(); return; }
-    if(act==='lenses'){ if(window.track) window.track('mobile_menu',{action:'lenses'}); close(); var nn=document.getElementById('nav-lens')||document.getElementById('footer-lens'); if(nn) nn.click(); }
-    else if(act==='full'){ if(window.track) window.track('mobile_menu',{action:'full'}); close(); var fa=document.getElementById('landing-all'); if(fa) fa.click(); }
-    else if(act==='search'){ if(window.track) window.track('mobile_menu',{action:'search'}); close(); var q=document.getElementById('qs-btn'); if(q) q.click(); }
-    else if(act==='theme'){ if(window.track) window.track('mobile_menu',{action:'theme'}); var th=document.getElementById('theme-toggle'); if(th) th.click(); }
-  });
-  ov.addEventListener('click',close);
-  document.addEventListener('keydown',function(e){ if((e.key||'')==='Escape'&&mn.classList.contains('on')) close(); });
-
-  // One-time desktop nudge so the nav lens chip reads as an interactive switcher (people were missing it).
-  try{
-    if(!sessionStorage.getItem('sc_lens_nudge') && window.matchMedia('(min-width:861px)').matches){
-      var nt=0; function nudge(){ var el=document.getElementById('nav-lens'); if(el){ sessionStorage.setItem('sc_lens_nudge','1'); el.classList.add('lens-nudge'); setTimeout(function(){ if(el) el.classList.remove('lens-nudge'); },5500); } else if(nt++<30){ setTimeout(nudge,200); } } setTimeout(nudge,700);
-    }
-  }catch(e){}
-})();
-</script>
-<!-- Lens coachmark: points at the lens switcher (desktop) or menu (mobile) on every visit once a lens view is on screen, auto-dismisses. Replaces the old arrival hint bar. Additive + crawl-safe. -->
+<!-- Lens arrival hint: path clarity for direct/geo visitors who skip the four-lens chooser. Additive + crawl-safe. -->
 <style>
-#sc-coach{position:fixed;z-index:6500;max-width:300px;background:var(--surface-raised);border:1px solid var(--accent);border-radius:12px;box-shadow:var(--shadow-lg);padding:13px 14px;font-family:var(--body);opacity:0;transform:translateY(-6px);transition:opacity .3s ease,transform .3s cubic-bezier(.2,.7,.2,1);}
-#sc-coach.on{opacity:1;transform:none;}
-#sc-coach .c-txt{font-size:13.5px;line-height:1.45;color:var(--text-strong);}
-#sc-coach .c-txt b{color:var(--accent-text);}
-#sc-coach .c-row{display:flex;justify-content:flex-end;margin-top:10px;}
-#sc-coach .c-ok{height:32px;padding:0 14px;border:none;border-radius:8px;background:var(--accent);color:var(--accent-ink);font-family:var(--disp);font-weight:700;font-size:13px;cursor:pointer;}
-#sc-coach .c-arrow{position:absolute;top:-7px;width:12px;height:12px;background:var(--surface-raised);border-left:1px solid var(--accent);border-top:1px solid var(--accent);transform:rotate(45deg);}
-@media(prefers-reduced-motion:reduce){#sc-coach{transition:opacity .3s ease;}}
+#lens-hint{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(16px);z-index:4000;width:min(560px,calc(100vw - 26px));display:flex;align-items:center;gap:13px;padding:13px 15px;background:var(--surface-raised);border:1px solid var(--border-strong);border-radius:15px;box-shadow:var(--shadow-lg);opacity:0;transition:opacity .5s ease,transform .55s cubic-bezier(.2,.7,.2,1);font-family:var(--body);}
+#lens-hint.on{opacity:1;transform:translateX(-50%) translateY(0);}
+#lens-hint .lh-badge{flex:0 0 auto;width:36px;height:36px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;background:var(--accent-soft);color:var(--accent-text);font-family:var(--disp);font-weight:800;font-size:17px;}
+#lens-hint .lh-msg{flex:1 1 auto;min-width:0;font-size:14px;line-height:1.4;color:var(--text-muted);}
+#lens-hint .lh-msg b{color:var(--text-strong);}
+#lens-hint .lh-see{flex:0 0 auto;height:37px;padding:0 16px;border:none;border-radius:9px;background:var(--accent);color:var(--accent-ink);font-family:var(--disp);font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap;}
+#lens-hint .lh-x{flex:0 0 auto;width:30px;height:37px;border:none;background:transparent;color:var(--text-faint);font-size:21px;line-height:1;cursor:pointer;}
+@media(prefers-reduced-motion:reduce){#lens-hint{transition:none;}}
+@media(max-width:560px){#lens-hint{flex-wrap:wrap;bottom:12px;}#lens-hint .lh-msg{order:3;flex:1 0 100%;}}
 </style>
 <script>
 (function(){
   'use strict';
-  function target(){ var m=window.matchMedia('(max-width:860px)').matches; return document.getElementById(m?'sc-menu-btn':'nav-lens'); }
-  var built=false;
-  function position(c,t){
-    var r=t.getBoundingClientRect();
-    var cw=Math.min(300, window.innerWidth-20);
-    c.style.width=cw+'px';
-    var left=r.left+r.width/2-cw/2;
-    left=Math.max(10, Math.min(left, window.innerWidth-cw-10));
-    c.style.left=left+'px';
-    c.style.top=(r.bottom+10)+'px';
-    var ax=r.left+r.width/2-left-6;
-    ax=Math.max(12, Math.min(ax, cw-24));
-    c.querySelector('.c-arrow').style.left=ax+'px';
-  }
+  var KEY='shafaat_lens_hint_v1';
+  // Per-session (not permanent): a direct/geo visitor is guided once each visit, reappears on the next session. Essential for the BD audience journey.
+  function seen(){try{return sessionStorage.getItem(KEY)==='1';}catch(e){return false;}}
+  function mark(){try{sessionStorage.setItem(KEY,'1');}catch(e){}}
+  if(seen()) return;
+  var userChose=false;
+  document.addEventListener('click',function(e){
+    var t=(e.target&&e.target.closest)?e.target.closest('[data-lens-pick],#landing-all'):null;
+    if(t) userChose=true;
+  },true);
+  function landingClosed(){var l=document.getElementById('landing');return !l || getComputedStyle(l).display==='none';}
   function build(){
-    if(built) return;
-    var t=target(); if(!t) return;
-    var m=window.matchMedia('(max-width:860px)').matches;
-    built=true;
-    var c=document.createElement('div'); c.id='sc-coach'; c.setAttribute('role','dialog'); c.setAttribute('aria-live','polite'); c.setAttribute('aria-label','Tip: switching views');
-    c.innerHTML='<div class="c-arrow"></div><div class="c-txt">'+(m
-      ? '<b>Tap Menu</b> to switch lenses, search, or open the full portfolio.'
-      : '<b>Four lenses, one career.</b> Click here to switch views, or open the full portfolio.')
-      +'</div><div class="c-row"><button class="c-ok" type="button">Got it</button></div>';
-    document.body.appendChild(c);
-    position(c,t);
-    requestAnimationFrame(function(){ c.classList.add('on'); });
-    if(window.track) window.track('coachmark',{action:'shown'});
-    var auto=setTimeout(function(){ done(false); }, 9000);
-    function done(engaged){
-      if(window.track) window.track('coachmark',{action:engaged?'engaged':'dismiss'});
-      clearTimeout(auto); cleanup();
-      c.classList.remove('on'); setTimeout(function(){ if(c.parentNode) c.parentNode.removeChild(c); }, 300);
-    }
-    function onDoc(e){ if(c.contains(e.target)) return; if(t.contains&&t.contains(e.target)){ done(true); return; } done(false); }
-    function onKey(e){ if((e.key||'')==='Escape') done(false); }
-    function onResize(){ var nt=target(); if(nt) position(c,nt); }
-    function cleanup(){ document.removeEventListener('click',onDoc,true); document.removeEventListener('keydown',onKey); window.removeEventListener('resize',onResize); }
-    c.querySelector('.c-ok').addEventListener('click',function(){ done(false); });
-    setTimeout(function(){ document.addEventListener('click',onDoc,true); document.addEventListener('keydown',onKey); window.addEventListener('resize',onResize); }, 60);
+    if(seen()||document.getElementById('lens-hint')) return;
+    var lbl=document.getElementById('nav-lens-label');
+    var name=lbl?(lbl.textContent||'').trim():'';
+    if(!name||/full portfolio/i.test(name)) name='Growth & Marketing';
+    var bar=document.createElement('div');
+    bar.id='lens-hint';bar.setAttribute('role','region');bar.setAttribute('aria-label','Lens navigation help');
+    bar.innerHTML='<span class="lh-badge" aria-hidden="true">4</span>'
+      +'<span class="lh-msg">You are seeing the <b></b> lens, one of four ways to read the same career.</span>'
+      +'<button class="lh-see" type="button">See all four</button>'
+      +'<button class="lh-x" type="button" aria-label="Dismiss">&times;</button>';
+    bar.querySelector('.lh-msg b').textContent=name;
+    document.body.appendChild(bar);
+    requestAnimationFrame(function(){bar.classList.add('on');});
+    if(window.track) window.track('lens_hint',{action:'shown'});
+    function remove(){if(bar.parentNode)bar.parentNode.removeChild(bar);}
+    bar.querySelector('.lh-x').addEventListener('click',function(){if(window.track)window.track('lens_hint',{action:'dismiss'});mark();bar.classList.remove('on');setTimeout(remove,550);});
+    bar.querySelector('.lh-see').addEventListener('click',function(){
+      if(window.track)window.track('lens_hint',{action:'see_all'});
+      mark();bar.classList.remove('on');setTimeout(remove,400);
+      var nl=document.getElementById('nav-lens');if(nl)nl.click();
+    });
+    setTimeout(mark,15000);
   }
-  // Show on every visit, once a lens view is actually on screen (landing chooser closed). Auto-dismisses.
   var tries=0;
-  function landingClosed(){ var l=document.getElementById('landing'); return !l || getComputedStyle(l).display==='none'; }
-  (function wait(){ if(built) return; if(landingClosed() && target()){ setTimeout(build, 500); return; } if(tries++<80) setTimeout(wait, 250); })();
+  (function poll(){
+    if(seen()||userChose) return;
+    if(document.getElementById('nav-lens') && landingClosed()){ setTimeout(function(){ if(!userChose && landingClosed()) build(); }, 900); return; }
+    if(tries++<40) setTimeout(poll,200);
+  })();
 })();
 </script>
 </body>

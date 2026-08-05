@@ -1,0 +1,493 @@
+#!/usr/bin/env node
+/* build-essays.js, the essay engine.
+ * Reads essays-src/<slug>.md (front matter + markdown body) and:
+ *   1. generates <slug>.html for each essay (unless generate:false)
+ *   2. rebuilds essays.html (hub cards + ItemList JSON-LD) from ALL essays
+ *   3. rebuilds sitemap.xml (core pages + all essays)
+ * Zero dependencies. Run:  node build-essays.js
+ */
+const fs = require('fs');
+const path = require('path');
+
+const ROOT = __dirname;
+const SRC = path.join(ROOT, 'essays-src');
+const SITE = 'https://shafaatalichoyon.com';
+const BUILD_DATE = new Date().toISOString().slice(0, 10);
+
+const LENS = {
+  'ai':            { label: 'Artificial Intelligence' },
+  'public-health': { label: 'Public Health' },
+  'healthtech':    { label: 'Healthtech' },
+  'growth':        { label: 'Growth' },
+};
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+// ---------- helpers ----------
+const esc = s => String(s == null ? '' : s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function humanDate(iso){ const [y,m,d] = iso.split('-'); return `${MONTHS[+m-1]} ${+d}, ${y}`; }
+function inline(s){
+  return s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+          .replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
+}
+
+// front-matter parser: ---\nkey: value\n---\nbody
+function parse(raw){
+  const m = raw.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/);
+  if(!m) throw new Error('missing front matter');
+  const meta = {};
+  m[1].split('\n').forEach(line => {
+    const i = line.indexOf(':');
+    if(i === -1) return;
+    const k = line.slice(0, i).trim();
+    let v = line.slice(i + 1).trim();
+    if(v === 'true') v = true; else if(v === 'false') v = false;
+    meta[k] = v;
+  });
+  meta._body = (m[2] || '').trim();
+  return meta;
+}
+
+// minimal markdown -> HTML (blocks separated by blank lines)
+function mdToHtml(body, figureHtml){
+  const out = []; let ledeDone = false, figDone = false;
+  body.trim().split(/\n\s*\n/).forEach(raw => {
+    const b = raw.trim(); if(!b) return;
+    if(b.startsWith('## ')){
+      out.push(`    <h2>${inline(b.slice(3).trim())}</h2>`);
+    } else if(b.startsWith('> ')){
+      const t = b.split('\n').map(l => l.replace(/^>\s?/, '')).join(' ');
+      out.push(`    <div class="pull">${inline(t)}</div>`);
+    } else if(/^[-*] /.test(b)){
+      const items = b.split('\n').filter(l => /^[-*] /.test(l))
+        .map(l => `      <li>${inline(l.replace(/^[-*] /, ''))}</li>`).join('\n');
+      out.push(`    <ul class="principles">\n${items}\n    </ul>`);
+    } else {
+      out.push(`    <p${ledeDone ? '' : ' class="lede"'}>${inline(b)}</p>`);
+      if(!ledeDone){ ledeDone = true; if(figureHtml && !figDone){ out.push(figureHtml); figDone = true; } }
+    }
+  });
+  return out.join('\n\n');
+}
+
+// ---------- essay page ----------
+function essayPage(m){
+  const url = `${SITE}/${m.slug}.html`;
+  const lensLabel = m.lensLabel || (LENS[m.lens] && LENS[m.lens].label) || m.lens;
+  const og = m.og || '/assets/og-card.jpg';
+  const ogAbs = og.startsWith('http') ? og : SITE + og;
+  const figure = m.figure ? `      <figure class="essay-fig">
+        <img src="${esc(m.figure)}" alt="${esc(m.figureAlt || m.title)}" loading="lazy" id="ogfig">
+        <figcaption>${esc(m.figureCaption || '')}</figcaption>
+      </figure>` : '';
+  const body = mdToHtml(m._body, figure);
+  const bio = m.bio || '<b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.';
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>${esc(m.title)}</title>
+<meta name="description" content="${esc(m.dek)}" />
+<link rel="canonical" href="${url}" />
+<meta name="author" content="Md Shafaat Ali Choyon" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<meta name="keywords" content="${esc(m.keywords || '')}" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0B0F14" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Md Shafaat Ali Choyon" />
+<meta property="og:title" content="${esc(m.title)}" />
+<meta property="og:description" content="${esc(m.dek)}" />
+<meta property="og:url" content="${url}" />
+<meta property="og:image" content="${esc(ogAbs)}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="article:published_time" content="${m.date}" />
+<meta property="article:author" content="Md Shafaat Ali Choyon" />
+<meta property="article:section" content="${esc(lensLabel)}" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="${esc(m.title)}" />
+<meta name="twitter:description" content="${esc(m.dek)}" />
+<meta name="twitter:image" content="${esc(ogAbs)}" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": ${JSON.stringify(m.title)},
+      "description": ${JSON.stringify(m.dek)},
+      "datePublished": "${m.date}",
+      "dateModified": "${m.date}",
+      "inLanguage": "en",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "${url}" },
+      "image": "${esc(ogAbs)}",
+      "author": { "@type": "Person", "name": "Md Shafaat Ali Choyon", "url": "${SITE}/", "jobTitle": "Growth, Marketing & Public Health Strategist", "hasCredential": ["MPH","CHES®","MBA","MCIM"] },
+      "publisher": { "@type": "Person", "name": "Md Shafaat Ali Choyon", "url": "${SITE}/" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "${SITE}/" },
+        { "@type": "ListItem", "position": 2, "name": "Essays", "item": "${SITE}/essays.html" },
+        { "@type": "ListItem", "position": 3, "name": ${JSON.stringify(m.title)}, "item": "${url}" }
+      ]
+    }
+  ]
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{--bg:#0B0F14;--panel:#11161D;--tile:#06090D;--ivory:#F3EFE7;--body:#C7CDD6;--muted:#9AA3AE;--faint:#7f8894;--teal:#33C4C4;--amber:#F4A24C;--line:rgba(255,255,255,.09);}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--body);font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.66;}
+  a{color:var(--teal);text-decoration:none;} a:hover{text-decoration:underline;}
+  .wrap{max-width:760px;margin:0 auto;padding:34px 22px 80px;}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-bottom:24px;border-bottom:1px solid var(--line);margin-bottom:30px;flex-wrap:wrap;}
+  .brand{display:inline-flex;align-items:center;gap:10px;font-family:'Manrope';font-weight:800;font-size:19px;color:var(--ivory);}
+  .brand span.dot{color:var(--teal);}
+  .navlinks{display:flex;gap:9px;flex-wrap:wrap;}
+  .back{font-family:'Manrope';font-weight:700;font-size:13.5px;color:var(--ivory);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px 15px;}
+  .back:hover{border-color:var(--teal);text-decoration:none;}
+  .eyebrow{font-family:'Inter';font-size:11px;letter-spacing:.16em;color:var(--faint);text-transform:uppercase;}
+  h1{font-family:'Manrope';font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.1;letter-spacing:-.02em;color:var(--ivory);margin:12px 0 0;max-width:20ch;}
+  .byline{font-size:13px;color:var(--faint);margin:18px 0 0;letter-spacing:.01em;}
+  .byline b{color:var(--body);font-weight:500;}
+  .lede{font-size:17px;color:var(--body);margin:26px 0 6px;max-width:66ch;}
+  .lede b{color:var(--ivory);font-weight:500;}
+  article h2{font-family:'Manrope';font-weight:700;font-size:clamp(19px,2.6vw,24px);line-height:1.24;letter-spacing:-.01em;color:var(--ivory);margin:40px 0 10px;}
+  article p{font-size:15.5px;color:var(--body);margin:0 0 15px;max-width:68ch;}
+  article p b{color:var(--ivory);font-weight:500;}
+  .pull{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:10px;padding:16px 20px;font-size:16px;color:var(--ivory);margin:24px 0;max-width:66ch;}
+  .principles{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px 24px 8px;margin:30px 0 8px;}
+  .principles li{margin:14px 0;font-size:15px;max-width:64ch;}
+  .principles b{color:var(--ivory);font-weight:600;}
+  .bio{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);max-width:68ch;}
+  .bio b{color:var(--ivory);font-weight:500;}
+  footer.foot{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);}
+  footer.foot a{font-weight:500;}
+  figure.essay-fig{margin:30px 0;}
+  figure.essay-fig img{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line);background:#0B0F14;cursor:zoom-in;}
+  figure.essay-fig figcaption{font-size:12.5px;color:var(--faint);margin-top:9px;text-align:center;}
+  .lb{position:fixed;inset:0;background:rgba(6,9,13,.93);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out;padding:18px;}
+  .lb.open{display:flex;} .lb img{max-width:96vw;max-height:92vh;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+</style>
+<script defer src="/assets/analytics.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a class="brand" href="/">Shafaat Ali Choyon<span class="dot">.</span></a>
+    <div class="navlinks">
+      <a class="back" href="/">← Portfolio</a>
+      <a class="back" href="/essays.html">Essays</a>
+      <button class="back" type="button" id="copylink" style="background:transparent;cursor:pointer;font:inherit;">Copy link</button>
+    </div>
+  </header>
+
+  <p class="eyebrow">Essay · ${esc(lensLabel)}</p>
+  <h1>${esc(m.title)}</h1>
+  <p class="byline">By <b>Md Shafaat Ali Choyon</b> · builds &amp; runs AI in production · Growth &amp; health strategist${m.readmin ? ` · ${esc(m.readmin)} min read` : ''}</p>
+
+  <article>
+${body}
+
+    <p class="bio">${bio}</p>
+  </article>
+
+  <footer class="foot">
+    <a href="/">← Back to shafaatalichoyon.com</a> · <a href="/essays.html">All essays</a>
+  </footer>
+
+</div>
+${m.figure ? `<div class="lb" id="lb"><img src="" alt=""></div>
+<script>
+(function(){
+  var img=document.getElementById('ogfig'), lb=document.getElementById('lb'), lbimg=lb.querySelector('img');
+  if(!img) return;
+  img.addEventListener('click',function(){ lbimg.src=img.currentSrc||img.src; lbimg.alt=img.alt; lb.classList.add('open'); });
+  lb.addEventListener('click',function(){ lb.classList.remove('open'); lbimg.src=''; });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ lb.classList.remove('open'); lbimg.src=''; } });
+})();
+</script>` : ''}
+<script>(function(){var b=document.getElementById('copylink');if(!b)return;function fb(t){try{var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}catch(e){}}b.addEventListener('click',function(){var u=location.href.split('#')[0];function d(){var o=b.textContent;b.textContent='Copied!';setTimeout(function(){b.textContent=o;},1400);}try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(d,function(){fb(u);d();});return;}}catch(e){}fb(u);d();});})();</script>
+</body>
+</html>
+`;
+}
+
+// ---------- hub card ----------
+function card(m){
+  const lensLabel = m.lensLabel || (LENS[m.lens] && LENS[m.lens].label) || m.lens;
+  const thumb = m.og || '/assets/og-card.jpg';
+  const search = (m.search || (m.title + ' ' + m.dek)).toLowerCase();
+  return `    <a class="ecard" href="/${m.slug}.html" data-lens="${esc(m.lens)}" data-date="${m.date}" data-search="${esc(search)}">
+      <div class="ethumb"><img src="${esc(thumb)}" alt="${esc(m.title)}" loading="lazy" width="1200" height="630"></div>
+      <div class="ebody">
+        <span class="elens">${esc(lensLabel)}</span>
+        <h3>${esc(m.title)}</h3>
+        <p class="edek">${esc(m.dek)}</p>
+        <span class="edate">${humanDate(m.date)}</span>
+      </div>
+    </a>`;
+}
+
+// ---------- hub page ----------
+function hub(essays){
+  const cards = essays.map(card).join('\n\n');
+  const items = essays.map((m, i) =>
+    `        { "@type": "ListItem", "position": ${i+1}, "url": "${SITE}/${m.slug}.html", "name": ${JSON.stringify(m.title)} }`
+  ).join(',\n');
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Essays, Md Shafaat Ali Choyon</title>
+<meta name="description" content="Original essays by Md Shafaat Ali Choyon on AI, public health, health-tech and growth, dual-market field notes from the US and Bangladesh." />
+<link rel="canonical" href="${SITE}/essays.html" />
+<meta name="author" content="Md Shafaat Ali Choyon" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<meta name="keywords" content="Shafaat Ali Choyon essays, AI essays, public health, health communication, healthtech, growth marketing, Bangladesh, dual-market" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0B0F14" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Md Shafaat Ali Choyon" />
+<meta property="og:title" content="Essays, Md Shafaat Ali Choyon" />
+<meta property="og:description" content="Original essays on AI, public health, health-tech and growth, dual-market field notes from the US and Bangladesh." />
+<meta property="og:url" content="${SITE}/essays.html" />
+<meta property="og:image" content="${SITE}/assets/og-card.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Essays, Md Shafaat Ali Choyon" />
+<meta name="twitter:description" content="Original essays on AI, public health, health-tech and growth, dual-market field notes." />
+<meta name="twitter:image" content="${SITE}/assets/og-card.jpg" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "name": "Essays, Md Shafaat Ali Choyon",
+      "description": "Original essays on AI, public health, health-tech and growth, dual-market field notes from the US and Bangladesh.",
+      "url": "${SITE}/essays.html",
+      "inLanguage": "en",
+      "isPartOf": { "@type": "WebSite", "name": "Md Shafaat Ali Choyon", "url": "${SITE}/" },
+      "author": { "@type": "Person", "name": "Md Shafaat Ali Choyon", "url": "${SITE}/" }
+    },
+    {
+      "@type": "ItemList",
+      "itemListOrder": "https://schema.org/ItemListOrderDescending",
+      "itemListElement": [
+${items}
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "${SITE}/" },
+        { "@type": "ListItem", "position": 2, "name": "Essays", "item": "${SITE}/essays.html" }
+      ]
+    }
+  ]
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{--bg:#0B0F14;--panel:#11161D;--tile:#06090D;--ivory:#F3EFE7;--body:#C7CDD6;--muted:#9AA3AE;--faint:#7f8894;--teal:#33C4C4;--amber:#F4A24C;--line:rgba(255,255,255,.09);}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--body);font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6;}
+  a{color:var(--teal);text-decoration:none;} a:hover{text-decoration:underline;}
+  .wrap{max-width:1080px;margin:0 auto;padding:34px 22px 80px;}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-bottom:24px;border-bottom:1px solid var(--line);margin-bottom:30px;flex-wrap:wrap;}
+  .brand{display:inline-flex;align-items:center;gap:10px;font-family:'Manrope';font-weight:800;font-size:19px;color:var(--ivory);}
+  .brand span.dot{color:var(--teal);}
+  .navlinks{display:flex;gap:9px;flex-wrap:wrap;}
+  .back{font-family:'Manrope';font-weight:700;font-size:13.5px;color:var(--ivory);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px 15px;}
+  .back:hover{border-color:var(--teal);text-decoration:none;}
+  .eyebrow{font-family:'Inter';font-size:11px;letter-spacing:.16em;color:var(--teal);text-transform:uppercase;}
+  h1{font-family:'Manrope';font-weight:800;font-size:clamp(30px,5vw,46px);line-height:1.05;letter-spacing:-.02em;color:var(--ivory);margin:10px 0 0;}
+  .lede{font-size:16px;color:var(--body);margin:14px 0 0;max-width:64ch;}
+  .controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:28px 0 22px;}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;}
+  .chip{font-family:'Manrope';font-weight:700;font-size:13px;color:var(--body);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 15px;cursor:pointer;transition:.15s;}
+  .chip:hover{border-color:var(--teal);color:var(--ivory);}
+  .chip.active{background:var(--teal);border-color:var(--teal);color:#06181a;}
+  .searchwrap{margin-left:auto;position:relative;}
+  #esearch{font-family:'Inter';font-size:14px;color:var(--ivory);background:var(--tile);border:1px solid var(--line);border-radius:9px;padding:9px 14px;width:230px;max-width:60vw;}
+  #esearch::placeholder{color:var(--faint);} #esearch:focus{outline:none;border-color:var(--teal);}
+  .count{font-size:12.5px;color:var(--faint);margin:0 0 16px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;}
+  .ecard{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:13px;overflow:hidden;transition:.16s;height:100%;}
+  .ecard:hover{border-color:var(--teal);transform:translateY(-2px);text-decoration:none;}
+  .ethumb{aspect-ratio:1200/630;background:var(--tile);overflow:hidden;}
+  .ethumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .ebody{padding:15px 17px 17px;display:flex;flex-direction:column;gap:9px;flex:1;}
+  .elens{align-self:flex-start;font-family:'Inter';font-size:10px;letter-spacing:.13em;text-transform:uppercase;font-weight:600;color:var(--teal);border:1px solid rgba(51,196,196,.35);border-radius:999px;padding:3px 9px;}
+  .ecard h3{font-family:'Manrope';font-weight:700;font-size:17.5px;line-height:1.22;letter-spacing:-.01em;color:var(--ivory);margin:2px 0 0;}
+  .edek{font-size:13.5px;color:var(--muted);margin:0;flex:1;}
+  .edate{font-size:12px;color:var(--faint);margin-top:4px;}
+  .ecard.upcoming{opacity:.66;}
+  .ecard.upcoming:hover{opacity:1;}
+  .esched{display:inline-block;font-family:'Inter';font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:#F4A24C;border:1px solid rgba(244,162,76,.45);border-radius:999px;padding:2px 7px;margin-right:8px;vertical-align:middle;}
+  .empty{display:none;color:var(--muted);font-size:15px;padding:30px 0;}
+  footer.foot{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);}
+  footer.foot a{font-weight:500;}
+  @media(max-width:560px){ .searchwrap{margin-left:0;width:100%;} #esearch{width:100%;} }
+</style>
+<script defer src="/assets/analytics.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a class="brand" href="/">Shafaat Ali Choyon<span class="dot">.</span></a>
+    <div class="navlinks">
+      <a class="back" href="/">← Portfolio</a>
+      <a class="back" href="/writing.html">Published writing</a>
+    </div>
+  </header>
+
+  <p class="eyebrow">Thought leadership · essays on this site</p>
+  <h1>Essays.</h1>
+  <p class="lede">Original, in-depth pieces on AI, public health, health-tech and growth, dual-market field notes from the US and Bangladesh. New essays published regularly.</p>
+
+  <div class="controls">
+    <div class="chips" id="chips">
+      <button class="chip active" data-lens="all">All</button>
+      <button class="chip" data-lens="ai">AI</button>
+      <button class="chip" data-lens="public-health">Public Health</button>
+      <button class="chip" data-lens="healthtech">Healthtech</button>
+      <button class="chip" data-lens="growth">Growth</button>
+    </div>
+    <div class="searchwrap">
+      <input id="esearch" type="search" placeholder="Search essays…" aria-label="Search essays" />
+    </div>
+  </div>
+
+  <p class="count" id="count"></p>
+  <p id="sched-legend" style="display:none;font-size:11.5px;color:var(--muted);margin:-8px 0 18px;"><span class="esched">Scheduled</span> = written and queued, publishes automatically on its date.</p>
+
+  <div class="grid" id="grid">
+
+${cards}
+
+  </div>
+
+  <p class="empty" id="empty">No essays match that filter yet. Try another lens or clear the search.</p>
+
+  <footer class="foot">
+    <a href="/">← Back to shafaatalichoyon.com</a> · <a href="/writing.html">Published writing (in outlets)</a>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var grid=document.getElementById('grid'),
+      cards=Array.prototype.slice.call(grid.querySelectorAll('.ecard')),
+      chips=document.getElementById('chips'), search=document.getElementById('esearch'),
+      count=document.getElementById('count'), empty=document.getElementById('empty'),
+      lens='all', q='';
+  cards.sort(function(a,b){ return (b.dataset.date||'').localeCompare(a.dataset.date||''); })
+       .forEach(function(c){ grid.appendChild(c); });
+  /* tag essays scheduled ahead (date in the future), full library stays visible, upcoming ones flagged */
+  var TODAY=new Date().toISOString().slice(0,10);
+  cards.forEach(function(c){ if((c.dataset.date||'')>TODAY){ c.classList.add('upcoming'); var d=c.querySelector('.edate'); if(d && d.textContent.indexOf('Scheduled')<0){ d.innerHTML='<span class="esched">Scheduled</span>'+d.textContent; } } });
+  if(cards.some(function(c){return c.classList.contains('upcoming');})){ var _lg=document.getElementById('sched-legend'); if(_lg) _lg.style.display='block'; }
+  function apply(){
+    var shown=0;
+    cards.forEach(function(c){
+      var okLens = lens==='all' || c.dataset.lens===lens;
+      var okQ = !q || (c.dataset.search||'').indexOf(q)>-1 || c.textContent.toLowerCase().indexOf(q)>-1;
+      var show = okLens && okQ; c.style.display = show ? '' : 'none'; if(show) shown++;
+    });
+    count.textContent = shown + (shown===1?' essay':' essays');
+    empty.style.display = shown ? 'none' : 'block';
+  }
+  chips.addEventListener('click', function(e){
+    var b=e.target.closest('.chip'); if(!b) return; lens=b.dataset.lens;
+    chips.querySelectorAll('.chip').forEach(function(x){ x.classList.toggle('active', x===b); }); apply();
+  });
+  search.addEventListener('input', function(){ q=search.value.trim().toLowerCase(); apply(); });
+  apply();
+})();
+</script>
+</body>
+</html>
+`;
+}
+
+// ---------- sitemap ----------
+function sitemap(essays){
+  const core = [
+    { loc: `${SITE}/`, mod: BUILD_DATE, freq: 'monthly', pri: '1.0' },
+    { loc: `${SITE}/writing.html`, mod: BUILD_DATE, freq: 'monthly', pri: '0.8' },
+    { loc: `${SITE}/essays.html`, mod: BUILD_DATE, freq: 'weekly', pri: '0.9' },
+  ];
+  const rows = core.concat(essays.map(m => ({
+    loc: `${SITE}/${m.slug}.html`, mod: m.date, freq: 'yearly', pri: '0.7'
+  })));
+  const body = rows.map(r =>
+`  <url>
+    <loc>${r.loc}</loc>
+    <lastmod>${r.mod}</lastmod>
+    <changefreq>${r.freq}</changefreq>
+    <priority>${r.pri}</priority>
+  </url>`).join('\n');
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${body}
+</urlset>
+`;
+}
+
+// ---------- main ----------
+(function main(){
+  if(!fs.existsSync(SRC)){ console.error('No essays-src/ folder found.'); process.exit(1); }
+  const files = fs.readdirSync(SRC).filter(f => f.endsWith('.md') && !f.startsWith('_'));
+  const essays = files.map(f => {
+    const m = parse(fs.readFileSync(path.join(SRC, f), 'utf8'));
+    if(!m.slug) m.slug = f.replace(/\.md$/, '');
+    if(!m.lens || !LENS[m.lens]) console.warn(`  ! ${m.slug}: lens "${m.lens}" not one of ${Object.keys(LENS).join('/')}`);
+    return m;
+  }).sort((a,b) => (b.date||'').localeCompare(a.date||''));
+
+  let pages = 0;
+  essays.forEach(m => {
+    if(m.generate === false) return;                 // existing bespoke page, never overwrite
+    if(!m._body){ console.warn(`  ! ${m.slug}: generate is on but body is empty, skipped`); return; }
+    fs.writeFileSync(path.join(ROOT, `${m.slug}.html`), essayPage(m));
+    pages++; console.log(`  page  → ${m.slug}.html`);
+  });
+
+  fs.writeFileSync(path.join(ROOT, 'essays.html'), hub(essays));
+  fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap(essays));
+
+  // essays.json, manifest for the homepage showcase (dynamic; GA most-viewed can re-sort later)
+  const CATLABEL = { 'ai':'AI', 'public-health':'Public Health', 'healthtech':'Health-Tech', 'growth':'Growth' };
+  const manifest = essays.map(m => ({
+    slug: m.slug, title: m.title, dek: m.dek, lens: m.lens,
+    lensLabel: CATLABEL[m.lens] || (LENS[m.lens] && LENS[m.lens].label) || m.lens,
+    date: m.date, url: `/${m.slug}.html`, og: (m.og || '/assets/og-card.jpg')
+  }));
+  fs.writeFileSync(path.join(ROOT, 'essays.json'), JSON.stringify(manifest));
+
+  console.log(`\nDone. ${essays.length} essays in hub, ${pages} page(s) generated, sitemap rebuilt.`);
+  console.log('Newest first:', essays.map(m => m.slug).join(', '));
+  console.log('\nTo publish: upload the changed files (new <slug>.html + essays.html + sitemap.xml + the OG image) to GitHub, then Request Indexing in Search Console.');
+})();

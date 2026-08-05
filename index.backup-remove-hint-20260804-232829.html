@@ -2880,6 +2880,64 @@ class Component extends DCLogic {
   })();
 })();
 </script>
+<!-- Lens arrival hint: path clarity for direct/geo visitors who skip the four-lens chooser. Additive + crawl-safe. -->
+<style>
+#lens-hint{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(16px);z-index:4000;width:min(560px,calc(100vw - 26px));display:flex;align-items:center;gap:13px;padding:13px 15px;background:var(--surface-raised);border:1px solid var(--border-strong);border-radius:15px;box-shadow:var(--shadow-lg);opacity:0;transition:opacity .5s ease,transform .55s cubic-bezier(.2,.7,.2,1);font-family:var(--body);}
+#lens-hint.on{opacity:1;transform:translateX(-50%) translateY(0);}
+#lens-hint .lh-badge{flex:0 0 auto;width:36px;height:36px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;background:var(--accent-soft);color:var(--accent-text);font-family:var(--disp);font-weight:800;font-size:17px;}
+#lens-hint .lh-msg{flex:1 1 auto;min-width:0;font-size:14px;line-height:1.4;color:var(--text-muted);}
+#lens-hint .lh-msg b{color:var(--text-strong);}
+#lens-hint .lh-see{flex:0 0 auto;height:37px;padding:0 16px;border:none;border-radius:9px;background:var(--accent);color:var(--accent-ink);font-family:var(--disp);font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap;}
+#lens-hint .lh-x{flex:0 0 auto;width:30px;height:37px;border:none;background:transparent;color:var(--text-faint);font-size:21px;line-height:1;cursor:pointer;}
+@media(prefers-reduced-motion:reduce){#lens-hint{transition:none;}}
+@media(max-width:560px){#lens-hint{flex-wrap:wrap;bottom:12px;}#lens-hint .lh-msg{order:3;flex:1 0 100%;}}
+</style>
+<script>
+(function(){
+  'use strict';
+  var KEY='shafaat_lens_hint_v1';
+  // Per-session (not permanent): a direct/geo visitor is guided once each visit, reappears on the next session. Essential for the BD audience journey.
+  function seen(){try{return sessionStorage.getItem(KEY)==='1';}catch(e){return false;}}
+  function mark(){try{sessionStorage.setItem(KEY,'1');}catch(e){}}
+  if(seen()) return;
+  var userChose=false;
+  document.addEventListener('click',function(e){
+    var t=(e.target&&e.target.closest)?e.target.closest('[data-lens-pick],#landing-all'):null;
+    if(t) userChose=true;
+  },true);
+  function landingClosed(){var l=document.getElementById('landing');return !l || getComputedStyle(l).display==='none';}
+  function build(){
+    if(seen()||document.getElementById('lens-hint')) return;
+    var lbl=document.getElementById('nav-lens-label');
+    var name=lbl?(lbl.textContent||'').trim():'';
+    if(!name||/full portfolio/i.test(name)) name='Growth & Marketing';
+    var bar=document.createElement('div');
+    bar.id='lens-hint';bar.setAttribute('role','region');bar.setAttribute('aria-label','Lens navigation help');
+    bar.innerHTML='<span class="lh-badge" aria-hidden="true">4</span>'
+      +'<span class="lh-msg">You are seeing the <b></b> lens, one of four ways to read the same career.</span>'
+      +'<button class="lh-see" type="button">See all four</button>'
+      +'<button class="lh-x" type="button" aria-label="Dismiss">&times;</button>';
+    bar.querySelector('.lh-msg b').textContent=name;
+    document.body.appendChild(bar);
+    requestAnimationFrame(function(){bar.classList.add('on');});
+    if(window.track) window.track('lens_hint',{action:'shown'});
+    function remove(){if(bar.parentNode)bar.parentNode.removeChild(bar);}
+    bar.querySelector('.lh-x').addEventListener('click',function(){if(window.track)window.track('lens_hint',{action:'dismiss'});mark();bar.classList.remove('on');setTimeout(remove,550);});
+    bar.querySelector('.lh-see').addEventListener('click',function(){
+      if(window.track)window.track('lens_hint',{action:'see_all'});
+      mark();bar.classList.remove('on');setTimeout(remove,400);
+      var nl=document.getElementById('nav-lens');if(nl)nl.click();
+    });
+    setTimeout(mark,15000);
+  }
+  var tries=0;
+  (function poll(){
+    if(seen()||userChose) return;
+    if(document.getElementById('nav-lens') && landingClosed()){ setTimeout(function(){ if(!userChose && landingClosed()) build(); }, 900); return; }
+    if(tries++<40) setTimeout(poll,200);
+  })();
+})();
+</script>
 <!-- Mobile menu (<=860px): folds nav links, lens switch, search, theme + Book a call into one sheet. Also fixes the nav theme-toggle icon (inline SVG, robust to dc-root hydration re-render). Additive + crawl-safe. -->
 <style id="sc-mobilemenu-css">
 @media(max-width:860px){ #nav-lens,#qs-btn,#theme-toggle,[data-cta]{display:none!important;} #sc-menu-btn{display:inline-flex!important;} }
@@ -2957,7 +3015,7 @@ class Component extends DCLogic {
   }catch(e){}
 })();
 </script>
-<!-- Lens coachmark: points at the lens switcher (desktop) or menu (mobile) on every visit once a lens view is on screen, auto-dismisses. Replaces the old arrival hint bar. Additive + crawl-safe. -->
+<!-- First-run coachmark: points at the lens switcher (desktop) or menu (mobile), once per browser, auto-dismisses. Additive + crawl-safe. -->
 <style>
 #sc-coach{position:fixed;z-index:6500;max-width:300px;background:var(--surface-raised);border:1px solid var(--accent);border-radius:12px;box-shadow:var(--shadow-lg);padding:13px 14px;font-family:var(--body);opacity:0;transform:translateY(-6px);transition:opacity .3s ease,transform .3s cubic-bezier(.2,.7,.2,1);}
 #sc-coach.on{opacity:1;transform:none;}
@@ -2971,6 +3029,8 @@ class Component extends DCLogic {
 <script>
 (function(){
   'use strict';
+  var KEY='sc_coach_v1';
+  try{ if(localStorage.getItem(KEY)==='1') return; }catch(e){}
   function target(){ var m=window.matchMedia('(max-width:860px)').matches; return document.getElementById(m?'sc-menu-btn':'nav-lens'); }
   var built=false;
   function position(c,t){
@@ -2987,6 +3047,7 @@ class Component extends DCLogic {
   }
   function build(){
     if(built) return;
+    if(document.getElementById('lens-hint')) return; // arrival hint already explains + points; avoid doubling up
     var t=target(); if(!t) return;
     var m=window.matchMedia('(max-width:860px)').matches;
     built=true;
@@ -3001,6 +3062,7 @@ class Component extends DCLogic {
     if(window.track) window.track('coachmark',{action:'shown'});
     var auto=setTimeout(function(){ done(false); }, 9000);
     function done(engaged){
+      try{ localStorage.setItem(KEY,'1'); }catch(e){}
       if(window.track) window.track('coachmark',{action:engaged?'engaged':'dismiss'});
       clearTimeout(auto); cleanup();
       c.classList.remove('on'); setTimeout(function(){ if(c.parentNode) c.parentNode.removeChild(c); }, 300);
@@ -3012,10 +3074,7 @@ class Component extends DCLogic {
     c.querySelector('.c-ok').addEventListener('click',function(){ done(false); });
     setTimeout(function(){ document.addEventListener('click',onDoc,true); document.addEventListener('keydown',onKey); window.addEventListener('resize',onResize); }, 60);
   }
-  // Show on every visit, once a lens view is actually on screen (landing chooser closed). Auto-dismisses.
-  var tries=0;
-  function landingClosed(){ var l=document.getElementById('landing'); return !l || getComputedStyle(l).display==='none'; }
-  (function wait(){ if(built) return; if(landingClosed() && target()){ setTimeout(build, 500); return; } if(tries++<80) setTimeout(wait, 250); })();
+  setTimeout(build, 1400);
 })();
 </script>
 </body>
