@@ -2949,8 +2949,10 @@ class Component extends DCLogic {
 #sc-menu .m-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
 #sc-menu .m-title{font-family:var(--disp);font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);}
 #sc-menu .m-x{width:38px;height:38px;border:none;background:transparent;color:var(--text-strong);font-size:26px;line-height:1;cursor:pointer;}
-#sc-menu .m-lens{display:block;width:100%;margin:2px 0 14px;padding:13px 14px;border-radius:12px;border:1px solid var(--accent);background:var(--accent-soft);color:var(--accent-text);font-family:var(--disp);font-weight:700;font-size:15px;cursor:pointer;text-align:left;}
+#sc-menu .m-lens{display:block;width:100%;margin:2px 0 8px;padding:13px 14px;border-radius:12px;border:1px solid var(--accent);background:var(--accent-soft);color:var(--accent-text);font-family:var(--disp);font-weight:700;font-size:15px;cursor:pointer;text-align:left;}
 #sc-menu .m-lens small{display:block;font-weight:500;font-size:12px;opacity:.85;margin-top:2px;}
+#sc-menu .m-full{display:block;width:100%;margin:0 0 14px;padding:12px 14px;border-radius:12px;border:1px solid var(--border-strong);background:transparent;color:var(--text-strong);font-family:var(--disp);font-weight:700;font-size:15px;cursor:pointer;text-align:left;}
+#sc-menu .m-full small{display:block;font-weight:500;font-size:12px;color:var(--text-faint);margin-top:2px;}
 #sc-menu .m-link{display:block;padding:13px 6px;text-decoration:none;color:var(--text-strong);font-family:var(--disp);font-weight:600;font-size:17px;border-bottom:1px solid rgba(128,128,128,.16);}
 #sc-menu .m-row{display:flex;gap:10px;margin:16px 0 0;}
 #sc-menu .m-row button{flex:1;height:46px;border-radius:11px;border:1px solid var(--border-strong);background:transparent;color:var(--text-strong);font-family:var(--disp);font-weight:600;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;}
@@ -2974,7 +2976,8 @@ class Component extends DCLogic {
   var mn=document.createElement('div'); mn.id='sc-menu'; mn.setAttribute('role','dialog'); mn.setAttribute('aria-label','Site menu'); mn.setAttribute('aria-hidden','true');
   mn.innerHTML=''
     +'<div class="m-head"><span class="m-title">Menu</span><button class="m-x" type="button" aria-label="Close menu">&times;</button></div>'
-    +'<button class="m-lens" type="button" data-act="lenses">See all four lenses<small>Switch view or open the full portfolio</small></button>'
+    +'<button class="m-lens" type="button" data-act="lenses">See all four lenses<small>Switch between the four views</small></button>'
+    +'<button class="m-full" type="button" data-act="full">See full portfolio<small>Everything in one view</small></button>'
     +'<a class="m-link" href="#cases">Case Studies</a>'
     +'<a class="m-link" href="#experience">Experience</a>'
     +'<a class="m-link" href="#voices">Voices</a>'
@@ -2994,6 +2997,7 @@ class Component extends DCLogic {
     var act=t.getAttribute('data-act');
     if(t.classList.contains('m-link')||act==='book'){ if(window.track&&act) window.track('mobile_menu',{action:act}); close(); return; }
     if(act==='lenses'){ if(window.track) window.track('mobile_menu',{action:'lenses'}); close(); var nn=document.getElementById('nav-lens')||document.getElementById('footer-lens'); if(nn) nn.click(); }
+    else if(act==='full'){ if(window.track) window.track('mobile_menu',{action:'full'}); close(); var fa=document.getElementById('landing-all'); if(fa) fa.click(); }
     else if(act==='search'){ if(window.track) window.track('mobile_menu',{action:'search'}); close(); var q=document.getElementById('qs-btn'); if(q) q.click(); }
     else if(act==='theme'){ if(window.track) window.track('mobile_menu',{action:'theme'}); var th=document.getElementById('theme-toggle'); if(th) th.click(); }
   });
