@@ -2870,5 +2870,62 @@ class Component extends DCLogic {
   (function addBtn(){var host=document.getElementById('theme-toggle');if(host&&host.parentNode&&!document.getElementById('qs-btn')){var b=document.createElement('button');b.id='qs-btn';b.type='button';b.setAttribute('aria-label','Search the site');b.title='Search (⌘K)';b.innerHTML='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>';b.addEventListener('click',open);host.parentNode.insertBefore(b,host);}else if(!document.getElementById('qs-btn'))setTimeout(addBtn,300);})();
 })();
 </script>
+<!-- Lens arrival hint: path clarity for direct/geo visitors who skip the four-lens chooser. Additive + crawl-safe. -->
+<style>
+#lens-hint{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(16px);z-index:4000;width:min(560px,calc(100vw - 26px));display:flex;align-items:center;gap:13px;padding:13px 15px;background:var(--surface-raised);border:1px solid var(--border-strong);border-radius:15px;box-shadow:var(--shadow-lg);opacity:0;transition:opacity .5s ease,transform .55s cubic-bezier(.2,.7,.2,1);font-family:var(--body);}
+#lens-hint.on{opacity:1;transform:translateX(-50%) translateY(0);}
+#lens-hint .lh-badge{flex:0 0 auto;width:36px;height:36px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;background:var(--accent-soft);color:var(--accent-text);font-family:var(--disp);font-weight:800;font-size:17px;}
+#lens-hint .lh-msg{flex:1 1 auto;min-width:0;font-size:14px;line-height:1.4;color:var(--text-muted);}
+#lens-hint .lh-msg b{color:var(--text-strong);}
+#lens-hint .lh-see{flex:0 0 auto;height:37px;padding:0 16px;border:none;border-radius:9px;background:var(--accent);color:var(--accent-ink);font-family:var(--disp);font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap;}
+#lens-hint .lh-x{flex:0 0 auto;width:30px;height:37px;border:none;background:transparent;color:var(--text-faint);font-size:21px;line-height:1;cursor:pointer;}
+@media(prefers-reduced-motion:reduce){#lens-hint{transition:none;}}
+@media(max-width:560px){#lens-hint{flex-wrap:wrap;bottom:12px;}#lens-hint .lh-msg{order:3;flex:1 0 100%;}}
+</style>
+<script>
+(function(){
+  'use strict';
+  var KEY='shafaat_lens_hint_v1';
+  function seen(){try{return localStorage.getItem(KEY)==='1';}catch(e){return false;}}
+  function mark(){try{localStorage.setItem(KEY,'1');}catch(e){}}
+  if(seen()) return;
+  var userChose=false;
+  document.addEventListener('click',function(e){
+    var t=(e.target&&e.target.closest)?e.target.closest('[data-lens-pick],#landing-all'):null;
+    if(t) userChose=true;
+  },true);
+  function landingClosed(){var l=document.getElementById('landing');return !l || getComputedStyle(l).display==='none';}
+  function build(){
+    if(seen()||document.getElementById('lens-hint')) return;
+    var lbl=document.getElementById('nav-lens-label');
+    var name=lbl?(lbl.textContent||'').trim():'';
+    if(!name||/full portfolio/i.test(name)) name='Growth & Marketing';
+    var bar=document.createElement('div');
+    bar.id='lens-hint';bar.setAttribute('role','region');bar.setAttribute('aria-label','Lens navigation help');
+    bar.innerHTML='<span class="lh-badge" aria-hidden="true">4</span>'
+      +'<span class="lh-msg">You are seeing the <b></b> lens, one of four ways to read the same career.</span>'
+      +'<button class="lh-see" type="button">See all four</button>'
+      +'<button class="lh-x" type="button" aria-label="Dismiss">&times;</button>';
+    bar.querySelector('.lh-msg b').textContent=name;
+    document.body.appendChild(bar);
+    requestAnimationFrame(function(){bar.classList.add('on');});
+    if(window.track) window.track('lens_hint',{action:'shown'});
+    function remove(){if(bar.parentNode)bar.parentNode.removeChild(bar);}
+    bar.querySelector('.lh-x').addEventListener('click',function(){if(window.track)window.track('lens_hint',{action:'dismiss'});mark();bar.classList.remove('on');setTimeout(remove,550);});
+    bar.querySelector('.lh-see').addEventListener('click',function(){
+      if(window.track)window.track('lens_hint',{action:'see_all'});
+      mark();bar.classList.remove('on');setTimeout(remove,400);
+      var nl=document.getElementById('nav-lens');if(nl)nl.click();
+    });
+    setTimeout(mark,15000);
+  }
+  var tries=0;
+  (function poll(){
+    if(seen()||userChose) return;
+    if(document.getElementById('nav-lens') && landingClosed()){ setTimeout(function(){ if(!userChose && landingClosed()) build(); }, 900); return; }
+    if(tries++<40) setTimeout(poll,200);
+  })();
+})();
+</script>
 </body>
 </html>
