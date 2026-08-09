@@ -355,16 +355,17 @@
  <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
  <div style="font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--text-faint);text-transform:uppercase;">The 60-second version</div>
  <span style="font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--accent-text);border:1px solid var(--accent);border-radius:999px;padding:2px 9px;text-transform:uppercase;">Start here</span>
+ <span style="font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--text-faint);border:1px solid var(--border-hairline);border-radius:999px;padding:2px 9px;text-transform:uppercase;">T-shaped</span>
  <span style="font-family:var(--mono);font-size:10px;color:var(--text-faint);margin-left:auto;">for the reader with one minute</span>
  </div>
  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:20px 30px;">
  <div>
  <div style="font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--text-faint);text-transform:uppercase;">Who</div>
- <div style="font-size:13.5px;color:var(--text-body);line-height:1.5;margin-top:6px;">16 years turning complex systems into measurable growth, across telecom, advertising, fintech, e-commerce, consumer tech, education and health, grounded in public health (MPH, CHES®).</div>
+ <div id="sixty-who" style="font-size:13.5px;color:var(--text-body);line-height:1.5;margin-top:6px;">16 years turning complex systems into measurable growth, across telecom, advertising, fintech, e-commerce, consumer tech, education and health, grounded in public health (MPH, CHES®).</div>
  </div>
  <div>
  <div style="font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--text-faint);text-transform:uppercase;">Proof</div>
- <div style="font-size:13.5px;color:var(--text-body);line-height:1.5;margin-top:6px;"><strong style="color:var(--accent-text);font-family:var(--mono);">#1</strong> globally for a Galaxy Note9 launch &middot; <strong style="color:var(--accent-text);font-family:var(--mono);">10M</strong> reached on national G2P rails &middot; <strong style="color:var(--accent-text);font-family:var(--mono);">~57%</strong> B2C CAGR at Praava. <a href="#proof" data-navlink style="color:var(--accent-text);text-decoration:none;font-weight:600;white-space:nowrap;">See all proof &rarr;</a></div>
+ <div id="sixty-proof" style="font-size:13.5px;color:var(--text-body);line-height:1.5;margin-top:6px;"><strong style="color:var(--accent-text);font-family:var(--mono);">#1</strong> globally for a Galaxy Note9 launch &middot; <strong style="color:var(--accent-text);font-family:var(--mono);">10M</strong> reached on national G2P rails &middot; <strong style="color:var(--accent-text);font-family:var(--mono);">~57%</strong> B2C CAGR at Praava. <a href="#proof" data-navlink style="color:var(--accent-text);text-decoration:none;font-weight:600;white-space:nowrap;">See all proof &rarr;</a></div>
  </div>
  <div>
  <div style="font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--text-faint);text-transform:uppercase;">How I work</div>
@@ -372,7 +373,7 @@
  </div>
  <div>
  <div style="font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--text-faint);text-transform:uppercase;">Flagship</div>
- <div style="font-size:13.5px;color:var(--text-body);line-height:1.5;margin-top:6px;">Took the Praava brand at a pandemic inflection point and built the commercial engine from zero: 342 to ~1,400 corporate clients. <a href="#cases" data-navlink style="color:var(--accent-text);text-decoration:none;font-weight:600;white-space:nowrap;">See the case &rarr;</a></div>
+ <div id="sixty-flag" style="font-size:13.5px;color:var(--text-body);line-height:1.5;margin-top:6px;">Took the Praava brand at a pandemic inflection point and built the commercial engine from zero: 342 to ~1,400 corporate clients. <a href="#cases" data-navlink style="color:var(--accent-text);text-decoration:none;font-weight:600;white-space:nowrap;">See the case &rarr;</a></div>
  </div>
  </div>
  <div style="display:flex;flex-wrap:wrap;gap:16px 26px;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid var(--border-hairline);">
@@ -1416,6 +1417,7 @@ class Component extends DCLogic {
  componentDidMount(){
  this._lenses = this.lensConfig();
  this._dossiers = this.dossierData();
+ this._sixty = this.sixtyData();
  this._reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  this.buildContent();
  this.cacheFull();
@@ -1426,6 +1428,34 @@ class Component extends DCLogic {
  }
 
  esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+ sixtyData(){
+ return {
+ full:{ who:"16 years turning complex systems into measurable growth, across telecom, advertising, fintech, e-commerce, consumer tech, education and health, grounded in public health (MPH, CHES®).",
+ proof:[['#1','globally for a Galaxy Note9 launch'],['10M','reached on national G2P rails'],['~57%','B2C CAGR at Praava']],
+ flag:"Took the Praava brand at a pandemic inflection point and built the commercial engine from zero: 342 to ~1,400 corporate clients." },
+ growth:{ who:"16+ years finding the real growth constraint and building the strategy, channels, products and teams that move the number, across telecom, fintech, consumer tech and health.",
+ proof:[['#1','globally, Galaxy Note9 launch (1.54× YoY)'],['10M','reached, national G2P campaign'],['4×','corporate clients, 342 to ~1,400']],
+ flag:"Built Praava's corporate-sales engine from zero and delivered ~57% B2C CAGR through a pandemic." },
+ healthcomm:{ who:"MPH in Health Education &amp; Promotion, CHES®-credentialed, 16+ years moving behavior at scale with population-scale hotlines, award-winning campaigns and 14 published health articles.",
+ proof:[['10M','beneficiaries reached by public campaigns'],['14','published health-policy articles'],['Commward','Silver, mental-health campaign']],
+ flag:"Stood up a population-scale health hotline (~3,000 calls a day) and trust-by-design campaigns that moved behavior." },
+ healthtech:{ who:"Product, data and operations leader who builds digital health products and the growth loops behind them, running decisions on ARPU, CLV and cohorts.",
+ proof:[['~57%','B2C product-growth CAGR (Praava)'],['100+','digital-health products built'],['10M','users on a national fintech product']],
+ flag:"Launched Ghore Lab home diagnostics and a 6-hour traveler-testing product, and ran an end-to-end ERP/BI transformation." },
+ pophealth:{ who:"Public-health practitioner (MPH, CHES®) who has reached people at national scale: a 10-million-beneficiary disbursement, a ~3,000-call-a-day hotline, and district illness mapping shared with government.",
+ proof:[['~2%','of a nation served in the pandemic'],['~3,000/day','primary-care access calls'],['24% / 34%','preventive care / screening growth']],
+ flag:"Reached 10 million underserved people through a national G2P disbursement, and shared district-level surveillance data with government (DGHS)." }
+ };
+ }
+ renderSixty(id){
+ const d=(this._sixty&&this._sixty[id])||(this._sixty&&this._sixty.full); if(!d) return;
+ const s=(el,html)=>{ const e=document.getElementById(el); if(e) e.innerHTML=html; };
+ s('sixty-who', d.who);
+ const stat=n=>'<strong style="color:var(--accent-text);font-family:var(--mono);">'+n[0]+'</strong> '+n[1];
+ s('sixty-proof', d.proof.map(stat).join(' &middot; ')+' <a href="#proof" data-navlink style="color:var(--accent-text);text-decoration:none;font-weight:600;white-space:nowrap;">See all proof &rarr;</a>');
+ s('sixty-flag', d.flag+' <a href="#cases" data-navlink style="color:var(--accent-text);text-decoration:none;font-weight:600;white-space:nowrap;">See the case &rarr;</a>');
+ }
 
  lensConfig(){
  return {
@@ -1929,6 +1959,7 @@ class Component extends DCLogic {
 
  if(id==='full'){ this.restoreFull(); }
  else { this.renderLens(this._dossiers[id]); }
+ this.renderSixty(id);
 
  var _seoTitles = {
  full: 'Shafaat Ali Choyon, Growth, Marketing & Health Strategist',
