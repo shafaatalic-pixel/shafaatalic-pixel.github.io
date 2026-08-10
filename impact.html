@@ -83,6 +83,7 @@
 
   <div id="scatter-wrap"><div id="scatter" class="im-stage"><div id="sc-chrome" style="position:absolute;inset:0;pointer-events:none;"></div></div></div>
   <div id="v-flow" style="display:none;"><div id="flow-stage" style="position:relative;width:100%;"></div></div>
+  <div id="v-ideas" style="display:none;"><div id="ideas-stage" class="im-stage" style="height:460px;"></div></div>
 
   <div id="im-read" style="font-size:13.5px;color:var(--im-mut);line-height:1.55;margin:18px 2px 4px;min-height:40px;border-left:2px solid var(--teal-400,#17A9A9);padding-left:13px;"></div>
   <div id="im-detail" class="im-cardgrid"></div>
@@ -139,7 +140,7 @@ chipDefs.forEach(function(c){var e=document.createElement('div');e.style.cssText
 var leg=document.getElementById('im-legend');
 Object.keys(HX).forEach(function(k){var e=document.createElement('span');e.style.cssText='display:inline-flex;align-items:center;gap:5px;';e.innerHTML='<span style="width:9px;height:9px;border-radius:50%;background:'+HX[k]+';"></span>'+LN[k];leg.appendChild(e);});
 
-var HINTS={const:'Grid: sectors across, outcome types down. Each dot is one result, sized by scale. Hover for detail, click to filter.',climb:'Time across, seniority up. Watch the same results rise from specialist to founder over sixteen years. Dashed = United States.',flow:'Each ribbon is one result. Hover a node to trace where a sector routes through a capability into an outcome; click to filter.',bridge:'The same results, sorted by market. Proven impact in two very different countries; HSREP is the platform that bridges both.'};
+var HINTS={const:'Grid: sectors across, outcome types down. Each dot is one result, sized by scale. Hover for detail, click to filter.',climb:'Time across, seniority up. Watch the same results rise from specialist to founder over sixteen years. Dashed = United States.',flow:'Each ribbon is one result. Hover a node to trace where a sector routes through a capability into an outcome; click to filter.',bridge:'The same results, sorted by market. Proven impact in two very different countries; HSREP is the platform that bridges both.',ideas:'The thinking behind the work: 89 published essays clustered by topic. Hover a dot for the title; click to read the piece.'};
 var HINT=document.getElementById('im-hint');
 
 var RD=document.getElementById('im-read'),DET=document.getElementById('im-detail');
@@ -244,19 +245,44 @@ function buildFlow(){
 }
 
 // ===== tabs =====
-var TABS=[['const','Constellation'],['climb','The climb'],['flow','Systems flow'],['bridge','Two markets']];
+var TABS=[['const','Constellation'],['climb','The climb'],['flow','Systems flow'],['bridge','Two markets'],['ideas','The thinking']];
 var tabHost=document.getElementById('im-tabs');
 TABS.forEach(function(t,i){var b=document.createElement('button');b.className='im-tab'+(i===0?' on':'');b.textContent=t[1];b.setAttribute('data-tab',t[0]);tabHost.appendChild(b);b.addEventListener('click',function(){go(t[0]);});});
 function go(id){
  tabHost.querySelectorAll('.im-tab').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-tab')===id);});
  HINT.textContent=HINTS[id]||'';
- var isFlow=id==='flow';
- document.getElementById('scatter-wrap').style.display=isFlow?'none':'block';
- document.getElementById('v-flow').style.display=isFlow?'block':'none';
- if(isFlow){if(!builtFlow){builtFlow=true;buildFlow();}}
- else{applyLayout(id);}
+ var scatter=(id==='const'||id==='climb'||id==='bridge');
+ document.getElementById('scatter-wrap').style.display=scatter?'block':'none';
+ document.getElementById('v-flow').style.display=id==='flow'?'block':'none';
+ document.getElementById('v-ideas').style.display=id==='ideas'?'block':'none';
+ document.getElementById('im-legend').style.display=id==='ideas'?'none':'flex';
+ if(scatter){applyLayout(id);}
+ else if(id==='flow'){if(!builtFlow){builtFlow=true;buildFlow();}}
+ else if(id==='ideas'){if(!builtIdeas){builtIdeas=true;buildIdeas();}showIdeas();return;}
  if(window.track)try{window.track('impact_view',{view:id});}catch(e){}
  showAll();
+}
+var builtIdeas=false,IDEACOL={'AI':'#8A7CF0','Growth':'#E0892E','Health-Tech':'#3B82C4','Public Health':'#E85C42'};
+function showIdeas(){RD.textContent='89 published essays across four topics: AI (20), Growth (25), Health-Tech (22) and Public Health (22). The thinking behind the results. Hover a dot for the title; click to read the piece. See the full essays hub for all of them.';DET.innerHTML='';if(window.track)try{window.track('impact_view',{view:'ideas'});}catch(e){}}
+function buildIdeas(){
+ var stage=document.getElementById('ideas-stage');stage.innerHTML='';
+ var tp=document.createElement('div');tp.className='im-tip';stage.appendChild(tp);
+ fetch('essays.json').then(function(r){return r.json();}).then(function(data){
+  var arr=Array.isArray(data)?data:(data.essays||data.items||[]);
+  var W=stage.clientWidth||900,H=stage.clientHeight||460;
+  var groups={};arr.forEach(function(e){var L=e.lensLabel||e.lens||'Other';(groups[L]=groups[L]||[]).push(e);});
+  var order=['AI','Growth','Health-Tech','Public Health'].filter(function(k){return groups[k];});
+  order.forEach(function(k,i){var list=groups[k],n=list.length;
+   var cx=(i%2===0?0.28:0.72)*W,cy=(i<2?0.29:0.77)*H,R=Math.min(W,H)*0.15,topRow=i<2;
+   list.forEach(function(e,j){var a=j*2.399963,r=R*Math.sqrt((j+0.5)/n);var x=cx+r*Math.cos(a),y=cy+r*Math.sin(a);
+    var nd=document.createElement('a');nd.href=e.url||'#';nd.setAttribute('data-navlink','');
+    nd.style.cssText='position:absolute;left:'+x+'px;top:'+y+'px;width:10px;height:10px;border-radius:50%;transform:translate(-50%,-50%);background:'+(IDEACOL[k]||'#889')+';opacity:.8;cursor:pointer;transition:transform .12s,opacity .12s;text-decoration:none;';
+    nd.addEventListener('mouseenter',function(){nd.style.transform='translate(-50%,-50%) scale(2)';nd.style.opacity='1';tp.innerHTML='<div style="font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:'+(IDEACOL[k])+';text-transform:uppercase;">'+k+' · '+String(e.date||'').slice(0,7)+'</div><div style="color:var(--im-ink);line-height:1.3;margin-top:3px;font-weight:500;">'+e.title+'</div>';tp.style.opacity='1';var tw=tp.offsetWidth,th=tp.offsetHeight;var left=Math.max(6,Math.min(x-tw/2,W-tw-6));var top=y+13;if(top+th>H-4)top=y-th-12;tp.style.left=left+'px';tp.style.top=top+'px';});
+    nd.addEventListener('mouseleave',function(){nd.style.transform='translate(-50%,-50%)';nd.style.opacity='.8';tp.style.opacity='0';});
+    stage.appendChild(nd);});
+   var lab=document.createElement('div');lab.innerHTML=k+' <span style="color:var(--im-stagefaint);">'+n+'</span>';lab.style.cssText='position:absolute;left:'+cx+'px;top:'+(topRow?(cy-R-8):(cy+R+11))+'px;transform:translate(-50%,'+(topRow?'-100%':'0')+');font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;color:'+(IDEACOL[k])+';font-weight:500;pointer-events:none;white-space:nowrap;';stage.appendChild(lab);});
+  var foot=document.createElement('div');foot.innerHTML='89 essays · updated continuously · <a href="/essays.html" data-navlink style="color:var(--accent-text);text-decoration:none;">the full hub &rarr;</a>';foot.style.cssText='position:absolute;left:50%;bottom:9px;transform:translateX(-50%);font-family:var(--mono);font-size:10px;color:var(--im-faint);';stage.appendChild(foot);
+ }).catch(function(){stage.innerHTML='<div style="padding:26px;font-family:var(--mono);font-size:12.5px;color:var(--im-faint);">The essays index could not load here. Read them at the <a href="/essays.html" style="color:var(--accent-text);">essays hub &rarr;</a></div>';});
 }
 
 // boot
