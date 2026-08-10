@@ -79,9 +79,9 @@
  <div data-reveal style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);">Impact map</div>
  <div data-reveal style="width:40px;height:3px;background:var(--accent);border-radius:2px;margin-top:12px;"></div>
  <h1 data-reveal style="font-family:var(--disp);font-weight:800;font-size:clamp(30px,5vw,52px);letter-spacing:-.02em;color:var(--text-strong);margin:16px 0 12px;line-height:1.05;max-width:20ch;">Where the work has landed.</h1>
- <p data-reveal style="font-family:var(--disp);font-weight:700;font-size:clamp(16px,2vw,21px);color:var(--text-strong);max-width:34ch;margin:2px 0 14px;line-height:1.32;">One operator who reads a system and moves the number, from a product desk in Dhaka to the C-suite to founding.</p>
+ <p data-reveal style="font-family:var(--disp);font-weight:700;font-size:clamp(16px,2vw,21px);color:var(--text-strong);max-width:34ch;margin:2px 0 14px;line-height:1.32;">Growth is the through-line: from the front line of consumer insight to running growth and operations across six industries, with health the deepest.</p>
  <div id="story" style="margin:8px 0 6px;">
-  <div class="story-scene"><div class="s-num" data-to="16">16</div><div class="s-lead">years, execution to founder</div><div class="s-sub">From a product-planning desk to founding a company, moving the number the whole way.</div></div>
+  <div class="story-scene"><div class="s-num" data-to="16">16</div><div class="s-lead">years, front line to the C-suite</div><div class="s-sub">From ~80,000 customer conversations to running growth and operations, moving the number the whole way.</div></div>
   <div class="story-scene"><div class="s-num" data-to="6">6</div><div class="s-lead">sectors, two countries</div><div class="s-sub">Telecom, consumer tech, fintech, e-commerce, brand, and health, in Bangladesh and the United States.</div></div>
   <div class="story-scene"><div class="s-num" data-to="10">10</div><div class="s-lead">million reached</div><div class="s-sub">National launches, categories built from zero, and campaigns at population scale.</div></div>
   <div class="story-scene"><div class="s-num" data-to="21">21</div><div class="s-lead">results, every one with a number</div><div class="s-sub">#1 globally, ~57% CAGR, a million dollars a month built from zero. Explore them below.</div><div style="margin-top:24px;font-family:var(--mono);font-size:12px;color:var(--text-faint);letter-spacing:.12em;">THE MAP &darr;</div></div>
@@ -181,7 +181,7 @@ var LN={growth:'Growth',healthcomm:'Health-Comm',healthtech:'Health-Tech',pophea
 var SEC=[['CT','Consumer tech'],['HC','Healthcare'],['FG','Fintech & gov'],['EC','E-commerce'],['BA','Brand & institutions'],['PS','Public & social']];
 var OUT=[['G','Growth'],['R','Reach & access'],['P','Revenue & P&L'],['X','Product & ops'],['B','Behavior & brand']];
 var CAP=['Growth & commercial','Brand & GTM','Product & data','Behavior & comms','Ops & systems'];
-var ALT=['','Specialist','Manager / lead','Leadership','Founder / C-suite'];
+var ALT=['','Specialist','Manager / lead','Leadership','C-suite / executive'];
 // [0]brand [1]sec [2]out [3]lens [4]scale [5]metric [6]title [7]year [8]alt [9]region [10]cap [11]symbol
 var D=[
 ['Samsung','CT','G','growth',4,'1.54× YoY · #1 globally','Galaxy Note9 flagship launch',2018,2,'BD','Growth & commercial','N9'],
@@ -217,7 +217,7 @@ chipDefs.forEach(function(c){var e=document.createElement('div');e.style.cssText
 var leg=document.getElementById('im-legend');
 Object.keys(HX).forEach(function(k){var e=document.createElement('span');e.style.cssText='display:inline-flex;align-items:center;gap:5px;';e.innerHTML='<span style="width:9px;height:9px;border-radius:50%;background:'+HX[k]+';"></span>'+LN[k];leg.appendChild(e);});
 
-var HINTS={const:'Grid: sectors across, outcome types down. Each dot is one result, sized by scale. Hover for detail, click to filter.',climb:'Time across, seniority up. Watch the same results rise from specialist to founder over sixteen years. Dashed = United States.',flow:'Each ribbon is one result. Hover a node to trace where a sector routes through a capability into an outcome; click to filter.',bridge:'Two very different markets, side by side. Bangladesh, sixteen years at national scale; the United States, a credentialed new base; and HSREP bridging both.',ideas:'The thinking behind the work: 89 published essays clustered by topic. Hover a dot for the title; click to read the piece.'};
+var HINTS={const:'Grid: sectors across, outcome types down. Each dot is one result, sized by scale. Hover for detail, click to filter.',climb:'Time across, seniority up. Watch the same results rise from specialist to the C-suite over sixteen years. Dashed = United States.',flow:'Each ribbon is one result. Hover a node to trace where a sector routes through a capability into an outcome; click to filter.',bridge:'Two very different markets, side by side. Bangladesh, sixteen years at national scale; the United States, a credentialed new base; and HSREP bridging both.',ideas:'The thinking behind the work: 89 published essays clustered by topic. Hover a dot for the title; click to read the piece.'};
 var HINT=document.getElementById('im-hint');
 
 var RD=document.getElementById('im-read'),DET=document.getElementById('im-detail');
@@ -266,7 +266,7 @@ function layoutClimb(){function px(yr){return 14+(yr-2013)/13*83;}function py(a)
 function chromeClimb(){function px(yr){return 14+(yr-2013)/13*83;}function py(a){return 88-(a-1)/3*80;}
  [2014,2018,2022,2026].forEach(function(yr){vline(px(yr),8,80);gl(yr,'left:'+px(yr)+'%;bottom:4px;transform:translateX(-50%);font-size:9px;');});
  [1,2,3,4].forEach(function(a){hline(py(a),14,83);gl(ALT[a],'left:0.5%;top:'+py(a)+'%;transform:translateY(-50%);width:12.5%;text-align:right;font-size:8.5px;line-height:1.1;');});
- gl('2009 to now: execution to founder','right:10px;top:8px;font-size:9px;');}
+ gl('2009 to now: execution to the C-suite','right:10px;top:8px;font-size:9px;');}
 function layoutBridge(){var reg={BD:[],US:[],Both:[]};D.forEach(function(d){reg[d[9]].push(d[12]);});var t=[];
  function pl(arr,x0){arr.forEach(function(idx,i){var col=i%4,row=Math.floor(i/4);t[idx]={x:x0+col*9.6,y:32+row*13.5,size:SZ[D[idx][4]]*0.8,dash:false};});}
  pl(reg.BD,8);pl(reg.US,58);reg.Both.forEach(function(idx){t[idx]={x:50,y:26,size:36,dash:true};});return t;}
