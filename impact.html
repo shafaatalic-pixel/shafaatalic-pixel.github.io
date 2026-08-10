@@ -144,6 +144,19 @@
     <div style="font-family:var(--mono);font-size:9.5px;color:var(--im-faint);text-align:center;margin-top:4px;">Each of 21 results, counted by discipline.</div>
    </div>
 
+   <div style="background:var(--im-card);border:1px solid var(--im-line);border-radius:12px;padding:20px;">
+    <div style="font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--im-faint);">The thinking</div>
+    <div style="font-family:var(--disp);font-weight:800;font-size:26px;color:var(--im-ink);margin:8px 0 1px;">89 <span style="font-weight:500;font-size:16px;color:var(--im-mut);">essays</span></div>
+    <div style="font-family:var(--mono);font-size:11px;color:var(--im-faint);margin-bottom:13px;">the record of the thinking</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+     <div style="display:flex;align-items:center;gap:8px;"><span style="width:9px;height:9px;border-radius:50%;background:#E0892E;flex:0 0 auto;"></span><span style="font-family:var(--body);font-size:12.5px;color:var(--im-mut);">Growth <b style="color:var(--im-ink);">25</b></span></div>
+     <div style="display:flex;align-items:center;gap:8px;"><span style="width:9px;height:9px;border-radius:50%;background:#8A7CF0;flex:0 0 auto;"></span><span style="font-family:var(--body);font-size:12.5px;color:var(--im-mut);">AI <b style="color:var(--im-ink);">20</b></span></div>
+     <div style="display:flex;align-items:center;gap:8px;"><span style="width:9px;height:9px;border-radius:50%;background:#3B82C4;flex:0 0 auto;"></span><span style="font-family:var(--body);font-size:12.5px;color:var(--im-mut);">Health-Tech <b style="color:var(--im-ink);">22</b></span></div>
+     <div style="display:flex;align-items:center;gap:8px;"><span style="width:9px;height:9px;border-radius:50%;background:#E85C42;flex:0 0 auto;"></span><span style="font-family:var(--body);font-size:12.5px;color:var(--im-mut);">Public Health <b style="color:var(--im-ink);">22</b></span></div>
+    </div>
+    <a href="/essays.html" data-navlink style="display:inline-block;margin-top:15px;font-family:var(--disp);font-weight:700;font-size:13px;color:var(--accent-text);text-decoration:none;">Read the essays hub &rarr;</a>
+   </div>
+
   </div>
  </section>
 
@@ -304,7 +317,7 @@ function buildFlow(){
 }
 
 // ===== tabs =====
-var TABS=[['const','Constellation'],['climb','The climb'],['flow','Systems flow'],['bridge','Two markets'],['ideas','The thinking']];
+var TABS=[['const','Where it landed'],['bridge','Two markets']];
 var tabHost=document.getElementById('im-tabs');
 TABS.forEach(function(t,i){var b=document.createElement('button');b.className='im-tab'+(i===0?' on':'');b.textContent=t[1];b.setAttribute('data-tab',t[0]);tabHost.appendChild(b);b.addEventListener('click',function(){go(t[0]);});});
 function go(id){
