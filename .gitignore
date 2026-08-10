@@ -77,3 +77,6 @@ node_modules/
 package-lock.json
 package.json
 essays 2nd round/
+
+# React prototype source (only the built /impact/ folder is served)
+impact-system-map/
