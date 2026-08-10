@@ -8,7 +8,7 @@
 <meta name="description" content="An interactive map of 21 real results across six sectors and two countries, shown four ways: sector by outcome, a sixteen-year career climb, a systems flow, and a US to Bangladesh bridge.">
 <meta name="author" content="Md Shafaat Ali Choyon">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<link rel="canonical" href="https://shafaatalichoyon.com/impact.html">
+<link rel="canonical" href="https://shafaatalichoyon.com/impact/">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -84,7 +84,7 @@
   <div class="story-scene"><div class="s-num" data-to="16">16</div><div class="s-lead">years, front line to the C-suite</div><div class="s-sub">From ~80,000 customer conversations to running growth and operations, moving the number the whole way.</div></div>
   <div class="story-scene"><div class="s-num" data-to="6">6</div><div class="s-lead">sectors, two countries</div><div class="s-sub">Telecom, consumer tech, fintech, e-commerce, brand, and health, in Bangladesh and the United States.</div></div>
   <div class="story-scene"><div class="s-num" data-to="10">10</div><div class="s-lead">million reached</div><div class="s-sub">National launches, categories built from zero, and campaigns at population scale.</div></div>
-  <div class="story-scene"><div class="s-num" data-to="21">21</div><div class="s-lead">results, every one with a number</div><div class="s-sub">#1 globally, ~57% CAGR, a million dollars a month built from zero. Explore them below.</div><div style="margin-top:24px;font-family:var(--mono);font-size:12px;color:var(--text-faint);letter-spacing:.12em;">THE MAP &darr;</div></div>
+  <div class="story-scene"><div class="s-num" data-to="21">21</div><div class="s-lead">results, every one with a number</div><div class="s-sub">#1 globally for growth, ~57% CAGR, a million dollars a month built from zero. Explore them below.</div><div style="margin-top:24px;font-family:var(--mono);font-size:12px;color:var(--text-faint);letter-spacing:.12em;">THE MAP &darr;</div></div>
  </div>
  <p data-reveal style="font-family:var(--body);font-size:clamp(15px,1.6vw,18px);line-height:1.6;color:var(--text-muted);max-width:76ch;margin:0 0 26px;">One strategist who reads the system and moves the number, across telecom, consumer tech, fintech, e-commerce, brand and health. Twenty-one results below, each with a number attached, shown a few ways. Hover any marker for the story; use the tabs to re-see the same work.</p>
 
@@ -184,7 +184,7 @@ var CAP=['Growth & commercial','Brand & GTM','Product & data','Behavior & comms'
 var ALT=['','Specialist','Manager / lead','Leadership','C-suite / executive'];
 // [0]brand [1]sec [2]out [3]lens [4]scale [5]metric [6]title [7]year [8]alt [9]region [10]cap [11]symbol
 var D=[
-['Samsung','CT','G','growth',4,'1.54× YoY · #1 globally','Galaxy Note9 flagship launch',2018,2,'BD','Growth & commercial','N9'],
+['Samsung','CT','G','growth',4,'1.54× YoY · #1 globally for growth','Galaxy Note9 flagship launch',2018,2,'BD','Growth & commercial','N9'],
 ['Samsung','CT','G','growth',2,'~2,600 units/day','Galaxy J2 mass-market entry',2018,2,'BD','Growth & commercial','J2'],
 ['Samsung','CT','X','healthtech',2,'New channel · loyalty','E-commerce channel + loyalty',2018,2,'BD','Product & data','Ch'],
 ['Praava','HC','G','growth',3,'~45% · ~57% CAGR','Healthcare startup hypergrowth',2022,3,'BD','Growth & commercial','Gx'],
@@ -211,7 +211,7 @@ function sn(c){var x=SEC.find(function(a){return a[0]===c;});return x?x[1]:c;}
 function on(c){var x=OUT.find(function(a){return a[0]===c;});return x?x[1]:c;}
 var SZ={4:50,3:38,2:28};
 
-var chipDefs=[['Range','6 sectors · 2 countries'],['Peak','#1 globally · Galaxy Note9'],['Scale','10M reached · $1M/mo built'],['Depth','Deepest in health · MPH · CHES®']];
+var chipDefs=[['Range','6 sectors · 2 countries'],['Peak','#1 globally for growth · Galaxy Note9'],['Scale','10M reached · $1M/mo built'],['Depth','Deepest in health · MPH · CHES®']];
 var chost=document.getElementById('im-chips');
 chipDefs.forEach(function(c){var e=document.createElement('div');e.style.cssText='background:var(--im-card);border:1px solid var(--im-line);border-radius:999px;padding:6px 13px;font-size:12px;color:var(--im-mut);';e.innerHTML='<span style="font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--accent-text);">'+c[0].toUpperCase()+'</span> &nbsp;'+c[1];chost.appendChild(e);});
 var leg=document.getElementById('im-legend');
