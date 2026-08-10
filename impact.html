@@ -79,13 +79,12 @@
  <div data-reveal style="width:40px;height:3px;background:var(--accent);border-radius:2px;margin-top:12px;"></div>
  <h1 data-reveal style="font-family:var(--disp);font-weight:800;font-size:clamp(30px,5vw,52px);letter-spacing:-.02em;color:var(--text-strong);margin:16px 0 12px;line-height:1.05;max-width:20ch;">Where the work has landed.</h1>
  <div id="story" style="margin:8px 0 6px;">
-  <div class="story-scene"><div class="s-num" data-to="16">16</div><div class="s-lead">years</div><div class="s-sub">From hands-on execution to commercial leadership to founder.</div></div>
-  <div class="story-scene"><div class="s-num" data-to="6">6</div><div class="s-lead">sectors</div><div class="s-sub">Consumer tech, fintech, e-commerce, brand, and health, public and private.</div></div>
-  <div class="story-scene"><div class="s-num" data-to="2">2</div><div class="s-lead">countries</div><div class="s-sub">Proven, large-scale impact in Bangladesh and the United States.</div></div>
-  <div class="story-scene"><div class="s-num" data-to="89">89</div><div class="s-lead">essays</div><div class="s-sub">The thinking behind the work, published across four topics.</div></div>
-  <div class="story-scene"><div class="s-num" data-to="21">21</div><div class="s-lead">results, every one with a number</div><div class="s-sub">Mapped four ways, plus the thinking and the reach. Explore below.</div><div style="margin-top:24px;font-family:var(--mono);font-size:12px;color:var(--text-faint);letter-spacing:.12em;">THE MAP &darr;</div></div>
+  <div class="story-scene"><div class="s-num" data-to="16">16</div><div class="s-lead">years, execution to founder</div><div class="s-sub">From a product-planning desk to founding a company, moving the number the whole way.</div></div>
+  <div class="story-scene"><div class="s-num" data-to="6">6</div><div class="s-lead">sectors, two countries</div><div class="s-sub">Telecom, consumer tech, fintech, e-commerce, brand, and health, in Bangladesh and the United States.</div></div>
+  <div class="story-scene"><div class="s-num" data-to="10">10</div><div class="s-lead">million reached</div><div class="s-sub">National launches, categories built from zero, and campaigns at population scale.</div></div>
+  <div class="story-scene"><div class="s-num" data-to="21">21</div><div class="s-lead">results, every one with a number</div><div class="s-sub">#1 globally, ~57% CAGR, a million dollars a month built from zero. Explore them below.</div><div style="margin-top:24px;font-family:var(--mono);font-size:12px;color:var(--text-faint);letter-spacing:.12em;">THE MAP &darr;</div></div>
  </div>
- <p data-reveal style="font-family:var(--body);font-size:clamp(15px,1.6vw,18px);line-height:1.6;color:var(--text-muted);max-width:76ch;margin:0 0 26px;">Twenty-one real results, every metric drawn straight from the case studies, shown four ways. The same markers re-choreograph as you switch views: bigger means bigger scale, color marks the lens. Hover for the story, click to filter.</p>
+ <p data-reveal style="font-family:var(--body);font-size:clamp(15px,1.6vw,18px);line-height:1.6;color:var(--text-muted);max-width:76ch;margin:0 0 26px;">One strategist who reads the system and moves the number, across telecom, consumer tech, fintech, e-commerce, brand and health. Twenty-one results below, each with a number attached, shown a few ways. Hover any marker for the story; use the tabs to re-see the same work.</p>
 
  <div id="im-chips" data-reveal style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;"></div>
 
@@ -194,7 +193,7 @@ function sn(c){var x=SEC.find(function(a){return a[0]===c;});return x?x[1]:c;}
 function on(c){var x=OUT.find(function(a){return a[0]===c;});return x?x[1]:c;}
 var SZ={4:50,3:38,2:28};
 
-var chipDefs=[['Deepest','Healthcare · 8 results'],['Widest','Growth · in 4 industries'],['Peak','#1 globally · Galaxy Note9'],['Reach','Two countries · US + Bangladesh']];
+var chipDefs=[['Range','6 sectors · 2 countries'],['Peak','#1 globally · Galaxy Note9'],['Scale','10M reached · $1M/mo built'],['Depth','Growth + public-health credentials']];
 var chost=document.getElementById('im-chips');
 chipDefs.forEach(function(c){var e=document.createElement('div');e.style.cssText='background:var(--im-card);border:1px solid var(--im-line);border-radius:999px;padding:6px 13px;font-size:12px;color:var(--im-mut);';e.innerHTML='<span style="font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--accent-text);">'+c[0].toUpperCase()+'</span> &nbsp;'+c[1];chost.appendChild(e);});
 var leg=document.getElementById('im-legend');
@@ -212,7 +211,7 @@ function showList(list,label){
  RD.textContent=(label?label+'. ':'')+list.length+(list.length===1?' result':' results')+' across '+dcount(list,1)+' sector(s), '+dcount(list,2)+' outcome type(s) and '+dcount(list,3)+' lens(es). Peak here: '+peak[5]+' ('+peak[0]+').';
  DET.innerHTML=list.map(card).join('');
 }
-function showAll(){RD.textContent='All 21 results · 9 organizations · 6 sectors · 5 outcome types · 4 lenses · 2 countries (Bangladesh and the United States). Growth is the through-line; healthcare is the deepest single sector.';DET.innerHTML=D.map(card).join('');}
+function showAll(){RD.textContent='All 21 results · 9 organizations · 6 sectors · 2 countries. Growth and commercial impact is the through-line; deep public-health credentials (MPH · CHES®) are the differentiating spike.';DET.innerHTML=D.map(card).join('');}
 
 // ---- shared scatter stage + tooltip ----
 var scStage=document.getElementById('scatter'),chrome=document.getElementById('sc-chrome');
