@@ -211,11 +211,15 @@ function sn(c){var x=SEC.find(function(a){return a[0]===c;});return x?x[1]:c;}
 function on(c){var x=OUT.find(function(a){return a[0]===c;});return x?x[1]:c;}
 var SZ={4:50,3:38,2:28};
 
-var chipDefs=[['Range','6 sectors · 2 countries'],['Peak','#1 globally · Galaxy Note9'],['Scale','10M reached · $1M/mo built'],['Depth','Growth + public-health credentials']];
+var chipDefs=[['Range','6 sectors · 2 countries'],['Peak','#1 globally · Galaxy Note9'],['Scale','10M reached · $1M/mo built'],['Depth','Deepest in health · MPH · CHES®']];
 var chost=document.getElementById('im-chips');
 chipDefs.forEach(function(c){var e=document.createElement('div');e.style.cssText='background:var(--im-card);border:1px solid var(--im-line);border-radius:999px;padding:6px 13px;font-size:12px;color:var(--im-mut);';e.innerHTML='<span style="font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--accent-text);">'+c[0].toUpperCase()+'</span> &nbsp;'+c[1];chost.appendChild(e);});
 var leg=document.getElementById('im-legend');
-Object.keys(HX).forEach(function(k){var e=document.createElement('span');e.style.cssText='display:inline-flex;align-items:center;gap:5px;';e.innerHTML='<span style="width:9px;height:9px;border-radius:50%;background:'+HX[k]+';"></span>'+LN[k];leg.appendChild(e);});
+function legDot(color,label){return '<span style="display:inline-flex;align-items:center;gap:5px;"><span style="width:9px;height:9px;border-radius:50%;background:'+color+';"></span>'+label+'</span>';}
+leg.innerHTML=legDot(HX.growth,'Growth <span style="color:var(--im-faint);">· the through-line</span>')
+ +'<span style="width:1px;height:12px;background:var(--im-line);align-self:center;"></span>'
+ +'<span style="display:inline-flex;align-items:center;gap:7px;flex-wrap:wrap;"><span style="color:var(--im-faint);font-size:9px;letter-spacing:.08em;text-transform:uppercase;">Health</span>'
+ +legDot(HX.healthcomm,'Comm')+legDot(HX.healthtech,'Tech')+legDot(HX.pophealth,'Population')+'</span>';
 
 var HINTS={const:'Grid: sectors across, outcome types down. Each dot is one result, sized by scale. Hover for detail, click to filter.',climb:'Time across, seniority up. Watch the same results rise from specialist to the C-suite over sixteen years. Dashed = United States.',flow:'Each ribbon is one result. Hover a node to trace where a sector routes through a capability into an outcome; click to filter.',bridge:'Two very different markets, side by side. Bangladesh, sixteen years at national scale; the United States, a credentialed new base; and HSREP bridging both.',ideas:'The thinking behind the work: 89 published essays clustered by topic. Hover a dot for the title; click to read the piece.'};
 var HINT=document.getElementById('im-hint');
