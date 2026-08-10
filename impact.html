@@ -97,6 +97,7 @@
   <div id="scatter-wrap"><div id="scatter" class="im-stage"><div id="sc-chrome" style="position:absolute;inset:0;pointer-events:none;"></div></div></div>
   <div id="v-flow" style="display:none;"><div id="flow-stage" style="position:relative;width:100%;"></div></div>
   <div id="v-ideas" style="display:none;"><div id="ideas-stage" class="im-stage" style="height:460px;"></div></div>
+  <div id="v-globe" style="display:none;"><div id="globe-stage" class="im-stage" style="height:466px;"></div></div>
 
   <div id="im-read" style="font-size:13.5px;color:var(--im-mut);line-height:1.55;margin:18px 2px 4px;min-height:40px;border-left:2px solid var(--teal-400,#17A9A9);padding-left:13px;"></div>
   <div id="im-detail" class="im-cardgrid"></div>
@@ -155,6 +156,7 @@
 <script>
 (function(){
 var G=window.gsap, reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var _thrL=false,_thrCb=[];function ensureThree(cb){if(window.THREE){cb();return;}_thrCb.push(cb);if(_thrL)return;_thrL=true;var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';s.onload=function(){_thrCb.forEach(function(f){try{f();}catch(e){}});_thrCb=[];};s.onerror=function(){_thrL=false;_thrCb=[];};document.body.appendChild(s);}
 var HX={growth:'#E0892E',healthcomm:'#12A5A5',healthtech:'#3B82C4',pophealth:'#E85C42'};
 var LN={growth:'Growth',healthcomm:'Health-Comm',healthtech:'Health-Tech',pophealth:'Pop-Health'};
 var SEC=[['CT','Consumer tech'],['HC','Healthcare'],['FG','Fintech & gov'],['EC','E-commerce'],['BA','Brand & institutions'],['PS','Public & social']];
@@ -196,7 +198,7 @@ chipDefs.forEach(function(c){var e=document.createElement('div');e.style.cssText
 var leg=document.getElementById('im-legend');
 Object.keys(HX).forEach(function(k){var e=document.createElement('span');e.style.cssText='display:inline-flex;align-items:center;gap:5px;';e.innerHTML='<span style="width:9px;height:9px;border-radius:50%;background:'+HX[k]+';"></span>'+LN[k];leg.appendChild(e);});
 
-var HINTS={const:'Grid: sectors across, outcome types down. Each dot is one result, sized by scale. Hover for detail, click to filter.',climb:'Time across, seniority up. Watch the same results rise from specialist to founder over sixteen years. Dashed = United States.',flow:'Each ribbon is one result. Hover a node to trace where a sector routes through a capability into an outcome; click to filter.',bridge:'The same results, sorted by market. Proven impact in two very different countries; HSREP is the platform that bridges both.',ideas:'The thinking behind the work: 89 published essays clustered by topic. Hover a dot for the title; click to read the piece.'};
+var HINTS={const:'Grid: sectors across, outcome types down. Each dot is one result, sized by scale. Hover for detail, click to filter.',climb:'Time across, seniority up. Watch the same results rise from specialist to founder over sixteen years. Dashed = United States.',flow:'Each ribbon is one result. Hover a node to trace where a sector routes through a capability into an outcome; click to filter.',bridge:'The two markets on a rotating globe. Bangladesh, sixteen years at national scale; the United States, the new base. The arc is HSREP, the platform that bridges both.',ideas:'The thinking behind the work: 89 published essays clustered by topic. Hover a dot for the title; click to read the piece.'};
 var HINT=document.getElementById('im-hint');
 
 var RD=document.getElementById('im-read'),DET=document.getElementById('im-detail');
@@ -307,16 +309,51 @@ TABS.forEach(function(t,i){var b=document.createElement('button');b.className='i
 function go(id){
  tabHost.querySelectorAll('.im-tab').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-tab')===id);});
  HINT.textContent=HINTS[id]||'';
- var scatter=(id==='const'||id==='climb'||id==='bridge');
+ var scatter=(id==='const'||id==='climb');
  document.getElementById('scatter-wrap').style.display=scatter?'block':'none';
  document.getElementById('v-flow').style.display=id==='flow'?'block':'none';
  document.getElementById('v-ideas').style.display=id==='ideas'?'block':'none';
+ document.getElementById('v-globe').style.display=id==='bridge'?'block':'none';
  document.getElementById('im-legend').style.display=id==='ideas'?'none':'flex';
  if(scatter){applyLayout(id);}
  else if(id==='flow'){if(!builtFlow){builtFlow=true;buildFlow();}}
+ else if(id==='bridge'){if(!builtGlobe){builtGlobe=true;buildGlobe();}}
  else if(id==='ideas'){if(!builtIdeas){builtIdeas=true;buildIdeas();}showIdeas();return;}
  if(window.track)try{window.track('impact_view',{view:id});}catch(e){}
  showAll();
+}
+var builtGlobe=false;
+function buildGlobe(){
+ var host=document.getElementById('globe-stage');
+ var l1=document.createElement('div');l1.innerHTML='<b style="color:var(--im-ink);">Bangladesh</b> <span style="color:var(--im-faint);">18 results</span>';l1.style.cssText='position:absolute;left:16px;top:14px;font-family:var(--mono);font-size:12px;z-index:3;';host.appendChild(l1);
+ var l2=document.createElement('div');l2.innerHTML='<b style="color:var(--im-ink);">United States</b> <span style="color:var(--im-faint);">2 and building</span>';l2.style.cssText='position:absolute;right:16px;top:14px;font-family:var(--mono);font-size:12px;text-align:right;z-index:3;';host.appendChild(l2);
+ var cap=document.createElement('div');cap.textContent='The arc is HSREP: one platform, both countries.';cap.style.cssText='position:absolute;left:0;right:0;bottom:12px;text-align:center;font-family:var(--mono);font-size:10px;color:var(--im-faint);z-index:3;';host.appendChild(cap);
+ ensureThree(function(){try{renderGlobe(host);}catch(e){}});
+}
+function renderGlobe(host){
+ var THREE=window.THREE;if(!THREE)return;
+ var cv=document.createElement('canvas');cv.setAttribute('aria-hidden','true');cv.style.cssText='position:absolute;inset:0;z-index:1;';host.appendChild(cv);
+ var renderer=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5));
+ var scene=new THREE.Scene();var cam=new THREE.PerspectiveCamera(45,1,0.1,100);cam.position.z=15;
+ var light=document.documentElement.getAttribute('data-theme')==='light';var wireCol=light?0x3a7d86:0x74d4d4,dotCol=light?0x2f6d76:0x3faeb8;
+ var R=5,grp=new THREE.Group();scene.add(grp);
+ var N=1100,pos=new Float32Array(N*3),off=2/N,inc=Math.PI*(3-Math.sqrt(5));
+ for(var i=0;i<N;i++){var yy=i*off-1+off/2,rr=Math.sqrt(1-yy*yy),a=i*inc;pos[i*3]=Math.cos(a)*rr*R;pos[i*3+1]=yy*R;pos[i*3+2]=Math.sin(a)*rr*R;}
+ var pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+ grp.add(new THREE.Points(pg,new THREE.PointsMaterial({size:0.08,color:dotCol,transparent:true,opacity:light?0.5:0.55,depthWrite:false})));
+ grp.add(new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.SphereGeometry(R,20,14)),new THREE.LineBasicMaterial({color:wireCol,transparent:true,opacity:0.09})));
+ function ll(lat,lon){var phi=(90-lat)*Math.PI/180,th=(lon+180)*Math.PI/180;return new THREE.Vector3(-R*Math.sin(phi)*Math.cos(th),R*Math.cos(phi),R*Math.sin(phi)*Math.sin(th));}
+ var bd=ll(23.7,90.4),us=ll(39,-98);
+ function marker(v,sz,c){var m=new THREE.Mesh(new THREE.SphereGeometry(sz,16,16),new THREE.MeshBasicMaterial({color:c}));m.position.copy(v);grp.add(m);var h=new THREE.Mesh(new THREE.SphereGeometry(sz*2.3,16,16),new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:0.18}));h.position.copy(v);grp.add(h);}
+ marker(bd,0.28,0xE0892E);marker(us,0.2,0x12A5A5);
+ var arc=[];for(var t=0;t<=1.0001;t+=1/64){var v=bd.clone().lerp(us,t);v.normalize().multiplyScalar(R*(1+0.34*Math.sin(Math.PI*t)));arc.push(v);}
+ grp.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(arc),new THREE.LineBasicMaterial({color:0x12A5A5,transparent:true,opacity:0.95})));
+ grp.rotation.y=-1.35;grp.rotation.x=0.22;
+ function size(){var w=host.clientWidth||900,h=host.clientHeight||460;renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();}
+ size();window.addEventListener('resize',size);
+ cam.lookAt(0,0,0);try{renderer.render(scene,cam);}catch(e){}
+ function loop(){requestAnimationFrame(loop);if(document.hidden||!host.offsetParent||host.clientWidth===0)return;if(!reduce)grp.rotation.y+=0.0022;renderer.render(scene,cam);}
+ loop();
 }
 var builtIdeas=false,IDEACOL={'AI':'#8A7CF0','Growth':'#E0892E','Health-Tech':'#3B82C4','Public Health':'#E85C42'};
 function showIdeas(){RD.textContent='89 published essays across four topics: AI (20), Growth (25), Health-Tech (22) and Public Health (22). The thinking behind the results. Hover a dot for the title; click to read the piece. See the full essays hub for all of them.';DET.innerHTML='';if(window.track)try{window.track('impact_view',{view:'ideas'});}catch(e){}}
@@ -363,7 +400,7 @@ showAll();
 })();
 (function(){
  if(reduce||window.matchMedia('(max-width:760px)').matches)return;
- var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';s.onload=function(){try{field();}catch(e){}};document.body.appendChild(s);
+ ensureThree(function(){try{field();}catch(e){}});
  function field(){
   var THREE=window.THREE;if(!THREE)return;var host=document.getElementById('scatter');if(!host)return;
   var cv=document.createElement('canvas');cv.setAttribute('aria-hidden','true');cv.style.cssText='position:absolute;inset:0;z-index:0;pointer-events:none;';host.insertBefore(cv,host.firstChild);
