@@ -33,6 +33,10 @@
 [data-reveal].rv{opacity:1;transform:none;}
 @media(prefers-reduced-motion:reduce){[data-reveal]{opacity:1!important;transform:none!important;transition:none;}}
 .logo-tile{transition:border-color .15s,transform .15s;} .logo-tile:hover{border-color:var(--accent);transform:translateY(-2px);}
+/* tiles are always dark: keep caption text light in any theme, and stop the height="400" attr from letterboxing the square logos */
+.logo-tile img{height:auto !important;aspect-ratio:1/1;object-fit:contain;}
+.logo-tile figcaption{color:#C4CDD8 !important;border-top-color:#22303C !important;}
+.logo-tile figcaption b{color:#EDE6D6 !important;}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebPage","name":"Brand System, Md Shafaat Ali Choyon","url":"https://shafaatalichoyon.com/brand.html","description":"The identity system behind shafaatalichoyon.com: the SC signal mark, logotypes, persona, type, voice and a rationed color logic.","isPartOf":{"@type":"WebSite","name":"Md Shafaat Ali Choyon","url":"https://shafaatalichoyon.com/"},"about":{"@type":"Person","name":"Md Shafaat Ali Choyon","url":"https://shafaatalichoyon.com/"}}
