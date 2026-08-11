@@ -60,13 +60,9 @@
   html{scroll-behavior:smooth;}
   body{margin:0;background:var(--surface-base);color:var(--text-body);font-family:var(--body);-webkit-font-smoothing:antialiased;transition:background .3s ease,color .3s ease;}
   ::selection{background:var(--accent);color:var(--accent-ink);}
-  /* Safety net: a CTA filled with the accent color must use ink text so it stays readable in BOTH themes (guards against a muted/faint text color landing on the teal fill). */
-  [style*="background:var(--accent)"][style*="color:var(--text-muted)"],
-  [style*="background: var(--accent)"][style*="color: var(--text-muted)"],
-  [style*="background:var(--accent)"][style*="color:var(--text-faint)"],
-  [style*="background: var(--accent)"][style*="color: var(--text-faint)"],
-  [style*="background:var(--accent)"][style*="color:var(--text-body)"],
-  [style*="background: var(--accent)"][style*="color: var(--text-body)"]{color:var(--accent-ink)!important;}
+  /* Safety net: any element FILLED with the accent color uses ink text, so accent CTAs stay readable in BOTH themes regardless of the inline text color a re-render sets. (Border-only accent buttons keep background:transparent, so they are not matched.) */
+  [style*="background:var(--accent)"],
+  [style*="background: var(--accent)"]{color:var(--accent-ink)!important;}
   @keyframes marq{to{transform:translateX(-50%)}}
   @keyframes lensIn{from{transform:translateY(10px)}to{transform:none}}
   .lens-card{animation:lensIn .45s cubic-bezier(.16,1,.3,1);}
