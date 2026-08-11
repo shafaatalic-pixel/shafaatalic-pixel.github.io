@@ -3099,5 +3099,94 @@ class Component extends DCLogic {
 })();
 </script>
 <script>document.addEventListener('click',function(e){var t=e.target&&e.target.closest&&e.target.closest('[data-open-lenses]');if(t){e.preventDefault();var nl=document.getElementById('nav-lens');if(nl){nl.click();}else{var l=document.getElementById('landing');if(l)l.style.display='flex';}}});</script>
+<!-- 30-SECOND GUIDED SITE TOUR (self-contained) -->
+<style>
+.st-focus{position:relative;z-index:9998;box-shadow:0 0 0 3px var(--accent),0 0 0 9999px rgba(6,10,16,.66)!important;border-radius:14px;transition:box-shadow .3s;}
+.st-launch{position:fixed;left:20px;bottom:20px;z-index:9000;display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 18px;border-radius:999px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);font-family:var(--disp);font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.35);}
+.st-launch:hover{filter:brightness(1.06);}
+.st-launch.hide{display:none;}
+.st-bar{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;z-index:10000;width:min(720px,calc(100% - 32px));background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:16px;padding:18px 22px 16px;box-shadow:0 20px 60px rgba(0,0,0,.55);display:none;}
+.st-bar.on{display:block;animation:st-in .45s cubic-bezier(.16,1,.3,1);}
+@keyframes st-in{from{opacity:0;transform:translateX(-50%) translateY(20px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+.st-eye{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);font-weight:700;}
+.st-bar h3{font-family:var(--disp);font-weight:800;font-size:clamp(18px,2.4vw,23px);color:var(--text-strong);margin:6px 0 7px;letter-spacing:-.01em;line-height:1.15;}
+.st-bar p{font-family:var(--body);color:var(--text-body);font-size:14px;line-height:1.5;margin:0 0 14px;}
+.st-ctrls{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+.st-dots{display:flex;gap:6px;}
+.st-dots i{width:7px;height:7px;border-radius:50%;background:var(--border-strong);}
+.st-dots i.on{background:var(--accent-text);}
+.st-btns{display:flex;align-items:center;gap:8px;}
+.st-btns button{height:34px;min-width:34px;padding:0 12px;border:1px solid var(--border-hairline);border-radius:8px;background:var(--surface-card);color:var(--text-body);cursor:pointer;font-size:13px;font-family:var(--body);}
+.st-btns .st-primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:700;}
+.st-btns button:disabled{opacity:.4;cursor:default;}
+.st-close{position:absolute;top:12px;right:12px;background:transparent;border:0;color:var(--text-muted);cursor:pointer;font-size:20px;line-height:1;}
+.st-count{font-family:var(--mono);font-size:11px;color:var(--text-faint);margin-right:4px;}
+@media (max-width:560px){.st-launch{left:14px;bottom:14px;height:38px;font-size:13px;}.st-bar{bottom:14px;padding:15px 16px;}.st-bar h3{font-size:17px;}}
+@media (prefers-reduced-motion:reduce){.st-bar.on{animation:none;}.st-focus{transition:none;}}
+</style>
+<script>
+(function(){
+  var STEPS=[
+    {sel:'#top',eye:'Who he is',title:'Growth is the core. Health is the deliberate application.',line:'A T-shaped operator: 16 years and roughly 80,000 customer conversations, from consumer insight to running growth and operations, now aimed at health.'},
+    {sel:'#approach',eye:'How he works',title:'Challenge, insight, execution, result.',line:'Every piece of work follows the same logic: read the system, find the lever, move the number.'},
+    {sel:'#cases',eye:'The proof',title:'Real results, each with a number.',line:'Case studies across telecom, fintech, e-commerce, consumer tech, education and health. Filter by the lens that matters to you.'},
+    {sel:'#hsrep',eye:'The platform',title:'HSREP.',line:'An independent public-health knowledge and communication platform he built, reaching 57,274 people at zero ad spend across two countries.'},
+    {sel:'#experience',eye:'The path',title:'Fourteen roles, MPH, CHES.',line:'Sixteen years across six industries and two countries, deepened with US public-health credentials.'},
+    {sel:'#contact',eye:'Next',title:"Now dive into what fits you.",line:'Explore the interactive impact map, read the essays, or get in touch. That is the whole story in thirty seconds.'}
+  ];
+  var i=-1,timer=null,paused=false,focusEl=null;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var DUR=5200;
+  var launch=document.createElement('button');
+  launch.className='st-launch';launch.type='button';
+  launch.innerHTML='▶ 30-second tour';
+  launch.setAttribute('aria-label','Play a 30 second guided tour of the site');
+  launch.addEventListener('click',start);
+  var bar=document.createElement('div');
+  bar.className='st-bar';bar.setAttribute('role','dialog');bar.setAttribute('aria-live','polite');bar.setAttribute('aria-label','Guided site tour');
+  function mount(){ if(!document.body) return; document.body.appendChild(launch); document.body.appendChild(bar); }
+  mount();
+  function clearFocus(){ if(focusEl){ focusEl.classList.remove('st-focus'); focusEl=null; } }
+  function setFocus(el){ clearFocus(); focusEl=el; el.classList.add('st-focus'); }
+  function render(){
+    var s=STEPS[i]; if(!s) return;
+    var dots=STEPS.map(function(_,k){return '<i class="'+(k===i?'on':'')+'"></i>';}).join('');
+    var last=i===STEPS.length-1;
+    bar.innerHTML='<button class="st-close" aria-label="Close tour">×</button>'+
+      '<div class="st-eye">'+s.eye+'</div><h3>'+s.title+'</h3><p>'+s.line+'</p>'+
+      '<div class="st-ctrls"><div class="st-dots" aria-hidden="true">'+dots+'</div>'+
+      '<div class="st-btns"><span class="st-count">'+(i+1)+' / '+STEPS.length+'</span>'+
+      '<button class="st-prev" aria-label="Previous"'+(i===0?' disabled':'')+'>←</button>'+
+      (reduce?'':'<button class="st-pause" aria-label="Pause or play">'+(paused?'▶':'❙❙')+'</button>')+
+      (last?'<button class="st-primary st-done">Done</button>':'<button class="st-primary st-next">Next →</button>')+
+      '</div></div>';
+    bar.querySelector('.st-close').onclick=stop;
+    var pv=bar.querySelector('.st-prev'); if(pv) pv.onclick=function(){go(i-1);};
+    var nx=bar.querySelector('.st-next'); if(nx) nx.onclick=function(){go(i+1);};
+    var dn=bar.querySelector('.st-done'); if(dn) dn.onclick=stop;
+    var pa=bar.querySelector('.st-pause'); if(pa) pa.onclick=togglePause;
+    var el=document.querySelector(s.sel);
+    if(el){ setFocus(el); try{ el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}); }catch(e){ el.scrollIntoView(); } }
+  }
+  function schedule(){ if(timer) clearTimeout(timer); if(paused||reduce||i>=STEPS.length-1) return; timer=setTimeout(function(){go(i+1);},DUR); }
+  function go(n){ if(n<0)n=0; if(n>STEPS.length-1)n=STEPS.length-1; i=n; render(); schedule(); }
+  function togglePause(){ paused=!paused; render(); schedule(); }
+  function start(){
+    var l=document.getElementById('landing'); if(l&&l.style.display!=='none'){ l.style.display='none'; document.body.style.overflow=''; }
+    launch.classList.add('hide'); bar.classList.add('on'); paused=false; i=-1; go(0);
+    try{ localStorage.setItem('sc_site_tour_seen','1'); }catch(e){}
+    if(window.track) try{ window.track('site_tour_start',{}); }catch(e){}
+  }
+  function stop(){ if(timer) clearTimeout(timer); bar.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; }
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&bar.classList.contains('on')) stop(); });
+  setTimeout(function(){
+    try{ if(localStorage.getItem('sc_site_tour_seen')) return; }catch(e){}
+    if(reduce||document.hidden) return;
+    var l=document.getElementById('landing'); if(l&&l.style.display!=='none') return;
+    start();
+  },2400);
+})();
+</script>
+
 </body>
 </html>
