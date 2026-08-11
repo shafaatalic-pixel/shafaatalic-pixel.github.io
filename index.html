@@ -2588,7 +2588,7 @@ class Component extends DCLogic {
  document.body.appendChild(btn);
  }
  function label(){ if(state.type==='case') return 'Copy link to this case'; if(state.type==='section') return 'Copy link · '+(SECLABEL[state.key]||state.key); return ''; }
- function render(){ if(!btn) return; if(state.type){ btn.textContent=label(); btn.style.display='inline-flex'; } else btn.style.display='none'; }
+ function render(){ if(!btn) return; if(window.__stTourActive){ btn.style.display='none'; return; } if(state.type){ btn.textContent=label(); btn.style.display='inline-flex'; } else btn.style.display='none'; }
  function update(){ ensureBtn(); var m=map();
  var openDet=document.querySelector('[id^="cgd-"].open'); /* one case opens at a time → case mode whenever open */
  if(openDet){ var uid=openDet.id.replace('cgd-',''); var slug=m.u2s[uid]; if(slug){ state={type:'case',key:slug}; render(); return; } }
@@ -2945,6 +2945,7 @@ class Component extends DCLogic {
     +'<div class="m-head"><span class="m-title">Menu</span><button class="m-x" type="button" aria-label="Close menu">&times;</button></div>'
     +'<button class="m-lens" type="button" data-act="lenses">See all four lenses<small>Switch between the four views</small></button>'
     +'<button class="m-full" type="button" data-act="full">See full portfolio<small>Everything in one view</small></button>'
+    +'<a class="m-link" href="/impact/" data-act="impact">Impact map</a>'
     +'<a class="m-link" href="#cases">Case Studies</a>'
     +'<a class="m-link" href="#experience">Experience</a>'
     +'<a class="m-link" href="#voices">Voices</a>'
@@ -3179,10 +3180,11 @@ class Component extends DCLogic {
   function start(){
     var l=document.getElementById('landing'); if(l&&l.style.display!=='none'){ l.style.display='none'; document.body.style.overflow=''; }
     launch.classList.add('hide'); dim.classList.add('on'); bar.classList.add('on'); paused=false; i=-1; go(0);
+    window.__stTourActive=true; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display='none';
     try{ localStorage.setItem('sc_site_tour_seen','1'); }catch(e){}
     if(window.track) try{ window.track('site_tour_start',{}); }catch(e){}
   }
-  function stop(){ if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; }
+  function stop(){ if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; try{ window.dispatchEvent(new Event('scroll')); }catch(e){} }
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&bar.classList.contains('on')) stop(); });
   setTimeout(function(){
     try{ if(localStorage.getItem('sc_site_tour_seen')) return; }catch(e){}
