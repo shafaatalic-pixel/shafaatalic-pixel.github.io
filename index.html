@@ -3101,7 +3101,9 @@ class Component extends DCLogic {
 <script>document.addEventListener('click',function(e){var t=e.target&&e.target.closest&&e.target.closest('[data-open-lenses]');if(t){e.preventDefault();var nl=document.getElementById('nav-lens');if(nl){nl.click();}else{var l=document.getElementById('landing');if(l)l.style.display='flex';}}});</script>
 <!-- 30-SECOND GUIDED SITE TOUR (self-contained) -->
 <style>
-.st-focus{position:relative;z-index:9998;box-shadow:0 0 0 3px var(--accent),0 0 0 9999px rgba(6,10,16,.66)!important;border-radius:14px;transition:box-shadow .3s;}
+.st-dim{position:fixed;inset:0;z-index:9990;background:rgba(6,10,16,.62);backdrop-filter:blur(1.5px);pointer-events:none;opacity:0;transition:opacity .35s;}
+.st-dim.on{opacity:1;}
+.st-focus{position:relative;z-index:9994;outline:2px solid var(--accent);outline-offset:5px;border-radius:14px;transition:outline-color .3s;}
 .st-launch{position:fixed;left:20px;bottom:20px;z-index:9000;display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 18px;border-radius:999px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);font-family:var(--disp);font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.35);}
 .st-launch:hover{filter:brightness(1.06);}
 .st-launch.hide{display:none;}
@@ -3144,7 +3146,8 @@ class Component extends DCLogic {
   launch.addEventListener('click',start);
   var bar=document.createElement('div');
   bar.className='st-bar';bar.setAttribute('role','dialog');bar.setAttribute('aria-live','polite');bar.setAttribute('aria-label','Guided site tour');
-  function mount(){ if(!document.body) return; document.body.appendChild(launch); document.body.appendChild(bar); }
+  var dim=document.createElement('div'); dim.className='st-dim'; dim.setAttribute('aria-hidden','true');
+  function mount(){ if(!document.body) return; document.body.appendChild(dim); document.body.appendChild(launch); document.body.appendChild(bar); }
   mount();
   function clearFocus(){ if(focusEl){ focusEl.classList.remove('st-focus'); focusEl=null; } }
   function setFocus(el){ clearFocus(); focusEl=el; el.classList.add('st-focus'); }
@@ -3173,11 +3176,11 @@ class Component extends DCLogic {
   function togglePause(){ paused=!paused; render(); schedule(); }
   function start(){
     var l=document.getElementById('landing'); if(l&&l.style.display!=='none'){ l.style.display='none'; document.body.style.overflow=''; }
-    launch.classList.add('hide'); bar.classList.add('on'); paused=false; i=-1; go(0);
+    launch.classList.add('hide'); dim.classList.add('on'); bar.classList.add('on'); paused=false; i=-1; go(0);
     try{ localStorage.setItem('sc_site_tour_seen','1'); }catch(e){}
     if(window.track) try{ window.track('site_tour_start',{}); }catch(e){}
   }
-  function stop(){ if(timer) clearTimeout(timer); bar.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; }
+  function stop(){ if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; }
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&bar.classList.contains('on')) stop(); });
   setTimeout(function(){
     try{ if(localStorage.getItem('sc_site_tour_seen')) return; }catch(e){}
