@@ -3104,8 +3104,8 @@ class Component extends DCLogic {
 .st-dim{position:fixed;inset:0;z-index:9990;background:rgba(6,10,16,.62);backdrop-filter:blur(1.5px);pointer-events:none;opacity:0;transition:opacity .35s;}
 .st-dim.on{opacity:1;}
 .st-focus{position:relative;z-index:9994;outline:2px solid var(--accent);outline-offset:5px;border-radius:14px;transition:outline-color .3s;}
-.st-launch{position:fixed;left:20px;bottom:20px;z-index:9000;display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 18px;border-radius:999px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);font-family:var(--disp);font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.35);}
-.st-launch:hover{filter:brightness(1.06);}
+.st-launch{position:fixed;left:16px;bottom:16px;z-index:9000;display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 13px;border-radius:999px;border:1px solid var(--border-hairline);background:var(--nav-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--accent-text);font-family:var(--disp);font-weight:700;font-size:12px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.16);opacity:.8;transition:opacity .2s,border-color .2s;}
+.st-launch:hover{opacity:1;border-color:var(--accent);}
 .st-launch.hide{display:none;}
 .st-bar{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;z-index:10000;width:min(720px,calc(100% - 32px));background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:16px;padding:18px 22px 16px;box-shadow:0 20px 60px rgba(0,0,0,.55);display:none;}
 .st-bar.on{display:block;animation:st-in .45s cubic-bezier(.16,1,.3,1);}
@@ -3133,12 +3133,14 @@ class Component extends DCLogic {
     {sel:'#approach',eye:'How he works',title:'Challenge, insight, execution, result.',line:'Every piece of work follows the same logic: read the system, find the lever, move the number.'},
     {sel:'#cases',eye:'The proof',title:'Real results, each with a number.',line:'Case studies across telecom, fintech, e-commerce, consumer tech, education and health. Filter by the lens that matters to you.'},
     {sel:'#hsrep',eye:'The platform',title:'HSREP.',line:'An independent public-health knowledge and communication platform he built, reaching 57,274 people at zero ad spend across two countries.'},
+    {sel:'#writing',eye:'The thinking',title:'Original thought leadership.',line:'Published essays on growth, AI, health-tech and public health, turning hard-won experience into ideas others can use.'},
+    {sel:'#press',eye:'In the press',title:'Recognized in national media.',line:'Featured work and mentions across leading outlets, from The Daily Star to Prothom Alo.'},
     {sel:'#experience',eye:'The path',title:'Fourteen roles, MPH, CHES.',line:'Sixteen years across six industries and two countries, deepened with US public-health credentials.'},
     {sel:'#contact',eye:'Next',title:"Now dive into what fits you.",line:'Explore the interactive impact map, read the essays, or get in touch. That is the whole story in thirty seconds.'}
   ];
   var i=-1,timer=null,paused=false,focusEl=null;
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var DUR=5200;
+  var DUR=4300;
   var launch=document.createElement('button');
   launch.className='st-launch';launch.type='button';
   launch.innerHTML='▶ 30-second tour';
