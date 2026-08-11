@@ -2578,7 +2578,7 @@ class Component extends DCLogic {
  function ensureBtn(){ if(btn) return;
  btn=document.createElement('button'); btn.id='sl-fab'; btn.type='button'; btn.setAttribute('aria-label','Copy a shareable link');
  btn.style.cssText='position:fixed;z-index:99999;right:18px;bottom:18px;display:none;align-items:center;gap:8px;'
- +'font:600 13px/1 ui-monospace,Menlo,monospace;color:#F7F2E8;background:#11161D;border:1px solid #33C4C4;'
+ +'font:600 13px/1 ui-monospace,Menlo,monospace;color:#F7F2E8;background:rgba(17,22,29,.42);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid #33C4C4;'
  +'border-radius:999px;padding:10px 14px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.35);opacity:.94;';
  btn.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation();
  var url; if(state.type==='case') url=base()+'/case/'+state.key+'/'; else if(state.type==='section') url=base()+'/?view=full#'+state.key; else return;
