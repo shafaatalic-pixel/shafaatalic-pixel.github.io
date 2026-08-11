@@ -920,7 +920,7 @@
  </style>
  <div data-reveal style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px;margin:20px 0 4px;">
  <h2 style="font-family:var(--disp);font-weight:700;font-size:clamp(28px,4.4vw,48px);letter-spacing:-.02em;color:var(--text-strong);margin:0;">Essays.</h2>
- <a href="essays.html" style="font-family:var(--mono);font-size:13px;color:var(--accent-text);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px;">Browse all 59 essays →</a>
+ <a href="essays.html" style="font-family:var(--mono);font-size:13px;color:var(--accent-text);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px;" id="essays-all-link">Browse all 89 essays →</a>
  </div>
  <p data-reveal style="font-family:var(--body);font-size:clamp(14px,1.4vw,16px);line-height:1.6;color:var(--text-muted);max-width:62ch;margin:0 0 14px;">Original, in-depth pieces, the latest from each of my four lenses: AI, growth, public health and health-tech.</p>
  <div id="essay-showcase" data-reveal><a href="essays.html" style="font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;">Loading latest essays…</a></div>
@@ -2663,7 +2663,7 @@ class Component extends DCLogic {
  }).join('');
  }
  function paint(){ var host=document.getElementById('essay-showcase'); if(!host||!DATA) return; if(host.querySelector('.es-card')) return; host.innerHTML=build(DATA); }
- fetch('essays.json',{cache:'no-cache'}).then(function(r){return r.json();}).then(function(list){ DATA=list; paint(); setInterval(paint,1500); })
+ fetch('essays.json',{cache:'no-cache'}).then(function(r){return r.json();}).then(function(list){ DATA=list; try{var _al=document.getElementById('essays-all-link'); if(_al) _al.textContent='Browse all '+list.length+' essays \u2192';}catch(e){} paint(); setInterval(paint,1500); })
  .catch(function(){ var host=document.getElementById('essay-showcase'); if(host) host.innerHTML='<a href="essays.html" style="font-family:var(--mono);font-size:13px;color:var(--accent-text);text-decoration:none;">Browse all essays →</a>'; });
 })();</script>
 <script>/* ===== Shared section deep-link guard: a bare /#section link must open the section, not the landing chooser ===== */
