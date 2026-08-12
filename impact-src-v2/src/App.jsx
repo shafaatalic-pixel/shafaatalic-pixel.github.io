@@ -982,7 +982,7 @@ function CareerJourney({ openLedger, view, setView }) {
   return (
     <section className="career-journey-view">
       <div className="journey-topbar">
-        <Segmented value={view} onChange={setView} />
+        <span className="journey-topbar-label">Filter the journey by lens</span>
         <div className="journey-filter-group" aria-label="Filter career journey by lens">
           {journeyLenses.map((item) => <button key={item} onClick={() => chooseLens(item)} className={journeyLens === item ? "is-selected" : ""} aria-pressed={journeyLens === item}>{item}</button>)}
         </div>
@@ -1154,12 +1154,12 @@ function EvidenceLedger({ onClose, onSelect }) {
 
 /* ===== The 90-second guided story (six beats across the four tabs) ===== */
 const TOUR_BEATS = [
-  { view: "atlas", org: "Grameenphone", eyebrow: "01 · THE HOOK", title: "Every number here began as a conversation.", body: "~80,000 of them, on a telecom front line. Listening became the instrument." },
-  { view: "atlas", org: "Asiatic", eyebrow: "02 · THE ENGINE", title: "Listening became a repeatable growth engine.", body: "Listen, Position, Activate, Scale, Systemize — the deep vertical of the T, forged across eight sectors." },
-  { view: "system", org: "Samsung", eyebrow: "03 · PROOF OF DEPTH", title: "World-class results, forged in market.", body: "#1 globally for growth. ~$1M a month built. 10M reached. A #1 category in 2.5 months." },
-  { view: "atlas", org: "Praava", eyebrow: "04 · THE TURN", title: "Then a deliberate choice: aim the engine at human health.", body: "Praava, ~57% consumer growth. Growth didn't stop — it changed target." },
-  { view: "atlas", org: "HSREP", eyebrow: "05 · THE MISSION", title: "It compounds into population impact.", body: "HSREP: 57,274 reached at $0 — backed by MPH and CHES, the science that sharpens the engine too." },
-  { view: "career", org: "current-focus", eyebrow: "06 · THE THESIS", title: "Growth is the deep capability. Health is the deliberate application.", body: "One deep spine, applied across eight sectors and two countries — now aimed at the outcome that matters most." },
+  { view: "atlas", org: "Grameenphone", eyebrow: "Where I started", title: "It began with listening, not numbers.", body: "Around 80,000 conversations on a telecom front line taught me that every result starts with truly understanding one real person." },
+  { view: "atlas", org: "Asiatic", eyebrow: "The pattern I kept finding", title: "Listening grew into a way of working.", body: "Across eight sectors the same discipline held. Understand, position, activate, scale, then systemize. That became the one capability I could go deep on." },
+  { view: "system", org: "Samsung", eyebrow: "Where it proved itself", title: "The method held up at world scale.", body: "Ranked number one globally for growth. Close to a million dollars a month built, ten million people reached, a new category taken to number one in two and a half months." },
+  { view: "atlas", org: "Praava", eyebrow: "The turn I chose", title: "Then I aimed the same engine at health.", body: "At Praava, roughly 57 percent consumer growth. The skill did not change. The purpose did." },
+  { view: "atlas", org: "HSREP", eyebrow: "The impact I care about most", title: "Growth, pointed at people's lives.", body: "Through HSREP, 57,274 people reached at zero cost, sharpened by graduate public health training and certification in health education." },
+  { view: "career", org: "current-focus", eyebrow: "What it all adds up to", title: "Growth is the depth. Health is where I apply it.", body: "One capability, built across eight sectors and two countries, now aimed at the outcome that matters most to me." },
 ];
 const TOUR_MS = 15000;
 
@@ -1246,9 +1246,10 @@ export function App() {
   return (
     <div className={`app-shell view-${view}`}>
       <header className="site-header">
-        <a className="wordmark" href="https://shafaatalichoyon.com/">Shafaat Choyon<span>.</span></a>
+        <a className="wordmark" href="https://shafaatalichoyon.com/"><img className="wordmark-mark" src="/assets/logos/sc-mark.png" alt="Shafaat Choyon logo" width="30" height="30" />Shafaat Choyon<span>.</span></a>
         <a className="back-link" href="https://shafaatalichoyon.com/"><IconArrowLeft size={16} />Back to portfolio</a>
       </header>
+      <nav className="tab-rail" aria-label="Impact views"><Segmented value={view} onChange={setView} /></nav>
       <main>
         <section className="hero-bar">
           <div className="hero-copy">
@@ -1258,9 +1259,8 @@ export function App() {
             <div className="proof-row">{visibleProofStats.map((item) => <ProofChip key={item.value} item={item} />)}</div>
             <button className="hero-story-btn" onClick={startTour}><span aria-hidden="true">►</span> Play the 90-second story</button>
           </div>
-          {view !== "career" && <div className="hero-controls">
-            <Segmented value={view} onChange={setView} />
-            {view === "system" && <Filters market={market} setMarket={setMarket} yearStart={yearStart} setYearStart={setYearStart} lens={lens} setLens={setLens} />}
+          {view === "system" && <div className="hero-controls">
+            <Filters market={market} setMarket={setMarket} yearStart={yearStart} setYearStart={setYearStart} lens={lens} setLens={setLens} />
           </div>}
         </section>
 
