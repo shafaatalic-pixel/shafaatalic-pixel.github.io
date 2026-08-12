@@ -296,7 +296,7 @@ function AtlasNode({ data }) {
 
 const nodeTypes = { systemNode: SystemNode, atlasNode: AtlasNode };
 
-const ATLAS_GROWTH = "#F4A24C", ATLAS_TEAL = "#0FB3B3", ATLAS_BLUE = "#4C8ED9";
+const ATLAS_GROWTH = "#F4A24C", ATLAS_TEAL = "#0FB3B3", ATLAS_BLUE = "#0FB3B3";
 /*
   Clean-T edge model. At rest the diagram shows only its skeleton: the horizontal
   "breadthbar" (top of the T) and the vertical "spine" (the growth engine). All the
@@ -497,7 +497,7 @@ function buildEdges(items, selectedItems) {
       : edge.phase === "health"
         ? "#0FB3B3"
         : edge.phase === "outcome"
-          ? "#4C8ED9"
+          ? "#0FB3B3"
           : "#F4A24C";
     return {
       id: edgeKey(edge.source, edge.target),
