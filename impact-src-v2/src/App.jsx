@@ -292,7 +292,7 @@ function AtlasNode({ data }) {
 const nodeTypes = { systemNode: SystemNode, atlasNode: AtlasNode };
 
 function atlasEdge({ id, source, target, kind = "capability", active = false, compared = false, sourceHandle = "right", targetHandle = "left" }) {
-  const color = kind === "growth" ? "#F4A24C" : kind === "application" ? "#F4A24C" : kind === "health" ? "#25C3C1" : kind === "proof" ? "#4C8ED9" : "var(--edge-muted)";
+  const color = kind === "growth" ? "#F4A24C" : kind === "application" ? "#F4A24C" : kind === "health" ? "#0FB3B3" : kind === "proof" ? "#4C8ED9" : "var(--edge-muted)";
   return {
     id,
     source,
@@ -465,7 +465,7 @@ function buildEdges(items, selectedItems) {
     const color = !active
       ? "var(--edge-muted)"
       : edge.phase === "health"
-        ? "#00B7B2"
+        ? "#0FB3B3"
         : edge.phase === "outcome"
           ? "#4C8ED9"
           : "#F4A24C";
@@ -1193,6 +1193,7 @@ export function App() {
           </div>}
         </section>
 
+        <div className="view-stage" key={view}>
         {view === "system" && filteredEvidence.length === 0 ? (
           <section className="empty-state"><IconAdjustmentsHorizontal size={30} /><h2>No evidence matches these filters.</h2><p>Reset the lens or expand the year range to restore the map.</p><button onClick={() => { setLens("All lenses"); setYearStart(2009); setMarket("both"); }}>Reset filters</button></section>
         ) : view === "system" ? (
@@ -1204,6 +1205,7 @@ export function App() {
         ) : (
           <TwoMarkets setMarket={setMarket} setView={setView} setSelectedOrganization={setSelectedOrganization} />
         )}
+        </div>
       </main>
       <footer className="site-footer"><span>Growth is the deep capability. Health is the deliberate application.</span><a href="https://shafaatalichoyon.com/impact.html">Read the original impact page <IconExternalLink size={15} /></a></footer>
       {ledgerOpen && <EvidenceLedger onClose={() => setLedgerOpen(false)} onSelect={selectLedgerItem} />}
