@@ -1091,7 +1091,7 @@ function TwoMarkets({ setMarket, setView, setSelectedOrganization }) {
         <MarketCard marketKey="us" onOpen={() => openMarket("us")} />
       </div>
       <aside className="hsrep-platform-card">
-        <div className="hsrep-mark">Hs</div>
+        <div className="hsrep-mark"><img className="hs-dark" src="/assets/logos/hsrep-icon-white.png" alt="HSREP" /><img className="hs-light" src="/assets/logos/hsrep-icon.png" alt="HSREP" /></div>
         <div><span className="eyebrow">INDEPENDENT PUBLIC-HEALTH PLATFORM</span><h3>HSREP</h3><p>Cross-market public-health communication: 57,274 gross platform-reported views and impressions · $0 ad spend · two countries.</p></div>
         <button onClick={() => { setMarket("both"); setSelectedOrganization("HSREP"); setView("system"); }}>Trace HSREP evidence <IconArrowNarrowRight /></button>
       </aside>

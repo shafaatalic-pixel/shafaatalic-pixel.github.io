@@ -1587,11 +1587,21 @@ main {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  color: var(--ct-97);
-  background: var(--teal-bright);
-  font-family: "Manrope", sans-serif;
-  font-weight: 700;
+  border: 2px solid var(--teal-bright);
+  background: var(--ct-125);
+  flex: 0 0 auto;
 }
+
+.hsrep-mark img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  display: block;
+}
+
+.hsrep-mark .hs-light { display: none; }
+:root[data-theme="light"] .hsrep-mark .hs-dark { display: none; }
+:root[data-theme="light"] .hsrep-mark .hs-light { display: block; }
 
 .hsrep-platform-card h3 {
   margin: 4px 0 2px;
