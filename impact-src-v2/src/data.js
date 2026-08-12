@@ -237,7 +237,7 @@ export const evidence = [
     insights: ["market-context", "behavior-signals"], levers: ["brand-strategy", "digital-gtm", "revenue-growth"], outcomes: ["reach-access", "revenue-pnl"],
   },
   {
-    id: "samsung-online", organization: "Samsung", organizationLabel: "Samsung / Consumer tech", sector: "Consumer technology", market: "bd", year: 2018, lens: "Health-Tech",
+    id: "samsung-online", organization: "Samsung", organizationLabel: "Samsung / Consumer tech", sector: "Consumer technology", market: "bd", year: 2018, lens: "Growth",
     metric: "New channel · loyalty", title: "E-commerce channel + loyalty",
     summary: "Built Samsung's online footprint, online-specific SKUs and a market-first consumer loyalty program.",
     insights: ["service-experience", "behavior-signals"], levers: ["digital-gtm", "ai-systems"], outcomes: ["product-operations", "behavior-brand"],
