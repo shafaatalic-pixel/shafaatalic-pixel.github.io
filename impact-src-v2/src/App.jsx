@@ -277,7 +277,9 @@ function AtlasNode({ data }) {
       <Handle id="top" type="target" position={Position.Top} className="atlas-handle" isConnectable={false} />
       <Handle id="left" type="target" position={Position.Left} className="atlas-handle" isConnectable={false} />
       <Handle id="source-left" type="source" position={Position.Left} className="atlas-handle" isConnectable={false} />
-      {data.kind !== "proof" && <span className="atlas-node__orb"><Icon name={data.icon} size={data.kind === "growth" ? 25 : 22} stroke={1.8} /></span>}
+      {data.kind !== "proof" && <span className="atlas-node__orb">{data.organization === "HSREP" ? (
+        <span className="atlas-node__logo"><img className="hs-dark" src="/assets/logos/hsrep-icon-white.png" alt="HSREP" /><img className="hs-light" src="/assets/logos/hsrep-icon.png" alt="HSREP" /></span>
+      ) : <Icon name={data.icon} size={data.kind === "growth" ? 25 : 22} stroke={1.8} />}</span>}
       {data.kind === "growth" ? (
         <span className="atlas-node__growth-copy"><b>{data.number}</b><strong>{data.label}</strong><small>{data.sublabel}</small></span>
       ) : data.kind === "proof" ? (
@@ -405,14 +407,15 @@ function buildAtlasGraph(selectedOrganization, compareOrganization, hoveredCapab
     }));
   });
 
+  // Truthful capability -> where-it-was-actually-applied links (lit only when that org is selected)
   const capabilityConnections = [
     ["behavior", "telecom"], ["behavior", "fintech"], ["behavior", "ecommerce"],
-    ["brand", "advertising"], ["brand", "consumer"], ["brand", "education"],
+    ["brand", "advertising"], ["brand", "consumer"], ["brand", "primary"],
     ["digital", "advertising"], ["digital", "ecommerce"], ["digital", "consumer"],
-    ["operations", "fintech"], ["operations", "specialized"],
-    ["ai", "consumer"], ["ai", "primary"],
-    ["health-comms", "primary"], ["health-comms", "specialized"],
-    ["population", "primary"], ["population", "public"],
+    ["operations", "fintech"], ["operations", "specialized"], ["operations", "primary"],
+    ["ai", "specialized"], ["ai", "primary"], ["ai", "public"],
+    ["health-comms", "primary"], ["health-comms", "specialized"], ["health-comms", "public"],
+    ["population", "fintech"], ["population", "primary"], ["population", "public"],
   ];
   capabilityConnections.forEach(([capability, sector]) => {
     const sectorItem = atlasSectors.find((item) => item.id === sector);
@@ -699,17 +702,7 @@ function MapInspector({ selectedCase, selectedItems, compareOrganization, setCom
       </div>
       <div className="inspector-actions">
         <button className="primary-action" onClick={openLedger}>View evidence <IconArrowNarrowRight /></button>
-        <button className="secondary-action" onClick={() => setCompareOrganization(compareCase ? null : selectedCase.organization === "Laser Treat" ? "Praava" : "Laser Treat")}>
-          <IconArrowsExchange size={17} /> {compareCase ? "Close comparison" : `Compare with ${selectedCase.organization === "Laser Treat" ? "Praava" : "Laser Treat"}`}
-        </button>
       </div>
-      {compareCase && (
-        <div className="comparison-callout">
-          <span>COMPARISON · {compareCase.organization.toUpperCase()}</span>
-          <strong>{compareCase.metric}</strong>
-          <p>{compareCase.title}</p>
-        </div>
-      )}
     </section>
   );
 }
@@ -833,6 +826,7 @@ function AtlasInspector({ selectedOrganization, compareOrganization, onOpenEvide
 
   return (
     <aside className="atlas-inspector" aria-live="polite">
+      {selectedOrganization === "HSREP" && <span className="atlas-hsrep-lockup" aria-hidden="true"><img className="hs-dark" src="/assets/logos/hsrep-lockup-white.png" alt="HSREP" /><img className="hs-light" src="/assets/logos/hsrep-icon.png" alt="HSREP" /></span>}
       <span className="eyebrow">{selectedCase?.organizationLabel?.toUpperCase() || selectedOrganization.toUpperCase()}</span>
       <h2>{titleByOrganization[selectedOrganization] || selectedCase?.title}</h2>
       <span className="detail-label">LENSES</span>
@@ -849,7 +843,6 @@ function AtlasInspector({ selectedOrganization, compareOrganization, onOpenEvide
       )}
       <div className="atlas-inspector-actions">
         <button className="atlas-open-evidence" onClick={onOpenEvidence}>Open case evidence <IconArrowNarrowRight size={18} /></button>
-        <button className="atlas-compare-action" onClick={onCompare}><IconArrowsExchange size={16} />{compareCase ? "Close comparison" : `Compare with ${selectedOrganization === "Praava" ? "Laser Treat" : "Praava"}`}</button>
       </div>
     </aside>
   );
@@ -948,11 +941,10 @@ function TShapedAtlas({ selectedOrganization, setSelectedOrganization, openLedge
         </div>
       </div>
       <div className="atlas-instructions">
-        <span><IconTargetArrow size={17} />Hover: trace capability</span>
-        <span><IconMessageCircle size={17} />Click: inspect evidence</span>
-        <span><IconArrowsExchange size={17} />Shift-click: compare</span>
-        <span className="atlas-line-key"><i></i>Capability connection</span>
-        <span className="atlas-line-key is-growth"><i></i>Growth application path</span>
+        <span><IconTargetArrow size={17} />Hover a capability to trace it</span>
+        <span><IconMessageCircle size={17} />Click a sector to light its path + evidence</span>
+        <span className="atlas-line-key is-growth"><i></i>Growth, forged in market</span>
+        <span className="atlas-line-key"><i></i>Applied to health</span>
       </div>
     </section>
   );
@@ -1160,6 +1152,36 @@ function EvidenceLedger({ onClose, onSelect }) {
   );
 }
 
+/* ===== The 90-second guided story (six beats across the four tabs) ===== */
+const TOUR_BEATS = [
+  { view: "atlas", org: "Grameenphone", eyebrow: "01 · THE HOOK", title: "Every number here began as a conversation.", body: "~80,000 of them, on a telecom front line. Listening became the instrument." },
+  { view: "atlas", org: "Asiatic", eyebrow: "02 · THE ENGINE", title: "Listening became a repeatable growth engine.", body: "Listen, Position, Activate, Scale, Systemize — the deep vertical of the T, forged across eight sectors." },
+  { view: "system", org: "Samsung", eyebrow: "03 · PROOF OF DEPTH", title: "World-class results, forged in market.", body: "#1 globally for growth. ~$1M a month built. 10M reached. A #1 category in 2.5 months." },
+  { view: "atlas", org: "Praava", eyebrow: "04 · THE TURN", title: "Then a deliberate choice: aim the engine at human health.", body: "Praava, ~57% consumer growth. Growth didn't stop — it changed target." },
+  { view: "atlas", org: "HSREP", eyebrow: "05 · THE MISSION", title: "It compounds into population impact.", body: "HSREP: 57,274 reached at $0 — backed by MPH and CHES, the science that sharpens the engine too." },
+  { view: "career", org: "current-focus", eyebrow: "06 · THE THESIS", title: "Growth is the deep capability. Health is the deliberate application.", body: "One deep spine, applied across eight sectors and two countries — now aimed at the outcome that matters most." },
+];
+const TOUR_MS = 15000;
+
+function TourBar({ beat, index, total, playing, onPlayPause, onPrev, onNext, onClose }) {
+  return (
+    <div className="tour-bar" role="dialog" aria-label="90-second story">
+      <div className="tour-progress" aria-hidden="true">{Array.from({ length: total }).map((_, i) => <i key={i} className={i === index ? "is-on" : i < index ? "is-done" : ""} />)}</div>
+      <div className="tour-body">
+        <span className="tour-eyebrow">{beat.eyebrow}</span>
+        <strong className="tour-title">{beat.title}</strong>
+        <span className="tour-text">{beat.body}</span>
+      </div>
+      <div className="tour-controls">
+        <button onClick={onPrev} disabled={index === 0} aria-label="Previous beat"><IconArrowLeft size={17} /></button>
+        <button className="tour-play" onClick={onPlayPause} aria-label={playing ? "Pause" : "Play"}>{playing ? "❚❚" : "►"}</button>
+        <button onClick={onNext} disabled={index === total - 1} aria-label="Next beat"><IconArrowNarrowRight size={17} /></button>
+        <button className="tour-close" onClick={onClose} aria-label="Close story"><IconX size={17} /></button>
+      </div>
+    </div>
+  );
+}
+
 export function App() {
   const [view, setView] = useState(() => {
     const requested = new URLSearchParams(window.location.search).get("view");
@@ -1171,6 +1193,19 @@ export function App() {
   const [selectedOrganization, setSelectedOrganization] = useState("Praava");
   const [activeEvidenceId, setActiveEvidenceId] = useState("praava-hypergrowth");
   const [ledgerOpen, setLedgerOpen] = useState(false);
+  const [tour, setTour] = useState({ active: false, index: 0, playing: false });
+  const startTour = () => setTour({ active: true, index: 0, playing: true });
+  useEffect(() => {
+    if (!tour.active) return;
+    const beat = TOUR_BEATS[tour.index];
+    setView(beat.view);
+    if (beat.org && beat.view !== "career") { setMarket("both"); setYearStart(2009); setLens("All lenses"); setSelectedOrganization(beat.org); }
+  }, [tour.active, tour.index]);
+  useEffect(() => {
+    if (!tour.active || !tour.playing) return;
+    const t = setTimeout(() => setTour((c) => (c.index >= TOUR_BEATS.length - 1 ? { ...c, playing: false } : { ...c, index: c.index + 1 })), TOUR_MS);
+    return () => clearTimeout(t);
+  }, [tour.active, tour.playing, tour.index]);
   const hero = heroByView[view];
   const visibleProofStats = view === "system" ? proofStats : headlineProofStats;
 
@@ -1221,6 +1256,7 @@ export function App() {
             <h1>{hero.title}</h1>
             <p>{hero.description} {hero.emphasis && <strong>{hero.emphasis}</strong>}</p>
             <div className="proof-row">{visibleProofStats.map((item) => <ProofChip key={item.value} item={item} />)}</div>
+            <button className="hero-story-btn" onClick={startTour}><span aria-hidden="true">►</span> Play the 90-second story</button>
           </div>
           {view !== "career" && <div className="hero-controls">
             <Segmented value={view} onChange={setView} />
@@ -1244,6 +1280,18 @@ export function App() {
       </main>
       <footer className="site-footer"><span>Growth is the deep capability. Health is the deliberate application.</span><a href="https://shafaatalichoyon.com/impact.html">Read the original impact page <IconExternalLink size={15} /></a></footer>
       {ledgerOpen && <EvidenceLedger onClose={() => setLedgerOpen(false)} onSelect={selectLedgerItem} />}
+      {tour.active && (
+        <TourBar
+          beat={TOUR_BEATS[tour.index]}
+          index={tour.index}
+          total={TOUR_BEATS.length}
+          playing={tour.playing}
+          onPlayPause={() => setTour((c) => ({ ...c, playing: !c.playing }))}
+          onPrev={() => setTour((c) => ({ ...c, index: Math.max(0, c.index - 1), playing: false }))}
+          onNext={() => setTour((c) => ({ ...c, index: Math.min(TOUR_BEATS.length - 1, c.index + 1), playing: false }))}
+          onClose={() => setTour({ active: false, index: 0, playing: false })}
+        />
+      )}
     </div>
   );
 }
