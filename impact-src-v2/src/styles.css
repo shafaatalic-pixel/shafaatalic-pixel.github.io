@@ -630,9 +630,9 @@ main {
 }
 
 .market-control button.is-selected {
-  background: var(--teal-bright);
-  color: var(--ct-32);
-  font-weight: 700;
+  background: color-mix(in srgb, var(--teal-bright) 14%, transparent);
+  color: var(--teal-bright);
+  font-weight: 600;
 }
 
 .year-control {
@@ -1090,8 +1090,13 @@ main {
 
 .primary-action {
   border: 1px solid var(--teal-bright);
-  background: var(--teal-bright);
-  color: var(--ct-66);
+  background: transparent;
+  color: var(--teal-bright);
+}
+
+.primary-action:hover,
+.journey-primary:hover {
+  background: color-mix(in srgb, var(--teal-bright) 12%, transparent);
 }
 
 .secondary-action,
