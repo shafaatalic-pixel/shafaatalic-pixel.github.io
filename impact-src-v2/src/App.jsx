@@ -645,12 +645,13 @@ function Filters({ market, setMarket, yearStart, setYearStart, lens, setLens }) 
       </div>
       <label className="year-control">
         <span className="filter-label">Year range</span>
-        <select value={yearStart} onChange={(event) => setYearStart(Number(event.target.value))}>
+        <span className="year-value">{yearStart} to 2026</span>
+        <IconChevronDown size={16} aria-hidden="true" />
+        <select value={yearStart} onChange={(event) => setYearStart(Number(event.target.value))} aria-label="Filter by start year">
           <option value="2009">2009 to 2026</option>
           <option value="2015">2015 to 2026</option>
           <option value="2021">2021 to 2026</option>
         </select>
-        <IconChevronDown size={16} aria-hidden="true" />
       </label>
       <div className="lens-control">
         <button className={lens !== "All lenses" ? "is-active" : ""} onClick={() => setLensOpen((open) => !open)} aria-expanded={lensOpen}>
