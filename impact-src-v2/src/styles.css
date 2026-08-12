@@ -2873,25 +2873,29 @@ main {
 
 .journey-sector-row {
   min-width: 960px;
-  min-height: 128px;
+  min-height: 104px;
+  margin-top: 40px;
   display: grid;
-  grid-template-columns: 115px repeat(6, 1fr);
+  grid-template-columns: 150px repeat(6, 1fr);
   align-items: center;
-  border-top: 1px solid var(--ct-153);
-  padding-right: 35px;
+  border: 1px solid var(--ct-122);
+  border-radius: 14px;
+  background: var(--ct-123);
+  padding: 6px 26px 6px 0;
 }
 
 .journey-sector-label {
   color: var(--teal-bright);
-  font-size: 9px;
-  letter-spacing: 0.06em;
-  padding-left: 16px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  padding-left: 22px;
+  line-height: 1.5;
 }
 
 .journey-sector-row button {
-  min-height: 100px;
+  min-height: 84px;
   border: 0;
-  border-left: 1px dashed var(--ct-78);
   background: transparent;
   color: var(--ct-154);
   display: flex;
@@ -3123,3 +3127,22 @@ main {
 :root[data-theme="light"] { --edge-muted: #b9b3a6; --rf-grid: #dcd6ca; }
 .react-flow__background circle,
 .react-flow__background pattern circle { fill: var(--rf-grid) !important; }
+
+/* ===== static (non-pannable) maps: normal cursor, no drag affordance ===== */
+.flow-stage .react-flow__pane,
+.atlas-canvas .react-flow__pane { cursor: default; }
+.flow-stage .react-flow__renderer,
+.atlas-canvas .react-flow__renderer { cursor: default; }
+.react-flow__node { cursor: pointer; }
+.react-flow__node.nopointer { cursor: default; }
+
+/* ===== Career: 'Sectors applied' as its own differentiated band ===== */
+.journey-sector-label small {
+  display: block;
+  margin-top: 5px;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+.journey-sector-row button:hover { background: var(--ct-124, transparent); border-radius: 10px; }

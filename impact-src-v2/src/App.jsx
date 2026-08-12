@@ -341,7 +341,7 @@ function buildAtlasGraph(selectedOrganization, compareOrganization, hoveredCapab
       focusable: true,
       data: { ...item, kind: "growth", tone: "amber", active: true, ariaLabel: `Growth stage ${item.number}: ${item.label}, ${item.sublabel}` },
     });
-    if (index > 0) edges.push(atlasEdge({ id: `growth-spine-${index}`, source: `growth-${atlasGrowthStages[index - 1].id}`, target: `growth-${item.id}`, kind: "growth", active: true, sourceHandle: "bottom", targetHandle: "top" }));
+    // engine spine drawn as a continuous CSS line behind the stack (see .atlas-spine); no per-step edges (they rendered as "!" stubs)
   });
 
   atlasSectors.forEach((item) => {
@@ -689,6 +689,14 @@ function MapInspector({ selectedCase, selectedItems, compareOrganization, setCom
 
 function SystemMap({ filteredEvidence, selectedOrganization, setSelectedOrganization, activeEvidenceId, setActiveEvidenceId, openLedger }) {
   const [compareOrganization, setCompareOrganization] = useState(null);
+  const [mapFlow, setMapFlow] = useState(null);
+  useEffect(() => {
+    if (!mapFlow) return;
+    const refit = () => mapFlow.fitView({ padding: 0.06, minZoom: 0.2, maxZoom: 1.0 });
+    const t = setTimeout(refit, 60);
+    window.addEventListener("resize", refit);
+    return () => { clearTimeout(t); window.removeEventListener("resize", refit); };
+  }, [mapFlow]);
   const { nodes, selectedItems, tracedItems } = useMemo(() => buildNodes(filteredEvidence, selectedOrganization, activeEvidenceId), [filteredEvidence, selectedOrganization, activeEvidenceId]);
   const edges = useMemo(() => buildEdges(filteredEvidence, tracedItems), [filteredEvidence, tracedItems]);
   const selectedCase = selectedItems.find((item) => item.id === activeEvidenceId) || selectedItems[0] || filteredEvidence[0];
@@ -710,21 +718,26 @@ function SystemMap({ filteredEvidence, selectedOrganization, setSelectedOrganiza
             nodeTypes={nodeTypes}
             nodesDraggable={false}
             nodesConnectable={false}
+            nodesFocusable={false}
+            edgesFocusable={false}
             elementsSelectable
             zoomOnDoubleClick={false}
             zoomOnScroll={false}
-            panOnScroll
-            minZoom={0.48}
-            maxZoom={1.35}
+            zoomOnPinch={false}
+            panOnScroll={false}
+            panOnDrag={false}
+            preventScrolling={false}
+            minZoom={0.2}
+            maxZoom={1.2}
             fitView
-            fitViewOptions={{ padding: 0.035, minZoom: 0.48, maxZoom: 1.05 }}
+            fitViewOptions={{ padding: 0.06, minZoom: 0.2, maxZoom: 1.0 }}
+            onInit={setMapFlow}
             proOptions={{ hideAttribution: true }}
             onNodeClick={(_, node) => {
               if (node.data.group === "organization") setSelectedOrganization(node.data.organization);
             }}
           >
-            <Background color="#16304a" gap={28} size={1} />
-            <Controls showInteractive={false} className="map-controls" />
+            <Background color="var(--rf-grid, #16304a)" gap={28} size={1} />
           </ReactFlow>
         </div>
       </section>
@@ -821,6 +834,14 @@ function TShapedAtlas({ selectedOrganization, setSelectedOrganization, openLedge
     if (!atlasSectors.some((item) => item.organization === selectedOrganization)) setSelectedOrganization("Praava");
   }, [selectedOrganization, setSelectedOrganization]);
 
+  useEffect(() => {
+    if (!flowInstance) return;
+    const refit = () => flowInstance.fitView({ padding: 0.07, minZoom: 0.2, maxZoom: 1.02 });
+    const t = setTimeout(refit, 60);
+    window.addEventListener("resize", refit);
+    return () => { clearTimeout(t); window.removeEventListener("resize", refit); };
+  }, [flowInstance, graph]);
+
   const changeLens = (item) => {
     setAtlasLens(item);
     const allowed = atlasLensOrganizations[item] || organizationOrder;
@@ -857,15 +878,20 @@ function TShapedAtlas({ selectedOrganization, setSelectedOrganization, openLedge
             nodeTypes={nodeTypes}
             nodesDraggable={false}
             nodesConnectable={false}
+            nodesFocusable={false}
+            edgesFocusable={false}
             elementsSelectable
             multiSelectionKeyCode={null}
-            panOnScroll
+            panOnScroll={false}
+            panOnDrag={false}
             zoomOnScroll={false}
+            zoomOnPinch={false}
             zoomOnDoubleClick={false}
-            minZoom={0.58}
-            maxZoom={1.3}
+            preventScrolling={false}
+            minZoom={0.2}
+            maxZoom={1.2}
             fitView
-            fitViewOptions={{ padding: 0.035, minZoom: 0.58, maxZoom: 1.03 }}
+            fitViewOptions={{ padding: 0.07, minZoom: 0.2, maxZoom: 1.02 }}
             onInit={setFlowInstance}
             proOptions={{ hideAttribution: true }}
             onNodeMouseEnter={(_, node) => { if (node.data.kind === "breadth") setHoveredCapability(node.data.id); }}
@@ -880,7 +906,6 @@ function TShapedAtlas({ selectedOrganization, setSelectedOrganization, openLedge
               else { setSelectedOrganization(node.data.organization); setCompareOrganization(null); }
             }}
           >
-            <Controls showInteractive={false} className="atlas-controls" />
           </ReactFlow>
         </div>
         <div className="atlas-side">
@@ -962,7 +987,7 @@ function CareerJourney({ openLedger, view, setView }) {
           </div>
           <div className="journey-years" aria-hidden="true">{[2010, 2012, 2014, 2016, 2018, 2020, 2022, 2024, 2026].map((year) => <span key={year}>{year}</span>)}</div>
           <div className="journey-sector-row">
-            <span className="journey-sector-label">SECTORS APPLIED</span>
+            <span className="journey-sector-label">SECTORS<br />APPLIED<br /><small>6 sectors · 2 countries</small></span>
             {sectorsApplied.map(([chapterId, label, icon]) => (
               <button key={`${chapterId}-${label}`} onClick={() => chooseChapter(chapterId)}><Icon name={icon} size={25} /><span>{label}</span></button>
             ))}
