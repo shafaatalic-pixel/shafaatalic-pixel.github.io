@@ -98,6 +98,7 @@ const organizationIcon = {
 };
 
 const organizationOrder = [
+  "Grameenphone",
   "SureCash",
   "Ekhanei",
   "Samsung",
@@ -223,18 +224,20 @@ const atlasGrowthStages = [
 ];
 
 const atlasSectors = [
-  { id: "fintech", label: "Fintech", icon: "fintech", organization: "SureCash", x: 150, y: 205, side: "left", proof: "10M beneficiaries" },
-  { id: "ecommerce", label: "E-commerce", icon: "ecommerce", organization: "Ekhanei", x: 105, y: 335, side: "left", proof: "#1 in 2.5 months" },
-  { id: "consumer", label: "Consumer tech", icon: "consumer", organization: "Samsung", x: 185, y: 465, side: "left", proof: "#1 globally for growth" },
-  { id: "education", label: "Education", icon: "education", organization: "ACCA", x: 305, y: 555, side: "left", proof: "100% of targets" },
-  { id: "primary", label: "Primary healthcare", icon: "healthcare", organization: "Praava", x: 835, y: 245, side: "right", proof: "~57% B2C CAGR" },
-  { id: "specialized", label: "Specialized healthcare", icon: "healthcare", organization: "Laser Treat", x: 835, y: 400, side: "right", proof: "+16% revenue" },
-  { id: "public", label: "Public health", icon: "public", organization: "HSREP", x: 775, y: 555, side: "right", proof: "Independent platform" },
+  { id: "telecom", label: "Telecom", icon: "messages", organization: "Grameenphone", x: 205, y: 150, side: "left", proof: "~80K conversations" },
+  { id: "advertising", label: "Advertising", icon: "strategy", organization: "Asiatic", x: 205, y: 246, side: "left", proof: "~$1M/mo built" },
+  { id: "fintech", label: "Fintech", icon: "fintech", organization: "SureCash", x: 205, y: 342, side: "left", proof: "10M reached" },
+  { id: "ecommerce", label: "E-commerce", icon: "ecommerce", organization: "Ekhanei", x: 205, y: 438, side: "left", proof: "#1 in 2.5 months" },
+  { id: "consumer", label: "Consumer tech", icon: "consumer", organization: "Samsung", x: 205, y: 534, side: "left", proof: "#1 globally for growth" },
+  { id: "education", label: "Education", icon: "education", organization: "ACCA", x: 205, y: 630, side: "left", proof: "100% of targets" },
+  { id: "primary", label: "Primary healthcare", icon: "healthcare", organization: "Praava", x: 805, y: 214, side: "right", proof: "~57% B2C CAGR" },
+  { id: "specialized", label: "Specialized healthcare", icon: "healthcare", organization: "Laser Treat", x: 805, y: 390, side: "right", proof: "+16% revenue" },
+  { id: "public", label: "Public health", icon: "public", organization: "HSREP", x: 805, y: 566, side: "right", proof: "57,274 at $0" },
 ];
 
 const atlasLensOrganizations = {
   "All evidence": organizationOrder,
-  Growth: ["SureCash", "Ekhanei", "Samsung", "ACCA", "Praava", "Laser Treat"],
+  Growth: ["Grameenphone", "Asiatic", "SureCash", "Ekhanei", "Samsung", "ACCA", "Praava", "Laser Treat"],
   Health: ["Praava", "Laser Treat", "EMU", "HSREP"],
   Operations: ["SureCash", "Samsung", "ACCA", "Praava", "Laser Treat", "EMU"],
   Technology: ["SureCash", "Samsung", "Praava", "Laser Treat"],
@@ -291,24 +294,46 @@ function AtlasNode({ data }) {
 
 const nodeTypes = { systemNode: SystemNode, atlasNode: AtlasNode };
 
+const ATLAS_GROWTH = "#F4A24C", ATLAS_TEAL = "#0FB3B3", ATLAS_BLUE = "#4C8ED9";
+/*
+  Clean-T edge model. At rest the diagram shows only its skeleton: the horizontal
+  "breadthbar" (top of the T) and the vertical "spine" (the growth engine). All the
+  input/output paths stay hidden until an organization (or capability) is selected,
+  at which point ONLY that path lights up brightly. This kills the faint-dashed
+  spaghetti and stays legible in both light and dark themes (lit paths are solid,
+  weighted brand colors, not low-opacity hairlines).
+*/
 function atlasEdge({ id, source, target, kind = "capability", active = false, compared = false, sourceHandle = "right", targetHandle = "left" }) {
-  const color = kind === "growth" ? "#F4A24C" : kind === "application" ? "#F4A24C" : kind === "health" ? "#0FB3B3" : kind === "proof" ? "#4C8ED9" : "var(--edge-muted)";
+  const lit = active || compared;
+  let color = "var(--edge-muted)";
+  if (kind === "application" || kind === "spine") color = ATLAS_GROWTH;
+  else if (kind === "health" || kind === "breadthbar") color = ATLAS_TEAL;
+  else if (kind === "capability") color = ATLAS_TEAL;
+  if (compared) color = ATLAS_BLUE;
+
+  let opacity;
+  if (kind === "spine") opacity = 0.34;
+  else if (kind === "breadthbar") opacity = 0.3;
+  else if (kind === "proof") opacity = lit ? 0.72 : 0.22;
+  else if (kind === "capability") opacity = lit ? 0.5 : 0;      // hidden until active
+  else if (kind === "application" || kind === "health") opacity = lit ? 0.95 : 0; // hidden until active
+  else opacity = lit ? 0.9 : 0;
+
+  const width = kind === "spine" ? 3.2 : kind === "breadthbar" ? 1.6 : lit ? 2.6 : 1.1;
+  const isFlow = lit && (kind === "application" || kind === "health");
   return {
-    id,
-    source,
-    target,
-    sourceHandle,
-    targetHandle,
-    type: kind === "growth" ? "straight" : "default",
-    animated: active,
+    id, source, target, sourceHandle, targetHandle,
+    type: kind === "spine" ? "straight" : "default",
+    animated: isFlow,
     focusable: false,
-    zIndex: active || compared ? 5 : 1,
-    markerEnd: kind === "application" && active ? { type: MarkerType.ArrowClosed, width: 11, height: 11, color } : undefined,
+    zIndex: lit ? 6 : 1,
+    markerEnd: isFlow ? { type: MarkerType.ArrowClosed, width: 13, height: 13, color } : undefined,
     style: {
-      stroke: compared ? "#4C8ED9" : color,
-      strokeWidth: kind === "growth" ? 2.7 : active || compared ? 2.2 : 1,
-      opacity: kind === "growth" ? 0.95 : active || compared ? 0.92 : 0.25,
-      strokeDasharray: kind === "growth" ? undefined : kind === "application" ? "4 5" : "3 6",
+      stroke: color,
+      strokeWidth: width,
+      opacity,
+      strokeLinecap: "round",
+      strokeDasharray: kind === "spine" || kind === "breadthbar" ? undefined : lit ? "1 7" : "3 7",
     },
   };
 }
@@ -328,7 +353,7 @@ function buildAtlasGraph(selectedOrganization, compareOrganization, hoveredCapab
       focusable: true,
       data: { ...item, kind: "breadth", tone: "teal", active: hoveredCapability === item.id, ariaLabel: `${item.label}, applied breadth capability` },
     });
-    if (index > 0) edges.push(atlasEdge({ id: `breadth-line-${index}`, source: `breadth-${atlasBreadth[index - 1].id}`, target: `breadth-${item.id}`, kind: "health", active: hoveredCapability === item.id || hoveredCapability === atlasBreadth[index - 1].id }));
+    if (index > 0) edges.push(atlasEdge({ id: `breadth-line-${index}`, source: `breadth-${atlasBreadth[index - 1].id}`, target: `breadth-${item.id}`, kind: "breadthbar" }));
   });
 
   atlasGrowthStages.forEach((item, index) => {
@@ -341,8 +366,9 @@ function buildAtlasGraph(selectedOrganization, compareOrganization, hoveredCapab
       focusable: true,
       data: { ...item, kind: "growth", tone: "amber", active: true, ariaLabel: `Growth stage ${item.number}: ${item.label}, ${item.sublabel}` },
     });
-    // engine spine drawn as a continuous CSS line behind the stack (see .atlas-spine); no per-step edges (they rendered as "!" stubs)
   });
+  // vertical engine spine = the depth of the T (one clean line through the stack)
+  edges.push(atlasEdge({ id: "engine-spine", source: "growth-listen", target: "growth-systemize", kind: "spine", sourceHandle: "bottom", targetHandle: "top" }));
 
   atlasSectors.forEach((item) => {
     const isAllowed = allowedOrganizations.has(item.organization);
@@ -373,16 +399,16 @@ function buildAtlasGraph(selectedOrganization, compareOrganization, hoveredCapab
       id: `proof-line-${item.id}`,
       source: item.side === "left" ? `proof-${item.id}` : `sector-${item.id}`,
       target: item.side === "left" ? `sector-${item.id}` : `proof-${item.id}`,
-      kind: item.side === "right" ? "health" : "proof",
+      kind: "proof",
       active,
       compared,
     }));
   });
 
   const capabilityConnections = [
-    ["behavior", "fintech"], ["behavior", "ecommerce"],
-    ["brand", "consumer"], ["brand", "education"],
-    ["digital", "ecommerce"], ["digital", "consumer"],
+    ["behavior", "telecom"], ["behavior", "fintech"], ["behavior", "ecommerce"],
+    ["brand", "advertising"], ["brand", "consumer"], ["brand", "education"],
+    ["digital", "advertising"], ["digital", "ecommerce"], ["digital", "consumer"],
     ["operations", "fintech"], ["operations", "specialized"],
     ["ai", "consumer"], ["ai", "primary"],
     ["health-comms", "primary"], ["health-comms", "specialized"],
@@ -396,7 +422,8 @@ function buildAtlasGraph(selectedOrganization, compareOrganization, hoveredCapab
   });
 
   const growthApplications = [
-    ["listen", "fintech"], ["position", "ecommerce"], ["activate", "consumer"], ["scale", "education"],
+    ["listen", "telecom"], ["position", "advertising"], ["activate", "advertising"],
+    ["scale", "fintech"], ["position", "ecommerce"], ["activate", "consumer"], ["scale", "education"],
     ["listen", "primary"], ["position", "primary"], ["scale", "primary"], ["systemize", "specialized"], ["activate", "public"],
   ];
   growthApplications.forEach(([stage, sector]) => {
@@ -494,7 +521,7 @@ function buildNodes(items, selectedOrganization, activeEvidenceId) {
   const activeLevers = new Set(tracedItems.flatMap((item) => item.levers));
   const activeOutcomes = new Set(tracedItems.flatMap((item) => item.outcomes));
   const organizationNames = organizationOrder.filter((name) => items.some((item) => item.organization === name));
-  const orgSpacing = Math.min(60, 425 / Math.max(organizationNames.length - 1, 1));
+  const orgSpacing = 78; // fixed: clears the ~72px card height so 'Where applied' cards never overlap
 
   const nodes = [];
   insights.forEach((item, index) => {
@@ -776,6 +803,8 @@ function AtlasInspector({ selectedOrganization, compareOrganization, onOpenEvide
   const selectedCase = selectedItems[0];
   const compareCase = evidence.find((item) => item.organization === compareOrganization);
   const titleByOrganization = {
+    Grameenphone: "Where the capability began: ~80K conversations",
+    Asiatic: "Brand thinking scaled into a digital revenue engine",
     SureCash: "Access systems built at national scale",
     Ekhanei: "Trust converted into category growth",
     Samsung: "Product planning scaled into market leadership",
@@ -786,6 +815,8 @@ function AtlasInspector({ selectedOrganization, compareOrganization, onOpenEvide
     HSREP: "Evidence translated for public understanding",
   };
   const outcomeByOrganization = {
+    Grameenphone: "The listening habit that every later result was built on",
+    Asiatic: "A dedicated digital P&L scaled to ~$1M/month in 7 months",
     SureCash: "Population access + national delivery",
     Ekhanei: "Market leadership + transaction growth",
     Samsung: "Global launch leadership + product growth",
@@ -795,7 +826,10 @@ function AtlasInspector({ selectedOrganization, compareOrganization, onOpenEvide
     EMU: "Behavior change + community connection",
     HSREP: "Public-health communication across two markets",
   };
-  const lensTags = [...new Set(selectedItems.flatMap((item) => [item.lens, item.levers.includes("operations") ? "Operations" : null]).filter(Boolean))].slice(0, 4);
+  const lensFallback = { Grameenphone: ["Growth", "Customer insight"], Asiatic: ["Growth", "Brand", "Digital"] };
+  const lensTags = (selectedItems.length
+    ? [...new Set(selectedItems.flatMap((item) => [item.lens, item.levers.includes("operations") ? "Operations" : null]).filter(Boolean))]
+    : (lensFallback[selectedOrganization] || [])).slice(0, 4);
 
   return (
     <aside className="atlas-inspector" aria-live="polite">
@@ -936,6 +970,7 @@ function CareerJourney({ openLedger, view, setView }) {
   const capabilityMatches = (chapter) => journeyLens === "All" || chapter.lenses.includes(journeyLens);
   const snapshot = [...selectedEvidence.map((item) => item.summary), ...selectedRoles.map((item) => item.proof)].filter(Boolean).slice(0, 3);
   const sectorsApplied = [
+    ["customer-insight", "Telecom", "messages"], ["brand-digital", "Advertising", "strategy"],
     ["samsung", "Consumer tech", "consumer"], ["fintech-commerce", "Fintech", "fintech"], ["fintech-commerce", "E-commerce", "ecommerce"],
     ["education", "Education", "education"], ["praava", "Healthcare", "healthcare"], ["current-focus", "Public & population health", "public"],
   ];
@@ -987,7 +1022,7 @@ function CareerJourney({ openLedger, view, setView }) {
           </div>
           <div className="journey-years" aria-hidden="true">{[2010, 2012, 2014, 2016, 2018, 2020, 2022, 2024, 2026].map((year) => <span key={year}>{year}</span>)}</div>
           <div className="journey-sector-row">
-            <span className="journey-sector-label">SECTORS<br />APPLIED<br /><small>6 sectors · 2 countries</small></span>
+            <span className="journey-sector-label">SECTORS<br />APPLIED<br /><small>8 sectors · 2 countries</small></span>
             {sectorsApplied.map(([chapterId, label, icon]) => (
               <button key={`${chapterId}-${label}`} onClick={() => chooseChapter(chapterId)}><Icon name={icon} size={25} /><span>{label}</span></button>
             ))}

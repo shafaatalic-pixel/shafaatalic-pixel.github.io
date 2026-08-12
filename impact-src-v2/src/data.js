@@ -11,7 +11,7 @@ export const palette = {
 export const proofStats = [
   { value: "16 years", label: "front line to the C-suite", icon: "calendar" },
   { value: "~80K conversations", label: "customer insight foundation", icon: "messages" },
-  { value: "6 sectors · 2 countries", label: "Bangladesh and the United States", icon: "world" },
+  { value: "8 sectors · 2 countries", label: "Bangladesh and the United States", icon: "world" },
   { value: "21 evidence points", label: "each with a number", icon: "ledger" },
 ];
 

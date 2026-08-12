@@ -2876,7 +2876,7 @@ main {
   min-height: 104px;
   margin-top: 40px;
   display: grid;
-  grid-template-columns: 150px repeat(6, 1fr);
+  grid-template-columns: 140px repeat(8, 1fr);
   align-items: center;
   border: 1px solid var(--ct-122);
   border-radius: 14px;
