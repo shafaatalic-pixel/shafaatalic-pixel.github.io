@@ -41,6 +41,7 @@ import {
   IconSearch,
   IconSettings,
   IconShoppingCart,
+  IconStack2,
   IconTargetArrow,
   IconTimeline,
   IconTrophy,
@@ -70,6 +71,7 @@ const iconMap = {
   revenue: IconReportAnalytics,
   operations: IconSettings,
   ai: IconCpu,
+  tech: IconStack2,
   health: IconHeartbeat,
   trophy: IconTrophy,
   reach: IconUsers,
@@ -209,6 +211,7 @@ const atlasBreadth = [
   { id: "behavior", label: "Customer insight", icon: "users" },
   { id: "brand", label: "Brand strategy", icon: "strategy" },
   { id: "digital", label: "Digital transformation", icon: "digital" },
+  { id: "technology", label: "Technology", icon: "tech" },
   { id: "operations", label: "Operations", icon: "operations" },
   { id: "ai", label: "AI-enabled strategy", icon: "ai" },
   { id: "health-comms", label: "Health communication", icon: "health" },
@@ -349,7 +352,7 @@ function buildAtlasGraph(selectedOrganization, compareOrganization, hoveredCapab
     nodes.push({
       id: `breadth-${item.id}`,
       type: "atlasNode",
-      position: { x: 75 + index * 153, y: 12 },
+      position: { x: 75 + index * 135, y: 12 },
       draggable: false,
       selectable: true,
       focusable: true,
@@ -412,6 +415,7 @@ function buildAtlasGraph(selectedOrganization, compareOrganization, hoveredCapab
     ["behavior", "telecom"], ["behavior", "fintech"], ["behavior", "ecommerce"],
     ["brand", "advertising"], ["brand", "consumer"], ["brand", "primary"],
     ["digital", "advertising"], ["digital", "ecommerce"], ["digital", "consumer"],
+    ["technology", "consumer"], ["technology", "fintech"], ["technology", "ecommerce"], ["technology", "primary"], ["technology", "specialized"],
     ["operations", "fintech"], ["operations", "specialized"], ["operations", "primary"],
     ["ai", "public"],
     ["health-comms", "primary"], ["health-comms", "specialized"], ["health-comms", "public"],
@@ -1155,12 +1159,12 @@ function EvidenceLedger({ onClose, onSelect }) {
 
 /* ===== The 90-second guided story (six beats across the four tabs) ===== */
 const TOUR_BEATS = [
-  { view: "atlas", org: "Grameenphone", eyebrow: "Where I started", title: "It began with listening, not numbers.", body: "Around 80,000 conversations on a telecom front line taught me that every result starts with truly understanding one real person." },
-  { view: "atlas", org: "Asiatic", eyebrow: "The pattern I kept finding", title: "Listening grew into a way of working.", body: "Across eight sectors the same discipline held. Understand, position, activate, scale, then systemize. That became the one capability I could go deep on." },
-  { view: "system", org: "Samsung", eyebrow: "Where it proved itself", title: "The method held up at world scale.", body: "Ranked number one globally for growth. Close to a million dollars a month built, ten million people reached, a new category taken to number one in two and a half months." },
-  { view: "atlas", org: "Praava", eyebrow: "The turn I chose", title: "Then I aimed the same engine at health.", body: "At Praava, roughly 57 percent consumer growth. The skill did not change. The purpose did." },
-  { view: "atlas", org: "HSREP", eyebrow: "The impact I care about most", title: "Growth, pointed at people's lives.", body: "Through HSREP, 57,274 people reached at zero cost, sharpened by graduate public health training and certification in health education." },
-  { view: "career", org: "current-focus", eyebrow: "What it all adds up to", title: "Growth is the depth. Health is where I apply it.", body: "One capability, built across eight sectors and two countries, now aimed at the outcome that matters most to me." },
+  { view: "atlas", org: "Grameenphone", eyebrow: "Where I started", title: "I began by listening to people.", body: "Roughly 80,000 conversations on a telecom front line, because I wanted to understand how people think and decide before I ever tried to grow anything." },
+  { view: "atlas", org: "Asiatic", eyebrow: "How I learned to build", title: "Curiosity turned into a method.", body: "I went deep fast, from brand and strategy to the full growth engine, then carried it into a new industry each time to see how far it could travel." },
+  { view: "system", org: "Samsung", eyebrow: "Where it proved itself", title: "The engine held up everywhere I took it.", body: "Consumer tech, fintech, e-commerce, education, government. Number one globally for growth, close to a million dollars a month built, ten million people reached. Different arenas, one capability." },
+  { view: "atlas", org: "Praava", eyebrow: "The turn I chose", title: "Then I pointed it where it mattered more.", body: "During the pandemic I moved the same engine into healthcare, where growth could also improve access, trust, and people's lives. The skill did not change. The stakes did." },
+  { view: "atlas", org: "HSREP", eyebrow: "How I went deeper", title: "I backed instinct with operations and evidence.", body: "As a COO I fused growth with delivery, then added an MPH, CHES, and HSREP for the public-health foundation. I use AI to move faster, never to replace judgment." },
+  { view: "career", org: "current-focus", eyebrow: "Where I am headed", title: "One deep capability that travels anywhere.", body: "Growth is the constant. Health is where I am aiming it now, not the limit of where it can go. Industries have changed before and can change again. What lasts is turning an understanding of people into measurable outcomes." },
 ];
 const TOUR_MS = 15000;
 
