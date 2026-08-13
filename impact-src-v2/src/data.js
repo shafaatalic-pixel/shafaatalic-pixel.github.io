@@ -359,7 +359,7 @@ export const impactSummary = {
     { metric: "57,274", detail: "gross platform-reported views and impressions at $0 ad spend across two countries (HSREP)" },
   ],
   press: { metric: "19 mentions", detail: "across 12 TV, print and digital outlets" },
-  capability: [["Growth", 7], ["Brand & GTM", 5], ["Behavior", 4], ["Operations", 3], ["Product", 2]],
+  capability: [["Growth", 7], ["Brand & GTM", 5], ["Customer insight", 4], ["Operations", 3], ["Product", 2]],
   thinking: [["Growth", 25], ["AI", 20], ["Health-Tech", 22], ["Public Health", 22]],
 };
 

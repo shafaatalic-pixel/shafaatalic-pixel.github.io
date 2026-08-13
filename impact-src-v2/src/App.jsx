@@ -156,54 +156,54 @@ const journeyLenses = ["All", "Growth", "Health", "Operations", "Tech", "Populat
 
 const careerChapters = [
   {
-    id: "customer-insight", number: 1, year: 2010, label: "Customer\nInsight", note: "~80K conversations", capability: "Behavior",
+    id: "customer-insight", number: 1, year: 2009, label: "Customer\nInsight", note: "~80K conversations", capability: "Customer insight",
     sector: "Customer service", lenses: ["Growth"], roles: ["grameenphone"], organization: null,
     headline: "Listening before building strategy", what: "Learned consumer behavior from the frontline across premium, roaming, retailer, and mass-market interactions.",
   },
   {
-    id: "brand-digital", number: 2, year: 2012, label: "Brand +\nDigital", note: "Strategy foundation", capability: "Brand",
+    id: "brand-digital", number: 2, year: 2012, label: "Brand +\nDigital", note: "Strategy foundation", capability: "Brand strategy",
     sector: "Brand & digital", lenses: ["Growth", "Tech"], roles: ["grey", "mgh", "asiatic"], organization: "Asiatic",
     headline: "Brand thinking expanded into digital growth", what: "Connected consumer insight, integrated planning, production discipline, and a new digital revenue engine.",
   },
   {
-    id: "fintech-commerce", number: 3, year: 2014, label: "Fintech +\nE-commerce", note: "Access + trust", capability: "Digital",
+    id: "fintech-commerce", number: 3, year: 2015, label: "Fintech +\nE-commerce", note: "Access + trust", capability: "Digital transformation",
     sector: "Fintech · E-commerce", lenses: ["Growth", "Tech", "Population"], roles: ["surecash", "ekhanei"], organization: "SureCash",
     headline: "Growth systems moved from access to trust", what: "Applied segmentation, field activation, category operations, and digital communication across finance and commerce.",
   },
   {
-    id: "samsung", number: 4, year: 2016, label: "Samsung\n#1 globally for growth", note: "Product + GTM", capability: "Digital",
+    id: "samsung", number: 4, year: 2017, label: "Samsung\n#1 globally for growth", note: "Product + GTM", capability: "Digital transformation",
     sector: "Consumer tech", lenses: ["Growth", "Tech", "Operations"], roles: ["samsung"], organization: "Samsung",
     headline: "Product planning translated into market leadership", what: "Integrated portfolio, pricing, positioning, e-commerce, and launch execution across flagship and mass-market smartphones.",
   },
   {
-    id: "education", number: 5, year: 2017, label: "Education", note: "Ecosystem growth", capability: "GTM",
+    id: "education", number: 5, year: 2019, label: "Education", note: "Ecosystem growth", capability: "GTM",
     sector: "Professional education", lenses: ["Growth", "Operations"], roles: ["acca"], organization: "ACCA",
-    headline: "Commercial discipline applied to an education ecosystem", what: "Built an employer-and-member operating model around conversion, retention, partnership, and national thought leadership.",
+    headline: "Commercial discipline applied to an education ecosystem", what: "Built an employer-and-member operating model around conversion, retention, partnership, government stakeholder relations, and national policy engagement.",
   },
   {
-    id: "praava", number: 6, year: 2019, label: "Praava\nPrimary healthcare", note: "Growth + access", capability: "P&L",
+    id: "praava", number: 6, year: 2021, label: "Praava\nPrimary healthcare", note: "Growth + access", capability: "P&L",
     sector: "Primary healthcare", lenses: ["Growth", "Health", "Operations", "Tech", "Population"], roles: ["praava"], organization: "Praava",
-    headline: "Growth directed toward health access", what: "Combined consumer insight, product strategy, revenue ownership, service design, and data to build durable core-care growth.",
+    headline: "A deliberate pandemic move into healthcare", what: "Redirected the same growth engine toward health access, combining consumer insight, product strategy, revenue ownership, service design, and data to build durable core-care growth.",
   },
   {
-    id: "lasertreat", number: 7, year: 2021, label: "LaserTreat\nCOO, growth +\noperations", note: "+16% revenue", capability: "Operations",
+    id: "lasertreat", number: 7, year: 2023, label: "LaserTreat\nCOO, growth +\noperations", note: "+16% revenue", capability: "Operations",
     sector: "Specialized healthcare", lenses: ["Growth", "Health", "Operations", "Tech"], roles: ["lasertreat"], organization: "Laser Treat",
     headline: "Growth + operations, working as one system", what: "Integrated demand, service delivery, operating discipline, and digital systems across a multi-entity clinical group.",
   },
   {
-    id: "mph", number: 8, year: 2022, label: "MPH +\nCHES®", note: "Evidence + practice", capability: "Health communication",
+    id: "mph", number: 8, year: 2024, label: "MPH +\nCHES®", note: "Evidence + practice", capability: "Health communication",
     sector: "Public health education", lenses: ["Health", "Population"], roles: ["emu-health", "brac-uihp"], organization: "EMU",
     headline: "Transferable growth skills sharpened through public health", what: "Added behavioral science, evaluation, health education, and applied mentoring to a long operating background.",
   },
   {
-    id: "emu", number: 9, year: 2024, label: "EMU", note: "Health + community", capability: "Health communication",
+    id: "emu", number: 9, year: 2025, label: "EMU", note: "Health + community", capability: "Health communication",
     sector: "Education · population health", lenses: ["Health", "Operations", "Population"], roles: ["emu-housing"], organization: "EMU",
     headline: "Communication systems applied to student wellbeing", what: "Led resident engagement, staff development, crisis readiness, and community connection through a structured operating model.",
   },
   {
-    id: "current-focus", number: 10, year: 2026, label: "Current focus\nHealth communication ·\nHealth-tech ·\nPopulation health", note: "Growth remains the core", capability: "AI systems",
+    id: "current-focus", number: 10, year: 2026, label: "Current focus\nHealth communication ·\nHealth-tech ·\nPopulation health", note: "Growth remains the core", capability: "AI-enabled strategy",
     sector: "Public & population health", lenses: ["Growth", "Health", "Tech", "Population"], roles: ["hsrep"], organization: "HSREP",
-    headline: "Growth remains the core capability", what: "The current direction connects health communication, health technology, population health, and accountable AI-enabled systems.",
+    headline: "Growth remains the core capability", what: "Aimed today at health communication, health technology, population health, and accountable AI-enabled systems, with the same growth capability ready to transfer wherever it is needed next.",
   },
 ];
 
@@ -1032,7 +1032,7 @@ function CareerJourney({ openLedger, view, setView }) {
             <h2>{selected.headline}</h2>
             <div className="journey-key-result">
               <div><span>KEY RESULT</span><strong>{keyMetric}</strong></div>
-              <div><Icon name={selected.capability === "Operations" ? "operations" : selected.capability === "AI systems" ? "ai" : "growth"} size={30} /><span>{selected.capability}<br />capability</span></div>
+              <div><Icon name={selected.capability === "Operations" ? "operations" : selected.capability === "AI-enabled strategy" ? "ai" : selected.capability === "Health communication" ? "health" : "growth"} size={30} /><span>{selected.capability}<br />capability</span></div>
             </div>
             <span className="detail-label">WHAT I DID</span>
             <p>{selected.what}</p>
@@ -1096,7 +1096,7 @@ function TwoMarkets({ setMarket, setView, setSelectedOrganization }) {
       </div>
       <aside className="hsrep-platform-card">
         <div className="hsrep-mark"><img className="hs-dark" src="/assets/logos/hsrep-icon-white.png" alt="HSREP" /><img className="hs-light" src="/assets/logos/hsrep-icon.png" alt="HSREP" /></div>
-        <div><span className="eyebrow">INDEPENDENT PUBLIC-HEALTH PLATFORM</span><h3>HSREP</h3><p>Cross-market public-health communication: 57,274 gross platform-reported views and impressions · $0 ad spend · two countries.</p></div>
+        <div><span className="eyebrow">INDEPENDENT PUBLIC-HEALTH PLATFORM</span><h3>HSREP</h3><p>Health System Resilience &amp; Economic Protection: an independent advocacy platform arguing that health-system resilience is economic infrastructure. 57,274 gross platform-reported views and impressions · $0 ad spend · two countries.</p></div>
         <button onClick={() => { setMarket("both"); setSelectedOrganization("HSREP"); setView("system"); }}>Trace HSREP evidence <IconArrowNarrowRight /></button>
       </aside>
     </section>
