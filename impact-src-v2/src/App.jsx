@@ -136,7 +136,7 @@ const heroByView = {
   atlas: {
     eyebrow: "T-SHAPED IMPACT ATLAS",
     title: "One deep capability. Many places to apply it.",
-    description: "Growth is the vertical. Customer insight, brand, operations, technology, and health are the connected breadth.",
+    description: "Growth is the vertical. Customer insight, brand strategy, digital transformation, operations, health communication, population health, and AI-enabled strategy are the connected breadth.",
   },
   career: {
     eyebrow: "INTERACTIVE IMPACT MAP",
@@ -206,11 +206,11 @@ const careerChapters = [
 ];
 
 const atlasBreadth = [
-  { id: "behavior", label: "Customer behavior", icon: "users" },
-  { id: "brand", label: "Brand", icon: "strategy" },
-  { id: "digital", label: "Digital", icon: "digital" },
+  { id: "behavior", label: "Customer insight", icon: "users" },
+  { id: "brand", label: "Brand strategy", icon: "strategy" },
+  { id: "digital", label: "Digital transformation", icon: "digital" },
   { id: "operations", label: "Operations", icon: "operations" },
-  { id: "ai", label: "AI systems", icon: "ai" },
+  { id: "ai", label: "AI-enabled strategy", icon: "ai" },
   { id: "health-comms", label: "Health communication", icon: "health" },
   { id: "population", label: "Population health", icon: "public" },
 ];
@@ -220,7 +220,7 @@ const atlasGrowthStages = [
   { id: "position", number: 2, label: "Position", sublabel: "Brand + strategy", icon: "radar" },
   { id: "activate", number: 3, label: "Activate", sublabel: "Digital + GTM", icon: "digital" },
   { id: "scale", number: 4, label: "Scale", sublabel: "Revenue + reach", icon: "revenue" },
-  { id: "systemize", number: 5, label: "Systemize", sublabel: "Operations + AI", icon: "operations" },
+  { id: "systemize", number: 5, label: "Systemize", sublabel: "Operations + systems", icon: "operations" },
 ];
 
 const atlasSectors = [
@@ -413,7 +413,7 @@ function buildAtlasGraph(selectedOrganization, compareOrganization, hoveredCapab
     ["brand", "advertising"], ["brand", "consumer"], ["brand", "primary"],
     ["digital", "advertising"], ["digital", "ecommerce"], ["digital", "consumer"],
     ["operations", "fintech"], ["operations", "specialized"], ["operations", "primary"],
-    ["ai", "specialized"], ["ai", "primary"], ["ai", "public"],
+    ["ai", "public"],
     ["health-comms", "primary"], ["health-comms", "specialized"], ["health-comms", "public"],
     ["population", "fintech"], ["population", "primary"], ["population", "public"],
   ];
