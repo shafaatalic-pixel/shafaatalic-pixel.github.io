@@ -1157,16 +1157,17 @@ function EvidenceLedger({ onClose, onSelect }) {
   );
 }
 
-/* ===== The 90-second guided story (six beats across the four tabs) ===== */
+/* ===== The 90-second guided story (seven beats across all four tabs) ===== */
 const TOUR_BEATS = [
-  { view: "atlas", org: "Grameenphone", eyebrow: "Where I started", title: "I began by listening to people.", body: "Roughly 80,000 conversations on a telecom front line, because I wanted to understand how people think and decide before I ever tried to grow anything." },
-  { view: "atlas", org: "Asiatic", eyebrow: "How I learned to build", title: "Curiosity turned into a method.", body: "I went deep fast, from brand and strategy to the full growth engine, then carried it into a new industry each time to see how far it could travel." },
-  { view: "system", org: "Samsung", eyebrow: "Where it proved itself", title: "The engine held up everywhere I took it.", body: "Consumer tech, fintech, e-commerce, education, government. Number one globally for growth, close to a million dollars a month built, ten million people reached. Different arenas, one capability." },
-  { view: "atlas", org: "Praava", eyebrow: "The turn I chose", title: "Then I pointed it where it mattered more.", body: "During the pandemic I moved the same engine into healthcare, where growth could also improve access, trust, and people's lives. The skill did not change. The stakes did." },
-  { view: "atlas", org: "HSREP", eyebrow: "How I went deeper", title: "I backed instinct with operations and evidence.", body: "As a COO I fused growth with delivery, then added an MPH, CHES, and HSREP for the public-health foundation. I use AI to move faster, never to replace judgment." },
-  { view: "career", org: "current-focus", eyebrow: "Where I am headed", title: "One deep capability that travels anywhere.", body: "Growth is the constant. Health is where I am aiming it now, not the limit of where it can go. Industries have changed before and can change again. What lasts is turning an understanding of people into measurable outcomes." },
+  { view: "atlas", org: "Grameenphone", eyebrow: "Where I started", title: "I started by listening, not selling.", body: "Around 80,000 conversations on a front line taught me that every number begins with a person." },
+  { view: "atlas", org: "Asiatic", eyebrow: "How I learned to build", title: "I learn fast, and I could not stop.", body: "Brand, strategy, the whole growth engine. I carried it into a new industry each time, just to see how far it could travel." },
+  { view: "system", org: "Samsung", eyebrow: "Where it proved itself", title: "It worked everywhere I took it.", body: "Consumer tech, fintech, e-commerce, education, government. Number one globally for growth. Ten million people reached. One engine, every arena." },
+  { view: "atlas", org: "Praava", eyebrow: "The turn I chose", title: "Then I aimed it at people's lives.", body: "When the pandemic hit, I moved the whole engine into healthcare. The skill did not change. The stakes did." },
+  { view: "atlas", org: "HSREP", eyebrow: "How I went deeper", title: "I earned the depth to back the instinct.", body: "A COO seat, an MPH, CHES, and a platform of my own. I use AI to move faster, never to think for me." },
+  { view: "markets", org: null, eyebrow: "Two countries, one capability", title: "Then I did it again in a new country.", body: "Sixteen years of proof in Bangladesh, a fresh evidence base in the United States. The capability crossed the border with me." },
+  { view: "career", org: "current-focus", eyebrow: "Where I am headed", title: "One capability that goes anywhere.", body: "Growth is the constant. Health is where I aim it now, not the ceiling. Give me a problem worth solving and I will build the system for it." },
 ];
-const TOUR_MS = 15000;
+const TOUR_MS = 13000;
 
 function TourBar({ beat, index, total, playing, onPlayPause, onPrev, onNext, onClose }) {
   return (

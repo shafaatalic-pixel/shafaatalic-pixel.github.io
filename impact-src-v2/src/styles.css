@@ -3239,7 +3239,7 @@ main {
 .hero-story-btn:hover { filter: brightness(1.06); }
 
 .tour-bar {
-  position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%);
+  position: fixed; left: 0; right: 0; bottom: 20px; margin: 0 auto;
   z-index: 60; width: min(880px, calc(100% - 28px));
   display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px;
   padding: 14px 18px; border: 1px solid var(--ct-122); border-radius: 16px;
