@@ -1008,7 +1008,7 @@ function CareerJourney({ openLedger, view, setView }) {
                 <button
                   key={chapter.id}
                   role="listitem"
-                  className={`${selected.id === chapter.id ? "is-selected" : ""} ${chapter.number >= 7 ? "is-health" : ""} ${!capabilityMatches(chapter) ? "is-dimmed" : ""}`}
+                  className={`${selected.id === chapter.id ? "is-selected" : ""} ${chapter.number >= 6 ? "is-health" : ""} ${!capabilityMatches(chapter) ? "is-dimmed" : ""}`}
                   onClick={() => chooseChapter(chapter.id)}
                   aria-pressed={selected.id === chapter.id}
                 >
@@ -1017,7 +1017,7 @@ function CareerJourney({ openLedger, view, setView }) {
               ))}
             </div>
           </div>
-          <div className="journey-years" aria-hidden="true">{[2010, 2012, 2014, 2016, 2018, 2020, 2022, 2024, 2026].map((year) => <span key={year}>{year}</span>)}</div>
+          <div className="journey-years" aria-hidden="true">{[2009, 2011, 2013, 2015, 2017, 2019, 2021, 2023, 2025].map((year) => <span key={year}>{year}</span>)}</div>
           <div className="journey-sector-row">
             <span className="journey-sector-label">SECTORS<br />APPLIED<br /><small>8 sectors · 2 countries</small></span>
             {sectorsApplied.map(([chapterId, label, icon]) => (
