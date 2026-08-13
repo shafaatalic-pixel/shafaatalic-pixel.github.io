@@ -1106,6 +1106,19 @@ function TwoMarkets({ setMarket, setView, setSelectedOrganization }) {
 function EvidenceLedger({ onClose, onSelect }) {
   const [query, setQuery] = useState("");
   const [ledgerLens, setLedgerLens] = useState("All lenses");
+  const [liveEssays, setLiveEssays] = useState(null);
+  useEffect(() => {
+    let active = true;
+    fetch("/essays.json", { cache: "no-cache" })
+      .then((r) => r.json())
+      .then((list) => {
+        if (!active) return;
+        const today = new Date().toISOString().slice(0, 10);
+        setLiveEssays((list || []).filter((e) => e.date && ("" + e.date).slice(0, 10) <= today).length);
+      })
+      .catch(() => {});
+    return () => { active = false; };
+  }, []);
   const results = evidence.filter((item) => {
     const matchesLens = ledgerLens === "All lenses" || item.lens === ledgerLens;
     const haystack = `${item.organization} ${item.title} ${item.metric} ${item.sector}`.toLowerCase();
@@ -1149,7 +1162,7 @@ function EvidenceLedger({ onClose, onSelect }) {
           </div>
           <aside className="ledger-side">
             <div><span className="eyebrow">CAPABILITY FINGERPRINT</span><h3>Broad range, deep growth.</h3>{impactSummary.capability.map(([label, count]) => <p key={label}><span>{label}</span><strong>{count}</strong></p>)}</div>
-            <div><span className="eyebrow">THE THINKING</span><h3>33 essays.</h3><p className="thinking-note">Live essays on AI, growth, public health, and health-tech. Scheduled pieces stay out of the count until they publish.</p></div>
+            <div><span className="eyebrow">THE THINKING</span><h3>{liveEssays == null ? "Essays." : liveEssays + " essays."}</h3><p className="thinking-note">Live essays on AI, growth, public health, and health-tech. Scheduled pieces stay out of the count until they publish.</p></div>
           </aside>
         </div>
       </section>
