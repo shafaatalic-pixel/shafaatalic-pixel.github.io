@@ -1157,7 +1157,7 @@ function EvidenceLedger({ onClose, onSelect }) {
   );
 }
 
-/* ===== The 90-second guided story (seven beats across all four tabs) ===== */
+/* ===== The 70-second guided story (seven beats across all four tabs) ===== */
 const TOUR_BEATS = [
   { view: "atlas", org: "Grameenphone", eyebrow: "Where I started", title: "I started by listening, not selling.", body: "Around 80,000 conversations on a front line taught me that every number begins with a person." },
   { view: "atlas", org: "Asiatic", eyebrow: "How I learned to build", title: "I learn fast, and I could not stop.", body: "Brand, strategy, the whole growth engine. I carried it into a new industry each time, just to see how far it could travel." },
@@ -1167,11 +1167,11 @@ const TOUR_BEATS = [
   { view: "markets", org: null, eyebrow: "Two countries, one capability", title: "Then I did it again in a new country.", body: "Sixteen years of proof in Bangladesh, a fresh evidence base in the United States. The capability crossed the border with me." },
   { view: "career", org: "current-focus", eyebrow: "Where I am headed", title: "One capability that goes anywhere.", body: "Growth is the constant. Health is where I aim it now, not the ceiling. Give me a problem worth solving and I will build the system for it." },
 ];
-const TOUR_MS = 13000;
+const TOUR_MS = 10000;
 
 function TourBar({ beat, index, total, playing, onPlayPause, onPrev, onNext, onClose }) {
   return (
-    <div className="tour-bar" role="dialog" aria-label="90-second story">
+    <div className="tour-bar" role="dialog" aria-label="70-second story">
       <div className="tour-progress" aria-hidden="true">{Array.from({ length: total }).map((_, i) => <i key={i} className={i === index ? "is-on" : i < index ? "is-done" : ""} />)}</div>
       <div className="tour-body">
         <span className="tour-eyebrow">{beat.eyebrow}</span>
@@ -1263,7 +1263,7 @@ export function App() {
             <h1>{hero.title}</h1>
             <p>{hero.description} {hero.emphasis && <strong>{hero.emphasis}</strong>}</p>
             <div className="proof-row">{visibleProofStats.map((item) => <ProofChip key={item.value} item={item} />)}</div>
-            <button className="hero-story-btn" onClick={startTour}><span aria-hidden="true">►</span> Play the 90-second story</button>
+            <button className="hero-story-btn" onClick={startTour}><span aria-hidden="true">►</span> Play the 70-second story</button>
           </div>
           {view === "system" && <div className="hero-controls">
             <Filters market={market} setMarket={setMarket} yearStart={yearStart} setYearStart={setYearStart} lens={lens} setLens={setLens} />
