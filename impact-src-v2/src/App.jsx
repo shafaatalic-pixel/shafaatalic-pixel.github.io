@@ -1149,7 +1149,7 @@ function EvidenceLedger({ onClose, onSelect }) {
           </div>
           <aside className="ledger-side">
             <div><span className="eyebrow">CAPABILITY FINGERPRINT</span><h3>Broad range, deep growth.</h3>{impactSummary.capability.map(([label, count]) => <p key={label}><span>{label}</span><strong>{count}</strong></p>)}</div>
-            <div><span className="eyebrow">THE THINKING</span><h3>89 essays.</h3>{impactSummary.thinking.map(([label, count]) => <p key={label}><span>{label}</span><strong>{count}</strong></p>)}</div>
+            <div><span className="eyebrow">THE THINKING</span><h3>33 essays.</h3><p className="thinking-note">Live essays on AI, growth, public health, and health-tech. Scheduled pieces stay out of the count until they publish.</p></div>
           </aside>
         </div>
       </section>

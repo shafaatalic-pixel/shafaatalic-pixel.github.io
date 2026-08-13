@@ -1919,6 +1919,15 @@ main {
   color: var(--amber);
 }
 
+.ledger-side p.thinking-note {
+  display: block;
+  border-top: 0;
+  padding-top: 2px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--ct-116);
+}
+
 @media (max-width: 1180px) {
   .hero-bar {
     grid-template-columns: 1fr;
