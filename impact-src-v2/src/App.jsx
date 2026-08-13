@@ -1162,7 +1162,7 @@ function EvidenceLedger({ onClose, onSelect }) {
           </div>
           <aside className="ledger-side">
             <div><span className="eyebrow">CAPABILITY FINGERPRINT</span><h3>Broad range, deep growth.</h3>{impactSummary.capability.map(([label, count]) => <p key={label}><span>{label}</span><strong>{count}</strong></p>)}</div>
-            <div><span className="eyebrow">THE THINKING</span><h3>{liveEssays == null ? "Essays." : liveEssays + " essays."}</h3><p className="thinking-note">Live essays on AI, growth, public health, and health-tech. Scheduled pieces stay out of the count until they publish.</p></div>
+            <a className="thinking-link" href="/essays.html" onClick={() => { try { if (window.track) window.track("impact_essays_click", {}); } catch (e) {} }}><span className="eyebrow">THE THINKING</span><h3>{liveEssays == null ? "Essays." : liveEssays + " essays."}</h3><p className="thinking-note">Live essays on AI, growth, public health, and health-tech. Scheduled pieces stay out of the count until they publish.</p><span className="open-case">Read the essays <IconArrowNarrowRight size={17} /></span></a>
           </aside>
         </div>
       </section>

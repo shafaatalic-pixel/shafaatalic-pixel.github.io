@@ -1928,6 +1928,28 @@ main {
   color: var(--ct-116);
 }
 
+.ledger-side > a.thinking-link {
+  border: 1px solid var(--ct-102);
+  border-radius: 9px;
+  padding: 14px;
+  background: var(--ct-15);
+  margin-bottom: 12px;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color .15s;
+}
+
+.ledger-side > a.thinking-link:hover {
+  border-color: var(--teal-bright);
+}
+
+.ledger-side a.thinking-link .open-case {
+  margin-top: 10px;
+  font-size: 10.5px;
+}
+
 @media (max-width: 1180px) {
   .hero-bar {
     grid-template-columns: 1fr;
