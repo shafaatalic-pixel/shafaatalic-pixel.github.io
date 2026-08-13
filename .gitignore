@@ -80,3 +80,6 @@ essays 2nd round/
 
 # React prototype source (only the built /impact/ folder is served)
 impact-system-map/
+
+# Orphan prerender snapshot (build artifact, not served)
+index.prerendered.html
