@@ -448,10 +448,20 @@ button {
 .back-link {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  color: var(--ct-17);
-  font-family: "Inter", sans-serif;
-  font-size: 13px;
+  gap: 6px;
+  color: var(--ivory);
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 13.5px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 14px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.back-link:hover {
+  border-color: var(--teal-bright);
+  color: var(--teal-bright);
 }
 
 main {
@@ -2102,6 +2112,8 @@ main {
 
   .back-link {
     font-size: 0;
+    gap: 0;
+    padding: 8px 10px;
   }
 
   .back-link svg {
