@@ -474,7 +474,7 @@
  </section>
 
  <!-- IMPACT MAP TEASER -->
- <section data-screen-label="Impact map" style="padding:clamp(28px,5vh,54px) clamp(20px,4vw,48px);">
+ <section id="impact-map" data-screen-label="Impact map" style="padding:clamp(28px,5vh,54px) clamp(20px,4vw,48px);">
  <div style="max-width:1120px;margin:0 auto;">
  <div data-reveal style="background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:14px;padding:clamp(24px,3.4vw,38px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;">
  <div style="max-width:58ch;">
@@ -3132,14 +3132,14 @@ class Component extends DCLogic {
 <script>
 (function(){
   var STEPS=[
-    {sel:'#top',eye:'Who he is',title:'Growth is the core. Health is the deliberate application.',line:'A T-shaped operator: 16 years and roughly 80,000 customer conversations, from consumer insight to running growth and operations, now aimed at health.'},
-    {sel:'#approach',eye:'How he works',title:'Challenge, insight, execution, result.',line:'Every piece of work follows the same logic: read the system, find the lever, move the number.'},
-    {sel:'#cases',eye:'The proof',title:'Real results, each with a number.',line:'Case studies across telecom, fintech, e-commerce, consumer tech, education and health. Filter by the lens that matters to you.'},
-    {sel:'#hsrep',eye:'The platform',title:'HSREP.',line:'An independent public-health knowledge and communication platform he built, generating 57,274 gross platform-reported views and impressions at zero ad spend across two countries.'},
-    {sel:'#writing',eye:'The thinking',title:'Original thought leadership.',line:'Published essays on growth, AI, health-tech and public health, turning hard-won experience into ideas others can use.'},
-    {sel:'#press',eye:'In the press',title:'Recognized in national media.',line:'Featured work and mentions across leading outlets, from The Daily Star to Prothom Alo.'},
-    {sel:'#experience',eye:'The path',title:'Fourteen roles, MPH, CHES.',line:'Sixteen years across six industries and two countries, deepened with US public-health credentials.'},
-    {sel:'#contact',eye:'Next',title:"Now dive into what fits you.",line:'Explore the interactive impact map, read the essays, or get in touch. That is the whole story in thirty seconds.'}
+    {sel:'#top',eye:'Who I am',title:'I started by listening, not selling.',line:'Sixteen years and roughly 80,000 customer conversations. Growth is the one capability I carry everywhere, and every number begins with a person.'},
+    {sel:'#approach',eye:'How I work',title:'Read the system, find the lever, move the number.',line:'Every result follows the same logic: challenge, insight, execution, number. That is the engine, and I carry it into each new industry I enter.'},
+    {sel:'#cases',eye:'Where it proved itself',title:'It worked everywhere I took it.',line:'Telecom, fintech, e-commerce, consumer tech, education and health. One growth engine, every arena, each result with a real number. Filter by the lens that matters to you.'},
+    {sel:'#impact-map',eye:'The whole story, one screen',title:'Watch one capability travel.',line:'The interactive impact map lays out sixteen years across eight sectors and two countries, mapped four ways. Open it and play the seventy-second story.'},
+    {sel:'#hsrep',eye:'How I went deeper',title:"Then I aimed it at health, and earned the depth.",line:'When the pandemic hit I moved the whole engine into healthcare. HSREP is the platform I built for it: 57,274 gross platform-reported views and impressions at zero ad spend across two countries, an MPH and CHES behind it. I use AI to move faster, never to think for me.'},
+    {sel:'#writing',eye:'The thinking',title:'I turn the work into ideas others can use.',line:'Essays on growth, AI, health-tech and public health. Hard-won experience, written down so it travels further than I can.'},
+    {sel:'#press',eye:'In the press',title:'Recognized beyond my own pages.',line:'Featured across national media, from The Daily Star to Prothom Alo.'},
+    {sel:'#contact',eye:'Where I am headed',title:'One capability that goes anywhere.',line:'Growth is the constant. Health is where I aim it now, not the ceiling. Explore the impact map, read the essays, or get in touch.'}
   ];
   var i=-1,timer=null,paused=false,focusEl=null;
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
