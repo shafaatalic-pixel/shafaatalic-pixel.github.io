@@ -920,7 +920,7 @@
  .es-copy:hover,.art-copy:hover{border-color:var(--accent);}
  </style>
  <div data-reveal style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px;margin:20px 0 4px;">
- <h2 style="font-family:var(--disp);font-weight:700;font-size:clamp(28px,4.4vw,48px);letter-spacing:-.02em;color:var(--text-strong);margin:0;">Essays.</h2>
+ <h2 style="font-family:var(--disp);font-weight:700;font-size:clamp(28px,4.4vw,48px);letter-spacing:-.02em;color:var(--text-strong);margin:0;"><a href="essays.html" style="color:inherit;text-decoration:none;" aria-label="Browse all essays">Essays.</a></h2>
  <a href="essays.html" style="font-family:var(--mono);font-size:13px;color:var(--accent-text);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px;" id="essays-all-link">Browse all 89 essays →</a>
  </div>
  <p data-reveal style="font-family:var(--body);font-size:clamp(14px,1.4vw,16px);line-height:1.6;color:var(--text-muted);max-width:62ch;margin:0 0 14px;">Original, in-depth pieces, the latest from each of my four lenses: AI, growth, public health and health-tech.</p>
@@ -3171,12 +3171,12 @@ class Component extends DCLogic {
     bar.querySelector('.st-close').onclick=stop;
     var pv=bar.querySelector('.st-prev'); if(pv) pv.onclick=function(){go(i-1);};
     var nx=bar.querySelector('.st-next'); if(nx) nx.onclick=function(){go(i+1);};
-    var dn=bar.querySelector('.st-done'); if(dn) dn.onclick=stop;
+    var dn=bar.querySelector('.st-done'); if(dn) dn.onclick=finish;
     var pa=bar.querySelector('.st-pause'); if(pa) pa.onclick=togglePause;
     var el=document.querySelector(s.sel);
     if(el){ setFocus(el); try{ el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}); }catch(e){ el.scrollIntoView(); } }
   }
-  function schedule(){ if(timer) clearTimeout(timer); if(paused||reduce||i>=STEPS.length-1) return; timer=setTimeout(function(){go(i+1);},DUR); }
+  function schedule(){ if(timer) clearTimeout(timer); if(paused||reduce) return; if(i>=STEPS.length-1){ timer=setTimeout(finish,DUR); return; } timer=setTimeout(function(){go(i+1);},DUR); }
   function go(n){ if(n<0)n=0; if(n>STEPS.length-1)n=STEPS.length-1; i=n; render(); schedule(); }
   function togglePause(){ paused=!paused; render(); schedule(); }
   function start(){
@@ -3186,12 +3186,14 @@ class Component extends DCLogic {
     try{ localStorage.setItem('sc_site_tour_seen','1'); }catch(e){}
     if(window.track) try{ window.track('site_tour_start',{}); }catch(e){}
   }
-  function stop(){ if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; try{ window.dispatchEvent(new Event('scroll')); }catch(e){} }
+  function stop(){ if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; try{ window.dispatchEvent(new Event('scroll')); }catch(e){} }
+  function finish(){ if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; var l=document.getElementById('landing'); if(l){ l.style.display='flex'; document.body.style.overflow='hidden'; try{ window.scrollTo(0,0); }catch(e){} } if(window.track) try{ window.track('site_tour_complete',{}); }catch(e){} }
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&bar.classList.contains('on')) stop(); });
   setTimeout(function(){
     try{ if(localStorage.getItem('sc_site_tour_seen')) return; }catch(e){}
     if(reduce||document.hidden) return;
-    var l=document.getElementById('landing'); if(l&&l.style.display!=='none') return;
+    if(location.hash&&location.hash.length>1) return;
+    var l=document.getElementById('landing'); if(!l||getComputedStyle(l).display==='none') return;
     start();
   },2400);
 })();

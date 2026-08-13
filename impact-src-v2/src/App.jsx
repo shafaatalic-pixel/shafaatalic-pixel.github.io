@@ -1213,7 +1213,7 @@ export function App() {
   const [activeEvidenceId, setActiveEvidenceId] = useState("praava-hypergrowth");
   const [ledgerOpen, setLedgerOpen] = useState(false);
   const [tour, setTour] = useState({ active: false, index: 0, playing: false });
-  const startTour = () => setTour({ active: true, index: 0, playing: true });
+  const startTour = () => { try { localStorage.setItem("sc_impact_tour_seen", "1"); } catch (e) {} setTour({ active: true, index: 0, playing: true }); };
   useEffect(() => {
     if (!tour.active) return;
     const beat = TOUR_BEATS[tour.index];
@@ -1222,9 +1222,31 @@ export function App() {
   }, [tour.active, tour.index]);
   useEffect(() => {
     if (!tour.active || !tour.playing) return;
-    const t = setTimeout(() => setTour((c) => (c.index >= TOUR_BEATS.length - 1 ? { ...c, playing: false } : { ...c, index: c.index + 1 })), TOUR_MS);
+    const last = tour.index >= TOUR_BEATS.length - 1;
+    const t = setTimeout(() => {
+      if (last) {
+        setTour({ active: false, index: 0, playing: false });
+        setView("system"); setMarket("both"); setYearStart(2009); setLens("All lenses");
+        setSelectedOrganization("Praava"); setActiveEvidenceId("praava-hypergrowth");
+      } else {
+        setTour((c) => ({ ...c, index: c.index + 1 }));
+      }
+    }, TOUR_MS);
     return () => clearTimeout(t);
   }, [tour.active, tour.playing, tour.index]);
+  useEffect(() => {
+    try { if (localStorage.getItem("sc_impact_tour_seen")) return; } catch (e) {}
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("view")) return;
+    if (window.location.hash && window.location.hash.length > 1) return;
+    const t = setTimeout(() => {
+      try { localStorage.setItem("sc_impact_tour_seen", "1"); } catch (e) {}
+      setTour({ active: true, index: 0, playing: true });
+    }, 1600);
+    return () => clearTimeout(t);
+  }, []);
   const hero = heroByView[view];
   const visibleProofStats = view === "system" ? proofStats : headlineProofStats;
 
