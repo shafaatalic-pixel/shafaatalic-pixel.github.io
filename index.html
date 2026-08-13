@@ -3102,7 +3102,7 @@ class Component extends DCLogic {
 })();
 </script>
 <script>document.addEventListener('click',function(e){var t=e.target&&e.target.closest&&e.target.closest('[data-open-lenses]');if(t){e.preventDefault();var nl=document.getElementById('nav-lens');if(nl){nl.click();}else{var l=document.getElementById('landing');if(l)l.style.display='flex';}}});</script>
-<!-- 35-SECOND GUIDED SITE TOUR (self-contained) -->
+<!-- 70-SECOND GUIDED SITE TOUR (self-contained) -->
 <style>
 .st-dim{position:fixed;inset:0;z-index:9990;background:rgba(6,10,16,.62);backdrop-filter:blur(1.5px);pointer-events:none;opacity:0;transition:opacity .35s;}
 .st-dim.on{opacity:1;}
@@ -3126,7 +3126,7 @@ class Component extends DCLogic {
 .st-btns button:disabled{opacity:.4;cursor:default;}
 .st-close{position:absolute;top:12px;right:12px;background:transparent;border:0;color:var(--text-muted);cursor:pointer;font-size:20px;line-height:1;}
 .st-count{font-family:var(--mono);font-size:11px;color:var(--text-faint);margin-right:4px;}
-@media (max-width:560px){.st-launch{left:14px;bottom:14px;height:38px;font-size:13px;}.st-bar{bottom:14px;padding:15px 16px;}.st-bar h3{font-size:17px;}}
+@media (max-width:560px){.st-launch{left:14px;bottom:72px;height:38px;font-size:13px;}.st-bar{bottom:14px;padding:15px 16px;}.st-bar h3{font-size:17px;}}
 @media (prefers-reduced-motion:reduce){.st-bar.on{animation:none;}.st-focus{transition:none;}}
 </style>
 <script>
@@ -3143,11 +3143,11 @@ class Component extends DCLogic {
   ];
   var i=-1,timer=null,paused=false,focusEl=null,startedFromLanding=false;
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var DUR=4300;
+  var DUR=8750;
   var launch=document.createElement('button');
   launch.className='st-launch';launch.type='button';
-  launch.innerHTML='▶ 35-second tour';
-  launch.setAttribute('aria-label','Play a 35 second guided tour of the site');
+  launch.innerHTML='▶ 70-second tour';
+  launch.setAttribute('aria-label','Play a 70 second guided tour of the site');
   launch.addEventListener('click',function(){ start(false); });
   var bar=document.createElement('div');
   bar.className='st-bar';bar.setAttribute('role','dialog');bar.setAttribute('aria-live','polite');bar.setAttribute('aria-label','Guided site tour');
