@@ -3148,7 +3148,7 @@ class Component extends DCLogic {
   launch.className='st-launch';launch.type='button';
   launch.innerHTML='▶ 35-second tour';
   launch.setAttribute('aria-label','Play a 35 second guided tour of the site');
-  launch.addEventListener('click',start);
+  launch.addEventListener('click',function(){ start(false); });
   var bar=document.createElement('div');
   bar.className='st-bar';bar.setAttribute('role','dialog');bar.setAttribute('aria-live','polite');bar.setAttribute('aria-label','Guided site tour');
   var dim=document.createElement('div'); dim.className='st-dim'; dim.setAttribute('aria-hidden','true');
@@ -3179,14 +3179,14 @@ class Component extends DCLogic {
   function schedule(){ if(timer) clearTimeout(timer); if(paused||reduce) return; if(i>=STEPS.length-1){ timer=setTimeout(finish,DUR); return; } timer=setTimeout(function(){go(i+1);},DUR); }
   function go(n){ if(n<0)n=0; if(n>STEPS.length-1)n=STEPS.length-1; i=n; render(); schedule(); }
   function togglePause(){ paused=!paused; render(); schedule(); }
-  function start(){
+  function start(auto){
     var l=document.getElementById('landing'); startedFromLanding=!!(l&&getComputedStyle(l).display!=='none'); if(l&&getComputedStyle(l).display!=='none'){ l.style.display='none'; document.body.style.overflow=''; }
     launch.classList.add('hide'); dim.classList.add('on'); bar.classList.add('on'); paused=false; i=-1; go(0);
     window.__stTourActive=true; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display='none';
     try{ localStorage.setItem('sc_site_tour_seen','1'); }catch(e){}
-    if(window.track) try{ window.track('site_tour_start',{}); }catch(e){}
+    if(window.track) try{ window.track(auto?'site_tour_autostart':'site_tour_start',{}); }catch(e){}
   }
-  function stop(){ if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; if(startedFromLanding){ var l=document.getElementById('landing'); if(l){ l.style.display='flex'; document.body.style.overflow='hidden'; } try{ window.scrollTo(0,0); }catch(e){} } else { try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } } try{ window.dispatchEvent(new Event('scroll')); }catch(e){} }
+  function stop(){ if(window.track) try{ window.track('site_tour_cancel',{}); }catch(e){} if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; if(startedFromLanding){ var l=document.getElementById('landing'); if(l){ l.style.display='flex'; document.body.style.overflow='hidden'; } try{ window.scrollTo(0,0); }catch(e){} } else { try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } } try{ window.dispatchEvent(new Event('scroll')); }catch(e){} }
   function finish(){ if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; if(startedFromLanding){ var l=document.getElementById('landing'); if(l){ l.style.display='flex'; document.body.style.overflow='hidden'; } try{ window.scrollTo(0,0); }catch(e){} } else { try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } } if(window.track) try{ window.track('site_tour_complete',{}); }catch(e){} }
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&bar.classList.contains('on')) stop(); });
   setTimeout(function(){
@@ -3194,7 +3194,7 @@ class Component extends DCLogic {
     if(reduce||document.hidden) return;
     if(location.hash&&location.hash.length>1) return;
     var l=document.getElementById('landing'); if(!l||getComputedStyle(l).display==='none') return;
-    start();
+    start(true);
   },2400);
 })();
 </script>

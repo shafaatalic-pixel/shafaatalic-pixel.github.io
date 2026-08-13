@@ -1213,7 +1213,8 @@ export function App() {
   const [activeEvidenceId, setActiveEvidenceId] = useState("praava-hypergrowth");
   const [ledgerOpen, setLedgerOpen] = useState(false);
   const [tour, setTour] = useState({ active: false, index: 0, playing: false });
-  const startTour = () => { try { localStorage.setItem("sc_impact_tour_seen", "1"); } catch (e) {} setTour({ active: true, index: 0, playing: true }); };
+  const gaTour = (n, p) => { try { if (window.track) window.track(n, p || {}); } catch (e) {} };
+  const startTour = () => { try { localStorage.setItem("sc_impact_tour_seen", "1"); } catch (e) {} gaTour("impact_tour_start"); setTour({ active: true, index: 0, playing: true }); };
   useEffect(() => {
     if (!tour.active) return;
     const beat = TOUR_BEATS[tour.index];
@@ -1225,6 +1226,7 @@ export function App() {
     const last = tour.index >= TOUR_BEATS.length - 1;
     const t = setTimeout(() => {
       if (last) {
+        gaTour("impact_tour_complete");
         setTour({ active: false, index: 0, playing: false });
         setView("system"); setMarket("both"); setYearStart(2009); setLens("All lenses");
         setSelectedOrganization("Praava"); setActiveEvidenceId("praava-hypergrowth");
@@ -1243,6 +1245,7 @@ export function App() {
     if (window.location.hash && window.location.hash.length > 1) return;
     const t = setTimeout(() => {
       try { localStorage.setItem("sc_impact_tour_seen", "1"); } catch (e) {}
+      gaTour("impact_tour_autostart");
       setTour({ active: true, index: 0, playing: true });
     }, 1600);
     return () => clearTimeout(t);
@@ -1330,7 +1333,7 @@ export function App() {
           onPlayPause={() => setTour((c) => ({ ...c, playing: !c.playing }))}
           onPrev={() => setTour((c) => ({ ...c, index: Math.max(0, c.index - 1), playing: false }))}
           onNext={() => setTour((c) => ({ ...c, index: Math.min(TOUR_BEATS.length - 1, c.index + 1), playing: false }))}
-          onClose={() => { setTour({ active: false, index: 0, playing: false }); setView("system"); setMarket("both"); setYearStart(2009); setLens("All lenses"); setSelectedOrganization("Praava"); setActiveEvidenceId("praava-hypergrowth"); }}
+          onClose={() => { gaTour("impact_tour_cancel", { beat: tour.index }); setTour({ active: false, index: 0, playing: false }); setView("system"); setMarket("both"); setYearStart(2009); setLens("All lenses"); setSelectedOrganization("Praava"); setActiveEvidenceId("praava-hypergrowth"); }}
         />
       )}
     </div>

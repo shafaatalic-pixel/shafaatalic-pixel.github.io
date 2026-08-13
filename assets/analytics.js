@@ -23,6 +23,13 @@
     gtag('config', GA_ID, { anonymize_ip: true });
   };
 
+  /* Lightweight event helper for standalone pages (impact map, essays, etc.).
+     Consent-gated: only sends once GA is actually on. The homepage defines its
+     own richer window.track first, so guard against clobbering it. */
+  window.track = window.track || function (name, params) {
+    try { if (!window.__gaOn) return; gtag('event', name, params || {}); } catch (e) {}
+  };
+
   function grant() { try { localStorage.setItem(KEY, 'granted'); } catch (e) {} window.loadGA(); }
   function deny()  { try { localStorage.setItem(KEY, 'denied'); } catch (e) {} }
 
