@@ -1330,7 +1330,7 @@ export function App() {
           onPlayPause={() => setTour((c) => ({ ...c, playing: !c.playing }))}
           onPrev={() => setTour((c) => ({ ...c, index: Math.max(0, c.index - 1), playing: false }))}
           onNext={() => setTour((c) => ({ ...c, index: Math.min(TOUR_BEATS.length - 1, c.index + 1), playing: false }))}
-          onClose={() => setTour({ active: false, index: 0, playing: false })}
+          onClose={() => { setTour({ active: false, index: 0, playing: false }); setView("system"); setMarket("both"); setYearStart(2009); setLens("All lenses"); setSelectedOrganization("Praava"); setActiveEvidenceId("praava-hypergrowth"); }}
         />
       )}
     </div>
