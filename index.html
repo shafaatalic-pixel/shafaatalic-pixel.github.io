@@ -3141,7 +3141,7 @@ class Component extends DCLogic {
     {sel:'#press',eye:'In the press',title:'Recognized beyond my own pages.',line:'Featured across national media, from The Daily Star to Prothom Alo.'},
     {sel:'#contact',eye:'Where I am headed',title:'One capability that goes anywhere.',line:'Growth is the constant. Health is where I aim it now, not the ceiling. Explore the impact map, read the essays, or get in touch.'}
   ];
-  var i=-1,timer=null,paused=false,focusEl=null;
+  var i=-1,timer=null,paused=false,focusEl=null,startedFromLanding=false;
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var DUR=4300;
   var launch=document.createElement('button');
@@ -3180,14 +3180,14 @@ class Component extends DCLogic {
   function go(n){ if(n<0)n=0; if(n>STEPS.length-1)n=STEPS.length-1; i=n; render(); schedule(); }
   function togglePause(){ paused=!paused; render(); schedule(); }
   function start(){
-    var l=document.getElementById('landing'); if(l&&l.style.display!=='none'){ l.style.display='none'; document.body.style.overflow=''; }
+    var l=document.getElementById('landing'); startedFromLanding=!!(l&&getComputedStyle(l).display!=='none'); if(l&&getComputedStyle(l).display!=='none'){ l.style.display='none'; document.body.style.overflow=''; }
     launch.classList.add('hide'); dim.classList.add('on'); bar.classList.add('on'); paused=false; i=-1; go(0);
     window.__stTourActive=true; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display='none';
     try{ localStorage.setItem('sc_site_tour_seen','1'); }catch(e){}
     if(window.track) try{ window.track('site_tour_start',{}); }catch(e){}
   }
   function stop(){ if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; try{ window.dispatchEvent(new Event('scroll')); }catch(e){} }
-  function finish(){ if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; var l=document.getElementById('landing'); if(l){ l.style.display='flex'; document.body.style.overflow='hidden'; try{ window.scrollTo(0,0); }catch(e){} } if(window.track) try{ window.track('site_tour_complete',{}); }catch(e){} }
+  function finish(){ if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; if(startedFromLanding){ var l=document.getElementById('landing'); if(l){ l.style.display='flex'; document.body.style.overflow='hidden'; } try{ window.scrollTo(0,0); }catch(e){} } else { try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } } if(window.track) try{ window.track('site_tour_complete',{}); }catch(e){} }
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&bar.classList.contains('on')) stop(); });
   setTimeout(function(){
     try{ if(localStorage.getItem('sc_site_tour_seen')) return; }catch(e){}
