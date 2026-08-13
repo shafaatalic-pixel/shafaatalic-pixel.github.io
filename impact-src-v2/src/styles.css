@@ -373,6 +373,17 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Subtle overlay-style scrollbar so the desktop gutter never reads as a hard dark band (incl. during the guided tour). */
+html { scrollbar-width: thin; scrollbar-color: rgba(150,160,175,.42) transparent; }
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(150,160,175,.34); border-radius: 9px; border: 3px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background: rgba(150,160,175,.55); border: 3px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-corner { background: transparent; }
+:root[data-theme="light"] { scrollbar-color: rgba(60,72,84,.34) transparent; }
+:root[data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(60,72,84,.28); border: 3px solid transparent; background-clip: padding-box; }
+:root[data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: rgba(60,72,84,.46); border: 3px solid transparent; background-clip: padding-box; }
+
 button,
 input,
 select {

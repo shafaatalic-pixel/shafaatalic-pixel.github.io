@@ -60,6 +60,16 @@
   html{scroll-behavior:smooth;}
   body{margin:0;background:var(--surface-base);color:var(--text-body);font-family:var(--body);-webkit-font-smoothing:antialiased;transition:background .3s ease,color .3s ease;}
   ::selection{background:var(--accent);color:var(--accent-ink);}
+  /* Subtle overlay-style scrollbar: the desktop gutter no longer reads as a hard dark band (Chrome auto-darkens native scrollbars on dark pages, and they stay undimmed during the site tour). Matches the unobtrusive mobile look. */
+  html{scrollbar-width:thin;scrollbar-color:rgba(150,160,175,.42) transparent;}
+  ::-webkit-scrollbar{width:11px;height:11px;}
+  ::-webkit-scrollbar-track{background:transparent;}
+  ::-webkit-scrollbar-thumb{background:rgba(150,160,175,.34);border-radius:9px;border:3px solid transparent;background-clip:padding-box;}
+  ::-webkit-scrollbar-thumb:hover{background:rgba(150,160,175,.55);border:3px solid transparent;background-clip:padding-box;}
+  ::-webkit-scrollbar-corner{background:transparent;}
+  :root[data-theme="light"]{scrollbar-color:rgba(60,72,84,.34) transparent;}
+  :root[data-theme="light"] ::-webkit-scrollbar-thumb{background:rgba(60,72,84,.28);border:3px solid transparent;background-clip:padding-box;}
+  :root[data-theme="light"] ::-webkit-scrollbar-thumb:hover{background:rgba(60,72,84,.46);border:3px solid transparent;background-clip:padding-box;}
   /* Safety net: any element FILLED with the accent color uses ink text, so accent CTAs stay readable in BOTH themes regardless of the inline text color a re-render sets. (Border-only accent buttons keep background:transparent, so they are not matched.) */
   [style*="background:var(--accent)"],
   [style*="background: var(--accent)"]{color:var(--accent-ink)!important;}
