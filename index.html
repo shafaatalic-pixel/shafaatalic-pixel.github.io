@@ -3104,7 +3104,8 @@ class Component extends DCLogic {
 <script>document.addEventListener('click',function(e){var t=e.target&&e.target.closest&&e.target.closest('[data-open-lenses]');if(t){e.preventDefault();var nl=document.getElementById('nav-lens');if(nl){nl.click();}else{var l=document.getElementById('landing');if(l)l.style.display='flex';}}});</script>
 <!-- 70-SECOND GUIDED SITE TOUR (self-contained) -->
 <style>
-.st-dim{position:fixed;inset:0;z-index:9990;background:rgba(6,10,16,.62);backdrop-filter:blur(1.5px);pointer-events:none;opacity:0;transition:opacity .35s;}
+.st-dim{position:fixed;inset:0;z-index:9990;background:rgba(6,10,16,.62);backdrop-filter:blur(1.5px);-webkit-backdrop-filter:blur(1.5px);pointer-events:none;opacity:0;transition:opacity .35s;}
+:root[data-theme="light"] .st-dim{background:rgba(18,24,30,.30);backdrop-filter:blur(.5px);-webkit-backdrop-filter:blur(.5px);}
 .st-dim.on{opacity:1;}
 .st-focus{position:relative;z-index:9994;outline:2px solid var(--accent);outline-offset:5px;border-radius:14px;transition:outline-color .3s;}
 .st-launch{position:fixed;left:16px;bottom:16px;z-index:9000;display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 13px;border-radius:999px;border:1px solid var(--border-hairline);background:var(--nav-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--accent-text);font-family:var(--disp);font-weight:700;font-size:12px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.16);opacity:.8;transition:opacity .2s,border-color .2s;}
