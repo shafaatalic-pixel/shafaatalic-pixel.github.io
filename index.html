@@ -248,7 +248,7 @@
 </style>
 <!-- VideoObject: the 45-second hello (uploadDate verified 2026-06-29) -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"VideoObject","name":"Md Shafaat Ali Choyon: A 45-second hello","description":"A 45-second introduction from Md Shafaat Ali Choyon, growth, marketing and public-health strategist, on one career seen four ways across growth, communication, product and public health.","thumbnailUrl":"https://i.ytimg.com/vi/FZLnsmMEXvo/maxresdefault.jpg","uploadDate":"2026-06-29","duration":"PT45S","contentUrl":"https://www.youtube.com/watch?v=FZLnsmMEXvo","embedUrl":"https://www.youtube.com/embed/FZLnsmMEXvo","publisher":{"@type":"Person","name":"Md Shafaat Ali Choyon"}}
+{"@context":"https://schema.org","@type":"VideoObject","name":"Md Shafaat Ali Choyon: A 45-second hello","description":"A 45-second introduction from Md Shafaat Ali Choyon, growth, marketing and public-health strategist, on one career seen four ways across growth, communication, product and public health.","thumbnailUrl":"https://i.ytimg.com/vi/FZLnsmMEXvo/maxresdefault.jpg","uploadDate":"2026-06-29","duration":"PT45S","contentUrl":"https://www.youtube.com/watch?v=FZLnsmMEXvo","embedUrl":"https://www.youtube.com/embed/FZLnsmMEXvo","transcript":"Most people pick a lane. I built four. I am Md Shafaat Ali Choyon. I started with 80,000 customer conversations, learning why people say yes - and I grew into sixteen years driving growth across telecom, advertising, fintech, tech and education. And then the pandemic showed me growth means more when it changes someone's life. Thus, I earned public health credentials to do it right. One career, four lenses. Pick yours. Something tells me we are going to be having a conversation - and I promise, it's going to be a good one.","publisher":{"@type":"Person","name":"Md Shafaat Ali Choyon"}}
 </script>
 </head>
 <body>
@@ -1433,6 +1433,15 @@
  #landing .hstats .n{font-family:var(--disp);font-weight:800;font-size:20px;color:var(--livory);line-height:1}
  #landing .hstats .n em{color:var(--lamber);font-style:normal}
  #landing .hstats .l{font-family:var(--mono);font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--lfaint);margin-top:5px;line-height:1.3}
+ #landing .htr{margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.13)}
+ #landing .htr summary{cursor:pointer;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--lfaint);list-style:none;display:inline-flex;align-items:center;gap:6px}
+ #landing .htr summary::-webkit-details-marker{display:none}
+ #landing .htr summary::after{content:"+";font-size:12px;line-height:1}
+ #landing .htr[open] summary::after{content:"-"}
+ #landing .htr p{margin:8px 0 0;font-family:var(--body);font-size:12px;line-height:1.55;color:var(--lbody)}
+ :root[data-theme="light"] #landing .htr{border-top-color:#ECE5D6}
+ :root[data-theme="light"] #landing .htr summary{color:#8A8578}
+ :root[data-theme="light"] #landing .htr p{color:#5E6772}
  @media(prefers-reduced-motion:reduce){#landing .vhero-vid{display:none}#landing.vhero{background:url(assets/hero/hero-poster.jpg) 64% 40%/cover}#landing .a-arrow,#landing .a-wave,#landing .a-wave2,#landing .a-orbit,#landing .a-spin,#landing .a-pip,#landing .vbig .vplay,#landing .vbig .vplay::after,#landing .vbig .vplay::before{animation:none}}
  @media(max-width:820px){
   #landing.vhero{overflow-y:auto}
@@ -1502,6 +1511,10 @@
  <div><div class="n">10M</div><div class="l">G2P beneficiaries</div></div>
  <div><div class="n">~57%</div><div class="l">B2C CAGR 2021-23</div></div>
  </div>
+ <details class="htr">
+ <summary>Read the transcript</summary>
+ <p>"Most people pick a lane. I built four. I am Md Shafaat Ali Choyon. I started with 80,000 customer conversations, learning why people say yes - and I grew into sixteen years driving growth across telecom, advertising, fintech, tech and education. And then the pandemic showed me growth means more when it changes someone's life. Thus, I earned public health credentials to do it right. One career, four lenses. Pick yours. Something tells me we are going to be having a conversation - and I promise, it's going to be a good one."</p>
+ </details>
  </div>
  <script>
  (function(){
