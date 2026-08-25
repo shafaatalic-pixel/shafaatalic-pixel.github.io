@@ -1558,17 +1558,20 @@ class Component extends DCLogic {
   var v=document.getElementById('vhero-vid');
   var reduce=this._reduce; var started=false, entered=false;
   function enter(){ if(entered) return; entered=true; L.classList.add('playing','entered'); }
+  if(v){
+   try{ v.muted=true; v.setAttribute('muted',''); v.preload='auto'; }catch(e){}
+   var tryPlay=function(){ try{ var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){}); }catch(e){} };
+   v.addEventListener('playing', function(){ started=true; L.classList.add('playing'); }, {once:true});
+   v.addEventListener('loadeddata', tryPlay, {once:true});
+   v.addEventListener('canplaythrough', tryPlay, {once:true});
+   v.addEventListener('timeupdate', function(){ if(v.duration && v.currentTime>=v.duration-0.3) enter(); });
+   v.addEventListener('ended', function(){ try{v.pause();}catch(e){} enter(); });
+   try{ v.load(); }catch(e){}
+   tryPlay(); setTimeout(tryPlay,250); setTimeout(tryPlay,700); setTimeout(tryPlay,1400);
+  }
   if(reduce){ enter(); }
   setTimeout(function(){ L.classList.add('playing'); }, 700);
-  if(v && !reduce){
-   v.addEventListener('playing', function(){ started=true; L.classList.add('playing'); }, {once:true});
-   v.addEventListener('timeupdate', function(){ if(v.duration && v.currentTime>=v.duration-0.35) enter(); });
-   v.addEventListener('ended', function(){ try{v.pause();}catch(e){} enter(); });
-   var isMobile=matchMedia('(max-width:820px)').matches;
-   if(isMobile){ var io=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ v.preload='auto'; v.play().catch(function(){}); io.disconnect(); } });},{threshold:.25}); io.observe(v); }
-   else { v.preload='auto'; v.play().catch(function(){}); }
-  }
-  setTimeout(function(){ if(!started){ L.classList.add('playing'); enter(); } }, 1600);
+  setTimeout(function(){ if(!started) enter(); }, 4200);
   setTimeout(function(){ enter(); }, 7000);
   L.addEventListener('mouseover', function(e){ var c=e.target.closest?e.target.closest('.lc'):null; if(!c)return; var ac=c.getAttribute('data-accent'); if(ac){ L.style.setProperty('--playtint',ac); L.style.setProperty('--lensring',ac); } });
   L.addEventListener('mousemove', function(e){ var c=e.target.closest?e.target.closest('.lc'):null; if(!c)return; c.style.transitionDelay='0s'; var b=c.getBoundingClientRect(); var x=(e.clientX-b.left)/b.width-.5, y=(e.clientY-b.top)/b.height-.5; c.style.transform='translateY(-5px) perspective(900px) rotateY('+(x*6)+'deg) rotateX('+(-y*6)+'deg)'; });
