@@ -1342,7 +1342,7 @@
  @media(prefers-reduced-motion:reduce){.lens-card{opacity:1;animation:none;}.lens-card:hover{transform:none;}}
  </style>
  <style id="vhero-css">
- #landing.vhero{position:fixed;inset:0;z-index:300;overflow:hidden;overflow-x:hidden;isolation:isolate;display:block;padding:0;background:var(--lpagebg);--livory:#F7F2E8;--lbody:#C3CBD5;--lmuted:#8A94A0;--lfaint:#7E8894;--lteal:#0FB3B3;--lteal4:#3AD0D0;--lamber:#F4A24C;--lcard:rgba(16,23,31,.66);--lcardbd:rgba(255,255,255,.10);--lpagebg:#080C11}
+ #landing.vhero{position:fixed;inset:0;z-index:300;overflow-y:auto;overflow-x:hidden;isolation:isolate;display:block;padding:0;background:var(--lpagebg);--livory:#F7F2E8;--lbody:#C3CBD5;--lmuted:#8A94A0;--lfaint:#7E8894;--lteal:#0FB3B3;--lteal4:#3AD0D0;--lamber:#F4A24C;--lcard:rgba(16,23,31,.66);--lcardbd:rgba(255,255,255,.10);--lpagebg:#080C11}
  :root[data-theme="light"] #landing.vhero{--lbody:#D7DCE2;--lmuted:#AEB6BF;--lfaint:#9AA2AB;--lteal4:#4FE0E0;--lcard:rgba(255,255,255,.90);--lcardbd:rgba(255,255,255,.7);--lpagebg:#FBF8F1}
  #landing .vhero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:64% 40%;z-index:0}
  #landing .vhero-scrim{position:absolute;inset:0;z-index:1;transition:opacity 1s ease;background:linear-gradient(90deg,rgba(6,9,13,.9) 0%,rgba(6,9,13,.74) 30%,rgba(6,9,13,.36) 52%,rgba(6,9,13,.05) 74%,transparent 88%),linear-gradient(0deg,rgba(6,9,13,.9) 1%,transparent 26%),linear-gradient(180deg,rgba(6,9,13,.6),transparent 16%)}
@@ -1351,12 +1351,12 @@
  #landing .bar{position:absolute;top:0;left:0;right:0;z-index:6;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px clamp(24px,4vw,56px);opacity:0;transform:translateY(-8px);transition:opacity .8s ease,transform .8s ease}
  #landing.playing .bar{opacity:1;transform:none}
  #landing .brand{display:inline-flex;align-items:center;gap:11px;font-family:var(--disp);font-weight:800;font-size:19px;letter-spacing:-.01em;color:var(--livory);text-decoration:none}
- #landing .brand img{width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:50% 20%;border:1px solid rgba(255,255,255,.25)}
+ #landing .brand img{width:30px;height:30px;border-radius:7px}
  #landing .brand .dot{color:var(--lteal4)}
  #landing .navr{display:flex;align-items:center;gap:12px}
  #landing .tgl{width:38px;height:38px;border:1px solid rgba(255,255,255,.24);border-radius:9px;background:rgba(8,12,17,.35);color:var(--livory);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
  #landing .book{display:inline-flex;align-items:center;height:38px;padding:0 18px;background:var(--lteal);color:#042020;border-radius:9px;font-family:var(--disp);font-weight:700;font-size:14px;text-decoration:none}
- #landing .wrap{position:relative;z-index:5;height:100%;width:100%;padding:80px clamp(24px,4vw,56px) 44px;display:flex;align-items:center}
+ #landing .wrap{position:relative;z-index:5;min-height:100%;width:100%;padding:80px clamp(24px,4vw,56px) 44px;display:flex;align-items:center;align-items:safe center}
  #landing .panel{width:min(56%,700px)}
  #landing .rv{opacity:0;transform:translateY(24px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
  #landing.entered .rv{opacity:1;transform:none}
@@ -1467,7 +1467,7 @@
  </video>
  <div class="vhero-scrim"></div>
  <div class="bar">
- <span class="brand"><img src="assets/headshot-hero.jpg" alt="Md Shafaat Ali Choyon" width="32" height="32" /><span>Md Shafaat Ali Choyon<span class="dot">.</span></span></span>
+ <span class="brand"><img src="assets/logos/sc-mark.png" alt="Shafaat Choyon logo" width="30" height="30" /><span>Md Shafaat Ali Choyon<span class="dot">.</span></span></span>
  <div class="navr">
  <button id="landing-theme" type="button" class="tgl" aria-label="Toggle light/dark"><i id="landing-icon" data-lucide="moon" style="width:18px;height:18px;"></i></button>
  <a class="book" href="https://calendly.com/shafaat-alic/30min" target="_blank" rel="noopener" data-cta>Book a call</a>
