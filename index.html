@@ -1334,6 +1334,10 @@
  <figcaption id="lightbox-cap" style="color:var(--ivory-200);font-family:var(--mono);font-size:12px;letter-spacing:.04em;margin-top:16px;"></figcaption>
  </figure>
  </div>
+ <div id="vidbox" role="dialog" aria-modal="true" aria-label="Md Shafaat Ali Choyon, 45-second hello" style="position:fixed;inset:0;z-index:400;display:none;align-items:center;justify-content:center;background:rgba(4,7,11,.94);padding:clamp(16px,4vw,56px);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);">
+ <button id="vidbox-close" type="button" aria-label="Close video" style="position:absolute;top:20px;right:24px;width:44px;height:44px;border-radius:10px;border:1px solid rgba(255,255,255,.28);background:rgba(8,12,17,.55);color:#F7F2E8;font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;">&#10005;</button>
+ <div id="vidbox-frame" style="position:relative;width:min(960px,92vw);aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 40px 90px -30px rgba(0,0,0,.85);border:1px solid rgba(255,255,255,.12);"></div>
+ </div>
 
  <!-- LANDING / LENS CHOOSER -->
  <style>
@@ -2589,7 +2593,22 @@ class Component extends DCLogic {
  })();
 })();
 </script>
-<script>(function(){function play(f){if(!f||f.querySelector('iframe'))return;f.innerHTML='<iframe style="position:absolute;inset:0;width:100%;height:100%;border:0;" src="https://www.youtube-nocookie.com/embed/FZLnsmMEXvo?autoplay=1&rel=0&modestbranding=1" title="Md Shafaat Ali Choyon, intro" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';}document.addEventListener('click',function(e){var f=e.target&&e.target.closest&&e.target.closest('#introvid');if(f)play(f);});document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&document.activeElement&&document.activeElement.id==='introvid'){e.preventDefault();play(document.activeElement);}});})();</script>
+<script>(function(){
+ var YT="https://www.youtube-nocookie.com/embed/FZLnsmMEXvo?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+ function box(){return document.getElementById("vidbox");}
+ function frame(){return document.getElementById("vidbox-frame");}
+ function openVid(){var b=box(),fr=frame();if(!b||!fr)return;fr.innerHTML='<iframe style="position:absolute;inset:0;width:100%;height:100%;border:0;" src="'+YT+'" title="Md Shafaat Ali Choyon, 45-second hello" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';b.style.display="flex";try{document.body.style.overflow="hidden";}catch(e){}var c=document.getElementById("vidbox-close");if(c)try{c.focus();}catch(e){}}
+ function closeVid(){var b=box(),fr=frame();if(!b)return;b.style.display="none";if(fr)fr.innerHTML="";}
+ document.addEventListener("click",function(e){
+  var iv=e.target&&e.target.closest&&e.target.closest("#introvid");if(iv){e.preventDefault();openVid();return;}
+  if(e.target&&e.target.closest&&e.target.closest("#vidbox-close")){closeVid();return;}
+  if(e.target&&e.target.id==="vidbox"){closeVid();return;}
+ });
+ document.addEventListener("keydown",function(e){
+  if((e.key==="Enter"||e.key===" ")&&document.activeElement&&document.activeElement.id==="introvid"){e.preventDefault();openVid();return;}
+  if(e.key==="Escape"){var b=box();if(b&&b.style.display==="flex")closeVid();}
+ });
+})();</script>
 <script>(function(){
  function closeAll(scope){ scope.querySelectorAll('.cg-detail.open').forEach(function(d){d.classList.remove('open');});
  scope.querySelectorAll('.cg-card.active').forEach(function(c){c.classList.remove('active');c.setAttribute('aria-expanded','false');}); }
