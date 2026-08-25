@@ -1342,13 +1342,13 @@
  @media(prefers-reduced-motion:reduce){.lens-card{opacity:1;animation:none;}.lens-card:hover{transform:none;}}
  </style>
  <style id="vhero-css">
- #landing.vhero{position:fixed;inset:0;z-index:300;overflow-y:auto;overflow-x:hidden;isolation:isolate;display:block;padding:0;background:var(--lpagebg);--livory:#F7F2E8;--lbody:#C3CBD5;--lmuted:#8A94A0;--lfaint:#7E8894;--lteal:#0FB3B3;--lteal4:#3AD0D0;--lamber:#F4A24C;--lcard:rgba(16,23,31,.66);--lcardbd:rgba(255,255,255,.10);--lpagebg:#080C11}
+ #landing.vhero{position:fixed;inset:0;z-index:300;overflow:hidden;isolation:isolate;display:block;padding:0;background:var(--lpagebg);--livory:#F7F2E8;--lbody:#C3CBD5;--lmuted:#8A94A0;--lfaint:#7E8894;--lteal:#0FB3B3;--lteal4:#3AD0D0;--lamber:#F4A24C;--lcard:rgba(16,23,31,.66);--lcardbd:rgba(255,255,255,.10);--lpagebg:#080C11}
  :root[data-theme="light"] #landing.vhero{--lbody:#D7DCE2;--lmuted:#AEB6BF;--lfaint:#9AA2AB;--lteal4:#4FE0E0;--lcard:rgba(255,255,255,.90);--lcardbd:rgba(255,255,255,.7);--lpagebg:#FBF8F1}
- #landing .vhero-vid{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;object-position:64% 40%;z-index:0}
- #landing .vhero-scrim{position:fixed;inset:0;z-index:1;transition:opacity 1s ease;background:linear-gradient(90deg,rgba(6,9,13,.9) 0%,rgba(6,9,13,.74) 30%,rgba(6,9,13,.36) 52%,rgba(6,9,13,.05) 74%,transparent 88%),linear-gradient(0deg,rgba(6,9,13,.9) 1%,transparent 26%),linear-gradient(180deg,rgba(6,9,13,.6),transparent 16%)}
+ #landing .vhero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:64% 40%;z-index:0}
+ #landing .vhero-scrim{position:absolute;inset:0;z-index:1;transition:opacity 1s ease;background:linear-gradient(90deg,rgba(6,9,13,.9) 0%,rgba(6,9,13,.74) 30%,rgba(6,9,13,.36) 52%,rgba(6,9,13,.05) 74%,transparent 88%),linear-gradient(0deg,rgba(6,9,13,.9) 1%,transparent 26%),linear-gradient(180deg,rgba(6,9,13,.6),transparent 16%)}
  :root[data-theme="light"] #landing .vhero-scrim{background:linear-gradient(90deg,rgba(6,9,13,.82) 0%,rgba(6,9,13,.62) 30%,rgba(6,9,13,.28) 52%,rgba(6,9,13,.04) 74%,transparent 88%),linear-gradient(0deg,rgba(6,9,13,.86) 1%,transparent 26%),linear-gradient(180deg,rgba(6,9,13,.5),transparent 16%)}
  #landing > canvas{display:none!important}
- #landing .bar{position:fixed;top:0;left:0;right:0;z-index:6;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px clamp(24px,4vw,56px);opacity:0;transform:translateY(-8px);transition:opacity .8s ease,transform .8s ease}
+ #landing .bar{position:absolute;top:0;left:0;right:0;z-index:6;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px clamp(24px,4vw,56px);opacity:0;transform:translateY(-8px);transition:opacity .8s ease,transform .8s ease}
  #landing.playing .bar{opacity:1;transform:none}
  #landing .brand{display:inline-flex;align-items:center;gap:11px;font-family:var(--disp);font-weight:800;font-size:19px;letter-spacing:-.01em;color:var(--livory);text-decoration:none}
  #landing .brand img{width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:50% 20%;border:1px solid rgba(255,255,255,.25)}
@@ -1356,7 +1356,7 @@
  #landing .navr{display:flex;align-items:center;gap:12px}
  #landing .tgl{width:38px;height:38px;border:1px solid rgba(255,255,255,.24);border-radius:9px;background:rgba(8,12,17,.35);color:var(--livory);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
  #landing .book{display:inline-flex;align-items:center;height:38px;padding:0 18px;background:var(--lteal);color:#042020;border-radius:9px;font-family:var(--disp);font-weight:700;font-size:14px;text-decoration:none}
- #landing .wrap{position:relative;z-index:5;min-height:100vh;width:100%;padding:84px clamp(24px,4vw,60px) 44px;display:flex;align-items:center;align-items:safe center}
+ #landing .wrap{position:relative;z-index:5;height:100%;width:100%;padding:74px clamp(24px,4vw,60px) 40px;display:flex;align-items:center}
  #landing .panel{width:min(56%,700px)}
  #landing .rv{opacity:0;transform:translateY(24px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
  #landing.entered .rv{opacity:1;transform:none}
@@ -1403,7 +1403,7 @@
  #landing .a-pip{animation:vpip 1.9s ease-in-out infinite}
  @keyframes vpip{0%,100%{opacity:.35}50%{opacity:1}}
  @keyframes vorb{to{transform:rotate(360deg)}}
- #landing .hbar{position:fixed;right:clamp(24px,4vw,56px);bottom:92px;z-index:5;width:min(39%,460px);background:rgba(10,14,19,.64);border:1px solid rgba(255,255,255,.13);border-radius:16px;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);padding:18px 18px 20px;box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 3px 8px rgba(0,0,0,.35),0 30px 60px -30px rgba(0,0,0,.8);opacity:0;transform:translateY(20px);transition:opacity .85s cubic-bezier(.16,1,.3,1) .2s,transform .85s cubic-bezier(.16,1,.3,1) .2s}
+ #landing .hbar{position:absolute;right:clamp(24px,4vw,56px);bottom:92px;z-index:5;width:min(39%,460px);background:rgba(10,14,19,.64);border:1px solid rgba(255,255,255,.13);border-radius:16px;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);padding:18px 18px 20px;box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 3px 8px rgba(0,0,0,.35),0 30px 60px -30px rgba(0,0,0,.8);opacity:0;transform:translateY(20px);transition:opacity .85s cubic-bezier(.16,1,.3,1) .2s,transform .85s cubic-bezier(.16,1,.3,1) .2s}
  #landing.entered .hbar{opacity:1;transform:none}
  #landing .hcap{font-family:var(--body);font-size:12.5px;line-height:1.45;color:var(--lbody);margin-top:12px}
  :root[data-theme="light"] #landing .hbar{background:#fff;border-color:#ECE5D6;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 3px 8px rgba(60,50,30,.08),0 30px 60px -30px rgba(60,50,30,.5)}
@@ -1461,7 +1461,7 @@
  @media(max-width:400px){#landing .vhero-vid{height:60vh}#landing .wrap{padding-top:36vh}}
  </style>
  <div id="landing" class="vhero">
- <video id="vhero-vid" class="vhero-vid" muted playsinline preload="none" poster="assets/hero/hero-poster.jpg" aria-label="Md Shafaat Ali Choyon walking into frame">
+ <video id="vhero-vid" class="vhero-vid" autoplay muted playsinline preload="auto" poster="assets/hero/hero-poster.jpg" aria-label="Md Shafaat Ali Choyon walking into frame">
  <source src="assets/hero/hero-walkin.webm" type="video/webm">
  <source src="assets/hero/hero-walkin.mp4" type="video/mp4">
  </video>
@@ -1521,7 +1521,7 @@
     io.observe(v);
    } else { v.preload='auto'; v.play().catch(function(){}); }
   }
-  setTimeout(function(){ if(!started){ L.classList.add('playing'); enter(); } }, 1600);
+  setTimeout(function(){ if(!started){ L.classList.add('playing'); enter(); } }, 2400);
   setTimeout(function(){ enter(); }, 7000);
   L.addEventListener('mouseover', function(e){ var c=e.target.closest?e.target.closest('.lc'):null; if(!c)return; var ac=c.getAttribute('data-accent'); if(ac){ L.style.setProperty('--playtint',ac); L.style.setProperty('--lensring',ac); } });
   L.addEventListener('mousemove', function(e){ var c=e.target.closest?e.target.closest('.lc'):null; if(!c)return; c.style.transitionDelay='0s'; var b=c.getBoundingClientRect(); var x=(e.clientX-b.left)/b.width-.5, y=(e.clientY-b.top)/b.height-.5; c.style.transform='translateY(-5px) perspective(900px) rotateY('+(x*6)+'deg) rotateX('+(-y*6)+'deg)'; });
