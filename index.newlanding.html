@@ -3552,7 +3552,7 @@ function build(){
  paintShades();layout();
 }
 function gvhKick(){
- if(!built||ranOnce)return;
+ if(!built||ranOnce||gvhHold)return;
  if(!document.documentElement.hasAttribute("data-gvh"))return;
  if(document.documentElement.hasAttribute("data-gvh-fb"))return;
  if(v.paused&&v.currentTime<0.2){try{var p=v.play();if(p&&p.catch)p.catch(function(){});}catch(e){}}
