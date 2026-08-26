@@ -3509,6 +3509,7 @@ function build(){
  var s1=document.createElement("source");s1.src="assets/growth-hero.webm";s1.type="video/webm";
  var s2=document.createElement("source");s2.src="assets/growth-hero.mp4";s2.type="video/mp4";
  v.appendChild(s1);v.appendChild(s2);
+ try{v.load();}catch(e){}
  still=document.createElement("img");still.id="gvh-still";still.src="assets/growth-hero-settled.jpg";still.alt="";
  sh=document.createElement("div");sh.id="gvh-sh";
  sv=document.createElement("div");sv.id="gvh-sv";
@@ -3526,6 +3527,7 @@ function build(){
  });
  top.appendChild(rp);
  v.addEventListener("ended",function(){settle();});
+ v.addEventListener("canplay",function(){gvhKick();});
  v.addEventListener("playing",function(){
   document.documentElement.removeAttribute("data-gvh-fb");
   if(fbTimer){clearTimeout(fbTimer);fbTimer=null;}
@@ -3533,6 +3535,12 @@ function build(){
  });
  built=true;
  paintShades();layout();
+}
+function gvhKick(){
+ if(!built||ranOnce)return;
+ if(!document.documentElement.hasAttribute("data-gvh"))return;
+ if(document.documentElement.hasAttribute("data-gvh-fb"))return;
+ if(v.paused&&v.currentTime<0.2){try{var p=v.play();if(p&&p.catch)p.catch(function(){});}catch(e){}}
 }
 function startWipe(){
  cancelAnimationFrame(raf);
@@ -3565,15 +3573,13 @@ function activate(){
  if(MOBQ.matches){
   markSet();
   if(ranOnce||REDUCE){document.documentElement.setAttribute("data-gvh-fb","");}
-  else{try{var p=v.play();p&&p.catch(function(){document.documentElement.setAttribute("data-gvh-fb","");});}catch(e){document.documentElement.setAttribute("data-gvh-fb","");}}
+  else{gvhKick();setTimeout(gvhKick,700);setTimeout(gvhKick,1800);
+   setTimeout(function(){if(v.currentTime<0.2)document.documentElement.setAttribute("data-gvh-fb","");},5000);}
   return;
  }
  if(ranOnce||REDUCE){settleInstant();return;}
  document.documentElement.style.setProperty("--gvhwe","0%");
- try{
-  var pr=v.play();
-  if(pr&&pr.catch)pr.catch(function(){});
- }catch(e){}
+ gvhKick();setTimeout(gvhKick,700);setTimeout(gvhKick,1800);
  if(fbTimer)clearTimeout(fbTimer);
  fbTimer=setTimeout(function(){
   if(v.currentTime<0.2){settleInstant();}
