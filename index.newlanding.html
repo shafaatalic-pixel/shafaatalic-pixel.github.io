@@ -321,6 +321,7 @@
  </nav>
 
  <!-- HERO -->
+ <main id="site-main">
  <header id="top" data-screen-label="Hero" style="position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:140px clamp(20px,4vw,48px) 90px;">
  <div data-grid style="position:absolute;inset:0;background-image:linear-gradient(var(--obsidian-600) 1px,transparent 1px),linear-gradient(90deg,var(--obsidian-600) 1px,transparent 1px);background-size:64px 64px;opacity:.5;-webkit-mask-image:radial-gradient(circle at 26% 30%,#000,transparent 72%);mask-image:radial-gradient(circle at 26% 30%,#000,transparent 72%);"></div>
  <canvas id="hero-fx" aria-hidden="true" style="position:absolute;inset:0;z-index:1;pointer-events:none;"></canvas>
@@ -331,7 +332,7 @@
  <span style="width:40px;height:3px;background:var(--accent);border-radius:2px;"></span>
  </div>
  <button type="button" id="lens-cue" data-open-lenses data-reveal style="display:inline-flex;align-items:center;gap:8px;background:transparent;border:none;cursor:pointer;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--text-faint);margin:0 0 16px;padding:0;text-transform:uppercase;"><span id="lens-cue-lead">One career, seen four ways</span> <span id="lens-cue-cta" style="color:var(--accent-text);text-transform:none;letter-spacing:0;font-weight:700;">See all four &rarr;</span></button>
- <h2 id="hero-headline" data-reveal style="font-family:var(--disp);font-weight:700;font-size:clamp(38px,6.6vw,78px);line-height:1.02;letter-spacing:-.02em;color:var(--text-strong);margin:0;max-width:16ch;">Clarity under pressure that turns system complexity into <span style="color:var(--accent-text);">measurable results.</span></h2>
+ <h1 id="hero-headline" data-reveal style="font-family:var(--disp);font-weight:700;font-size:clamp(38px,6.6vw,78px);line-height:1.02;letter-spacing:-.02em;color:var(--text-strong);margin:0;max-width:16ch;">Clarity under pressure that turns system complexity into <span style="color:var(--accent-text);">measurable results.</span></h1>
  <p id="hero-whofor" data-reveal style="font-family:var(--disp);font-weight:700;font-size:clamp(16px,1.7vw,20px);line-height:1.4;color:var(--text-strong);margin:22px 0 0;max-width:52ch;border-left:3px solid var(--accent);padding-left:15px;">For growth teams that want measurable outcomes, and health organizations that want commercial rigor. <span style="color:var(--accent-text);">One strategist, fluent in both.</span></p>
  <p id="hero-subhead" data-reveal style="font-family:var(--body);font-size:clamp(17px,2vw,21px);line-height:1.55;color:var(--text-muted);margin:28px 0 0;max-width:60ch;">Growth &amp; marketing strategy leader with 16+ years across telecom, advertising, fintech, e-commerce, consumer tech, education and healthcare, grounded in public health (MPH, CHES®). I read complex systems, find the real constraint, and build what moves the number and improves health.</p>
  <p data-reveal style="font-family:var(--mono);font-size:13px;color:var(--text-faint);margin:18px 0 0;letter-spacing:.02em;">MBA · MCIM · MPH · CHES®, Redford, Michigan</p>
@@ -1299,6 +1300,7 @@
  </div>
  </section>
 
+ </main>
  <!-- CONTACT -->
  <footer id="contact" data-screen-label="Contact" style="padding:clamp(70px,10vh,110px) clamp(20px,4vw,48px) 0;border-top:1px solid var(--border-hairline);">
  <div style="max-width:1100px;margin:0 auto;">
@@ -1474,7 +1476,7 @@
  }
  @media(max-width:400px){#landing .vhero-vid{height:60vh}#landing .wrap{padding-top:36vh}}
  </style>
- <div id="landing" class="vhero">
+ <div id="landing" class="vhero" role="dialog" aria-modal="true" aria-label="Choose which lens to view">
  <video id="vhero-vid" class="vhero-vid" autoplay muted playsinline preload="auto" poster="assets/hero/hero-poster.jpg" aria-label="Md Shafaat Ali Choyon walking into frame">
  <source src="assets/hero/hero-walkin.webm" type="video/webm">
  <source src="assets/hero/hero-walkin.mp4" type="video/mp4">
@@ -3412,7 +3414,7 @@ class Component extends DCLogic {
     if(reduce||document.hidden) return;
     if(location.hash&&location.hash.length>1) return;
     var l=document.getElementById('landing'); if(!l||getComputedStyle(l).display==='none') return;
-    start(true);
+    /* auto-start removed — the 70-second tour is now opt-in via the launch button */
   },2400);
 })();
 </script>
