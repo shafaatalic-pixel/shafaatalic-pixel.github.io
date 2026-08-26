@@ -3486,7 +3486,7 @@ html[data-gvh] #top>div[data-grid]{display:none!important}
 "use strict";
 var MOBQ=window.matchMedia("(max-width:860px)");
 var REDUCE=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-var built=false,ranOnce=false,raf=null,fbTimer=null,hardTimer=null;
+var built=false,ranOnce=false,raf=null,fbTimer=null,hardTimer=null,gvhHold=false;
 var wrap,v,still,sh,sv,mt,mb,rp,top;
 function isGrowth(){var l=document.documentElement.getAttribute("data-lens")||"";return l==="growth"||l==="healthcomm"||l==="healthtech"||l==="pophealth"||l==="full";}
 function rgbBg(){
@@ -3586,6 +3586,7 @@ function activate(){
  wrap.style.display="";
  paintShades();layout();
  setTimeout(paintShades,400);setTimeout(paintShades,1200);
+ if(!ranOnce&&!REDUCE&&gvhLandingUp()){gvhHold=true;return;}
  if(MOBQ.matches){
   markSet();
   try{gvhWireCue();}catch(e){}
@@ -3615,6 +3616,46 @@ function deactivate(){
  wrap.style.display="none";
 }
 function sync(){if(isGrowth()){activate();}else{deactivate();}}
+function gvhLandingUp(){
+ var L=document.getElementById("landing");
+ if(!L||(L.closest&&L.closest("x-dc")))return false;
+ var d="";try{d=L.style.display||getComputedStyle(L).display;}catch(e){}
+ return d!=="none";
+}
+/* Landing chooser: its walk-in stays cinematic only on a fresh landing load. Returning to the
+   chooser shows it settled (final frame, cards instant), and on a fresh landing load the hero
+   entrance holds until the visitor picks a lens, so the walk is never wasted behind the cards. */
+(function(){
+ function seekEnd(lv){
+  function s(){try{if(isFinite(lv.duration)&&lv.duration>0)lv.currentTime=Math.max(0,lv.duration-0.05);}catch(e){}}
+  if(isFinite(lv.duration)&&lv.duration>0)s();else lv.addEventListener("loadedmetadata",s,{once:true});
+ }
+ function settleChooser(L){
+  try{L.classList.add("playing","entered");}catch(e){}
+  var lv=L.querySelector("#vhero-vid")||L.querySelector(".vhero-vid");
+  if(lv){
+   lv._gvhStop=1;
+   try{lv.pause();}catch(e){}
+   seekEnd(lv);
+   if(!lv._gvhGuard){lv._gvhGuard=1;lv.addEventListener("play",function(){if(lv._gvhStop){try{lv.pause();}catch(e){}seekEnd(lv);}});}
+  }
+ }
+ function tick(){
+  var L=document.getElementById("landing");
+  if(L&&!(L.closest&&L.closest("x-dc"))){
+   var d="";try{d=L.style.display||getComputedStyle(L).display;}catch(e){}
+   var vis=d!=="none";
+   if(!vis){
+    if(!L._gvhLd){L._gvhLd=1;settleChooser(L);}
+    if(gvhHold){gvhHold=false;if(!ranOnce&&v&&v.paused&&v.currentTime<0.2){sync();}}
+   }else if(!L._gvhLd&&!L._gvhFresh){
+    L._gvhFresh=1;
+   }
+  }
+  setTimeout(tick,250);
+ }
+ tick();
+})();
 try{
  new MutationObserver(function(){sync();}).observe(document.documentElement,{attributes:true,attributeFilter:["data-lens"]});
  new MutationObserver(function(){paintShades();setTimeout(paintShades,220);setTimeout(paintShades,650);}).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
