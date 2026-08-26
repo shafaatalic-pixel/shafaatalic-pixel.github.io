@@ -3600,7 +3600,7 @@ function deactivate(){
 function sync(){if(isGrowth()){activate();}else{deactivate();}}
 try{
  new MutationObserver(function(){sync();}).observe(document.documentElement,{attributes:true,attributeFilter:["data-lens"]});
- new MutationObserver(function(){paintShades();}).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+ new MutationObserver(function(){paintShades();setTimeout(paintShades,220);setTimeout(paintShades,650);}).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
 }catch(e){}
 window.addEventListener("resize",function(){clearTimeout(window.__gvhrz);window.__gvhrz=setTimeout(function(){paintShades();layout();},160);});
 if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",sync);}else{sync();}
