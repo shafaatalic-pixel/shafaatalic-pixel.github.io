@@ -3485,11 +3485,13 @@ var built=false,ranOnce=false,raf=null,fbTimer=null,hardTimer=null;
 var wrap,v,still,sh,sv,mt,mb,rp,top;
 function isGrowth(){return (document.documentElement.getAttribute("data-lens")||"")==="growth";}
 function rgbBg(){
+ var t=document.documentElement.getAttribute("data-theme");
+ if(t==="light")return "251,248,241";
+ if(t==="dark")return "11,15,20";
  var c="";
  try{c=getComputedStyle(document.body).backgroundColor;}catch(e){}
- if(!c||c==="rgba(0, 0, 0, 0)"||c==="transparent"){try{c=getComputedStyle(document.documentElement).backgroundColor;}catch(e){}}
  var m=(c||"").match(/(\d+)[,\s]+(\d+)[,\s]+(\d+)/);
- return m?m[1]+","+m[2]+","+m[3]:"11,15,19";
+ return m?m[1]+","+m[2]+","+m[3]:"11,15,20";
 }
 function paintShades(){
  if(!built)return;
@@ -3578,6 +3580,7 @@ function activate(){
  document.documentElement.setAttribute("data-gvh","");
  wrap.style.display="";
  paintShades();layout();
+ setTimeout(paintShades,400);setTimeout(paintShades,1200);
  if(MOBQ.matches){
   markSet();
   if(ranOnce||REDUCE){document.documentElement.setAttribute("data-gvh-fb","");}
