@@ -3637,14 +3637,14 @@ document.addEventListener("click",function(e){
  if(act){goFull=act.getAttribute("data-gvh-act")==="all";}
  else{
   var cta=document.getElementById("lens-cue-cta");
-  if(cta&&cta.contains(e.target)){
+  if(cta&&cta.contains(e.target)&&/everything/i.test(cta.textContent||"")){
    var r=cta.getBoundingClientRect();
    var relY=(e.clientY||0)-r.top, relX=(e.clientX||0)-r.left;
    var firstLine=relY<Math.min(24,r.height*0.55);
    if(!firstLine||relX>r.width*0.52)goFull=true;
   }
  }
- if(goFull){e.preventDefault();e.stopPropagation();try{location.href="/?view=full";}catch(err){}return;}
+ if(goFull&&document.documentElement.getAttribute("data-lens")!=="full"){e.preventDefault();e.stopPropagation();try{location.href="/?view=full";}catch(err){}return;}
  if(window.matchMedia("(max-width:860px)").matches){
   e.preventDefault();e.stopPropagation();
   var l=document.getElementById("landing");
