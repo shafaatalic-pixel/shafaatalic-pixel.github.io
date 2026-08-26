@@ -3467,6 +3467,14 @@ html[data-gvh-set] #gvh-rp{display:inline-flex}
  html[data-gvh] #gvh-rp{bottom:auto;top:calc(58vh - 168px);right:14px}
  html[data-gvh] #top>a[href="#proof"]{display:none!important}
 }
+html[data-gvh] #top>div[data-grid]{display:none!important}
+@media(min-width:861px){
+ html[data-gvh]:not([data-gvh-set]) #hero-fx{opacity:0!important}
+ html[data-gvh][data-gvh-set] #hero-fx{opacity:1;transition:opacity 1.2s ease .35s}
+}
+@media(max-width:860px){
+ html[data-gvh] #hero-fx{display:none!important}
+}
 </style>
 <script id="gvh-js">
 (function(){
