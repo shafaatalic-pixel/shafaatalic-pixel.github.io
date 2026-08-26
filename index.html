@@ -3467,6 +3467,8 @@ html[data-gvh-set] #gvh-rp{display:inline-flex}
  html[data-gvh] #hero-pills>*{font-size:clamp(8.5px,2.2vw,12.5px)!important;padding:4px 8px!important;white-space:nowrap!important;letter-spacing:0!important}
  html[data-gvh] #gvh-rp{bottom:auto;top:calc(58vh - 168px);right:14px}
  html[data-gvh] #sc-menu-btn{background:rgba(247,242,232,.95)!important;border:1px solid rgba(16,21,27,.2)!important;box-shadow:0 2px 10px rgba(0,0,0,.28)!important}
+ html[data-gvh] #top .hero-grid a[data-btn-solid],html[data-gvh] #top .hero-grid a[data-btn-ghost]{height:46px!important;padding:0 17px!important;font-size:14.5px!important}
+ html[data-gvh] #top .hero-grid div:has(>a[data-btn-solid]){flex-wrap:nowrap!important;gap:10px!important}
  html[data-gvh] #sc-menu-btn *{color:#10151B!important;stroke:#10151B!important}
  html[data-gvh] #top>a[href="#proof"]{display:none!important}
 }
@@ -3616,11 +3618,24 @@ try{
  new MutationObserver(function(){sync();}).observe(document.documentElement,{attributes:true,attributeFilter:["data-lens"]});
  new MutationObserver(function(){paintShades();setTimeout(paintShades,220);setTimeout(paintShades,650);}).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
 }catch(e){}
+function gvhWireCue(){
+ if(!window.matchMedia("(max-width:860px)").matches)return;
+ var cta=document.getElementById("lens-cue-cta");
+ if(!cta)return;
+ if(cta.querySelector("[data-gvh-act]"))return;
+ var tx=cta.textContent||"";
+ if(!/everything/i.test(tx))return;
+ cta.innerHTML='<span data-gvh-act="four">See all four</span>, or <span data-gvh-act="all">everything \u2192</span>';
+}
+try{new MutationObserver(function(){setTimeout(gvhWireCue,60);}).observe(document.getElementById("lens-cue")||document.body,{childList:true,subtree:true,characterData:true});}catch(e){}
+setTimeout(gvhWireCue,800);setTimeout(gvhWireCue,2500);
 document.addEventListener("click",function(e){
  if(!window.matchMedia("(max-width:860px)").matches)return;
  var t=e.target&&e.target.closest&&e.target.closest("#lens-cue");
  if(!t)return;
  e.preventDefault();e.stopPropagation();
+ var act=e.target&&e.target.closest&&e.target.closest("[data-gvh-act]");
+ if(act&&act.getAttribute("data-gvh-act")==="all"){try{location.href="/?view=full";}catch(err){}return;}
  var l=document.getElementById("landing");
  if(l){l.style.display="flex";try{window.scrollTo(0,0);}catch(err){}}
 },true);
