@@ -3588,6 +3588,7 @@ function activate(){
  setTimeout(paintShades,400);setTimeout(paintShades,1200);
  if(MOBQ.matches){
   markSet();
+  try{gvhWireCue();}catch(e){}
   if(ranOnce||REDUCE){document.documentElement.setAttribute("data-gvh-fb","");}
   else{gvhKick();setTimeout(gvhKick,700);setTimeout(gvhKick,1800);
    setTimeout(function(){if(v.currentTime<0.2)document.documentElement.setAttribute("data-gvh-fb","");},5000);}
@@ -3625,17 +3626,28 @@ function gvhWireCue(){
  if(cta.querySelector("[data-gvh-act]"))return;
  var tx=cta.textContent||"";
  if(!/everything/i.test(tx))return;
- cta.innerHTML='<span data-gvh-act="four">See all four</span>, or <span data-gvh-act="all">everything \u2192</span>';
+ cta.innerHTML='<span data-gvh-act="four" style="display:inline-block;padding:7px 5px;margin:-7px -5px;">See all four</span>, or <span data-gvh-act="all" style="display:inline-block;padding:7px 10px;margin:-7px -10px;">everything \u2192</span>';
 }
-try{new MutationObserver(function(){setTimeout(gvhWireCue,60);}).observe(document.getElementById("lens-cue")||document.body,{childList:true,subtree:true,characterData:true});}catch(e){}
-setTimeout(gvhWireCue,800);setTimeout(gvhWireCue,2500);
+try{new MutationObserver(function(){gvhWireCue();}).observe(document.getElementById("lens-cue")||document.body,{childList:true,subtree:true,characterData:true});}catch(e){}
+setTimeout(gvhWireCue,300);setTimeout(gvhWireCue,1200);setTimeout(gvhWireCue,3000);
 document.addEventListener("click",function(e){
  if(!window.matchMedia("(max-width:860px)").matches)return;
  var t=e.target&&e.target.closest&&e.target.closest("#lens-cue");
  if(!t)return;
  e.preventDefault();e.stopPropagation();
+ var goFull=false;
  var act=e.target&&e.target.closest&&e.target.closest("[data-gvh-act]");
- if(act&&act.getAttribute("data-gvh-act")==="all"){try{location.href="/?view=full";}catch(err){}return;}
+ if(act){goFull=act.getAttribute("data-gvh-act")==="all";}
+ else{
+  var cta=document.getElementById("lens-cue-cta");
+  if(cta&&cta.contains(e.target)){
+   var r=cta.getBoundingClientRect();
+   var relY=(e.clientY||0)-r.top, relX=(e.clientX||0)-r.left;
+   var firstLine=relY<Math.min(24,r.height*0.55);
+   if(!firstLine||relX>r.width*0.52)goFull=true;
+  }
+ }
+ if(goFull){try{location.href="/?view=full";}catch(err){}return;}
  var l=document.getElementById("landing");
  if(l){l.style.display="flex";try{window.scrollTo(0,0);}catch(err){}}
 },true);
