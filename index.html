@@ -3488,7 +3488,7 @@ var MOBQ=window.matchMedia("(max-width:860px)");
 var REDUCE=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 var built=false,ranOnce=false,raf=null,fbTimer=null,hardTimer=null;
 var wrap,v,still,sh,sv,mt,mb,rp,top;
-function isGrowth(){return (document.documentElement.getAttribute("data-lens")||"")==="growth";}
+function isGrowth(){var l=document.documentElement.getAttribute("data-lens")||"";return l==="growth"||l==="healthcomm"||l==="healthtech"||l==="pophealth"||l==="full";}
 function rgbBg(){
  var t=document.documentElement.getAttribute("data-theme");
  if(t==="light")return "251,248,241";
