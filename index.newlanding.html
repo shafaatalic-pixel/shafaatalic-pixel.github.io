@@ -254,7 +254,7 @@
 <body>
 <noscript>
 <header>
-<h1>Md Shafaat Ali Choyon: Growth, Marketing &amp; Public Health Strategist</h1>
+<p><strong>Md Shafaat Ali Choyon: Growth, Marketing &amp; Public Health Strategist</strong></p>
 <p>Md Shafaat Ali Choyon (also known as Shafaat Choyon) is a growth, marketing and public-health strategist with 16+ years turning complex systems into measurable results across telecom, advertising, fintech, e-commerce, consumer tech, education and healthcare. MBA · MCIM · MPH · CHES®. Based in Redford, Michigan, USA. His portfolio is presented through four lenses: Growth &amp; Marketing, Health Communication, Health-Tech Product, and Population Health.</p>
 </header>
 <h2>Areas of expertise</h2>
@@ -3419,6 +3419,25 @@ class Component extends DCLogic {
 })();
 </script>
 
+<script id="landing-focus-trap">
+(function(){
+ var trapped=false,last=null;
+ function focusables(c){return [].slice.call(c.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')).filter(function(e){var r=e.getClientRects();return r&&r.length&&getComputedStyle(e).visibility!=="hidden";});}
+ function onKey(e){
+  if(e.key!=="Tab")return;
+  var L=document.getElementById("landing");if(!L)return;
+  var f=focusables(L);if(!f.length){e.preventDefault();try{L.focus();}catch(x){}return;}
+  var first=f[0],lastEl=f[f.length-1],a=document.activeElement;
+  if(e.shiftKey){ if(a===first||a===L){e.preventDefault();lastEl.focus();} }
+  else { if(a===lastEl){e.preventDefault();first.focus();} }
+ }
+ function activate(L){ if(trapped)return; trapped=true; last=document.activeElement; document.addEventListener("keydown",onKey,true); setTimeout(function(){try{L.focus();}catch(e){}},60); }
+ function release(){ if(!trapped)return; trapped=false; document.removeEventListener("keydown",onKey,true); try{ if(last&&last.focus&&document.contains(last)) last.focus(); }catch(e){} last=null; }
+ function vis(L){var d;try{d=L.style.display||getComputedStyle(L).display;}catch(e){return false;}return d!=="none";}
+ function tick(){ var L=document.getElementById("landing"); if(L){ if(!L.hasAttribute("tabindex"))L.setAttribute("tabindex","-1"); if(vis(L)){if(!trapped)activate(L);}else{if(trapped)release();} } setTimeout(tick,300); }
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",tick);else tick();
+})();
+</script>
 <!-- ===== GROWTH LENS WALK-IN HERO (gvh) · self-contained · activates only when data-lens="growth" ===== -->
 <style id="gvh-css">
 #gvh-wrap{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;display:none}
