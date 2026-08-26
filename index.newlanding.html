@@ -3620,7 +3620,6 @@ try{
  new MutationObserver(function(){paintShades();setTimeout(paintShades,220);setTimeout(paintShades,650);}).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
 }catch(e){}
 function gvhWireCue(){
- if(!window.matchMedia("(max-width:860px)").matches)return;
  var cta=document.getElementById("lens-cue-cta");
  if(!cta)return;
  if(cta.querySelector("[data-gvh-act]"))return;
@@ -3631,10 +3630,8 @@ function gvhWireCue(){
 try{new MutationObserver(function(){gvhWireCue();}).observe(document.getElementById("lens-cue")||document.body,{childList:true,subtree:true,characterData:true});}catch(e){}
 setTimeout(gvhWireCue,300);setTimeout(gvhWireCue,1200);setTimeout(gvhWireCue,3000);
 document.addEventListener("click",function(e){
- if(!window.matchMedia("(max-width:860px)").matches)return;
  var t=e.target&&e.target.closest&&e.target.closest("#lens-cue");
  if(!t)return;
- e.preventDefault();e.stopPropagation();
  var goFull=false;
  var act=e.target&&e.target.closest&&e.target.closest("[data-gvh-act]");
  if(act){goFull=act.getAttribute("data-gvh-act")==="all";}
@@ -3647,9 +3644,12 @@ document.addEventListener("click",function(e){
    if(!firstLine||relX>r.width*0.52)goFull=true;
   }
  }
- if(goFull){try{location.href="/?view=full";}catch(err){}return;}
- var l=document.getElementById("landing");
- if(l){l.style.display="flex";try{window.scrollTo(0,0);}catch(err){}}
+ if(goFull){e.preventDefault();e.stopPropagation();try{location.href="/?view=full";}catch(err){}return;}
+ if(window.matchMedia("(max-width:860px)").matches){
+  e.preventDefault();e.stopPropagation();
+  var l=document.getElementById("landing");
+  if(l){l.style.display="flex";try{window.scrollTo(0,0);}catch(err){}}
+ }
 },true);
 window.addEventListener("resize",function(){clearTimeout(window.__gvhrz);window.__gvhrz=setTimeout(function(){paintShades();layout();},160);});
 if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",sync);}else{sync();}
