@@ -3721,11 +3721,10 @@ document.addEventListener("click",function(e){
   }
  }
  if(goFull&&document.documentElement.getAttribute("data-lens")!=="full"){e.preventDefault();e.stopPropagation();try{location.href="/?view=full";}catch(err){}return;}
- if(window.matchMedia("(max-width:860px)").matches){
-  e.preventDefault();e.stopPropagation();
-  var l=document.getElementById("landing");
-  if(l){l.style.display="flex";try{window.scrollTo(0,0);}catch(err){}}
- }
+ e.preventDefault();e.stopPropagation();
+ var nl=document.getElementById("nav-lens")||document.getElementById("footer-lens");
+ if(nl){nl.click();}
+ else{var l=document.getElementById("landing");if(l){l.style.display="flex";try{window.scrollTo(0,0);}catch(err){}}}
 },true);
 window.addEventListener("resize",function(){clearTimeout(window.__gvhrz);window.__gvhrz=setTimeout(function(){paintShades();layout();},160);});
 if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",sync);}else{sync();}
