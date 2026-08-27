@@ -2808,7 +2808,7 @@ class Component extends DCLogic {
  document.body.appendChild(btn);
  }
  function label(){ if(state.type==='case') return 'Copy link to this case'; if(state.type==='section') return 'Copy link · '+(SECLABEL[state.key]||state.key); return ''; }
- function render(){ if(!btn) return; if(window.__stTourActive){ btn.style.display='none'; return; } if(state.type){ btn.textContent=label(); btn.style.display='inline-flex'; } else btn.style.display='none'; }
+ function render(){ if(!btn) return; if(window.__stTourActive){ btn.style.display='none'; return; } var _L=document.getElementById('landing'); if(_L){ var _d; try{ _d=_L.style.display||getComputedStyle(_L).display; }catch(e){ _d=''; } if(_d!=='none'){ btn.style.display='none'; return; } } if(state.type){ btn.textContent=label(); btn.style.display='inline-flex'; } else btn.style.display='none'; }
  function update(){ ensureBtn(); var m=map();
  var openDet=document.querySelector('[id^="cgd-"].open'); /* one case opens at a time → case mode whenever open */
  if(openDet){ var uid=openDet.id.replace('cgd-',''); var slug=m.u2s[uid]; if(slug){ state={type:'case',key:slug}; render(); return; } }
