@@ -140,14 +140,14 @@
 .hsrep-inline:hover{border-bottom-color:var(--teal-400);}
 .hsrep-metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;padding:22px 0;border-top:1px solid rgba(255,255,255,.09);border-bottom:1px solid rgba(255,255,255,.09);}
 .hsrep-m .n{font-family:var(--disp);font-weight:800;font-size:clamp(20px,2.3vw,27px);letter-spacing:-.02em;color:var(--amber);line-height:1;}
-.hsrep-m .l{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-top:8px;line-height:1.4;}
+.hsrep-m .l{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#97A2B0;margin-top:8px;line-height:1.4;}
 .hsrep-thesis{margin:26px 0 0;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:start;}
 .hsrep-th-h{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-400);margin-bottom:10px;}
 .hsrep-th-b{font-family:var(--disp);font-weight:700;font-size:clamp(17px,1.9vw,21px);line-height:1.32;letter-spacing:-.01em;color:var(--ivory-100);margin:0;}
-.hsrep-th-note{font-family:var(--body);font-size:13px;line-height:1.6;color:var(--text-muted);margin:12px 0 0;}
+.hsrep-th-note{font-family:var(--body);font-size:13px;line-height:1.6;color:#97A2B0;margin:12px 0 0;}
 .hsrep-lenses{display:flex;flex-wrap:wrap;gap:8px;}
 .hsrep-lens{font-family:var(--body);font-size:12.5px;color:var(--ivory-200);background:rgba(0,166,166,.10);border:1px solid var(--teal-700);border-radius:8px;padding:7px 11px;line-height:1.2;}
-.hsrep-lens.dev{color:var(--text-muted);background:transparent;border-style:dashed;border-color:var(--border-strong);}
+.hsrep-lens.dev{color:#97A2B0;background:transparent;border-style:dashed;border-color:var(--border-strong);}
 .hsrep-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;}
 .hsrep-btn{font-family:var(--disp);font-weight:700;font-size:14px;border-radius:10px;padding:13px 22px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:transform .15s ease,background .15s ease,border-color .15s ease;}
 .hsrep-btn-primary{background:var(--teal);color:var(--accent-ink);}

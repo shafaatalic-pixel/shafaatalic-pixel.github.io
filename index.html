@@ -32,8 +32,8 @@
 <!-- Perf: warm the critical path in parallel with HTML parse (CSS/fonts are otherwise injected only after the JS runtime boots) -->
 <link rel="preload" as="image" href="/assets/hero/hero-poster.webp" fetchpriority="high">
 <link rel="preload" as="image" href="/assets/growth-hero-first.webp">
-<link rel="preload" as="style" href="/assets/vendor/fonts.css">
-<link rel="preload" as="style" href="/style.css?v=13">
+<link rel="stylesheet" href="/assets/vendor/fonts.css">
+<link rel="stylesheet" href="/style.css?v=14">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B0F14">
 <meta name="theme-color" content="#0b0e12">
@@ -297,7 +297,7 @@
 <helmet>
 <link rel="stylesheet" href="/assets/vendor/fonts.css">
 <script src="/assets/vendor/lucide.min.js" integrity="sha384-ieG+IKD0d/ZPXyCBTMVAbqsQdns8QGJR/e26WMw7M4fkaI/rHcS/YIoi+ah9WGge" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="style.css?v=13">
+<link rel="stylesheet" href="style.css?v=14">
 <style id="cta-contrast-guard">[style*="background:var(--accent)"],[style*="background: var(--accent)"]{color:var(--accent-ink)!important;}</style>
 </helmet>
 <div id="site-root" style="position:relative;overflow-x:clip;background:var(--surface-base);min-height:100vh;transition:background .3s ease;">
