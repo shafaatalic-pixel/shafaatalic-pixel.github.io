@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Verification Gap in AI Code</title>
+<meta name="description" content="96% of developers don't fully trust AI-generated code, only 48% verify it every time. The risk was never bad code, it's shipping with no verification layer." />
+<link rel="canonical" href="https://shafaatalichoyon.com/the-verification-gap-in-ai-code.html" />
+<meta name="author" content="Md Shafaat Ali Choyon" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<meta name="keywords" content="of, developers, don, fully, trust, AI-generated, code, only, verify, it, every, time" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0B0F14" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Md Shafaat Ali Choyon" />
+<meta property="og:title" content="The Verification Gap in AI Code" />
+<meta property="og:description" content="96% of developers don't fully trust AI-generated code, only 48% verify it every time. The risk was never bad code, it's shipping with no verification layer." />
+<meta property="og:url" content="https://shafaatalichoyon.com/the-verification-gap-in-ai-code.html" />
+<meta property="og:image" content="https://shafaatalichoyon.com/assets/og/the-verification-gap-in-ai-code.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="article:published_time" content="2026-10-07" />
+<meta property="article:author" content="Md Shafaat Ali Choyon" />
+<meta property="article:section" content="Artificial Intelligence" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="The Verification Gap in AI Code" />
+<meta name="twitter:description" content="96% of developers don't fully trust AI-generated code, only 48% verify it every time. The risk was never bad code, it's shipping with no verification layer." />
+<meta name="twitter:image" content="https://shafaatalichoyon.com/assets/og/the-verification-gap-in-ai-code.png" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "The Verification Gap in AI Code",
+      "description": "96% of developers don't fully trust AI-generated code, only 48% verify it every time. The risk was never bad code, it's shipping with no verification layer.",
+      "datePublished": "2026-10-07",
+      "dateModified": "2026-10-07",
+      "inLanguage": "en",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://shafaatalichoyon.com/the-verification-gap-in-ai-code.html" },
+      "image": "https://shafaatalichoyon.com/assets/og/the-verification-gap-in-ai-code.png",
+      "author": { "@type": "Person", "name": "Md Shafaat Ali Choyon", "url": "https://shafaatalichoyon.com/", "jobTitle": "Growth, Marketing & Public Health Strategist", "hasCredential": ["MPH","CHES®","MBA","MCIM"] },
+      "publisher": { "@type": "Person", "name": "Md Shafaat Ali Choyon", "url": "https://shafaatalichoyon.com/" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://shafaatalichoyon.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Essays", "item": "https://shafaatalichoyon.com/essays.html" },
+        { "@type": "ListItem", "position": 3, "name": "The Verification Gap in AI Code", "item": "https://shafaatalichoyon.com/the-verification-gap-in-ai-code.html" }
+      ]
+    },
+    {"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the verification gap in AI-generated code?","acceptedAnswer":{"@type":"Answer","text":"Sonar's 2026 State of Code survey found 96% of developers don't fully trust AI-generated code, yet only 48% verify it every time before it ships. The gap is between what teams ship and what teams check."}},{"@type":"Question","name":"How do you stop AI output from shipping errors?","acceptedAnswer":{"@type":"Answer","text":"Engineer a verification layer into the workflow before trusting any output: source-checking, cross-referencing, and a standing rule that nothing ships without a human check against a primary source. Make verification a structural step, not a personal virtue."}},{"@type":"Question","name":"Is the real problem the AI model or the process?","acceptedAnswer":{"@type":"Answer","text":"The process. Developers ship code they say they don't fully trust close to half the time, without the review step that would catch the problem. It's a process failure hiding behind a technology headline."}}]}
+  ]
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{--bg:#0B0F14;--panel:#11161D;--tile:#06090D;--ivory:#F3EFE7;--body:#C7CDD6;--muted:#9AA3AE;--faint:#7f8894;--teal:#33C4C4;--amber:#F4A24C;--line:rgba(255,255,255,.09);}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--body);font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.66;}
+  a{color:var(--teal);text-decoration:none;} a:hover{text-decoration:underline;}
+  .wrap{max-width:760px;margin:0 auto;padding:34px 22px 80px;}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-bottom:24px;border-bottom:1px solid var(--line);margin-bottom:30px;flex-wrap:wrap;}
+  .brand{display:inline-flex;align-items:center;gap:10px;font-family:'Manrope';font-weight:800;font-size:19px;color:var(--ivory);}
+  .brand span.dot{color:var(--teal);}
+  .navlinks{display:flex;gap:9px;flex-wrap:wrap;}
+  .back{font-family:'Manrope';font-weight:700;font-size:13.5px;color:var(--ivory);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px 15px;}
+  .back:hover{border-color:var(--teal);text-decoration:none;}
+  .eyebrow{font-family:'Inter';font-size:11px;letter-spacing:.16em;color:var(--faint);text-transform:uppercase;}
+  h1{font-family:'Manrope';font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.1;letter-spacing:-.02em;color:var(--ivory);margin:12px 0 0;max-width:20ch;}
+  .byline{font-size:13px;color:var(--faint);margin:18px 0 0;letter-spacing:.01em;}
+  .byline b{color:var(--body);font-weight:500;}
+  .byline .creds{color:var(--teal);font-weight:600;letter-spacing:.02em;}
+  .lede{font-size:17px;color:var(--body);margin:26px 0 6px;max-width:66ch;}
+  .lede b{color:var(--ivory);font-weight:500;}
+  article h2{font-family:'Manrope';font-weight:700;font-size:clamp(19px,2.6vw,24px);line-height:1.24;letter-spacing:-.01em;color:var(--ivory);margin:40px 0 10px;}
+  article p{font-size:15.5px;color:var(--body);margin:0 0 15px;max-width:68ch;}
+  article p b{color:var(--ivory);font-weight:500;}
+  .pull{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:10px;padding:16px 20px;font-size:16px;color:var(--ivory);margin:24px 0;max-width:66ch;}
+  .principles{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px 24px 8px;margin:30px 0 8px;}
+  .principles li{margin:14px 0;font-size:15px;max-width:64ch;}
+  .principles b{color:var(--ivory);font-weight:600;}
+  .faq{margin:44px 0 0;padding-top:26px;border-top:1px solid var(--line);}
+  .faq>h2{margin-top:0;}
+  .faq-item{margin:0 0 6px;}
+  .faq-item h3{font-family:'Manrope';font-weight:700;font-size:16.5px;line-height:1.3;color:var(--ivory);margin:20px 0 6px;}
+  .faq-item p{font-size:15px;color:var(--body);margin:0;max-width:68ch;}
+  .bio{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);max-width:68ch;}
+  .bio b{color:var(--ivory);font-weight:500;}
+  footer.foot{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);}
+  footer.foot a{font-weight:500;}
+  figure.essay-fig{margin:30px 0;}
+  figure.essay-fig img{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line);background:#0B0F14;cursor:zoom-in;}
+  figure.essay-fig figcaption{font-size:12.5px;color:var(--faint);margin-top:9px;text-align:center;}
+  .lb{position:fixed;inset:0;background:rgba(6,9,13,.93);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out;padding:18px;}
+  .lb.open{display:flex;} .lb img{max-width:96vw;max-height:92vh;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+  .subscribe{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:20px 24px;margin:44px 0 0;max-width:66ch;}
+  .subscribe h2{font-family:'Manrope';font-weight:700;font-size:19px;color:var(--ivory);margin:0 0 6px;}
+  .subscribe p.sub-dek{font-size:14.5px;color:var(--body);margin:0 0 14px;max-width:60ch;}
+  .bd-form{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+  .bd-form input{flex:1 1 220px;min-width:0;padding:11px 13px;border-radius:9px;border:1px solid var(--line);background:var(--tile,#0B0F14);color:var(--ivory);font:inherit;font-size:14.5px;}
+  .bd-form input::placeholder{color:var(--faint);}
+  .bd-form input:focus{outline:none;border-color:var(--teal);}
+  .bd-form button{padding:11px 20px;border-radius:9px;border:1px solid var(--teal);background:var(--teal);color:#06181a;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;white-space:nowrap;}
+  .bd-form button:hover{filter:brightness(1.08);}
+  .sub-fine{font-size:12px;color:var(--faint);margin:10px 0 0;}
+</style>
+<script defer src="/assets/analytics.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a class="brand" href="/">Shafaat Ali Choyon<span class="dot">.</span></a>
+    <div class="navlinks">
+      <a class="back" href="/">← Portfolio</a>
+      <a class="back" href="/essays.html">Essays</a>
+      <button class="back" type="button" id="copylink" style="background:transparent;cursor:pointer;font:inherit;">Copy link</button>
+    </div>
+  </header>
+
+  <p class="eyebrow">Essay · Artificial Intelligence</p>
+  <h1>The Verification Gap in AI Code</h1>
+  <p class="byline">By <b>Md Shafaat Ali Choyon</b> <span class="creds">MPH · CHES® · MBA · MCIM</span> · builds &amp; runs AI in production · Growth &amp; health strategist · 4 min read · <time datetime="2026-10-07">Oct 7, 2026</time></p>
+
+  <article>
+    <p class="lede">Sonar's 2026 State of Code Developer Survey put a number on something most engineering teams already felt: <b>96% of developers don't fully trust AI-generated code, yet only 48% verify it every time</b> before it ships. That gap has a name now, the verification gap, and it's the real story of AI in production software, not the adoption headline everyone keeps writing instead.</p>
+
+      <figure class="essay-fig">
+        <img src="/assets/og/the-verification-gap-in-ai-code.png" alt="The Verification Gap in AI Code" loading="lazy" id="ogfig">
+        <figcaption>At a glance, click to enlarge.</figcaption>
+      </figure>
+
+    <h2>Why did AI-code adoption outrun verification?</h2>
+
+    <p>The adoption story is old news by mid-2026: AI writes a large and growing share of committed code across most engineering orgs. What Sonar's data exposes is the part nobody wanted to admit, trust hasn't kept pace with usage, and process hasn't kept pace with either. Developers are shipping code they say they don't fully trust, at a rate close to half the time, without the review step that would catch what they don't trust about it. That's not a technology failure. It's a process failure hiding behind a technology headline.</p>
+
+    <div class="pull">The gap isn't between what AI can write and what AI writes well. It's between what teams ship and what teams check.</div>
+
+    <p>Every incident that follows from this won't be an "AI wrote bad code" story. It'll be a "nobody built the checkpoint" story, told after the fact, when it's more expensive to fix.</p>
+
+    <h2>Zero fabricated facts in 155 sessions, because I built the checkpoint</h2>
+
+    <p>I run my own AI research system in production, roughly 155 sessions deep at this point, zero fabricated facts in what gets published. That's not because the underlying model is more careful than anyone else's. It's because I engineered a verification layer into the workflow before I trusted a single output: source-checking, cross-referencing, a standing rule that nothing ships without a human check against a primary source. The discipline isn't glamorous. It's the entire reason the error rate is zero instead of "usually fine."</p>
+
+    <p>Code is the same discipline wearing a different domain. The organizations with an incident-free AI-code track record aren't the ones with the most cautious developers, they're the ones that made verification a structural step, not a personal virtue individual developers are expected to supply on their own judgment, at the end of a long day, under a deadline.</p>
+
+    <h2>The fix is process, not more caution</h2>
+
+    <p>You cannot fix a 48% verification rate by asking developers to care more, Sonar's own data shows 38% skip verification specifically because checking AI output takes longer than reviewing a colleague's work. That's a workflow design problem, not a discipline problem. The fix looks like the one I use for research: verification gates that run whether or not any individual is feeling careful that day, because the system doesn't depend on anyone's willpower to hold.</p>
+
+    <p><b>Trust in the tool was never the requirement. A checkpoint that doesn't care whether you trust the tool, that's the requirement.</b></p>
+
+    <h2>The short version</h2>
+
+    <ul class="principles">
+      <li><b>96% of developers don't fully trust AI-generated code; only 48% verify it every time, that gap is the real 2026 story, per Sonar's State of Code survey.</b></li>
+      <li><b>38% skip verification because it takes longer than reviewing human-written code, a workflow problem, not a trust problem.</b></li>
+      <li><b>My own AI research practice runs ~155 sessions with zero fabricated facts because verification is a structural step, not a personal habit.</b></li>
+      <li><b>The fix for AI code is the same fix for AI content: build the checkpoint into the system, don't ask individuals to supply it under deadline.</b></li>
+    </ul>
+
+    <p><b>If verification depends on how careful someone feels on a Friday afternoon, is it verification at all, or just a hope with a process diagram?</b></p>
+    <section class="faq" aria-label="Frequently asked questions">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item">
+        <h3>What is the verification gap in AI-generated code?</h3>
+        <p>Sonar's 2026 State of Code survey found 96% of developers don't fully trust AI-generated code, yet only 48% verify it every time before it ships. The gap is between what teams ship and what teams check.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How do you stop AI output from shipping errors?</h3>
+        <p>Engineer a verification layer into the workflow before trusting any output: source-checking, cross-referencing, and a standing rule that nothing ships without a human check against a primary source. Make verification a structural step, not a personal virtue.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is the real problem the AI model or the process?</h3>
+        <p>The process. Developers ship code they say they don't fully trust close to half the time, without the review step that would catch the problem. It's a process failure hiding behind a technology headline.</p>
+      </div>
+    </section>
+
+    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+  </article>
+
+  <section class="subscribe" aria-label="Subscribe by email">
+    <h2>Get new essays by email</h2>
+    <p class="sub-dek">New pieces on AI in production, growth, and public health &mdash; occasional, no spam, unsubscribe anytime.</p>
+    <form class="bd-form" action="https://buttondown.com/api/emails/embed-subscribe/shafaat" method="post" target="popupwindow" onsubmit="try{window.open('https://buttondown.com/shafaat','popupwindow');if(window.gtag)gtag('event','subscribe',{site:'portfolio',from:'essay'});}catch(e){}">
+      <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="sub-fine">Same list as HSREP &mdash; you&rsquo;ll get the essays and the occasional research note.</p>
+  </section>
+
+  <footer class="foot">
+    <a href="/">← Back to shafaatalichoyon.com</a> · <a href="/essays.html">All essays</a>
+  </footer>
+
+</div>
+<div class="lb" id="lb"><img src="" alt=""></div>
+<script>
+(function(){
+  var img=document.getElementById('ogfig'), lb=document.getElementById('lb'), lbimg=lb.querySelector('img');
+  if(!img) return;
+  img.addEventListener('click',function(){ lbimg.src=img.currentSrc||img.src; lbimg.alt=img.alt; lb.classList.add('open'); });
+  lb.addEventListener('click',function(){ lb.classList.remove('open'); lbimg.src=''; });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ lb.classList.remove('open'); lbimg.src=''; } });
+})();
+</script>
+<script>(function(){var b=document.getElementById('copylink');if(!b)return;function fb(t){try{var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}catch(e){}}b.addEventListener('click',function(){var u=location.href.split('#')[0];function d(){var o=b.textContent;b.textContent='Copied!';setTimeout(function(){b.textContent=o;},1400);}try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(d,function(){fb(u);d();});return;}}catch(e){}fb(u);d();});})();</script>
+</body>
+</html>
