@@ -1356,7 +1356,7 @@
  :root[data-theme="light"] #landing.vhero{--lbody:#D7DCE2;--lmuted:#AEB6BF;--lfaint:#9AA2AB;--lteal4:#4FE0E0;--lcard:rgba(255,255,255,.90);--lcardbd:rgba(255,255,255,.7);--lpagebg:#FBF8F1}
  #landing .vhero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:64% 40%;z-index:0}
  #landing .vhero-scrim{position:absolute;inset:0;z-index:1;transition:opacity 1s ease;background:linear-gradient(90deg,rgba(6,9,13,.9) 0%,rgba(6,9,13,.74) 30%,rgba(6,9,13,.36) 52%,rgba(6,9,13,.05) 74%,transparent 88%),linear-gradient(0deg,rgba(6,9,13,.9) 1%,transparent 26%),linear-gradient(180deg,rgba(6,9,13,.6),transparent 16%)}
- :root[data-theme="light"] #landing .vhero-scrim{background:linear-gradient(90deg,rgba(6,9,13,.82) 0%,rgba(6,9,13,.62) 30%,rgba(6,9,13,.28) 52%,rgba(6,9,13,.04) 74%,transparent 88%),linear-gradient(0deg,rgba(6,9,13,.86) 1%,transparent 26%),linear-gradient(180deg,rgba(6,9,13,.5),transparent 16%)}
+ :root[data-theme="light"] #landing .vhero-scrim{background:linear-gradient(90deg,rgba(6,9,13,.82) 0%,rgba(6,9,13,.62) 30%,rgba(6,9,13,.28) 52%,rgba(6,9,13,.04) 74%,transparent 88%),linear-gradient(0deg,var(--lpagebg) 0%,transparent 30%),linear-gradient(180deg,rgba(6,9,13,.5),transparent 16%)}
  #landing > canvas{display:none!important}
  #landing .bar{position:absolute;top:0;left:0;right:0;z-index:6;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px clamp(24px,4vw,56px);opacity:0;transform:translateY(-8px);transition:opacity .8s ease,transform .8s ease}
  #landing.playing .bar{opacity:1;transform:none}
