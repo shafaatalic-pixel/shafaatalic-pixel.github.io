@@ -250,6 +250,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"VideoObject","name":"Md Shafaat Ali Choyon: A 45-second hello","description":"A 45-second introduction from Md Shafaat Ali Choyon, growth, marketing and public-health strategist, on one career seen four ways across growth, communication, product and public health.","thumbnailUrl":"https://i.ytimg.com/vi/FZLnsmMEXvo/maxresdefault.jpg","uploadDate":"2026-06-29","duration":"PT45S","contentUrl":"https://www.youtube.com/watch?v=FZLnsmMEXvo","embedUrl":"https://www.youtube.com/embed/FZLnsmMEXvo","transcript":"Most people pick a lane. I built four. I am Md Shafaat Ali Choyon. I started with 80,000 customer conversations, learning why people say yes - and I grew into sixteen years driving growth across telecom, advertising, fintech, tech and education. And then the pandemic showed me growth means more when it changes someone's life. Thus, I earned public health credentials to do it right. One career, four lenses. Pick yours. Something tells me we are going to be having a conversation - and I promise, it's going to be a good one.","publisher":{"@type":"Person","name":"Md Shafaat Ali Choyon"}}
 </script>
+<link rel="alternate" type="application/rss+xml" title="Shafaat Ali Choyon - Essays" href="/feed.xml">
 </head>
 <body>
 <noscript>
@@ -3514,6 +3515,7 @@ html[data-gvh] #top>div[data-grid]{display:none!important}
 "use strict";
 var MOBQ=window.matchMedia("(max-width:860px)");
 var REDUCE=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var LOWDATA=(function(){try{var c=navigator.connection||navigator.mozConnection||navigator.webkitConnection;return !!(c&&(c.saveData===true||/(^2g$|slow-2g|^3g$)/.test(c.effectiveType||"")));}catch(e){return false;}})();
 var built=false,ranOnce=false,raf=null,fbTimer=null,hardTimer=null,gvhHold=false;
 var wrap,v,still,sh,sv,mt,mb,rp,top;
 function isGrowth(){var l=document.documentElement.getAttribute("data-lens")||"";return l==="growth"||l==="healthcomm"||l==="healthtech"||l==="pophealth"||l==="full";}
@@ -3548,7 +3550,7 @@ function build(){
  wrap=document.createElement("div");wrap.id="gvh-wrap";
  v=document.createElement("video");
  v.muted=true;v.playsInline=true;v.setAttribute("playsinline","");v.setAttribute("muted","");
- v.preload="metadata";v.poster="assets/growth-hero-first.webp";
+ v.preload=LOWDATA?"none":"metadata";v.poster="assets/growth-hero-first.webp";
  var s1=document.createElement("source");s1.src="assets/growth-hero.webm";s1.type="video/webm";
  var s2=document.createElement("source");s2.src="assets/growth-hero.mp4";s2.type="video/mp4";
  v.appendChild(s1);v.appendChild(s2);
@@ -3618,12 +3620,12 @@ function activate(){
  if(MOBQ.matches){
   markSet();
   try{gvhWireCue();}catch(e){}
-  if(ranOnce||REDUCE){document.documentElement.setAttribute("data-gvh-fb","");}
+  if(ranOnce||REDUCE||LOWDATA){document.documentElement.setAttribute("data-gvh-fb","");}
   else{gvhKick();setTimeout(gvhKick,700);setTimeout(gvhKick,1800);
    setTimeout(function(){if(v.currentTime<0.2)document.documentElement.setAttribute("data-gvh-fb","");},5000);}
   return;
  }
- if(ranOnce||REDUCE){settleInstant();return;}
+ if(ranOnce||REDUCE||LOWDATA){settleInstant();return;}
  document.documentElement.style.setProperty("--gvhwe","0%");
  gvhKick();setTimeout(gvhKick,700);setTimeout(gvhKick,1800);
  if(fbTimer)clearTimeout(fbTimer);
