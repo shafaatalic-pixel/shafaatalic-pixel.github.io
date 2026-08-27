@@ -83,3 +83,6 @@ impact-system-map/
 
 # Orphan prerender snapshot (build artifact, not served)
 index.prerendered.html
+
+# exception: Lighthouse CI config IS part of the repo
+!/lighthouserc.json
