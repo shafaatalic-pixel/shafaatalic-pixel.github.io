@@ -32,7 +32,7 @@
     --navy:#1C2E4A; --navy-700:#14223A; --navy-600:#1C2E4A; --navy-400:#34507C;
     --ember:#F2664D;
     --ivory:#F7F2E8; --ivory-50:#FCFAF5; --ivory-100:#F7F2E8; --ivory-200:#ECE5D6; --ivory-300:#D9D0BD;
-    --steel-400:#9AA3AE; --steel-500:#6B7480; --steel-600:#4A525D;
+    --steel-400:#9AA3AE; --steel-500:#78828E; --steel-600:#4A525D;
     --surface-base:#0B0F14; --surface-raised:#11161D; --surface-card:#11161D; --surface-authority:#1C2E4A;
     --text-strong:#F7F2E8; --text-body:#C7CDD6; --text-muted:#9AA3AE; --text-faint:#838C99;
     --border-hairline:#2A333F; --border-strong:#3A4350;
@@ -46,11 +46,11 @@
   :root[data-theme="light"]{
     --obsidian-600:#E7E1D3; --obsidian-500:#D9D2C0;
     --surface-base:#FBF8F1; --surface-raised:#FFFFFF; --surface-card:#FFFFFF;
-    --text-strong:#10151B; --text-body:#3D4651; --text-muted:#5E6772; --text-faint:#6B7480;
+    --text-strong:#10151B; --text-body:#3D4651; --text-muted:#5E6772; --text-faint:#646D79;
     --border-hairline:#E8E1D1; --border-strong:#D4CBB8;
     --ivory-100:#FFFFFF; --ivory-200:#ECE5D6;
-    --steel-500:#9AA1AC;
-    --amber-600:#B5701F;
+    --steel-500:#68717D;
+    --amber-600:#A0631A;
     --link:#0A7373; --accent-text:#0A7373;
     --nav-bg:rgba(251,248,241,.84);
     --shadow-card:0 1px 2px rgba(20,17,12,.04), 0 12px 30px rgba(20,17,12,.10);
@@ -170,3 +170,7 @@ img[width="84"][height="22"]{height:30px!important;width:auto!important;max-widt
 .cf-btn{min-height:44px!important;}
 /* --- Mobile polish: stack the HSREP CTA buttons full-width on small phones --- */
 @media(max-width:480px){.hsrep-cta{flex-direction:column;}.hsrep-cta .hsrep-btn{width:100%;justify-content:center;}}
+
+/* a11y: universal keyboard focus indicator (2026-08-27) */
+:where(a,button,input,select,textarea,summary,[tabindex]:not([tabindex="-1"])):focus-visible{outline:2px solid var(--accent,#0FB3B3);outline-offset:2px;border-radius:4px;}
+#qs-in:focus-visible{outline:2px solid var(--accent,#0FB3B3);outline-offset:-2px;}
