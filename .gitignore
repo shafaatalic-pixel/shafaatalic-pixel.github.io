@@ -95,3 +95,10 @@ index.prerendered.html
 
 # throwaway test page for the hero-gate experiment
 /index-test.html
+
+# --- backup folders & scratch swept in accidentally (kept local, out of deploy) ---
+/_cite_backups/
+/_to_delete/
+/*.backup-*.html
+/*.backup-*.css
+/*.backup-*.js
