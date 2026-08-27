@@ -86,3 +86,9 @@ index.prerendered.html
 
 # exception: Lighthouse CI config IS part of the repo
 !/lighthouserc.json
+
+# stale backups / abandoned preview builds — kept locally, out of deploy
+/index.backup-*.html
+/impact-preview/
+/impact-src-v2/
+/impact-v2-preview/
