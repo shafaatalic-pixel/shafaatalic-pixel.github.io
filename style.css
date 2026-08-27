@@ -174,3 +174,13 @@ img[width="84"][height="22"]{height:30px!important;width:auto!important;max-widt
 /* a11y: universal keyboard focus indicator (2026-08-27) */
 :where(a,button,input,select,textarea,summary,[tabindex]:not([tabindex="-1"])):focus-visible{outline:2px solid var(--accent,#0FB3B3);outline-offset:2px;border-radius:4px;}
 #qs-in:focus-visible{outline:2px solid var(--accent,#0FB3B3);outline-offset:-2px;}
+
+/* --- Light-theme main-nav legibility (added 2026-08-27) ---
+   The fixed top nav sits over a cream+photo split hero; the runtime colors its
+   links via var(--text-muted). A darker link colour plus a soft cream halo keep
+   them readable over both the cream and the photo without hiding the hero peek.
+   Scoped to [data-nav] so other muted body text is untouched. */
+:root[data-theme="light"] [data-nav]{--text-muted:#44505E;}
+:root[data-theme="light"] [data-nav] .nav-links a{text-shadow:0 1px 6px rgba(251,248,241,.92),0 0 2px rgba(251,248,241,.95);}
+:root[data-theme="light"] [data-nav] #qs-btn,
+:root[data-theme="light"] [data-nav] #theme-toggle{border-color:rgba(28,46,74,.34)!important;color:#243040!important;background:rgba(255,255,255,.62)!important;}

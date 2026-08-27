@@ -297,7 +297,7 @@
 <helmet>
 <link rel="stylesheet" href="/assets/vendor/fonts.css">
 <script src="/assets/vendor/lucide.min.js" integrity="sha384-ieG+IKD0d/ZPXyCBTMVAbqsQdns8QGJR/e26WMw7M4fkaI/rHcS/YIoi+ah9WGge" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="style.css?v=14">
+<link rel="stylesheet" href="style.css?v=15">
 <style id="cta-contrast-guard">[style*="background:var(--accent)"],[style*="background: var(--accent)"]{color:var(--accent-ink)!important;}</style>
 </helmet>
 <div id="site-root" style="position:relative;overflow-x:clip;background:var(--surface-base);min-height:100vh;transition:background .3s ease;">
@@ -1361,10 +1361,6 @@
  :root[data-theme="light"] #landing .fineln{color:#5E6772}
  :root[data-theme="light"] #landing .ghost{background:rgba(255,255,255,.74);border-color:rgba(28,46,74,.20);color:#1C2E4A}
  :root[data-theme="light"] #landing .ghost svg{fill:#0A7373}
- /* Light-theme main-nav legibility: runtime paints links via var(--text-muted); the light-tuned value is unreadable on the cream header. Scoped to [data-nav] so other muted text is untouched. */
- :root[data-theme="light"] [data-nav]{--text-muted:#44505E;position:relative;}
- :root[data-theme="light"] [data-nav]::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(251,248,241,.92),rgba(251,248,241,.62));-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);}
- :root[data-theme="light"] [data-nav] #qs-btn,:root[data-theme="light"] [data-nav] #theme-toggle{border-color:rgba(28,46,74,.34)!important;color:#243040!important;background:rgba(255,255,255,.6)!important;}
  #landing > canvas{display:none!important}
  #landing .bar{position:absolute;top:0;left:0;right:0;z-index:6;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px clamp(24px,4vw,56px);opacity:0;transform:translateY(-8px);transition:opacity .8s ease,transform .8s ease}
  #landing.playing .bar{opacity:1;transform:none}
