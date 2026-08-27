@@ -110,6 +110,18 @@
   .bd-form button{padding:11px 20px;border-radius:9px;border:1px solid var(--teal);background:var(--teal);color:#06181a;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;white-space:nowrap;}
   .bd-form button:hover{filter:brightness(1.08);}
   .sub-fine{font-size:12px;color:var(--faint);margin:10px 0 0;}
+
+.cref{font-size:.6em;font-weight:700;vertical-align:super;line-height:0;margin-left:1px;white-space:nowrap}
+.cref a{color:var(--teal);text-decoration:none}
+.cref a:hover{text-decoration:underline}
+.sources{margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.sources h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.sources ol{margin:0;padding:0 0 0 22px}
+.sources li{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 10px;padding-left:5px}
+.sources li a{color:var(--teal);text-decoration:none;word-break:break-word}
+.sources li a:hover{text-decoration:underline}
+.sources li:target{background:rgba(51,196,196,.10);border-radius:6px;box-shadow:0 0 0 6px rgba(51,196,196,.10)}
+:target{scroll-margin-top:90px}
 </style>
 <script defer src="/assets/analytics.js"></script>
 </head>
@@ -143,7 +155,7 @@
 
     <h2>In the US, the front door is being boarded up</h2>
 
-    <p>America is running the same lesson in reverse. Nearly <b>50 million people, about one in seven Americans</b>, now live in a pharmacy desert, and the three largest chains have closed close to <b>3,000 stores</b> in four years, hollowed out by shrinking reimbursement and thin front-store sales. As those doors close, communities lose not just prescriptions but the most accessible health touchpoint they had, vaccines, blood-pressure checks, a trusted person to ask. The US is discovering the pharmacy's value by watching it disappear.</p>
+    <p>America is running the same lesson in reverse. Nearly <b>50 million people, about one in seven<sup class="cref"><a href="#src-1">1</a></sup> Americans</b>, now live in a pharmacy desert, and the three largest chains have closed close to <b>3,000<sup class="cref"><a href="#src-2">2</a></sup> stores</b> in four years, hollowed out by shrinking reimbursement and thin front-store sales. As those doors close, communities lose not just prescriptions but the most accessible health touchpoint they had, vaccines, blood-pressure checks, a trusted person to ask. The US is discovering the pharmacy's value by watching it disappear.</p>
 
     <div class="pull">Health systems keep building grand front doors while the one people actually use sits underfunded, or gets boarded up.</div>
 
@@ -181,7 +193,14 @@
       </div>
     </section>
 
-    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+    <section class="sources" aria-label="Sources">
+<h2>Sources</h2>
+<ol>
+<li id="src-1">GoodRx / ABC News. <a href="https://abcnews4.com/news/spotlight-on-america/alarming-number-of-pharmacies-closing-nationwide-leaving-more-pharmacy-deserts" target="_blank" rel="noopener">abcnews4.com &#8599;</a></li>
+<li id="src-2">The Money Overview. <a href="https://themoneyoverview.com/drugstore-chains-have-closed-nearly-3000-stores-in-four-years-creating-pharmacy-deserts/" target="_blank" rel="noopener">themoneyoverview.com &#8599;</a></li>
+</ol>
+</section>
+<p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
   </article>
 
   <section class="subscribe" aria-label="Subscribe by email">

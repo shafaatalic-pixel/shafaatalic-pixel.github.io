@@ -110,6 +110,18 @@
   .bd-form button{padding:11px 20px;border-radius:9px;border:1px solid var(--teal);background:var(--teal);color:#06181a;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;white-space:nowrap;}
   .bd-form button:hover{filter:brightness(1.08);}
   .sub-fine{font-size:12px;color:var(--faint);margin:10px 0 0;}
+
+.cref{font-size:.6em;font-weight:700;vertical-align:super;line-height:0;margin-left:1px;white-space:nowrap}
+.cref a{color:var(--teal);text-decoration:none}
+.cref a:hover{text-decoration:underline}
+.sources{margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.sources h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.sources ol{margin:0;padding:0 0 0 22px}
+.sources li{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 10px;padding-left:5px}
+.sources li a{color:var(--teal);text-decoration:none;word-break:break-word}
+.sources li a:hover{text-decoration:underline}
+.sources li:target{background:rgba(51,196,196,.10);border-radius:6px;box-shadow:0 0 0 6px rgba(51,196,196,.10)}
+:target{scroll-margin-top:90px}
 </style>
 <script defer src="/assets/analytics.js"></script>
 </head>
@@ -139,7 +151,7 @@
 
     <h2>Who owns air quality as a health emergency?</h2>
 
-    <p>Dhaka's air periodically ranks the single worst in the world, with the Air Quality Index spiking into the "hazardous" range, past 300, on the worst days. Across 2025 the city's fine-particle pollution averaged around <b>68 micrograms per cubic meter</b>, roughly <b>13 times</b> the World Health Organization's guideline of 5, and Bangladesh ranked as the second-most-polluted country on earth. This isn't mysterious. Nearly <b>85%</b> of it comes from just three sources: brick kilns, road and construction dust, and vehicle exhaust. A problem with three named causes is a problem you can actually design against.</p>
+    <p>Dhaka's air periodically ranks the single worst in the world, with the Air Quality Index spiking into the "hazardous" range, past 300, on the worst days. Across 2025 the city's fine-particle pollution averaged around <b>68 micrograms<sup class="cref"><a href="#src-2">2</a></sup> per cubic meter</b>, roughly <b>13 times</b><sup class="cref"><a href="#src-2">2</a></sup> the World Health Organization's guideline of 5, and Bangladesh ranked as the second-most-polluted country<sup class="cref"><a href="#src-3">3</a></sup> on earth. This isn't mysterious. Nearly <b>85%</b><sup class="cref"><a href="#src-4">4</a></sup> of it comes from just three sources: brick kilns, road and construction dust, and vehicle exhaust. A problem with three named causes is a problem you can actually design against.</p>
 
     <h2>America learned this the hard way too</h2>
 
@@ -158,7 +170,7 @@
     <h2>The short version</h2>
 
     <ul class="principles">
-      <li>Dhaka's PM2.5 runs ~13× the WHO limit; the city periodically has the world's worst air, ~85% from three fixable sources.</li>
+      <li>Dhaka's PM2.5 runs ~13× the WHO<sup class="cref"><a href="#src-1">1</a></sup> limit; the city periodically has the world's worst air, ~85% from three fixable sources.</li>
       <li>US wildfire smoke turned the same invisible threat into a shared, personal one.</li>
       <li>The hard half is behavior and communication around a risk with no symptom and no owner, my core work.</li>
       <li>Cheap sensors and AI make the data tractable; the opening is trusted, act-now guidance.</li>
@@ -181,7 +193,16 @@
       </div>
     </section>
 
-    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+    <section class="sources" aria-label="Sources">
+<h2>Sources</h2>
+<ol>
+<li id="src-1">World Health Organization. <a href="https://www.who.int/publications/i/item/9789240034228" target="_blank" rel="noopener">who.int &#8599;</a></li>
+<li id="src-2">IQAir. <a href="https://www.iqair.com/newsroom/dhaka-among-top-10-most-polluted-cities-in-the-world-5-7-2026" target="_blank" rel="noopener">iqair.com &#8599;</a></li>
+<li id="src-3">IQAir. <a href="https://www.iqair.com/world-most-polluted-countries" target="_blank" rel="noopener">iqair.com &#8599;</a></li>
+<li id="src-4">Research Square (preprint). <a href="https://assets-eu.researchsquare.com/files/rs-1184779/v2/ba4f3c0b-6a3e-4383-b580-fc6f6c32cab9.pdf" target="_blank" rel="noopener">assets-eu.researchsquare.com &#8599;</a></li>
+</ol>
+</section>
+<p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
   </article>
 
   <section class="subscribe" aria-label="Subscribe by email">

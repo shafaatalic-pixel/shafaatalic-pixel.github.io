@@ -110,6 +110,18 @@
   .bd-form button{padding:11px 20px;border-radius:9px;border:1px solid var(--teal);background:var(--teal);color:#06181a;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;white-space:nowrap;}
   .bd-form button:hover{filter:brightness(1.08);}
   .sub-fine{font-size:12px;color:var(--faint);margin:10px 0 0;}
+
+.cref{font-size:.6em;font-weight:700;vertical-align:super;line-height:0;margin-left:1px;white-space:nowrap}
+.cref a{color:var(--teal);text-decoration:none}
+.cref a:hover{text-decoration:underline}
+.sources{margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.sources h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.sources ol{margin:0;padding:0 0 0 22px}
+.sources li{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 10px;padding-left:5px}
+.sources li a{color:var(--teal);text-decoration:none;word-break:break-word}
+.sources li a:hover{text-decoration:underline}
+.sources li:target{background:rgba(51,196,196,.10);border-radius:6px;box-shadow:0 0 0 6px rgba(51,196,196,.10)}
+:target{scroll-margin-top:90px}
 </style>
 <script defer src="/assets/analytics.js"></script>
 </head>
@@ -139,7 +151,7 @@
 
     <h2>Underrepresented means underserved means open</h2>
 
-    <p>I've written about this for Bangla specifically, a top-seven world language spoken by 230 million people that occupies a tiny fraction of the internet, so the models handle it thin. But the principle is bigger than one language. It applies to any domain the web covers poorly: a regional market, a technical trade, a local regulation, an industry that doesn't blog. Wherever the training data is sparse, the model's answers are weak, and a weak answer from the world's most-used tools is a vacuum. Vacuums get filled by whoever shows up with something clear, correct, and structured.</p>
+    <p>I've written about this for Bangla specifically, a top-seven world language spoken by 230 million<sup class="cref"><a href="#src-1">1</a></sup> people that occupies a tiny fraction of the internet, so the models handle it thin. But the principle is bigger than one language. It applies to any domain the web covers poorly: a regional market, a technical trade, a local regulation, an industry that doesn't blog. Wherever the training data is sparse, the model's answers are weak, and a weak answer from the world's most-used tools is a vacuum. Vacuums get filled by whoever shows up with something clear, correct, and structured.</p>
 
     <h2>The opportunity is to be the source</h2>
 
@@ -177,7 +189,13 @@
       </div>
     </section>
 
-    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+    <section class="sources" aria-label="Sources">
+<h2>Sources</h2>
+<ol>
+<li id="src-1">Wikipedia (Bengali language article). <a href="https://en.wikipedia.org/wiki/Bengali_language" target="_blank" rel="noopener">en.wikipedia.org &#8599;</a></li>
+</ol>
+</section>
+<p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
   </article>
 
   <section class="subscribe" aria-label="Subscribe by email">

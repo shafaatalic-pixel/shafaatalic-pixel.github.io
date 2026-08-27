@@ -110,6 +110,18 @@
   .bd-form button{padding:11px 20px;border-radius:9px;border:1px solid var(--teal);background:var(--teal);color:#06181a;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;white-space:nowrap;}
   .bd-form button:hover{filter:brightness(1.08);}
   .sub-fine{font-size:12px;color:var(--faint);margin:10px 0 0;}
+
+.cref{font-size:.6em;font-weight:700;vertical-align:super;line-height:0;margin-left:1px;white-space:nowrap}
+.cref a{color:var(--teal);text-decoration:none}
+.cref a:hover{text-decoration:underline}
+.sources{margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.sources h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.sources ol{margin:0;padding:0 0 0 22px}
+.sources li{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 10px;padding-left:5px}
+.sources li a{color:var(--teal);text-decoration:none;word-break:break-word}
+.sources li a:hover{text-decoration:underline}
+.sources li:target{background:rgba(51,196,196,.10);border-radius:6px;box-shadow:0 0 0 6px rgba(51,196,196,.10)}
+:target{scroll-margin-top:90px}
 </style>
 <script defer src="/assets/analytics.js"></script>
 </head>
@@ -139,7 +151,7 @@
 
     <h2>Why is the cold chain the product, not the pill?</h2>
 
-    <p>The US logged <b>223 active drug shortages</b> in early 2026, near record territory, and the character of them has changed: the average shortage now lasts <b>over five years</b>, up from about two in 2019, and discontinuations jumped roughly <b>60%</b> in a single year. The causes are structural, not accidental, India supplies close to <b>47%</b> of US generic volume, and about a <b>third of key drug ingredients come from a single supplier</b>. There's almost no redundancy. A country that assumed medicine would always be on the shelf is discovering that the shelf depends on a long, brittle, invisible chain.</p>
+    <p>The US logged <b>223 active drug shortages</b> in early 2026<sup class="cref"><a href="#src-1">1</a></sup>, near record territory, and the character of them has changed: the average shortage now lasts <b>over five years</b>, up from about two in 2019<sup class="cref"><a href="#src-2">2</a></sup>, and discontinuations jumped roughly <b>60%</b><sup class="cref"><a href="#src-2">2</a></sup> in a single year. The causes are structural, not accidental, India supplies close to <b>47%</b><sup class="cref"><a href="#src-3">3</a></sup> of US generic volume, and about a <b>third of key drug ingredients come from a single supplier</b><sup class="cref"><a href="#src-4">4</a></sup>. There's almost no redundancy. A country that assumed medicine would always be on the shelf is discovering that the shelf depends on a long, brittle, invisible chain.</p>
 
     <h2>The poor world never got to assume it</h2>
 
@@ -181,7 +193,16 @@
       </div>
     </section>
 
-    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+    <section class="sources" aria-label="Sources">
+<h2>Sources</h2>
+<ol>
+<li id="src-1">American Society of Health-System Pharmacists (ASHP). <a href="https://www.ashp.org/-/media/assets/drug-shortages/docs/2026-Drug-Shortages-Report-Q1.pdf" target="_blank" rel="noopener">ashp.org &#8599;</a></li>
+<li id="src-2">U.S. Pharmacopeia (USP). <a href="https://www.cidrap.umn.edu/resilient-drug-supply/us-drug-shortages-have-declined-now-drag-average-5-years-report-shows" target="_blank" rel="noopener">cidrap.umn.edu &#8599;</a></li>
+<li id="src-3">IQVIA. <a href="https://www.iqvia.com/insights/the-iqvia-institute/reports-and-publications/reports/us-india-medicine-partnership" target="_blank" rel="noopener">iqvia.com &#8599;</a></li>
+<li id="src-4">U.S. Pharmacopeia (USP). <a href="https://www.biospace.com/press-releases/usp-annual-drug-shortages-report-finds-rising-discontinuations-hidden-upstream-risk" target="_blank" rel="noopener">biospace.com &#8599;</a></li>
+</ol>
+</section>
+<p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
   </article>
 
   <section class="subscribe" aria-label="Subscribe by email">

@@ -110,6 +110,18 @@
   .bd-form button{padding:11px 20px;border-radius:9px;border:1px solid var(--teal);background:var(--teal);color:#06181a;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;white-space:nowrap;}
   .bd-form button:hover{filter:brightness(1.08);}
   .sub-fine{font-size:12px;color:var(--faint);margin:10px 0 0;}
+
+.cref{font-size:.6em;font-weight:700;vertical-align:super;line-height:0;margin-left:1px;white-space:nowrap}
+.cref a{color:var(--teal);text-decoration:none}
+.cref a:hover{text-decoration:underline}
+.sources{margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.sources h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.sources ol{margin:0;padding:0 0 0 22px}
+.sources li{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 10px;padding-left:5px}
+.sources li a{color:var(--teal);text-decoration:none;word-break:break-word}
+.sources li a:hover{text-decoration:underline}
+.sources li:target{background:rgba(51,196,196,.10);border-radius:6px;box-shadow:0 0 0 6px rgba(51,196,196,.10)}
+:target{scroll-margin-top:90px}
 </style>
 <script defer src="/assets/analytics.js"></script>
 </head>
@@ -139,11 +151,11 @@
 
     <h2>The neglect was structural, and it's turning</h2>
 
-    <p>The scale of the historical blind spot is hard to overstate: for years, barely <b>4% of biopharma R&D</b> addressed female-specific conditions, and whole areas, menstrual health, fertility, menopause, maternal recovery, were treated as afterthoughts. That's changing fast. The femtech market now sits in the <b>tens of billions of dollars</b> (estimates for 2026 cluster around $50–70 billion) and is projected to keep compounding for a decade, with dedicated women's-health funding reaching roughly <b>$2.6 billion in a single recent year</b>. Capital is finally catching up to a demand that was always there, and to conditions, menopause, fertility, maternal recovery, that medicine treated as edge cases for decades.</p>
+    <p>The scale of the historical blind spot is hard to overstate: for years, barely <b>4%<sup class="cref"><a href="#src-1">1</a></sup> of biopharma R&D</b> addressed female-specific conditions, and whole areas, menstrual health, fertility, menopause, maternal recovery, were treated as afterthoughts. That's changing fast. The femtech market now sits in the <b>tens of billions of dollars</b> (estimates for 2026 cluster around $50–70 billion<sup class="cref"><a href="#src-2">2</a></sup>) and is projected to keep compounding for a decade, with dedicated women's-health funding reaching roughly <b>$2.6 billion<sup class="cref"><a href="#src-3">3</a></sup> in a single recent year</b>. Capital is finally catching up to a demand that was always there, and to conditions, menopause, fertility, maternal recovery, that medicine treated as edge cases for decades.</p>
 
     <h2>Bangladesh is the open field, not the footnote</h2>
 
-    <p>If women's health is underbuilt in the well-resourced US, it's almost entirely greenfield in South Asia. In Bangladesh, more than <b>two-thirds of women, about 66%</b>, report at least one barrier to accessing healthcare, compounded by out-of-pocket costs above 63% and cultural and geographic friction that falls hardest on women. That's not a small market. It's a vast, unmet clinical need, maternal and newborn care, menstrual and reproductive health, screening, with almost none of the modern, trust-first infrastructure built to serve it. The same femtech thesis lands with far more leverage where the baseline is lowest.</p>
+    <p>If women's health is underbuilt in the well-resourced US, it's almost entirely greenfield in South Asia. In Bangladesh, more than <b>two-thirds of women, about 66%</b><sup class="cref"><a href="#src-4">4</a></sup>, report at least one barrier to accessing healthcare, compounded by out-of-pocket costs above 63%<sup class="cref"><a href="#src-5">5</a></sup> and cultural and geographic friction that falls hardest on women. That's not a small market. It's a vast, unmet clinical need, maternal and newborn care, menstrual and reproductive health, screening, with almost none of the modern, trust-first infrastructure built to serve it. The same femtech thesis lands with far more leverage where the baseline is lowest.</p>
 
     <div class="pull">"Underserved" and "small" are not the same word. The demand for women's health was never missing, the product was.</div>
 
@@ -181,7 +193,17 @@
       </div>
     </section>
 
-    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+    <section class="sources" aria-label="Sources">
+<h2>Sources</h2>
+<ol>
+<li id="src-1">McKinsey &amp; Company. <a href="https://www.mckinsey.com/industries/life-sciences/our-insights/closing-the-womens-health-gap-biopharmas-untapped-opportunity" target="_blank" rel="noopener">mckinsey.com &#8599;</a></li>
+<li id="src-2">Global Market Insights / Astute Analytica. <a href="https://www.gminsights.com/industry-analysis/femtech-market" target="_blank" rel="noopener">gminsights.com &#8599;</a></li>
+<li id="src-3">Silicon Valley Bank / First Citizens Bank. <a href="https://www.biopharmadive.com/news/womens-health-venture-funding-increase-headwinds-barriers/747969/" target="_blank" rel="noopener">biopharmadive.com &#8599;</a></li>
+<li id="src-4">BMC Public Health / PubMed Central. <a href="https://bmcpublichealth.biomedcentral.com/articles/10.1186/s12889-023-16346-8" target="_blank" rel="noopener">bmcpublichealth.biomedcentral.com &#8599;</a></li>
+<li id="src-5">PubMed Central / Health Economics Review. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5586060/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov &#8599;</a></li>
+</ol>
+</section>
+<p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
   </article>
 
   <section class="subscribe" aria-label="Subscribe by email">

@@ -110,6 +110,18 @@
   .bd-form button{padding:11px 20px;border-radius:9px;border:1px solid var(--teal);background:var(--teal);color:#06181a;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;white-space:nowrap;}
   .bd-form button:hover{filter:brightness(1.08);}
   .sub-fine{font-size:12px;color:var(--faint);margin:10px 0 0;}
+
+.cref{font-size:.6em;font-weight:700;vertical-align:super;line-height:0;margin-left:1px;white-space:nowrap}
+.cref a{color:var(--teal);text-decoration:none}
+.cref a:hover{text-decoration:underline}
+.sources{margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.sources h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.sources ol{margin:0;padding:0 0 0 22px}
+.sources li{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 10px;padding-left:5px}
+.sources li a{color:var(--teal);text-decoration:none;word-break:break-word}
+.sources li a:hover{text-decoration:underline}
+.sources li:target{background:rgba(51,196,196,.10);border-radius:6px;box-shadow:0 0 0 6px rgba(51,196,196,.10)}
+:target{scroll-margin-top:90px}
 </style>
 <script defer src="/assets/analytics.js"></script>
 </head>
@@ -130,7 +142,7 @@
   <p class="byline">By <b>Md Shafaat Ali Choyon</b> <span class="creds">MPH · CHES® · MBA · MCIM</span> · builds &amp; runs AI in production · Growth &amp; health strategist · 5 min read · <time datetime="2026-10-01">Oct 1, 2026</time></p>
 
   <article>
-    <p class="lede">WHO's Commission on Social Connection just measured global loneliness at a scale nobody had before, and the data runs backwards from the story most people tell about it. Roughly 1 in 6 people worldwide are affected, linked to an estimated 871,000 deaths a year. The heaviest burden isn't carried by the wealthy, hyper-connected countries everyone assumes, it's carried by the poorest ones.</p>
+    <p class="lede">WHO's Commission on Social Connection just measured global loneliness at a scale nobody had before, and the data runs backwards from the story most people tell about it. Roughly 1 in 6<sup class="cref"><a href="#src-1">1</a></sup> people worldwide are affected, linked to an estimated 871,000<sup class="cref"><a href="#src-1">1</a></sup> deaths a year. The heaviest burden isn't carried by the wealthy, hyper-connected countries everyone assumes, it's carried by the poorest ones.</p>
 
       <figure class="essay-fig">
         <img src="/assets/og/loneliness-is-worse-in-poor-countries.png" alt="Loneliness Is Worse in Poor Countries, Not Rich Ones" loading="lazy" id="ogfig">
@@ -139,7 +151,7 @@
 
     <h2>The Story We Had Backwards</h2>
 
-    <p>The popular narrative treats loneliness as a rich-world affliction, nuclear families replacing extended ones, remote work replacing office friction, a scroll replacing a conversation. It's a tidy story about too much comfort and not enough community. WHO's data doesn't support it. Low-income countries report <b>roughly 24% loneliness prevalence versus about 11% in high-income countries</b>, more than double, in the direction nobody's marketing deck predicted.</p>
+    <p>The popular narrative treats loneliness as a rich-world affliction, nuclear families replacing extended ones, remote work replacing office friction, a scroll replacing a conversation. It's a tidy story about too much comfort and not enough community. WHO's data doesn't support it. Low-income countries report <b>roughly 24%<sup class="cref"><a href="#src-2">2</a></sup> loneliness prevalence versus about 11% in high-income countries</b>, more than double, in the direction nobody's marketing deck predicted.</p>
 
     <div class="pull">Loneliness was never really about how many people live near you. It's about how many of them you can actually reach when you need to.</div>
 
@@ -147,7 +159,7 @@
 
     <h2>What Actually Closes the Gap</h2>
 
-    <p>I've watched this pattern play out in health communication before it had a name. The Lifebuoy soap hotline in Bangladesh ran roughly 3,000 calls a day, not because it was clinically sophisticated, but because it met people through a channel already sitting in their hands, with no appointment, no stigma, and no infrastructure barrier between the need and the response. That's the same design principle loneliness interventions in low-income countries actually require. Most of what gets built for "social connection", therapy apps, structured social-prescribing programs, community center referral networks, assumes a baseline of income, mobility, and institutional trust that simply isn't there for the populations carrying the heaviest loneliness burden. Bangladesh, a country of roughly 170 million people, sits squarely inside the lower-income-country context this WHO finding describes. The fix was never going to be a better clinic. It has to be a channel people already trust, already have open, and don't need to explain themselves to use.</p>
+    <p>I've watched this pattern play out in health communication before it had a name. The Lifebuoy soap hotline in Bangladesh ran roughly 3,000 calls a day, not because it was clinically sophisticated, but because it met people through a channel already sitting in their hands, with no appointment, no stigma, and no infrastructure barrier between the need and the response. That's the same design principle loneliness interventions in low-income countries actually require. Most of what gets built for "social connection", therapy apps, structured social-prescribing programs, community center referral networks, assumes a baseline of income, mobility, and institutional trust that simply isn't there for the populations carrying the heaviest loneliness burden. Bangladesh, a country of roughly 170 million<sup class="cref"><a href="#src-3">3</a></sup> people, sits squarely inside the lower-income-country context this WHO finding describes. The fix was never going to be a better clinic. It has to be a channel people already trust, already have open, and don't need to explain themselves to use.</p>
 
     <h2>Design for the Channel People Already Trust</h2>
 
@@ -183,7 +195,15 @@
       </div>
     </section>
 
-    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+    <section class="sources" aria-label="Sources">
+<h2>Sources</h2>
+<ol>
+<li id="src-1">World Health Organization. <a href="https://www.who.int/news/item/30-06-2025-social-connection-linked-to-improved-heath-and-reduced-risk-of-early-death" target="_blank" rel="noopener">who.int &#8599;</a></li>
+<li id="src-2">World Health Organization. <a href="https://www.who.int/news-room/questions-and-answers/item/social-connection" target="_blank" rel="noopener">who.int &#8599;</a></li>
+<li id="src-3">World Bank. <a href="https://data.worldbank.org/country/bangladesh" target="_blank" rel="noopener">data.worldbank.org &#8599;</a></li>
+</ol>
+</section>
+<p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
   </article>
 
   <section class="subscribe" aria-label="Subscribe by email">

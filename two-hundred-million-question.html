@@ -110,6 +110,18 @@
   .bd-form button{padding:11px 20px;border-radius:9px;border:1px solid var(--teal);background:var(--teal);color:#06181a;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;white-space:nowrap;}
   .bd-form button:hover{filter:brightness(1.08);}
   .sub-fine{font-size:12px;color:var(--faint);margin:10px 0 0;}
+
+.cref{font-size:.6em;font-weight:700;vertical-align:super;line-height:0;margin-left:1px;white-space:nowrap}
+.cref a{color:var(--teal);text-decoration:none}
+.cref a:hover{text-decoration:underline}
+.sources{margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.sources h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.sources ol{margin:0;padding:0 0 0 22px}
+.sources li{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 10px;padding-left:5px}
+.sources li a{color:var(--teal);text-decoration:none;word-break:break-word}
+.sources li a:hover{text-decoration:underline}
+.sources li:target{background:rgba(51,196,196,.10);border-radius:6px;box-shadow:0 0 0 6px rgba(51,196,196,.10)}
+:target{scroll-margin-top:90px}
 </style>
 <script defer src="/assets/analytics.js"></script>
 </head>
@@ -130,7 +142,7 @@
   <p class="byline">By <b>Md Shafaat Ali Choyon</b> <span class="creds">MPH · CHES® · MBA · MCIM</span> · builds &amp; runs AI in production · Growth &amp; health strategist · 6 min read · <time datetime="2026-08-28">Aug 28, 2026</time></p>
 
   <article>
-    <p class="lede">Give me real money for a health system and the hardest question isn't how to spend it, it's where a dollar actually changes an outcome, versus where it just looks impressive in a press release. Bangladesh is a live case: the World Bank committed roughly <b>$200 million</b> to strengthen urban primary care for vulnerable populations. That number is a useful prompt. If it were mine to allocate, I wouldn't start with the thing that photographs well. I'd start with the thing that moves the outcome.</p>
+    <p class="lede">Give me real money for a health system and the hardest question isn't how to spend it, it's where a dollar actually changes an outcome, versus where it just looks impressive in a press release. Bangladesh is a live case: the World Bank committed roughly <b>$200 million</b><sup class="cref"><a href="#src-1">1</a></sup> to strengthen urban primary care for vulnerable populations. That number is a useful prompt. If it were mine to allocate, I wouldn't start with the thing that photographs well. I'd start with the thing that moves the outcome.</p>
 
       <figure class="essay-fig">
         <img src="/assets/og/two-hundred-million-question.png" alt="A $200M urban primary-care investment; a UHC service index of 54/100; where a dollar actually moves an outcome." loading="lazy" id="ogfig">
@@ -139,11 +151,11 @@
 
     <h2>The temptation is always the shiny layer</h2>
 
-    <p>Health money gravitates toward the visible: a flagship hospital, a national app, a telemedicine platform with a launch event. Some of that matters. But Bangladesh already scores about <b>54 out of 100</b> on the universal-coverage service index, and out-of-pocket costs push tens of millions into hardship. The gap isn't a shortage of impressive buildings or software. It's the unglamorous distance between a service existing and a person actually reaching it, trusting it, and being able to pay. Money spent on the shiny layer rarely closes that distance.</p>
+    <p>Health money gravitates toward the visible: a flagship hospital, a national app, a telemedicine platform with a launch event. Some of that matters. But Bangladesh already scores about <b>54 out of 100</b><sup class="cref"><a href="#src-2">2</a></sup> on the universal-coverage service index, and out-of-pocket costs push tens of millions into hardship. The gap isn't a shortage of impressive buildings or software. It's the unglamorous distance between a service existing and a person actually reaching it, trusting it, and being able to pay. Money spent on the shiny layer rarely closes that distance.</p>
 
     <h2>Where I'd actually put it</h2>
 
-    <p>I'd spend it on the last mile, in three unglamorous buckets. First, <b>people</b>, community health workers who live in the neighborhoods they serve, the exact model that already sustains Bangladesh's immunization above 90%. Second, <b>prevention</b>, which is nearly impossible to retrofit once a system's incentives harden but cheap to build in while it's still forming. Third, the <b>rails</b>, the payment and data plumbing that lets a poor patient actually transact with the system. None of it demos well. All of it decides whether the other spending works.</p>
+    <p>I'd spend it on the last mile, in three unglamorous buckets. First, <b>people</b>, community health workers who live in the neighborhoods they serve, the exact model that already sustains Bangladesh's immunization above 90%<sup class="cref"><a href="#src-3">3</a></sup>. Second, <b>prevention</b>, which is nearly impossible to retrofit once a system's incentives harden but cheap to build in while it's still forming. Third, the <b>rails</b>, the payment and data plumbing that lets a poor patient actually transact with the system. None of it demos well. All of it decides whether the other spending works.</p>
 
     <div class="pull">The dollar that changes an outcome is almost never the dollar that makes a good photograph.</div>
 
@@ -177,7 +189,15 @@
       </div>
     </section>
 
-    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+    <section class="sources" aria-label="Sources">
+<h2>Sources</h2>
+<ol>
+<li id="src-1">World Bank. <a href="https://www.worldbank.org/en/news/press-release/2023/08/30/world-bank-helps-bangladesh-improve-primary-healthcare-in-cities" target="_blank" rel="noopener">worldbank.org &#8599;</a></li>
+<li id="src-2">World Health Organization. <a href="https://www.who.int/bangladesh/news/feature-stories/item/bangladesh-moves-forward-on-universal-health-coverage-who-hosts-technical-consultation-on-uhc-roadmap-2026-2035" target="_blank" rel="noopener">who.int &#8599;</a></li>
+<li id="src-3">World Health Organization. <a href="https://www.who.int/bangladesh/activities/strengthening-vaccination-coverage/strengthening-vaccination-coverage" target="_blank" rel="noopener">who.int &#8599;</a></li>
+</ol>
+</section>
+<p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
   </article>
 
   <section class="subscribe" aria-label="Subscribe by email">

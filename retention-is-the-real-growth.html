@@ -110,6 +110,18 @@
   .bd-form button{padding:11px 20px;border-radius:9px;border:1px solid var(--teal);background:var(--teal);color:#06181a;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;white-space:nowrap;}
   .bd-form button:hover{filter:brightness(1.08);}
   .sub-fine{font-size:12px;color:var(--faint);margin:10px 0 0;}
+
+.cref{font-size:.6em;font-weight:700;vertical-align:super;line-height:0;margin-left:1px;white-space:nowrap}
+.cref a{color:var(--teal);text-decoration:none}
+.cref a:hover{text-decoration:underline}
+.sources{margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.sources h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.sources ol{margin:0;padding:0 0 0 22px}
+.sources li{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 10px;padding-left:5px}
+.sources li a{color:var(--teal);text-decoration:none;word-break:break-word}
+.sources li a:hover{text-decoration:underline}
+.sources li:target{background:rgba(51,196,196,.10);border-radius:6px;box-shadow:0 0 0 6px rgba(51,196,196,.10)}
+:target{scroll-margin-top:90px}
 </style>
 <script defer src="/assets/analytics.js"></script>
 </head>
@@ -139,7 +151,7 @@
 
     <h2>The math turned against acquisition</h2>
 
-    <p>The cost of buying a customer has jumped roughly <b>60% in the last five years</b>, with ad prices climbing 15–28% year over year as targeting precision fell. Retaining a customer, meanwhile, costs somewhere between <b>5 and 25 times less</b> than acquiring a new one, and a mere 5% lift in retention can raise profit anywhere from <b>25% to 95%</b>. Yet most companies still spend as if the funnel were cheap. The result is a treadmill: buy expensive customers, lose them quietly, buy more. Growth that resets every quarter isn't growth. It's churn with a marketing budget.</p>
+    <p>The cost of buying a customer has jumped roughly <b>60%<sup class="cref"><a href="#src-1">1</a></sup> in the last five years</b>, with ad prices climbing 15–28%<sup class="cref"><a href="#src-3">3</a></sup> year over year as targeting precision fell. Retaining a customer, meanwhile, costs somewhere between <b>5 and 25 times<sup class="cref"><a href="#src-2">2</a></sup> less</b> than acquiring a new one, and a mere 5% lift in retention can raise profit anywhere from <b>25%<sup class="cref"><a href="#src-2">2</a></sup> to 95%</b>. Yet most companies still spend as if the funnel were cheap. The result is a treadmill: buy expensive customers, lose them quietly, buy more. Growth that resets every quarter isn't growth. It's churn with a marketing budget.</p>
 
     <h2>Cash markets teach this the hard way</h2>
 
@@ -177,7 +189,15 @@
       </div>
     </section>
 
-    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+    <section class="sources" aria-label="Sources">
+<h2>Sources</h2>
+<ol>
+<li id="src-1">ProfitWell / Paddle. <a href="https://www.paddle.com/studios/shows/profitwell-report/ideal-customer-target-size" target="_blank" rel="noopener">paddle.com &#8599;</a></li>
+<li id="src-2">Harvard Business Review (citing Bain &amp; Company / Frederick Reichheld). <a href="https://hbr.org/2014/10/the-value-of-keeping-the-right-customers" target="_blank" rel="noopener">hbr.org &#8599;</a></li>
+<li id="src-3">Skai (formerly Kenshoo). <a href="https://www.prnewswire.com/news-releases/exclusive-skai-study-finds-advertising-spend-increased-year-over-year-across-all-channels-in-q1-2024-302131053.html" target="_blank" rel="noopener">prnewswire.com &#8599;</a></li>
+</ol>
+</section>
+<p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
   </article>
 
   <section class="subscribe" aria-label="Subscribe by email">

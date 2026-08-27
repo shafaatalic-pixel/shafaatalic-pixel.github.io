@@ -110,6 +110,18 @@
   .bd-form button{padding:11px 20px;border-radius:9px;border:1px solid var(--teal);background:var(--teal);color:#06181a;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;white-space:nowrap;}
   .bd-form button:hover{filter:brightness(1.08);}
   .sub-fine{font-size:12px;color:var(--faint);margin:10px 0 0;}
+
+.cref{font-size:.6em;font-weight:700;vertical-align:super;line-height:0;margin-left:1px;white-space:nowrap}
+.cref a{color:var(--teal);text-decoration:none}
+.cref a:hover{text-decoration:underline}
+.sources{margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.sources h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.sources ol{margin:0;padding:0 0 0 22px}
+.sources li{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 10px;padding-left:5px}
+.sources li a{color:var(--teal);text-decoration:none;word-break:break-word}
+.sources li a:hover{text-decoration:underline}
+.sources li:target{background:rgba(51,196,196,.10);border-radius:6px;box-shadow:0 0 0 6px rgba(51,196,196,.10)}
+:target{scroll-margin-top:90px}
 </style>
 <script defer src="/assets/analytics.js"></script>
 </head>
@@ -130,7 +142,7 @@
   <p class="byline">By <b>Md Shafaat Ali Choyon</b> <span class="creds">MPH · CHES® · MBA · MCIM</span> · builds &amp; runs AI in production · Growth &amp; health strategist · 6 min read · <time datetime="2026-09-23">Sep 23, 2026</time></p>
 
   <article>
-    <p class="lede">AI just made translation almost free. AI dubbing tools now cut localization costs by <b>70–90%</b> and compress what took weeks into days, and localized video earns dramatically more engagement, viewers are far likelier to finish something in their own language. That's a real and useful leap. But it has produced a dangerous assumption: that because the words now cross the border cheaply, the *meaning* does too. It doesn't. Translating language and localizing culture are different jobs, and the second one is exactly where human judgment stays scarce.</p>
+    <p class="lede">AI just made translation almost free. AI dubbing tools now cut localization costs by <b>70–90%</b><sup class="cref"><a href="#src-1">1</a></sup> and compress what took weeks into days, and localized video earns dramatically more engagement, viewers are far likelier to finish something in their own language. That's a real and useful leap. But it has produced a dangerous assumption: that because the words now cross the border cheaply, the *meaning* does too. It doesn't. Translating language and localizing culture are different jobs, and the second one is exactly where human judgment stays scarce.</p>
 
       <figure class="essay-fig">
         <img src="/assets/og/ai-cant-localize-culture.png" alt="AI dubbing cuts localization cost 70–90%; translation is nearly free; cultural nuance and trust are the human moat." loading="lazy" id="ogfig">
@@ -181,7 +193,13 @@
       </div>
     </section>
 
-    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+    <section class="sources" aria-label="Sources">
+<h2>Sources</h2>
+<ol>
+<li id="src-1">GeckoDub; Dataintelo. <a href="https://blog.geckodub.com/how-ai-video-ad-translation-cuts-localization-costs-by-90" target="_blank" rel="noopener">blog.geckodub.com &#8599;</a></li>
+</ol>
+</section>
+<p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
   </article>
 
   <section class="subscribe" aria-label="Subscribe by email">

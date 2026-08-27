@@ -110,6 +110,18 @@
   .bd-form button{padding:11px 20px;border-radius:9px;border:1px solid var(--teal);background:var(--teal);color:#06181a;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;white-space:nowrap;}
   .bd-form button:hover{filter:brightness(1.08);}
   .sub-fine{font-size:12px;color:var(--faint);margin:10px 0 0;}
+
+.cref{font-size:.6em;font-weight:700;vertical-align:super;line-height:0;margin-left:1px;white-space:nowrap}
+.cref a{color:var(--teal);text-decoration:none}
+.cref a:hover{text-decoration:underline}
+.sources{margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.sources h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.sources ol{margin:0;padding:0 0 0 22px}
+.sources li{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 10px;padding-left:5px}
+.sources li a{color:var(--teal);text-decoration:none;word-break:break-word}
+.sources li a:hover{text-decoration:underline}
+.sources li:target{background:rgba(51,196,196,.10);border-radius:6px;box-shadow:0 0 0 6px rgba(51,196,196,.10)}
+:target{scroll-margin-top:90px}
 </style>
 <script defer src="/assets/analytics.js"></script>
 </head>
@@ -130,7 +142,7 @@
   <p class="byline">By <b>Md Shafaat Ali Choyon</b> <span class="creds">MPH · CHES® · MBA · MCIM</span> · builds &amp; runs AI in production · Growth &amp; health strategist · 5 min read · <time datetime="2026-10-04">Oct 4, 2026</time></p>
 
   <article>
-    <p class="lede">41% of working-age Americans report medical bill problems or active medical debt. Split it by race and the gap sharpens: 56% of Black adults report medical or dental debt, versus 37% of White adults. This reads as a uniquely American story about insurance gaps. It isn't. It's the US version of a question every health system on earth has to answer, one way or another.</p>
+    <p class="lede">41%<sup class="cref"><a href="#src-1">1</a></sup> of working-age Americans report medical bill problems or active medical debt. Split it by race and the gap sharpens: 56%<sup class="cref"><a href="#src-1">1</a></sup> of Black adults report medical or dental debt, versus 37% of White adults. This reads as a uniquely American story about insurance gaps. It isn't. It's the US version of a question every health system on earth has to answer, one way or another.</p>
 
       <figure class="essay-fig">
         <img src="/assets/og/medical-debt-racial-gap.png" alt="Medical Debt's Racial Gap Is a Margin Question in Disguise" loading="lazy" id="ogfig">
@@ -147,7 +159,7 @@
 
     <h2>Bangladesh Answers the Same Question, Differently</h2>
 
-    <p>Bangladesh, a country of roughly 170 million people, runs one of the highest out-of-pocket health expenditure burdens in the world, public reporting puts it in the range of roughly 73% of total health spending paid directly by households, among the highest of any country tracked. It's not that the US system is broken and Bangladesh's isn't, or vice versa. It's that "who absorbs the cost when the system doesn't cover it" gets resolved differently in each place, insurance-gap debt in one, direct household out-of-pocket payment at the point of care in the other, but it's the identical structural question underneath. Neither system has actually solved who bears the shortfall. Both have just chosen a different group, through a different mechanism, to bear it.</p>
+    <p>Bangladesh, a country of roughly 170 million<sup class="cref"><a href="#src-3">3</a></sup> people, runs one of the highest out-of-pocket health expenditure burdens in the world, public reporting puts it in the range of roughly 73%<sup class="cref"><a href="#src-2">2</a></sup> of total health spending paid directly by households, among the highest of any country tracked. It's not that the US system is broken and Bangladesh's isn't, or vice versa. It's that "who absorbs the cost when the system doesn't cover it" gets resolved differently in each place, insurance-gap debt in one, direct household out-of-pocket payment at the point of care in the other, but it's the identical structural question underneath. Neither system has actually solved who bears the shortfall. Both have just chosen a different group, through a different mechanism, to bear it.</p>
 
     <h2>Trace It to Who Captures Margin</h2>
 
@@ -181,7 +193,15 @@
       </div>
     </section>
 
-    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+    <section class="sources" aria-label="Sources">
+<h2>Sources</h2>
+<ol>
+<li id="src-1">KFF. <a href="https://www.kff.org/health-costs/kff-health-care-debt-survey/" target="_blank" rel="noopener">kff.org &#8599;</a></li>
+<li id="src-2">World Health Organization / World Bank. <a href="https://data.worldbank.org/indicator/SH.XPD.OOPC.CH.ZS?locations=BD" target="_blank" rel="noopener">data.worldbank.org &#8599;</a></li>
+<li id="src-3">World Bank. <a href="https://data.worldbank.org/country/bangladesh" target="_blank" rel="noopener">data.worldbank.org &#8599;</a></li>
+</ol>
+</section>
+<p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
   </article>
 
   <section class="subscribe" aria-label="Subscribe by email">

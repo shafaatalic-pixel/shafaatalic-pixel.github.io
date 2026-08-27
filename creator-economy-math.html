@@ -110,6 +110,18 @@
   .bd-form button{padding:11px 20px;border-radius:9px;border:1px solid var(--teal);background:var(--teal);color:#06181a;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;white-space:nowrap;}
   .bd-form button:hover{filter:brightness(1.08);}
   .sub-fine{font-size:12px;color:var(--faint);margin:10px 0 0;}
+
+.cref{font-size:.6em;font-weight:700;vertical-align:super;line-height:0;margin-left:1px;white-space:nowrap}
+.cref a{color:var(--teal);text-decoration:none}
+.cref a:hover{text-decoration:underline}
+.sources{margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.sources h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.sources ol{margin:0;padding:0 0 0 22px}
+.sources li{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 10px;padding-left:5px}
+.sources li a{color:var(--teal);text-decoration:none;word-break:break-word}
+.sources li a:hover{text-decoration:underline}
+.sources li:target{background:rgba(51,196,196,.10);border-radius:6px;box-shadow:0 0 0 6px rgba(51,196,196,.10)}
+:target{scroll-margin-top:90px}
 </style>
 <script defer src="/assets/analytics.js"></script>
 </head>
@@ -130,7 +142,7 @@
   <p class="byline">By <b>Md Shafaat Ali Choyon</b> <span class="creds">MPH · CHES® · MBA · MCIM</span> · builds &amp; runs AI in production · Growth &amp; health strategist · 4 min read · <time datetime="2026-08-23">Aug 23, 2026</time></p>
 
   <article>
-    <p class="lede">207 million people worldwide now call themselves creators, inside a market valued at $248.95B. Only 4% of them clear $100,000 a year, and the average full-time creator earns $44,000. That gap is the actual story, not the size of the market.</p>
+    <p class="lede">207 million<sup class="cref"><a href="#src-1">1</a></sup> people worldwide now call themselves creators, inside a market valued at $248.95<sup class="cref"><a href="#src-2">2</a></sup>B. Only 4% of them clear $100,000<sup class="cref"><a href="#src-3">3</a></sup> a year, and the average full-time creator earns $44,000<sup class="cref"><a href="#src-4">4</a></sup>. That gap is the actual story, not the size of the market.</p>
 
       <figure class="essay-fig">
         <img src="/assets/og/creator-economy-math.png" alt="The Creator Economy's Math Problem" loading="lazy" id="ogfig">
@@ -179,7 +191,16 @@
       </div>
     </section>
 
-    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+    <section class="sources" aria-label="Sources">
+<h2>Sources</h2>
+<ol>
+<li id="src-1">DemandSage (via Behind the Scenes). <a href="https://behindthescenes.com/blogs/state-of-the-creator-economy-2026-trends-stats-what-s-next" target="_blank" rel="noopener">behindthescenes.com &#8599;</a></li>
+<li id="src-2">Coherent Market Insights. <a href="https://www.vdocipher.com/blog/creator-economy/" target="_blank" rel="noopener">vdocipher.com &#8599;</a></li>
+<li id="src-3">Goldman Sachs (via Inbeat). <a href="https://inbeat.agency/blog/creator-economy-statistics" target="_blank" rel="noopener">inbeat.agency &#8599;</a></li>
+<li id="src-4">CreatorIQ (via Behind the Scenes / Inbeat). <a href="https://behindthescenes.com/blogs/15-creator-economy-statistics-you-need-to-know-2026" target="_blank" rel="noopener">behindthescenes.com &#8599;</a></li>
+</ol>
+</section>
+<p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
   </article>
 
   <section class="subscribe" aria-label="Subscribe by email">

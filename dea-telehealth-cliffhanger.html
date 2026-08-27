@@ -110,6 +110,18 @@
   .bd-form button{padding:11px 20px;border-radius:9px;border:1px solid var(--teal);background:var(--teal);color:#06181a;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;white-space:nowrap;}
   .bd-form button:hover{filter:brightness(1.08);}
   .sub-fine{font-size:12px;color:var(--faint);margin:10px 0 0;}
+
+.cref{font-size:.6em;font-weight:700;vertical-align:super;line-height:0;margin-left:1px;white-space:nowrap}
+.cref a{color:var(--teal);text-decoration:none}
+.cref a:hover{text-decoration:underline}
+.sources{margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.sources h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.sources ol{margin:0;padding:0 0 0 22px}
+.sources li{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 10px;padding-left:5px}
+.sources li a{color:var(--teal);text-decoration:none;word-break:break-word}
+.sources li a:hover{text-decoration:underline}
+.sources li:target{background:rgba(51,196,196,.10);border-radius:6px;box-shadow:0 0 0 6px rgba(51,196,196,.10)}
+:target{scroll-margin-top:90px}
 </style>
 <script defer src="/assets/analytics.js"></script>
 </head>
@@ -130,7 +142,7 @@
   <p class="byline">By <b>Md Shafaat Ali Choyon</b> <span class="creds">MPH · CHES® · MBA · MCIM</span> · builds &amp; runs AI in production · Growth &amp; health strategist · 5 min read · <time datetime="2026-08-04">Aug 4, 2026</time></p>
 
   <article>
-    <p class="lede">The DEA and HHS just extended pandemic-era telemedicine flexibilities for prescribing controlled substances, ADHD medication, some addiction treatment, through 2026. It's the fourth temporary extension in a row. No permanent rule has replaced it. For an industry that needs multi-year investment horizons, a fourth cliffhanger isn't a policy footnote. It's the policy.</p>
+    <p class="lede">The DEA and HHS just extended pandemic-era telemedicine flexibilities for prescribing controlled substances, ADHD medication, some addiction treatment, through 2026<sup class="cref"><a href="#src-1">1</a></sup>. It's the fourth temporary extension in a row. No permanent rule has replaced it. For an industry that needs multi-year investment horizons, a fourth cliffhanger isn't a policy footnote. It's the policy.</p>
 
       <figure class="essay-fig">
         <img src="/assets/og/dea-telehealth-cliffhanger.png" alt="Telehealth's Fourth Extension Shows Regulatory Uncertainty Is a Distribution Problem" loading="lazy" id="ogfig">
@@ -147,7 +159,7 @@
 
     <h2>Bangladesh's Version of the Same Access Question</h2>
 
-    <p>Bangladesh, a market of roughly 170 million people with uneven physician distribution outside major cities, faces its own version of this exact tension, a fast-growing Bangladeshi diaspora increasingly using telehealth to consult with doctors back home, alongside an emerging domestic telehealth prescribing framework still being defined. In both markets, the constraint isn't demand or technology, it's whether the regulatory ground underneath telehealth is stable enough for providers to build durable services on top of it. A diaspora patient consulting a Dhaka physician by video, or a US patient renewing an ADHD prescription through a telehealth platform, both depend on the same thing: a rule that isn't due to expire again in six months. Regulatory certainty, or its absence, determines whether telehealth becomes core infrastructure or stays a workaround.</p>
+    <p>Bangladesh, a market of roughly 170 million<sup class="cref"><a href="#src-2">2</a></sup> people with uneven physician distribution outside major cities, faces its own version of this exact tension, a fast-growing Bangladeshi diaspora increasingly using telehealth to consult with doctors back home, alongside an emerging domestic telehealth prescribing framework still being defined. In both markets, the constraint isn't demand or technology, it's whether the regulatory ground underneath telehealth is stable enough for providers to build durable services on top of it. A diaspora patient consulting a Dhaka physician by video, or a US patient renewing an ADHD prescription through a telehealth platform, both depend on the same thing: a rule that isn't due to expire again in six months. Regulatory certainty, or its absence, determines whether telehealth becomes core infrastructure or stays a workaround.</p>
 
     <h2>Uncertainty Is Itself a Distribution Problem</h2>
 
@@ -177,7 +189,14 @@
       </div>
     </section>
 
-    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+    <section class="sources" aria-label="Sources">
+<h2>Sources</h2>
+<ol>
+<li id="src-1">U.S. Drug Enforcement Administration (DEA). <a href="https://www.dea.gov/press-releases/2025/12/31/dea-extends-telemedicine-flexibilities-ensure-continued-access-care" target="_blank" rel="noopener">dea.gov &#8599;</a></li>
+<li id="src-2">Bangladesh Bureau of Statistics (via BSS) / United Nations Population Fund (UNFPA). <a href="https://www.bssnews.net/news-flash/289857" target="_blank" rel="noopener">bssnews.net &#8599;</a></li>
+</ol>
+</section>
+<p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
   </article>
 
   <section class="subscribe" aria-label="Subscribe by email">

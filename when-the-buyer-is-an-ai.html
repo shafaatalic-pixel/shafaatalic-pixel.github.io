@@ -110,6 +110,18 @@
   .bd-form button{padding:11px 20px;border-radius:9px;border:1px solid var(--teal);background:var(--teal);color:#06181a;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;white-space:nowrap;}
   .bd-form button:hover{filter:brightness(1.08);}
   .sub-fine{font-size:12px;color:var(--faint);margin:10px 0 0;}
+
+.cref{font-size:.6em;font-weight:700;vertical-align:super;line-height:0;margin-left:1px;white-space:nowrap}
+.cref a{color:var(--teal);text-decoration:none}
+.cref a:hover{text-decoration:underline}
+.sources{margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.sources h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.sources ol{margin:0;padding:0 0 0 22px}
+.sources li{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 10px;padding-left:5px}
+.sources li a{color:var(--teal);text-decoration:none;word-break:break-word}
+.sources li a:hover{text-decoration:underline}
+.sources li:target{background:rgba(51,196,196,.10);border-radius:6px;box-shadow:0 0 0 6px rgba(51,196,196,.10)}
+:target{scroll-margin-top:90px}
 </style>
 <script defer src="/assets/analytics.js"></script>
 </head>
@@ -139,7 +151,7 @@
 
     <h2>This isn't a prediction anymore</h2>
 
-    <p>The infrastructure is already live. Google has rolled out agentic checkout, a "Buy for me" flow in AI Mode and Gemini that lets an agent complete a purchase on a merchant's site. ChatGPT Shopping is live for US users, steering buyers to merchants, with over a million Shopify stores connected. Major platforms are standardizing the plumbing with new universal commerce protocols. McKinsey estimates agentic AI will influence <b>$3–5 trillion</b> in retail commerce by 2030, and Morgan Stanley expects roughly <b>half of online shoppers</b> to use AI agents by then. The machine buyer isn't coming. It's checking out right now.</p>
+    <p>The infrastructure is already live. Google has rolled out agentic checkout, a "Buy for me<sup class="cref"><a href="#src-3">3</a></sup>" flow in AI Mode and Gemini that lets an agent complete a purchase on a merchant's site. ChatGPT Shopping is live for US users, steering buyers to merchants, with over a million Shopify<sup class="cref"><a href="#src-4">4</a></sup> stores connected. Major platforms are standardizing the plumbing with new universal commerce protocols. McKinsey estimates agentic AI will influence <b>$3–5 trillion</b><sup class="cref"><a href="#src-1">1</a></sup> in retail commerce by 2030, and Morgan Stanley<sup class="cref"><a href="#src-2">2</a></sup> expects roughly <b>half of online shoppers</b> to use AI agents by then. The machine buyer isn't coming. It's checking out right now.</p>
 
     <h2>How does an AI agent shop differently from a person?</h2>
 
@@ -181,7 +193,16 @@
       </div>
     </section>
 
-    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+    <section class="sources" aria-label="Sources">
+<h2>Sources</h2>
+<ol>
+<li id="src-1">McKinsey &amp; Company. <a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-agentic-commerce-opportunity-how-ai-agents-are-ushering-in-a-new-era-for-consumers-and-merchants" target="_blank" rel="noopener">mckinsey.com &#8599;</a></li>
+<li id="src-2">Morgan Stanley. <a href="https://www.morganstanley.com/insights/articles/agentic-commerce-market-impact-outlook" target="_blank" rel="noopener">morganstanley.com &#8599;</a></li>
+<li id="src-3">Google. <a href="https://blog.google/products-and-platforms/products/shopping/agentic-checkout-holiday-ai-shopping/" target="_blank" rel="noopener">blog.google &#8599;</a></li>
+<li id="src-4">OpenAI. <a href="https://openai.com/index/buy-it-in-chatgpt/" target="_blank" rel="noopener">openai.com &#8599;</a></li>
+</ol>
+</section>
+<p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
   </article>
 
   <section class="subscribe" aria-label="Subscribe by email">

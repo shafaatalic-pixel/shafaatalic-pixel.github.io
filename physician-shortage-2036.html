@@ -110,6 +110,18 @@
   .bd-form button{padding:11px 20px;border-radius:9px;border:1px solid var(--teal);background:var(--teal);color:#06181a;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;white-space:nowrap;}
   .bd-form button:hover{filter:brightness(1.08);}
   .sub-fine{font-size:12px;color:var(--faint);margin:10px 0 0;}
+
+.cref{font-size:.6em;font-weight:700;vertical-align:super;line-height:0;margin-left:1px;white-space:nowrap}
+.cref a{color:var(--teal);text-decoration:none}
+.cref a:hover{text-decoration:underline}
+.sources{margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.sources h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.sources ol{margin:0;padding:0 0 0 22px}
+.sources li{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 10px;padding-left:5px}
+.sources li a{color:var(--teal);text-decoration:none;word-break:break-word}
+.sources li a:hover{text-decoration:underline}
+.sources li:target{background:rgba(51,196,196,.10);border-radius:6px;box-shadow:0 0 0 6px rgba(51,196,196,.10)}
+:target{scroll-margin-top:90px}
 </style>
 <script defer src="/assets/analytics.js"></script>
 </head>
@@ -130,7 +142,7 @@
   <p class="byline">By <b>Md Shafaat Ali Choyon</b> <span class="creds">MPH · CHES® · MBA · MCIM</span> · builds &amp; runs AI in production · Growth &amp; health strategist · 4 min read · <time datetime="2026-09-27">Sep 27, 2026</time></p>
 
   <article>
-    <p class="lede">The AAMC's newest workforce projection puts the US up to 86,000 physicians short by 2036. That number gets thrown around like a weather forecast. It isn't one. It's the compounding output of a population that's growing, aging, and being cared for by a physician workforce that's aging right alongside it.</p>
+    <p class="lede">The AAMC's newest workforce projection puts the US up to 86,000<sup class="cref"><a href="#src-1">1</a></sup> physicians short by 2036. That number gets thrown around like a weather forecast. It isn't one. It's the compounding output of a population that's growing, aging, and being cared for by a physician workforce that's aging right alongside it.</p>
 
       <figure class="essay-fig">
         <img src="/assets/og/physician-shortage-2036.png" alt="The US Could Be Short 86,000 Doctors by 2036" loading="lazy" id="ogfig">
@@ -139,7 +151,7 @@
 
     <h2>Three curves moving against each other</h2>
 
-    <p>Population growth alone adds 8.4% more people who will eventually need a doctor. But the real pressure sits in who those people are: the 65-plus population is projected to grow 34.1%, and the 75-plus group, the cohort that consumes the most specialist and primary care per person, is projected to grow 54.7%. Meanwhile the supply side isn't holding steady while demand climbs. <b>20% of practicing physicians are already 65 or older</b>, with another 22% sitting in the 55-to-64 band, meaning close to half the current workforce is within a decade or two of its own retirement window, all arriving roughly on the same clock as the patient surge they're supposed to absorb.</p>
+    <p>Population growth alone adds 8.4%<sup class="cref"><a href="#src-2">2</a></sup> more people who will eventually need a doctor. But the real pressure sits in who those people are: the 65-plus population is projected to grow 34.1%<sup class="cref"><a href="#src-2">2</a></sup>, and the 75-plus group, the cohort that consumes the most specialist and primary care per person, is projected to grow 54.7%<sup class="cref"><a href="#src-2">2</a></sup>. Meanwhile the supply side isn't holding steady while demand climbs. <b>20%<sup class="cref"><a href="#src-2">2</a></sup> of practicing physicians are already 65 or older</b>, with another 22% sitting in the 55-to-64 band, meaning close to half the current workforce is within a decade or two of its own retirement window, all arriving roughly on the same clock as the patient surge they're supposed to absorb.</p>
 
     <div class="pull">A shortage isn't one number falling behind. It's two curves crossing at the same time.</div>
 
@@ -147,7 +159,7 @@
 
     <h2>The parity number nobody quotes</h2>
 
-    <p>Here's the AAMC figure that should get more attention than the headline shortage: if every underserved community in the country reached the same care access as better-served populations already enjoy, the US would need 202,800 additional physicians, more than five times the projected shortage. That's not a rounding error. <b>The 86,000 number describes maintaining today's unequal baseline, not fixing it.</b> The real gap is the one hiding underneath the average, in the counties and neighborhoods that were already underserved before anyone started counting toward 2036.</p>
+    <p>Here's the AAMC figure that should get more attention than the headline shortage: if every underserved community in the country reached the same care access as better-served populations already enjoy, the US would need 202,800<sup class="cref"><a href="#src-2">2</a></sup> additional physicians, more than five times the projected shortage. That's not a rounding error. <b>The 86,000 number describes maintaining today's unequal baseline, not fixing it.</b> The real gap is the one hiding underneath the average, in the counties and neighborhoods that were already underserved before anyone started counting toward 2036.</p>
 
     <p>This is the same lesson I keep relearning across categories that have nothing to do with medicine on the surface. At Praava Health, a healthcare company in Bangladesh, a country of roughly 170 million people with its own severe, unevenly distributed physician shortage outside Dhaka and Chattogram, corporate client accounts grew from 342 to nearly 1,400, a 4x increase, not because more clients simply existed to be captured, but because we stopped treating "the market" as one uniform curve and started building specific access paths into segments the existing model was underserving by default. A national average always flatters you, whether the country is the US or Bangladesh. It's the gap beneath the average where the actual work, and the actual opportunity, lives. Chase the average and you'll report progress every quarter while the people furthest from care stay exactly where they started, because the average was never built to notice them in the first place.</p>
 
@@ -155,7 +167,7 @@
 
     <p>Every growth number I've ever chased professionally taught me the same thing twice before it stuck: the aggregate figure and the distribution of that figure are two different projects, and you need a separate plan for each. AAMC just proved it works the same way in a physician workforce as it does in a client base, in the US or in a 170-million-person market like Bangladesh.</p>
 
-    <h2>What 14,000 slots actually buys</h2>
+    <h2>What 14,000<sup class="cref"><a href="#src-3">3</a></sup> slots actually buys</h2>
 
     <p>The proposed Resident Physician Shortage Reduction Act would add 14,000 Medicare-supported residency slots over seven years. <b>14,000 new slots against an 86,000 shortfall covers roughly a sixth of the gap</b>, and that's measured against the smaller number, not the 202,800 parity figure. AAMC's own language calls this "help alleviate but not eliminate," which is about as candid as workforce policy language ever gets.</p>
 
@@ -189,7 +201,15 @@
       </div>
     </section>
 
-    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+    <section class="sources" aria-label="Sources">
+<h2>Sources</h2>
+<ol>
+<li id="src-1">Association of American Medical Colleges. <a href="https://www.aamc.org/news/press-releases/new-aamc-report-shows-continuing-projected-physician-shortage" target="_blank" rel="noopener">aamc.org &#8599;</a></li>
+<li id="src-2">Association of American Medical Colleges. <a href="https://www.aamc.org/media/75236/download" target="_blank" rel="noopener">aamc.org &#8599;</a></li>
+<li id="src-3">AHA. <a href="https://www.aha.org/news/headline/2025-07-07-aha-supports-legislation-adding-14000-residency-slots-address-physician-shortages" target="_blank" rel="noopener">aha.org &#8599;</a></li>
+</ol>
+</section>
+<p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
   </article>
 
   <section class="subscribe" aria-label="Subscribe by email">

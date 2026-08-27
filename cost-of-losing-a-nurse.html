@@ -110,6 +110,18 @@
   .bd-form button{padding:11px 20px;border-radius:9px;border:1px solid var(--teal);background:var(--teal);color:#06181a;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;white-space:nowrap;}
   .bd-form button:hover{filter:brightness(1.08);}
   .sub-fine{font-size:12px;color:var(--faint);margin:10px 0 0;}
+
+.cref{font-size:.6em;font-weight:700;vertical-align:super;line-height:0;margin-left:1px;white-space:nowrap}
+.cref a{color:var(--teal);text-decoration:none}
+.cref a:hover{text-decoration:underline}
+.sources{margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.sources h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.sources ol{margin:0;padding:0 0 0 22px}
+.sources li{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 10px;padding-left:5px}
+.sources li a{color:var(--teal);text-decoration:none;word-break:break-word}
+.sources li a:hover{text-decoration:underline}
+.sources li:target{background:rgba(51,196,196,.10);border-radius:6px;box-shadow:0 0 0 6px rgba(51,196,196,.10)}
+:target{scroll-margin-top:90px}
 </style>
 <script defer src="/assets/analytics.js"></script>
 </head>
@@ -130,7 +142,7 @@
   <p class="byline">By <b>Md Shafaat Ali Choyon</b> <span class="creds">MPH · CHES® · MBA · MCIM</span> · builds &amp; runs AI in production · Growth &amp; health strategist · 4 min read · <time datetime="2026-08-24">Aug 24, 2026</time></p>
 
   <article>
-    <p class="lede">A hospital just lost a nurse. Not a rumor, not a resignation letter still sitting in a drawer, an actual departure, this month, somewhere in the 527 hospitals NSI surveyed across 40 states. That single exit costs the hospital $60,090 on average, and it isn't a one-off. It's the unit of measure behind a national number that should alarm every CFO reading it: $5.19 million in average annual turnover loss per hospital, with a range running as high as $6.2 million.</p>
+    <p class="lede">A hospital just lost a nurse. Not a rumor, not a resignation letter still sitting in a drawer, an actual departure, this month, somewhere in the 527 hospitals NSI surveyed across 40 states. That single exit costs the hospital $60,090<sup class="cref"><a href="#src-1">1</a></sup> on average, and it isn't a one-off. It's the unit of measure behind a national number that should alarm every CFO reading it: $5.19 million<sup class="cref"><a href="#src-1">1</a></sup> in average annual turnover loss per hospital, with a range running as high as $6.2 million.</p>
 
       <figure class="essay-fig">
         <img src="/assets/og/cost-of-losing-a-nurse.png" alt="Losing One Nurse Costs a Hospital $60,090" loading="lazy" id="ogfig">
@@ -139,15 +151,15 @@
 
     <h2>The number behind the number</h2>
 
-    <p>National RN turnover hit 17.6% in 2026, up 1.2 points from the year before, and the vacancy rate sits at 8.6% nationally. Those two figures together describe a workforce that is simultaneously shrinking and churning, not a temporary staffing dip that resolves itself once a hiring freeze thaws. <b>17.6% turnover means roughly one in six nurses walked out the door this year</b>, and every one of those exits triggers the same expensive cycle: overtime for the nurses who stayed, agency staffing at a premium, and a recruiting pipeline that isn't fast enough to close the gap before the next departure starts the clock again.</p>
+    <p>National RN turnover hit 17.6%<sup class="cref"><a href="#src-1">1</a></sup> in 2026, up 1.2 points from the year before, and the vacancy rate sits at 8.6%<sup class="cref"><a href="#src-1">1</a></sup> nationally. Those two figures together describe a workforce that is simultaneously shrinking and churning, not a temporary staffing dip that resolves itself once a hiring freeze thaws. <b>17.6% turnover means roughly one in six nurses walked out the door this year</b>, and every one of those exits triggers the same expensive cycle: overtime for the nurses who stayed, agency staffing at a premium, and a recruiting pipeline that isn't fast enough to close the gap before the next departure starts the clock again.</p>
 
     <div class="pull">Turnover isn't a line item. It's a tax the whole floor pays every time someone else quits.</div>
 
-    <p>Behavioral health units turn over fastest, at 22.5%, with emergency departments close behind at 20.7%. Those aren't random units, they're the highest-acuity, highest-burnout environments in the building, which means the areas needing the most staffing stability are structurally the ones losing it fastest. The math compounds exactly where a hospital can least afford it to. NSI pulled this from 262,405 RNs across 527 hospitals in 40 states, which rules out the easy dismissal that this is a regional anomaly or a single bad quarter, it's the national baseline now, not the exception to it.</p>
+    <p>Behavioral health units turn over fastest, at 22.5%<sup class="cref"><a href="#src-1">1</a></sup>, with emergency departments close behind at 20.7%. Those aren't random units, they're the highest-acuity, highest-burnout environments in the building, which means the areas needing the most staffing stability are structurally the ones losing it fastest. The math compounds exactly where a hospital can least afford it to. NSI pulled this from 262,405<sup class="cref"><a href="#src-1">1</a></sup> RNs across 527 hospitals in 40 states, which rules out the easy dismissal that this is a regional anomaly or a single bad quarter, it's the national baseline now, not the exception to it.</p>
 
     <h2>What replacement actually costs in time</h2>
 
-    <p>Filling an experienced RN role now takes 56 to 102 days on average. That's not a hiring delay, that's two to three months of a unit running short-staffed, covering the gap with overtime, agency contracts, or both, both of which cost more per hour than the salary of the nurse who left. <b>A 100-day vacancy on a 20.7% turnover unit is a permanent condition, not an occasional inconvenience</b>, the math never lets the unit catch its breath before the next resignation lands.</p>
+    <p>Filling an experienced RN role now takes 56 to 102<sup class="cref"><a href="#src-1">1</a></sup> days on average. That's not a hiring delay, that's two to three months of a unit running short-staffed, covering the gap with overtime, agency contracts, or both, both of which cost more per hour than the salary of the nurse who left. <b>A 100-day vacancy on a 20.7% turnover unit is a permanent condition, not an occasional inconvenience</b>, the math never lets the unit catch its breath before the next resignation lands.</p>
 
     <p>This is the exact cost structure I dealt with at Laser Treat, where I ran operations across a multi-entity clinical group as COO. Staffing churn wasn't an HR footnote there either, it was a line item bleeding into every other metric. Fixing the underlying operating model, not just chasing recruiting harder, is what got us a $0.5M reduction in operating costs alongside a 13% lift in patient retention. Retention on the clinical staff side and retention on the patient side turned out to be the same lever, pulled from two directions.</p>
 
@@ -189,7 +201,13 @@
       </div>
     </section>
 
-    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+    <section class="sources" aria-label="Sources">
+<h2>Sources</h2>
+<ol>
+<li id="src-1">NSI Nursing Solutions, Inc.. <a href="https://www.nsinursingsolutions.com/documents/library/nsi_national_health_care_retention_report.pdf" target="_blank" rel="noopener">nsinursingsolutions.com &#8599;</a></li>
+</ol>
+</section>
+<p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
   </article>
 
   <section class="subscribe" aria-label="Subscribe by email">

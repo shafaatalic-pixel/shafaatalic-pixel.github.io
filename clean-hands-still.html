@@ -110,6 +110,18 @@
   .bd-form button{padding:11px 20px;border-radius:9px;border:1px solid var(--teal);background:var(--teal);color:#06181a;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;white-space:nowrap;}
   .bd-form button:hover{filter:brightness(1.08);}
   .sub-fine{font-size:12px;color:var(--faint);margin:10px 0 0;}
+
+.cref{font-size:.6em;font-weight:700;vertical-align:super;line-height:0;margin-left:1px;white-space:nowrap}
+.cref a{color:var(--teal);text-decoration:none}
+.cref a:hover{text-decoration:underline}
+.sources{margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.sources h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.sources ol{margin:0;padding:0 0 0 22px}
+.sources li{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 10px;padding-left:5px}
+.sources li a{color:var(--teal);text-decoration:none;word-break:break-word}
+.sources li a:hover{text-decoration:underline}
+.sources li:target{background:rgba(51,196,196,.10);border-radius:6px;box-shadow:0 0 0 6px rgba(51,196,196,.10)}
+:target{scroll-margin-top:90px}
 </style>
 <script defer src="/assets/analytics.js"></script>
 </head>
@@ -139,11 +151,11 @@
 
     <h2>Why is handwashing still the health tech we underuse?</h2>
 
-    <p>Bangladesh's tubewell revolution pushed basic drinking-water access above <b>98%</b>, a genuine win that cut cholera and diarrheal disease dramatically. But the same aquifers hide a slower disaster: naturally occurring <b>arsenic exceeds safe limits across roughly 85% of the country's territory, exposing an estimated 50 million people</b> to long-term risk of skin lesions, cancers, and heart disease. Basic sanitation still reaches only about <b>59%</b>. Access to water was step one; safe water and safe disposal are the unfinished, unglamorous rest.</p>
+    <p>Bangladesh's tubewell revolution pushed basic drinking-water access above <b>98%</b><sup class="cref"><a href="#src-1">1</a></sup>, a genuine win that cut cholera and diarrheal disease dramatically. But the same aquifers hide a slower disaster: naturally occurring <b>arsenic exceeds safe limits across roughly 85% of the country's territory, exposing an estimated 50 million<sup class="cref"><a href="#src-2">2</a></sup> people</b> to long-term risk of skin lesions, cancers, and heart disease. Basic sanitation still reaches only about <b>59%</b><sup class="cref"><a href="#src-3">3</a></sup>. Access to water was step one; safe water and safe disposal are the unfinished, unglamorous rest.</p>
 
     <h2>The US: the basics can decay, too</h2>
 
-    <p>Anyone who thinks safe water is a "developing-country problem" should look under American streets. The EPA counts roughly <b>9 million lead service lines</b> still carrying drinking water, enough that a national rule now mandates replacing them within a decade, with lead exposure quietly lowering children's IQ and driving behavioral harm. Flint was not an aberration; it was a preview. Infrastructure isn't built once and forgotten. Left unmaintained, the basics rot, and the poorest neighborhoods drink the consequences first.</p>
+    <p>Anyone who thinks safe water is a "developing-country problem" should look under American streets. The EPA counts roughly <b>9 million<sup class="cref"><a href="#src-4">4</a></sup> lead service lines</b> still carrying drinking water, enough that a national rule now mandates replacing them within a decade, with lead exposure quietly lowering children's IQ and driving behavioral harm. Flint was not an aberration; it was a preview. Infrastructure isn't built once and forgotten. Left unmaintained, the basics rot, and the poorest neighborhoods drink the consequences first.</p>
 
     <div class="pull">We keep funding the frontier of medicine while the foundation, safe water, clean hands, quietly cracks under both rich and poor.</div>
 
@@ -181,7 +193,16 @@
       </div>
     </section>
 
-    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+    <section class="sources" aria-label="Sources">
+<h2>Sources</h2>
+<ol>
+<li id="src-1">WHO/UNICEF Joint Monitoring Programme. <a href="https://www.brac.net/program/wp-content/uploads/2022/08/WASH-Capacity-Statement-2022.pdf" target="_blank" rel="noopener">brac.net &#8599;</a></li>
+<li id="src-2">Columbia University / NIH. <a href="https://news.climate.columbia.edu/2025/11/17/arsenic-chronic-illness-bangladesh/" target="_blank" rel="noopener">news.climate.columbia.edu &#8599;</a></li>
+<li id="src-3">WHO/UNICEF Joint Monitoring Programme. <a href="https://tradingeconomics.com/bangladesh/people-using-basic-sanitation-services-percent-of-population-wb-data.html" target="_blank" rel="noopener">tradingeconomics.com &#8599;</a></li>
+<li id="src-4">U.S. Environmental Protection Agency. <a href="https://www.epa.gov/newsreleases/biden-harris-administration-issues-final-rule-requiring-replacement-lead-pipes-within" target="_blank" rel="noopener">epa.gov &#8599;</a></li>
+</ol>
+</section>
+<p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
   </article>
 
   <section class="subscribe" aria-label="Subscribe by email">

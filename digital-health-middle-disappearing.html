@@ -110,6 +110,18 @@
   .bd-form button{padding:11px 20px;border-radius:9px;border:1px solid var(--teal);background:var(--teal);color:#06181a;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;white-space:nowrap;}
   .bd-form button:hover{filter:brightness(1.08);}
   .sub-fine{font-size:12px;color:var(--faint);margin:10px 0 0;}
+
+.cref{font-size:.6em;font-weight:700;vertical-align:super;line-height:0;margin-left:1px;white-space:nowrap}
+.cref a{color:var(--teal);text-decoration:none}
+.cref a:hover{text-decoration:underline}
+.sources{margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.sources h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+.sources ol{margin:0;padding:0 0 0 22px}
+.sources li{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0 0 10px;padding-left:5px}
+.sources li a{color:var(--teal);text-decoration:none;word-break:break-word}
+.sources li a:hover{text-decoration:underline}
+.sources li:target{background:rgba(51,196,196,.10);border-radius:6px;box-shadow:0 0 0 6px rgba(51,196,196,.10)}
+:target{scroll-margin-top:90px}
 </style>
 <script defer src="/assets/analytics.js"></script>
 </head>
@@ -130,7 +142,7 @@
   <p class="byline">By <b>Md Shafaat Ali Choyon</b> <span class="creds">MPH · CHES® · MBA · MCIM</span> · builds &amp; runs AI in production · Growth &amp; health strategist · 6 min read · <time datetime="2026-07-23">Jul 23, 2026</time></p>
 
   <article>
-    <p class="lede">Digital health had its strongest first quarter since the pandemic in 2026, about <b>$4 billion</b> raised. Read past the headline and it's a more sobering story: roughly <b>12 companies captured 59%</b> of that money. The middle of the market is being hollowed out, and I've spent enough time as an operator to know what that actually means for the people building.</p>
+    <p class="lede">Digital health had its strongest first quarter since the pandemic in 2026, about <b>$4 billion</b><sup class="cref"><a href="#src-1">1</a></sup> raised. Read past the headline and it's a more sobering story: roughly <b>12 companies captured 59%</b><sup class="cref"><a href="#src-1">1</a></sup> of that money. The middle of the market is being hollowed out, and I've spent enough time as an operator to know what that actually means for the people building.</p>
 
       <figure class="essay-fig">
         <img src="/assets/og/digital-health-middle-disappearing.png" alt="Digital health raised $4B, the middle is vanishing, 12 firms took 59%, AI is table stakes, operators win on unit economics." loading="lazy" id="ogfig">
@@ -149,7 +161,7 @@
 
     <h2>The dual-market gap widens</h2>
 
-    <p>US digital health took about <b>76%</b> of global funding this quarter, the concentration isn't just by company, it's by geography. Meanwhile Bangladesh's healthtech market is climbing from roughly <b>$70M toward $170M</b> by 2027, a fraction of a single US megadeal. That gap is a problem and an opening: the capital-starved market has no choice but to build lean, unbundled, and profitable early, exactly the discipline the flush market is now being forced to rediscover.</p>
+    <p>US digital health took about <b>76%</b><sup class="cref"><a href="#src-2">2</a></sup> of global funding this quarter, the concentration isn't just by company, it's by geography. Meanwhile Bangladesh's healthtech market is climbing from roughly <b>$70M toward $170<sup class="cref"><a href="#src-3">3</a></sup>M</b> by 2027, a fraction of a single US megadeal. That gap is a problem and an opening: the capital-starved market has no choice but to build lean, unbundled, and profitable early, exactly the discipline the flush market is now being forced to rediscover.</p>
 
     <h2>The operator's takeaway</h2>
 
@@ -181,7 +193,15 @@
       </div>
     </section>
 
-    <p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
+    <section class="sources" aria-label="Sources">
+<h2>Sources</h2>
+<ol>
+<li id="src-1">Rock Health. <a href="https://rockhealth.com/insights/q1-2026-funding-overview-capital-continues-concentrating-and-four-other-market-signals/" target="_blank" rel="noopener">rockhealth.com &#8599;</a></li>
+<li id="src-2">Galen Growth (HealthTech Alpha). <a href="https://www.galengrowth.com/the-american-powerplay-u-s-digital-health-funding-in-q1-2026/" target="_blank" rel="noopener">galengrowth.com &#8599;</a></li>
+<li id="src-3">InnoVision BD / Statista. <a href="https://innovision-bd.com/wp-content/uploads/2022/07/Healthtech-in-Bangladesh.pdf" target="_blank" rel="noopener">innovision-bd.com &#8599;</a></li>
+</ol>
+</section>
+<p class="bio"><b>Md Shafaat Ali Choyon</b> (MPH, CHES®, MBA, MCIM) is a growth, marketing and public-health strategist who builds and runs AI in production, with 16+ years across telecom, fintech, e-commerce, consumer tech and healthcare in the US and Bangladesh. See the <a href="/essays.html">essays</a> or the <a href="/">portfolio</a>.</p>
   </article>
 
   <section class="subscribe" aria-label="Subscribe by email">
