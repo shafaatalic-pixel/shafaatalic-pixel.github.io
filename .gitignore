@@ -96,6 +96,9 @@ index.prerendered.html
 # throwaway test page for the hero-gate experiment
 /index-test.html
 
+# --- Cowork delivered files auto-saved into the repo (kept local, out of deploy) ---
+Claude outputs/
+
 # --- backup folders & scratch swept in accidentally (kept local, out of deploy) ---
 /_cite_backups/
 /_to_delete/
