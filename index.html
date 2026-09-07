@@ -3540,6 +3540,8 @@ var MOBQ=window.matchMedia("(max-width:860px)");
 var REDUCE=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 var LOWDATA=(function(){try{var c=navigator.connection||navigator.mozConnection||navigator.webkitConnection;return !!(c&&(c.saveData===true||/(^2g$|slow-2g|^3g$)/.test(c.effectiveType||"")));}catch(e){return false;}})();
 var built=false,ranOnce=false,raf=null,fbTimer=null,hardTimer=null,gvhHold=false;
+/* Entrance video plays once per browser session; later loads settle straight to the still frame (Replay entrance still works). */
+var GVH_SEEN="sc_gvh_seen";function gvhSeen(){try{return sessionStorage.getItem(GVH_SEEN)==="1";}catch(e){return false;}}function gvhMarkSeen(){try{sessionStorage.setItem(GVH_SEEN,"1");}catch(e){}}
 var wrap,v,still,sh,sv,mt,mb,rp,top;
 function isGrowth(){var l=document.documentElement.getAttribute("data-lens")||"";return l==="growth"||l==="healthcomm"||l==="healthtech"||l==="pophealth"||l==="full";}
 function rgbBg(){
@@ -3573,7 +3575,7 @@ function build(){
  wrap=document.createElement("div");wrap.id="gvh-wrap";
  v=document.createElement("video");
  v.muted=true;v.playsInline=true;v.setAttribute("playsinline","");v.setAttribute("muted","");
- v.preload=LOWDATA?"none":"metadata";v.poster="assets/growth-hero-first.webp";
+ v.preload=(LOWDATA||gvhSeen())?"none":"metadata";v.poster="assets/growth-hero-first.webp";
  var s1=document.createElement("source");s1.src="assets/growth-hero.webm";s1.type="video/webm";
  var s2=document.createElement("source");s2.src="assets/growth-hero.mp4";s2.type="video/mp4";
  v.appendChild(s1);v.appendChild(s2);
@@ -3597,6 +3599,7 @@ function build(){
  v.addEventListener("ended",function(){settle();});
  v.addEventListener("canplay",function(){gvhKick();});
  v.addEventListener("playing",function(){
+  gvhMarkSeen();
   document.documentElement.removeAttribute("data-gvh-fb");
   if(fbTimer){clearTimeout(fbTimer);fbTimer=null;}
   startWipe();
@@ -3608,6 +3611,7 @@ function gvhKick(){
  if(!built||ranOnce||gvhHold)return;
  if(!document.documentElement.hasAttribute("data-gvh"))return;
  if(document.documentElement.hasAttribute("data-gvh-fb"))return;
+ if(gvhSeen()){settleInstant();return;}
  if(v.paused&&v.currentTime<0.2){try{var p=v.play();if(p&&p.catch)p.catch(function(){});}catch(e){}}
 }
 function startWipe(){
