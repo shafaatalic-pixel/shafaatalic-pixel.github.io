@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="/assets/vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous">
 <link rel="preload" as="script" href="/assets/vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous">
 <link rel="stylesheet" href="/assets/vendor/fonts.css">
-<link rel="stylesheet" href="/style.css?v=16">
+<link rel="stylesheet" href="/style.css?v=17">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B0F14">
 <meta name="theme-color" content="#0b0e12">
@@ -299,7 +299,7 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="/assets/vendor/fonts.css">
-<link rel="stylesheet" href="style.css?v=16">
+<link rel="stylesheet" href="style.css?v=17">
 <style id="cta-contrast-guard">[style*="background:var(--accent)"],[style*="background: var(--accent)"]{color:var(--accent-ink)!important;}</style>
 </helmet>
 <div id="site-root" style="position:relative;overflow-x:clip;background:var(--surface-base);min-height:100vh;transition:background .3s ease;">
@@ -939,7 +939,8 @@
  <a href="essays.html" style="font-family:var(--mono);font-size:13px;color:var(--accent-text);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px;" id="essays-all-link">Browse all 89 essays →</a>
  </div>
  <p data-reveal style="font-family:var(--body);font-size:clamp(14px,1.4vw,16px);line-height:1.6;color:var(--text-muted);max-width:62ch;margin:0 0 14px;">Original, in-depth pieces, the latest from each of my four lenses: AI, growth, public health and health-tech.</p>
- <div id="essay-showcase" data-reveal><a href="essays.html" style="font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;">Loading latest essays…</a></div>
+ <button type="button" class="gt-btn" data-gt-toggle aria-expanded="false"><span class="gt-l1">Show writing</span><span class="gt-l2">Hide writing</span> <span class="gt-chev">&#9662;</span></button>
+<div id="essay-showcase" data-reveal><a href="essays.html" style="font-family:var(--mono);font-size:13px;color:var(--text-muted);text-decoration:none;">Loading latest essays…</a></div>
  <div data-reveal style="border-top:1px solid var(--border-hairline);margin:36px 0 0;"></div>
 
  <div data-reveal style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px;margin:22px 0 40px;">
@@ -1228,6 +1229,7 @@
  </div>
  <h2 data-reveal style="font-family:var(--disp);font-weight:800;font-size:clamp(26px,3.4vw,38px);letter-spacing:-.02em;color:var(--text-strong);margin:14px 0 10px;line-height:1.1;">Attention <span style="color:var(--text-faint);font-weight:400;">→</span> Intelligence <span style="color:var(--text-faint);font-weight:400;">→</span> Outcomes</h2>
  <p data-reveal style="font-family:var(--body);font-size:clamp(15px,1.5vw,17px);line-height:1.6;color:var(--text-muted);max-width:76ch;margin:0;">Three ways my work has created value over sixteen years, first by <strong style="color:var(--text-strong);font-weight:600;">winning attention</strong>, then by turning data and behaviour into <strong style="color:var(--text-strong);font-weight:600;">better decisions</strong>, now by owning <strong style="color:var(--text-strong);font-weight:600;">measurable outcomes</strong>. It isn't a theory about markets; it's a reading of one record, and each stage carries its own receipts.</p>
+ <button type="button" class="gt-btn" data-gt-toggle aria-expanded="false"><span class="gt-l1">Show the framework</span><span class="gt-l2">Hide the framework</span> <span class="gt-chev">&#9662;</span></button>
  </div>
  <figure class="ol-portrait" data-reveal>
  <div class="ol-portrait-frame">
@@ -1315,8 +1317,7 @@
 
  </main>
  <!-- CONTACT -->
- <div id="gt-also"><b>Also on this site</b> <a href="/essays.html">Published writing, 14 health-policy articles &rarr;</a> <a href="/?view=full#operating-logic">Attention &rarr; Intelligence &rarr; Outcomes &rarr;</a></div>
-<footer id="contact" data-screen-label="Contact" style="padding:clamp(70px,10vh,110px) clamp(20px,4vw,48px) 0;border-top:1px solid var(--border-hairline);">
+ <footer id="contact" data-screen-label="Contact" style="padding:clamp(70px,10vh,110px) clamp(20px,4vw,48px) 0;border-top:1px solid var(--border-hairline);">
  <div style="max-width:1100px;margin:0 auto;">
  <div data-reveal style="background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:12px;padding:clamp(36px,5vw,56px);box-shadow:var(--shadow-card);">
  <div style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);">Let's work</div>
@@ -3421,7 +3422,7 @@ class Component extends DCLogic {
     var nx=bar.querySelector('.st-next'); if(nx) nx.onclick=function(){go(i+1);};
     var dn=bar.querySelector('.st-done'); if(dn) dn.onclick=finish;
     var pa=bar.querySelector('.st-pause'); if(pa) pa.onclick=togglePause;
-    var el=document.querySelector(s.sel);
+    var el=document.querySelector(s.sel); if(el){ var _gs=el.closest('section'); if(_gs&&!_gs.classList.contains('gt-open')){ _gs.classList.add('gt-open'); _gs.setAttribute('data-gt-tour','1'); var _gb=_gs.querySelector('[data-gt-toggle]'); if(_gb)_gb.setAttribute('aria-expanded','true'); } }
     if(el){ setFocus(el); try{ el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}); }catch(e){ el.scrollIntoView(); } }
   }
   function schedule(){ if(timer) clearTimeout(timer); if(paused||reduce) return; var d=(STEPS[i]&&STEPS[i].ms)||DUR; if(i>=STEPS.length-1){ timer=setTimeout(finish,d); return; } timer=setTimeout(function(){go(i+1);},d); }
@@ -3434,8 +3435,9 @@ class Component extends DCLogic {
     try{ localStorage.setItem('sc_site_tour_seen','1'); }catch(e){}
     if(window.track) try{ window.track(auto?'site_tour_autostart':'site_tour_start',{}); }catch(e){}
   }
-  function stop(){ if(window.track) try{ window.track('site_tour_cancel',{}); }catch(e){} if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; if(startedFromLanding){ var l=document.getElementById('landing'); if(l){ l.style.display='flex'; document.body.style.overflow='hidden'; } try{ window.scrollTo(0,0); }catch(e){} } else { try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } } try{ window.dispatchEvent(new Event('scroll')); }catch(e){} }
-  function finish(){ if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; if(startedFromLanding){ var l=document.getElementById('landing'); if(l){ l.style.display='flex'; document.body.style.overflow='hidden'; } try{ window.scrollTo(0,0); }catch(e){} } else { try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } } if(window.track) try{ window.track('site_tour_complete',{}); }catch(e){} }
+  function gtTourReset(){ try{ document.querySelectorAll('section[data-gt-tour]').forEach(function(x){ x.classList.remove('gt-open'); x.removeAttribute('data-gt-tour'); var b=x.querySelector('[data-gt-toggle]'); if(b)b.setAttribute('aria-expanded','false'); }); }catch(e){} }
+  function stop(){ gtTourReset(); if(window.track) try{ window.track('site_tour_cancel',{}); }catch(e){} if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; if(startedFromLanding){ var l=document.getElementById('landing'); if(l){ l.style.display='flex'; document.body.style.overflow='hidden'; } try{ window.scrollTo(0,0); }catch(e){} } else { try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } } try{ window.dispatchEvent(new Event('scroll')); }catch(e){} }
+  function finish(){ gtTourReset(); if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; if(startedFromLanding){ var l=document.getElementById('landing'); if(l){ l.style.display='flex'; document.body.style.overflow='hidden'; } try{ window.scrollTo(0,0); }catch(e){} } else { try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } } if(window.track) try{ window.track('site_tour_complete',{}); }catch(e){} }
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&bar.classList.contains('on')) stop(); });
   setTimeout(function(){
     try{ if(localStorage.getItem('sc_site_tour_seen')) return; }catch(e){}
@@ -3750,7 +3752,7 @@ setTimeout(sync,400);setTimeout(sync,1500);
 
 <!-- Perf: icon library moved below the fold so it no longer render-blocks the hero paint; every lucide consumer is guarded (if(window.lucide)) and runs at boot, and this synchronous tag still executes before DOMContentLoaded. -->
 <script>/* Growth-lens trim toggles: flip .gt-open on the enclosing section; all visibility is CSS keyed on html[data-lens] */
-document.addEventListener('click',function(e){var b=e.target&&e.target.closest?e.target.closest('[data-gt-toggle]'):null;if(!b)return;var sec=b.closest('section');if(!sec)return;var open=sec.classList.toggle('gt-open');b.setAttribute('aria-expanded',open?'true':'false');});</script>
+document.addEventListener('click',function(e){var t=e.target;if(!t||!t.closest)return;var b=t.closest('[data-gt-toggle]');if(b){var sec=b.closest('section');if(!sec)return;var open=sec.classList.toggle('gt-open');b.setAttribute('aria-expanded',open?'true':'false');return;}var a=t.closest('a[href^="#"]');if(a){var id=a.getAttribute('href').slice(1);var tg=id&&document.getElementById(id);var ts=tg&&tg.closest('section');if(ts&&ts.id!=='cases'&&ts.querySelector('[data-gt-toggle]')&&!ts.classList.contains('gt-open')){ts.classList.add('gt-open');var bb=ts.querySelector('[data-gt-toggle]');if(bb)bb.setAttribute('aria-expanded','true');}}});</script>
 <script src="/assets/vendor/lucide.min.js" integrity="sha384-ieG+IKD0d/ZPXyCBTMVAbqsQdns8QGJR/e26WMw7M4fkaI/rHcS/YIoi+ah9WGge" crossorigin="anonymous"></script>
 </body>
 </html>

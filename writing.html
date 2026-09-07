@@ -95,7 +95,7 @@
 <div class="wrap">
  <header class="top">
  <a class="brand" href="/">Shafaat Choyon<span class="dot">.</span></a>
- <a href="/" class="sc-backpill">← Back to portfolio</a>
+ <a href="/" class="sc-backpill" data-lens-back>← Back to portfolio</a>
  </header>
 
  <div class="eyebrow">Published writing</div>
@@ -219,5 +219,7 @@
  <a href="https://www.linkedin.com/in/sacgrowthspecialist" target="_blank" rel="noopener">LinkedIn</a>
  </footer>
 </div>
+<script>/* Return to the lens the visitor came from (the landing saves it), not the neutral chooser */
+(function(){try{var l=localStorage.getItem('shafaat_lens');if(l&&/^(growth|healthtech|healthcomm|pophealth)$/.test(l)){document.querySelectorAll('a[data-lens-back]').forEach(function(a){a.setAttribute('href','/?view='+l);});}}catch(e){}})();</script>
 </body>
 </html>

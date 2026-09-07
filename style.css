@@ -189,10 +189,7 @@ img[width="84"][height="22"]{height:30px!important;width:auto!important;max-widt
    Everything here is keyed on html[data-lens="growth"], so it switches itself off the
    instant the visitor changes lens. Open/closed state is a .gt-open class on the section,
    set by a tiny delegated click handler in index.html. Nothing is removed from the DOM. */
-html[data-lens="growth"] #writing,
-html[data-lens="growth"] #operating-logic,
-html[data-lens="growth"] [data-navlink][href="#writing"],
-html[data-lens="growth"] .m-link[href="#writing"]{display:none!important}
+/* Nothing is hidden on the growth lens: every section is either featured or collapsed. */
 
 /* Featured cases: the four wins the growth lens itself names, as one flat grid.
    Sub-group headings/pills hide; the full grouped view comes back when opened. */
@@ -219,10 +216,16 @@ html[data-lens="growth"] #press:not(.gt-open) #press-list{display:none!important
 html[data-lens="growth"] #hsrep:not(.gt-open) .hsrep-metrics,
 html[data-lens="growth"] #hsrep:not(.gt-open) .hsrep-thesis,
 html[data-lens="growth"] #hsrep:not(.gt-open) .hsrep-cta{display:none!important}
+html[data-lens="growth"] #writing:not(.gt-open) #essay-showcase,
+html[data-lens="growth"] #writing:not(.gt-open) #essay-showcase ~ *,
+html[data-lens="growth"] #operating-logic:not(.gt-open) .ol-intro > figure.ol-portrait,
+html[data-lens="growth"] #operating-logic:not(.gt-open) .ol-intro ~ *:not(.gt-btn){display:none!important}
 html[data-lens="growth"] #approach:not(.gt-open),
 html[data-lens="growth"] #experience:not(.gt-open),
 html[data-lens="growth"] #faq:not(.gt-open),
 html[data-lens="growth"] #how-i-work:not(.gt-open),
+html[data-lens="growth"] #writing:not(.gt-open),
+html[data-lens="growth"] #operating-logic:not(.gt-open),
 html[data-lens="growth"] #hsrep:not(.gt-open),
 html[data-lens="growth"] #press:not(.gt-open){padding-top:clamp(36px,5vh,56px)!important;padding-bottom:clamp(36px,5vh,56px)!important}
 html[data-lens="growth"] #sixty,
@@ -230,11 +233,8 @@ html[data-lens="growth"] #proof,
 html[data-lens="growth"] #voices{padding-top:clamp(28px,4vh,44px)!important;padding-bottom:clamp(28px,4vh,44px)!important}
 
 /* Toggles and the also-on-this-site strip only exist on the growth lens */
-.gt-btn,#gt-also{display:none}
+.gt-btn{display:none}
 html[data-lens="growth"] .gt-btn{display:inline-flex;align-items:center;gap:8px;margin:16px 0 4px;padding:9px 16px;border-radius:999px;border:1px solid var(--accent);background:var(--accent-soft,transparent);color:var(--accent-text,var(--accent));font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.01em;cursor:pointer}
 .gt-chev{display:inline-block;transition:transform .2s}
 .gt-open .gt-chev{transform:rotate(180deg)}
 .gt-l2{display:none}.gt-open .gt-l1{display:none}.gt-open .gt-l2{display:inline}
-html[data-lens="growth"] #gt-also{display:flex;flex-wrap:wrap;gap:8px 22px;padding:22px clamp(20px,4vw,48px);max-width:1100px;margin:0 auto;font-family:var(--mono);font-size:12.5px;color:var(--text-muted);border-top:1px solid var(--border-hairline)}
-#gt-also b{color:var(--text-strong);font-family:var(--disp)}
-#gt-also a{color:var(--accent-text,var(--accent));text-decoration:none;font-weight:600}

@@ -215,7 +215,7 @@
   <header class="top">
     <a class="brand" href="/"><img src="/assets/logos/sc-mark.webp" alt="Shafaat Choyon logo" width="30" height="30" />Shafaat Choyon<span class="dot">.</span></a>
     <div class="navlinks">
-      <a class="back" href="/">← Back to portfolio</a>
+      <a class="back" href="/" data-lens-back>← Back to portfolio</a>
       <a class="back" href="/writing.html">Published writing</a>
       <button class="tgl" id="theme-toggle" type="button" aria-label="Toggle light or dark theme"><span id="tgl-ico" aria-hidden="true"></span></button>
     </div>
@@ -1199,5 +1199,7 @@
     try{if(window.track)window.track('essays_theme_toggle',{theme:next});}catch(e){}
   });
 })();</script>
+<script>/* Return to the lens the visitor came from (the landing saves it), not the neutral chooser */
+(function(){try{var l=localStorage.getItem('shafaat_lens');if(l&&/^(growth|healthtech|healthcomm|pophealth)$/.test(l)){document.querySelectorAll('a[data-lens-back]').forEach(function(a){a.setAttribute('href','/?view='+l);});}}catch(e){}})();</script>
 </body>
 </html>
