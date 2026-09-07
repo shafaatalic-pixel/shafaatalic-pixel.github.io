@@ -185,56 +185,57 @@ img[width="84"][height="22"]{height:30px!important;width:auto!important;max-widt
 :root[data-theme="light"] [data-nav] #qs-btn,
 :root[data-theme="light"] [data-nav] #theme-toggle{border-color:rgba(28,46,74,.34)!important;color:#243040!important;background:rgba(255,255,255,.62)!important;}
 
-/* ===== Growth-lens trim (2026-09-07) =====
-   Everything here is keyed on html[data-lens="growth"], so it switches itself off the
-   instant the visitor changes lens. Open/closed state is a .gt-open class on the section,
-   set by a tiny delegated click handler in index.html. Nothing is removed from the DOM. */
-/* Nothing is hidden on the growth lens: every section is either featured or collapsed. */
+/* ===== Lens trim (2026-09-07) =====
+   Applies on the four focused lenses (growth, healthtech, healthcomm, pophealth); the full portfolio
+   is never trimmed. Everything is keyed on html[data-lens], so it switches itself off the instant the
+   visitor changes lens. Open/closed state is a .gt-open class on the section, set by a small delegated
+   click handler in index.html. Nothing is removed from the DOM. Each lens features the four cases its
+   own focus copy names. Health Communication and Population Health keep Writing and HSREP fully open,
+   because those are core proof for those audiences. */
 
-/* Featured cases: the four wins the growth lens itself names, as one flat grid.
-   Sub-group headings/pills hide; the full grouped view comes back when opened. */
-html[data-lens="growth"] #cases:not(.gt-open) #case-nav,
-html[data-lens="growth"] #cases:not(.gt-open) #case-focus{display:none!important}
-html[data-lens="growth"] #cases:not(.gt-open) #company-groups{display:grid!important;grid-template-columns:1fr;gap:0 14px}
-@media (min-width:900px){html[data-lens="growth"] #cases:not(.gt-open) #company-groups{grid-template-columns:repeat(2,1fr)}}
-/* flatten group wrapper + grid so all cards share one grid; hide only the group heading */
-html[data-lens="growth"] #cases:not(.gt-open) #company-groups>div{display:contents!important}
-html[data-lens="growth"] #cases:not(.gt-open) #company-groups>div>div:not(.cf-grid):not(.cg-detailwrap){display:none!important}
-html[data-lens="growth"] #cases:not(.gt-open) #company-groups>div>.cf-grid{display:contents!important}
-/* "Open case" panels sit below the featured grid, full width */
-html[data-lens="growth"] #cases:not(.gt-open) #company-groups>div>.cg-detailwrap{grid-column:1/-1;order:100}
-html[data-lens="growth"] #cases:not(.gt-open) .cf-card{margin-bottom:14px}
-html[data-lens="growth"] #cases:not(.gt-open) .cf-card:not([data-case="note9"]):not([data-case="praava-corp"]):not([data-case="ekhanei-laser"]):not([data-case="surecash-g2p"]){display:none!important}
-html[data-lens="growth"] #cases:not(.gt-open) .cf-card[data-case="note9"]{order:-1}
-
-/* Collapsed sections: eyebrow, heading and subtitle stay; the body tucks behind the toggle */
-html[data-lens="growth"] #approach:not(.gt-open) #approach-cards,
-html[data-lens="growth"] #experience:not(.gt-open) #timeline,
-html[data-lens="growth"] #faq:not(.gt-open) #faq-body,
-html[data-lens="growth"] #how-i-work:not(.gt-open) #hiw-body,
-html[data-lens="growth"] #press:not(.gt-open) #press-list{display:none!important}
-html[data-lens="growth"] #hsrep:not(.gt-open) .hsrep-metrics,
-html[data-lens="growth"] #hsrep:not(.gt-open) .hsrep-thesis,
-html[data-lens="growth"] #hsrep:not(.gt-open) .hsrep-cta{display:none!important}
-html[data-lens="growth"] #writing:not(.gt-open) #essay-showcase,
-html[data-lens="growth"] #writing:not(.gt-open) #essay-showcase ~ *,
-html[data-lens="growth"] #operating-logic:not(.gt-open) .ol-intro > figure.ol-portrait,
-html[data-lens="growth"] #operating-logic:not(.gt-open) .ol-intro ~ *:not(.gt-btn){display:none!important}
-html[data-lens="growth"] #approach:not(.gt-open),
-html[data-lens="growth"] #experience:not(.gt-open),
-html[data-lens="growth"] #faq:not(.gt-open),
-html[data-lens="growth"] #how-i-work:not(.gt-open),
-html[data-lens="growth"] #writing:not(.gt-open),
-html[data-lens="growth"] #operating-logic:not(.gt-open),
-html[data-lens="growth"] #hsrep:not(.gt-open),
-html[data-lens="growth"] #press:not(.gt-open){padding-top:clamp(36px,5vh,56px)!important;padding-bottom:clamp(36px,5vh,56px)!important}
-html[data-lens="growth"] #sixty,
-html[data-lens="growth"] #proof,
-html[data-lens="growth"] #voices{padding-top:clamp(28px,4vh,44px)!important;padding-bottom:clamp(28px,4vh,44px)!important}
-
-/* Toggles and the also-on-this-site strip only exist on the growth lens */
+/* -- toggles exist only on trimmed lenses -- */
 .gt-btn{display:none}
-html[data-lens="growth"] .gt-btn{display:inline-flex;align-items:center;gap:8px;margin:16px 0 4px;padding:9px 16px;border-radius:999px;border:1px solid var(--accent);background:var(--accent-soft,transparent);color:var(--accent-text,var(--accent));font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.01em;cursor:pointer}
+html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) .gt-btn{display:inline-flex;align-items:center;gap:8px;margin:16px 0 4px;padding:9px 16px;border-radius:999px;border:1px solid var(--accent);background:var(--accent-soft,transparent);color:var(--accent-text,var(--accent));font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.01em;cursor:pointer}
 .gt-chev{display:inline-block;transition:transform .2s}
 .gt-open .gt-chev{transform:rotate(180deg)}
 .gt-l2{display:none}.gt-open .gt-l1{display:none}.gt-open .gt-l2{display:inline}
+
+/* -- featured cases: one flat grid; sub-group headings and pills hide; the full grouped view returns on open -- */
+html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) #cases:not(.gt-open) #case-nav,
+html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) #cases:not(.gt-open) #case-focus{display:none!important}
+html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) #cases:not(.gt-open) #company-groups{display:grid!important;grid-template-columns:1fr;gap:0 14px}
+@media (min-width:900px){html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) #cases:not(.gt-open) #company-groups{grid-template-columns:repeat(2,1fr)}}
+html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) #cases:not(.gt-open) #company-groups>div{display:contents!important}
+html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) #cases:not(.gt-open) #company-groups>div>div:not(.cf-grid):not(.cg-detailwrap){display:none!important}
+html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) #cases:not(.gt-open) #company-groups>div>.cf-grid{display:contents!important}
+html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) #cases:not(.gt-open) #company-groups>div>.cg-detailwrap{grid-column:1/-1;order:100}
+html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) #cases:not(.gt-open) .cf-card{margin-bottom:14px}
+/* per lens: the four that survive the featured state, and which one leads */
+html[data-lens="growth"] #cases:not(.gt-open) .cf-card:not([data-case="note9"]):not([data-case="praava-corp"]):not([data-case="ekhanei-laser"]):not([data-case="surecash-g2p"]){display:none!important}
+html[data-lens="growth"] #cases:not(.gt-open) .cf-card[data-case="note9"]{order:-1}
+html[data-lens="healthcomm"] #cases:not(.gt-open) .cf-card:not([data-case="harm-reduction"]):not([data-case="hsrep"]):not([data-case="surecash-g2p"]):not([data-case="praava-footfall"]){display:none!important}
+html[data-lens="healthcomm"] #cases:not(.gt-open) .cf-card[data-case="harm-reduction"]{order:-1}
+html[data-lens="healthtech"] #cases:not(.gt-open) .cf-card:not([data-case="praava-engines"]):not([data-case="samsung-digital"]):not([data-case="ekhanei-laser"]):not([data-case="laser-treat"]){display:none!important}
+html[data-lens="healthtech"] #cases:not(.gt-open) .cf-card[data-case="praava-engines"]{order:-1}
+html[data-lens="pophealth"] #cases:not(.gt-open) .cf-card:not([data-case="harm-reduction"]):not([data-case="praava-lifebuoy"]):not([data-case="praava-travel"]):not([data-case="surecash-g2p"]){display:none!important}
+html[data-lens="pophealth"] #cases:not(.gt-open) .cf-card[data-case="harm-reduction"]{order:-1}
+
+/* -- collapsed on every trimmed lens: eyebrow, heading and subtitle stay; the body tucks behind the toggle -- */
+html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) #approach:not(.gt-open) #approach-cards,
+html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) #experience:not(.gt-open) #timeline,
+html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) #faq:not(.gt-open) #faq-body,
+html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) #how-i-work:not(.gt-open) #hiw-body,
+html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) #press:not(.gt-open) #press-list,
+html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) #operating-logic:not(.gt-open) .ol-intro > figure.ol-portrait,
+html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) #operating-logic:not(.gt-open) .ol-intro ~ *:not(.gt-btn){display:none!important}
+/* -- HSREP and Writing: collapsed on growth + health-tech, fully open on health-comm + pop-health -- */
+html:is([data-lens="growth"],[data-lens="healthtech"]) #hsrep:not(.gt-open) .hsrep-metrics,
+html:is([data-lens="growth"],[data-lens="healthtech"]) #hsrep:not(.gt-open) .hsrep-thesis,
+html:is([data-lens="growth"],[data-lens="healthtech"]) #hsrep:not(.gt-open) .hsrep-cta,
+html:is([data-lens="growth"],[data-lens="healthtech"]) #writing:not(.gt-open) #essay-showcase,
+html:is([data-lens="growth"],[data-lens="healthtech"]) #writing:not(.gt-open) #essay-showcase ~ *{display:none!important}
+html:is([data-lens="healthcomm"],[data-lens="pophealth"]) :is(#hsrep,#writing) .gt-btn{display:none!important}
+/* -- tighter rhythm while collapsed -- */
+html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) :is(#approach,#experience,#faq,#how-i-work,#press,#operating-logic):not(.gt-open),
+html:is([data-lens="growth"],[data-lens="healthtech"]) :is(#hsrep,#writing):not(.gt-open){padding-top:clamp(36px,5vh,56px)!important;padding-bottom:clamp(36px,5vh,56px)!important}
+html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) :is(#sixty,#proof,#voices){padding-top:clamp(28px,4vh,44px)!important;padding-bottom:clamp(28px,4vh,44px)!important}
