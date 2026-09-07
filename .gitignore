@@ -105,3 +105,6 @@ Claude outputs/
 /*.backup-*.html
 /*.backup-*.css
 /*.backup-*.js
+
+# stray temp files from image processing
+*.tmp
