@@ -299,7 +299,6 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="/assets/vendor/fonts.css">
-<script src="/assets/vendor/lucide.min.js" integrity="sha384-ieG+IKD0d/ZPXyCBTMVAbqsQdns8QGJR/e26WMw7M4fkaI/rHcS/YIoi+ah9WGge" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="style.css?v=15">
 <style id="cta-contrast-guard">[style*="background:var(--accent)"],[style*="background: var(--accent)"]{color:var(--accent-ink)!important;}</style>
 </helmet>
@@ -3741,5 +3740,7 @@ setTimeout(sync,400);setTimeout(sync,1500);
 </script>
 <!-- ===== /gvh ===== -->
 
+<!-- Perf: icon library moved below the fold so it no longer render-blocks the hero paint; every lucide consumer is guarded (if(window.lucide)) and runs at boot, and this synchronous tag still executes before DOMContentLoaded. -->
+<script src="/assets/vendor/lucide.min.js" integrity="sha384-ieG+IKD0d/ZPXyCBTMVAbqsQdns8QGJR/e26WMw7M4fkaI/rHcS/YIoi+ah9WGge" crossorigin="anonymous"></script>
 </body>
 </html>
