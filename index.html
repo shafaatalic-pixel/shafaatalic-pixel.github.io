@@ -2757,7 +2757,7 @@ class Component extends DCLogic {
  try{
  var seen={}, ticking=false;
  function checkSecs(){ ticking=false; if(!window.__gaOn) return; var vh=window.innerHeight||1;
- document.querySelectorAll('[data-screen-label]').forEach(function(s){ var l=s.getAttribute('data-screen-label'); if(!l||seen[l]) return; var r=s.getBoundingClientRect(); if(r.top < vh*0.6 && r.bottom > vh*0.2){ seen[l]=1; var _sid=(s.id||l).toString().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); T('section_view',{section:l, section_id:_sid}); } });
+ document.querySelectorAll('[data-screen-label]').forEach(function(s){ var l=s.getAttribute('data-screen-label'); if(!l||seen[l]) return; var r=s.getBoundingClientRect(); if(r.top < vh*0.6 && r.bottom > vh*0.2){ seen[l]=1; var _sid=(s.id||l).toString().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); T('section_view',{section:l, section_id:_sid, lens:(document.documentElement.getAttribute('data-lens')||'unset')}); } });
  }
  function onScroll(){ if(!ticking){ ticking=true; (window.requestAnimationFrame||setTimeout)(checkSecs); } }
  window.addEventListener('scroll', onScroll, {passive:true});
