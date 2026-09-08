@@ -3759,7 +3759,15 @@ setTimeout(sync,400);setTimeout(sync,1500);
 
 <!-- Perf: icon library moved below the fold so it no longer render-blocks the hero paint; every lucide consumer is guarded (if(window.lucide)) and runs at boot, and this synchronous tag still executes before DOMContentLoaded. -->
 <script>/* Growth-lens trim toggles: flip .gt-open on the enclosing section; all visibility is CSS keyed on html[data-lens] */
-document.addEventListener('click',function(e){var t=e.target;if(!t||!t.closest)return;var b=t.closest('[data-gt-toggle]');if(b){var sec=b.closest('section');if(!sec)return;var open=sec.classList.toggle('gt-open');b.setAttribute('aria-expanded',open?'true':'false');return;}var a=t.closest('a[href^="#"]');if(a){var id=a.getAttribute('href').slice(1);var tg=id&&document.getElementById(id);var ts=tg&&tg.closest('section');if(ts&&ts.id!=='cases'&&ts.querySelector('[data-gt-toggle]')&&!ts.classList.contains('gt-open')){ts.classList.add('gt-open');var bb=ts.querySelector('[data-gt-toggle]');if(bb)bb.setAttribute('aria-expanded','true');}}});</script>
+document.addEventListener('click',function(e){var t=e.target;if(!t||!t.closest)return;var b=t.closest('[data-gt-toggle]');if(b){var sec=b.closest('section');if(!sec)return;var open=sec.classList.toggle('gt-open');b.setAttribute('aria-expanded',open?'true':'false');return;}var a=t.closest('a[href^="#"]');if(a){var id=a.getAttribute('href').slice(1);var tg=id&&document.getElementById(id);var ts=tg&&tg.closest('section');if(ts&&ts.id!=='cases'&&ts.querySelector('[data-gt-toggle]')&&!ts.classList.contains('gt-open')){ts.classList.add('gt-open');var bb=ts.querySelector('[data-gt-toggle]');if(bb)bb.setAttribute('aria-expanded','true');}}});
+/* The runtime re-renders the page at boot, replacing these nodes, so anything set on them before boot is lost.
+   Re-apply after DOM replacement (debounced MutationObserver) and on load; hash-opening only for the first 6s so a
+   visitor who closes the section afterwards is not fought. */
+function gtOpenHash(){try{var id=(location.hash||'').slice(1);var tg=id&&document.getElementById(id);var ts=tg&&tg.closest('section');if(ts&&ts.id!=='cases'&&ts.querySelector('[data-gt-toggle]')&&!ts.classList.contains('gt-open')){ts.classList.add('gt-open');var b=ts.querySelector('[data-gt-toggle]');if(b)b.setAttribute('aria-expanded','true');}}catch(e){}}
+function gtAria(){try{document.querySelectorAll('[data-gt-toggle]').forEach(function(b){var sec=b.closest('section');if(sec&&sec.id&&!b.getAttribute('aria-controls'))b.setAttribute('aria-controls',sec.id);});}catch(e){}}
+var gtT0=Date.now(),gtRaf=null;function gtSettle(){gtAria();if(Date.now()-gtT0<6000)gtOpenHash();}
+try{new MutationObserver(function(){if(gtRaf)return;gtRaf=requestAnimationFrame(function(){gtRaf=null;gtSettle();});}).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
+window.addEventListener('load',gtSettle);window.addEventListener('hashchange',gtOpenHash);gtSettle();</script>
 <script src="/assets/vendor/lucide.min.js" integrity="sha384-ieG+IKD0d/ZPXyCBTMVAbqsQdns8QGJR/e26WMw7M4fkaI/rHcS/YIoi+ah9WGge" crossorigin="anonymous"></script>
 </body>
 </html>
