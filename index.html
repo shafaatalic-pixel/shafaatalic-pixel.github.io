@@ -1571,6 +1571,7 @@
     io.observe(v);
    } else { v.preload='auto'; v.play().catch(function(){}); }
   }
+  setTimeout(function(){ enter(); }, 1000); /* cards + headline at ~1s; the walk-in keeps playing behind them */
   setTimeout(function(){ if(!started){ L.classList.add('playing'); enter(); } }, 2400);
   setTimeout(function(){ enter(); }, 7000);
   L.addEventListener('mouseover', function(e){ var c=e.target.closest?e.target.closest('.lc'):null; if(!c)return; var ac=c.getAttribute('data-accent'); if(ac){ L.style.setProperty('--playtint',ac); L.style.setProperty('--lensring',ac); } });
@@ -1621,6 +1622,7 @@ class Component extends DCLogic {
   }
   if(reduce){ enter(); }
   setTimeout(function(){ L.classList.add('playing'); }, 700);
+  setTimeout(function(){ enter(); }, 1000); /* cards + headline at ~1s; the walk-in keeps playing behind them */
   setTimeout(function(){ if(!started) enter(); }, 4200);
   setTimeout(function(){ enter(); }, 7000);
   L.addEventListener('mouseover', function(e){ var c=e.target.closest?e.target.closest('.lc'):null; if(!c)return; var ac=c.getAttribute('data-accent'); if(ac){ L.style.setProperty('--playtint',ac); L.style.setProperty('--lensring',ac); } });
@@ -3492,16 +3494,16 @@ html[data-gvh-set] #gvh-rp{display:inline-flex}
  html[data-gvh] #hero-headline{font-size:clamp(36px,4.6vw,66px)!important;max-width:24ch!important}
  html[data-gvh] #hero-whofor{font-size:clamp(16px,1.42vw,20px)!important}
  html[data-gvh] #hero-subhead{font-size:clamp(15px,1.3vw,18px)!important;max-width:62ch!important}
- html[data-gvh]:not([data-gvh-set]) #top .hero-grid>div:first-child>*{opacity:0!important;transform:translateY(22px)!important;transition:none!important}
- html[data-gvh][data-gvh-set] #top .hero-grid>div:first-child>*{opacity:1!important;transform:none!important;transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)!important}
- html[data-gvh][data-gvh-set] #top .hero-grid>div:first-child>*:nth-child(1){transition-delay:.05s!important}
- html[data-gvh][data-gvh-set] #top .hero-grid>div:first-child>*:nth-child(2){transition-delay:.18s!important}
- html[data-gvh][data-gvh-set] #top .hero-grid>div:first-child>*:nth-child(3){transition-delay:.32s!important}
- html[data-gvh][data-gvh-set] #top .hero-grid>div:first-child>*:nth-child(4){transition-delay:.5s!important}
- html[data-gvh][data-gvh-set] #top .hero-grid>div:first-child>*:nth-child(5){transition-delay:.64s!important}
- html[data-gvh][data-gvh-set] #top .hero-grid>div:first-child>*:nth-child(6){transition-delay:.76s!important}
- html[data-gvh][data-gvh-set] #top .hero-grid>div:first-child>*:nth-child(7){transition-delay:.9s!important}
- html[data-gvh][data-gvh-set] #top .hero-grid>div:first-child>*:nth-child(8){transition-delay:1.05s!important}
+ html[data-gvh]:not([data-gvh-copy]) #top .hero-grid>div:first-child>*{opacity:0!important;transform:translateY(22px)!important;transition:none!important}
+ html[data-gvh][data-gvh-copy] #top .hero-grid>div:first-child>*{opacity:1!important;transform:none!important;transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)!important}
+ html[data-gvh][data-gvh-copy] #top .hero-grid>div:first-child>*:nth-child(1){transition-delay:.05s!important}
+ html[data-gvh][data-gvh-copy] #top .hero-grid>div:first-child>*:nth-child(2){transition-delay:.18s!important}
+ html[data-gvh][data-gvh-copy] #top .hero-grid>div:first-child>*:nth-child(3){transition-delay:.32s!important}
+ html[data-gvh][data-gvh-copy] #top .hero-grid>div:first-child>*:nth-child(4){transition-delay:.5s!important}
+ html[data-gvh][data-gvh-copy] #top .hero-grid>div:first-child>*:nth-child(5){transition-delay:.64s!important}
+ html[data-gvh][data-gvh-copy] #top .hero-grid>div:first-child>*:nth-child(6){transition-delay:.76s!important}
+ html[data-gvh][data-gvh-copy] #top .hero-grid>div:first-child>*:nth-child(7){transition-delay:.9s!important}
+ html[data-gvh][data-gvh-copy] #top .hero-grid>div:first-child>*:nth-child(8){transition-delay:1.05s!important}
 }
 @media(max-width:860px){
  html[data-gvh] #top{display:block!important;padding:0 0 40px!important;min-height:0!important}
@@ -3594,6 +3596,7 @@ function build(){
  rp.addEventListener("click",function(){
   document.documentElement.removeAttribute("data-gvh-fb");
   document.documentElement.removeAttribute("data-gvh-set");
+  document.documentElement.removeAttribute("data-gvh-copy");
   document.documentElement.style.setProperty("--gvhwe","0%");
   try{v.currentTime=0;v.play();}catch(e){settleInstant();}
  });
@@ -3602,6 +3605,7 @@ function build(){
  v.addEventListener("canplay",function(){gvhKick();});
  v.addEventListener("playing",function(){
   gvhMarkSeen();
+  setTimeout(markCopy,1000); /* copy at ~1s, video keeps playing behind it */
   document.documentElement.removeAttribute("data-gvh-fb");
   if(fbTimer){clearTimeout(fbTimer);fbTimer=null;}
   startWipe();
@@ -3620,7 +3624,7 @@ function startWipe(){
  cancelAnimationFrame(raf);
  function loop(){
   var d=v.duration||5;
-  var pe=Math.max(0,Math.min(1,(v.currentTime-0.3)/(d-1.35)));
+  var pe=Math.max(0,Math.min(1,(v.currentTime-0.15)/1.4)); /* shade settles by ~1.6s so the early copy is readable */
   var e=pe*pe*(3-2*pe);
   document.documentElement.style.setProperty("--gvhwe",(e*126)+"%");
   if(v.currentTime>d-1.25)markSet();
@@ -3628,7 +3632,8 @@ function startWipe(){
  }
  raf=requestAnimationFrame(loop);
 }
-function markSet(){document.documentElement.setAttribute("data-gvh-set","");}
+function markSet(){document.documentElement.setAttribute("data-gvh-set","");markCopy();}
+function markCopy(){document.documentElement.setAttribute("data-gvh-copy","");}
 function settle(){
  document.documentElement.style.setProperty("--gvhwe","126%");
  markSet();ranOnce=true;
@@ -3657,6 +3662,7 @@ function activate(){
  if(ranOnce||REDUCE||LOWDATA){settleInstant();return;}
  document.documentElement.style.setProperty("--gvhwe","0%");
  gvhKick();setTimeout(gvhKick,700);setTimeout(gvhKick,1800);
+ setTimeout(markCopy,1200); /* never make the copy wait on a stalled video */
  if(fbTimer)clearTimeout(fbTimer);
  fbTimer=setTimeout(function(){
   if(v.currentTime<0.2){settleInstant();}
@@ -3671,6 +3677,7 @@ function deactivate(){
  try{v.pause();}catch(e){}
  document.documentElement.removeAttribute("data-gvh");
  document.documentElement.removeAttribute("data-gvh-set");
+ document.documentElement.removeAttribute("data-gvh-copy");
  document.documentElement.removeAttribute("data-gvh-fb");
  wrap.style.display="none";
 }
