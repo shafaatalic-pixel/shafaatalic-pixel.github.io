@@ -239,3 +239,24 @@ html:is([data-lens="healthcomm"],[data-lens="pophealth"]) :is(#hsrep,#writing) .
 html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) :is(#approach,#experience,#faq,#how-i-work,#press,#operating-logic):not(.gt-open),
 html:is([data-lens="growth"],[data-lens="healthtech"]) :is(#hsrep,#writing):not(.gt-open){padding-top:clamp(36px,5vh,56px)!important;padding-bottom:clamp(36px,5vh,56px)!important}
 html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[data-lens="pophealth"]) :is(#sixty,#proof,#voices){padding-top:clamp(28px,4vh,44px)!important;padding-bottom:clamp(28px,4vh,44px)!important}
+
+/* ===== Brand shelves (2026-09-17) =====
+   #brand-strip = sector chips + logo grid. Chips DIM non-matching tiles instead of reflowing (no CLS);
+   logos sit monochrome until hover or until their sector is selected. Pure CSS tooltips (data-n).
+   Runtime + prerender emit identical markup; the click handler is delegated (survives boot re-render). */
+#brand-strip{display:block}
+.bchips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 22px}
+.bchip{font:600 12.5px/1.2 var(--sans,inherit);color:var(--text-muted,#6f6a61);background:transparent;border:1px solid var(--border-hairline,rgba(0,0,0,.1));border-radius:999px;padding:8px 13px;cursor:pointer;transition:color .25s,background-color .25s,border-color .25s}
+.bchip:hover{color:var(--lens,#0E7C6B);border-color:var(--lens,#0E7C6B)}
+.bchip.on,.bchip.on:hover{color:#fff;background:var(--lens,#0E7C6B);border-color:var(--lens,#0E7C6B)}
+.bgrid{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.bt{margin:0;height:76px;width:148px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--border-hairline,rgba(0,0,0,.1));border-radius:10px;position:relative;transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,opacity .35s}
+.bt img{max-height:54px;max-width:118px;width:auto;height:auto;object-fit:contain;display:block;filter:grayscale(1) contrast(1.05);opacity:.86;transition:filter .35s,opacity .35s}
+.bt:hover img,.bt:focus-within img,.bt.lit img{filter:none;opacity:1}
+.bt:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 10px 24px -14px rgba(0,0,0,.35);z-index:2}
+.bt[data-dim]{opacity:.16;transform:scale(.96)}
+.bt[data-dim]:hover{opacity:.6}
+.bt::after{content:attr(data-n);position:absolute;left:50%;top:calc(100% + 8px);transform:translate(-50%,-4px);white-space:nowrap;font:600 11.5px/1.2 var(--sans,inherit);color:#fff;background:var(--lens,#0E7C6B);padding:6px 9px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:3}
+.bt:hover::after{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){.bt,.bt img,.bt::after,.bchip{transition:none}.bt:hover{transform:none}}
+@media(max-width:560px){.bt{width:calc(33.33% - 10px);height:64px}.bt img{max-width:84px;max-height:44px}.bchip{font-size:11.5px;padding:7px 11px}}
