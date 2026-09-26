@@ -338,3 +338,10 @@ body.at-foot .st-launch,body.at-foot #sl-fab{opacity:0!important;transform:trans
 .cf-chip.cf-comp .cf-cx{font-size:15px;line-height:1;margin-right:-2px;}
 @media(prefers-reduced-motion:reduce){.cp,.cp::after{transition:none;}.cp:hover{transform:none;}}
 
+/* ===== Voices (2026-09-26): pull-quotes and company marks on endorsements ===== */
+.rq-pull{font-weight:600;color:var(--text-strong);background:linear-gradient(transparent 64%,var(--accent-soft) 64%);padding:0 1px;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
+.rq-who{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.rq-logo{height:20px;width:auto;max-width:78px;object-fit:contain;background:var(--ivory-100);border:1px solid var(--border-hairline);border-radius:5px;padding:2px 6px;box-sizing:content-box;flex:0 0 auto;}
+#rec-track figure{transition:border-color .2s ease;}
+#rec-track figure:hover{border-color:var(--border-strong,#3A4350);}
+
