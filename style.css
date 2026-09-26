@@ -293,3 +293,20 @@ html:not([data-lens="full"]) .tl-all{display:none;}
 @media (prefers-reduced-motion: reduce){.tl-more{transition:none;}.tl-x::before{transition:none;}}
 @media print{.tl-more{grid-template-rows:1fr;}.tl-x,.tl-all{display:none;}}
 
+/* ===== Case cards lead with the number (2026-09-26) ===== */
+.cf-top{align-items:flex-start;gap:12px;}
+.cf-id{display:flex;align-items:center;gap:10px;min-width:0;}
+.cf-id .cf-cat{text-align:left;max-width:none;padding-top:0;}
+.cf-hl{text-align:right;flex:0 0 auto;max-width:48%;}
+.cf-hl b{display:block;font-family:var(--mono);font-weight:800;font-size:27px;line-height:1;letter-spacing:-.02em;color:var(--amber);white-space:nowrap;}
+.cf-hl.cf-hl-s b{font-size:17px;line-height:1.15;color:var(--accent-text);}
+.cf-hl i{display:block;font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin-top:6px;line-height:1.35;}
+.cf-card{transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;}
+.cf-card:hover{transform:translateY(-3px);border-color:var(--border-strong,#3A4350);}
+/* filter chips: same language as the Brands shelves */
+.cf-chip:hover{color:var(--lens,var(--accent));border-color:var(--lens,var(--accent));}
+.cf-chip.active,.cf-chip.active:hover{color:#fff;background:var(--lens,var(--accent));border-color:var(--lens,var(--accent));}
+.cf-chip.active .cf-ct{color:rgba(255,255,255,.78);}
+@media(max-width:620px){.cf-hl b{font-size:23px;}}
+@media(prefers-reduced-motion:reduce){.cf-card{transition:none;}.cf-card:hover{transform:none;}}
+
