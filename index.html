@@ -36,7 +36,7 @@
 <link rel="preload" as="script" href="/assets/vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous">
 <link rel="preload" as="script" href="/assets/vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous">
 <link rel="stylesheet" href="/assets/vendor/fonts.css">
-<link rel="stylesheet" href="/style.css?v=25">
+<link rel="stylesheet" href="/style.css?v=26">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0B0F14">
 <meta name="theme-color" content="#0b0e12">
@@ -299,7 +299,7 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="/assets/vendor/fonts.css">
-<link rel="stylesheet" href="style.css?v=25">
+<link rel="stylesheet" href="style.css?v=26">
 <style id="cta-contrast-guard">[style*="background:var(--accent)"],[style*="background: var(--accent)"]{color:var(--accent-ink)!important;}</style>
 </helmet>
 <div id="site-root" style="position:relative;overflow-x:clip;background:var(--surface-base);min-height:100vh;transition:background .3s ease;">
@@ -434,12 +434,12 @@
  <div data-reveal data-reveal-delay="0" data-card style="background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:8px;padding:30px;box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:16px;transition:transform .2s,border-color .2s;">
  <span style="width:48px;height:48px;border-radius:8px;background:var(--accent-soft);display:inline-flex;align-items:center;justify-content:center;color:var(--accent-text);"><i data-lucide="scan-search" style="width:24px;height:24px;"></i></span>
  <h3 style="font-family:var(--disp);font-weight:700;font-size:22px;letter-spacing:-.01em;color:var(--text-strong);margin:0;">Read the system</h3>
- <p style="font-family:var(--body);font-size:15.5px;line-height:1.55;color:var(--text-muted);margin:0;">Map the real mechanics behind the dashboard, incentives, behavior, channels, and where growth actually leaks. Find the binding constraint, not the loudest symptom.</p>
+ <p style="font-family:var(--body);font-size:15.5px;line-height:1.55;color:var(--text-muted);margin:0;">Map the real mechanics behind the dashboard, incentives, behavior, channels, and where growth actually leaks. Find the binding constraint, not the loudest symptom.</p><svg class="ap-arr" viewBox="0 0 20 14" aria-hidden="true"><path d="M1 7h14"/><path d="M11 2l5 5-5 5"/></svg>
  </div>
  <div data-reveal data-reveal-delay="100" data-card style="background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:8px;padding:30px;box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:16px;transition:transform .2s,border-color .2s;">
  <span style="width:48px;height:48px;border-radius:8px;background:var(--accent-soft);display:inline-flex;align-items:center;justify-content:center;color:var(--accent-text);"><i data-lucide="target" style="width:24px;height:24px;"></i></span>
  <h3 style="font-family:var(--disp);font-weight:700;font-size:22px;letter-spacing:-.01em;color:var(--text-strong);margin:0;">Find the lever</h3>
- <p style="font-family:var(--body);font-size:15.5px;line-height:1.55;color:var(--text-muted);margin:0;">Evidence- and behavioral-science-led prioritization. The one move that moves the number, grounded in ARPU, CLV, cohorting, trust and adoption design.</p>
+ <p style="font-family:var(--body);font-size:15.5px;line-height:1.55;color:var(--text-muted);margin:0;">Evidence- and behavioral-science-led prioritization. The one move that moves the number, grounded in ARPU, CLV, cohorting, trust and adoption design.</p><svg class="ap-arr" viewBox="0 0 20 14" aria-hidden="true"><path d="M1 7h14"/><path d="M11 2l5 5-5 5"/></svg>
  </div>
  <div data-reveal data-reveal-delay="200" data-card style="background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:8px;padding:30px;box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:16px;transition:transform .2s,border-color .2s;">
  <span style="width:48px;height:48px;border-radius:8px;background:var(--accent-soft);display:inline-flex;align-items:center;justify-content:center;color:var(--accent-text);"><i data-lucide="trending-up" style="width:24px;height:24px;"></i></span>
@@ -630,37 +630,30 @@
  <!-- IMPACT MAP TEASER -->
  <section id="impact-map" data-screen-label="Impact map" style="padding:clamp(28px,5vh,54px) clamp(20px,4vw,48px);">
  <div style="max-width:1120px;margin:0 auto;">
- <div data-reveal style="background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:14px;padding:clamp(24px,3.4vw,38px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;">
- <div style="max-width:58ch;">
- <div style="font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-text);">Interactive</div>
- <h2 style="font-family:var(--disp);font-weight:700;font-size:clamp(21px,2.6vw,30px);letter-spacing:-.02em;color:var(--text-strong);margin:10px 0 8px;">See the whole career on one screen.</h2>
- <p style="font-family:var(--body);font-size:14.5px;line-height:1.55;color:var(--text-muted);margin:0;">Twenty-one results across eight sectors and two countries, mapped four ways: sector by outcome, a sixteen-year climb, a systems flow, and a US to Bangladesh bridge. Every metric drawn from the case studies.</p>
- <div style="display:flex;gap:9px;align-items:center;margin-top:17px;flex-wrap:wrap;">
- <span style="width:15px;height:15px;border-radius:50%;background:#E0892E;"></span>
- <span style="width:11px;height:11px;border-radius:50%;background:#3B82C4;"></span>
- <span style="width:18px;height:18px;border-radius:50%;background:#E85C42;"></span>
- <span style="width:10px;height:10px;border-radius:50%;background:#12A5A5;"></span>
- <span style="width:13px;height:13px;border-radius:50%;background:#E0892E;"></span>
- <span style="width:9px;height:9px;border-radius:50%;background:#3B82C4;"></span>
- <span style="font-family:var(--mono);font-size:11px;color:var(--text-faint);letter-spacing:.04em;margin-left:6px;">Growth &middot; Health-Comm &middot; Health-Tech &middot; Pop-Health</span>
- </div>
- </div>
- <a href="/impact/" data-navlink onclick="try{window.track&&window.track('impact_open',{})}catch(e){}" style="display:inline-flex;align-items:center;gap:9px;height:52px;padding:0 28px;text-decoration:none;background:var(--accent);color:var(--accent-ink);border:1.5px solid var(--accent);border-radius:9px;font-family:var(--disp);font-weight:700;font-size:16.5px;letter-spacing:-.01em;white-space:nowrap;">Explore the impact map <span aria-hidden="true">&rarr;</span></a>
- </div>
- </div>
- </section>
-
- <!-- MID-PAGE CTA -->
- <section data-screen-label="Talk" style="padding:clamp(28px,5vh,54px) clamp(20px,4vw,48px);">
- <div style="max-width:1120px;margin:0 auto;">
- <div data-reveal style="background:var(--surface-authority);border:1px solid var(--navy-400);border-radius:14px;padding:clamp(26px,4vw,40px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;box-shadow:var(--shadow-lg);">
- <div style="max-width:54ch;">
+ <div data-reveal class="mb" style="background:var(--surface-authority);border:1px solid var(--navy-400);border-radius:14px;padding:clamp(26px,4vw,40px);box-shadow:var(--shadow-lg);">
+ <div class="mb-l">
  <div style="font-family:var(--disp);font-weight:700;font-size:clamp(20px,2.4vw,27px);letter-spacing:-.01em;color:var(--ivory-100);">Have a number that will not move?</div>
- <div style="font-size:14.5px;color:var(--ivory-200);margin-top:9px;line-height:1.55;">Bring me the system others cannot read. I find the real constraint and build the strategy, channels and teams that move it.</div>
- </div>
- <div style="display:flex;gap:12px;flex-wrap:wrap;">
+ <div style="font-size:14.5px;color:var(--ivory-200);margin-top:9px;line-height:1.55;max-width:54ch;">Bring me the system others cannot read. I find the real constraint and build the strategy, channels and teams that move it.</div>
+ <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;">
  <a href="#contact" data-cta style="display:inline-flex;align-items:center;height:50px;padding:0 26px;text-decoration:none;background:var(--accent);color:var(--accent-ink);border:1.5px solid var(--accent);border-radius:8px;font-family:var(--disp);font-weight:700;font-size:16px;">Book a call</a>
  <a href="#press" data-btn-ghost style="display:inline-flex;align-items:center;height:50px;padding:0 26px;text-decoration:none;background:transparent;color:var(--ivory-100);border:1.5px solid var(--navy-400);border-radius:8px;font-family:var(--disp);font-weight:700;font-size:16px;">See the coverage</a>
+ </div>
+ </div>
+ <div class="mb-map">
+ <nav class="impact-four-view" aria-label="Explore the impact map">
+ <img src="assets/impact-tile.svg" width="320" height="150" alt="Preview of four ways to explore the career: System map, T-shaped atlas, Career journey from 2009 to 2026, and Two markets, United States and Bangladesh." decoding="async" loading="lazy">
+ <a class="impact-four-view__system" href="/impact/?view=system" data-imp="system" aria-label="Explore the system map"></a>
+ <a class="impact-four-view__atlas" href="/impact/?view=atlas" data-imp="atlas" aria-label="Explore the T-shaped atlas"></a>
+ <a class="impact-four-view__career" href="/impact/?view=career" data-imp="career" aria-label="Explore the career journey"></a>
+ <a class="impact-four-view__markets" href="/impact/?view=markets" data-imp="markets" aria-label="Explore the two markets"></a>
+ </nav>
+ <p class="mb-cap">21 results &middot; 8 sectors &middot; 2 countries</p>
+ <div class="mb-txt">
+ <div class="mb-eye">Interactive</div>
+ <div class="mb-t">See the whole career on one screen.</div>
+ <div class="mb-d">Twenty-one results across eight sectors and two countries, mapped four ways. Every metric drawn from the case studies.</div>
+ <a class="mb-go" href="/impact/?view=system" data-imp="system">Explore the impact map <span aria-hidden="true">&rarr;</span></a>
+ </div>
  </div>
  </div>
  </div>
@@ -1686,7 +1679,7 @@ class Component extends DCLogic {
  <div data-reveal data-reveal-delay="${i*100}" data-card style="background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:8px;padding:30px;box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:16px;transition:transform .2s,border-color .2s;">
  <span style="width:48px;height:48px;border-radius:8px;background:var(--accent-soft);display:inline-flex;align-items:center;justify-content:center;color:var(--accent-text);"><i data-lucide="${it.icon}" style="width:24px;height:24px;"></i></span>
  <h3 style="font-family:var(--disp);font-weight:700;font-size:22px;letter-spacing:-.01em;color:var(--text-strong);margin:0;">${esc(it.t)}</h3>
- <p style="font-family:var(--body);font-size:15.5px;line-height:1.55;color:var(--text-muted);margin:0;">${esc(it.d)}</p>
+ <p style="font-family:var(--body);font-size:15.5px;line-height:1.55;color:var(--text-muted);margin:0;">${esc(it.d)}</p>${i<2?'<svg class="ap-arr" viewBox="0 0 20 14" aria-hidden="true"><path d="M1 7h14"/><path d="M11 2l5 5-5 5"/></svg>':''}
  </div>`).join(''); }
 
  // ===== FULL CASE STUDIES, GROUPED BY COMPANY =====
@@ -3775,6 +3768,9 @@ var cp=t.closest('.cp');if(cp){var keys=(cp.getAttribute('data-cs')||'').split('
  if(window.track)try{window.track('comp_filter',{skill:lab,n:n});}catch(x){}return;}
 var cc=t.closest('[data-cf-comp]');if(cc){var f=document.querySelector('#case-nav [data-cf-chip="featured"]');cc.remove();if(f)f.click();return;}
 var ch=t.closest('[data-cf-chip]');if(ch){var o=document.querySelector('#case-nav .cf-comp');if(o)o.remove();}});
+</script>
+<script>/* Impact tile (2026-09-26): track which view a visitor opens */
+document.addEventListener('click',function(e){var t=e.target&&e.target.closest?e.target.closest('[data-imp]'):null;if(!t)return;if(window.track)try{window.track('impact_open',{view:t.getAttribute('data-imp')||'system'});}catch(x){}});
 </script>
 <script src="/assets/vendor/lucide.min.js" integrity="sha384-ieG+IKD0d/ZPXyCBTMVAbqsQdns8QGJR/e26WMw7M4fkaI/rHcS/YIoi+ah9WGge" crossorigin="anonymous"></script>
 </body>
