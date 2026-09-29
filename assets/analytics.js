@@ -14,6 +14,12 @@
   window.__gaOn = false;
   window.loadGA = function () {
     if (window.__gaOn) return;
+    /* Never track local builds or headless tooling. Until 2026-09-09 the
+       prerender/build scripts fired real GA events from localhost:
+       298 users at 0.38s average, ~52% of all reported traffic. */
+    var _h = location.hostname;
+    if (_h === 'localhost' || _h === '127.0.0.1' || _h === '::1' || _h === ''
+        || navigator.webdriver === true) return;
     window.__gaOn = true;
     var s = document.createElement('script');
     s.async = true;
@@ -76,4 +82,37 @@
 
   if (document.body) showBanner();
   else document.addEventListener('DOMContentLoaded', showBanner);
+})();
+
+
+/* Scroll-depth + engaged-time milestones (added 2026-09-15) — mirrors the HSREP
+   site so the portfolio dashboard's per-page completion funnel and depth ladder
+   fill in on standalone essay/section pages too. Fires scroll_depth{percent} at
+   25/50/75/100 and engaged_time{seconds} at 30/60/120/240. Idempotent via window
+   flag; consent-gated through window.track. NOTE: querying these needs GA4
+   event-scoped custom dimensions `percent` and `seconds` registered on the
+   portfolio property. */
+(function () {
+  if (window.__depthTrackOn) return; window.__depthTrackOn = true;
+  function T(n, p) { try { if (window.track) window.track(n, p); } catch (e) {} }
+  var SP = [25, 50, 75, 100], sf = {};
+  function frac() {
+    var de = document.documentElement, b = document.body;
+    var h = Math.max(de.scrollHeight, b ? b.scrollHeight : 0) - window.innerHeight;
+    if (h <= 0) return 100;
+    return Math.min(100, Math.round((window.pageYOffset || de.scrollTop || 0) / h * 100));
+  }
+  function onScroll() {
+    var f = frac();
+    for (var i = 0; i < SP.length; i++) { var m = SP[i]; if (f >= m && !sf[m]) { sf[m] = 1; T('scroll_depth', { percent: m }); } }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  window.addEventListener('load', onScroll); onScroll();
+  var TM = [30, 60, 120, 240], tf = {}, secs = 0, timer = null;
+  function tick() { secs++; for (var i = 0; i < TM.length; i++) { var m = TM[i]; if (secs >= m && !tf[m]) { tf[m] = 1; T('engaged_time', { seconds: m }); } } }
+  function start() { if (!timer) timer = setInterval(tick, 1000); }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+  function vis() { (document.visibilityState === 'visible') ? start() : stop(); }
+  document.addEventListener('visibilitychange', vis); vis();
 })();
