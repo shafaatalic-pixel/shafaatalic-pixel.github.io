@@ -1,110 +1,27 @@
-# ============================================================
-#  shafaatalic-pixel.github.io — deploy ignore rules
-#  Only the live site is tracked. Everything below stays local.
-# ============================================================
+# Only the live site is tracked. Build sources, scratch and private working
+# folders are excluded locally (see .git/info/exclude on the build machine).
 
-# --- large non-site working folders ---
-HSREP/
-.bak-*
-_local_archive/
-_DEPLOY_share/
-essays-src/
-Dossiers (Word)/
-Case Slides/
-Latest Essay/
-PhD Research/
-Pictures for Showcasing/
-Logo/
-Shafaat_Choyon_Logo_System/
-
-# --- build sources / scratch (root-level only; assets/* stays tracked) ---
+# build sources / scratch at the repo root
 /*.js
 /*.py
 /*.md
 /*.json
 /*.sh
 /*.txt
-/*.mp4
-/*.mov
 /*.zip
-/*.pptx
-/*.xlsx
-/*.docx
 /*.pdf
-/*.jpeg
-
-# exception: essays.json IS part of the site
 !/essays.json
-
-# --- YouTube channel art (not part of the website) ---
-/youtube-banner.jpg
-/youtube-thumbnail.jpg
-
-# --- files intentionally removed from the live repo (don't re-add) ---
-assets/cv/Dossier_HealthComms.pdf
-assets/cv/Dossier_HealthMarketingGrowth.pdf
-assets/cv/Dossier_HealthTechProduct.pdf
-assets/cv/Dossier_PopulationHealth.pdf
-assets/cv/Shafaat_Ali_Choyon_Detailed_Strategic_CV.pdf
-assets/cases/mph-capstone.jpg
-assets/cases/assets:cases:*.png
-assets/cases/Case1_*.png
-assets/cases/Case16_*.png
-assets/cases/Digital_Precision_*.png
-assets/cases/Medallion_Model_*.png
-assets/cases/Public_Health_Advocacy_*.png
-assets/cases/Strategic_Data-Driven_*.png
-
-# --- os cruft ---
-.DS_Store
-.fuse_hidden*
-
-# --- local-only extras (not referenced by any live page) ---
-assets/essays/
-assets/photos/arc/
-assets/photos/press/
-assets/og-card.png
-intro-video-poster.jpg
-case-gallery-prototype.html
-HSREP Homepage (standalone).html
-preview-hsrep-FINAL.html
-
-# local headshot working files (site uses headshot-hero.jpg / headshot.png)
-assets/Headshot*.png
-
-# npm (jsdom for local re-bake tests)
-node_modules/
-package-lock.json
-package.json
-essays 2nd round/
-
-# React prototype source (only the built /impact/ folder is served)
-impact-system-map/
-
-# Orphan prerender snapshot (build artifact, not served)
-index.prerendered.html
-
-# exception: Lighthouse CI config IS part of the repo
 !/lighthouserc.json
 
-# stale backups / abandoned preview builds — kept locally, out of deploy
-/index.backup-*.html
-/impact-preview/
-/impact-src-v2/
-/impact-v2-preview/
-
-# throwaway test page for the hero-gate experiment
+# backups and test pages never ship
+*.bak-*
+*.backup-*
 /index-test.html
+/index.prerendered.html
 
-# --- Cowork delivered files auto-saved into the repo (kept local, out of deploy) ---
-Claude outputs/
-
-# --- backup folders & scratch swept in accidentally (kept local, out of deploy) ---
-/_cite_backups/
-/_to_delete/
-/*.backup-*.html
-/*.backup-*.css
-/*.backup-*.js
-
-# stray temp files from image processing
+# tooling and OS cruft
+node_modules/
+package.json
+package-lock.json
+.DS_Store
 *.tmp
