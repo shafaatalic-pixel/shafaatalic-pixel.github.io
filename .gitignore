@@ -25,3 +25,4 @@ package.json
 package-lock.json
 .DS_Store
 *.tmp
+/index.newlanding.html
