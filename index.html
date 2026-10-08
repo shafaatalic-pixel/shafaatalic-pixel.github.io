@@ -2181,6 +2181,8 @@ class Component extends DCLogic {
  // neutral landing default
  this.applyLens('full',{noUrl:true});
  this.showLanding();
+ /* ?view=choose: shareable link that always shows the four-lens chooser (skips the Bangladesh auto-switch to Growth) */
+ if(v==='choose'){ try{ window.track && window.track('choose_link_open',{}); }catch(e){} return; }
  this.tryGeo();
  }
  tryGeo(){
