@@ -6,6 +6,7 @@
 <!-- Analytics, Google Analytics 4 (consent-gated). Cloudflare Web Analytics is cookieless and enabled at the edge. -->
 <script>
  window.dataLayer = window.dataLayer || [];
+ window.__landingHref = window.__landingHref || location.href; /* landing URL at parse time, before the SPA rewrites ?view= */
  function gtag(){dataLayer.push(arguments);}
  window.__gaOn = false;
  window.loadGA = function(){
@@ -18,7 +19,13 @@
  s.src='https://www.googletagmanager.com/gtag/js?id=G-RN7EPJQQPC';
  document.head.appendChild(s);
  gtag('js', new Date());
- gtag('config', 'G-RN7EPJQQPC', { anonymize_ip: true });
+ var _cfg = { anonymize_ip: true };
+ /* ?view=choose share link: keep the session's landing page as /?view=choose even if the visitor
+    taps a lens before gtag.js finishes loading (slow mobile), and send an open that happened
+    before consent resolved (first-time visitors). Scoped to this link only. */
+ if(/[?&]view=choose(&|#|$)/.test(window.__landingHref||'')) _cfg.page_location = window.__landingHref;
+ gtag('config', 'G-RN7EPJQQPC', _cfg);
+ if(window.__chooseOpen && !window.__chooseSent){ window.__chooseSent = 1; gtag('event', 'choose_link_open', {}); }
  };
  window.track = function(name, params){ try{ if(!window.__gaOn) return; params=params||{}; var key = (name==='case_open') ? 'case_open' : (name+'|'+JSON.stringify(params)); var win = (name==='case_open') ? 1200 : 800; var now=Date.now(); window.__lastEv=window.__lastEv||{}; if(window.__lastEv[key] && (now-window.__lastEv[key])<win) return; window.__lastEv[key]=now; gtag('event', name, params); }catch(e){} };
  try{ if(localStorage.getItem('analytics-consent')==='granted') window.loadGA(); }catch(e){}
@@ -2182,7 +2189,7 @@ class Component extends DCLogic {
  this.applyLens('full',{noUrl:true});
  this.showLanding();
  /* ?view=choose: shareable link that always shows the four-lens chooser (skips the Bangladesh auto-switch to Growth) */
- if(v==='choose'){ try{ window.track && window.track('choose_link_open',{}); }catch(e){} return; }
+ if(v==='choose'){ window.__chooseOpen=1; try{ if(window.__gaOn && window.track){ window.track('choose_link_open',{}); window.__chooseSent=1; } }catch(e){} return; }
  this.tryGeo();
  }
  tryGeo(){
