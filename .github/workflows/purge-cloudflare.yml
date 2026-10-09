@@ -1,0 +1,72 @@
+name: Purge Cloudflare cache after deploy
+
+# Why: Cloudflare now caches the site at the edge (cache rules added 2026-10-09) so
+# far-away visitors (Bangladesh especially) get pages from the nearest Cloudflare
+# data center instead of GitHub Pages. This workflow clears that cache after every
+# deploy, so a push is visible within a minute or two no matter how long the edge
+# keeps files.
+#
+# How: on every push to the GitHub Pages branch (page_build) or on demand, wait
+# until GitHub Pages has finished building THIS commit, then ask Cloudflare to
+# purge everything for shafaatalichoyon.com.
+#
+# Setup (one time): add a repository secret named CF_PURGE_TOKEN holding a
+# Cloudflare API token with permission  Zone -> Cache Purge -> Purge,  scoped to
+# the shafaatalichoyon.com zone. Until that secret exists the job skips politely.
+
+on:
+  page_build:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: read
+
+concurrency:
+  group: purge-cloudflare
+  cancel-in-progress: false
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Wait for GitHub Pages to finish building this commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ github.sha }}
+          REPO: ${{ github.repository }}
+        run: |
+          for i in $(seq 1 40); do
+            out=$(gh api "repos/$REPO/pages/builds/latest" --jq '.status + " " + .commit' 2>/dev/null || echo "unknown -")
+            status=${out%% *}; commit=${out##* }
+            echo "check $i: status=$status commit=${commit:0:7} (waiting for ${SHA:0:7})"
+            if [ "$status" = "built" ] && [ "$commit" = "$SHA" ]; then
+              echo "GitHub Pages build finished."; exit 0
+            fi
+            if [ "$status" = "errored" ] && [ "$commit" = "$SHA" ]; then
+              echo "::error::GitHub Pages build failed for this commit; not purging."; exit 1
+            fi
+            sleep 10
+          done
+          echo "::warning::Timed out waiting for the Pages build (a newer push may have superseded it). Purging anyway."
+
+      - name: Purge Cloudflare cache
+        env:
+          CF_PURGE_TOKEN: ${{ secrets.CF_PURGE_TOKEN }}
+          CF_ZONE_ID: 8d0eec663a82f8141b4d844e744c8045   # shafaatalichoyon.com (not a secret)
+        run: |
+          if [ -z "$CF_PURGE_TOKEN" ]; then
+            echo "::notice::CF_PURGE_TOKEN secret is not set yet, so the cache was not purged."
+            exit 0
+          fi
+          resp=$(curl -sS -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" \
+            -H "Authorization: Bearer $CF_PURGE_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}')
+          if echo "$resp" | grep -q '"success":[ ]*true'; then
+            echo "Cloudflare cache purged."
+          else
+            echo "::error::Cloudflare purge failed: $resp"
+            exit 1
+          fi
