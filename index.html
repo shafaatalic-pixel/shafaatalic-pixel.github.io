@@ -330,6 +330,7 @@
  <a href="#voices" style="text-decoration:none;color:var(--text-muted);transition:color .12s;" data-navlink>Voices</a>
  <a href="#writing" style="text-decoration:none;color:var(--text-muted);transition:color .12s;" data-navlink>Writing</a>
  <a href="essays.html" style="text-decoration:none;color:var(--text-muted);transition:color .12s;">Essays</a>
+ <a href="tools.html" data-tools-entry="nav" style="text-decoration:none;color:var(--text-muted);transition:color .12s;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;">Free tools<span class="nav-new" style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;line-height:1;padding:3px 6px;border-radius:999px;background:var(--accent-soft);color:var(--accent-text);border:1px solid var(--accent);">New</span></a>
  </div>
  <div style="display:flex;align-items:center;gap:10px;">
  <button id="theme-toggle" type="button" aria-label="Toggle light/dark" style="width:38px;height:38px;border-radius:8px;border:1px solid var(--border-strong);background:transparent;color:var(--text-strong);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:border-color .15s,background .15s;"><i id="theme-icon" data-lucide="moon" style="width:18px;height:18px;"></i></button>
@@ -1009,6 +1010,24 @@
  <span style="font-family:var(--disp);font-weight:600;font-size:clamp(16px,1.8vw,21px);letter-spacing:-.01em;line-height:1.25;color:var(--text-strong);">Digital Transformation and Adaptation for Securing Businesses</span>
  <span style="text-align:right;font-family:var(--body);font-size:12.5px;color:var(--text-muted);white-space:nowrap;"><span class="om" aria-hidden="true">DO</span><span style="color:var(--accent-text);font-weight:500;">Daily Observer</span> · 2021</span>
  </div><div style="border-top:1px solid var(--border-hairline);"></div></div>
+ </div>
+ </section>
+
+ <!-- FREE TOOLS band (2026-10-13) -->
+ <style>#tools-band .tb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:26px;}#tools-band .tb{display:flex;flex-direction:column;gap:6px;padding:18px 20px;border:1px solid var(--border-hairline);border-radius:12px;background:var(--surface-raised);text-decoration:none;transition:border-color .15s,transform .15s;}#tools-band .tb:hover{border-color:var(--accent);transform:translateY(-2px);}#tools-band .tb-k{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);}#tools-band .tb-t{font-family:var(--disp);font-weight:700;font-size:17px;line-height:1.25;color:var(--text-strong);}#tools-band .tb-d{font-family:var(--body);font-size:14px;line-height:1.5;color:var(--text-muted);}#tools-band .tb-all{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-family:var(--disp);font-weight:700;font-size:15px;color:var(--accent-text);text-decoration:none;}#tools-band .tb-all:hover{text-decoration:underline;}@media(prefers-reduced-motion:reduce){#tools-band .tb:hover{transform:none;}}/* nav: keep one line, no overlap with the lens pill, 860-1300px */[data-nav] [data-tools-entry="nav"]{white-space:nowrap;}@media(max-width:1300px){[data-nav] .nav-new{display:none;}}@media(max-width:1180px){[data-nav] a[data-navlink][href="#voices"]{display:none;}}@media(max-width:1100px){[data-nav] a[data-navlink][href="#writing"],[data-nav] a[data-navlink][href="#experience"]{display:none;}}@media(max-width:960px){[data-nav] a[href="essays.html"]{display:none;}}</style>
+ <section id="tools-band" data-screen-label="Free tools" aria-labelledby="tools-band-h" style="padding:clamp(60px,9vh,96px) clamp(20px,4vw,48px);border-top:1px solid var(--border-hairline);">
+ <div style="max-width:1080px;margin:0 auto;">
+ <div style="font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);">Free tools</div>
+ <div style="width:40px;height:3px;background:var(--accent);border-radius:2px;margin-top:12px;"></div>
+ <h2 id="tools-band-h" style="font-family:var(--disp);font-weight:700;font-size:clamp(28px,4.4vw,48px);letter-spacing:-.02em;color:var(--text-strong);margin:18px 0 10px;">Use the thinking, free.</h2>
+ <p style="font-family:var(--body);font-size:clamp(16px,1.6vw,18px);line-height:1.5;color:var(--text-muted);margin:0;max-width:62ch;">12 calculators and checkers from 16+ years of growth and public-health work, for founders, marketers and health teams. No sign-up, and nothing you type leaves your browser.</p>
+ <div class="tb-grid">
+ <a class="tb" href="ltv-cac-calculator.html" data-tools-entry="band"><span class="tb-k">Growth</span><span class="tb-t">LTV to CAC and payback</span><span class="tb-d">Does each customer pay back what it cost to win them, and how fast?</span></a>
+ <a class="tb" href="ab-test-significance-calculator.html" data-tools-entry="band"><span class="tb-k">Growth</span><span class="tb-t">A/B test significance</span><span class="tb-d">Is variant B really better, or is it noise?</span></a>
+ <a class="tb" href="health-message-readability-checker.html" data-tools-entry="band"><span class="tb-k">Health</span><span class="tb-t">Health message readability</span><span class="tb-d">Reading grade, jargon swaps and long sentences, for any leaflet or SMS.</span></a>
+ <a class="tb" href="risk-communication-calculator.html" data-tools-entry="band"><span class="tb-k">Health</span><span class="tb-t">Risk communication</span><span class="tb-d">Turn "50% lower risk" into absolute risk, NNT and an out-of-100 picture.</span></a>
+ </div>
+ <a class="tb-all" href="tools.html" data-tools-entry="band-all">See all 12 free tools &rarr;</a>
  </div>
  </section>
 
@@ -3202,6 +3221,7 @@ class Component extends DCLogic {
     +'<a class="m-link" href="#voices">Voices</a>'
     +'<a class="m-link" href="#writing">Writing</a>'
     +'<a class="m-link" href="essays.html">Essays</a>'
+     +'<a class="m-link" href="tools.html" data-tools-entry="mobile">Free tools</a>'
     +'<div class="m-row"><button type="button" data-act="search">Search</button><button type="button" data-act="theme">Light / Dark</button></div>'
     +'<a class="m-cta" href="https://calendly.com/shafaat-alic/30min" target="_blank" rel="noopener" data-act="book">Book a call</a>';
   document.body.appendChild(ov); document.body.appendChild(mn);
@@ -3829,5 +3849,6 @@ document.addEventListener('click',function(e){var t=e.target&&e.target.closest?e
 })();
 </script>
 <script>/* featured strip: open + scroll to #press. Delegated because the runtime strips inline handlers inside #site-root (2026-10-13) */document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('#featured .fi-go');if(!a)return;e.preventDefault();e.stopPropagation();try{window.track&&window.track('featured_click',{})}catch(_){}var p=document.getElementById('press');if(!p)return;if(!p.classList.contains('gt-open')){var b=p.querySelector('[data-gt-toggle]');if(b)b.click();}var go=function(){var t=p.getBoundingClientRect().top+window.scrollY-70;window.scrollTo({top:t<0?0:t,behavior:'instant'});};go();setTimeout(go,450);setTimeout(go,1300);},true);</script>
+<script>/* free tools entry clicks (delegated; inline handlers are stripped inside #site-root) */document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-tools-entry]');if(!a)return;try{window.track&&window.track('tools_entry',{from:a.getAttribute('data-tools-entry'),tool:(a.getAttribute('href')||'').replace(/\.html$/,'')})}catch(_){}},true);</script>
 </body>
 </html>

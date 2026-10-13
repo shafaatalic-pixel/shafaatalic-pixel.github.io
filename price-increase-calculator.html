@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Price Increase Calculator: Break-even Volume | Shafaat Ali Choyon</title>
+<meta name="description" content="Free price increase and discount calculator. See how much volume you can lose after a price rise, or must gain after a discount, to keep the same profit." />
+<link rel="canonical" href="https://shafaatalichoyon.com/price-increase-calculator.html" />
+<meta name="author" content="Md Shafaat Ali Choyon" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0B0F14" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Md Shafaat Ali Choyon" />
+<meta property="og:title" content="Price Increase Calculator: Break-even Volume | Shafaat Ali Choyon" />
+<meta property="og:description" content="Free price increase and discount calculator. See how much volume you can lose after a price rise, or must gain after a discount, to keep the same profit." />
+<meta property="og:url" content="https://shafaatalichoyon.com/price-increase-calculator.html" />
+<meta property="og:image" content="https://shafaatalichoyon.com/assets/og-card.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Price Increase Calculator: Break-even Volume | Shafaat Ali Choyon" />
+<meta name="twitter:description" content="Free price increase and discount calculator. See how much volume you can lose after a price rise, or must gain after a discount, to keep the same profit." />
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "Price increase calculator",
+ "url": "https://shafaatalichoyon.com/price-increase-calculator.html",
+ "description": "Free price increase and discount calculator. See how much volume you can lose after a price rise, or must gain after a discount, to keep the same profit.",
+ "applicationCategory": "BusinessApplication",
+ "operatingSystem": "Any (web browser)",
+ "isAccessibleForFree": true,
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ },
+ "author": {
+  "@type": "Person",
+  "@id": "https://shafaatalichoyon.com/#person",
+  "name": "Md Shafaat Ali Choyon",
+  "url": "https://shafaatalichoyon.com/"
+ },
+ "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://shafaatalichoyon.com/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Free tools",
+   "item": "https://shafaatalichoyon.com/tools.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Price increase calculator",
+   "item": "https://shafaatalichoyon.com/price-increase-calculator.html"
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "How many customers can I lose after a price increase?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Divide the price increase by your margin plus the increase. At 40% margin, a 10% rise breaks even if you lose up to 20% of volume."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Why do discounts need so much extra volume?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Because a discount comes straight out of margin. At 40% margin a 10% discount leaves 30 points of margin, so you need a third more volume to earn the same profit."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What margin should I use?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Contribution margin: price minus the variable costs of each sale. Leave out fixed costs like rent and salaries, which do not change with volume."
+   }
+  }
+ ]
+}
+</script>
+
+<link rel="stylesheet" href="/assets/vendor/fonts.css">
+<style>
+  :root{--bg:#0B0F14;--panel:#11161D;--tile:#06090D;--ivory:#F3EFE7;--body:#C7CDD6;--muted:#9AA3AE;--faint:#7f8894;--teal:#33C4C4;--amber:#F4A24C;--red:#F0705A;--green:#4FC48A;--line:rgba(255,255,255,.09);}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--body);font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.66;}
+  a{color:var(--teal);text-decoration:none;} a:hover{text-decoration:underline;}
+  :focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
+  .wrap{max-width:820px;margin:0 auto;padding:34px 22px 80px;}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-bottom:24px;border-bottom:1px solid var(--line);margin-bottom:30px;flex-wrap:wrap;}
+  .brand{display:inline-flex;align-items:center;gap:10px;font-family:'Manrope';font-weight:800;font-size:19px;color:var(--ivory);}
+  .brand span.dot{color:var(--teal);}
+  .navlinks{display:flex;gap:9px;flex-wrap:wrap;}
+  .back{font-family:'Manrope';font-weight:700;font-size:13.5px;color:var(--ivory);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px 15px;}
+  .back:hover{border-color:var(--teal);text-decoration:none;}
+  .back.solid{background:var(--amber);border-color:var(--amber);color:#1a1207;}
+  .eyebrow{font-family:'Inter';font-size:11px;letter-spacing:.16em;color:var(--faint);text-transform:uppercase;}
+  h1{font-family:'Manrope';font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.1;letter-spacing:-.02em;color:var(--ivory);margin:12px 0 0;max-width:24ch;}
+  .lede{font-size:17px;color:var(--body);margin:20px 0 6px;max-width:66ch;}
+  .lede b{color:var(--ivory);font-weight:500;}
+  .updated{font-size:13px;color:var(--faint);margin:14px 0 0;}
+  article h2{font-family:'Manrope';font-weight:700;font-size:clamp(19px,2.6vw,24px);line-height:1.24;letter-spacing:-.01em;color:var(--ivory);margin:40px 0 10px;}
+  article h3{font-family:'Manrope';font-weight:700;font-size:16.5px;color:var(--ivory);margin:24px 0 6px;}
+  article p,article li{font-size:15.5px;color:var(--body);max-width:68ch;}
+  article p{margin:0 0 15px;}
+  article ul{margin:0 0 15px;padding-left:20px;}
+  article li{margin:0 0 8px;}
+  article b{color:var(--ivory);font-weight:500;}
+  .formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;background:var(--tile);border:1px solid var(--line);border-radius:8px;padding:10px 12px;color:var(--body);overflow-x:auto;white-space:nowrap;}
+  .formula .k{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:4px;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:clamp(18px,3vw,26px);}
+  .cta{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;padding:20px 24px;margin:40px 0 0;max-width:68ch;}
+  .cta h2{margin:0 0 6px;font-size:19px;}
+  .faq{margin:44px 0 0;padding-top:26px;border-top:1px solid var(--line);}
+  .faq>h2{margin-top:0;}
+  .privacy-note{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--muted);margin:14px 0 0;}
+  footer.foot{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);}
+  footer.foot a{color:var(--muted);text-decoration:underline;text-underline-offset:3px;}
+
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+  .calc{margin:28px 0 8px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px 18px;}
+  .calc label{display:flex;flex-direction:column;gap:6px;font-family:'Manrope';font-weight:700;font-size:14px;color:var(--ivory);}
+  .hint{font-family:'Inter';font-weight:400;font-size:12px;color:var(--faint);}
+  .calc input,.calc select,.calc textarea{font:500 16px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:10px 12px;width:100%;}
+  .calc input:focus,.calc select:focus,.calc textarea:focus{border-color:var(--teal);outline:none;}
+  .out{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:22px 0 8px;}
+  .kpi{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:2px;}
+  .kl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);}
+  .kv{font-family:'Manrope';font-weight:800;font-size:28px;color:var(--ivory);letter-spacing:-.01em;line-height:1.15;word-break:break-word;}
+  .kb{font-size:13px;color:var(--muted);}
+  .good{color:var(--green)!important;} .warn{color:var(--amber)!important;} .bad{color:var(--red)!important;}
+  .verdict{font-size:15.5px;color:var(--ivory);margin:10px 0 14px;max-width:68ch;}
+  .btn{font-family:'Manrope';font-weight:700;font-size:14px;color:var(--ivory);background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:9px 16px;cursor:pointer;}
+  .btn:hover{border-color:var(--teal);} .btn.solid{background:var(--teal);border-color:var(--teal);color:#04201f;}
+  .seg{display:inline-flex;border:1px solid rgba(255,255,255,.16);border-radius:8px;overflow:hidden;}
+  .bar{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--tile);border:1px solid var(--line);margin:8px 0 4px;}
+  .bar span{display:block;height:100%;}
+  .more{margin:48px 0 0;padding-top:24px;border-top:1px solid var(--line);}
+  .more h2{font-family:'Manrope';font-weight:700;font-size:18px;color:var(--ivory);margin:0 0 12px;}
+  .more .mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
+  .more a{display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--body);font-size:14px;}
+  .more a:hover{border-color:var(--teal);text-decoration:none;}
+  .more a b{display:block;font-family:'Manrope';font-weight:700;font-size:15px;color:var(--ivory);margin-bottom:4px;}
+  .more .all{display:inline-block;margin-top:14px;font-family:'Manrope';font-weight:700;font-size:14px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/">Shafaat Choyon<span class="dot">.</span></a>
+    <nav class="navlinks" aria-label="Site">
+      <a class="back" href="/tools.html">Free tools</a>
+      <a class="back" href="/essays.html">Essays</a>
+      <a class="back" href="/?view=growth">Full portfolio</a>
+      <a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a>
+    </nav>
+  </header>
+  <main>
+  <div class="eyebrow">Free tool &middot; Pricing</div>
+  <h1>Price increase calculator</h1>
+  <p class="lede">Raising prices feels risky. Find out <b>how many customers you could lose</b> and still earn the same profit, or how much extra volume a discount really needs.</p>
+  <article>
+<section class="card calc" aria-label="Calculator"><div class="grid"><label>Currency<select id="cur"><option value="$">US dollar ($)</option><option value="৳">Bangladeshi taka (৳)</option><option value="£">Pound (£)</option><option value="€">Euro (€)</option></select></label>
+<label>Current price <span class="hint">per unit or per month</span><input id="p" type="number" inputmode="decimal" min="0" step="any" value="100"></label>
+<label>Gross margin (%) <span class="hint">at the current price</span><input id="gm" type="number" inputmode="decimal" min="0" max="100" step="any" value="40"></label>
+<label>Price change (%) <span class="hint">use a minus sign for a discount</span><input id="d" type="number" inputmode="decimal" min="-90" max="500" step="any" value="10"></label>
+<label>Current units sold <span class="hint">per month (optional)</span><input id="u" type="number" inputmode="decimal" min="0" step="any" value="1000"></label>
+</div>
+<div class="out" aria-live="polite">
+<div class="kpi"><span class="kl">New price</span><span class="kv" id="o1">-</span><span class="kb" id="o1b"></span></div>
+<div class="kpi"><span class="kl">Break-even volume change</span><span class="kv" id="o2">-</span><span class="kb" id="o2b"></span></div>
+<div class="kpi"><span class="kl">Break-even units</span><span class="kv" id="o3">-</span><span class="kb" id="o3b"></span></div>
+</div>
+<p class="verdict" id="v"></p>
+<div class="formula"><span class="k">Formula</span>Break-even volume change = −Δprice ÷ (margin + Δprice), with both as fractions of the current price</div>
+<p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
+
+<h2>Why price moves profit so much</h2>
+<p>A price rise drops straight to profit, because the cost of making the product does not change. That is why a small increase can absorb a surprising loss of customers, and why a small discount needs a large jump in volume to pay for itself. The lower your margin, the stronger both effects become.</p>
+<p>The calculator assumes your variable cost per unit stays the same. It does not predict how many customers you will actually lose: that depends on what your price tells people about you. <a href="/pricing-is-positioning.html">Pricing is positioning, not a spreadsheet</a>.</p>
+<div class="cta"><h2>Want a second pair of eyes on the numbers?</h2><p>I have built commercial engines from zero in fintech, consumer tech and healthcare, in the US and Bangladesh. A 30-minute call is free.</p><p><a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a></p></div>
+<section class="faq"><h2>Questions</h2>
+<h3>How many customers can I lose after a price increase?</h3><p>Divide the price increase by your margin plus the increase. At 40% margin, a 10% rise breaks even if you lose up to 20% of volume.</p>
+<h3>Why do discounts need so much extra volume?</h3><p>Because a discount comes straight out of margin. At 40% margin a 10% discount leaves 30 points of margin, so you need a third more volume to earn the same profit.</p>
+<h3>What margin should I use?</h3><p>Contribution margin: price minus the variable costs of each sale. Leave out fixed costs like rent and salaries, which do not change with volume.</p>
+</section>
+  </article>
+<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/ltv-cac-calculator.html"><b>LTV to CAC ratio and payback calculator</b>Does each customer pay back what it cost to win them, and how fast? In dollars or taka.</a><a href="/roas-calculator.html"><b>ROAS and break-even calculator</b>Did the campaign actually make money once margin and other costs are counted?</a><a href="/health-message-readability-checker.html"><b>Health message readability checker</b>Reading grade, jargon to replace and sentences to split, for leaflets, SMS and posts.</a></div><a class="all" href="/tools.html">See all 12 free tools &rarr;</a></section>
+  </main>
+  <footer class="foot">
+    <a href="/">&larr; Back to the portfolio</a> &middot; <a href="/essays.html">All essays</a> &middot; <a href="https://www.linkedin.com/in/sacgrowthspecialist">LinkedIn</a>
+    <p class="cr-note" style="margin:10px 0 0;font-size:12px;letter-spacing:.01em;opacity:.72;">&copy; 2026 Md Shafaat Ali Choyon. All rights reserved. &middot; <a href="/tools.html">Free tools</a> &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="/legal.html">Legal</a> &middot; <a href="/accessibility.html">Accessibility</a></p>
+  </footer>
+</div>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var num=function(id){var v=parseFloat(($(id)||{}).value);return isFinite(v)?v:NaN;};
+  var fm=function(n,c,d){if(!isFinite(n))return '-';var a=Math.abs(n);var s=a>=1e7?(n/1e6).toFixed(1)+'M':n.toLocaleString('en-US',{maximumFractionDigits:d===undefined?0:d});return (c||'')+s;};
+  var band=function(el,cls,txt){el.className='kb '+(cls||'');el.textContent=txt;};
+  var esc=function(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');};
+  var __used=false; var used=function(slug){if(__used)return;__used=true;try{window.track&&window.track('tool_use',{tool:slug});}catch(e){}};
+  var bindAll=function(ids,fn,slug){ids.forEach(function(k){var el=$(k);if(!el)return;['input','change'].forEach(function(ev){el.addEventListener(ev,function(){fn();used(slug);});});});fn();};
+  var fromQuery=function(ids){try{var q=new URLSearchParams(location.search);ids.forEach(function(k){var v=q.get(k);if(v!==null&&$(k))$(k).value=v;});}catch(e){}};
+  var toQuery=function(ids){try{var p=new URLSearchParams();ids.forEach(function(k){if($(k))p.set(k,$(k).value);});history.replaceState(null,'','?'+p.toString());}catch(e){}};
+  var ncdf=function(x){var t=1/(1+0.2316419*Math.abs(x)),d=0.3989423*Math.exp(-x*x/2),p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p;};
+  var zfor=function(conf){return {80:1.2816,85:1.4395,90:1.6449,95:1.96,98:2.3263,99:2.5758}[conf]||1.96;};
+
+  var ids=['cur','p','gm','d','u'];fromQuery(ids);
+  function f(){var c=$('cur').value,p=num('p'),m=num('gm')/100,d=num('d')/100,u=num('u');
+    if(!(p>0)||!(m>0)||!isFinite(d)){$('v').textContent='Enter a price, a margin above zero and a price change.';return;}
+    var np=p*(1+d),nm=(m+d)/(1+d);
+    $('o1').textContent=fm(np,c,2); band($('o1b'),'', 'new margin '+(nm*100).toFixed(1)+'%');
+    if(m+d<=0){$('o2').textContent='n/a';band($('o2b'),'bad','every sale now loses money');$('o3').textContent='-';band($('o3b'),'','');$('v').textContent='At this discount the price is below cost, so no amount of extra volume makes up for it.';toQuery(ids);return;}
+    var ch=-d/(m+d);
+    $('o2').textContent=(ch>0?'+':'')+(ch*100).toFixed(1)+'%';
+    if(d>=0) band($('o2b'),'good','you can lose up to this share of volume'); else band($('o2b'),'warn','extra volume needed to stand still');
+    if(u>0){var bu=u*(1+ch);$('o3').textContent=fm(Math.round(bu));band($('o3b'),'','units a month to keep the same profit');}else{$('o3').textContent='-';band($('o3b'),'','add current units');}
+    if(d>=0) $('v').textContent='A '+(d*100).toFixed(0)+'% price rise at '+(m*100).toFixed(0)+'% margin keeps profit the same even if you lose '+(ch*-100).toFixed(1)+'% of volume. Most businesses lose far less than that, which is why pricing is often the fastest profit lever.';
+    else $('v').textContent='A '+(-d*100).toFixed(0)+'% discount at '+(m*100).toFixed(0)+'% margin needs '+(ch*100).toFixed(1)+'% more volume just to earn the same profit. Discounts are rarely as cheap as they look.';
+    toQuery(ids);}
+  bindAll(ids,f,'price_increase');
+})();
+</script>
+<script defer src="/assets/analytics.js"></script>
+</body>
+</html>
