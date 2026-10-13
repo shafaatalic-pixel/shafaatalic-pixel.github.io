@@ -371,6 +371,20 @@
  <a href="#proof" style="position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;color:var(--text-faint);font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;z-index:3;">Scroll<span style="width:1px;height:30px;background:linear-gradient(var(--text-faint),transparent);"></span></a>
  </header>
 
+ <!-- FEATURED IN: press strip under the hero (2026-10-13) -->
+ <style>#featured .fi{display:inline-flex;align-items:center;font-family:var(--body);font-size:13.5px;color:var(--text-muted);white-space:nowrap;}#featured .fi-go{margin-left:auto;font-family:var(--body);font-size:13px;font-weight:600;color:var(--accent-text);text-decoration:none;white-space:nowrap;}#featured .fi-go:hover{text-decoration:underline;}@media(max-width:1180px){#featured .fi-x{display:none;}}@media(max-width:640px){#featured .fi-go{margin-left:0;}}</style>
+ <section id="featured" aria-label="Featured in" style="padding:clamp(14px,2.5vh,26px) clamp(20px,4vw,48px) 0;">
+ <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;padding:14px 0;border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline);">
+ <span style="font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-faint);">Featured in</span>
+ <span class="fi"><span class="om" aria-hidden="true">DS</span>The Daily Star</span>
+ <span class="fi"><span class="om" aria-hidden="true">PA</span>Prothom Alo</span>
+ <span class="fi"><span class="om" aria-hidden="true">TBS</span>The Business Standard</span>
+ <span class="fi fi-x"><span class="om" aria-hidden="true">DT</span>Dhaka Tribune</span>
+ <span class="fi fi-x"><span class="om" aria-hidden="true">FE</span>The Financial Express</span>
+ <a class="fi-go" href="#press">All 19 mentions &rarr;</a>
+ </div>
+ </section>
+
  <!-- 60-SECOND VERSION (skimmer fast-path; folds in the former at-a-glance facts) -->
  <section id="sixty" data-screen-label="60-second version" style="padding:clamp(10px,2vh,22px) clamp(20px,4vw,48px) 0;">
  <div style="max-width:1200px;margin:0 auto;">
@@ -1305,7 +1319,7 @@
  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:32px 0;margin-top:24px;border-top:1px solid var(--border-hairline);">
  <span style="font-family:var(--disp);font-weight:800;font-size:16px;color:var(--text-strong);">SHAFAAT CHOYON<span style="color:var(--accent-text);">.</span></span>
  <button id="footer-lens" type="button" style="background:transparent;border:none;cursor:pointer;font-family:var(--body);font-size:14px;color:var(--text-faint);text-decoration:underline;text-underline-offset:3px;">Switch lens / view everything</button>
- <span style="font-family:var(--body);font-size:14px;color:var(--text-faint);">Clarity under pressure · <span class="cr-note">© 2026 Md Shafaat Ali Choyon. All rights reserved.</span></span>
+ <span style="font-family:var(--body);font-size:14px;color:var(--text-faint);">Clarity under pressure · <span class="cr-note">© 2026 Md Shafaat Ali Choyon. All rights reserved. &middot; <a style="color:inherit;" href="/tools.html">Free tools</a> &middot; <a style="color:inherit;" href="/privacy.html">Privacy</a> &middot; <a style="color:inherit;" href="/legal.html">Legal</a> &middot; <a style="color:inherit;" href="/accessibility.html">Accessibility</a></span></span>
  </div>
  </div>
  </footer>
@@ -1627,7 +1641,7 @@ class Component extends DCLogic {
 
  lensConfig(){
  return {
- full:{ id:'full', label:'Full portfolio', short:'Full portfolio', icon:'layers',
+ full:{ id:'full', whoFor:'For growth teams that want measurable outcomes, and health organizations that want commercial rigor. <span style="color:var(--accent-text);">One strategist, fluent in both.</span>', label:'Full portfolio', short:'Full portfolio', icon:'layers',
  accent:'#0FB3B3', deep:'#0A7373', ink:'#042020', soft:'rgba(15,179,179,.14)',
  eyebrow:'One capability, every arena',
  headline:'Clarity under pressure that turns system complexity into <span>measurable results.</span>',
@@ -1635,7 +1649,7 @@ class Component extends DCLogic {
  pills:['clear-eyed','pressure-tested','evidence-led','commercially sharp'],
  order:['samsung','praava','surecash','ekhanei','acca','asiatic'], comp:[0,1,2],
  focus:'', blurb:'See the complete body of work.', forWho:'The complete picture' },
- growth:{ id:'growth', label:'Growth &amp; Marketing', short:'Growth &amp; Marketing', icon:'trending-up',
+ growth:{ id:'growth', whoFor:'For founders, CEOs and growth teams that need the number to move, in the US or Bangladesh. <span style="color:var(--accent-text);">Diagnosis first, then the lever.</span>', label:'Growth &amp; Marketing', short:'Growth &amp; Marketing', icon:'trending-up',
  accent:'#E0892E', deep:'#A85A12', ink:'#1c1303', soft:'rgba(224,137,46,.15)',
  eyebrow:'Growth &amp; Marketing Strategy',
  headline:'Clarity under pressure that turns system complexity into <span>measurable growth.</span>',
@@ -1644,7 +1658,7 @@ class Component extends DCLogic {
  order:['samsung','praava','surecash','ekhanei','asiatic','acca'], comp:[0,2,1],
  focus:'Leading with the commercial wins, a record flagship launch, a corporate-sales engine from zero, the nation\u2019s #1 motorbike category, and a 10-million-person campaign.',
  blurb:'Flagship launches, category builds and commercial engines that move the number.', forWho:'For commercial & growth screeners' },
- healthcomm:{ id:'healthcomm', label:'Health Communication', short:'Health Comms', icon:'megaphone',
+ healthcomm:{ id:'healthcomm', whoFor:'For health systems, NGOs and public-health teams that need people to understand, trust and act. <span style="color:var(--accent-text);">Plain language, measurable behavior change.</span>', label:'Health Communication', short:'Health Comms', icon:'megaphone',
  accent:'#0FB3B3', deep:'#0A7373', ink:'#042020', soft:'rgba(15,179,179,.14)',
  eyebrow:'Health Communication',
  headline:'Behavioral science that turns confusing health messages into <span>healthier decisions.</span>',
@@ -1653,7 +1667,7 @@ class Component extends DCLogic {
  order:['praava','surecash','asiatic','ekhanei','acca','samsung'], comp:[1,0,2],
  focus:'Leading with communication that changed behavior, embedded health hotlines, trust-by-design campaigns, harm-reduction and thought leadership. See Published Writing below for the 14 articles.',
  blurb:'Behavior-change campaigns, health literacy and published thought leadership.', forWho:'For behavior-change & comms roles' },
- healthtech:{ id:'healthtech', label:'Health-Tech Product', short:'Health-Tech', icon:'cpu',
+ healthtech:{ id:'healthtech', whoFor:'For digital-health founders and product teams turning a good product into a growing one. <span style="color:var(--accent-text);">Product sense with commercial rigor.</span>', label:'Health-Tech Product', short:'Health-Tech', icon:'cpu',
  accent:'#3B82C4', deep:'#245C92', ink:'#f6fbff', soft:'rgba(59,130,196,.15)',
  eyebrow:'Health-Tech Product &amp; Growth',
  headline:'Strategy that turns digital health products into <span>compounding growth.</span>',
@@ -1662,7 +1676,7 @@ class Component extends DCLogic {
  order:['praava','samsung','ekhanei','surecash','asiatic','acca'], comp:[2,0,1],
  focus:'Leading with product and platform work, digital health products, e-commerce and loyalty platforms, marketplace quality systems and an end-to-end ERP/BI transformation.',
  blurb:'Digital health products, data-driven growth loops and platform transformation.', forWho:'For product & digital-health teams' },
- pophealth:{ id:'pophealth', label:'Population Health', short:'Pop Health', icon:'globe',
+ pophealth:{ id:'pophealth', whoFor:'For public-health agencies, funders and programs that need reach at national scale. <span style="color:var(--accent-text);">And proof that it worked.</span>', label:'Population Health', short:'Pop Health', icon:'globe',
  accent:'#E85C42', deep:'#B23A26', ink:'#fff5f2', soft:'rgba(232,92,66,.14)',
  eyebrow:'Population Health',
  headline:'Systems thinking that turns population-scale problems into <span>measurable health impact.</span>',
@@ -2144,7 +2158,7 @@ class Component extends DCLogic {
  const _cvEl=document.getElementById('cv-download'); if(_cvEl){ const _c=_cv[id]||_cv.full; _cvEl.setAttribute('href',_c[0]); _cvEl.setAttribute('download',''); _cvEl.innerHTML=_c[1]; }
  const _ol=document.getElementById('operating-logic'); if(_ol){ _ol.style.display=(id==='full'||id==='growth')?'':'none'; }
  /* 60-second card (#sixty) shows on every lens; no gating */
- const _wf=document.getElementById('hero-whofor'); if(_wf){ _wf.style.display=(id==='full'||id==='growth')?'':'none'; }
+ const _wf=document.getElementById('hero-whofor'); if(_wf){ _wf.style.display=''; if(cfg.whoFor) _wf.innerHTML=cfg.whoFor; }
 
  if(id==='full'){ this.restoreFull(); }
  else { this.renderLens(this._dossiers[id]); }
@@ -2715,7 +2729,7 @@ class Component extends DCLogic {
  if(document.getElementById('cookie-consent'))return;
  var b=document.createElement('div'); b.id='cookie-consent'; b.setAttribute('role','dialog'); b.setAttribute('aria-label','Analytics consent');
  b.style.cssText='position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:580px;margin:0 auto;background:var(--surface-raised,#141A22);color:var(--text-body,#D8DCE2);border:1px solid var(--border-hairline,#2A3340);border-radius:14px;box-shadow:0 16px 44px rgba(0,0,0,.5);padding:16px 18px;font-family:var(--body,Inter),system-ui,sans-serif;font-size:13.5px;line-height:1.5;display:flex;flex-wrap:wrap;align-items:center;gap:12px;transform:translateY(160%);transition:transform .45s cubic-bezier(.2,.7,.2,1);';
- b.innerHTML='<span style="flex:1;min-width:230px;">This site uses Google Analytics cookies to understand which work resonates. Privacy-first (cookieless) analytics run either way. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--accent-text,#00A6A6);text-decoration:underline;">Learn more</a></span><span style="display:flex;gap:8px;flex:0 0 auto;"><button id="cc-no" type="button" style="cursor:pointer;font:inherit;font-weight:600;padding:8px 14px;border-radius:8px;border:1px solid var(--border-strong,#3A434E);background:transparent;color:var(--text-strong,#F7F2E8);">Decline</button><button id="cc-yes" type="button" style="cursor:pointer;font:inherit;font-weight:700;padding:8px 16px;border-radius:8px;border:1.5px solid var(--accent,#00A6A6);background:var(--accent,#00A6A6);color:var(--accent-ink,#04222A);">Accept</button></span>';
+ b.innerHTML='<span style="flex:1;min-width:230px;">This site uses Google Analytics cookies to understand which work resonates. Privacy-first (cookieless) analytics run either way. <a href="/privacy.html" style="color:var(--accent-text,#00A6A6);text-decoration:underline;">Learn more</a></span><span style="display:flex;gap:8px;flex:0 0 auto;"><button id="cc-no" type="button" style="cursor:pointer;font:inherit;font-weight:600;padding:8px 14px;border-radius:8px;border:1px solid var(--border-strong,#3A434E);background:transparent;color:var(--text-strong,#F7F2E8);">Decline</button><button id="cc-yes" type="button" style="cursor:pointer;font:inherit;font-weight:700;padding:8px 16px;border-radius:8px;border:1.5px solid var(--accent,#00A6A6);background:var(--accent,#00A6A6);color:var(--accent-ink,#04222A);">Accept</button></span>';
  document.body.appendChild(b);
  requestAnimationFrame(function(){ b.style.transform='translateY(0)'; });
  b.querySelector('#cc-yes').addEventListener('click',function(){ setC('granted'); if(window.loadGA) window.loadGA(); if(window.__reobserveSections) window.__reobserveSections(); hideBanner(); });
@@ -3814,5 +3828,6 @@ document.addEventListener('click',function(e){var t=e.target&&e.target.closest?e
   document.addEventListener('visibilitychange', vis); vis();
 })();
 </script>
+<script>/* featured strip: open + scroll to #press. Delegated because the runtime strips inline handlers inside #site-root (2026-10-13) */document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('#featured .fi-go');if(!a)return;e.preventDefault();e.stopPropagation();try{window.track&&window.track('featured_click',{})}catch(_){}var p=document.getElementById('press');if(!p)return;if(!p.classList.contains('gt-open')){var b=p.querySelector('[data-gt-toggle]');if(b)b.click();}var go=function(){var t=p.getBoundingClientRect().top+window.scrollY-70;window.scrollTo({top:t<0?0:t,behavior:'instant'});};go();setTimeout(go,450);setTimeout(go,1300);},true);</script>
 </body>
 </html>

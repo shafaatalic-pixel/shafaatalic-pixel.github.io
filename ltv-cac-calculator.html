@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LTV to CAC Ratio and Payback Calculator | Shafaat Ali Choyon</title>
+<meta name="description" content="Free LTV:CAC and CAC payback calculator. Enter revenue, margin, churn and acquisition cost to see if each customer pays back, in USD or BDT." />
+<link rel="canonical" href="https://shafaatalichoyon.com/ltv-cac-calculator.html" />
+<meta name="author" content="Md Shafaat Ali Choyon" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0B0F14" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Md Shafaat Ali Choyon" />
+<meta property="og:title" content="LTV to CAC Ratio and Payback Calculator | Shafaat Ali Choyon" />
+<meta property="og:description" content="Free LTV:CAC and CAC payback calculator. Enter revenue, margin, churn and acquisition cost to see if each customer pays back, in USD or BDT." />
+<meta property="og:url" content="https://shafaatalichoyon.com/ltv-cac-calculator.html" />
+<meta property="og:image" content="https://shafaatalichoyon.com/assets/og-card.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="LTV to CAC Ratio and Payback Calculator | Shafaat Ali Choyon" />
+<meta name="twitter:description" content="Free LTV:CAC and CAC payback calculator. Enter revenue, margin, churn and acquisition cost to see if each customer pays back, in USD or BDT." />
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "LTV to CAC Ratio and Payback Calculator",
+ "url": "https://shafaatalichoyon.com/ltv-cac-calculator.html",
+ "description": "Free LTV:CAC and CAC payback calculator. Enter revenue, margin, churn and acquisition cost to see if each customer pays back, in USD or BDT.",
+ "applicationCategory": "BusinessApplication",
+ "operatingSystem": "Any (web browser)",
+ "isAccessibleForFree": true,
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ },
+ "author": {
+  "@type": "Person",
+  "@id": "https://shafaatalichoyon.com/#person",
+  "name": "Md Shafaat Ali Choyon",
+  "url": "https://shafaatalichoyon.com/"
+ },
+ "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://shafaatalichoyon.com/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Free tools",
+   "item": "https://shafaatalichoyon.com/tools.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "LTV to CAC calculator",
+   "item": "https://shafaatalichoyon.com/ltv-cac-calculator.html"
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "What is a good LTV to CAC ratio?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A common rule of thumb is 3 to 1 or better: each customer returns at least three times what it cost to win them, in gross margin. Below 1 to 1 you lose money on every customer. Well above 5 to 1 can mean you are under-investing in growth."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is CAC payback and why does it matter?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "CAC payback is the number of months of gross margin it takes to earn back what you spent to acquire a customer. It tells you how long your cash is tied up. Many subscription businesses aim for 12 months or less."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Should LTV use revenue or gross margin?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Gross margin. Revenue overstates what a customer is worth because it ignores the cost of serving them. This calculator multiplies revenue by your gross margin before anything else."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Why cap the customer lifetime?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "With low churn the formula can promise customers who stay for decades. Capping the horizon, five years by default, keeps the estimate conservative and closer to what a lender or investor will accept."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is my data sent anywhere?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. The numbers you type stay in your browser. The page only records that the calculator was used, never the values."
+   }
+  }
+ ]
+}
+</script>
+
+<link rel="stylesheet" href="/assets/vendor/fonts.css">
+<style>
+  :root{--bg:#0B0F14;--panel:#11161D;--tile:#06090D;--ivory:#F3EFE7;--body:#C7CDD6;--muted:#9AA3AE;--faint:#7f8894;--teal:#33C4C4;--amber:#F4A24C;--red:#F0705A;--green:#4FC48A;--line:rgba(255,255,255,.09);}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--body);font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.66;}
+  a{color:var(--teal);text-decoration:none;} a:hover{text-decoration:underline;}
+  :focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
+  .wrap{max-width:820px;margin:0 auto;padding:34px 22px 80px;}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-bottom:24px;border-bottom:1px solid var(--line);margin-bottom:30px;flex-wrap:wrap;}
+  .brand{display:inline-flex;align-items:center;gap:10px;font-family:'Manrope';font-weight:800;font-size:19px;color:var(--ivory);}
+  .brand span.dot{color:var(--teal);}
+  .navlinks{display:flex;gap:9px;flex-wrap:wrap;}
+  .back{font-family:'Manrope';font-weight:700;font-size:13.5px;color:var(--ivory);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px 15px;}
+  .back:hover{border-color:var(--teal);text-decoration:none;}
+  .back.solid{background:var(--amber);border-color:var(--amber);color:#1a1207;}
+  .eyebrow{font-family:'Inter';font-size:11px;letter-spacing:.16em;color:var(--faint);text-transform:uppercase;}
+  h1{font-family:'Manrope';font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.1;letter-spacing:-.02em;color:var(--ivory);margin:12px 0 0;max-width:24ch;}
+  .lede{font-size:17px;color:var(--body);margin:20px 0 6px;max-width:66ch;}
+  .lede b{color:var(--ivory);font-weight:500;}
+  .updated{font-size:13px;color:var(--faint);margin:14px 0 0;}
+  article h2{font-family:'Manrope';font-weight:700;font-size:clamp(19px,2.6vw,24px);line-height:1.24;letter-spacing:-.01em;color:var(--ivory);margin:40px 0 10px;}
+  article h3{font-family:'Manrope';font-weight:700;font-size:16.5px;color:var(--ivory);margin:24px 0 6px;}
+  article p,article li{font-size:15.5px;color:var(--body);max-width:68ch;}
+  article p{margin:0 0 15px;}
+  article ul{margin:0 0 15px;padding-left:20px;}
+  article li{margin:0 0 8px;}
+  article b{color:var(--ivory);font-weight:500;}
+  .formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;background:var(--tile);border:1px solid var(--line);border-radius:8px;padding:10px 12px;color:var(--body);overflow-x:auto;white-space:nowrap;}
+  .formula .k{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:4px;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:clamp(18px,3vw,26px);}
+  .cta{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;padding:20px 24px;margin:40px 0 0;max-width:68ch;}
+  .cta h2{margin:0 0 6px;font-size:19px;}
+  .faq{margin:44px 0 0;padding-top:26px;border-top:1px solid var(--line);}
+  .faq>h2{margin-top:0;}
+  .privacy-note{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--muted);margin:14px 0 0;}
+  footer.foot{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);}
+  footer.foot a{color:var(--muted);text-decoration:underline;text-underline-offset:3px;}
+
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+  .calc{margin:28px 0 8px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px 18px;}
+  label{display:flex;flex-direction:column;gap:6px;font-family:'Manrope';font-weight:700;font-size:14px;color:var(--ivory);}
+  .hint{font-family:'Inter';font-weight:400;font-size:12px;color:var(--faint);}
+  input,select{font:500 16px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:10px 12px;width:100%;}
+  input:focus,select:focus{border-color:var(--teal);outline:none;}
+  .out{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:22px 0 8px;}
+  .kpi{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:2px;}
+  .kl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);}
+  .kv{font-family:'Manrope';font-weight:800;font-size:30px;color:var(--ivory);letter-spacing:-.01em;line-height:1.15;}
+  .kb{font-size:13px;color:var(--muted);}
+  .good{color:var(--green)!important;} .warn{color:var(--amber)!important;} .bad{color:var(--red)!important;}
+  .verdict{font-size:15.5px;color:var(--ivory);margin:10px 0 14px;max-width:68ch;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/">Shafaat Choyon<span class="dot">.</span></a>
+    <nav class="navlinks" aria-label="Site">
+      <a class="back" href="/tools.html">Free tools</a>
+      <a class="back" href="/essays.html">Essays</a>
+      <a class="back" href="/?view=growth">Full portfolio</a>
+      <a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a>
+    </nav>
+  </header>
+  <main>
+  <div class="eyebrow">Free tool &middot; Growth &amp; unit economics</div>
+  <h1>LTV to CAC ratio and payback calculator</h1>
+  <p class="lede">Does each customer pay back what it cost to win them, and how fast? Enter five numbers to see your <b>LTV to CAC ratio</b>, your <b>CAC payback</b> in months, and what to fix first. Works in US dollars or taka.</p>
+  <article>
+
+<section class="card calc" aria-labelledby="calc-h">
+  <h2 id="calc-h" class="sr">Calculator</h2>
+  <div class="grid">
+    <label>Currency
+      <select id="cur"><option value="$">US dollar ($)</option><option value="৳">Bangladeshi taka (৳)</option><option value="£">Pound (£)</option><option value="€">Euro (€)</option></select>
+    </label>
+    <label>Revenue per customer, per month <span class="hint">average, before costs</span>
+      <input id="arpu" type="number" inputmode="decimal" min="0" step="any" value="50" />
+    </label>
+    <label>Gross margin (%) <span class="hint">revenue left after the cost of serving</span>
+      <input id="gm" type="number" inputmode="decimal" min="0" max="100" step="any" value="70" />
+    </label>
+    <label>Monthly churn (%) <span class="hint">share of customers lost each month</span>
+      <input id="churn" type="number" inputmode="decimal" min="0" max="100" step="any" value="4" />
+    </label>
+    <label>Cost to acquire one customer (CAC) <span class="hint">all sales and marketing spend ÷ new customers</span>
+      <input id="cac" type="number" inputmode="decimal" min="0" step="any" value="400" />
+    </label>
+    <label>Lifetime cap (months) <span class="hint">conservative horizon, 60 = five years</span>
+      <input id="cap" type="number" inputmode="numeric" min="1" max="240" step="1" value="60" />
+    </label>
+  </div>
+  <div class="out" aria-live="polite">
+    <div class="kpi"><span class="kl">LTV : CAC</span><span class="kv" id="o-ratio">-</span><span class="kb" id="o-band"></span></div>
+    <div class="kpi"><span class="kl">CAC payback</span><span class="kv" id="o-pay">-</span><span class="kb" id="o-payband"></span></div>
+    <div class="kpi"><span class="kl">Customer lifetime value</span><span class="kv" id="o-ltv">-</span><span class="kb" id="o-life"></span></div>
+  </div>
+  <p class="verdict" id="o-verdict"></p>
+  <div class="formula"><span class="k">Formula</span>LTV = ARPU × margin × (1 − (1 − churn)<sup>T</sup>) ÷ churn &nbsp;·&nbsp; Payback = CAC ÷ (ARPU × margin)</div>
+  <p class="privacy-note">Your numbers stay in your browser. Nothing you type is sent or stored.</p>
+</section>
+
+<h2>How to read your result</h2>
+<ul>
+  <li><b>Below 1 : 1.</b> Every new customer loses money. Growth makes the hole deeper. Fix price, margin or retention before spending more on acquisition.</li>
+  <li><b>1 to 3 : 1.</b> You make money, but thinly. A small rise in acquisition cost or churn can wipe it out.</li>
+  <li><b>3 : 1 or better.</b> The common benchmark for a healthy, fundable model.</li>
+  <li><b>Above 5 : 1.</b> Healthy, and possibly too cautious. You may be able to grow faster by spending more to acquire customers.</li>
+</ul>
+<p>Payback matters as much as the ratio. A 4 : 1 ratio that takes three years to pay back can still run you out of cash. Under 12 months is a strong result for most subscription and repeat-purchase businesses.</p>
+
+<h2>Three mistakes that flatter the number</h2>
+<ul>
+  <li><b>Using revenue instead of margin.</b> A customer worth 100 in revenue at 30% margin is worth 30, not 100.</li>
+  <li><b>Counting only paid media in CAC.</b> Salaries, agency fees, tools and sales commissions are acquisition costs too. Blended CAC that leaves them out is a vanity metric.</li>
+  <li><b>One churn rate for everyone.</b> New customers usually churn faster than loyal ones. If you can, run the calculator by cohort or by channel, and compare.</li>
+</ul>
+<p>Most growth problems are misdiagnosed as reach problems. When this ratio is weak, the lever is often retention, which is why <a href="/retention-is-the-real-growth.html">retention is the real growth engine</a>, or price, because <a href="/pricing-is-positioning.html">pricing is positioning</a>. And if the number makes you uncomfortable, that is the one to <a href="/measure-what-you-avoid.html">measure first</a>.</p>
+
+<div class="cta">
+  <h2>Want a second pair of eyes on your unit economics?</h2>
+  <p>I have built commercial engines from zero in fintech, consumer tech and healthcare, in the US and Bangladesh. A 30-minute call is free.</p>
+  <p><a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a></p>
+</div>
+<section class="faq"><h2>Questions</h2>
+<h3>What is a good LTV to CAC ratio?</h3><p>A common rule of thumb is 3 to 1 or better: each customer returns at least three times what it cost to win them, in gross margin. Below 1 to 1 you lose money on every customer. Well above 5 to 1 can mean you are under-investing in growth.</p>
+<h3>What is CAC payback and why does it matter?</h3><p>CAC payback is the number of months of gross margin it takes to earn back what you spent to acquire a customer. It tells you how long your cash is tied up. Many subscription businesses aim for 12 months or less.</p>
+<h3>Should LTV use revenue or gross margin?</h3><p>Gross margin. Revenue overstates what a customer is worth because it ignores the cost of serving them. This calculator multiplies revenue by your gross margin before anything else.</p>
+<h3>Why cap the customer lifetime?</h3><p>With low churn the formula can promise customers who stay for decades. Capping the horizon, five years by default, keeps the estimate conservative and closer to what a lender or investor will accept.</p>
+<h3>Is my data sent anywhere?</h3><p>No. The numbers you type stay in your browser. The page only records that the calculator was used, never the values.</p>
+</section>
+  </article>
+  </main>
+  <footer class="foot">
+    <a href="/">&larr; Back to the portfolio</a> &middot; <a href="/essays.html">All essays</a> &middot; <a href="https://www.linkedin.com/in/sacgrowthspecialist">LinkedIn</a>
+    <p class="cr-note" style="margin:10px 0 0;font-size:12px;letter-spacing:.01em;opacity:.72;">&copy; 2026 Md Shafaat Ali Choyon. All rights reserved. &middot; <a href="/tools.html">Free tools</a> &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="/legal.html">Legal</a> &middot; <a href="/accessibility.html">Accessibility</a></p>
+  </footer>
+</div>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var ids=['cur','arpu','gm','churn','cac','cap'];
+  try{var q=new URLSearchParams(location.search);ids.forEach(function(k){var v=q.get(k);if(v!==null&&$(k)){$(k).value=v;}});}catch(e){}
+  var used=false;
+  function fmt(n,c){if(!isFinite(n))return '-';var a=Math.abs(n);var s=a>=1e6?(n/1e6).toFixed(1)+'M':a>=1e4?Math.round(n).toLocaleString('en-US'):n.toLocaleString('en-US',{maximumFractionDigits:0});return c+s;}
+  function band(el,cls,txt){el.className='kb '+cls;el.textContent=txt;}
+  function calc(ev){
+    var c=$('cur').value, arpu=+$('arpu').value, gm=+$('gm').value/100, ch=+$('churn').value/100, cac=+$('cac').value, T=Math.max(1,Math.round(+$('cap').value||60));
+    var m=arpu*gm, ltv, life;
+    if(!(arpu>0)||!(gm>0)){$('o-verdict').textContent='Enter revenue per customer and a gross margin above zero.';return;}
+    if(ch>0){ltv=m*(1-Math.pow(1-ch,T))/ch; life=Math.min(1/ch,T);} else {ltv=m*T; life=T;}
+    var ratio=cac>0?ltv/cac:Infinity, pay=cac>0?cac/m:0;
+    $('o-ltv').textContent=fmt(ltv,c);
+    $('o-life').className='kb';$('o-life').textContent='about '+(life>=T?T+'+':life.toFixed(1))+' months average lifetime';
+    $('o-ratio').textContent=isFinite(ratio)?ratio.toFixed(1)+' : 1':'no CAC';
+    if(!isFinite(ratio)) band($('o-band'),'','enter a CAC above zero');
+    else if(ratio<1) band($('o-band'),'bad','losing money per customer');
+    else if(ratio<3) band($('o-band'),'warn','profitable, but thin');
+    else if(ratio<=5) band($('o-band'),'good','healthy');
+    else band($('o-band'),'good','healthy, maybe under-investing');
+    $('o-pay').textContent=cac>0?(pay<1?'< 1 month':pay.toFixed(1)+' months'):'-';
+    if(cac>0){ if(pay<=12) band($('o-payband'),'good','strong, 12 months or less'); else if(pay<=24) band($('o-payband'),'warn','slow, cash tied up for '+Math.ceil(pay)+' months'); else band($('o-payband'),'bad','very slow, over two years'); } else band($('o-payband'),'','');
+    if(ch>0 && pay>1/ch) $('o-verdict').textContent='The average customer leaves before paying back what it cost to acquire them. Retention or price is the first lever to look at.';
+    else if(isFinite(ratio)&&ratio<3) $('o-verdict').textContent='Each customer returns '+ratio.toFixed(1)+' times its acquisition cost. Raising margin or cutting churn by a point usually moves this faster than cheaper acquisition.';
+    else if(isFinite(ratio)) $('o-verdict').textContent='Each customer returns '+ratio.toFixed(1)+' times its acquisition cost, paid back in '+(pay<1?'under a month':pay.toFixed(1)+' months')+'. The model can support more acquisition spend.';
+    if(ev&&!used){used=true;try{window.track&&window.track('tool_use',{tool:'ltv_cac'});}catch(e){}}
+    try{var p=new URLSearchParams();ids.forEach(function(k){p.set(k,$(k).value);});history.replaceState(null,'','?'+p.toString());}catch(e){}
+  }
+  ids.forEach(function(k){$(k).addEventListener('input',calc);$(k).addEventListener('change',calc);});
+  calc();
+})();
+</script>
+<script defer src="/assets/analytics.js"></script>
+</body>
+</html>
