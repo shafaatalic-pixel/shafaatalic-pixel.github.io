@@ -179,6 +179,35 @@
   .rng input[type=range]{grid-column:1 / -1;padding:0;accent-color:var(--teal);}
   .rng span{font-size:14px;color:var(--body);} .rng b{font-family:'Manrope';color:var(--ivory);}
   @media print{header.top,.more,.cta,.faq,footer.foot,.privacy-note,.btn,.lede,.eyebrow{display:none!important;} body{background:#fff;color:#000;} .out-doc{border:none;color:#000;background:#fff;}}
+
+  .picker{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:6px 0 18px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;}
+  .picker label{flex-direction:row!important;align-items:center;gap:10px!important;min-width:0;max-width:100%;flex:0 1 auto;}
+  .picker select{width:auto!important;min-width:0;max-width:100%;text-overflow:ellipsis;}
+  @media(max-width:560px){.picker label{flex-direction:column!important;align-items:flex-start;width:100%;} .picker select{width:100%!important;}}
+  .picker .pnote{flex:1 1 260px;font-size:13.5px;color:var(--muted);margin:0;}
+  .picker .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);}
+  .chart{margin:8px 0 6px;} .chart svg{width:100%;height:auto;display:block;}
+  .v2row{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0 6px;}
+  .v2box{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .v2box h3{font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);margin:0 0 10px;}
+  .v2box ol,.v2box ul{margin:0;padding-left:20px;color:var(--body);font-size:14.5px;line-height:1.6;}
+  .v2box li{margin:0 0 6px;}
+  details.work{margin:4px 0 0;} details.work summary{cursor:pointer;font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);list-style:none;}
+  details.work summary::-webkit-details-marker{display:none;} details.work summary:before{content:'+ ';color:var(--teal);} details.work[open] summary:before{content:'\2212  ';}
+  details.work ol{margin-top:10px;font-family:ui-monospace,Menlo,monospace;font-size:13.5px;}
+  .receipt{display:flex;gap:14px;align-items:flex-start;margin:18px 0 0;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;}
+  .receipt .rk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin:0 0 4px;}
+  .receipt p{margin:0;font-size:15px;color:var(--ivory);} .receipt a{font-family:'Manrope';font-weight:700;font-size:14px;}
+  .handoff{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0;}
+  .handoff a{display:inline-flex;flex-direction:column;gap:2px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-size:13px;color:var(--muted);}
+  .handoff a b{font-family:'Manrope';font-size:14.5px;color:var(--ivory);} .handoff a:hover{border-color:var(--teal);text-decoration:none;}
+  .sharebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0;}
+  .sharebar .ok{font-size:13px;color:var(--green);}
+  .mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:26px 0 0;padding:14px 16px;border:1px dashed rgba(255,255,255,.18);border-radius:12px;}
+  .mail p{margin:0;flex:1 1 240px;font-size:14px;color:var(--body);}
+  .mail form{display:flex;gap:8px;flex:1 1 300px;}
+  .mail input{flex:1;font:500 15px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:9px 12px;}
+  @media print{.picker,.sharebar,.mail,.handoff{display:none!important;}}
 </style>
 </head>
 <body>
@@ -193,11 +222,11 @@
     </nav>
   </header>
   <main>
-  <div class="eyebrow">Free tool &middot; Growth &amp; marketing</div>
+  <div class="eyebrow">Free tool &middot; Growth &middot; Execute by channel</div>
   <h1>ROAS and break-even calculator</h1>
-  <p class="lede">Return on ad spend says how much revenue came back. It does not say whether you made money. Add your margin to see your <b>break-even ROAS</b> and the <b>real profit</b> on the campaign.</p>
+  <p class="lede">Return on ad spend says how much revenue came back. It does not say whether you made money. Add your margin to see your <b>break-even ROAS</b> and the <b>real profit</b> on the campaign. Load an example from <b>nine industries</b> to see how it changes.</p>
   <article>
-<section class="card calc" aria-label="Calculator"><div class="grid"><label>Currency<select id="cur"><option value="$">US dollar ($)</option><option value="৳">Bangladeshi taka (৳)</option><option value="£">Pound (£)</option><option value="€">Euro (€)</option></select></label>
+<section class="card calc" aria-label="Calculator"><div class="picker"><label><span class="tag">Example</span><select id="ind" aria-label="Load an industry example"><option value="telecom">Telecom: data-pack campaign</option><option value="fmcg">FMCG: retail media campaign</option><option value="advertising">Agency: client performance campaign</option><option value="fintech">Fintech: card sign-ups, 90-day fees</option><option value="ecommerce" selected>E-commerce: paid social campaign</option><option value="consumertech">Consumer tech: device launch ads</option><option value="education">Education: course enrolment campaign</option><option value="logistics">Logistics: B2B lead campaign</option><option value="healthcare">Healthcare: diagnostics package campaign</option><option value="custom">Your own numbers</option></select></label><p class="pnote" id="pnote"></p></div><div class="grid"><label>Currency<select id="cur"><option value="$">US dollar ($)</option><option value="৳">Bangladeshi taka (৳)</option><option value="£">Pound (£)</option><option value="€">Euro (€)</option></select></label>
 <label>Ad spend <span class="hint">what the platforms charged</span><input id="spend" type="number" inputmode="decimal" min="0" step="any" value="5000"></label>
 <label>Revenue from the campaign <span class="hint">attributed sales</span><input id="rev" type="number" inputmode="decimal" min="0" step="any" value="18000"></label>
 <label>Gross margin (%) <span class="hint">after product and delivery costs</span><input id="gm" type="number" inputmode="decimal" min="0" max="100" step="any" value="40"></label>
@@ -208,9 +237,10 @@
 <div class="kpi"><span class="kl">Break-even ROAS</span><span class="kv" id="o2">-</span><span class="kb" id="o2b"></span></div>
 <div class="kpi"><span class="kl">Campaign profit</span><span class="kv" id="o3">-</span><span class="kb" id="o3b"></span></div>
 </div>
+<div class="chart" id="chart" aria-hidden="true"></div>
 <p class="verdict" id="v"></p>
 <div class="formula"><span class="k">Formula</span>ROAS = revenue ÷ ad spend · Break-even ROAS = (ad spend + other costs) ÷ (ad spend × margin) · Profit = revenue × margin − ad spend − other costs</div>
-<p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
+<div class="v2row"><div class="v2box"><h3>What to do next</h3><ul id="nx"></ul></div><div class="v2box"><details class="work"><summary>Show the working, step by step</summary><ol id="work"></ol></details></div></div><div class="sharebar"><button type="button" class="btn solid" id="shcard">Download result card</button><button type="button" class="btn" id="shlink">Copy link with my numbers</button><button type="button" class="btn" id="shli">Share on LinkedIn</button><span class="ok" id="shok" aria-live="polite"></span></div><div class="receipt"><div><p class="rk">Where I used this</p><p>I built Ekhanei&rsquo;s motorbike category from zero to No. 1 in two and a half months, with revenue up 25% and share up 15%.</p><a href="/case/ekhanei-laser/">Read the case: Building the nation&rsquo;s #1 motorbike category from zero &rarr;</a></div></div><div class="handoff"><a href="/cac-calculator.html" id="h1"><span>Step before</span><b>Cost per customer: CAC by channel</b></a><a href="/marketing-roi-calculator.html" id="h2"><span>Next step, pre-filled</span><b>Full return: Marketing ROI</b></a><a href="/campaign-pacing-calculator.html" id="h3"><span>Same stage</span><b>Spend on track? Campaign pacing</b></a></div><p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
 
 <h2>Why ROAS alone misleads</h2>
 <p>ROAS counts revenue, not profit. A 3x ROAS sounds strong, but at a 30% gross margin every unit of ad spend returns 0.9 units of profit, and the campaign loses money before you count the agency or the creative. The break-even ROAS is simply one divided by your margin, and it rises further once other campaign costs are included.</p>
@@ -218,7 +248,7 @@
 <li><b>Know your break-even before launch.</b> It is the floor every channel has to clear.</li>
 <li><b>Platform-reported revenue flatters.</b> Attribution windows and view-through conversions often count sales that would have happened anyway. Hold-out tests tell you the true lift.</li>
 <li><b>First purchase is not lifetime.</b> If customers come back, a campaign that loses money on day one can still be worth it. Pair this with the <a href="/ltv-cac-calculator.html">LTV to CAC calculator</a>.</li>
-</ul>
+</ul><div class="mail"><p><b>Get new free tools by email.</b> One short note when a new tool or essay goes live. No spam, unsubscribe any time.</p><form id="mailf" action="https://buttondown.com/api/emails/embed-subscribe/shafaat" method="post" target="popupwindow"><input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required><button type="submit" class="btn solid">Subscribe</button></form></div>
 <div class="cta"><h2>Want a second pair of eyes on the numbers?</h2><p>I have built commercial engines from zero in fintech, consumer tech and healthcare, in the US and Bangladesh. A 30-minute call is free.</p><p><a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a></p></div>
 <section class="faq"><h2>Questions</h2>
 <h3>What is a good ROAS?</h3><p>There is no universal number. A good ROAS is one above your break-even ROAS, which is 1 divided by your gross margin. At 50% margin you need at least 2x; at 25% margin you need 4x.</p>
@@ -226,7 +256,7 @@
 <h3>Should I include agency and creative costs?</h3><p>Yes, if you want the true break-even. This calculator adds them on top of ad spend when working out profit and the break-even ROAS.</p>
 </section>
   </article>
-<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/ab-test-significance-calculator.html"><b>A/B test significance calculator</b>Is variant B really better, or is it noise? Confidence, lift and the sample you need.</a><a href="/nps-calculator.html"><b>NPS calculator</b>Net Promoter Score from your survey counts, with the margin of error most reports leave out.</a><a href="/brand-voice-builder.html"><b>Brand personality and tone of voice builder</b>Set six personality sliders and get a tone-of-voice guide with do and don't examples.</a></div><a class="all" href="/tools.html">See all 32 free tools &rarr;</a></section>
+<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/ab-test-significance-calculator.html"><b>A/B test significance calculator</b>Is variant B really better, or is it noise? Confidence, lift and the sample you need.</a><a href="/nps-calculator.html"><b>NPS calculator</b>Net Promoter Score from your survey counts, with the margin of error most reports leave out.</a><a href="/brand-voice-builder.html"><b>Brand personality and tone of voice builder</b>Set six personality sliders and get a tone-of-voice guide with do and don't examples.</a></div><a class="all" href="/tools.html">See all 33 free tools &rarr;</a></section>
   </main>
   <footer class="foot">
     <a href="/">&larr; Back to the portfolio</a> &middot; <a href="/essays.html">All essays</a> &middot; <a href="https://www.linkedin.com/in/sacgrowthspecialist">LinkedIn</a>
@@ -246,6 +276,46 @@
   var toQuery=function(ids){try{var p=new URLSearchParams();ids.forEach(function(k){if($(k))p.set(k,$(k).value);});history.replaceState(null,'','?'+p.toString());}catch(e){}};
   var ncdf=function(x){var t=1/(1+0.2316419*Math.abs(x)),d=0.3989423*Math.exp(-x*x/2),p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p;};
   var zfor=function(conf){return {80:1.2816,85:1.4395,90:1.6449,95:1.96,98:2.3263,99:2.5758}[conf]||1.96;};
+var SLUG="roas-calculator",TOOLNAME="ROAS and break-even calculator",PRESETS={"telecom": {"label": "Telecom: data-pack campaign", "note": "Use revenue over the first few months of a subscription, not day one, or prepaid campaigns will look like losses.", "v": {"spend": 20000, "rev": 60000, "gm": 55, "other": 3000}}, "fmcg": {"label": "FMCG: retail media campaign", "note": "Thin margins make break-even ROAS high. Promotions and retail media need a strong ROAS just to pay back.", "v": {"spend": 15000, "rev": 45000, "gm": 30, "other": 2000}}, "advertising": {"label": "Agency: client performance campaign", "note": "Agree with the client what counts as revenue (online only, or store sales too) before launch.", "v": {"spend": 10000, "rev": 32000, "gm": 35, "other": 1500}}, "fintech": {"label": "Fintech: card sign-ups, 90-day fees", "note": "Fintech revenue arrives over months as fees. Count revenue over a fixed window, such as 90 days, for every campaign.", "v": {"spend": 25000, "rev": 40000, "gm": 70, "other": 5000}}, "ecommerce": {"label": "E-commerce: paid social campaign", "note": "Count revenue net of returns and discounts, or ROAS will flatter you.", "v": {"spend": 5000, "rev": 18000, "gm": 40, "other": 1000}}, "consumertech": {"label": "Consumer tech: device launch ads", "note": "Device margins are slim, so a high ROAS can still lose money. Always check it against break-even ROAS.", "v": {"spend": 40000, "rev": 200000, "gm": 20, "other": 8000}}, "education": {"label": "Education: course enrolment campaign", "note": "Count tuition actually collected in the window, not applications.", "v": {"spend": 8000, "rev": 30000, "gm": 60, "other": 2000}}, "logistics": {"label": "Logistics: B2B lead campaign", "note": "B2B deals close slowly. Credit contract revenue to the campaign that sourced the lead, over a long window.", "v": {"spend": 6000, "rev": 30000, "gm": 25, "other": 1000}}, "healthcare": {"label": "Healthcare: diagnostics package campaign", "note": "If you cannot track repeat visits, count first-visit revenue only, and say so when you report.", "v": {"spend": 4000, "rev": 14000, "gm": 45, "other": 800}}, "custom": {"label": "Your own numbers", "v": {}, "note": "Enter your own figures. The examples are illustrative, not benchmarks."}};
+
+  var hbars=function(rows,c,o){o=o||{};var el=$('chart');if(!el)return;rows=rows.filter(function(r){return isFinite(r.v)&&r.v>=0;});if(!rows.length){el.innerHTML='';return;}
+    var W=680,rh=34,lw=o.lw||170,bw=W-lw-130,mx=Math.max.apply(null,rows.map(function(r){return r.v;}))||1,h=8+rows.length*rh+4,s='<svg viewBox="0 0 '+W+' '+h+'" role="img" aria-label="'+esc(o.label||'Chart')+'">';
+    rows.forEach(function(r,i){var y=8+i*rh,w=Math.max(2,r.v/mx*bw);s+='<text x="'+(lw-10)+'" y="'+(y+19)+'" text-anchor="end" font-size="13" fill="#C7CDD6" font-family="Inter,system-ui">'+esc(String(r.n).slice(0,26))+'</text><rect x="'+lw+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="18" rx="4" fill="'+(r.col||'#33C4C4')+'"/><text x="'+(lw+w+8)+'" y="'+(y+19)+'" font-size="13" fill="#F3EFE7" font-family="Inter,system-ui" font-weight="600">'+esc(r.t!==undefined?r.t:fm(r.v,c))+'</text>';});
+    el.innerHTML=s+'</svg>';};
+  var work=function(lines){var el=$('work');if(el)el.innerHTML=lines.map(function(l){return '<li>'+esc(l)+'</li>';}).join('');};
+  var nextUp=function(items){var el=$('nx');if(!el)return;el.innerHTML=items.map(function(it){return '<li>'+esc(it.t)+(it.href?' <a href="'+esc(it.href)+'">'+esc(it.a)+' &rarr;</a>':'')+'</li>';}).join('');};
+  var shareEv=function(m){try{window.track&&window.track('tool_share',{tool:SLUG,method:m});}catch(e){}};
+  var flash=function(t){var el=$('shok');if(!el)return;el.textContent=t;setTimeout(function(){el.textContent='';},2600);};
+  function applyPreset(k,run){var p=PRESETS[k];if(!p)return;Object.keys(p.v).forEach(function(id){if($(id))$(id).value=p.v[id];});$('pnote').textContent=p.note||'';if(run)run();}
+  function initPicker(run){var s=$('ind');if(!s)return;var q=null;try{q=new URLSearchParams(location.search);}catch(e){}
+    var fromUrl=q&&[...q.keys()].some(function(k){return k!=='ind'&&!!$(k);});if(q&&q.get('ind')&&PRESETS[q.get('ind')])s.value=q.get('ind');
+    if(fromUrl&&!(q&&q.get('ind'))&&PRESETS.custom)s.value='custom';if(!fromUrl)applyPreset(s.value);else $('pnote').textContent=(PRESETS[s.value]||{}).note||'';
+    s.addEventListener('change',function(){applyPreset(s.value,run);try{window.track&&window.track('tool_preset',{tool:SLUG,preset:s.value});}catch(e){}});}
+  function wrapText(ctx,t,x,y,mw,lh,maxL){var w=t.split(' '),line='',n=0;for(var i=0;i<w.length;i++){var tl=line+w[i]+' ';if(ctx.measureText(tl).width>mw&&line){ctx.fillText(line,x,y);y+=lh;line=w[i]+' ';if(++n>=maxL-1){var rest=w.slice(i).join(' ');while(ctx.measureText(rest+'…').width>mw&&rest.length)rest=rest.slice(0,-1);ctx.fillText(rest+(rest.length<w.slice(i).join(' ').length?'…':''),x,y);return;}}else line=tl;}ctx.fillText(line,x,y);}
+  function card(){var c=document.createElement('canvas');c.width=1200;c.height=630;var x=c.getContext('2d');var F='Manrope, Inter, system-ui, sans-serif';
+    x.fillStyle='#0B0F14';x.fillRect(0,0,1200,630);x.fillStyle='#33C4C4';x.fillRect(0,0,1200,8);
+    x.fillStyle='#7f8894';x.font='600 20px '+F;x.fillText('FREE TOOL',64,72);
+    x.fillStyle='#F3EFE7';x.font='800 44px '+F;wrapText(x,TOOLNAME,64,124,1072,52,2);
+    var ks=[].slice.call(document.querySelectorAll('.out .kpi')).slice(0,4);var cw=1072/Math.max(ks.length,1);
+    ks.forEach(function(k,i){var l=(k.querySelector('.kl')||{}).textContent||'',v=(k.querySelector('.kv')||{}).textContent||'';x.fillStyle='#7f8894';x.font='600 18px '+F;x.fillText(l.toUpperCase().slice(0,26),64+i*cw,268);x.fillStyle='#F3EFE7';var fs=46;x.font='800 '+fs+'px '+F;while(x.measureText(v).width>cw-24&&fs>24){fs-=2;x.font='800 '+fs+'px '+F;}var vv=v;if(x.measureText(vv).width>cw-24){while(x.measureText(vv+'…').width>cw-24&&vv.length>3)vv=vv.slice(0,-1);vv+='…';}x.fillText(vv,64+i*cw,324);});
+    x.fillStyle='#C7CDD6';x.font='400 25px Inter, system-ui, sans-serif';var vt=(($('v')||{}).textContent||'').trim()||(($('say1')||{}).textContent||'').trim()||(($('obj')||{}).textContent||'').trim();wrapText(x,vt,64,ks.length?410:250,1072,36,ks.length?3:6);
+    x.fillStyle='#33C4C4';x.font='700 22px '+F;x.fillText('shafaatalichoyon.com/'+SLUG,64,578);x.fillStyle='#7f8894';x.font='500 20px '+F;x.textAlign='right';x.fillText('Md Shafaat Ali Choyon',1136,578);
+    c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=SLUG+'-result.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},800);});shareEv('card');flash('Result card downloaded');}
+  function initShare(){var b=$('shcard');if(b)b.addEventListener('click',card);
+    var cl=$('shlink');if(cl)cl.addEventListener('click',function(){var u=location.href;try{navigator.clipboard.writeText(u).then(function(){flash('Link with your numbers copied');});}catch(e){prompt('Copy this link',u);}shareEv('link_numbers');});
+    var ln=$('shli');if(ln)ln.addEventListener('click',function(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.origin+location.pathname),'_blank','noopener');shareEv('linkedin');});
+    var mf=$('mailf');if(mf)mf.addEventListener('submit',function(){try{window.open('https://buttondown.com/shafaat','popupwindow');window.track&&window.track('subscribe',{from:'tool',tool:SLUG});}catch(e){}});}
+
+  var __tq=toQuery;toQuery=function(a){__tq(a.indexOf('ind')<0?a.concat('ind'):a);};
+  function POST(){var c=$('cur').value,s=num('spend'),r=num('rev'),m=num('gm')/100,o=num('other')||0;if(!(s>0&&m>0&&r>=0)){work([]);nextUp([]);hbars([]);return;}
+    var roas=r/s,be=(s+o)/(s*m),p=r*m-s-o;
+    work(['ROAS: '+fm(r,c)+' revenue ÷ '+fm(s,c)+' ad spend = '+roas.toFixed(2)+'x','Gross profit: '+fm(r,c)+' × '+fm(m*100,'',1)+'% margin = '+fm(r*m,c),'Break-even ROAS: ('+fm(s,c)+' + '+fm(o,c)+') ÷ ('+fm(s,c)+' × '+fm(m*100,'',1)+'%) = '+be.toFixed(2)+'x','Profit: '+fm(r*m,c)+' − '+fm(s,c)+' − '+fm(o,c)+' = '+fm(p,c)]);
+    hbars([{n:'Ad spend + other costs',v:s+o,col:'#F4A24C'},{n:'Revenue',v:r},{n:'Gross profit',v:r*m,col:p>=0?'#4FC48A':'#F0705A'}],c,{label:'Spend, revenue and gross profit'});
+    var nx=[];if(roas<be){nx.push({t:'Fix before you scale: tighten targeting, improve the landing page or raise order value. More budget at this ROAS only grows the loss.'});nx.push({t:'On this spend you need '+fm(s*be,c)+' in revenue to break even, '+fm(Math.max(0,s*be-r),c)+' more than now.'});}
+    else if(roas<be*1.3)nx.push({t:'Just above break-even, so there is little room for error. Raise budget in small steps, about 20%, and recheck ROAS each time.'});
+    else nx.push({t:'Comfortably profitable. Scale in steps of about 20% and watch ROAS: it usually falls as you reach colder audiences.'});
+    nx.push({t:'Check incrementality with a holdout group: some of these buyers would have bought anyway.'});
+    var u='/marketing-roi-calculator.html?cur='+encodeURIComponent(c)+'&rev='+r+'&base=0&gm='+(m*100)+'&cost='+(s+o);nx.push({t:'See the full return, including people and tools.',href:u,a:'Marketing ROI, pre-filled'});nextUp(nx);if($('h2'))$('h2').href=u;}
 
   var ids=['cur','spend','rev','gm','other'];fromQuery(ids);
   function f(){var c=$('cur').value,s=num('spend'),r=num('rev'),m=num('gm')/100,o=num('other')||0;
@@ -257,7 +327,8 @@
     if(roas<be) $('v').textContent='At '+(m*100).toFixed(0)+'% margin this campaign needs a ROAS of '+be.toFixed(2)+'x just to break even. It returned '+roas.toFixed(2)+'x, so it lost '+fm(-p,c)+'. A high ROAS can still lose money when margins are thin.';
     else $('v').textContent='The campaign cleared its break-even ROAS of '+be.toFixed(2)+'x and made '+fm(p,c)+' after product costs and other spend. Check whether those customers would have bought anyway before scaling it.';
     toQuery(ids);}
-  bindAll(ids,f,'roas');
+  var __f=f;f=function(){__f();try{POST();}catch(e){}};initPicker(f);bindAll(ids.concat('ind'),f,'roas');
+  initShare();
 })();
 </script>
 <script defer src="/assets/analytics.js"></script>

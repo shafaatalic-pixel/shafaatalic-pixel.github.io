@@ -179,6 +179,35 @@
   .rng input[type=range]{grid-column:1 / -1;padding:0;accent-color:var(--teal);}
   .rng span{font-size:14px;color:var(--body);} .rng b{font-family:'Manrope';color:var(--ivory);}
   @media print{header.top,.more,.cta,.faq,footer.foot,.privacy-note,.btn,.lede,.eyebrow{display:none!important;} body{background:#fff;color:#000;} .out-doc{border:none;color:#000;background:#fff;}}
+
+  .picker{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:6px 0 18px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;}
+  .picker label{flex-direction:row!important;align-items:center;gap:10px!important;min-width:0;max-width:100%;flex:0 1 auto;}
+  .picker select{width:auto!important;min-width:0;max-width:100%;text-overflow:ellipsis;}
+  @media(max-width:560px){.picker label{flex-direction:column!important;align-items:flex-start;width:100%;} .picker select{width:100%!important;}}
+  .picker .pnote{flex:1 1 260px;font-size:13.5px;color:var(--muted);margin:0;}
+  .picker .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);}
+  .chart{margin:8px 0 6px;} .chart svg{width:100%;height:auto;display:block;}
+  .v2row{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0 6px;}
+  .v2box{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .v2box h3{font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);margin:0 0 10px;}
+  .v2box ol,.v2box ul{margin:0;padding-left:20px;color:var(--body);font-size:14.5px;line-height:1.6;}
+  .v2box li{margin:0 0 6px;}
+  details.work{margin:4px 0 0;} details.work summary{cursor:pointer;font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);list-style:none;}
+  details.work summary::-webkit-details-marker{display:none;} details.work summary:before{content:'+ ';color:var(--teal);} details.work[open] summary:before{content:'\2212  ';}
+  details.work ol{margin-top:10px;font-family:ui-monospace,Menlo,monospace;font-size:13.5px;}
+  .receipt{display:flex;gap:14px;align-items:flex-start;margin:18px 0 0;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;}
+  .receipt .rk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin:0 0 4px;}
+  .receipt p{margin:0;font-size:15px;color:var(--ivory);} .receipt a{font-family:'Manrope';font-weight:700;font-size:14px;}
+  .handoff{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0;}
+  .handoff a{display:inline-flex;flex-direction:column;gap:2px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-size:13px;color:var(--muted);}
+  .handoff a b{font-family:'Manrope';font-size:14.5px;color:var(--ivory);} .handoff a:hover{border-color:var(--teal);text-decoration:none;}
+  .sharebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0;}
+  .sharebar .ok{font-size:13px;color:var(--green);}
+  .mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:26px 0 0;padding:14px 16px;border:1px dashed rgba(255,255,255,.18);border-radius:12px;}
+  .mail p{margin:0;flex:1 1 240px;font-size:14px;color:var(--body);}
+  .mail form{display:flex;gap:8px;flex:1 1 300px;}
+  .mail input{flex:1;font:500 15px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:9px 12px;}
+  @media print{.picker,.sharebar,.mail,.handoff{display:none!important;}}
 </style>
 </head>
 <body>
@@ -193,11 +222,11 @@
     </nav>
   </header>
   <main>
-  <div class="eyebrow">Free tool &middot; Social media</div>
+  <div class="eyebrow">Free tool &middot; Growth &middot; Execute by channel</div>
   <h1>Social media engagement rate calculator</h1>
-  <p class="lede">Enter a post&rsquo;s likes, comments, shares and saves to get <b>engagement rate by followers</b> and <b>by reach</b>, and see how much of it is real conversation.</p>
+  <p class="lede">Enter a post&rsquo;s likes, comments, shares and saves to get <b>engagement rate by followers</b> and <b>by reach</b>, and see how much of it is real conversation. Load an example from <b>nine industries</b> to see how it changes.</p>
   <article>
-<section class="card calc" aria-label="Calculator"><div class="grid">
+<section class="card calc" aria-label="Calculator"><div class="picker"><label><span class="tag">Example</span><select id="ind" aria-label="Load an industry example"><option value="telecom">Telecom: brand page post</option><option value="fmcg">FMCG: recipe post</option><option value="advertising">Agency: case-study post</option><option value="fintech">Fintech: money tips post</option><option value="ecommerce" selected>E-commerce: product post</option><option value="consumertech">Consumer tech: launch post</option><option value="education">Education: student story</option><option value="logistics">Logistics: LinkedIn update</option><option value="healthcare">Healthcare: health-tip post</option><option value="custom">Your own numbers</option></select></label><p class="pnote" id="pnote"></p></div><div class="grid">
 <label>Likes or reactions<input id="l" type="number" inputmode="numeric" min="0" step="1" value="420"></label>
 <label>Comments<input id="cm" type="number" inputmode="numeric" min="0" step="1" value="36"></label>
 <label>Shares or reposts<input id="sh" type="number" inputmode="numeric" min="0" step="1" value="18"></label>
@@ -211,15 +240,16 @@
 <div class="kpi"><span class="kl">Rate by reach</span><span class="kv" id="o3">-</span></div>
 <div class="kpi"><span class="kl">Conversation ratio</span><span class="kv" id="o4">-</span><span class="kb">comments + shares share</span></div>
 </div>
+<div class="chart" id="chart" aria-hidden="true"></div>
 <p class="verdict" id="v"></p>
 <div class="formula"><span class="k">Formula</span>Engagement rate = (likes + comments + shares + saves) ÷ followers × 100 · by reach: ÷ reach × 100</div>
-<p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
+<div class="v2row"><div class="v2box"><h3>What to do next</h3><ul id="nx"></ul></div><div class="v2box"><details class="work"><summary>Show the working, step by step</summary><ol id="work"></ol></details></div></div><div class="sharebar"><button type="button" class="btn solid" id="shcard">Download result card</button><button type="button" class="btn" id="shlink">Copy link with my numbers</button><button type="button" class="btn" id="shli">Share on LinkedIn</button><span class="ok" id="shok" aria-live="polite"></span></div><div class="receipt"><div><p class="rk">Where I used this</p><p>I founded HSREP, a two-country health-advocacy platform that reached 57,274 people with $0 in ad spend.</p><a href="/case/hsrep/">Read the case: Founding HSREP: a two-country health-advocacy platform &rarr;</a></div></div><div class="handoff"><a href="/reach-frequency-calculator.html" id="h1"><span>Step before</span><b>Who saw it? Reach and frequency</b></a><a href="/content-marketing-scorecard.html" id="h2"><span>Next step</span><b>Is the content working? Content marketing scorecard</b></a><a href="/brand-voice-builder.html" id="h3"><span>Same stage</span><b>Sound like yourself: Brand voice builder</b></a></div><p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
 
 <h2>Which rate to use</h2>
 <ul><li><b>By followers</b> is easy to compare across accounts, but penalises posts that were shown to few followers.</li>
 <li><b>By reach</b> tells you how compelling the post was for the people who actually saw it. It is the better measure of content quality.</li>
 <li><b>Track the trend.</b> A steady rise in engagement by reach is a good sign your content is getting more relevant.</li></ul>
-<p>Engagement is a means, not an end. Pair it with the <a href="/campaign-measurement-plan.html">measurement plan builder</a> so it connects to outcomes that matter.</p>
+<p>Engagement is a means, not an end. Pair it with the <a href="/campaign-measurement-plan.html">measurement plan builder</a> so it connects to outcomes that matter.</p><div class="mail"><p><b>Get new free tools by email.</b> One short note when a new tool or essay goes live. No spam, unsubscribe any time.</p><form id="mailf" action="https://buttondown.com/api/emails/embed-subscribe/shafaat" method="post" target="popupwindow"><input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required><button type="submit" class="btn solid">Subscribe</button></form></div>
 <div class="cta"><h2>Want a second pair of eyes on the numbers?</h2><p>I have built commercial engines from zero in fintech, consumer tech and healthcare, in the US and Bangladesh. A 30-minute call is free.</p><p><a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a></p></div>
 <section class="faq"><h2>Questions</h2>
 <h3>How do you calculate engagement rate?</h3><p>Add likes, comments, shares and saves, divide by followers or by reach, and multiply by 100.</p>
@@ -227,7 +257,7 @@
 <h3>Should I count clicks?</h3><p>Count whatever interactions you can measure consistently. Just use the same definition every time you compare.</p>
 </section>
   </article>
-<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/cac-calculator.html"><b>Customer acquisition cost (CAC) by channel</b>Blended and per-channel CAC, so you can see which channel really brings customers cheaply.</a><a href="/marketing-budget-calculator.html"><b>Marketing budget planner</b>Set a budget from revenue and split it between brand building and activation.</a><a href="/idea-scorecard.html"><b>Marketing idea scorecard</b>Score an idea on seven tests and find the weakest link before you spend a cent.</a></div><a class="all" href="/tools.html">See all 32 free tools &rarr;</a></section>
+<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/cac-calculator.html"><b>Customer acquisition cost (CAC) by channel</b>Blended and per-channel CAC, so you can see which channel really brings customers cheaply.</a><a href="/marketing-budget-calculator.html"><b>Marketing budget planner</b>Set a budget from revenue and split it between brand building and activation.</a><a href="/idea-scorecard.html"><b>Marketing idea scorecard</b>Score an idea on seven tests and find the weakest link before you spend a cent.</a></div><a class="all" href="/tools.html">See all 33 free tools &rarr;</a></section>
   </main>
   <footer class="foot">
     <a href="/">&larr; Back to the portfolio</a> &middot; <a href="/essays.html">All essays</a> &middot; <a href="https://www.linkedin.com/in/sacgrowthspecialist">LinkedIn</a>
@@ -247,6 +277,44 @@
   var toQuery=function(ids){try{var p=new URLSearchParams();ids.forEach(function(k){if($(k))p.set(k,$(k).value);});history.replaceState(null,'','?'+p.toString());}catch(e){}};
   var ncdf=function(x){var t=1/(1+0.2316419*Math.abs(x)),d=0.3989423*Math.exp(-x*x/2),p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p;};
   var zfor=function(conf){return {80:1.2816,85:1.4395,90:1.6449,95:1.96,98:2.3263,99:2.5758}[conf]||1.96;};
+var SLUG="engagement-rate-calculator",TOOLNAME="Social media engagement rate calculator",PRESETS={"telecom": {"label": "Telecom: brand page post", "note": "Big telecom pages attract service complaints in comments. Separate them before judging engagement.", "v": {"l": 2400, "cm": 300, "sh": 150, "sv": 80, "fo": 250000, "re": 90000}}, "fmcg": {"label": "FMCG: recipe post", "note": "Recipes and challenges lift engagement, but saves and shares show lasting interest.", "v": {"l": 1800, "cm": 120, "sh": 90, "sv": 60, "fo": 80000, "re": 40000}}, "advertising": {"label": "Agency: case-study post", "note": "For an agency, comments from potential clients matter more than total likes. Track who engages.", "v": {"l": 300, "cm": 40, "sh": 25, "sv": 30, "fo": 9000, "re": 6000}}, "fintech": {"label": "Fintech: money tips post", "note": "Finance content earns saves when it teaches. Practical how-to posts beat product news.", "v": {"l": 600, "cm": 80, "sh": 40, "sv": 50, "fo": 40000, "re": 25000}}, "ecommerce": {"label": "E-commerce: product post", "note": "Shoppable posts trade some engagement for clicks. Judge them on clicks and sales too.", "v": {"l": 420, "cm": 36, "sh": 18, "sv": 25, "fo": 12000, "re": 8000}}, "consumertech": {"label": "Consumer tech: launch post", "note": "Launch posts spike and fade. Compare posts within the same launch phase.", "v": {"l": 5000, "cm": 600, "sh": 400, "sv": 300, "fo": 300000, "re": 150000}}, "education": {"label": "Education: student story", "note": "Student stories and outcomes earn more comments than campus photos.", "v": {"l": 500, "cm": 90, "sh": 30, "sv": 70, "fo": 15000, "re": 9000}}, "logistics": {"label": "Logistics: LinkedIn update", "note": "B2B audiences are small. A rate that looks low can still mean the right decision-makers saw it.", "v": {"l": 150, "cm": 20, "sh": 15, "sv": 10, "fo": 5000, "re": 3500}}, "healthcare": {"label": "Healthcare: health-tip post", "note": "Health tips earn shares and saves. Never trade accuracy for engagement.", "v": {"l": 700, "cm": 90, "sh": 120, "sv": 150, "fo": 20000, "re": 12000}}, "custom": {"label": "Your own numbers", "v": {}, "note": "Enter your own figures. The examples are illustrative, not benchmarks."}};
+
+  var hbars=function(rows,c,o){o=o||{};var el=$('chart');if(!el)return;rows=rows.filter(function(r){return isFinite(r.v)&&r.v>=0;});if(!rows.length){el.innerHTML='';return;}
+    var W=680,rh=34,lw=o.lw||170,bw=W-lw-130,mx=Math.max.apply(null,rows.map(function(r){return r.v;}))||1,h=8+rows.length*rh+4,s='<svg viewBox="0 0 '+W+' '+h+'" role="img" aria-label="'+esc(o.label||'Chart')+'">';
+    rows.forEach(function(r,i){var y=8+i*rh,w=Math.max(2,r.v/mx*bw);s+='<text x="'+(lw-10)+'" y="'+(y+19)+'" text-anchor="end" font-size="13" fill="#C7CDD6" font-family="Inter,system-ui">'+esc(String(r.n).slice(0,26))+'</text><rect x="'+lw+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="18" rx="4" fill="'+(r.col||'#33C4C4')+'"/><text x="'+(lw+w+8)+'" y="'+(y+19)+'" font-size="13" fill="#F3EFE7" font-family="Inter,system-ui" font-weight="600">'+esc(r.t!==undefined?r.t:fm(r.v,c))+'</text>';});
+    el.innerHTML=s+'</svg>';};
+  var work=function(lines){var el=$('work');if(el)el.innerHTML=lines.map(function(l){return '<li>'+esc(l)+'</li>';}).join('');};
+  var nextUp=function(items){var el=$('nx');if(!el)return;el.innerHTML=items.map(function(it){return '<li>'+esc(it.t)+(it.href?' <a href="'+esc(it.href)+'">'+esc(it.a)+' &rarr;</a>':'')+'</li>';}).join('');};
+  var shareEv=function(m){try{window.track&&window.track('tool_share',{tool:SLUG,method:m});}catch(e){}};
+  var flash=function(t){var el=$('shok');if(!el)return;el.textContent=t;setTimeout(function(){el.textContent='';},2600);};
+  function applyPreset(k,run){var p=PRESETS[k];if(!p)return;Object.keys(p.v).forEach(function(id){if($(id))$(id).value=p.v[id];});$('pnote').textContent=p.note||'';if(run)run();}
+  function initPicker(run){var s=$('ind');if(!s)return;var q=null;try{q=new URLSearchParams(location.search);}catch(e){}
+    var fromUrl=q&&[...q.keys()].some(function(k){return k!=='ind'&&!!$(k);});if(q&&q.get('ind')&&PRESETS[q.get('ind')])s.value=q.get('ind');
+    if(fromUrl&&!(q&&q.get('ind'))&&PRESETS.custom)s.value='custom';if(!fromUrl)applyPreset(s.value);else $('pnote').textContent=(PRESETS[s.value]||{}).note||'';
+    s.addEventListener('change',function(){applyPreset(s.value,run);try{window.track&&window.track('tool_preset',{tool:SLUG,preset:s.value});}catch(e){}});}
+  function wrapText(ctx,t,x,y,mw,lh,maxL){var w=t.split(' '),line='',n=0;for(var i=0;i<w.length;i++){var tl=line+w[i]+' ';if(ctx.measureText(tl).width>mw&&line){ctx.fillText(line,x,y);y+=lh;line=w[i]+' ';if(++n>=maxL-1){var rest=w.slice(i).join(' ');while(ctx.measureText(rest+'…').width>mw&&rest.length)rest=rest.slice(0,-1);ctx.fillText(rest+(rest.length<w.slice(i).join(' ').length?'…':''),x,y);return;}}else line=tl;}ctx.fillText(line,x,y);}
+  function card(){var c=document.createElement('canvas');c.width=1200;c.height=630;var x=c.getContext('2d');var F='Manrope, Inter, system-ui, sans-serif';
+    x.fillStyle='#0B0F14';x.fillRect(0,0,1200,630);x.fillStyle='#33C4C4';x.fillRect(0,0,1200,8);
+    x.fillStyle='#7f8894';x.font='600 20px '+F;x.fillText('FREE TOOL',64,72);
+    x.fillStyle='#F3EFE7';x.font='800 44px '+F;wrapText(x,TOOLNAME,64,124,1072,52,2);
+    var ks=[].slice.call(document.querySelectorAll('.out .kpi')).slice(0,4);var cw=1072/Math.max(ks.length,1);
+    ks.forEach(function(k,i){var l=(k.querySelector('.kl')||{}).textContent||'',v=(k.querySelector('.kv')||{}).textContent||'';x.fillStyle='#7f8894';x.font='600 18px '+F;x.fillText(l.toUpperCase().slice(0,26),64+i*cw,268);x.fillStyle='#F3EFE7';var fs=46;x.font='800 '+fs+'px '+F;while(x.measureText(v).width>cw-24&&fs>24){fs-=2;x.font='800 '+fs+'px '+F;}var vv=v;if(x.measureText(vv).width>cw-24){while(x.measureText(vv+'…').width>cw-24&&vv.length>3)vv=vv.slice(0,-1);vv+='…';}x.fillText(vv,64+i*cw,324);});
+    x.fillStyle='#C7CDD6';x.font='400 25px Inter, system-ui, sans-serif';var vt=(($('v')||{}).textContent||'').trim()||(($('say1')||{}).textContent||'').trim()||(($('obj')||{}).textContent||'').trim();wrapText(x,vt,64,ks.length?410:250,1072,36,ks.length?3:6);
+    x.fillStyle='#33C4C4';x.font='700 22px '+F;x.fillText('shafaatalichoyon.com/'+SLUG,64,578);x.fillStyle='#7f8894';x.font='500 20px '+F;x.textAlign='right';x.fillText('Md Shafaat Ali Choyon',1136,578);
+    c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=SLUG+'-result.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},800);});shareEv('card');flash('Result card downloaded');}
+  function initShare(){var b=$('shcard');if(b)b.addEventListener('click',card);
+    var cl=$('shlink');if(cl)cl.addEventListener('click',function(){var u=location.href;try{navigator.clipboard.writeText(u).then(function(){flash('Link with your numbers copied');});}catch(e){prompt('Copy this link',u);}shareEv('link_numbers');});
+    var ln=$('shli');if(ln)ln.addEventListener('click',function(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.origin+location.pathname),'_blank','noopener');shareEv('linkedin');});
+    var mf=$('mailf');if(mf)mf.addEventListener('submit',function(){try{window.open('https://buttondown.com/shafaat','popupwindow');window.track&&window.track('subscribe',{from:'tool',tool:SLUG});}catch(e){}});}
+
+  var __tq=toQuery;toQuery=function(a){__tq(a.indexOf('ind')<0?a.concat('ind'):a);};
+  function POST(){var l=num('l')||0,cm=num('cm')||0,sh=num('sh')||0,sv=num('sv')||0,fo=num('fo'),re=num('re'),e=l+cm+sh+sv;if(!(fo>0)){work([]);nextUp([]);hbars([]);return;}
+    work(['Engagements: '+fm(l)+' likes + '+fm(cm)+' comments + '+fm(sh)+' shares + '+fm(sv)+' saves = '+fm(e),'Rate by followers: '+fm(e)+' ÷ '+fm(fo)+' = '+(e/fo*100).toFixed(2)+'%'].concat(re>0?['Rate by reach: '+fm(e)+' ÷ '+fm(re)+' = '+(e/re*100).toFixed(2)+'%']:[]).concat(e>0?['Conversation ratio: ('+fm(cm)+' + '+fm(sh)+') ÷ '+fm(e)+' = '+((cm+sh)/e*100).toFixed(0)+'%']:[]));
+    hbars([{n:'Likes',v:l,t:fm(l),col:'#7f8894'},{n:'Comments',v:cm,t:fm(cm)},{n:'Shares',v:sh,t:fm(sh)},{n:'Saves',v:sv,t:fm(sv),col:'#4FC48A'}],'',{label:'Engagement by type'});
+    var nx=[];if(e>0&&(cm+sh)/e<0.1)nx.push({t:'Few comments or shares. End the next post with a specific question people can answer from experience.'});
+    if(e>0&&sv/e>0.08)nx.push({t:'Strong saves: people find this useful. Turn it into a series or a longer guide.'});
+    nx.push({t:'Compare against your own last 10 posts. Industry benchmarks vary too much to be useful alone.'});
+    nx.push({t:'Score the content program as a whole.',href:'/content-marketing-scorecard.html',a:'Content marketing scorecard'});nextUp(nx);}
 
   var ids=['l','cm','sh','sv','fo','re'];fromQuery(ids);
   function f(){var l=num('l')||0,c=num('cm')||0,s=num('sh')||0,v=num('sv')||0,fo=num('fo'),re=num('re');
@@ -255,7 +323,8 @@
     $('o4').textContent=e>0?((c+s)/e*100).toFixed(0)+'%':'-';
     $('v').textContent='Benchmarks differ a lot by platform, industry and account size, so compare against your own last 10 posts and a few peers. Comments and shares usually signal stronger interest than likes.';
     toQuery(ids);}
-  bindAll(ids,f,'engagement_rate');
+  var __f=f;f=function(){__f();try{POST();}catch(e){}};initPicker(f);bindAll(ids.concat('ind'),f,'engagement_rate');
+  initShare();
 })();
 </script>
 <script defer src="/assets/analytics.js"></script>

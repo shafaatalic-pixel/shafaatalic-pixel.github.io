@@ -180,6 +180,35 @@
   .rng span{font-size:14px;color:var(--body);} .rng b{font-family:'Manrope';color:var(--ivory);}
   @media print{header.top,.more,.cta,.faq,footer.foot,.privacy-note,.btn,.lede,.eyebrow{display:none!important;} body{background:#fff;color:#000;} .out-doc{border:none;color:#000;background:#fff;}}
 
+  .picker{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:6px 0 18px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;}
+  .picker label{flex-direction:row!important;align-items:center;gap:10px!important;min-width:0;max-width:100%;flex:0 1 auto;}
+  .picker select{width:auto!important;min-width:0;max-width:100%;text-overflow:ellipsis;}
+  @media(max-width:560px){.picker label{flex-direction:column!important;align-items:flex-start;width:100%;} .picker select{width:100%!important;}}
+  .picker .pnote{flex:1 1 260px;font-size:13.5px;color:var(--muted);margin:0;}
+  .picker .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);}
+  .chart{margin:8px 0 6px;} .chart svg{width:100%;height:auto;display:block;}
+  .v2row{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0 6px;}
+  .v2box{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .v2box h3{font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);margin:0 0 10px;}
+  .v2box ol,.v2box ul{margin:0;padding-left:20px;color:var(--body);font-size:14.5px;line-height:1.6;}
+  .v2box li{margin:0 0 6px;}
+  details.work{margin:4px 0 0;} details.work summary{cursor:pointer;font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);list-style:none;}
+  details.work summary::-webkit-details-marker{display:none;} details.work summary:before{content:'+ ';color:var(--teal);} details.work[open] summary:before{content:'\2212  ';}
+  details.work ol{margin-top:10px;font-family:ui-monospace,Menlo,monospace;font-size:13.5px;}
+  .receipt{display:flex;gap:14px;align-items:flex-start;margin:18px 0 0;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;}
+  .receipt .rk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin:0 0 4px;}
+  .receipt p{margin:0;font-size:15px;color:var(--ivory);} .receipt a{font-family:'Manrope';font-weight:700;font-size:14px;}
+  .handoff{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0;}
+  .handoff a{display:inline-flex;flex-direction:column;gap:2px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-size:13px;color:var(--muted);}
+  .handoff a b{font-family:'Manrope';font-size:14.5px;color:var(--ivory);} .handoff a:hover{border-color:var(--teal);text-decoration:none;}
+  .sharebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0;}
+  .sharebar .ok{font-size:13px;color:var(--green);}
+  .mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:26px 0 0;padding:14px 16px;border:1px dashed rgba(255,255,255,.18);border-radius:12px;}
+  .mail p{margin:0;flex:1 1 240px;font-size:14px;color:var(--body);}
+  .mail form{display:flex;gap:8px;flex:1 1 300px;}
+  .mail input{flex:1;font:500 15px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:9px 12px;}
+  @media print{.picker,.sharebar,.mail,.handoff{display:none!important;}}
+
   .objective{background:var(--tile);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:10px;padding:14px 16px;font-size:16.5px;color:var(--ivory);max-width:68ch;}
   .checks{list-style:none;padding:0;} .checks li{font-size:14.5px;margin:6px 0;} .checks li b{display:inline-block;width:22px;height:22px;line-height:22px;text-align:center;border-radius:6px;margin-right:8px;font-family:'Manrope';}
   .ok b{background:rgba(79,196,138,.18);color:var(--green);} .no b{background:rgba(244,162,76,.18);color:var(--amber);}
@@ -197,11 +226,11 @@
     </nav>
   </header>
   <main>
-  <div class="eyebrow">Free tool &middot; Program planning</div>
+  <div class="eyebrow">Free tool &middot; Health communication</div>
   <h1>SMART objective builder</h1>
-  <p class="lede">Fill in the blanks to write a <b>specific, measurable, time-bound objective</b> for a health program, campaign or grant proposal, with a check against each SMART test.</p>
+  <p class="lede">Fill in the blanks to write a <b>specific, measurable, time-bound objective</b> for a health program, campaign or grant proposal, with a check against each SMART test. Load a <b>program example</b>, from public health to business, to see how it changes.</p>
   <article>
-<section class="card calc" aria-label="Calculator"><div class="grid">
+<section class="card calc" aria-label="Calculator"><div class="picker"><label><span class="tag">Example</span><select id="ind" aria-label="Load an objective example"><option value="handwash" selected>Hygiene: handwashing with soap</option><option value="immunize">Immunization: full immunization</option><option value="tobacco">Tobacco: daily smoking</option><option value="anc">Maternal health: antenatal visits</option><option value="mental">Mental health: knowing where to get help</option><option value="business">Business: second purchase</option></select></label><p class="pnote" id="pnote"></p></div><div class="grid">
 <label>Direction<select id="dir"><option value="increase">Increase</option><option value="decrease">Decrease</option><option value="maintain">Maintain</option></select></label>
 <label>Who <span class="hint">the population</span><input id="who" type="text" maxlength="100" value="mothers of children under five"></label>
 <label>Do what <span class="hint">the behaviour or outcome</span><input id="what" type="text" maxlength="120" value="wash hands with soap at critical times"></label>
@@ -217,7 +246,7 @@
 <p><button type="button" class="btn solid" id="copy">Copy objective</button> <span class="kb" id="copied"></span></p>
 <ul class="checks" id="checks"></ul>
 <div class="formula"><span class="k">Template</span>By [date], [increase / decrease] the proportion of [who] [where] who [do what] from [baseline]% to [target]%, through [intervention], measured by [source].</div>
-<p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
+<div class="v2row"><div class="v2box"><h3>What to do next</h3><ul id="nx"></ul></div><div class="v2box"><details class="work"><summary>Show the working, step by step</summary><ol id="work"></ol></details></div></div><div class="sharebar"><button type="button" class="btn solid" id="shcard">Download result card</button><button type="button" class="btn" id="shlink">Copy link with my numbers</button><button type="button" class="btn" id="shli">Share on LinkedIn</button><span class="ok" id="shok" aria-live="polite"></span></div><div class="receipt"><div><p class="rk">Where I used this</p><p>At Walton Hall, Eastern Michigan University, I set and tracked community-engagement goals at scale: 541 engagements, a 39.1% rate.</p><a href="/case/emu-housing/">Read the case: Community engagement &amp; connection at scale (Walton Hall) &rarr;</a></div></div><div class="handoff"><a href="/prevention-roi-calculator.html" id="h1"><span>Step before</span><b>Is it worth doing? Prevention ROI</b></a><a href="/survey-sample-size-calculator.html" id="h2"><span>Next step</span><b>Plan the measurement: Survey sample size</b></a><a href="/health-message-readability-checker.html" id="h3"><span>Same pillar</span><b>Write the message plainly: Readability checker</b></a></div><p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
 
 <h2>What makes an objective SMART</h2>
 <ul>
@@ -227,7 +256,7 @@
 <li><b>Relevant.</b> Tied to the intervention, so a change can reasonably be credited to the work.</li>
 <li><b>Time-bound.</b> A date by which it will be measured.</li>
 </ul>
-<p>Behaviour and outcome objectives like these sit under a broader goal, and above process objectives such as "train 120 health workers by March".</p>
+<p>Behaviour and outcome objectives like these sit under a broader goal, and above process objectives such as "train 120 health workers by March".</p><div class="mail"><p><b>Get new free tools by email.</b> One short note when a new tool or essay goes live. No spam, unsubscribe any time.</p><form id="mailf" action="https://buttondown.com/api/emails/embed-subscribe/shafaat" method="post" target="popupwindow"><input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required><button type="submit" class="btn solid">Subscribe</button></form></div>
 <div class="cta"><h2>Planning a health program or campaign?</h2><p>I am a CHES&reg;-certified health education specialist with an MPH and 17 years of public-health and behaviour-change work in the US and Bangladesh. A 30-minute call is free.</p><p><a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a></p></div>
 <section class="faq"><h2>Questions</h2>
 <h3>What is a SMART objective in public health?</h3><p>An objective that is Specific, Measurable, Achievable, Relevant and Time-bound. It states who will change what, by how much, by when, and how it will be measured.</p>
@@ -235,7 +264,7 @@
 <h3>What if I do not have a baseline?</h3><p>Plan a baseline measurement first, or use the most recent data available for a similar population, and say so in the objective.</p>
 </section>
   </article>
-<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/hotline-staffing-calculator.html"><b>Hotline staffing calculator</b>How many agents a health hotline or call centre needs to answer calls fast (Erlang C).</a><a href="/health-message-readability-checker.html"><b>Health message readability checker</b>Reading grade, jargon to replace and sentences to split, for leaflets, SMS and posts.</a><a href="/content-marketing-scorecard.html"><b>Content marketing scorecard</b>Rate your content program on eight essentials and get the top three fixes.</a></div><a class="all" href="/tools.html">See all 32 free tools &rarr;</a></section>
+<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/prevention-roi-calculator.html"><b>Prevention ROI calculator</b>Cases prevented, costs averted, ROI and cost per case prevented for a prevention program.</a><a href="/health-message-readability-checker.html"><b>Health message readability checker</b>Reading grade, jargon to replace and sentences to split, for leaflets, SMS and posts.</a><a href="/content-marketing-scorecard.html"><b>Content marketing scorecard</b>Rate your content program on eight essentials and get the top three fixes.</a></div><a class="all" href="/tools.html">See all 33 free tools &rarr;</a></section>
   </main>
   <footer class="foot">
     <a href="/">&larr; Back to the portfolio</a> &middot; <a href="/essays.html">All essays</a> &middot; <a href="https://www.linkedin.com/in/sacgrowthspecialist">LinkedIn</a>
@@ -255,6 +284,41 @@
   var toQuery=function(ids){try{var p=new URLSearchParams();ids.forEach(function(k){if($(k))p.set(k,$(k).value);});history.replaceState(null,'','?'+p.toString());}catch(e){}};
   var ncdf=function(x){var t=1/(1+0.2316419*Math.abs(x)),d=0.3989423*Math.exp(-x*x/2),p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p;};
   var zfor=function(conf){return {80:1.2816,85:1.4395,90:1.6449,95:1.96,98:2.3263,99:2.5758}[conf]||1.96;};
+var SLUG="smart-objective-builder",TOOLNAME="SMART objective builder",PRESETS={"handwash": {"label": "Hygiene: handwashing with soap", "note": "A behaviour objective, measured by survey. Keep the baseline recent: within a year.", "v": {"dir": "increase", "who": "mothers of children under five", "what": "wash hands with soap at critical times", "where": "in the three project districts", "b": 35, "tg": 55, "how": "community health worker visits and SMS reminders", "src": "a household survey at baseline and endline"}}, "immunize": {"label": "Immunization: full immunization", "note": "Coverage objectives work best with a register plus a survey check.", "v": {"dir": "increase", "who": "children aged 12 to 23 months", "what": "are fully immunized", "where": "in the two lowest-coverage sub-districts", "b": 62, "tg": 80, "how": "outreach sessions and SMS reminders to caregivers", "src": "immunization registers checked against a coverage survey"}}, "tobacco": {"label": "Tobacco: daily smoking", "note": "For a decrease, make sure the target moves down and the change is realistic for the period.", "v": {"dir": "decrease", "who": "workers aged 18 to 35", "what": "smoke daily", "where": "in the city’s garment factories", "b": 30, "tg": 24, "how": "workplace cessation support and smoke-free policies", "src": "a workplace survey at baseline and after 12 months"}}, "anc": {"label": "Maternal health: antenatal visits", "note": "Pair facility records with a household survey: records miss women who never come.", "v": {"dir": "increase", "who": "pregnant women", "what": "attend four or more antenatal visits", "where": "in the project sub-districts", "b": 48, "tg": 65, "how": "community health worker home visits and transport vouchers", "src": "facility records and a household survey"}}, "mental": {"label": "Mental health: knowing where to get help", "note": "Awareness objectives are a first step. Pair them with a use-of-services objective later.", "v": {"dir": "increase", "who": "university students", "what": "know where to get mental health support", "where": "on campus", "b": 40, "tg": 60, "how": "peer ambassadors and orientation sessions", "src": "a short online survey each semester"}}, "business": {"label": "Business: second purchase", "note": "SMART works for growth goals too: who, what, how much, by when, measured how.", "v": {"dir": "increase", "who": "first-time customers", "what": "make a second purchase within 60 days", "where": "in the online store", "b": 22, "tg": 30, "how": "a welcome email series and a second-order offer", "src": "order data from the store platform"}}};
+
+  var hbars=function(rows,c,o){o=o||{};var el=$('chart');if(!el)return;rows=rows.filter(function(r){return isFinite(r.v)&&r.v>=0;});if(!rows.length){el.innerHTML='';return;}
+    var W=680,rh=34,lw=o.lw||170,bw=W-lw-130,mx=Math.max.apply(null,rows.map(function(r){return r.v;}))||1,h=8+rows.length*rh+4,s='<svg viewBox="0 0 '+W+' '+h+'" role="img" aria-label="'+esc(o.label||'Chart')+'">';
+    rows.forEach(function(r,i){var y=8+i*rh,w=Math.max(2,r.v/mx*bw);s+='<text x="'+(lw-10)+'" y="'+(y+19)+'" text-anchor="end" font-size="13" fill="#C7CDD6" font-family="Inter,system-ui">'+esc(String(r.n).slice(0,26))+'</text><rect x="'+lw+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="18" rx="4" fill="'+(r.col||'#33C4C4')+'"/><text x="'+(lw+w+8)+'" y="'+(y+19)+'" font-size="13" fill="#F3EFE7" font-family="Inter,system-ui" font-weight="600">'+esc(r.t!==undefined?r.t:fm(r.v,c))+'</text>';});
+    el.innerHTML=s+'</svg>';};
+  var work=function(lines){var el=$('work');if(el)el.innerHTML=lines.map(function(l){return '<li>'+esc(l)+'</li>';}).join('');};
+  var nextUp=function(items){var el=$('nx');if(!el)return;el.innerHTML=items.map(function(it){return '<li>'+esc(it.t)+(it.href?' <a href="'+esc(it.href)+'">'+esc(it.a)+' &rarr;</a>':'')+'</li>';}).join('');};
+  var shareEv=function(m){try{window.track&&window.track('tool_share',{tool:SLUG,method:m});}catch(e){}};
+  var flash=function(t){var el=$('shok');if(!el)return;el.textContent=t;setTimeout(function(){el.textContent='';},2600);};
+  function applyPreset(k,run){var p=PRESETS[k];if(!p)return;Object.keys(p.v).forEach(function(id){if($(id))$(id).value=p.v[id];});$('pnote').textContent=p.note||'';if(run)run();}
+  function initPicker(run){var s=$('ind');if(!s)return;var q=null;try{q=new URLSearchParams(location.search);}catch(e){}
+    var fromUrl=q&&[...q.keys()].some(function(k){return k!=='ind'&&!!$(k);});if(q&&q.get('ind')&&PRESETS[q.get('ind')])s.value=q.get('ind');
+    if(fromUrl&&!(q&&q.get('ind'))&&PRESETS.custom)s.value='custom';if(!fromUrl)applyPreset(s.value);else $('pnote').textContent=(PRESETS[s.value]||{}).note||'';
+    s.addEventListener('change',function(){applyPreset(s.value,run);try{window.track&&window.track('tool_preset',{tool:SLUG,preset:s.value});}catch(e){}});}
+  function wrapText(ctx,t,x,y,mw,lh,maxL){var w=t.split(' '),line='',n=0;for(var i=0;i<w.length;i++){var tl=line+w[i]+' ';if(ctx.measureText(tl).width>mw&&line){ctx.fillText(line,x,y);y+=lh;line=w[i]+' ';if(++n>=maxL-1){var rest=w.slice(i).join(' ');while(ctx.measureText(rest+'…').width>mw&&rest.length)rest=rest.slice(0,-1);ctx.fillText(rest+(rest.length<w.slice(i).join(' ').length?'…':''),x,y);return;}}else line=tl;}ctx.fillText(line,x,y);}
+  function card(){var c=document.createElement('canvas');c.width=1200;c.height=630;var x=c.getContext('2d');var F='Manrope, Inter, system-ui, sans-serif';
+    x.fillStyle='#0B0F14';x.fillRect(0,0,1200,630);x.fillStyle='#33C4C4';x.fillRect(0,0,1200,8);
+    x.fillStyle='#7f8894';x.font='600 20px '+F;x.fillText('FREE TOOL',64,72);
+    x.fillStyle='#F3EFE7';x.font='800 44px '+F;wrapText(x,TOOLNAME,64,124,1072,52,2);
+    var ks=[].slice.call(document.querySelectorAll('.out .kpi')).slice(0,4);var cw=1072/Math.max(ks.length,1);
+    ks.forEach(function(k,i){var l=(k.querySelector('.kl')||{}).textContent||'',v=(k.querySelector('.kv')||{}).textContent||'';x.fillStyle='#7f8894';x.font='600 18px '+F;x.fillText(l.toUpperCase().slice(0,26),64+i*cw,268);x.fillStyle='#F3EFE7';var fs=46;x.font='800 '+fs+'px '+F;while(x.measureText(v).width>cw-24&&fs>24){fs-=2;x.font='800 '+fs+'px '+F;}var vv=v;if(x.measureText(vv).width>cw-24){while(x.measureText(vv+'…').width>cw-24&&vv.length>3)vv=vv.slice(0,-1);vv+='…';}x.fillText(vv,64+i*cw,324);});
+    x.fillStyle='#C7CDD6';x.font='400 25px Inter, system-ui, sans-serif';var vt=(($('v')||{}).textContent||'').trim()||(($('say1')||{}).textContent||'').trim()||(($('obj')||{}).textContent||'').trim();wrapText(x,vt,64,ks.length?410:250,1072,36,ks.length?3:6);
+    x.fillStyle='#33C4C4';x.font='700 22px '+F;x.fillText('shafaatalichoyon.com/'+SLUG,64,578);x.fillStyle='#7f8894';x.font='500 20px '+F;x.textAlign='right';x.fillText('Md Shafaat Ali Choyon',1136,578);
+    c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=SLUG+'-result.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},800);});shareEv('card');flash('Result card downloaded');}
+  function initShare(){var b=$('shcard');if(b)b.addEventListener('click',card);
+    var cl=$('shlink');if(cl)cl.addEventListener('click',function(){var u=location.href;try{navigator.clipboard.writeText(u).then(function(){flash('Link with your numbers copied');});}catch(e){prompt('Copy this link',u);}shareEv('link_numbers');});
+    var ln=$('shli');if(ln)ln.addEventListener('click',function(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.origin+location.pathname),'_blank','noopener');shareEv('linkedin');});
+    var mf=$('mailf');if(mf)mf.addEventListener('submit',function(){try{window.open('https://buttondown.com/shafaat','popupwindow');window.track&&window.track('subscribe',{from:'tool',tool:SLUG});}catch(e){}});}
+
+  var __tq=toQuery;toQuery=function(a){__tq(a.indexOf('ind')<0?a.concat('ind'):a);};
+  function POST(){var b=num('b'),t=num('tg'),dir=$('dir').value;var w=['Who: '+($('who').value||'[who]'),'Does what: '+($('what').value||'[what]'),'Change: '+dir+(dir==='maintain'?' at '+(isFinite(t)?t+'%':'[target]'):' from '+(isFinite(b)?b+'%':'[baseline]')+' to '+(isFinite(t)?t+'%':'[target]')),'By when: '+($('by').value||'[date]'),'Through: '+($('how').value||'[intervention]'),'Measured by: '+($('src').value||'[data source]')];
+    if(dir!=='maintain'&&isFinite(b)&&isFinite(t)&&b>0)w.push('Relative change: ('+t+' − '+b+') ÷ '+b+' = '+Math.round((t-b)/b*100)+'%');work(w);
+    var nx=[{t:'Check the baseline is recent and from the same source you will use at the end.'},{t:'Write one process objective too (sessions held, messages sent) so you can tell a delivery problem from an effect problem.'}];
+    nx.push({t:'Work out how many people to survey at baseline and endline.',href:'/survey-sample-size-calculator.html',a:'Survey sample size'});nextUp(nx);}
 
   var ids=['dir','who','what','where','b','tg','by','how','src'];
   try{var d0=new Date();d0.setFullYear(d0.getFullYear()+1);$('by').value=d0.toISOString().slice(0,10);}catch(e){}
@@ -276,7 +340,8 @@
     $('checks').innerHTML=c.map(function(x){return '<li class="'+(x[0]?'ok':'no')+'"><b>'+(x[0]?'✓':'!')+'</b>'+esc(x[1])+'</li>';}).join('');
     toQuery(ids);}
   $('copy').addEventListener('click',function(){var t=$('obj').textContent;try{navigator.clipboard.writeText(t).then(function(){$('copied').textContent='Copied';});}catch(e){$('copied').textContent='Select the text to copy';}});
-  bindAll(ids,f,'smart_objective');
+  var __f=f;f=function(){__f();try{POST();}catch(e){}};initPicker(f);bindAll(ids.concat('ind'),f,'smart_objective');
+  initShare();
 })();
 </script>
 <script defer src="/assets/analytics.js"></script>

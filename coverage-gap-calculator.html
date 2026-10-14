@@ -179,6 +179,35 @@
   .rng input[type=range]{grid-column:1 / -1;padding:0;accent-color:var(--teal);}
   .rng span{font-size:14px;color:var(--body);} .rng b{font-family:'Manrope';color:var(--ivory);}
   @media print{header.top,.more,.cta,.faq,footer.foot,.privacy-note,.btn,.lede,.eyebrow{display:none!important;} body{background:#fff;color:#000;} .out-doc{border:none;color:#000;background:#fff;}}
+
+  .picker{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:6px 0 18px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;}
+  .picker label{flex-direction:row!important;align-items:center;gap:10px!important;min-width:0;max-width:100%;flex:0 1 auto;}
+  .picker select{width:auto!important;min-width:0;max-width:100%;text-overflow:ellipsis;}
+  @media(max-width:560px){.picker label{flex-direction:column!important;align-items:flex-start;width:100%;} .picker select{width:100%!important;}}
+  .picker .pnote{flex:1 1 260px;font-size:13.5px;color:var(--muted);margin:0;}
+  .picker .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);}
+  .chart{margin:8px 0 6px;} .chart svg{width:100%;height:auto;display:block;}
+  .v2row{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0 6px;}
+  .v2box{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .v2box h3{font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);margin:0 0 10px;}
+  .v2box ol,.v2box ul{margin:0;padding-left:20px;color:var(--body);font-size:14.5px;line-height:1.6;}
+  .v2box li{margin:0 0 6px;}
+  details.work{margin:4px 0 0;} details.work summary{cursor:pointer;font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);list-style:none;}
+  details.work summary::-webkit-details-marker{display:none;} details.work summary:before{content:'+ ';color:var(--teal);} details.work[open] summary:before{content:'\2212  ';}
+  details.work ol{margin-top:10px;font-family:ui-monospace,Menlo,monospace;font-size:13.5px;}
+  .receipt{display:flex;gap:14px;align-items:flex-start;margin:18px 0 0;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;}
+  .receipt .rk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin:0 0 4px;}
+  .receipt p{margin:0;font-size:15px;color:var(--ivory);} .receipt a{font-family:'Manrope';font-weight:700;font-size:14px;}
+  .handoff{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0;}
+  .handoff a{display:inline-flex;flex-direction:column;gap:2px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-size:13px;color:var(--muted);}
+  .handoff a b{font-family:'Manrope';font-size:14.5px;color:var(--ivory);} .handoff a:hover{border-color:var(--teal);text-decoration:none;}
+  .sharebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0;}
+  .sharebar .ok{font-size:13px;color:var(--green);}
+  .mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:26px 0 0;padding:14px 16px;border:1px dashed rgba(255,255,255,.18);border-radius:12px;}
+  .mail p{margin:0;flex:1 1 240px;font-size:14px;color:var(--body);}
+  .mail form{display:flex;gap:8px;flex:1 1 300px;}
+  .mail input{flex:1;font:500 15px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:9px 12px;}
+  @media print{.picker,.sharebar,.mail,.handoff{display:none!important;}}
 </style>
 </head>
 <body>
@@ -193,11 +222,11 @@
     </nav>
   </header>
   <main>
-  <div class="eyebrow">Free tool &middot; Population health</div>
+  <div class="eyebrow">Free tool &middot; Public health and systems</div>
   <h1>Coverage gap planner</h1>
-  <p class="lede">For vaccination, screening or enrolment campaigns. Enter the population, current and target coverage and a deadline to see <b>how many people you still need to reach</b>, every day and for every team.</p>
+  <p class="lede">For vaccination, screening or enrolment campaigns. Enter the population, current and target coverage and a deadline to see <b>how many people you still need to reach</b>, every day and for every team. Load a <b>program example</b>, from public health to business, to see how it changes.</p>
   <article>
-<section class="card calc" aria-label="Calculator"><div class="grid">
+<section class="card calc" aria-label="Calculator"><div class="picker"><label><span class="tag">Example</span><select id="ind" aria-label="Load a program example"><option value="measles" selected>Immunization: measles catch-up</option><option value="nets">Malaria: bed net distribution</option><option value="anc">Maternal health: four antenatal visits</option><option value="bp">NCDs: blood pressure screening</option><option value="g2p">Social protection: cash-transfer enrolment</option><option value="retail">Business: outlet distribution coverage</option><option value="custom">Your own numbers</option></select></label><p class="pnote" id="pnote"></p></div><div class="grid">
 <label>Target population <span class="hint">eligible people in the area</span><input id="pop" type="number" inputmode="numeric" min="0" step="1" value="250000"></label>
 <label>Current coverage (%)<input id="cur" type="number" inputmode="decimal" min="0" max="100" step="any" value="62"></label>
 <label>Target coverage (%)<input id="tgt" type="number" inputmode="decimal" min="0" max="100" step="any" value="85"></label>
@@ -214,14 +243,14 @@
 <div class="bar" aria-hidden="true"><span id="b1" style="background:var(--green)"></span><span id="b2" style="background:var(--amber)"></span></div>
 <p class="verdict" id="v"></p>
 <div class="formula"><span class="k">Formula</span>Still to reach = population × (target − current) · Per day = still to reach ÷ working days left</div>
-<p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
+<div class="v2row"><div class="v2box"><h3>What to do next</h3><ul id="nx"></ul></div><div class="v2box"><details class="work"><summary>Show the working, step by step</summary><ol id="work"></ol></details></div></div><div class="sharebar"><button type="button" class="btn solid" id="shcard">Download result card</button><button type="button" class="btn" id="shlink">Copy link with my numbers</button><button type="button" class="btn" id="shli">Share on LinkedIn</button><span class="ok" id="shok" aria-live="polite"></span></div><div class="receipt"><div><p class="rk">Where I used this</p><p>With SureCash I helped deliver a government stipend to about 10 million beneficiaries, recognized with a Banking Fair Award of Excellence.</p><a href="/case/surecash-g2p/">Read the case: Delivering a government stipend to 10 million beneficiaries &rarr;</a></div></div><div class="handoff"><a href="/survey-sample-size-calculator.html" id="h1"><span>Step before</span><b>Measure today&rsquo;s coverage: Survey sample size</b></a><a href="/prevention-roi-calculator.html" id="h2"><span>Next step</span><b>Is closing the gap worth it? Prevention ROI</b></a><a href="/hotline-staffing-calculator.html" id="h3"><span>Same pillar</span><b>Staff the help line: Hotline staffing</b></a></div><p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
 
 <h2>Turning the gap into a plan</h2>
 <ul>
 <li><b>Daily targets make progress visible.</b> Teams can see each day whether they are on track, instead of discovering a shortfall at the end.</li>
 <li><b>The last mile is slower.</b> People who have not been reached yet are often harder to reach: further away, less trusting, or busier. Front-load effort and plan outreach for them early.</li>
 <li><b>Coverage is a communication problem too.</b> Access gets people to the door; trust and clear information get them through it.</li>
-</ul>
+</ul><div class="mail"><p><b>Get new free tools by email.</b> One short note when a new tool or essay goes live. No spam, unsubscribe any time.</p><form id="mailf" action="https://buttondown.com/api/emails/embed-subscribe/shafaat" method="post" target="popupwindow"><input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required><button type="submit" class="btn solid">Subscribe</button></form></div>
 <div class="cta"><h2>Planning a health program or campaign?</h2><p>I am a CHES&reg;-certified health education specialist with an MPH and 17 years of public-health and behaviour-change work in the US and Bangladesh. A 30-minute call is free.</p><p><a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a></p></div>
 <section class="faq"><h2>Questions</h2>
 <h3>How do I calculate a coverage gap?</h3><p>Multiply the eligible population by the difference between target and current coverage. 250,000 people moving from 62% to 85% means reaching 57,500 more people.</p>
@@ -229,7 +258,7 @@
 <h3>Why are working days per week an input?</h3><p>Field teams and clinics rarely work every day. The daily target is spread across the days teams actually work before the deadline.</p>
 </section>
   </article>
-<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/risk-communication-calculator.html"><b>Risk communication calculator</b>Turn relative risk into absolute risk, number needed to treat and an "out of 100" picture.</a><a href="/hotline-staffing-calculator.html"><b>Hotline staffing calculator</b>How many agents a health hotline or call centre needs to answer calls fast (Erlang C).</a><a href="/customer-journey-mapper.html"><b>Customer journey mapper</b>From trigger to repeat purchase: map each stage, its barrier, and find the biggest leak.</a></div><a class="all" href="/tools.html">See all 32 free tools &rarr;</a></section>
+<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/risk-communication-calculator.html"><b>Risk communication calculator</b>Turn relative risk into absolute risk, number needed to treat and an "out of 100" picture.</a><a href="/hotline-staffing-calculator.html"><b>Hotline staffing calculator</b>How many agents a health hotline or call center needs to answer calls fast (Erlang C).</a><a href="/customer-journey-mapper.html"><b>Customer journey mapper</b>From trigger to repeat purchase: map each stage, its barrier, and find the biggest leak.</a></div><a class="all" href="/tools.html">See all 33 free tools &rarr;</a></section>
   </main>
   <footer class="foot">
     <a href="/">&larr; Back to the portfolio</a> &middot; <a href="/essays.html">All essays</a> &middot; <a href="https://www.linkedin.com/in/sacgrowthspecialist">LinkedIn</a>
@@ -249,6 +278,45 @@
   var toQuery=function(ids){try{var p=new URLSearchParams();ids.forEach(function(k){if($(k))p.set(k,$(k).value);});history.replaceState(null,'','?'+p.toString());}catch(e){}};
   var ncdf=function(x){var t=1/(1+0.2316419*Math.abs(x)),d=0.3989423*Math.exp(-x*x/2),p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p;};
   var zfor=function(conf){return {80:1.2816,85:1.4395,90:1.6449,95:1.96,98:2.3263,99:2.5758}[conf]||1.96;};
+var SLUG="coverage-gap-calculator",TOOLNAME="Coverage gap planner",PRESETS={"measles": {"label": "Immunization: measles catch-up", "note": "The last 10 to 15 points are the hardest: mobile, remote and hesitant families. Plan outreach, not just more fixed sessions.", "v": {"pop": 250000, "cur": 62, "tgt": 85, "wd": "6", "teams": 40}}, "nets": {"label": "Malaria: bed net distribution", "note": "Count households, not people, if nets go per household. Coverage falls without a plan for replacements.", "v": {"pop": 400000, "cur": 55, "tgt": 90, "wd": "6", "teams": 60}}, "anc": {"label": "Maternal health: four antenatal visits", "note": "Pregnancies are a moving population. Track against expected births, not a fixed list.", "v": {"pop": 30000, "cur": 48, "tgt": 70, "wd": "5", "teams": 25}}, "bp": {"label": "NCDs: blood pressure screening", "note": "Screening only helps if positives reach care. Plan referral and follow-up capacity alongside it.", "v": {"pop": 120000, "cur": 30, "tgt": 60, "wd": "5", "teams": 15}}, "g2p": {"label": "Social protection: cash-transfer enrolment", "note": "Enrolment gaps are usually documents and distance. Take registration to people, and fix data errors fast.", "v": {"pop": 1000000, "cur": 70, "tgt": 95, "wd": "6", "teams": 200}}, "retail": {"label": "Business: outlet distribution coverage", "note": "The same logic works for retail reach: outlets to cover, sales teams and daily visit targets.", "v": {"pop": 50000, "cur": 40, "tgt": 60, "wd": "6", "teams": 30}}, "custom": {"label": "Your own numbers", "v": {}, "note": "Enter your own figures. The examples are illustrative, not benchmarks."}};
+
+  var hbars=function(rows,c,o){o=o||{};var el=$('chart');if(!el)return;rows=rows.filter(function(r){return isFinite(r.v)&&r.v>=0;});if(!rows.length){el.innerHTML='';return;}
+    var W=680,rh=34,lw=o.lw||170,bw=W-lw-130,mx=Math.max.apply(null,rows.map(function(r){return r.v;}))||1,h=8+rows.length*rh+4,s='<svg viewBox="0 0 '+W+' '+h+'" role="img" aria-label="'+esc(o.label||'Chart')+'">';
+    rows.forEach(function(r,i){var y=8+i*rh,w=Math.max(2,r.v/mx*bw);s+='<text x="'+(lw-10)+'" y="'+(y+19)+'" text-anchor="end" font-size="13" fill="#C7CDD6" font-family="Inter,system-ui">'+esc(String(r.n).slice(0,26))+'</text><rect x="'+lw+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="18" rx="4" fill="'+(r.col||'#33C4C4')+'"/><text x="'+(lw+w+8)+'" y="'+(y+19)+'" font-size="13" fill="#F3EFE7" font-family="Inter,system-ui" font-weight="600">'+esc(r.t!==undefined?r.t:fm(r.v,c))+'</text>';});
+    el.innerHTML=s+'</svg>';};
+  var work=function(lines){var el=$('work');if(el)el.innerHTML=lines.map(function(l){return '<li>'+esc(l)+'</li>';}).join('');};
+  var nextUp=function(items){var el=$('nx');if(!el)return;el.innerHTML=items.map(function(it){return '<li>'+esc(it.t)+(it.href?' <a href="'+esc(it.href)+'">'+esc(it.a)+' &rarr;</a>':'')+'</li>';}).join('');};
+  var shareEv=function(m){try{window.track&&window.track('tool_share',{tool:SLUG,method:m});}catch(e){}};
+  var flash=function(t){var el=$('shok');if(!el)return;el.textContent=t;setTimeout(function(){el.textContent='';},2600);};
+  function applyPreset(k,run){var p=PRESETS[k];if(!p)return;Object.keys(p.v).forEach(function(id){if($(id))$(id).value=p.v[id];});$('pnote').textContent=p.note||'';if(run)run();}
+  function initPicker(run){var s=$('ind');if(!s)return;var q=null;try{q=new URLSearchParams(location.search);}catch(e){}
+    var fromUrl=q&&[...q.keys()].some(function(k){return k!=='ind'&&!!$(k);});if(q&&q.get('ind')&&PRESETS[q.get('ind')])s.value=q.get('ind');
+    if(fromUrl&&!(q&&q.get('ind'))&&PRESETS.custom)s.value='custom';if(!fromUrl)applyPreset(s.value);else $('pnote').textContent=(PRESETS[s.value]||{}).note||'';
+    s.addEventListener('change',function(){applyPreset(s.value,run);try{window.track&&window.track('tool_preset',{tool:SLUG,preset:s.value});}catch(e){}});}
+  function wrapText(ctx,t,x,y,mw,lh,maxL){var w=t.split(' '),line='',n=0;for(var i=0;i<w.length;i++){var tl=line+w[i]+' ';if(ctx.measureText(tl).width>mw&&line){ctx.fillText(line,x,y);y+=lh;line=w[i]+' ';if(++n>=maxL-1){var rest=w.slice(i).join(' ');while(ctx.measureText(rest+'…').width>mw&&rest.length)rest=rest.slice(0,-1);ctx.fillText(rest+(rest.length<w.slice(i).join(' ').length?'…':''),x,y);return;}}else line=tl;}ctx.fillText(line,x,y);}
+  function card(){var c=document.createElement('canvas');c.width=1200;c.height=630;var x=c.getContext('2d');var F='Manrope, Inter, system-ui, sans-serif';
+    x.fillStyle='#0B0F14';x.fillRect(0,0,1200,630);x.fillStyle='#33C4C4';x.fillRect(0,0,1200,8);
+    x.fillStyle='#7f8894';x.font='600 20px '+F;x.fillText('FREE TOOL',64,72);
+    x.fillStyle='#F3EFE7';x.font='800 44px '+F;wrapText(x,TOOLNAME,64,124,1072,52,2);
+    var ks=[].slice.call(document.querySelectorAll('.out .kpi')).slice(0,4);var cw=1072/Math.max(ks.length,1);
+    ks.forEach(function(k,i){var l=(k.querySelector('.kl')||{}).textContent||'',v=(k.querySelector('.kv')||{}).textContent||'';x.fillStyle='#7f8894';x.font='600 18px '+F;x.fillText(l.toUpperCase().slice(0,26),64+i*cw,268);x.fillStyle='#F3EFE7';var fs=46;x.font='800 '+fs+'px '+F;while(x.measureText(v).width>cw-24&&fs>24){fs-=2;x.font='800 '+fs+'px '+F;}var vv=v;if(x.measureText(vv).width>cw-24){while(x.measureText(vv+'…').width>cw-24&&vv.length>3)vv=vv.slice(0,-1);vv+='…';}x.fillText(vv,64+i*cw,324);});
+    x.fillStyle='#C7CDD6';x.font='400 25px Inter, system-ui, sans-serif';var vt=(($('v')||{}).textContent||'').trim()||(($('say1')||{}).textContent||'').trim()||(($('obj')||{}).textContent||'').trim();wrapText(x,vt,64,ks.length?410:250,1072,36,ks.length?3:6);
+    x.fillStyle='#33C4C4';x.font='700 22px '+F;x.fillText('shafaatalichoyon.com/'+SLUG,64,578);x.fillStyle='#7f8894';x.font='500 20px '+F;x.textAlign='right';x.fillText('Md Shafaat Ali Choyon',1136,578);
+    c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=SLUG+'-result.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},800);});shareEv('card');flash('Result card downloaded');}
+  function initShare(){var b=$('shcard');if(b)b.addEventListener('click',card);
+    var cl=$('shlink');if(cl)cl.addEventListener('click',function(){var u=location.href;try{navigator.clipboard.writeText(u).then(function(){flash('Link with your numbers copied');});}catch(e){prompt('Copy this link',u);}shareEv('link_numbers');});
+    var ln=$('shli');if(ln)ln.addEventListener('click',function(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.origin+location.pathname),'_blank','noopener');shareEv('linkedin');});
+    var mf=$('mailf');if(mf)mf.addEventListener('submit',function(){try{window.open('https://buttondown.com/shafaat','popupwindow');window.track&&window.track('subscribe',{from:'tool',tool:SLUG});}catch(e){}});}
+
+  var __tq=toQuery;toQuery=function(a){__tq(a.indexOf('ind')<0?a.concat('ind'):a);};
+  function POST(){var P_=num('pop'),c=num('cur')/100,t=num('tgt')/100,wd=+$('wd').value,tm=num('teams');if(!(P_>0)||!(t>c)||!(c>=0)){work([]);nextUp([]);return;}
+    var gap=Math.ceil(P_*(t-c)),end=new Date($('dl').value),now=new Date();now.setHours(0,0,0,0);var days=isNaN(end)?0:Math.round((end-now)/864e5),wdays=Math.max(0,Math.floor(days*wd/7));
+    var w=['People still to reach: '+fm(P_)+' × ('+(t*100).toFixed(0)+'% − '+(c*100).toFixed(0)+'%) = '+fm(gap)];
+    if(wdays>0){w.push('Working days left: '+days+' days × '+wd+' ÷ 7 = '+wdays);w.push('Per working day: '+fm(gap)+' ÷ '+wdays+' = '+fm(Math.ceil(gap/wdays)));if(tm>0)w.push('Per team per day: '+fm(Math.ceil(gap/wdays))+' ÷ '+fm(tm)+' teams = '+fm(Math.ceil(gap/wdays/tm)));}work(w);
+    var nx=[{t:'Map who the remaining '+fm(gap)+' are and why they were missed (distance, documents, hesitancy, timing) before adding more of the same effort.'}];
+    if(wdays>0&&tm>0&&gap/wdays/tm>60)nx.push({t:'Over 60 people per team per day is a heavy load. Add teams, extend hours or move the deadline.'});
+    nx.push({t:'Front-load the easy reach, and keep extra teams for the final weeks when the hardest-to-reach remain.'});
+    nx.push({t:'Show funders what closing the gap prevents.',href:'/prevention-roi-calculator.html',a:'Prevention ROI'});nextUp(nx);}
 
   var ids=['pop','cur','tgt','dl','wd','teams'];
   try{var d0=new Date();d0.setDate(d0.getDate()+90);$('dl').value=d0.toISOString().slice(0,10);}catch(e){}
@@ -267,7 +335,8 @@
     $('o4').textContent=tm>0?fm(Math.ceil(pd/tm)):'-';
     $('v').textContent='To move from '+(c*100).toFixed(0)+'% to '+(t*100).toFixed(0)+'% you need to reach '+fm(gap)+' more people: about '+fm(Math.ceil(pd))+' every working day'+(tm>0?', or '+fm(Math.ceil(pd/tm))+' per team':'')+'. The last people to reach are usually the hardest, so plan extra effort for the final weeks.';
     toQuery(ids);}
-  bindAll(ids,f,'coverage_gap');
+  var __f=f;f=function(){__f();try{POST();}catch(e){}};initPicker(f);bindAll(ids.concat('ind'),f,'coverage_gap');
+  initShare();
 })();
 </script>
 <script defer src="/assets/analytics.js"></script>

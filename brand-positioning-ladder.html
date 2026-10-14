@@ -180,6 +180,35 @@
   .rng span{font-size:14px;color:var(--body);} .rng b{font-family:'Manrope';color:var(--ivory);}
   @media print{header.top,.more,.cta,.faq,footer.foot,.privacy-note,.btn,.lede,.eyebrow{display:none!important;} body{background:#fff;color:#000;} .out-doc{border:none;color:#000;background:#fff;}}
 
+  .picker{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:6px 0 18px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;}
+  .picker label{flex-direction:row!important;align-items:center;gap:10px!important;min-width:0;max-width:100%;flex:0 1 auto;}
+  .picker select{width:auto!important;min-width:0;max-width:100%;text-overflow:ellipsis;}
+  @media(max-width:560px){.picker label{flex-direction:column!important;align-items:flex-start;width:100%;} .picker select{width:100%!important;}}
+  .picker .pnote{flex:1 1 260px;font-size:13.5px;color:var(--muted);margin:0;}
+  .picker .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);}
+  .chart{margin:8px 0 6px;} .chart svg{width:100%;height:auto;display:block;}
+  .v2row{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0 6px;}
+  .v2box{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .v2box h3{font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);margin:0 0 10px;}
+  .v2box ol,.v2box ul{margin:0;padding-left:20px;color:var(--body);font-size:14.5px;line-height:1.6;}
+  .v2box li{margin:0 0 6px;}
+  details.work{margin:4px 0 0;} details.work summary{cursor:pointer;font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);list-style:none;}
+  details.work summary::-webkit-details-marker{display:none;} details.work summary:before{content:'+ ';color:var(--teal);} details.work[open] summary:before{content:'\2212  ';}
+  details.work ol{margin-top:10px;font-family:ui-monospace,Menlo,monospace;font-size:13.5px;}
+  .receipt{display:flex;gap:14px;align-items:flex-start;margin:18px 0 0;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;}
+  .receipt .rk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin:0 0 4px;}
+  .receipt p{margin:0;font-size:15px;color:var(--ivory);} .receipt a{font-family:'Manrope';font-weight:700;font-size:14px;}
+  .handoff{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0;}
+  .handoff a{display:inline-flex;flex-direction:column;gap:2px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-size:13px;color:var(--muted);}
+  .handoff a b{font-family:'Manrope';font-size:14.5px;color:var(--ivory);} .handoff a:hover{border-color:var(--teal);text-decoration:none;}
+  .sharebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0;}
+  .sharebar .ok{font-size:13px;color:var(--green);}
+  .mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:26px 0 0;padding:14px 16px;border:1px dashed rgba(255,255,255,.18);border-radius:12px;}
+  .mail p{margin:0;flex:1 1 240px;font-size:14px;color:var(--body);}
+  .mail form{display:flex;gap:8px;flex:1 1 300px;}
+  .mail input{flex:1;font:500 15px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:9px 12px;}
+  @media print{.picker,.sharebar,.mail,.handoff{display:none!important;}}
+
   .ladder{display:grid;gap:6px;margin:18px 0;max-width:520px;}
   .ladder div{display:flex;justify-content:space-between;gap:10px;padding:9px 14px;border:1px solid var(--line);border-radius:8px;background:var(--tile);font-size:14px;color:var(--body);}
   .ladder div.c{border-color:var(--amber);} .ladder div.y{border-color:var(--teal);background:rgba(51,196,196,.10);color:var(--ivory);}
@@ -198,11 +227,11 @@
     </nav>
   </header>
   <main>
-  <div class="eyebrow">Free tool &middot; Brand strategy</div>
+  <div class="eyebrow">Free tool &middot; Brand &middot; Plan</div>
   <h1>Brand positioning ladder</h1>
-  <p class="lede">Climb from what you make to what you stand for. See which rung your <b>competitors</b> own, choose yours, and get a <b>positioning statement</b> you can test. <span class="credit">Built from the planning practice I learned in my agency years at Asiatic (JWT), adapted for today&rsquo;s channels.</span></p>
+  <p class="lede">Climb from what you make to what you stand for. See which rung your <b>competitors</b> own, choose yours, and get a <b>positioning statement</b> you can test. Load a worked example from <b>nine industries</b>; every brand in them is fictional. <span class="credit">Built from the planning practice I learned in my agency years at Asiatic (JWT), adapted for today&rsquo;s channels.</span></p>
   <article>
-<section class="card calc" aria-label="Calculator"><div class="grid">
+<section class="card calc" aria-label="Calculator"><div class="picker"><label><span class="tag">Example</span><select id="ind" aria-label="Load an industry example"><option value="telecom">Telecom: Lumen Mobile, mobile network</option><option value="fmcg">FMCG: Daybreak Foods, packaged breakfast</option><option value="advertising">Agency: Northbound Agency, creative agency</option><option value="fintech">Fintech: Kosh Pay, mobile wallet</option><option value="ecommerce">E-commerce: Basket &amp; Co, online grocery</option><option value="consumertech">Consumer tech: Volta Phones, smartphone</option><option value="education">Education: BrightPath Academy, online professional courses</option><option value="logistics">Logistics: Swift Route, parcel delivery for small businesses</option><option value="healthcare" selected>Healthcare: Northfield Clinics, family health clinic</option></select></label><p class="pnote" id="pnote"></p></div><div class="grid">
 <label>Brand<input id="brand" type="text" maxlength="60" value="Northfield Clinics"></label>
 <label>Category <span class="hint">what it is</span><input id="cat" type="text" maxlength="60" value="family health clinic"></label>
 <label>Audience<input id="aud" type="text" maxlength="80" value="busy working parents"></label>
@@ -224,12 +253,12 @@
 <div class="out-doc" id="out" aria-live="polite"></div>
 <p><button type="button" class="btn solid" id="copy">Copy statement</button> <span class="kb" id="copied"></span></p>
 <p class="verdict" id="v"></p>
-<p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
+<div class="v2row"><div class="v2box"><h3>What to do next</h3><ul id="nx"></ul></div><div class="v2box"><details class="work"><summary>Show the working, step by step</summary><ol id="work"></ol></details></div></div><div class="sharebar"><button type="button" class="btn solid" id="shcard">Download result card</button><button type="button" class="btn" id="shlink">Copy link with my numbers</button><button type="button" class="btn" id="shli">Share on LinkedIn</button><span class="ok" id="shok" aria-live="polite"></span></div><div class="receipt"><div><p class="rk">Where I used this</p><p>I built Ekhanei&rsquo;s motorbike category from zero to No. 1 in two and a half months, with revenue up 25% and share up 15%.</p><a href="/case/ekhanei-laser/">Read the case: Building the nation&rsquo;s #1 motorbike category from zero &rarr;</a></div></div><div class="handoff"><a href="/insight-statement-builder.html" id="h1"><span>Step before</span><b>Find the human truth: Insight statement builder</b></a><a href="/creative-brief-builder.html" id="h2"><span>Next step</span><b>Brief the work: Creative brief builder</b></a><a href="/competitor-positioning-map.html" id="h3"><span>Same stage</span><b>Check the white space: Competitor positioning map</b></a></div><p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
 
 <h2>How the ladder works</h2>
 <p>Any brand can be positioned at different heights. At the bottom it competes on who makes it and what it is made of; higher up, on what it does for you, who it helps you be and what it stands for. Higher rungs are harder to copy and easier to love, but they only work when the rungs below are true.</p>
 <ul><li><b>Find the empty rung.</b> If every competitor talks about features, a clear benefit or identity can stand out immediately.</li>
-<li><b>Each rung proves the one above.</b> The statement uses the rung below your claim as the reason to believe.</li></ul>
+<li><b>Each rung proves the one above.</b> The statement uses the rung below your claim as the reason to believe.</li></ul><div class="mail"><p><b>Get new free tools by email.</b> One short note when a new tool or essay goes live. No spam, unsubscribe any time.</p><form id="mailf" action="https://buttondown.com/api/emails/embed-subscribe/shafaat" method="post" target="popupwindow"><input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required><button type="submit" class="btn solid">Subscribe</button></form></div>
 <div class="cta"><h2>Need a strategist in the room?</h2><p>Brand positioning, launches and integrated campaigns, from an agency start at Asiatic (JWT) to launches that reached millions in the US and Bangladesh. A 30-minute call is free.</p><p><a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a></p></div>
 <section class="faq"><h2>Questions</h2>
 <h3>What is a brand positioning ladder?</h3><p>A way to explore positioning options from the most concrete (company and product) to the most abstract (user identity and values), and to choose the rung that is both true and distinctive.</p>
@@ -237,7 +266,7 @@
 <h3>Which rung should I claim?</h3><p>Usually the highest rung you can credibly own that competitors are not already occupying.</p>
 </section>
   </article>
-<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/value-exchange-checker.html"><b>Value exchange checker</b>Will people take part? Weigh what you ask of them against what they get back.</a><a href="/campaign-measurement-plan.html"><b>Campaign measurement plan builder</b>Link communication, attitude, behaviour and business effects with the right measures.</a><a href="/ltv-cac-calculator.html"><b>LTV to CAC ratio and payback calculator</b>Does each customer pay back what it cost to win them, and how fast? In dollars or taka.</a></div><a class="all" href="/tools.html">See all 32 free tools &rarr;</a></section>
+<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/value-exchange-checker.html"><b>Value exchange checker</b>Will people take part? Weigh what you ask of them against what they get back.</a><a href="/campaign-measurement-plan.html"><b>Campaign measurement plan builder</b>Link communication, attitude, behavior and business effects with the right measures.</a><a href="/ltv-cac-calculator.html"><b>LTV to CAC ratio and payback calculator</b>Does each customer pay back what it cost to win them, and how fast? In dollars or taka.</a></div><a class="all" href="/tools.html">See all 33 free tools &rarr;</a></section>
   </main>
   <footer class="foot">
     <a href="/">&larr; Back to the portfolio</a> &middot; <a href="/essays.html">All essays</a> &middot; <a href="https://www.linkedin.com/in/sacgrowthspecialist">LinkedIn</a>
@@ -257,6 +286,42 @@
   var toQuery=function(ids){try{var p=new URLSearchParams();ids.forEach(function(k){if($(k))p.set(k,$(k).value);});history.replaceState(null,'','?'+p.toString());}catch(e){}};
   var ncdf=function(x){var t=1/(1+0.2316419*Math.abs(x)),d=0.3989423*Math.exp(-x*x/2),p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p;};
   var zfor=function(conf){return {80:1.2816,85:1.4395,90:1.6449,95:1.96,98:2.3263,99:2.5758}[conf]||1.96;};
+var SLUG="brand-positioning-ladder",TOOLNAME="Brand positioning ladder",PRESETS={"telecom": {"label": "Telecom: Lumen Mobile, mobile network", "note": "Rivals sell coverage maps and speeds. Claiming the benefit rung stands apart.", "v": {"brand": "Lumen Mobile", "cat": "mobile network", "aud": "young professionals who live on their phones", "r5": "staying close to the people who matter", "r4": "the person who is never out of reach", "r3": "a connection you never have to think about", "r2": "nationwide 4G, simple bundles and an app that sorts everything", "r1": "a network built by people who grew up here", "comp": "2", "claim": "3"}}, "fmcg": {"label": "FMCG: Daybreak Foods, packaged breakfast", "note": "FMCG ads often stop at ingredients. A clear benefit, proved by the product rung, is easy to remember.", "v": {"brand": "Daybreak Foods", "cat": "packaged breakfast", "aud": "working parents with busy mornings", "r5": "mornings that start well, whatever the day brings", "r4": "the parent who never sends the kids out hungry", "r3": "a good breakfast in two minutes", "r2": "fortified cereals and ready-to-eat packs", "r1": "a family-owned mill since 1985", "comp": "2", "claim": "3"}}, "advertising": {"label": "Agency: Northbound Agency, creative agency", "note": "Most agencies lead with their pedigree. Claiming business results is rarer and easier to prove.", "v": {"brand": "Northbound Agency", "cat": "creative agency", "aud": "marketing directors at growing brands", "r5": "work that earns attention honestly", "r4": "the client who looks brilliant in the boardroom", "r3": "ideas that move sales, not just awards", "r2": "strategy, creative and media under one roof", "r1": "founded by planners from global networks", "comp": "1", "claim": "3"}}, "fintech": {"label": "Fintech: Kosh Pay, mobile wallet", "note": "In fintech the company rung (licensed, backed) is the proof that makes the benefit believable.", "v": {"brand": "Kosh Pay", "cat": "mobile wallet", "aud": "small shop owners", "r5": "every honest business can grow", "r4": "the shopkeeper who is always paid and in control", "r3": "money in hand the same day, with no paperwork", "r2": "free QR payments, instant settlement and a sales record", "r1": "a licensed provider backed by a national bank", "comp": "2", "claim": "3"}}, "ecommerce": {"label": "E-commerce: Basket & Co, online grocery", "note": "E-commerce rivals compete on range and price. A benefit about time is harder to copy.", "v": {"brand": "Basket & Co", "cat": "online grocery", "aud": "urban families who shop on their phones", "r5": "more time for the people you love", "r4": "the household that runs smoothly", "r3": "fresh groceries at your door in an hour", "r2": "ten thousand products, one-hour slots, easy returns", "r1": "a team of grocers and engineers", "comp": "2", "claim": "3"}}, "consumertech": {"label": "Consumer tech: Volta Phones, smartphone", "note": "Spec sheets all look alike. Claim the benefit and use the warranty as proof.", "v": {"brand": "Volta Phones", "cat": "smartphone", "aud": "first-time smartphone buyers", "r5": "everyone deserves the modern world in their pocket", "r4": "the person who is finally part of it", "r3": "a phone that just works, all day", "r2": "a big battery, a clear screen and a two-year warranty", "r1": "designed with a global electronics partner", "comp": "2", "claim": "3"}}, "education": {"label": "Education: BrightPath Academy, online professional courses", "note": "Education brands can climb to the user rung, but only if outcomes back it up.", "v": {"brand": "BrightPath Academy", "cat": "online professional courses", "aud": "mid-career professionals who feel stuck", "r5": "no talent wasted for lack of a chance", "r4": "the professional who gets the next role", "r3": "skills you can use at work next week", "r2": "short live courses with mentors and certificates", "r1": "taught by practitioners, not just academics", "comp": "2", "claim": "4"}}, "logistics": {"label": "Logistics: Swift Route, parcel delivery for small businesses", "note": "Logistics firms tend to talk fleet size. Sellers buy reliability for their own customers.", "v": {"brand": "Swift Route", "cat": "parcel delivery for small businesses", "aud": "online sellers shipping 50 to 500 orders a week", "r5": "small businesses competing on equal terms", "r4": "the seller customers trust to deliver", "r3": "every parcel tracked, every delivery on time", "r2": "next-day delivery, cash collection and live tracking", "r1": "a fleet and hubs in every major city", "comp": "1", "claim": "3"}}, "healthcare": {"label": "Healthcare: Northfield Clinics, family health clinic", "note": "Health brands must keep claims honest. The benefit rung works when the product rung proves it.", "v": {"brand": "Northfield Clinics", "cat": "family health clinic", "aud": "busy working parents", "r5": "no family left guessing about their health", "r4": "the parent who has it handled", "r3": "answers and care the same day, without the waiting room", "r2": "same-day appointments, home sample collection and an app", "r1": "doctors who started their own practice", "comp": "2", "claim": "3"}}};
+
+  var hbars=function(rows,c,o){o=o||{};var el=$('chart');if(!el)return;rows=rows.filter(function(r){return isFinite(r.v)&&r.v>=0;});if(!rows.length){el.innerHTML='';return;}
+    var W=680,rh=34,lw=o.lw||170,bw=W-lw-130,mx=Math.max.apply(null,rows.map(function(r){return r.v;}))||1,h=8+rows.length*rh+4,s='<svg viewBox="0 0 '+W+' '+h+'" role="img" aria-label="'+esc(o.label||'Chart')+'">';
+    rows.forEach(function(r,i){var y=8+i*rh,w=Math.max(2,r.v/mx*bw);s+='<text x="'+(lw-10)+'" y="'+(y+19)+'" text-anchor="end" font-size="13" fill="#C7CDD6" font-family="Inter,system-ui">'+esc(String(r.n).slice(0,26))+'</text><rect x="'+lw+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="18" rx="4" fill="'+(r.col||'#33C4C4')+'"/><text x="'+(lw+w+8)+'" y="'+(y+19)+'" font-size="13" fill="#F3EFE7" font-family="Inter,system-ui" font-weight="600">'+esc(r.t!==undefined?r.t:fm(r.v,c))+'</text>';});
+    el.innerHTML=s+'</svg>';};
+  var work=function(lines){var el=$('work');if(el)el.innerHTML=lines.map(function(l){return '<li>'+esc(l)+'</li>';}).join('');};
+  var nextUp=function(items){var el=$('nx');if(!el)return;el.innerHTML=items.map(function(it){return '<li>'+esc(it.t)+(it.href?' <a href="'+esc(it.href)+'">'+esc(it.a)+' &rarr;</a>':'')+'</li>';}).join('');};
+  var shareEv=function(m){try{window.track&&window.track('tool_share',{tool:SLUG,method:m});}catch(e){}};
+  var flash=function(t){var el=$('shok');if(!el)return;el.textContent=t;setTimeout(function(){el.textContent='';},2600);};
+  function applyPreset(k,run){var p=PRESETS[k];if(!p)return;Object.keys(p.v).forEach(function(id){if($(id))$(id).value=p.v[id];});$('pnote').textContent=p.note||'';if(run)run();}
+  function initPicker(run){var s=$('ind');if(!s)return;var q=null;try{q=new URLSearchParams(location.search);}catch(e){}
+    var fromUrl=q&&[...q.keys()].some(function(k){return k!=='ind'&&!!$(k);});if(q&&q.get('ind')&&PRESETS[q.get('ind')])s.value=q.get('ind');
+    if(fromUrl&&!(q&&q.get('ind'))&&PRESETS.custom)s.value='custom';if(!fromUrl)applyPreset(s.value);else $('pnote').textContent=(PRESETS[s.value]||{}).note||'';
+    s.addEventListener('change',function(){applyPreset(s.value,run);try{window.track&&window.track('tool_preset',{tool:SLUG,preset:s.value});}catch(e){}});}
+  function wrapText(ctx,t,x,y,mw,lh,maxL){var w=t.split(' '),line='',n=0;for(var i=0;i<w.length;i++){var tl=line+w[i]+' ';if(ctx.measureText(tl).width>mw&&line){ctx.fillText(line,x,y);y+=lh;line=w[i]+' ';if(++n>=maxL-1){var rest=w.slice(i).join(' ');while(ctx.measureText(rest+'…').width>mw&&rest.length)rest=rest.slice(0,-1);ctx.fillText(rest+(rest.length<w.slice(i).join(' ').length?'…':''),x,y);return;}}else line=tl;}ctx.fillText(line,x,y);}
+  function card(){var c=document.createElement('canvas');c.width=1200;c.height=630;var x=c.getContext('2d');var F='Manrope, Inter, system-ui, sans-serif';
+    x.fillStyle='#0B0F14';x.fillRect(0,0,1200,630);x.fillStyle='#33C4C4';x.fillRect(0,0,1200,8);
+    x.fillStyle='#7f8894';x.font='600 20px '+F;x.fillText('FREE TOOL',64,72);
+    x.fillStyle='#F3EFE7';x.font='800 44px '+F;wrapText(x,TOOLNAME,64,124,1072,52,2);
+    var ks=[].slice.call(document.querySelectorAll('.out .kpi')).slice(0,4);var cw=1072/Math.max(ks.length,1);
+    ks.forEach(function(k,i){var l=(k.querySelector('.kl')||{}).textContent||'',v=(k.querySelector('.kv')||{}).textContent||'';x.fillStyle='#7f8894';x.font='600 18px '+F;x.fillText(l.toUpperCase().slice(0,26),64+i*cw,268);x.fillStyle='#F3EFE7';var fs=46;x.font='800 '+fs+'px '+F;while(x.measureText(v).width>cw-24&&fs>24){fs-=2;x.font='800 '+fs+'px '+F;}var vv=v;if(x.measureText(vv).width>cw-24){while(x.measureText(vv+'…').width>cw-24&&vv.length>3)vv=vv.slice(0,-1);vv+='…';}x.fillText(vv,64+i*cw,324);});
+    x.fillStyle='#C7CDD6';x.font='400 25px Inter, system-ui, sans-serif';var vt=(($('v')||{}).textContent||'').trim()||(($('say1')||{}).textContent||'').trim()||(($('obj')||{}).textContent||'').trim();wrapText(x,vt,64,ks.length?410:250,1072,36,ks.length?3:6);
+    x.fillStyle='#33C4C4';x.font='700 22px '+F;x.fillText('shafaatalichoyon.com/'+SLUG,64,578);x.fillStyle='#7f8894';x.font='500 20px '+F;x.textAlign='right';x.fillText('Md Shafaat Ali Choyon',1136,578);
+    c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=SLUG+'-result.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},800);});shareEv('card');flash('Result card downloaded');}
+  function initShare(){var b=$('shcard');if(b)b.addEventListener('click',card);
+    var cl=$('shlink');if(cl)cl.addEventListener('click',function(){var u=location.href;try{navigator.clipboard.writeText(u).then(function(){flash('Link with your numbers copied');});}catch(e){prompt('Copy this link',u);}shareEv('link_numbers');});
+    var ln=$('shli');if(ln)ln.addEventListener('click',function(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.origin+location.pathname),'_blank','noopener');shareEv('linkedin');});
+    var mf=$('mailf');if(mf)mf.addEventListener('submit',function(){try{window.open('https://buttondown.com/shafaat','popupwindow');window.track&&window.track('subscribe',{from:'tool',tool:SLUG});}catch(e){}});}
+
+  var __tq=toQuery;toQuery=function(a){__tq(a.indexOf('ind')<0?a.concat('ind'):a);};
+  function POST(){var c=+$('comp').value,k=+$('claim').value,nm=['','Company','Product','Benefit','User','Values'];
+    work(['Rungs run from concrete (1. Company) to abstract (5. Values).','Competitors mostly own rung '+c+' ('+nm[c]+'). You claim rung '+k+' ('+nm[k]+').','The positioning statement uses your claimed rung as the promise and the rung below it as the reason to believe.']);
+    var nx=[];if(k===c)nx.push({t:'You are claiming the same rung as competitors. Move one rung up, or find a sharper way to own this one.'});else if(k>c+2)nx.push({t:'Big jump above competitors. Make sure rungs '+(c+1)+' to '+(k-1)+' are visibly true, or the claim will not be believed.'});else nx.push({t:'A clear step above competitors. Prove it with the rung below in every piece of work.'});
+    nx.push({t:'Test the statement with five customers: can they repeat it back in their own words?'});
+    nx.push({t:'Turn the statement into a brief.',href:'/creative-brief-builder.html',a:'Creative brief builder'});nextUp(nx);}
 
   function copyOut(id,msg){var t=$(id).innerText;try{navigator.clipboard.writeText(t).then(function(){$(msg).textContent='Copied';});}catch(e){$(msg).textContent='Select the text to copy';}}
 
@@ -274,7 +339,8 @@
     $('v').textContent=cl===co?'You are claiming the same rung as your competitors. Either own it far more convincingly, or climb one rung higher to stand apart.':cl<co?'You are positioned below the competition. That can work if the product truth is unbeatable, but higher rungs are usually harder to copy.':'You are claiming higher ground than the competition. Make sure the rungs below are true and visible, or the claim will not be believed.';
     toQuery(ids);}
   $('copy').addEventListener('click',function(){copyOut('out','copied');});
-  bindAll(ids,f,'positioning_ladder');
+  var __f=f;f=function(){__f();try{POST();}catch(e){}};initPicker(f);bindAll(ids.concat('ind'),f,'positioning_ladder');
+  initShare();
 })();
 </script>
 <script defer src="/assets/analytics.js"></script>

@@ -179,6 +179,35 @@
   .rng input[type=range]{grid-column:1 / -1;padding:0;accent-color:var(--teal);}
   .rng span{font-size:14px;color:var(--body);} .rng b{font-family:'Manrope';color:var(--ivory);}
   @media print{header.top,.more,.cta,.faq,footer.foot,.privacy-note,.btn,.lede,.eyebrow{display:none!important;} body{background:#fff;color:#000;} .out-doc{border:none;color:#000;background:#fff;}}
+
+  .picker{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:6px 0 18px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;}
+  .picker label{flex-direction:row!important;align-items:center;gap:10px!important;min-width:0;max-width:100%;flex:0 1 auto;}
+  .picker select{width:auto!important;min-width:0;max-width:100%;text-overflow:ellipsis;}
+  @media(max-width:560px){.picker label{flex-direction:column!important;align-items:flex-start;width:100%;} .picker select{width:100%!important;}}
+  .picker .pnote{flex:1 1 260px;font-size:13.5px;color:var(--muted);margin:0;}
+  .picker .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);}
+  .chart{margin:8px 0 6px;} .chart svg{width:100%;height:auto;display:block;}
+  .v2row{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0 6px;}
+  .v2box{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .v2box h3{font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);margin:0 0 10px;}
+  .v2box ol,.v2box ul{margin:0;padding-left:20px;color:var(--body);font-size:14.5px;line-height:1.6;}
+  .v2box li{margin:0 0 6px;}
+  details.work{margin:4px 0 0;} details.work summary{cursor:pointer;font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);list-style:none;}
+  details.work summary::-webkit-details-marker{display:none;} details.work summary:before{content:'+ ';color:var(--teal);} details.work[open] summary:before{content:'\2212  ';}
+  details.work ol{margin-top:10px;font-family:ui-monospace,Menlo,monospace;font-size:13.5px;}
+  .receipt{display:flex;gap:14px;align-items:flex-start;margin:18px 0 0;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;}
+  .receipt .rk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin:0 0 4px;}
+  .receipt p{margin:0;font-size:15px;color:var(--ivory);} .receipt a{font-family:'Manrope';font-weight:700;font-size:14px;}
+  .handoff{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0;}
+  .handoff a{display:inline-flex;flex-direction:column;gap:2px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-size:13px;color:var(--muted);}
+  .handoff a b{font-family:'Manrope';font-size:14.5px;color:var(--ivory);} .handoff a:hover{border-color:var(--teal);text-decoration:none;}
+  .sharebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0;}
+  .sharebar .ok{font-size:13px;color:var(--green);}
+  .mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:26px 0 0;padding:14px 16px;border:1px dashed rgba(255,255,255,.18);border-radius:12px;}
+  .mail p{margin:0;flex:1 1 240px;font-size:14px;color:var(--body);}
+  .mail form{display:flex;gap:8px;flex:1 1 300px;}
+  .mail input{flex:1;font:500 15px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:9px 12px;}
+  @media print{.picker,.sharebar,.mail,.handoff{display:none!important;}}
 </style>
 </head>
 <body>
@@ -193,11 +222,11 @@
     </nav>
   </header>
   <main>
-  <div class="eyebrow">Free tool &middot; Brand growth</div>
+  <div class="eyebrow">Free tool &middot; Growth &middot; Plan</div>
   <h1>Share of voice (ESOV) calculator</h1>
-  <p class="lede">Compare your share of category ad spend with your market share to see if you are <b>set up to grow</b>, and what it would take to <b>hold your share</b>.</p>
+  <p class="lede">Compare your share of category ad spend with your market share to see if you are <b>set up to grow</b>, and what it would take to <b>hold your share</b>. Load an example from <b>nine industries</b> to see how it changes.</p>
   <article>
-<section class="card calc" aria-label="Calculator"><div class="grid">
+<section class="card calc" aria-label="Calculator"><div class="picker"><label><span class="tag">Example</span><select id="ind" aria-label="Load an industry example"><option value="telecom">Telecom: national operator</option><option value="fmcg" selected>FMCG: packaged food brand</option><option value="advertising">Agency: your own brand among agencies</option><option value="fintech">Fintech: mobile wallet</option><option value="ecommerce">E-commerce: category retailer</option><option value="consumertech">Consumer tech: smartphone brand</option><option value="education">Education: university admissions</option><option value="logistics">Logistics: B2B carrier</option><option value="healthcare">Healthcare: diagnostics brand</option><option value="custom">Your own numbers</option></select></label><p class="pnote" id="pnote"></p></div><div class="grid">
 <label>Your ad spend <span class="hint">this year, any currency</span><input id="you" type="number" inputmode="decimal" min="0" step="any" value="2000000"></label>
 <label>Total category ad spend <span class="hint">you plus all competitors</span><input id="cat" type="number" inputmode="decimal" min="0" step="any" value="10000000"></label>
 <label>Your market share (%)<input id="som" type="number" inputmode="decimal" min="0" max="100" step="any" value="15"></label>
@@ -208,14 +237,15 @@
 <div class="kpi"><span class="kl">Expected share change</span><span class="kv" id="o3">-</span><span class="kb">per year, rule of thumb</span></div>
 <div class="kpi"><span class="kl">Spend to hold share</span><span class="kv" id="o4">-</span><span class="kb">SOV = SOM</span></div>
 </div>
+<div class="chart" id="chart" aria-hidden="true"></div>
 <p class="verdict" id="v"></p>
 <div class="formula"><span class="k">Formula</span>SOV = your spend ÷ category spend · ESOV = SOV − SOM · share change ≈ 0.5 points per 10 points of ESOV a year</div>
-<p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
+<div class="v2row"><div class="v2box"><h3>What to do next</h3><ul id="nx"></ul></div><div class="v2box"><details class="work"><summary>Show the working, step by step</summary><ol id="work"></ol></details></div></div><div class="sharebar"><button type="button" class="btn solid" id="shcard">Download result card</button><button type="button" class="btn" id="shlink">Copy link with my numbers</button><button type="button" class="btn" id="shli">Share on LinkedIn</button><span class="ok" id="shok" aria-live="polite"></span></div><div class="receipt"><div><p class="rk">Where I used this</p><p>My Galaxy Note9 launch work delivered 1.54 times year-on-year growth, No. 1 globally for launch growth.</p><a href="/case/note9/">Read the case: Galaxy Note9: engineering a record-setting flagship launch &rarr;</a></div></div><div class="handoff"><a href="/market-size-calculator.html" id="h1"><span>Step before</span><b>How big is the prize? Market size</b></a><a href="/marketing-budget-calculator.html" id="h2"><span>Next step</span><b>Set the split: Marketing budget planner</b></a><a href="/reach-frequency-calculator.html" id="h3"><span>Same stage</span><b>Plan the media: Reach and frequency</b></a></div><p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
 
 <h2>The idea behind ESOV</h2>
 <p>Brands whose share of category advertising (share of voice) is higher than their share of the market tend to grow; brands below it tend to shrink. The commonly quoted rule of thumb from IPA effectiveness research is about half a share point of growth a year for every 10 points of excess share of voice. It varies by category, by brand size and, above all, by how good the work is.</p>
 <ul><li><b>Small brands</b> can usually afford a higher ESOV relative to their size; market leaders often grow with less.</li>
-<li><b>Estimate competitor spend honestly.</b> Use media monitoring data or a reasoned range, and test both ends.</li></ul>
+<li><b>Estimate competitor spend honestly.</b> Use media monitoring data or a reasoned range, and test both ends.</li></ul><div class="mail"><p><b>Get new free tools by email.</b> One short note when a new tool or essay goes live. No spam, unsubscribe any time.</p><form id="mailf" action="https://buttondown.com/api/emails/embed-subscribe/shafaat" method="post" target="popupwindow"><input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required><button type="submit" class="btn solid">Subscribe</button></form></div>
 <div class="cta"><h2>Want a second pair of eyes on the numbers?</h2><p>I have built commercial engines from zero in fintech, consumer tech and healthcare, in the US and Bangladesh. A 30-minute call is free.</p><p><a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a></p></div>
 <section class="faq"><h2>Questions</h2>
 <h3>What is share of voice?</h3><p>Your share of all advertising in your category, usually measured by spend or impressions. If the category spends 10 million and you spend 2 million, your share of voice is 20%.</p>
@@ -223,7 +253,7 @@
 <h3>How accurate is the 0.5 points per 10 ESOV rule?</h3><p>It is an average from effectiveness studies, not a law. Use it to size ambition and budgets, then track your own results.</p>
 </section>
   </article>
-<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/ab-test-significance-calculator.html"><b>A/B test significance calculator</b>Is variant B really better, or is it noise? Confidence, lift and the sample you need.</a><a href="/nps-calculator.html"><b>NPS calculator</b>Net Promoter Score from your survey counts, with the margin of error most reports leave out.</a><a href="/content-marketing-scorecard.html"><b>Content marketing scorecard</b>Rate your content program on eight essentials and get the top three fixes.</a></div><a class="all" href="/tools.html">See all 32 free tools &rarr;</a></section>
+<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/ab-test-significance-calculator.html"><b>A/B test significance calculator</b>Is variant B really better, or is it noise? Confidence, lift and the sample you need.</a><a href="/nps-calculator.html"><b>NPS calculator</b>Net Promoter Score from your survey counts, with the margin of error most reports leave out.</a><a href="/content-marketing-scorecard.html"><b>Content marketing scorecard</b>Rate your content program on eight essentials and get the top three fixes.</a></div><a class="all" href="/tools.html">See all 33 free tools &rarr;</a></section>
   </main>
   <footer class="foot">
     <a href="/">&larr; Back to the portfolio</a> &middot; <a href="/essays.html">All essays</a> &middot; <a href="https://www.linkedin.com/in/sacgrowthspecialist">LinkedIn</a>
@@ -243,6 +273,45 @@
   var toQuery=function(ids){try{var p=new URLSearchParams();ids.forEach(function(k){if($(k))p.set(k,$(k).value);});history.replaceState(null,'','?'+p.toString());}catch(e){}};
   var ncdf=function(x){var t=1/(1+0.2316419*Math.abs(x)),d=0.3989423*Math.exp(-x*x/2),p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p;};
   var zfor=function(conf){return {80:1.2816,85:1.4395,90:1.6449,95:1.96,98:2.3263,99:2.5758}[conf]||1.96;};
+var SLUG="share-of-voice-calculator",TOOLNAME="Share of voice (ESOV) calculator",PRESETS={"telecom": {"label": "Telecom: national operator", "note": "Network ads and retail visibility both count as voice. Include point-of-sale spend if competitor figures do.", "v": {"you": 8000000, "cat": 40000000, "som": 25}}, "fmcg": {"label": "FMCG: packaged food brand", "note": "FMCG is where the share-of-voice rule was studied most. It holds best for established brands in stable categories.", "v": {"you": 2000000, "cat": 10000000, "som": 15}}, "advertising": {"label": "Agency: your own brand among agencies", "note": "For agencies, voice includes awards, talks and press, not only paid media. Estimate it honestly.", "v": {"you": 200000, "cat": 3000000, "som": 5}}, "fintech": {"label": "Fintech: mobile wallet", "note": "Fast-growing categories shift quickly. Recheck category spend every quarter.", "v": {"you": 5000000, "cat": 20000000, "som": 30}}, "ecommerce": {"label": "E-commerce: category retailer", "note": "Search and marketplace ads dominate e-commerce voice. Use impression share where spend data is missing.", "v": {"you": 3000000, "cat": 25000000, "som": 10}}, "consumertech": {"label": "Consumer tech: smartphone brand", "note": "Launch months distort share of voice. Judge it over 12 months.", "v": {"you": 10000000, "cat": 50000000, "som": 22}}, "education": {"label": "Education: university admissions", "note": "Admissions spend clusters around intakes. Compare the same windows year to year.", "v": {"you": 1000000, "cat": 8000000, "som": 9}}, "logistics": {"label": "Logistics: B2B carrier", "note": "B2B voice is thin, so trade press, LinkedIn and events weigh more. Small, steady spend goes far.", "v": {"you": 500000, "cat": 6000000, "som": 12}}, "healthcare": {"label": "Healthcare: diagnostics brand", "note": "Health advertising faces rules on claims. Voice built on trust and access tends to last longer.", "v": {"you": 600000, "cat": 4000000, "som": 12}}, "custom": {"label": "Your own numbers", "v": {}, "note": "Enter your own figures. The examples are illustrative, not benchmarks."}};
+
+  var hbars=function(rows,c,o){o=o||{};var el=$('chart');if(!el)return;rows=rows.filter(function(r){return isFinite(r.v)&&r.v>=0;});if(!rows.length){el.innerHTML='';return;}
+    var W=680,rh=34,lw=o.lw||170,bw=W-lw-130,mx=Math.max.apply(null,rows.map(function(r){return r.v;}))||1,h=8+rows.length*rh+4,s='<svg viewBox="0 0 '+W+' '+h+'" role="img" aria-label="'+esc(o.label||'Chart')+'">';
+    rows.forEach(function(r,i){var y=8+i*rh,w=Math.max(2,r.v/mx*bw);s+='<text x="'+(lw-10)+'" y="'+(y+19)+'" text-anchor="end" font-size="13" fill="#C7CDD6" font-family="Inter,system-ui">'+esc(String(r.n).slice(0,26))+'</text><rect x="'+lw+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="18" rx="4" fill="'+(r.col||'#33C4C4')+'"/><text x="'+(lw+w+8)+'" y="'+(y+19)+'" font-size="13" fill="#F3EFE7" font-family="Inter,system-ui" font-weight="600">'+esc(r.t!==undefined?r.t:fm(r.v,c))+'</text>';});
+    el.innerHTML=s+'</svg>';};
+  var work=function(lines){var el=$('work');if(el)el.innerHTML=lines.map(function(l){return '<li>'+esc(l)+'</li>';}).join('');};
+  var nextUp=function(items){var el=$('nx');if(!el)return;el.innerHTML=items.map(function(it){return '<li>'+esc(it.t)+(it.href?' <a href="'+esc(it.href)+'">'+esc(it.a)+' &rarr;</a>':'')+'</li>';}).join('');};
+  var shareEv=function(m){try{window.track&&window.track('tool_share',{tool:SLUG,method:m});}catch(e){}};
+  var flash=function(t){var el=$('shok');if(!el)return;el.textContent=t;setTimeout(function(){el.textContent='';},2600);};
+  function applyPreset(k,run){var p=PRESETS[k];if(!p)return;Object.keys(p.v).forEach(function(id){if($(id))$(id).value=p.v[id];});$('pnote').textContent=p.note||'';if(run)run();}
+  function initPicker(run){var s=$('ind');if(!s)return;var q=null;try{q=new URLSearchParams(location.search);}catch(e){}
+    var fromUrl=q&&[...q.keys()].some(function(k){return k!=='ind'&&!!$(k);});if(q&&q.get('ind')&&PRESETS[q.get('ind')])s.value=q.get('ind');
+    if(fromUrl&&!(q&&q.get('ind'))&&PRESETS.custom)s.value='custom';if(!fromUrl)applyPreset(s.value);else $('pnote').textContent=(PRESETS[s.value]||{}).note||'';
+    s.addEventListener('change',function(){applyPreset(s.value,run);try{window.track&&window.track('tool_preset',{tool:SLUG,preset:s.value});}catch(e){}});}
+  function wrapText(ctx,t,x,y,mw,lh,maxL){var w=t.split(' '),line='',n=0;for(var i=0;i<w.length;i++){var tl=line+w[i]+' ';if(ctx.measureText(tl).width>mw&&line){ctx.fillText(line,x,y);y+=lh;line=w[i]+' ';if(++n>=maxL-1){var rest=w.slice(i).join(' ');while(ctx.measureText(rest+'…').width>mw&&rest.length)rest=rest.slice(0,-1);ctx.fillText(rest+(rest.length<w.slice(i).join(' ').length?'…':''),x,y);return;}}else line=tl;}ctx.fillText(line,x,y);}
+  function card(){var c=document.createElement('canvas');c.width=1200;c.height=630;var x=c.getContext('2d');var F='Manrope, Inter, system-ui, sans-serif';
+    x.fillStyle='#0B0F14';x.fillRect(0,0,1200,630);x.fillStyle='#33C4C4';x.fillRect(0,0,1200,8);
+    x.fillStyle='#7f8894';x.font='600 20px '+F;x.fillText('FREE TOOL',64,72);
+    x.fillStyle='#F3EFE7';x.font='800 44px '+F;wrapText(x,TOOLNAME,64,124,1072,52,2);
+    var ks=[].slice.call(document.querySelectorAll('.out .kpi')).slice(0,4);var cw=1072/Math.max(ks.length,1);
+    ks.forEach(function(k,i){var l=(k.querySelector('.kl')||{}).textContent||'',v=(k.querySelector('.kv')||{}).textContent||'';x.fillStyle='#7f8894';x.font='600 18px '+F;x.fillText(l.toUpperCase().slice(0,26),64+i*cw,268);x.fillStyle='#F3EFE7';var fs=46;x.font='800 '+fs+'px '+F;while(x.measureText(v).width>cw-24&&fs>24){fs-=2;x.font='800 '+fs+'px '+F;}var vv=v;if(x.measureText(vv).width>cw-24){while(x.measureText(vv+'…').width>cw-24&&vv.length>3)vv=vv.slice(0,-1);vv+='…';}x.fillText(vv,64+i*cw,324);});
+    x.fillStyle='#C7CDD6';x.font='400 25px Inter, system-ui, sans-serif';var vt=(($('v')||{}).textContent||'').trim()||(($('say1')||{}).textContent||'').trim()||(($('obj')||{}).textContent||'').trim();wrapText(x,vt,64,ks.length?410:250,1072,36,ks.length?3:6);
+    x.fillStyle='#33C4C4';x.font='700 22px '+F;x.fillText('shafaatalichoyon.com/'+SLUG,64,578);x.fillStyle='#7f8894';x.font='500 20px '+F;x.textAlign='right';x.fillText('Md Shafaat Ali Choyon',1136,578);
+    c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=SLUG+'-result.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},800);});shareEv('card');flash('Result card downloaded');}
+  function initShare(){var b=$('shcard');if(b)b.addEventListener('click',card);
+    var cl=$('shlink');if(cl)cl.addEventListener('click',function(){var u=location.href;try{navigator.clipboard.writeText(u).then(function(){flash('Link with your numbers copied');});}catch(e){prompt('Copy this link',u);}shareEv('link_numbers');});
+    var ln=$('shli');if(ln)ln.addEventListener('click',function(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.origin+location.pathname),'_blank','noopener');shareEv('linkedin');});
+    var mf=$('mailf');if(mf)mf.addEventListener('submit',function(){try{window.open('https://buttondown.com/shafaat','popupwindow');window.track&&window.track('subscribe',{from:'tool',tool:SLUG});}catch(e){}});}
+
+  var __tq=toQuery;toQuery=function(a){__tq(a.indexOf('ind')<0?a.concat('ind'):a);};
+  function POST(){var y=num('you'),c=num('cat'),m=num('som');if(!(y>=0&&c>0&&m>=0)||y>c){work([]);nextUp([]);hbars([]);return;}
+    var sov=y/c*100,e=sov-m,hold=c*m/100;
+    work(['Share of voice: '+fm(y)+' ÷ '+fm(c)+' = '+sov.toFixed(1)+'%','Excess share of voice: '+sov.toFixed(1)+'% − '+fm(m,'',1)+'% share of market = '+(e>=0?'+':'')+e.toFixed(1)+' points','Rule of thumb: about 0.5 share points of growth a year per 10 points of ESOV → '+(e*0.05>=0?'+':'')+(e*0.05).toFixed(1)+' points','Spend to hold share: '+fm(c)+' × '+fm(m,'',1)+'% = '+fm(hold)]);
+    hbars([{n:'Share of voice',v:sov,t:sov.toFixed(1)+'%',col:e>=0?'#4FC48A':'#F0705A'},{n:'Share of market',v:m,t:fm(m,'',1)+'%',col:'#7f8894'}],'',{label:'Share of voice against share of market'});
+    var nx=[];if(e<0)nx.push({t:'Spending below your share tends to mean slow decline. About '+fm(hold)+' would hold your position.'});
+    else nx.push({t:'You are investing in growth. The effect depends on memorable creative, so protect creative quality as well as budget.'});
+    nx.push({t:'The rule of thumb is an average from established brands. Treat the growth figure as a direction, not a forecast.'});
+    nx.push({t:'Split the budget between brand and activation.',href:'/marketing-budget-calculator.html',a:'Marketing budget planner'});nextUp(nx);}
 
   var ids=['you','cat','som'];fromQuery(ids);
   function f(){var y=num('you'),c=num('cat'),m=num('som');
@@ -253,7 +322,8 @@
     $('o3').textContent=(g>=0?'+':'')+g.toFixed(1)+' pts';$('o4').textContent=fm(hold);
     $('v').textContent=e>=0?'With '+sov.toFixed(1)+'% share of voice against '+m+'% market share, you are in a position to grow, by roughly '+g.toFixed(1)+' share points a year if the creative is good and the product delivers.':'Your share of voice is below your market share. Over time brands in this position tend to lose share. Spending about '+fm(hold)+' would hold it; anything above that is investment in growth.';
     toQuery(ids);}
-  bindAll(ids,f,'esov');
+  var __f=f;f=function(){__f();try{POST();}catch(e){}};initPicker(f);bindAll(ids.concat('ind'),f,'esov');
+  initShare();
 })();
 </script>
 <script defer src="/assets/analytics.js"></script>

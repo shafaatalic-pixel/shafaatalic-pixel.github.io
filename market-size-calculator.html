@@ -179,6 +179,35 @@
   .rng input[type=range]{grid-column:1 / -1;padding:0;accent-color:var(--teal);}
   .rng span{font-size:14px;color:var(--body);} .rng b{font-family:'Manrope';color:var(--ivory);}
   @media print{header.top,.more,.cta,.faq,footer.foot,.privacy-note,.btn,.lede,.eyebrow{display:none!important;} body{background:#fff;color:#000;} .out-doc{border:none;color:#000;background:#fff;}}
+
+  .picker{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:6px 0 18px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;}
+  .picker label{flex-direction:row!important;align-items:center;gap:10px!important;min-width:0;max-width:100%;flex:0 1 auto;}
+  .picker select{width:auto!important;min-width:0;max-width:100%;text-overflow:ellipsis;}
+  @media(max-width:560px){.picker label{flex-direction:column!important;align-items:flex-start;width:100%;} .picker select{width:100%!important;}}
+  .picker .pnote{flex:1 1 260px;font-size:13.5px;color:var(--muted);margin:0;}
+  .picker .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);}
+  .chart{margin:8px 0 6px;} .chart svg{width:100%;height:auto;display:block;}
+  .v2row{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0 6px;}
+  .v2box{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .v2box h3{font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);margin:0 0 10px;}
+  .v2box ol,.v2box ul{margin:0;padding-left:20px;color:var(--body);font-size:14.5px;line-height:1.6;}
+  .v2box li{margin:0 0 6px;}
+  details.work{margin:4px 0 0;} details.work summary{cursor:pointer;font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);list-style:none;}
+  details.work summary::-webkit-details-marker{display:none;} details.work summary:before{content:'+ ';color:var(--teal);} details.work[open] summary:before{content:'\2212  ';}
+  details.work ol{margin-top:10px;font-family:ui-monospace,Menlo,monospace;font-size:13.5px;}
+  .receipt{display:flex;gap:14px;align-items:flex-start;margin:18px 0 0;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;}
+  .receipt .rk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin:0 0 4px;}
+  .receipt p{margin:0;font-size:15px;color:var(--ivory);} .receipt a{font-family:'Manrope';font-weight:700;font-size:14px;}
+  .handoff{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0;}
+  .handoff a{display:inline-flex;flex-direction:column;gap:2px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-size:13px;color:var(--muted);}
+  .handoff a b{font-family:'Manrope';font-size:14.5px;color:var(--ivory);} .handoff a:hover{border-color:var(--teal);text-decoration:none;}
+  .sharebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0;}
+  .sharebar .ok{font-size:13px;color:var(--green);}
+  .mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:26px 0 0;padding:14px 16px;border:1px dashed rgba(255,255,255,.18);border-radius:12px;}
+  .mail p{margin:0;flex:1 1 240px;font-size:14px;color:var(--body);}
+  .mail form{display:flex;gap:8px;flex:1 1 300px;}
+  .mail input{flex:1;font:500 15px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:9px 12px;}
+  @media print{.picker,.sharebar,.mail,.handoff{display:none!important;}}
 </style>
 </head>
 <body>
@@ -193,11 +222,11 @@
     </nav>
   </header>
   <main>
-  <div class="eyebrow">Free tool &middot; Strategy</div>
+  <div class="eyebrow">Free tool &middot; Growth &middot; Plan</div>
   <h1>Market size (TAM, SAM, SOM) calculator</h1>
-  <p class="lede">Size a market from the bottom up: <b>total, serviceable and obtainable</b>, in dollars or taka, with the customer counts behind each number.</p>
+  <p class="lede">Size a market from the bottom up: <b>total, serviceable and obtainable</b>, in dollars or taka, with the customer counts behind each number. Load an example from <b>nine industries</b> to see how it changes.</p>
   <article>
-<section class="card calc" aria-label="Calculator"><div class="grid"><label>Currency<select id="cur"><option value="$">US dollar ($)</option><option value="৳">Bangladeshi taka (৳)</option><option value="£">Pound (£)</option><option value="€">Euro (€)</option></select></label>
+<section class="card calc" aria-label="Calculator"><div class="picker"><label><span class="tag">Example</span><select id="ind" aria-label="Load an industry example"><option value="telecom">Telecom: home broadband</option><option value="fmcg">FMCG: packaged snacks in cities</option><option value="advertising">Agency: mid-size brands as clients</option><option value="fintech">Fintech: small-business payments</option><option value="ecommerce" selected>E-commerce: online category</option><option value="consumertech">Consumer tech: entry smartphones</option><option value="education">Education: professional certificates</option><option value="logistics">Logistics: small-business parcels</option><option value="healthcare">Healthcare: home diagnostics in one city</option><option value="custom">Your own numbers</option></select></label><p class="pnote" id="pnote"></p></div><div class="grid"><label>Currency<select id="cur"><option value="$">US dollar ($)</option><option value="৳">Bangladeshi taka (৳)</option><option value="£">Pound (£)</option><option value="€">Euro (€)</option></select></label>
 <label>Potential customers in total <span class="hint">everyone who could ever buy</span><input id="n" type="number" inputmode="numeric" min="0" step="1" value="5000000"></label>
 <label>Annual value per customer <span class="hint">spend per year in the category</span><input id="v1" type="number" inputmode="decimal" min="0" step="any" value="120"></label>
 <label>Serviceable share (%) <span class="hint">reachable with your product, price and channels</span><input id="s" type="number" inputmode="decimal" min="0" max="100" step="any" value="30"></label>
@@ -209,14 +238,15 @@
 <div class="kpi"><span class="kl">SOM</span><span class="kv" id="o3">-</span><span class="kb" id="o3b"></span></div>
 </div>
 <div class="bar" aria-hidden="true"><span id="b2" style="background:var(--teal)"></span><span id="b3" style="background:var(--amber)"></span></div>
+<div class="chart" id="chart" aria-hidden="true"></div>
 <p class="verdict" id="v"></p>
 <div class="formula"><span class="k">Formula</span>TAM = customers × annual value · SAM = TAM × serviceable % · SOM = SAM × obtainable %</div>
-<p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
+<div class="v2row"><div class="v2box"><h3>What to do next</h3><ul id="nx"></ul></div><div class="v2box"><details class="work"><summary>Show the working, step by step</summary><ol id="work"></ol></details></div></div><div class="sharebar"><button type="button" class="btn solid" id="shcard">Download result card</button><button type="button" class="btn" id="shlink">Copy link with my numbers</button><button type="button" class="btn" id="shli">Share on LinkedIn</button><span class="ok" id="shok" aria-live="polite"></span></div><div class="receipt"><div><p class="rk">Where I used this</p><p>Winning the mass-market entry segment with Galaxy J2 4G and J2 Core reached a run-rate of about 2,600 units a day.</p><a href="/case/j2/">Read the case: Galaxy J2 4G &amp; J2 Core: winning the mass-market entry segment &rarr;</a></div></div><div class="handoff"><a href="/marketing-budget-calculator.html" id="h1"><span>Next step, pre-filled</span><b>Turn it into a budget: Marketing budget planner</b></a><a href="/revenue-goal-funnel-calculator.html" id="h2"><span>Then, pre-filled</span><b>Work back to visitors: Revenue goal funnel</b></a><a href="/competitor-positioning-map.html" id="h3"><span>Same stage</span><b>Where to play: Competitor positioning map</b></a></div><p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
 
 <h2>Bottom-up beats top-down</h2>
 <p>"If we get just 1% of a billion-dollar market" is the weakest line in any pitch. Build the number from the customers you can name, the value each brings and the share you can realistically win with your channels and team. Then sanity-check it against competitors' revenue.</p>
 <ul><li><b>Serviceable share</b> narrows TAM to the people your product, price, language and distribution can actually reach today.</li>
-<li><b>Obtainable share</b> should reflect your sales capacity and the competition, not ambition.</li></ul>
+<li><b>Obtainable share</b> should reflect your sales capacity and the competition, not ambition.</li></ul><div class="mail"><p><b>Get new free tools by email.</b> One short note when a new tool or essay goes live. No spam, unsubscribe any time.</p><form id="mailf" action="https://buttondown.com/api/emails/embed-subscribe/shafaat" method="post" target="popupwindow"><input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required><button type="submit" class="btn solid">Subscribe</button></form></div>
 <div class="cta"><h2>Want a second pair of eyes on the numbers?</h2><p>I have built commercial engines from zero in fintech, consumer tech and healthcare, in the US and Bangladesh. A 30-minute call is free.</p><p><a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a></p></div>
 <section class="faq"><h2>Questions</h2>
 <h3>What is the difference between TAM, SAM and SOM?</h3><p>TAM is everyone who could buy. SAM is the part you can serve with your current product and channels. SOM is the share of SAM you can realistically win in the next few years.</p>
@@ -224,7 +254,7 @@
 <h3>What obtainable share is realistic?</h3><p>It depends on competition and resources. Single-digit percentages of SAM over three to five years are common planning assumptions for new entrants.</p>
 </section>
   </article>
-<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/break-even-calculator.html"><b>Break-even calculator</b>Units and revenue needed to cover your fixed costs, and your margin of safety.</a><a href="/cac-calculator.html"><b>Customer acquisition cost (CAC) by channel</b>Blended and per-channel CAC, so you can see which channel really brings customers cheaply.</a><a href="/value-exchange-checker.html"><b>Value exchange checker</b>Will people take part? Weigh what you ask of them against what they get back.</a></div><a class="all" href="/tools.html">See all 32 free tools &rarr;</a></section>
+<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/break-even-calculator.html"><b>Break-even calculator</b>Units and revenue needed to cover your fixed costs, and your margin of safety.</a><a href="/cac-calculator.html"><b>Customer acquisition cost (CAC) by channel</b>Blended and per-channel CAC, so you can see which channel really brings customers cheaply.</a><a href="/value-exchange-checker.html"><b>Value exchange checker</b>Will people take part? Weigh what you ask of them against what they get back.</a></div><a class="all" href="/tools.html">See all 33 free tools &rarr;</a></section>
   </main>
   <footer class="foot">
     <a href="/">&larr; Back to the portfolio</a> &middot; <a href="/essays.html">All essays</a> &middot; <a href="https://www.linkedin.com/in/sacgrowthspecialist">LinkedIn</a>
@@ -244,6 +274,44 @@
   var toQuery=function(ids){try{var p=new URLSearchParams();ids.forEach(function(k){if($(k))p.set(k,$(k).value);});history.replaceState(null,'','?'+p.toString());}catch(e){}};
   var ncdf=function(x){var t=1/(1+0.2316419*Math.abs(x)),d=0.3989423*Math.exp(-x*x/2),p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p;};
   var zfor=function(conf){return {80:1.2816,85:1.4395,90:1.6449,95:1.96,98:2.3263,99:2.5758}[conf]||1.96;};
+var SLUG="market-size-calculator",TOOLNAME="Market size (TAM, SAM, SOM) calculator",PRESETS={"telecom": {"label": "Telecom: home broadband", "note": "Coverage defines the serviceable market. Count only homes your network can actually serve.", "v": {"n": 4000000, "v1": 240, "s": 35, "o": 8}}, "fmcg": {"label": "FMCG: packaged snacks in cities", "note": "Use annual spend per buyer on the category, not per pack, so the market reflects real buying.", "v": {"n": 20000000, "v1": 30, "s": 40, "o": 3}}, "advertising": {"label": "Agency: mid-size brands as clients", "note": "For agencies, the market is advertisers in your size band and sectors, not total ad spend.", "v": {"n": 3000, "v1": 60000, "s": 30, "o": 2}}, "fintech": {"label": "Fintech: small-business payments", "note": "Licences and regulation can shrink the serviceable market. Count only segments you can serve today.", "v": {"n": 1000000, "v1": 300, "s": 40, "o": 4}}, "ecommerce": {"label": "E-commerce: online category", "note": "Delivery coverage is usually the real limit on the serviceable market.", "v": {"n": 5000000, "v1": 120, "s": 30, "o": 5}}, "consumertech": {"label": "Consumer tech: entry smartphones", "note": "Replacement cycles drive device demand. Divide buyers by the years between purchases to get annual demand.", "v": {"n": 15000000, "v1": 120, "s": 50, "o": 6}}, "education": {"label": "Education: professional certificates", "note": "Count people who actually pay for training each year, not everyone in the profession.", "v": {"n": 800000, "v1": 900, "s": 25, "o": 3}}, "logistics": {"label": "Logistics: small-business parcels", "note": "Size by shipping spend per business, and limit the serviceable market to lanes and cities you serve.", "v": {"n": 200000, "v1": 6000, "s": 30, "o": 2}}, "healthcare": {"label": "Healthcare: home diagnostics in one city", "note": "Count households likely to pay out of pocket. Insurance rules and prescriptions can shrink it further.", "v": {"n": 2000000, "v1": 80, "s": 30, "o": 5}}, "custom": {"label": "Your own numbers", "v": {}, "note": "Enter your own figures. The examples are illustrative, not benchmarks."}};
+
+  var hbars=function(rows,c,o){o=o||{};var el=$('chart');if(!el)return;rows=rows.filter(function(r){return isFinite(r.v)&&r.v>=0;});if(!rows.length){el.innerHTML='';return;}
+    var W=680,rh=34,lw=o.lw||170,bw=W-lw-130,mx=Math.max.apply(null,rows.map(function(r){return r.v;}))||1,h=8+rows.length*rh+4,s='<svg viewBox="0 0 '+W+' '+h+'" role="img" aria-label="'+esc(o.label||'Chart')+'">';
+    rows.forEach(function(r,i){var y=8+i*rh,w=Math.max(2,r.v/mx*bw);s+='<text x="'+(lw-10)+'" y="'+(y+19)+'" text-anchor="end" font-size="13" fill="#C7CDD6" font-family="Inter,system-ui">'+esc(String(r.n).slice(0,26))+'</text><rect x="'+lw+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="18" rx="4" fill="'+(r.col||'#33C4C4')+'"/><text x="'+(lw+w+8)+'" y="'+(y+19)+'" font-size="13" fill="#F3EFE7" font-family="Inter,system-ui" font-weight="600">'+esc(r.t!==undefined?r.t:fm(r.v,c))+'</text>';});
+    el.innerHTML=s+'</svg>';};
+  var work=function(lines){var el=$('work');if(el)el.innerHTML=lines.map(function(l){return '<li>'+esc(l)+'</li>';}).join('');};
+  var nextUp=function(items){var el=$('nx');if(!el)return;el.innerHTML=items.map(function(it){return '<li>'+esc(it.t)+(it.href?' <a href="'+esc(it.href)+'">'+esc(it.a)+' &rarr;</a>':'')+'</li>';}).join('');};
+  var shareEv=function(m){try{window.track&&window.track('tool_share',{tool:SLUG,method:m});}catch(e){}};
+  var flash=function(t){var el=$('shok');if(!el)return;el.textContent=t;setTimeout(function(){el.textContent='';},2600);};
+  function applyPreset(k,run){var p=PRESETS[k];if(!p)return;Object.keys(p.v).forEach(function(id){if($(id))$(id).value=p.v[id];});$('pnote').textContent=p.note||'';if(run)run();}
+  function initPicker(run){var s=$('ind');if(!s)return;var q=null;try{q=new URLSearchParams(location.search);}catch(e){}
+    var fromUrl=q&&[...q.keys()].some(function(k){return k!=='ind'&&!!$(k);});if(q&&q.get('ind')&&PRESETS[q.get('ind')])s.value=q.get('ind');
+    if(fromUrl&&!(q&&q.get('ind'))&&PRESETS.custom)s.value='custom';if(!fromUrl)applyPreset(s.value);else $('pnote').textContent=(PRESETS[s.value]||{}).note||'';
+    s.addEventListener('change',function(){applyPreset(s.value,run);try{window.track&&window.track('tool_preset',{tool:SLUG,preset:s.value});}catch(e){}});}
+  function wrapText(ctx,t,x,y,mw,lh,maxL){var w=t.split(' '),line='',n=0;for(var i=0;i<w.length;i++){var tl=line+w[i]+' ';if(ctx.measureText(tl).width>mw&&line){ctx.fillText(line,x,y);y+=lh;line=w[i]+' ';if(++n>=maxL-1){var rest=w.slice(i).join(' ');while(ctx.measureText(rest+'…').width>mw&&rest.length)rest=rest.slice(0,-1);ctx.fillText(rest+(rest.length<w.slice(i).join(' ').length?'…':''),x,y);return;}}else line=tl;}ctx.fillText(line,x,y);}
+  function card(){var c=document.createElement('canvas');c.width=1200;c.height=630;var x=c.getContext('2d');var F='Manrope, Inter, system-ui, sans-serif';
+    x.fillStyle='#0B0F14';x.fillRect(0,0,1200,630);x.fillStyle='#33C4C4';x.fillRect(0,0,1200,8);
+    x.fillStyle='#7f8894';x.font='600 20px '+F;x.fillText('FREE TOOL',64,72);
+    x.fillStyle='#F3EFE7';x.font='800 44px '+F;wrapText(x,TOOLNAME,64,124,1072,52,2);
+    var ks=[].slice.call(document.querySelectorAll('.out .kpi')).slice(0,4);var cw=1072/Math.max(ks.length,1);
+    ks.forEach(function(k,i){var l=(k.querySelector('.kl')||{}).textContent||'',v=(k.querySelector('.kv')||{}).textContent||'';x.fillStyle='#7f8894';x.font='600 18px '+F;x.fillText(l.toUpperCase().slice(0,26),64+i*cw,268);x.fillStyle='#F3EFE7';var fs=46;x.font='800 '+fs+'px '+F;while(x.measureText(v).width>cw-24&&fs>24){fs-=2;x.font='800 '+fs+'px '+F;}var vv=v;if(x.measureText(vv).width>cw-24){while(x.measureText(vv+'…').width>cw-24&&vv.length>3)vv=vv.slice(0,-1);vv+='…';}x.fillText(vv,64+i*cw,324);});
+    x.fillStyle='#C7CDD6';x.font='400 25px Inter, system-ui, sans-serif';var vt=(($('v')||{}).textContent||'').trim()||(($('say1')||{}).textContent||'').trim()||(($('obj')||{}).textContent||'').trim();wrapText(x,vt,64,ks.length?410:250,1072,36,ks.length?3:6);
+    x.fillStyle='#33C4C4';x.font='700 22px '+F;x.fillText('shafaatalichoyon.com/'+SLUG,64,578);x.fillStyle='#7f8894';x.font='500 20px '+F;x.textAlign='right';x.fillText('Md Shafaat Ali Choyon',1136,578);
+    c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=SLUG+'-result.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},800);});shareEv('card');flash('Result card downloaded');}
+  function initShare(){var b=$('shcard');if(b)b.addEventListener('click',card);
+    var cl=$('shlink');if(cl)cl.addEventListener('click',function(){var u=location.href;try{navigator.clipboard.writeText(u).then(function(){flash('Link with your numbers copied');});}catch(e){prompt('Copy this link',u);}shareEv('link_numbers');});
+    var ln=$('shli');if(ln)ln.addEventListener('click',function(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.origin+location.pathname),'_blank','noopener');shareEv('linkedin');});
+    var mf=$('mailf');if(mf)mf.addEventListener('submit',function(){try{window.open('https://buttondown.com/shafaat','popupwindow');window.track&&window.track('subscribe',{from:'tool',tool:SLUG});}catch(e){}});}
+
+  var __tq=toQuery;toQuery=function(a){__tq(a.indexOf('ind')<0?a.concat('ind'):a);};
+  function POST(){var c=$('cur').value,n=num('n'),v=num('v1'),s=num('s')/100,o=num('o')/100;if(!(n>0&&v>0)){work([]);nextUp([]);hbars([]);return;}
+    var tam=n*v,sam=tam*s,som=sam*o,cust=Math.round(n*s*o);
+    work(['TAM: '+fm(n)+' potential customers × '+fm(v,c)+' a year = '+fm(tam,c),'SAM: '+fm(tam,c)+' × '+fm(s*100,'',1)+'% you can serve = '+fm(sam,c),'SOM: '+fm(sam,c)+' × '+fm(o*100,'',1)+'% you can win = '+fm(som,c),'Customers: '+fm(n)+' × '+fm(s*100,'',1)+'% × '+fm(o*100,'',1)+'% = '+fm(cust)]);
+    hbars([{n:'TAM',v:tam,t:fm(tam,c),col:'#7f8894'},{n:'SAM',v:sam,t:fm(sam,c)},{n:'SOM',v:som,t:fm(som,c),col:'#4FC48A'}],c,{label:'TAM, SAM and SOM'});
+    var nx=[{t:'Check capacity: can your team, stock and service handle about '+fm(cust)+' customers a year?'},{t:'Write down the two assumptions most likely to be wrong, usually the obtainable share and annual value, and how you will test them.'}];
+    var u1='/marketing-budget-calculator.html?cur='+encodeURIComponent(c)+'&rev='+Math.round(som),u2='/revenue-goal-funnel-calculator.html?cur='+encodeURIComponent(c)+'&target='+Math.round(som)+'&aov='+v;
+    nx.push({t:'Turn the obtainable revenue into a marketing budget.',href:u1,a:'Marketing budget planner, pre-filled'});nextUp(nx);if($('h1'))$('h1').href=u1;if($('h2'))$('h2').href=u2;}
 
   var ids=['cur','n','v1','s','o'];fromQuery(ids);
   function f(){var c=$('cur').value,n=num('n'),v=num('v1'),s=num('s')/100,o=num('o')/100;
@@ -253,7 +321,8 @@
     $('b2').style.width=(s*100)+'%';$('b3').style.width=(s*o*100)+'%';$('b2').style.width=((s-s*o)*100)+'%';
     $('v').textContent='A realistic revenue goal is about '+fm(som,c)+' a year, or '+fm(Math.round(n*s*o))+' customers. Investors and boards trust bottom-up numbers like these far more than a top-down "1% of a huge market".';
     toQuery(ids);}
-  bindAll(ids,f,'market_size');
+  var __f=f;f=function(){__f();try{POST();}catch(e){}};initPicker(f);bindAll(ids.concat('ind'),f,'market_size');
+  initShare();
 })();
 </script>
 <script defer src="/assets/analytics.js"></script>

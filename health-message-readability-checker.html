@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Health Message Readability Checker (Plain Language) | Shafaat Ali Choyon</title>
-<meta name="description" content="Free plain-language checker for health messages. Get a reading grade level, spot medical jargon and long sentences, and see simpler words to use." />
+<meta name="description" content="Free plain-language checker for health messages: reading grade level, medical jargon, long sentences and an instant plain-word draft, with examples from public health, insurance, workplace and consumer brands." />
 <link rel="canonical" href="https://shafaatalichoyon.com/health-message-readability-checker.html" />
 <meta name="author" content="Md Shafaat Ali Choyon" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
@@ -15,20 +15,20 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Md Shafaat Ali Choyon" />
 <meta property="og:title" content="Health Message Readability Checker (Plain Language) | Shafaat Ali Choyon" />
-<meta property="og:description" content="Free plain-language checker for health messages. Get a reading grade level, spot medical jargon and long sentences, and see simpler words to use." />
+<meta property="og:description" content="Free plain-language checker for health messages: reading grade level, medical jargon, long sentences and an instant plain-word draft, with examples from public health, insurance, workplace and consumer brands." />
 <meta property="og:url" content="https://shafaatalichoyon.com/health-message-readability-checker.html" />
 <meta property="og:image" content="https://shafaatalichoyon.com/assets/og-card.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Health Message Readability Checker (Plain Language) | Shafaat Ali Choyon" />
-<meta name="twitter:description" content="Free plain-language checker for health messages. Get a reading grade level, spot medical jargon and long sentences, and see simpler words to use." />
+<meta name="twitter:description" content="Free plain-language checker for health messages: reading grade level, medical jargon, long sentences and an instant plain-word draft, with examples from public health, insurance, workplace and consumer brands." />
 
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
  "@type": "WebApplication",
- "name": "Health Message Readability Checker",
+ "name": "Health message readability checker",
  "url": "https://shafaatalichoyon.com/health-message-readability-checker.html",
- "description": "Free plain-language checker for health messages. Get a reading grade level, spot medical jargon and long sentences, and see simpler words to use.",
+ "description": "Free plain-language checker for health messages: reading grade level, medical jargon, long sentences and an instant plain-word draft, with examples from public health, insurance, workplace and consumer brands.",
  "applicationCategory": "HealthApplication",
  "operatingSystem": "Any (web browser)",
  "isAccessibleForFree": true,
@@ -90,7 +90,15 @@
    "name": "How is the grade level calculated?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "It uses the Flesch-Kincaid grade formula, which is based on average sentence length and average syllables per word. It is a useful signal, not a verdict: short words can still be confusing, so read the jargon and long-sentence flags too."
+    "text": "It uses the Flesch-Kincaid grade formula, based on average sentence length and average syllables per word. It is a useful signal, not a verdict: short words can still be confusing, so read the jargon and long-sentence flags too."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is the plain-word draft?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Your text with each flagged term swapped for an everyday word. It is a starting point, not a finished rewrite: read it aloud and fix any grammar the swaps create."
    }
   },
   {
@@ -106,7 +114,7 @@
    "name": "Is my text sent anywhere?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "No. The text is analysed in your browser and never leaves your device. The page only records that the checker was used, never what you pasted."
+    "text": "No. The text is analyzed in your browser and never leaves your device. It is not saved in the page link either. The page only records that the checker was used, never what you pasted."
    }
   }
  ]
@@ -153,25 +161,23 @@
 
   .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
   .calc{margin:28px 0 8px;}
-  label{display:block;font-family:'Manrope';font-weight:700;font-size:14px;color:var(--ivory);margin-bottom:8px;}
-  textarea{font:400 16px/1.6 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:12px 14px;width:100%;resize:vertical;}
-  textarea:focus{border-color:var(--teal);outline:none;}
-  .row{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0;}
-  .btn{font-family:'Manrope';font-weight:700;font-size:14px;color:var(--ivory);background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:9px 16px;cursor:pointer;}
-  .btn:hover{border-color:var(--teal);}
-  .btn.solid{background:var(--teal);border-color:var(--teal);color:#04201f;}
-  .out{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:22px 0 8px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px 18px;}
+  .calc label{display:flex;flex-direction:column;gap:6px;font-family:'Manrope';font-weight:700;font-size:14px;color:var(--ivory);}
+  .hint{font-family:'Inter';font-weight:400;font-size:12px;color:var(--faint);}
+  .calc input,.calc select,.calc textarea{font:500 16px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:10px 12px;width:100%;}
+  .calc input:focus,.calc select:focus,.calc textarea:focus{border-color:var(--teal);outline:none;}
+  .out{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:22px 0 8px;}
   .kpi{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:2px;}
   .kl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);}
-  .kv{font-family:'Manrope';font-weight:800;font-size:30px;color:var(--ivory);letter-spacing:-.01em;line-height:1.15;}
+  .kv{font-family:'Manrope';font-weight:800;font-size:28px;color:var(--ivory);letter-spacing:-.01em;line-height:1.15;word-break:break-word;}
   .kb{font-size:13px;color:var(--muted);}
   .good{color:var(--green)!important;} .warn{color:var(--amber)!important;} .bad{color:var(--red)!important;}
-  #tips li{font-size:15px;}
-  .legend{font-size:13px;color:var(--muted);}
-  mark{background:rgba(244,162,76,.22);color:var(--ivory);border-bottom:1px dashed var(--amber);border-radius:3px;padding:0 2px;cursor:help;}
-  .long{background:rgba(240,112,90,.12);border-radius:3px;box-shadow:inset 0 -2px 0 rgba(240,112,90,.55);}
-  .marked{background:var(--tile);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:15.5px;line-height:1.75;white-space:pre-wrap;word-wrap:break-word;margin-bottom:16px;}
-
+  .verdict{font-size:15.5px;color:var(--ivory);margin:10px 0 14px;max-width:68ch;}
+  .btn{font-family:'Manrope';font-weight:700;font-size:14px;color:var(--ivory);background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:9px 16px;cursor:pointer;}
+  .btn:hover{border-color:var(--teal);} .btn.solid{background:var(--teal);border-color:var(--teal);color:#04201f;}
+  .seg{display:inline-flex;border:1px solid rgba(255,255,255,.16);border-radius:8px;overflow:hidden;}
+  .bar{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--tile);border:1px solid var(--line);margin:8px 0 4px;}
+  .bar span{display:block;height:100%;}
   .more{margin:48px 0 0;padding-top:24px;border-top:1px solid var(--line);}
   .more h2{font-family:'Manrope';font-weight:700;font-size:18px;color:var(--ivory);margin:0 0 12px;}
   .more .mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
@@ -179,6 +185,54 @@
   .more a:hover{border-color:var(--teal);text-decoration:none;}
   .more a b{display:block;font-family:'Manrope';font-weight:700;font-size:15px;color:var(--ivory);margin-bottom:4px;}
   .more .all{display:inline-block;margin-top:14px;font-family:'Manrope';font-weight:700;font-size:14px;}
+  .credit{display:block;margin-top:10px;font-size:13.5px;color:var(--faint);}
+  .tbl{width:100%;border-collapse:collapse;font-size:14.5px;margin:12px 0;}
+  .tbl th,.tbl td{border-bottom:1px solid var(--line);padding:8px 8px;text-align:left;vertical-align:top;}
+  .tbl th{font-family:'Manrope';font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);}
+  .tbl input{padding:7px 9px;font-size:14.5px;}
+  .out-doc{background:var(--tile);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:10px;padding:16px 18px;color:var(--ivory);font-size:15px;line-height:1.6;white-space:pre-wrap;max-width:72ch;}
+  .rng{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;margin:8px 0;}
+  .rng input[type=range]{grid-column:1 / -1;padding:0;accent-color:var(--teal);}
+  .rng span{font-size:14px;color:var(--body);} .rng b{font-family:'Manrope';color:var(--ivory);}
+  @media print{header.top,.more,.cta,.faq,footer.foot,.privacy-note,.btn,.lede,.eyebrow{display:none!important;} body{background:#fff;color:#000;} .out-doc{border:none;color:#000;background:#fff;}}
+
+  .picker{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:6px 0 18px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;}
+  .picker label{flex-direction:row!important;align-items:center;gap:10px!important;min-width:0;max-width:100%;flex:0 1 auto;}
+  .picker select{width:auto!important;min-width:0;max-width:100%;text-overflow:ellipsis;}
+  @media(max-width:560px){.picker label{flex-direction:column!important;align-items:flex-start;width:100%;} .picker select{width:100%!important;}}
+  .picker .pnote{flex:1 1 260px;font-size:13.5px;color:var(--muted);margin:0;}
+  .picker .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);}
+  .chart{margin:8px 0 6px;} .chart svg{width:100%;height:auto;display:block;}
+  .v2row{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0 6px;}
+  .v2box{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .v2box h3{font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);margin:0 0 10px;}
+  .v2box ol,.v2box ul{margin:0;padding-left:20px;color:var(--body);font-size:14.5px;line-height:1.6;}
+  .v2box li{margin:0 0 6px;}
+  details.work{margin:4px 0 0;} details.work summary{cursor:pointer;font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);list-style:none;}
+  details.work summary::-webkit-details-marker{display:none;} details.work summary:before{content:'+ ';color:var(--teal);} details.work[open] summary:before{content:'\2212  ';}
+  details.work ol{margin-top:10px;font-family:ui-monospace,Menlo,monospace;font-size:13.5px;}
+  .receipt{display:flex;gap:14px;align-items:flex-start;margin:18px 0 0;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;}
+  .receipt .rk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin:0 0 4px;}
+  .receipt p{margin:0;font-size:15px;color:var(--ivory);} .receipt a{font-family:'Manrope';font-weight:700;font-size:14px;}
+  .handoff{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0;}
+  .handoff a{display:inline-flex;flex-direction:column;gap:2px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-size:13px;color:var(--muted);}
+  .handoff a b{font-family:'Manrope';font-size:14.5px;color:var(--ivory);} .handoff a:hover{border-color:var(--teal);text-decoration:none;}
+  .sharebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0;}
+  .sharebar .ok{font-size:13px;color:var(--green);}
+  .mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:26px 0 0;padding:14px 16px;border:1px dashed rgba(255,255,255,.18);border-radius:12px;}
+  .mail p{margin:0;flex:1 1 240px;font-size:14px;color:var(--body);}
+  .mail form{display:flex;gap:8px;flex:1 1 300px;}
+  .mail input{flex:1;font:500 15px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:9px 12px;}
+  @media print{.picker,.sharebar,.mail,.handoff{display:none!important;}}
+
+  .tl{display:block;font-family:'Manrope';font-weight:700;font-size:14px;color:var(--ivory);margin:4px 0 8px;}
+  textarea{font:400 16px/1.6 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:12px 14px;width:100%;resize:vertical;box-sizing:border-box;}
+  textarea:focus{border-color:var(--teal);outline:none;}
+  .legend{font-size:13px;color:var(--muted);}
+  mark{background:rgba(244,162,76,.22);color:var(--ivory);border-bottom:1px dashed var(--amber);border-radius:3px;padding:0 2px;cursor:help;}
+  .long{background:rgba(240,112,90,.12);border-radius:3px;box-shadow:inset 0 -2px 0 rgba(240,112,90,.55);}
+  .marked{background:var(--tile);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font:400 15.5px/1.75 'Inter',system-ui,sans-serif;color:var(--body);white-space:pre-wrap;word-wrap:break-word;margin:0 0 12px;}
+  .cbtn{font-family:'Manrope';font-weight:700;font-size:14px;color:#04201f;background:var(--teal);border:1px solid var(--teal);border-radius:8px;padding:9px 16px;cursor:pointer;margin:0 0 16px;}
 </style>
 </head>
 <body>
@@ -195,57 +249,48 @@
   <main>
   <div class="eyebrow">Free tool &middot; Health communication</div>
   <h1>Health message readability checker</h1>
-  <p class="lede">Paste a health message, leaflet or social post. See its <b>reading grade level</b>, the <b>medical jargon</b> to swap for everyday words, and the <b>sentences that are too long</b>. Built from public-health practice, with basic support for Bangla.</p>
+  <p class="lede">Paste a health message, leaflet, SMS or social post, or load an example. See its <b>reading grade level</b>, the <b>jargon</b> to swap, the <b>sentences that are too long</b>, and a <b>plain-word draft</b> you can copy. Basic support for Bangla.</p>
   <article>
-
-<section class="card calc" aria-labelledby="calc-h">
-  <h2 id="calc-h" class="sr">Checker</h2>
-  <label for="txt">Paste your health message, leaflet text or social post</label>
-  <textarea id="txt" rows="8" placeholder="Paste text here..."></textarea>
-  <div class="row">
-    <button type="button" id="go" class="btn solid">Check readability</button>
-    <button type="button" id="sample" class="btn">Try an example</button>
-    <button type="button" id="clear" class="btn">Clear</button>
-  </div>
-  <p class="privacy-note">Your text is checked in your browser. Nothing you paste is sent or stored.</p>
-  <div id="res" hidden>
-    <div class="out" aria-live="polite">
-      <div class="kpi"><span class="kl" id="k1l">Reading grade</span><span class="kv" id="k1">-</span><span class="kb" id="k1b"></span></div>
-      <div class="kpi"><span class="kl">Words per sentence</span><span class="kv" id="k2">-</span><span class="kb" id="k2b"></span></div>
-      <div class="kpi"><span class="kl">Jargon flagged</span><span class="kv" id="k3">-</span><span class="kb" id="k3b"></span></div>
-    </div>
-    <h3>What to fix first</h3>
-    <ul id="tips"></ul>
-    <h3>Your text, marked up</h3>
-    <p class="legend"><mark>jargon</mark> hover or tap for a plainer word &nbsp; <span class="long">long sentence</span> over 20 words</p>
-    <div id="marked" class="marked"></div>
-  </div>
-  <div class="formula"><span class="k">Formula</span>Grade = 0.39 × (words ÷ sentences) + 11.8 × (syllables ÷ words) − 15.59</div>
-</section>
+<section class="card calc" aria-label="Calculator"><div class="picker"><label><span class="tag">Example</span><select id="ind" aria-label="Load an example message"><option value="public" selected>Public health: dengue prevention notice</option><option value="population">Population health: screening invitation</option><option value="comms">Health communication: vaccination SMS</option><option value="clinical">Clinical: medication instructions</option><option value="insurance">Insurance and fintech: health policy summary</option><option value="workplace">Workplace: employee wellness email</option><option value="brand">Consumer brand: product health claim</option><option value="custom">Your own text</option></select></label><p class="pnote" id="pnote"></p></div>
+<label for="txt" class="tl">Paste your health message, leaflet text, SMS or social post</label>
+<textarea id="txt" rows="7" placeholder="Paste text here..."></textarea>
+<div class="out" aria-live="polite">
+<div class="kpi"><span class="kl" id="k1l">Reading grade</span><span class="kv" id="o1">-</span><span class="kb" id="o1b"></span></div>
+<div class="kpi"><span class="kl">Words per sentence</span><span class="kv" id="o2">-</span><span class="kb" id="o2b"></span></div>
+<div class="kpi"><span class="kl">Jargon flagged</span><span class="kv" id="o3">-</span><span class="kb" id="o3b"></span></div>
+<div class="kpi"><span class="kl">Grade after swaps</span><span class="kv" id="o4">-</span><span class="kb" id="o4b"></span></div>
+</div>
+<div class="chart" id="chart" aria-hidden="true"></div>
+<p class="verdict" id="v"></p>
+<h3>Your text, marked up</h3>
+<p class="legend"><mark>jargon</mark> hover or tap for a plainer word &nbsp; <span class="long">long sentence</span> over 20 words</p>
+<div id="marked" class="marked"></div>
+<h3>Plain-word draft</h3>
+<p class="legend">Jargon swapped for everyday words. A starting point: read it aloud and fix the grammar.</p>
+<pre id="plain" class="marked"></pre>
+<button type="button" id="cpy" class="cbtn">Copy plain draft</button>
+<div class="formula"><span class="k">Formula</span>Grade = 0.39 × (words ÷ sentences) + 11.8 × (syllables ÷ words) − 15.59 (Flesch-Kincaid)</div>
+<div class="v2row"><div class="v2box"><h3>What to do next</h3><ul id="nx"></ul></div><div class="v2box"><details class="work"><summary>Show the working, step by step</summary><ol id="work"></ol></details></div></div><div class="sharebar"><button type="button" class="btn solid" id="shcard">Download result card</button><button type="button" class="btn" id="shlink">Copy link with my numbers</button><button type="button" class="btn" id="shli">Share on LinkedIn</button><span class="ok" id="shok" aria-live="polite"></span></div><div class="receipt"><div><p class="rk">Where I used this</p><p>I ran a year-long campus harm-reduction campaign that was segmented by audience and evaluated from start to finish.</p><a href="/case/harm-reduction/">Read the case: Campus harm-reduction campaign: segmented, evaluated prevention &rarr;</a></div></div><div class="handoff"><a href="/insight-statement-builder.html" id="h-ins"><span>Step before</span><b>Find the insight: Insight statement builder</b></a><a href="/risk-communication-calculator.html" id="h-risk"><span>Next step</span><b>Explain the numbers: Risk communication</b></a><a href="/survey-sample-size-calculator.html" id="h-test"><span>Then</span><b>Test it properly: Survey sample size</b></a></div><p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
 
 <h2>Why plain language is a health intervention</h2>
-<p>A message nobody can read changes nobody's behaviour. Low health literacy is linked to missed doses, skipped screenings and avoidable hospital visits, and it is far more common than most organisations assume. Writing at a 6th to 8th grade level is not dumbing down. It is removing the friction between the advice and the action.</p>
+<p>A message nobody can read changes nobody&rsquo;s behavior. Low health literacy is linked to missed doses, skipped screenings and avoidable hospital visits, and it is far more common than most organizations assume. Writing at a 6th to 8th grade level is not dumbing down. It removes the friction between the advice and the action.</p>
 <ul>
   <li><b>Short sentences.</b> One idea per sentence. Aim for an average under 15 words.</li>
-  <li><b>Everyday words.</b> "High blood pressure", not "hypertension". "Use", not "utilize".</li>
+  <li><b>Everyday words.</b> &ldquo;High blood pressure&rdquo;, not &ldquo;hypertension&rdquo;. &ldquo;Use&rdquo;, not &ldquo;utilize&rdquo;.</li>
   <li><b>Lead with the action.</b> Tell people what to do first, then why.</li>
   <li><b>Test with real readers.</b> A formula is a check, not a substitute for five conversations with the people you are writing for.</li>
 </ul>
-<p>More on this in <a href="/health-communication-consultant.html">health communication</a> and the essays on <a href="/essays.html">behaviour change and public health</a>.</p>
-
-<div class="cta">
-  <h2>Need a campaign or leaflet that people actually act on?</h2>
-  <p>I am a CHES&reg;-certified health education specialist with an MPH and 17 years of behaviour-change communication in the US and Bangladesh. A 30-minute call is free.</p>
-  <p><a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a></p>
-</div>
+<p>The same rules apply beyond health departments: insurance and fintech policy wording, workplace wellness emails and health claims on consumer products all succeed or fail on whether people understand them. More in <a href="/health-communication-consultant.html">health communication</a> and the essays on <a href="/essays.html">behavior change and public health</a>.</p><div class="mail"><p><b>Get new free tools by email.</b> One short note when a new tool or essay goes live. No spam, unsubscribe any time.</p><form id="mailf" action="https://buttondown.com/api/emails/embed-subscribe/shafaat" method="post" target="popupwindow"><input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required><button type="submit" class="btn solid">Subscribe</button></form></div>
+<div class="cta"><h2>Planning a health program or campaign?</h2><p>I am a CHES&reg;-certified health education specialist with an MPH and 17 years of public-health and behaviour-change work in the US and Bangladesh. A 30-minute call is free.</p><p><a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a></p></div>
 <section class="faq"><h2>Questions</h2>
 <h3>What reading level should health information be written at?</h3><p>Patient and public health materials are commonly recommended to sit at a 6th to 8th grade reading level. Plain language helps everyone, including people with high literacy who are tired, worried or reading on a phone.</p>
-<h3>How is the grade level calculated?</h3><p>It uses the Flesch-Kincaid grade formula, which is based on average sentence length and average syllables per word. It is a useful signal, not a verdict: short words can still be confusing, so read the jargon and long-sentence flags too.</p>
+<h3>How is the grade level calculated?</h3><p>It uses the Flesch-Kincaid grade formula, based on average sentence length and average syllables per word. It is a useful signal, not a verdict: short words can still be confusing, so read the jargon and long-sentence flags too.</p>
+<h3>What is the plain-word draft?</h3><p>Your text with each flagged term swapped for an everyday word. It is a starting point, not a finished rewrite: read it aloud and fix any grammar the swaps create.</p>
 <h3>Does it work for Bangla text?</h3><p>Partly. Grade-level formulas are built for English, so for Bangla the checker reports sentence length and flags long sentences, which is the biggest readability lever in any language.</p>
-<h3>Is my text sent anywhere?</h3><p>No. The text is analysed in your browser and never leaves your device. The page only records that the checker was used, never what you pasted.</p>
+<h3>Is my text sent anywhere?</h3><p>No. The text is analyzed in your browser and never leaves your device. It is not saved in the page link either. The page only records that the checker was used, never what you pasted.</p>
 </section>
   </article>
-<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/hotline-staffing-calculator.html"><b>Hotline staffing calculator</b>How many agents a health hotline or call centre needs to answer calls fast (Erlang C).</a><a href="/smart-objective-builder.html"><b>SMART objective builder</b>Write a specific, measurable, time-bound objective for a health program or campaign.</a><a href="/value-exchange-checker.html"><b>Value exchange checker</b>Will people take part? Weigh what you ask of them against what they get back.</a></div><a class="all" href="/tools.html">See all 32 free tools &rarr;</a></section>
+<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/hotline-staffing-calculator.html"><b>Hotline staffing calculator</b>How many agents a health hotline or call center needs to answer calls fast (Erlang C).</a><a href="/smart-objective-builder.html"><b>SMART objective builder</b>Write a specific, measurable, time-bound objective for a health program or campaign.</a><a href="/value-exchange-checker.html"><b>Value exchange checker</b>Will people take part? Weigh what you ask of them against what they get back.</a></div><a class="all" href="/tools.html">See all 33 free tools &rarr;</a></section>
   </main>
   <footer class="foot">
     <a href="/">&larr; Back to the portfolio</a> &middot; <a href="/essays.html">All essays</a> &middot; <a href="https://www.linkedin.com/in/sacgrowthspecialist">LinkedIn</a>
@@ -254,55 +299,89 @@
 </div>
 <script>
 (function(){
-  var J={"hypertension":"high blood pressure","hypotension":"low blood pressure","myocardial infarction":"heart attack","cerebrovascular accident":"stroke","diabetes mellitus":"diabetes","administer":"give","administered":"given","adverse event":"harm or side effect","adverse effects":"side effects","analgesic":"pain reliever","antipyretic":"fever reducer","benign":"not cancer","malignant":"cancer","chronic":"long-lasting","acute":"sudden","comorbidity":"another health problem","comorbidities":"other health problems","contraindicated":"should not be used","dyspnea":"shortness of breath","edema":"swelling","efficacy":"how well it works","etiology":"cause","immunization":"vaccine","immunizations":"vaccines","incidence":"number of new cases","prevalence":"how common it is","intervention":"program or treatment","interventions":"programs or treatments","lesion":"sore or wound","modifiable":"can be changed","morbidity":"illness","mortality":"death","orally":"by mouth","pathogen":"germ","pathogens":"germs","prognosis":"outlook","prophylaxis":"prevention","subcutaneous":"under the skin","symptomatic":"showing signs","asymptomatic":"without signs","utilize":"use","utilise":"use","utilization":"use","facilitate":"help","commence":"start","terminate":"stop","sufficient":"enough","prior to":"before","in order to":"to","adhere":"stick to","adherence":"taking it as directed","compliance":"following the plan","regimen":"plan or schedule","enhance":"improve","optimal":"best","physician":"doctor","ingest":"swallow","respiratory":"breathing","cardiac":"heart","cardiovascular":"heart and blood vessel","renal":"kidney","hepatic":"liver","pulmonary":"lung","gastrointestinal":"stomach and gut","hydration":"drinking fluids","monitor":"check","consultation":"visit","vaccination":"vaccine or shot","transmission":"spread","contagious":"spreads easily","topical":"on the skin","dosage":"dose","nutritional":"food"};
+  var $=function(id){return document.getElementById(id);};
+  var num=function(id){var v=parseFloat(($(id)||{}).value);return isFinite(v)?v:NaN;};
+  var fm=function(n,c,d){if(!isFinite(n))return '-';var a=Math.abs(n);var s=a>=1e7?(n/1e6).toFixed(1)+'M':n.toLocaleString('en-US',{maximumFractionDigits:d===undefined?0:d});return (c||'')+s;};
+  var band=function(el,cls,txt){el.className='kb '+(cls||'');el.textContent=txt;};
+  var esc=function(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');};
+  var __used=false; var used=function(slug){if(__used)return;__used=true;try{window.track&&window.track('tool_use',{tool:slug});}catch(e){}};
+  var bindAll=function(ids,fn,slug){ids.forEach(function(k){var el=$(k);if(!el)return;['input','change'].forEach(function(ev){el.addEventListener(ev,function(){fn();used(slug);});});});fn();};
+  var fromQuery=function(ids){try{var q=new URLSearchParams(location.search);ids.forEach(function(k){var v=q.get(k);if(v!==null&&$(k))$(k).value=v;});}catch(e){}};
+  var toQuery=function(ids){try{var p=new URLSearchParams();ids.forEach(function(k){if($(k))p.set(k,$(k).value);});history.replaceState(null,'','?'+p.toString());}catch(e){}};
+  var ncdf=function(x){var t=1/(1+0.2316419*Math.abs(x)),d=0.3989423*Math.exp(-x*x/2),p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p;};
+  var zfor=function(conf){return {80:1.2816,85:1.4395,90:1.6449,95:1.96,98:2.3263,99:2.5758}[conf]||1.96;};
+var SLUG="health-message-readability-checker",TOOLNAME="Health message readability checker",PRESETS={"public": {"label": "Public health: dengue prevention notice", "v": {"txt": "Residents are advised to eliminate stagnant water in order to facilitate the reduction of dengue transmission. Individuals experiencing acute fever should commence hydration and obtain a consultation with a physician prior to the ingestion of any analgesic."}, "note": "A typical official notice. Swap the jargon, then lead with the action: \"Empty standing water around your home this week.\""}, "population": {"label": "Population health: screening invitation", "v": {"txt": "Individuals aged 40 and above with modifiable risk factors are eligible to participate in a complimentary screening. Diabetes mellitus is frequently asymptomatic, and early intervention can enhance prognosis and reduce morbidity and mortality from cardiovascular comorbidities."}, "note": "Invitations like this go to whole populations, so they must work for the least confident reader. Grade 6 to 8 is the target."}, "comms": {"label": "Health communication: vaccination SMS", "v": {"txt": "Immunization of children under 5 is administered at no cost. Parents are requested to adhere to the vaccination schedule in order to prevent transmission of contagious pathogens. Please notify the health worker of any adverse effects."}, "note": "An SMS is read on a phone, often in a hurry. One action, one date, one place, in under 160 characters if you can."}, "clinical": {"label": "Clinical: medication instructions", "v": {"txt": "Patients with hypertension should adhere to their prescribed medication regimen and utilize home monitoring devices in order to facilitate optimal management of their condition prior to their next physician consultation. Adverse effects should be reported."}, "note": "Instructions a patient reads at home, without a clinician to ask. Say who does what: \"Take one tablet each morning.\""}, "insurance": {"label": "Insurance and fintech: health policy summary", "v": {"txt": "In the event that the beneficiary requires hospitalization, the deductible must be paid prior to the commencement of coverage. Eligibility for reimbursement is subject to the submission of sufficient documentation within 30 days."}, "note": "Policy language decides whether people claim what they paid for. Plain wording cuts calls to the helpline as well as complaints."}, "workplace": {"label": "Workplace: employee wellness email", "v": {"txt": "All employees are encouraged to participate in the annual health screening in order to facilitate the early identification of chronic conditions. Utilization of the program is confidential, and individuals may obtain additional assistance from the wellness team."}, "note": "HR and wellness emails compete with everything else in the inbox. Put the action and the date in the first line."}, "brand": {"label": "Consumer brand: product health claim", "v": {"txt": "This product has demonstrated efficacy in clinical studies, with a 99.9% reduction of pathogens on the skin when utilized as directed. For optimal results, utilize regularly and terminate use in the event of adverse effects."}, "note": "Health claims on packs and in ads must be clear and true. Plain words make a claim easier to trust, and easier to check."}, "custom": {"label": "Your own text", "v": {"txt": ""}, "note": "Paste your own message. It is checked in your browser and never sent or stored."}};
+
+  var hbars=function(rows,c,o){o=o||{};var el=$('chart');if(!el)return;rows=rows.filter(function(r){return isFinite(r.v)&&r.v>=0;});if(!rows.length){el.innerHTML='';return;}
+    var W=680,rh=34,lw=o.lw||170,bw=W-lw-130,mx=Math.max.apply(null,rows.map(function(r){return r.v;}))||1,h=8+rows.length*rh+4,s='<svg viewBox="0 0 '+W+' '+h+'" role="img" aria-label="'+esc(o.label||'Chart')+'">';
+    rows.forEach(function(r,i){var y=8+i*rh,w=Math.max(2,r.v/mx*bw);s+='<text x="'+(lw-10)+'" y="'+(y+19)+'" text-anchor="end" font-size="13" fill="#C7CDD6" font-family="Inter,system-ui">'+esc(String(r.n).slice(0,26))+'</text><rect x="'+lw+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="18" rx="4" fill="'+(r.col||'#33C4C4')+'"/><text x="'+(lw+w+8)+'" y="'+(y+19)+'" font-size="13" fill="#F3EFE7" font-family="Inter,system-ui" font-weight="600">'+esc(r.t!==undefined?r.t:fm(r.v,c))+'</text>';});
+    el.innerHTML=s+'</svg>';};
+  var work=function(lines){var el=$('work');if(el)el.innerHTML=lines.map(function(l){return '<li>'+esc(l)+'</li>';}).join('');};
+  var nextUp=function(items){var el=$('nx');if(!el)return;el.innerHTML=items.map(function(it){return '<li>'+esc(it.t)+(it.href?' <a href="'+esc(it.href)+'">'+esc(it.a)+' &rarr;</a>':'')+'</li>';}).join('');};
+  var shareEv=function(m){try{window.track&&window.track('tool_share',{tool:SLUG,method:m});}catch(e){}};
+  var flash=function(t){var el=$('shok');if(!el)return;el.textContent=t;setTimeout(function(){el.textContent='';},2600);};
+  function applyPreset(k,run){var p=PRESETS[k];if(!p)return;Object.keys(p.v).forEach(function(id){if($(id))$(id).value=p.v[id];});$('pnote').textContent=p.note||'';if(run)run();}
+  function initPicker(run){var s=$('ind');if(!s)return;var q=null;try{q=new URLSearchParams(location.search);}catch(e){}
+    var fromUrl=q&&[...q.keys()].some(function(k){return k!=='ind'&&!!$(k);});if(q&&q.get('ind')&&PRESETS[q.get('ind')])s.value=q.get('ind');
+    if(fromUrl&&!(q&&q.get('ind'))&&PRESETS.custom)s.value='custom';if(!fromUrl)applyPreset(s.value);else $('pnote').textContent=(PRESETS[s.value]||{}).note||'';
+    s.addEventListener('change',function(){applyPreset(s.value,run);try{window.track&&window.track('tool_preset',{tool:SLUG,preset:s.value});}catch(e){}});}
+  function wrapText(ctx,t,x,y,mw,lh,maxL){var w=t.split(' '),line='',n=0;for(var i=0;i<w.length;i++){var tl=line+w[i]+' ';if(ctx.measureText(tl).width>mw&&line){ctx.fillText(line,x,y);y+=lh;line=w[i]+' ';if(++n>=maxL-1){var rest=w.slice(i).join(' ');while(ctx.measureText(rest+'…').width>mw&&rest.length)rest=rest.slice(0,-1);ctx.fillText(rest+(rest.length<w.slice(i).join(' ').length?'…':''),x,y);return;}}else line=tl;}ctx.fillText(line,x,y);}
+  function card(){var c=document.createElement('canvas');c.width=1200;c.height=630;var x=c.getContext('2d');var F='Manrope, Inter, system-ui, sans-serif';
+    x.fillStyle='#0B0F14';x.fillRect(0,0,1200,630);x.fillStyle='#33C4C4';x.fillRect(0,0,1200,8);
+    x.fillStyle='#7f8894';x.font='600 20px '+F;x.fillText('FREE TOOL',64,72);
+    x.fillStyle='#F3EFE7';x.font='800 44px '+F;wrapText(x,TOOLNAME,64,124,1072,52,2);
+    var ks=[].slice.call(document.querySelectorAll('.out .kpi')).slice(0,4);var cw=1072/Math.max(ks.length,1);
+    ks.forEach(function(k,i){var l=(k.querySelector('.kl')||{}).textContent||'',v=(k.querySelector('.kv')||{}).textContent||'';x.fillStyle='#7f8894';x.font='600 18px '+F;x.fillText(l.toUpperCase().slice(0,26),64+i*cw,268);x.fillStyle='#F3EFE7';var fs=46;x.font='800 '+fs+'px '+F;while(x.measureText(v).width>cw-24&&fs>24){fs-=2;x.font='800 '+fs+'px '+F;}var vv=v;if(x.measureText(vv).width>cw-24){while(x.measureText(vv+'…').width>cw-24&&vv.length>3)vv=vv.slice(0,-1);vv+='…';}x.fillText(vv,64+i*cw,324);});
+    x.fillStyle='#C7CDD6';x.font='400 25px Inter, system-ui, sans-serif';var vt=(($('v')||{}).textContent||'').trim()||(($('say1')||{}).textContent||'').trim()||(($('obj')||{}).textContent||'').trim();wrapText(x,vt,64,ks.length?410:250,1072,36,ks.length?3:6);
+    x.fillStyle='#33C4C4';x.font='700 22px '+F;x.fillText('shafaatalichoyon.com/'+SLUG,64,578);x.fillStyle='#7f8894';x.font='500 20px '+F;x.textAlign='right';x.fillText('Md Shafaat Ali Choyon',1136,578);
+    c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=SLUG+'-result.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},800);});shareEv('card');flash('Result card downloaded');}
+  function initShare(){var b=$('shcard');if(b)b.addEventListener('click',card);
+    var cl=$('shlink');if(cl)cl.addEventListener('click',function(){var u=location.href;try{navigator.clipboard.writeText(u).then(function(){flash('Link with your numbers copied');});}catch(e){prompt('Copy this link',u);}shareEv('link_numbers');});
+    var ln=$('shli');if(ln)ln.addEventListener('click',function(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.origin+location.pathname),'_blank','noopener');shareEv('linkedin');});
+    var mf=$('mailf');if(mf)mf.addEventListener('submit',function(){try{window.open('https://buttondown.com/shafaat','popupwindow');window.track&&window.track('subscribe',{from:'tool',tool:SLUG});}catch(e){}});}
+
+  var J={"hypertension": "high blood pressure", "hypotension": "low blood pressure", "myocardial infarction": "heart attack", "cerebrovascular accident": "stroke", "diabetes mellitus": "diabetes", "administer": "give", "administered": "given", "adverse event": "harm or side effect", "adverse effects": "side effects", "analgesic": "pain reliever", "antipyretic": "fever reducer", "benign": "not cancer", "malignant": "cancer", "chronic": "long-lasting", "acute": "sudden", "comorbidity": "another health problem", "comorbidities": "other health problems", "contraindicated": "should not be used", "dyspnea": "shortness of breath", "edema": "swelling", "efficacy": "how well it works", "etiology": "cause", "immunization": "vaccine", "immunizations": "vaccines", "incidence": "number of new cases", "prevalence": "how common it is", "intervention": "program or treatment", "interventions": "programs or treatments", "lesion": "sore or wound", "modifiable": "can be changed", "morbidity": "illness", "mortality": "death", "orally": "by mouth", "pathogen": "germ", "pathogens": "germs", "prognosis": "outlook", "prophylaxis": "prevention", "subcutaneous": "under the skin", "symptomatic": "showing signs", "asymptomatic": "without signs", "utilize": "use", "utilise": "use", "utilization": "use", "facilitate": "help", "commence": "start", "terminate": "stop", "sufficient": "enough", "prior to": "before", "in order to": "to", "adhere": "stick to", "adherence": "taking it as directed", "compliance": "following the plan", "regimen": "plan or schedule", "enhance": "improve", "optimal": "best", "physician": "doctor", "ingest": "swallow", "respiratory": "breathing", "cardiac": "heart", "cardiovascular": "heart and blood vessel", "renal": "kidney", "hepatic": "liver", "pulmonary": "lung", "gastrointestinal": "stomach and gut", "hydration": "drinking fluids", "monitor": "check", "consultation": "visit", "vaccination": "vaccine or shot", "transmission": "spread", "contagious": "spreads easily", "topical": "on the skin", "dosage": "dose", "nutritional": "food", "in the event that": "if", "with regard to": "about", "due to the fact that": "because", "at this point in time": "now", "approximately": "about", "additional": "more", "assistance": "help", "obtain": "get", "individuals": "people", "participate": "take part", "notify": "tell", "subsequently": "later", "eligible": "able to get", "eligibility": "whether you qualify", "beneficiary": "person covered", "deductible": "amount you pay first", "reimbursement": "money back", "commencement": "start", "hospitalization": "a hospital stay", "remuneration": "pay", "purchase": "buy", "require": "need", "requires": "needs"};
   var keys=Object.keys(J).sort(function(a,b){return b.length-a.length;});
   var re=new RegExp('\\b('+keys.map(function(k){return k.replace(/ /g,'\\s+');}).join('|')+')\\b','gi');
-  var $=function(id){return document.getElementById(id);};
-  var used=false;
-  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
   function syl(w){w=w.toLowerCase().replace(/[^a-z]/g,'');if(!w)return 0;if(w.length<=3)return 1;w=w.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/,'').replace(/^y/,'');var m=w.match(/[aeiouy]{1,2}/g);return m?m.length:1;}
   function words(s){return (s.match(/[A-Za-z\u0980-\u09FF][A-Za-z\u0980-\u09FF'’-]*/g)||[]);}
-  function band(el,cls,t){el.className='kb '+cls;el.textContent=t;}
-  function run(){
-    var t=$('txt').value; if(!t.trim()){ $('res').hidden=true; return; }
-    var bn=(t.match(/[\u0980-\u09FF]/g)||[]).length, en=(t.match(/[A-Za-z]/g)||[]).length, isBn=bn>en;
-    var chunks=t.match(isBn?/[^।?!\n]+[।?!]*[ \t]*|\n/g:/[^.!?\n]+[.!?]*[ \t]*|\n/g)||[];
-    var sents=0,W=0,S=0,long=0,jar={},html='';
-    chunks.forEach(function(c){
-      var ws=words(c); if(ws.length){sents++;W+=ws.length; if(!isBn) ws.forEach(function(w){S+=syl(w);});}
-      var e=esc(c);
-      if(!isBn) e=e.replace(re,function(m){var p=J[m.toLowerCase().replace(/\s+/g,' ')]||'';jar[m.toLowerCase().replace(/\s+/g,' ')]=p;return '<mark title="Try: '+esc(p)+'" tabindex="0">'+m+'</mark>';});
-      if(ws.length>20){long++; e='<span class="long">'+e+'</span>';}
-      html+=e;
-    });
-    if(!W){ $('res').hidden=true; return; }
-    var wps=W/sents, nj=Object.keys(jar).length, tips=[];
+  function stats(t,isBn){var chunks=t.match(isBn?/[^।?!\n]+[।?!]*[ \t]*|\n/g:/[^.!?\n]+[.!?]*[ \t]*|\n/g)||[],n=0,W=0,S=0,lens=[];
+    chunks.forEach(function(c){var ws=words(c);if(ws.length){n++;W+=ws.length;lens.push(ws.length);if(!isBn)ws.forEach(function(w){S+=syl(w);});}});
+    return {chunks:chunks,n:n,W:W,S:S,lens:lens,g:W&&n?Math.max(0,0.39*W/n+11.8*S/W-15.59):0};}
+  function swap(t){return t.replace(re,function(m){var p=J[m.toLowerCase().replace(/\s+/g,' ')]||m;return m.charAt(0)===m.charAt(0).toUpperCase()&&m.charAt(0)!==m.charAt(0).toLowerCase()?p.charAt(0).toUpperCase()+p.slice(1):p;});}
+  var sl=$('shlink');if(sl)sl.textContent='Copy link';
+  $('cpy').addEventListener('click',function(){var t=$('plain').textContent;try{navigator.clipboard.writeText(t).then(function(){flash('Plain draft copied');});}catch(e){}});
+  function clear(){['o1','o2','o3','o4'].forEach(function(k){$(k).textContent='-';});['o1b','o2b','o3b','o4b'].forEach(function(k){$(k).textContent='';});$('marked').innerHTML='';$('plain').textContent='';$('chart').innerHTML='';$('v').textContent='Paste a message above, or load an example.';work([]);nextUp([]);}
+  function f(){var t=$('txt').value;if(!t.trim()){clear();return;}
+    var bn=(t.match(/[\u0980-\u09FF]/g)||[]).length,en=(t.match(/[A-Za-z]/g)||[]).length,isBn=bn>en,st=stats(t,isBn);if(!st.W){clear();return;}
+    var jar={},html='',long=0;
+    st.chunks.forEach(function(c){var ws=words(c),e=esc(c);
+      if(!isBn)e=e.replace(re,function(m){var k=m.toLowerCase().replace(/\s+/g,' '),p=J[k]||'';jar[k]=p;return '<mark title="Try: '+esc(p)+'" tabindex="0">'+m+'</mark>';});
+      if(ws.length>20){long++;e='<span class="long">'+e+'</span>';}html+=e;});
     $('marked').innerHTML=html;
-    $('k2').textContent=wps.toFixed(1);
-    if(wps<=15) band($('k2b'),'good','easy to follow'); else if(wps<=20) band($('k2b'),'warn','a little long'); else band($('k2b'),'bad','too long, split sentences');
-    if(isBn){
-      $('k1l').textContent='Long sentences'; $('k1').textContent=long+' of '+sents; band($('k1b'),'', 'grade formulas are English-only');
-      $('k3').textContent='-'; band($('k3b'),'','jargon list is English-only');
-      tips.push('Bangla text detected. Grade level and jargon checks are built for English, so this shows sentence length only.');
-    } else {
-      var g=0.39*wps+11.8*(S/W)-15.59; g=Math.max(0,g);
-      $('k1l').textContent='Reading grade'; $('k1').textContent=g.toFixed(1);
-      if(g<=8) band($('k1b'),'good','plain language, grade 8 or below'); else if(g<=12) band($('k1b'),'warn','fairly hard, aim for 6 to 8'); else band($('k1b'),'bad','hard, college level');
-      $('k3').textContent=nj; if(!nj) band($('k3b'),'good','none found'); else band($('k3b'),'warn',nj===1?'1 term to replace':nj+' terms to replace');
-      if(g>8) tips.push('Bring the grade down from '+g.toFixed(1)+' to 8 or below: shorter sentences and shorter words do most of the work.');
-      Object.keys(jar).slice(0,6).forEach(function(k){tips.push('Replace "'+k+'" with "'+jar[k]+'".');});
+    var wps=st.W/st.n,nj=Object.keys(jar).length,tips=[];
+    $('o2').textContent=wps.toFixed(1);if(wps<=15)band($('o2b'),'good','easy to follow');else if(wps<=20)band($('o2b'),'warn','a little long');else band($('o2b'),'bad','too long, split sentences');
+    hbars(st.lens.slice(0,10).map(function(n,i){return {n:'Sentence '+(i+1),v:n,t:n+' words',col:n>20?'#F0705A':n>15?'#F4A24C':'#4FC48A'};}),'',{label:'Words per sentence',lw:120});
+    if(isBn){$('k1l').textContent='Long sentences';$('o1').textContent=long+' of '+st.n;band($('o1b'),'','grade formulas are English-only');$('o3').textContent='-';band($('o3b'),'','jargon list is English-only');$('o4').textContent='-';band($('o4b'),'','English only');$('plain').textContent=t;
+      $('v').textContent='Bangla text detected: '+long+' of '+st.n+' sentences are over 20 words. Sentence length is the biggest readability lever in any language.';
+      work(['Sentences: '+st.n,'Words: '+st.W,'Average: '+st.W+' ÷ '+st.n+' = '+wps.toFixed(1)+' words per sentence']);}
+    else{var g=st.g,pt=swap(t),g2=stats(pt,false).g;
+      $('k1l').textContent='Reading grade';$('o1').textContent=g.toFixed(1);
+      if(g<=8)band($('o1b'),'good','plain language, grade 8 or below');else if(g<=12)band($('o1b'),'warn','fairly hard, aim for 6 to 8');else band($('o1b'),'bad','hard, college level');
+      $('o3').textContent=nj;if(!nj)band($('o3b'),'good','none found');else band($('o3b'),'warn',nj===1?'1 term to replace':nj+' terms to replace');
+      $('o4').textContent=nj?g2.toFixed(1):'-';if(nj)band($('o4b'),g2<=8?'good':g2<=12?'warn':'bad',g2<g?'down '+(g-g2).toFixed(1)+' grades from word swaps alone':'shorter sentences are the next lever');else band($('o4b'),'','no swaps needed');
+      $('plain').textContent=pt;
+      $('v').textContent=g<=8?'This reads at grade '+g.toFixed(1)+', within the 6 to 8 range recommended for public health materials.':'This reads at grade '+g.toFixed(1)+'. '+(nj?'Swapping '+nj+' jargon term'+(nj===1?'':'s')+' brings it to '+g2.toFixed(1)+'; '+(g2>8?'shorter sentences will do the rest.':'that alone gets it into the 6 to 8 range.'):'Shorter sentences and shorter words will bring it down.');
+      work(['Sentences: '+st.n+', words: '+st.W+', syllables: '+st.S,'Words per sentence: '+st.W+' ÷ '+st.n+' = '+wps.toFixed(2),'Syllables per word: '+st.S+' ÷ '+st.W+' = '+(st.S/st.W).toFixed(2),'Grade: 0.39 × '+wps.toFixed(2)+' + 11.8 × '+(st.S/st.W).toFixed(2)+' − 15.59 = '+g.toFixed(1)]);
+      Object.keys(jar).slice(0,4).forEach(function(k){tips.push({t:'Replace "'+k+'" with "'+jar[k]+'".'});});
       var pv=(t.match(/\b(?:is|are|was|were|be|been|being)\s+\w+(?:ed|en)\b/gi)||[]).length;
-      if(pv) tips.push(pv+' possible passive '+(pv===1?'phrase':'phrases')+'. Say who does what: "Take one tablet", not "One tablet should be taken".');
-    }
-    if(long) tips.push(long+' '+(long===1?'sentence is':'sentences are')+' over 20 words. Split '+(long===1?'it':'them')+' into one idea per sentence.');
-    if(!tips.length) tips.push('Looks clear. Now test it with five people from your audience: ask them what they would do after reading it.');
-    $('tips').innerHTML=tips.map(function(x){return '<li>'+esc(x)+'</li>';}).join('');
-    $('res').hidden=false;
-    if(!used){used=true;try{window.track&&window.track('tool_use',{tool:'readability',lang:isBn?'bn':'en'});}catch(e){}}
-  }
-  $('go').addEventListener('click',run);
-  $('sample').addEventListener('click',function(){$('txt').value='Patients with hypertension should adhere to their prescribed medication regimen and utilize home monitoring devices in order to facilitate optimal management of their condition prior to their next physician consultation. Adverse effects should be reported.';run();});
-  $('clear').addEventListener('click',function(){$('txt').value='';$('res').hidden=true;$('txt').focus();});
+      if(pv)tips.push({t:pv+' possible passive '+(pv===1?'phrase':'phrases')+'. Say who does what: "Take one tablet", not "One tablet should be taken".'});}
+    if(long)tips.push({t:long+' '+(long===1?'sentence is':'sentences are')+' over 20 words. Split '+(long===1?'it':'them')+' into one idea per sentence.'});
+    tips.push({t:'Test it with five people from your audience: ask what they would do after reading it.',href:'/survey-sample-size-calculator.html',a:'Plan a bigger test: Survey sample size'});
+    tips.push({t:'If the message includes a risk or a percentage, say it in absolute numbers too.',href:'/risk-communication-calculator.html',a:'Risk communication'});
+    nextUp(tips);}
+  initPicker(f);bindAll(['ind','txt'],f,'readability');
+  initShare();
 })();
 </script>
 <script defer src="/assets/analytics.js"></script>

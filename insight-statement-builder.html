@@ -179,6 +179,35 @@
   .rng input[type=range]{grid-column:1 / -1;padding:0;accent-color:var(--teal);}
   .rng span{font-size:14px;color:var(--body);} .rng b{font-family:'Manrope';color:var(--ivory);}
   @media print{header.top,.more,.cta,.faq,footer.foot,.privacy-note,.btn,.lede,.eyebrow{display:none!important;} body{background:#fff;color:#000;} .out-doc{border:none;color:#000;background:#fff;}}
+
+  .picker{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:6px 0 18px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;}
+  .picker label{flex-direction:row!important;align-items:center;gap:10px!important;min-width:0;max-width:100%;flex:0 1 auto;}
+  .picker select{width:auto!important;min-width:0;max-width:100%;text-overflow:ellipsis;}
+  @media(max-width:560px){.picker label{flex-direction:column!important;align-items:flex-start;width:100%;} .picker select{width:100%!important;}}
+  .picker .pnote{flex:1 1 260px;font-size:13.5px;color:var(--muted);margin:0;}
+  .picker .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);}
+  .chart{margin:8px 0 6px;} .chart svg{width:100%;height:auto;display:block;}
+  .v2row{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0 6px;}
+  .v2box{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .v2box h3{font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);margin:0 0 10px;}
+  .v2box ol,.v2box ul{margin:0;padding-left:20px;color:var(--body);font-size:14.5px;line-height:1.6;}
+  .v2box li{margin:0 0 6px;}
+  details.work{margin:4px 0 0;} details.work summary{cursor:pointer;font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);list-style:none;}
+  details.work summary::-webkit-details-marker{display:none;} details.work summary:before{content:'+ ';color:var(--teal);} details.work[open] summary:before{content:'\2212  ';}
+  details.work ol{margin-top:10px;font-family:ui-monospace,Menlo,monospace;font-size:13.5px;}
+  .receipt{display:flex;gap:14px;align-items:flex-start;margin:18px 0 0;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;}
+  .receipt .rk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin:0 0 4px;}
+  .receipt p{margin:0;font-size:15px;color:var(--ivory);} .receipt a{font-family:'Manrope';font-weight:700;font-size:14px;}
+  .handoff{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0;}
+  .handoff a{display:inline-flex;flex-direction:column;gap:2px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-size:13px;color:var(--muted);}
+  .handoff a b{font-family:'Manrope';font-size:14.5px;color:var(--ivory);} .handoff a:hover{border-color:var(--teal);text-decoration:none;}
+  .sharebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0;}
+  .sharebar .ok{font-size:13px;color:var(--green);}
+  .mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:26px 0 0;padding:14px 16px;border:1px dashed rgba(255,255,255,.18);border-radius:12px;}
+  .mail p{margin:0;flex:1 1 240px;font-size:14px;color:var(--body);}
+  .mail form{display:flex;gap:8px;flex:1 1 300px;}
+  .mail input{flex:1;font:500 15px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:9px 12px;}
+  @media print{.picker,.sharebar,.mail,.handoff{display:none!important;}}
 .checks{list-style:none;padding:0;}.checks li{font-size:14.5px;margin:6px 0;}.checks li b{display:inline-block;width:22px;height:22px;line-height:22px;text-align:center;border-radius:6px;margin-right:8px;}.ok b{background:rgba(79,196,138,.18);color:var(--green);}.no b{background:rgba(244,162,76,.18);color:var(--amber);}</style>
 </head>
 <body>
@@ -193,11 +222,11 @@
     </nav>
   </header>
   <main>
-  <div class="eyebrow">Free tool &middot; Brand strategy</div>
+  <div class="eyebrow">Free tool &middot; Brand &middot; Plan</div>
   <h1>Consumer insight statement builder</h1>
-  <p class="lede">Turn what you have <b>observed</b> into a usable <b>insight</b>: the motivation underneath and the <b>tension</b> that stops people, in two sentences. <span class="credit">Built from the planning practice I learned in my agency years at Asiatic (JWT), adapted for today&rsquo;s channels.</span></p>
+  <p class="lede">Turn what you have <b>observed</b> into a usable <b>insight</b>: the motivation underneath and the <b>tension</b> that stops people, in two sentences. Load a worked example from <b>nine industries</b>; every brand in them is fictional. <span class="credit">Built from the planning practice I learned in my agency years at Asiatic (JWT), adapted for today&rsquo;s channels.</span></p>
   <article>
-<section class="card calc" aria-label="Calculator"><div class="grid" style="grid-template-columns:1fr">
+<section class="card calc" aria-label="Calculator"><div class="picker"><label><span class="tag">Example</span><select id="ind" aria-label="Load an industry example"><option value="telecom">Telecom: students on prepaid plans</option><option value="fmcg">FMCG: working parents</option><option value="advertising">Agency: marketing directors</option><option value="fintech">Fintech: small shopkeepers</option><option value="ecommerce">E-commerce: urban parents</option><option value="consumertech">Consumer tech: first-time smartphone buyers</option><option value="education">Education: mid-career professionals</option><option value="logistics">Logistics: online sellers</option><option value="healthcare" selected>Healthcare: working mothers in dhaka</option></select></label><p class="pnote" id="pnote"></p></div><div class="grid" style="grid-template-columns:1fr">
 <label>Who <span class="hint">the people</span><input id="who" type="text" maxlength="80" value="Working mothers in Dhaka"></label>
 <label>Observation <span class="hint">what you have seen them do or say</span><input id="obs" type="text" maxlength="160" value="skip their own health check-ups while never missing their children's"></label>
 <label>Motivation <span class="hint">what they want, deep down</span><input id="mot" type="text" maxlength="160" value="to be strong for the people who depend on them"></label>
@@ -208,12 +237,12 @@
 <div class="out-doc" id="out" aria-live="polite"></div>
 <p><button type="button" class="btn solid" id="copy">Copy insight</button> <span class="kb" id="copied"></span></p>
 <ul class="checks" id="checks"></ul>
-<p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
+<div class="v2row"><div class="v2box"><h3>What to do next</h3><ul id="nx"></ul></div><div class="v2box"><details class="work"><summary>Show the working, step by step</summary><ol id="work"></ol></details></div></div><div class="sharebar"><button type="button" class="btn solid" id="shcard">Download result card</button><button type="button" class="btn" id="shlink">Copy link with my numbers</button><button type="button" class="btn" id="shli">Share on LinkedIn</button><span class="ok" id="shok" aria-live="polite"></span></div><div class="receipt"><div><p class="rk">Where I used this</p><p>I ran a year-long campus harm-reduction campaign that was segmented by audience and evaluated from start to finish.</p><a href="/case/harm-reduction/">Read the case: Campus harm-reduction campaign: segmented, evaluated prevention &rarr;</a></div></div><div class="handoff"><a href="/customer-journey-mapper.html" id="h1"><span>Step before</span><b>Map the journey: Customer journey mapper</b></a><a href="/creative-brief-builder.html" id="h2"><span>Next step</span><b>Use it in a brief: Creative brief builder</b></a><a href="/brand-positioning-ladder.html" id="h3"><span>Same stage</span><b>Claim a position: Positioning ladder</b></a></div><p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
 
 <h2>Observation is not insight</h2>
 <p>"Parents are busy" is an observation. An insight explains why people behave the way they do, and it almost always contains a tension: they want one thing, but something stops them. That tension is what a brand can resolve, and what makes an idea feel true when people see it.</p>
 <ul><li><b>The test:</b> when you read it to someone in the audience, do they say "that's so true"?</li>
-<li><b>Then brief it.</b> Take the insight into the <a href="/creative-brief-builder.html">creative brief builder</a>.</li></ul>
+<li><b>Then brief it.</b> Take the insight into the <a href="/creative-brief-builder.html">creative brief builder</a>.</li></ul><div class="mail"><p><b>Get new free tools by email.</b> One short note when a new tool or essay goes live. No spam, unsubscribe any time.</p><form id="mailf" action="https://buttondown.com/api/emails/embed-subscribe/shafaat" method="post" target="popupwindow"><input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required><button type="submit" class="btn solid">Subscribe</button></form></div>
 <div class="cta"><h2>Need a strategist in the room?</h2><p>Brand positioning, launches and integrated campaigns, from an agency start at Asiatic (JWT) to launches that reached millions in the US and Bangladesh. A 30-minute call is free.</p><p><a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a></p></div>
 <section class="faq"><h2>Questions</h2>
 <h3>What is a consumer insight?</h3><p>A fresh understanding of why people think or behave the way they do, usually built from an observation, an underlying motivation and a tension that gets in the way.</p>
@@ -221,7 +250,7 @@
 <h3>Why does an insight need a tension?</h3><p>Because the tension is the problem the brand can solve. Without it, the statement is just a description.</p>
 </section>
   </article>
-<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/brand-voice-builder.html"><b>Brand personality and tone of voice builder</b>Set six personality sliders and get a tone-of-voice guide with do and don't examples.</a><a href="/content-marketing-scorecard.html"><b>Content marketing scorecard</b>Rate your content program on eight essentials and get the top three fixes.</a><a href="/campaign-pacing-calculator.html"><b>Campaign pacing calculator</b>Are you overspending or underspending against plan, and what should daily spend be now?</a></div><a class="all" href="/tools.html">See all 32 free tools &rarr;</a></section>
+<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/brand-voice-builder.html"><b>Brand personality and tone of voice builder</b>Set six personality sliders and get a tone-of-voice guide with do and don't examples.</a><a href="/content-marketing-scorecard.html"><b>Content marketing scorecard</b>Rate your content program on eight essentials and get the top three fixes.</a><a href="/campaign-pacing-calculator.html"><b>Campaign pacing calculator</b>Are you overspending or underspending against plan, and what should daily spend be now?</a></div><a class="all" href="/tools.html">See all 33 free tools &rarr;</a></section>
   </main>
   <footer class="foot">
     <a href="/">&larr; Back to the portfolio</a> &middot; <a href="/essays.html">All essays</a> &middot; <a href="https://www.linkedin.com/in/sacgrowthspecialist">LinkedIn</a>
@@ -241,6 +270,42 @@
   var toQuery=function(ids){try{var p=new URLSearchParams();ids.forEach(function(k){if($(k))p.set(k,$(k).value);});history.replaceState(null,'','?'+p.toString());}catch(e){}};
   var ncdf=function(x){var t=1/(1+0.2316419*Math.abs(x)),d=0.3989423*Math.exp(-x*x/2),p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p;};
   var zfor=function(conf){return {80:1.2816,85:1.4395,90:1.6449,95:1.96,98:2.3263,99:2.5758}[conf]||1.96;};
+var SLUG="insight-statement-builder",TOOLNAME="Consumer insight statement builder",PRESETS={"telecom": {"label": "Telecom: students on prepaid plans", "note": "An illustrative insight. A real one comes from watching and listening to people, not from a desk.", "v": {"who": "Students on prepaid plans", "obs": "ration their data at the end of every week", "mot": "to stay part of every conversation", "ten": "running out feels like being cut off from their friends", "opp": "promise they will never be the one who drops out of the chat"}}, "fmcg": {"label": "FMCG: working parents", "note": "An illustrative insight. A real one comes from watching and listening to people, not from a desk.", "v": {"who": "Working parents", "obs": "feed the kids breakfast and skip their own", "mot": "to start the day feeling in control", "ten": "their own breakfast feels like a luxury there is no time for", "opp": "make breakfast the one thing that takes care of them too"}}, "advertising": {"label": "Agency: marketing directors", "note": "An illustrative insight. A real one comes from watching and listening to people, not from a desk.", "v": {"who": "Marketing directors", "obs": "ask agencies for case studies and rarely read the awards", "mot": "to be seen as the person who grew the business", "ten": "creative risk feels like career risk", "opp": "show creative as the safest route to growth"}}, "fintech": {"label": "Fintech: small shopkeepers", "note": "An illustrative insight. A real one comes from watching and listening to people, not from a desk.", "v": {"who": "Small shopkeepers", "obs": "take cash even when customers ask to pay by phone", "mot": "to know exactly where their money is", "ten": "digital money feels invisible until it lands", "opp": "make every payment visible the moment it happens"}}, "ecommerce": {"label": "E-commerce: urban parents", "note": "An illustrative insight. A real one comes from watching and listening to people, not from a desk.", "v": {"who": "Urban parents", "obs": "fill online carts at night and abandon them", "mot": "to be the parent who has everything handled", "ten": "one more decision at the end of the day feels like too many", "opp": "turn the weekly shop into one tap"}}, "consumertech": {"label": "Consumer tech: first-time smartphone buyers", "note": "An illustrative insight. A real one comes from watching and listening to people, not from a desk.", "v": {"who": "First-time smartphone buyers", "obs": "ask friends to come with them to the store", "mot": "to be part of the connected world", "ten": "a wrong choice costs a month of savings and looks foolish", "opp": "take the fear out of the first choice"}}, "education": {"label": "Education: mid-career professionals", "note": "An illustrative insight. A real one comes from watching and listening to people, not from a desk.", "v": {"who": "Mid-career professionals", "obs": "bookmark courses and never start them", "mot": "to prove they can still grow", "ten": "learning time feels stolen from family and work", "opp": "fit learning into the work week itself"}}, "logistics": {"label": "Logistics: online sellers", "note": "An illustrative insight. A real one comes from watching and listening to people, not from a desk.", "v": {"who": "Online sellers", "obs": "apologise to customers for courier delays", "mot": "to be trusted by every buyer", "ten": "their reputation sits in someone else’s van", "opp": "make every delivery feel like the seller’s own promise"}}, "healthcare": {"label": "Healthcare: working mothers in dhaka", "note": "An illustrative insight. A real one comes from watching and listening to people, not from a desk.", "v": {"who": "Working mothers in Dhaka", "obs": "skip their own health check-ups while never missing their children’s", "mot": "to be strong for the people who depend on them", "ten": "looking after themselves feels like taking time away from their family", "opp": "frame a check-up as something you do for your family, not for yourself"}}};
+
+  var hbars=function(rows,c,o){o=o||{};var el=$('chart');if(!el)return;rows=rows.filter(function(r){return isFinite(r.v)&&r.v>=0;});if(!rows.length){el.innerHTML='';return;}
+    var W=680,rh=34,lw=o.lw||170,bw=W-lw-130,mx=Math.max.apply(null,rows.map(function(r){return r.v;}))||1,h=8+rows.length*rh+4,s='<svg viewBox="0 0 '+W+' '+h+'" role="img" aria-label="'+esc(o.label||'Chart')+'">';
+    rows.forEach(function(r,i){var y=8+i*rh,w=Math.max(2,r.v/mx*bw);s+='<text x="'+(lw-10)+'" y="'+(y+19)+'" text-anchor="end" font-size="13" fill="#C7CDD6" font-family="Inter,system-ui">'+esc(String(r.n).slice(0,26))+'</text><rect x="'+lw+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="18" rx="4" fill="'+(r.col||'#33C4C4')+'"/><text x="'+(lw+w+8)+'" y="'+(y+19)+'" font-size="13" fill="#F3EFE7" font-family="Inter,system-ui" font-weight="600">'+esc(r.t!==undefined?r.t:fm(r.v,c))+'</text>';});
+    el.innerHTML=s+'</svg>';};
+  var work=function(lines){var el=$('work');if(el)el.innerHTML=lines.map(function(l){return '<li>'+esc(l)+'</li>';}).join('');};
+  var nextUp=function(items){var el=$('nx');if(!el)return;el.innerHTML=items.map(function(it){return '<li>'+esc(it.t)+(it.href?' <a href="'+esc(it.href)+'">'+esc(it.a)+' &rarr;</a>':'')+'</li>';}).join('');};
+  var shareEv=function(m){try{window.track&&window.track('tool_share',{tool:SLUG,method:m});}catch(e){}};
+  var flash=function(t){var el=$('shok');if(!el)return;el.textContent=t;setTimeout(function(){el.textContent='';},2600);};
+  function applyPreset(k,run){var p=PRESETS[k];if(!p)return;Object.keys(p.v).forEach(function(id){if($(id))$(id).value=p.v[id];});$('pnote').textContent=p.note||'';if(run)run();}
+  function initPicker(run){var s=$('ind');if(!s)return;var q=null;try{q=new URLSearchParams(location.search);}catch(e){}
+    var fromUrl=q&&[...q.keys()].some(function(k){return k!=='ind'&&!!$(k);});if(q&&q.get('ind')&&PRESETS[q.get('ind')])s.value=q.get('ind');
+    if(fromUrl&&!(q&&q.get('ind'))&&PRESETS.custom)s.value='custom';if(!fromUrl)applyPreset(s.value);else $('pnote').textContent=(PRESETS[s.value]||{}).note||'';
+    s.addEventListener('change',function(){applyPreset(s.value,run);try{window.track&&window.track('tool_preset',{tool:SLUG,preset:s.value});}catch(e){}});}
+  function wrapText(ctx,t,x,y,mw,lh,maxL){var w=t.split(' '),line='',n=0;for(var i=0;i<w.length;i++){var tl=line+w[i]+' ';if(ctx.measureText(tl).width>mw&&line){ctx.fillText(line,x,y);y+=lh;line=w[i]+' ';if(++n>=maxL-1){var rest=w.slice(i).join(' ');while(ctx.measureText(rest+'…').width>mw&&rest.length)rest=rest.slice(0,-1);ctx.fillText(rest+(rest.length<w.slice(i).join(' ').length?'…':''),x,y);return;}}else line=tl;}ctx.fillText(line,x,y);}
+  function card(){var c=document.createElement('canvas');c.width=1200;c.height=630;var x=c.getContext('2d');var F='Manrope, Inter, system-ui, sans-serif';
+    x.fillStyle='#0B0F14';x.fillRect(0,0,1200,630);x.fillStyle='#33C4C4';x.fillRect(0,0,1200,8);
+    x.fillStyle='#7f8894';x.font='600 20px '+F;x.fillText('FREE TOOL',64,72);
+    x.fillStyle='#F3EFE7';x.font='800 44px '+F;wrapText(x,TOOLNAME,64,124,1072,52,2);
+    var ks=[].slice.call(document.querySelectorAll('.out .kpi')).slice(0,4);var cw=1072/Math.max(ks.length,1);
+    ks.forEach(function(k,i){var l=(k.querySelector('.kl')||{}).textContent||'',v=(k.querySelector('.kv')||{}).textContent||'';x.fillStyle='#7f8894';x.font='600 18px '+F;x.fillText(l.toUpperCase().slice(0,26),64+i*cw,268);x.fillStyle='#F3EFE7';var fs=46;x.font='800 '+fs+'px '+F;while(x.measureText(v).width>cw-24&&fs>24){fs-=2;x.font='800 '+fs+'px '+F;}var vv=v;if(x.measureText(vv).width>cw-24){while(x.measureText(vv+'…').width>cw-24&&vv.length>3)vv=vv.slice(0,-1);vv+='…';}x.fillText(vv,64+i*cw,324);});
+    x.fillStyle='#C7CDD6';x.font='400 25px Inter, system-ui, sans-serif';var vt=(($('v')||{}).textContent||'').trim()||(($('say1')||{}).textContent||'').trim()||(($('obj')||{}).textContent||'').trim();wrapText(x,vt,64,ks.length?410:250,1072,36,ks.length?3:6);
+    x.fillStyle='#33C4C4';x.font='700 22px '+F;x.fillText('shafaatalichoyon.com/'+SLUG,64,578);x.fillStyle='#7f8894';x.font='500 20px '+F;x.textAlign='right';x.fillText('Md Shafaat Ali Choyon',1136,578);
+    c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=SLUG+'-result.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},800);});shareEv('card');flash('Result card downloaded');}
+  function initShare(){var b=$('shcard');if(b)b.addEventListener('click',card);
+    var cl=$('shlink');if(cl)cl.addEventListener('click',function(){var u=location.href;try{navigator.clipboard.writeText(u).then(function(){flash('Link with your numbers copied');});}catch(e){prompt('Copy this link',u);}shareEv('link_numbers');});
+    var ln=$('shli');if(ln)ln.addEventListener('click',function(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.origin+location.pathname),'_blank','noopener');shareEv('linkedin');});
+    var mf=$('mailf');if(mf)mf.addEventListener('submit',function(){try{window.open('https://buttondown.com/shafaat','popupwindow');window.track&&window.track('subscribe',{from:'tool',tool:SLUG});}catch(e){}});}
+
+  var __tq=toQuery;toQuery=function(a){__tq(a.indexOf('ind')<0?a.concat('ind'):a);};
+  function POST(){var t=($('ten').value||'').trim(),o=($('obs').value||'').trim(),m=($('mot').value||'').trim();
+    work(['Observation: what people do (behaviour you can see).','Motivation: what they want, deep down.','Tension: what stops the motivation from coming true. The tension is the insight.']);
+    var nx=[];if(!t)nx.push({t:'Add the tension. Without it you have an observation, not an insight.'});else if(t.length<25)nx.push({t:'The tension is short. Say what gets in the way, and why it matters to them.'});else nx.push({t:'Test it: show the insight to five people from the audience. A good one gets a "that’s so true".'});
+    if(o&&m&&o.toLowerCase().indexOf(m.toLowerCase().slice(0,12))>-1)nx.push({t:'The observation and motivation say similar things. Keep the observation to behaviour only.'});
+    nx.push({t:'Put it into a brief.',href:'/creative-brief-builder.html',a:'Creative brief builder'});nextUp(nx);}
 
   function copyOut(id,msg){var t=$(id).innerText;try{navigator.clipboard.writeText(t).then(function(){$(msg).textContent='Copied';});}catch(e){$(msg).textContent='Select the text to copy';}}
 
@@ -253,7 +318,8 @@
     $('checks').innerHTML=c.map(function(x){return '<li class="'+(x[0]?'ok':'no')+'"><b>'+(x[0]?'✓':'!')+'</b>'+esc(x[1])+'</li>';}).join('');
     toQuery(ids);}
   $('copy').addEventListener('click',function(){copyOut('out','copied');});
-  bindAll(ids,f,'insight_builder');
+  var __f=f;f=function(){__f();try{POST();}catch(e){}};initPicker(f);bindAll(ids.concat('ind'),f,'insight_builder');
+  initShare();
 })();
 </script>
 <script defer src="/assets/analytics.js"></script>

@@ -179,6 +179,35 @@
   .rng input[type=range]{grid-column:1 / -1;padding:0;accent-color:var(--teal);}
   .rng span{font-size:14px;color:var(--body);} .rng b{font-family:'Manrope';color:var(--ivory);}
   @media print{header.top,.more,.cta,.faq,footer.foot,.privacy-note,.btn,.lede,.eyebrow{display:none!important;} body{background:#fff;color:#000;} .out-doc{border:none;color:#000;background:#fff;}}
+
+  .picker{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:6px 0 18px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;}
+  .picker label{flex-direction:row!important;align-items:center;gap:10px!important;min-width:0;max-width:100%;flex:0 1 auto;}
+  .picker select{width:auto!important;min-width:0;max-width:100%;text-overflow:ellipsis;}
+  @media(max-width:560px){.picker label{flex-direction:column!important;align-items:flex-start;width:100%;} .picker select{width:100%!important;}}
+  .picker .pnote{flex:1 1 260px;font-size:13.5px;color:var(--muted);margin:0;}
+  .picker .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);}
+  .chart{margin:8px 0 6px;} .chart svg{width:100%;height:auto;display:block;}
+  .v2row{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0 6px;}
+  .v2box{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .v2box h3{font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);margin:0 0 10px;}
+  .v2box ol,.v2box ul{margin:0;padding-left:20px;color:var(--body);font-size:14.5px;line-height:1.6;}
+  .v2box li{margin:0 0 6px;}
+  details.work{margin:4px 0 0;} details.work summary{cursor:pointer;font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);list-style:none;}
+  details.work summary::-webkit-details-marker{display:none;} details.work summary:before{content:'+ ';color:var(--teal);} details.work[open] summary:before{content:'\2212  ';}
+  details.work ol{margin-top:10px;font-family:ui-monospace,Menlo,monospace;font-size:13.5px;}
+  .receipt{display:flex;gap:14px;align-items:flex-start;margin:18px 0 0;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;}
+  .receipt .rk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin:0 0 4px;}
+  .receipt p{margin:0;font-size:15px;color:var(--ivory);} .receipt a{font-family:'Manrope';font-weight:700;font-size:14px;}
+  .handoff{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0;}
+  .handoff a{display:inline-flex;flex-direction:column;gap:2px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-size:13px;color:var(--muted);}
+  .handoff a b{font-family:'Manrope';font-size:14.5px;color:var(--ivory);} .handoff a:hover{border-color:var(--teal);text-decoration:none;}
+  .sharebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0;}
+  .sharebar .ok{font-size:13px;color:var(--green);}
+  .mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:26px 0 0;padding:14px 16px;border:1px dashed rgba(255,255,255,.18);border-radius:12px;}
+  .mail p{margin:0;flex:1 1 240px;font-size:14px;color:var(--body);}
+  .mail form{display:flex;gap:8px;flex:1 1 300px;}
+  .mail input{flex:1;font:500 15px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:9px 12px;}
+  @media print{.picker,.sharebar,.mail,.handoff{display:none!important;}}
 </style>
 </head>
 <body>
@@ -193,24 +222,25 @@
     </nav>
   </header>
   <main>
-  <div class="eyebrow">Free tool &middot; Engagement strategy</div>
+  <div class="eyebrow">Free tool &middot; Brand &middot; Plan</div>
   <h1>Value exchange checker</h1>
-  <p class="lede">Will people bother? Score what your idea <b>asks of people</b> against what they <b>get back</b>, and see what to cut or strengthen before launch. <span class="credit">Built from the planning practice I learned in my agency years at Asiatic (JWT), adapted for today&rsquo;s channels.</span></p>
+  <p class="lede">Will people bother? Score what your idea <b>asks of people</b> against what they <b>get back</b>, and see what to cut or strengthen before launch. Load a worked example from <b>nine industries</b>; every brand in them is fictional. <span class="credit">Built from the planning practice I learned in my agency years at Asiatic (JWT), adapted for today&rsquo;s channels.</span></p>
   <article>
-<section class="card calc" aria-label="Calculator"><div class="grid"><div><h3>What you ask of people</h3><div class="rng"><span>Time</span><b id="a1v">3</b><input id="a1" type="range" min="0" max="5" step="1" value="3" aria-label="Time"></div><div class="rng"><span>Effort or learning</span><b id="a2v">2</b><input id="a2" type="range" min="0" max="5" step="1" value="2" aria-label="Effort or learning"></div><div class="rng"><span>Personal data</span><b id="a3v">3</b><input id="a3" type="range" min="0" max="5" step="1" value="3" aria-label="Personal data"></div><div class="rng"><span>Money</span><b id="a4v">1</b><input id="a4" type="range" min="0" max="5" step="1" value="1" aria-label="Money"></div><div class="rng"><span>Social risk (looking silly)</span><b id="a5v">1</b><input id="a5" type="range" min="0" max="5" step="1" value="1" aria-label="Social risk (looking silly)"></div></div><div><h3>What they get back</h3><div class="rng"><span>Usefulness</span><b id="g1v">3</b><input id="g1" type="range" min="0" max="5" step="1" value="3" aria-label="Usefulness"></div><div class="rng"><span>Entertainment</span><b id="g2v">2</b><input id="g2" type="range" min="0" max="5" step="1" value="2" aria-label="Entertainment"></div><div class="rng"><span>Reward or saving</span><b id="g3v">2</b><input id="g3" type="range" min="0" max="5" step="1" value="2" aria-label="Reward or saving"></div><div class="rng"><span>Status or recognition</span><b id="g4v">1</b><input id="g4" type="range" min="0" max="5" step="1" value="1" aria-label="Status or recognition"></div><div class="rng"><span>Belonging</span><b id="g5v">1</b><input id="g5" type="range" min="0" max="5" step="1" value="1" aria-label="Belonging"></div><div class="rng"><span>Learning something new</span><b id="g6v">2</b><input id="g6" type="range" min="0" max="5" step="1" value="2" aria-label="Learning something new"></div></div></div>
+<section class="card calc" aria-label="Calculator"><div class="picker"><label><span class="tag">Example</span><select id="ind" aria-label="Load an industry example"><option value="telecom">Telecom: Self-care app sign-up</option><option value="fmcg">FMCG: Loyalty club membership</option><option value="advertising">Agency: Client case-study interview</option><option value="fintech">Fintech: Wallet onboarding with ID</option><option value="ecommerce" selected>E-commerce: Account at checkout</option><option value="consumertech">Consumer tech: Product registration</option><option value="education">Education: Free taster class</option><option value="logistics">Logistics: Seller onboarding</option><option value="healthcare">Healthcare: Health screening sign-up</option></select></label><p class="pnote" id="pnote"></p></div><div class="grid"><div><h3>What you ask of people</h3><div class="rng"><span>Time</span><b id="a1v">3</b><input id="a1" type="range" min="0" max="5" step="1" value="3" aria-label="Time"></div><div class="rng"><span>Effort or learning</span><b id="a2v">2</b><input id="a2" type="range" min="0" max="5" step="1" value="2" aria-label="Effort or learning"></div><div class="rng"><span>Personal data</span><b id="a3v">3</b><input id="a3" type="range" min="0" max="5" step="1" value="3" aria-label="Personal data"></div><div class="rng"><span>Money</span><b id="a4v">1</b><input id="a4" type="range" min="0" max="5" step="1" value="1" aria-label="Money"></div><div class="rng"><span>Social risk (looking silly)</span><b id="a5v">1</b><input id="a5" type="range" min="0" max="5" step="1" value="1" aria-label="Social risk (looking silly)"></div></div><div><h3>What they get back</h3><div class="rng"><span>Usefulness</span><b id="g1v">3</b><input id="g1" type="range" min="0" max="5" step="1" value="3" aria-label="Usefulness"></div><div class="rng"><span>Entertainment</span><b id="g2v">2</b><input id="g2" type="range" min="0" max="5" step="1" value="2" aria-label="Entertainment"></div><div class="rng"><span>Reward or saving</span><b id="g3v">2</b><input id="g3" type="range" min="0" max="5" step="1" value="2" aria-label="Reward or saving"></div><div class="rng"><span>Status or recognition</span><b id="g4v">1</b><input id="g4" type="range" min="0" max="5" step="1" value="1" aria-label="Status or recognition"></div><div class="rng"><span>Belonging</span><b id="g5v">1</b><input id="g5" type="range" min="0" max="5" step="1" value="1" aria-label="Belonging"></div><div class="rng"><span>Learning something new</span><b id="g6v">2</b><input id="g6" type="range" min="0" max="5" step="1" value="2" aria-label="Learning something new"></div></div></div>
 <div class="out" aria-live="polite">
 <div class="kpi"><span class="kl">Ask</span><span class="kv" id="o1">-</span><span class="kb">out of 25</span></div>
 <div class="kpi"><span class="kl">Give</span><span class="kv" id="o2">-</span><span class="kb">top 3 of 6, out of 15</span></div>
 <div class="kpi"><span class="kl">Value exchange</span><span class="kv" id="o3">-</span><span class="kb" id="o3b"></span></div>
 </div>
+<div class="chart" id="chart" aria-hidden="true"></div>
 <p class="verdict" id="v"></p>
 <div class="formula"><span class="k">Formula</span>Exchange = (sum of top 3 rewards ÷ 15) ÷ (sum of asks ÷ 25)</div>
-<p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
+<div class="v2row"><div class="v2box"><h3>What to do next</h3><ul id="nx"></ul></div><div class="v2box"><details class="work"><summary>Show the working, step by step</summary><ol id="work"></ol></details></div></div><div class="sharebar"><button type="button" class="btn solid" id="shcard">Download result card</button><button type="button" class="btn" id="shlink">Copy link with my numbers</button><button type="button" class="btn" id="shli">Share on LinkedIn</button><span class="ok" id="shok" aria-live="polite"></span></div><div class="receipt"><div><p class="rk">Where I used this</p><p>With SureCash I helped deliver a government stipend to about 10 million beneficiaries, recognized with a Banking Fair Award of Excellence.</p><a href="/case/surecash-g2p/">Read the case: Delivering a government stipend to 10 million beneficiaries &rarr;</a></div></div><div class="handoff"><a href="/customer-journey-mapper.html" id="h1"><span>Step before</span><b>Where people drop out: Customer journey mapper</b></a><a href="/campaign-measurement-plan.html" id="h2"><span>Next step</span><b>Measure it: Campaign measurement plan</b></a><a href="/idea-scorecard.html" id="h3"><span>Same stage</span><b>Is the idea strong? Idea scorecard</b></a></div><p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
 
 <h2>Every interaction is a trade</h2>
 <p>Whether it is a sign-up form, an app, a contest or a community, people weigh what it costs them against what they get. Brands tend to overestimate how interesting they are and underestimate the effort they ask for. The fix is usually on both sides: ask for less, and make one reward unmistakable.</p>
 <ul><li><b>Data is a cost.</b> Every extra form field lowers completion; ask only for what you will use.</li>
-<li><b>One strong reward beats many weak ones,</b> which is why only the top three count here.</li></ul>
+<li><b>One strong reward beats many weak ones,</b> which is why only the top three count here.</li></ul><div class="mail"><p><b>Get new free tools by email.</b> One short note when a new tool or essay goes live. No spam, unsubscribe any time.</p><form id="mailf" action="https://buttondown.com/api/emails/embed-subscribe/shafaat" method="post" target="popupwindow"><input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required><button type="submit" class="btn solid">Subscribe</button></form></div>
 <div class="cta"><h2>Need a strategist in the room?</h2><p>Brand positioning, launches and integrated campaigns, from an agency start at Asiatic (JWT) to launches that reached millions in the US and Bangladesh. A 30-minute call is free.</p><p><a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a></p></div>
 <section class="faq"><h2>Questions</h2>
 <h3>What is a value exchange in marketing?</h3><p>The trade between what a brand asks of people (time, data, effort, money) and what they get in return (usefulness, fun, reward, status, belonging).</p>
@@ -218,7 +248,7 @@
 <h3>What score do I need?</h3><p>Above about 1.3 the exchange is clearly positive. Between 0.9 and 1.3 it is borderline. Below that, expect low participation.</p>
 </section>
   </article>
-<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/idea-scorecard.html"><b>Marketing idea scorecard</b>Score an idea on seven tests and find the weakest link before you spend a cent.</a><a href="/competitor-positioning-map.html"><b>Competitor positioning map</b>Plot your brand against rivals on two axes and spot the white space.</a><a href="/profit-margin-calculator.html"><b>Profit margin and markup calculator</b>Margin versus markup, and the price you need to hit a target margin.</a></div><a class="all" href="/tools.html">See all 32 free tools &rarr;</a></section>
+<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/idea-scorecard.html"><b>Marketing idea scorecard</b>Score an idea on seven tests and find the weakest link before you spend a cent.</a><a href="/competitor-positioning-map.html"><b>Competitor positioning map</b>Plot your brand against rivals on two axes and spot the white space.</a><a href="/profit-margin-calculator.html"><b>Profit margin and markup calculator</b>Margin versus markup, and the price you need to hit a target margin.</a></div><a class="all" href="/tools.html">See all 33 free tools &rarr;</a></section>
   </main>
   <footer class="foot">
     <a href="/">&larr; Back to the portfolio</a> &middot; <a href="/essays.html">All essays</a> &middot; <a href="https://www.linkedin.com/in/sacgrowthspecialist">LinkedIn</a>
@@ -238,6 +268,43 @@
   var toQuery=function(ids){try{var p=new URLSearchParams();ids.forEach(function(k){if($(k))p.set(k,$(k).value);});history.replaceState(null,'','?'+p.toString());}catch(e){}};
   var ncdf=function(x){var t=1/(1+0.2316419*Math.abs(x)),d=0.3989423*Math.exp(-x*x/2),p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p;};
   var zfor=function(conf){return {80:1.2816,85:1.4395,90:1.6449,95:1.96,98:2.3263,99:2.5758}[conf]||1.96;};
+var SLUG="value-exchange-checker",TOOLNAME="Value exchange checker",PRESETS={"telecom": {"label": "Telecom: Self-care app sign-up", "note": "Illustrative scores. Score from the customer’s side, ideally after talking to five of them.", "v": {"a1": 2, "a2": 2, "a3": 3, "a4": 0, "a5": 1, "g1": 4, "g2": 1, "g3": 3, "g4": 1, "g5": 1, "g6": 2}}, "fmcg": {"label": "FMCG: Loyalty club membership", "note": "Illustrative scores. Score from the customer’s side, ideally after talking to five of them.", "v": {"a1": 2, "a2": 1, "a3": 3, "a4": 0, "a5": 1, "g1": 2, "g2": 2, "g3": 4, "g4": 1, "g5": 2, "g6": 1}}, "advertising": {"label": "Agency: Client case-study interview", "note": "Illustrative scores. Score from the customer’s side, ideally after talking to five of them.", "v": {"a1": 3, "a2": 2, "a3": 1, "a4": 0, "a5": 2, "g1": 2, "g2": 1, "g3": 1, "g4": 4, "g5": 2, "g6": 3}}, "fintech": {"label": "Fintech: Wallet onboarding with ID", "note": "Illustrative scores. Score from the customer’s side, ideally after talking to five of them.", "v": {"a1": 3, "a2": 3, "a3": 4, "a4": 0, "a5": 1, "g1": 5, "g2": 0, "g3": 3, "g4": 1, "g5": 1, "g6": 1}}, "ecommerce": {"label": "E-commerce: Account at checkout", "note": "Illustrative scores. Score from the customer’s side, ideally after talking to five of them.", "v": {"a1": 3, "a2": 2, "a3": 3, "a4": 1, "a5": 1, "g1": 3, "g2": 2, "g3": 2, "g4": 1, "g5": 1, "g6": 2}}, "consumertech": {"label": "Consumer tech: Product registration", "note": "Illustrative scores. Score from the customer’s side, ideally after talking to five of them.", "v": {"a1": 2, "a2": 1, "a3": 3, "a4": 0, "a5": 0, "g1": 3, "g2": 0, "g3": 3, "g4": 1, "g5": 1, "g6": 1}}, "education": {"label": "Education: Free taster class", "note": "Illustrative scores. Score from the customer’s side, ideally after talking to five of them.", "v": {"a1": 3, "a2": 2, "a3": 2, "a4": 0, "a5": 2, "g1": 4, "g2": 2, "g3": 1, "g4": 2, "g5": 2, "g6": 5}}, "logistics": {"label": "Logistics: Seller onboarding", "note": "Illustrative scores. Score from the customer’s side, ideally after talking to five of them.", "v": {"a1": 3, "a2": 3, "a3": 2, "a4": 0, "a5": 1, "g1": 5, "g2": 0, "g3": 3, "g4": 1, "g5": 1, "g6": 2}}, "healthcare": {"label": "Healthcare: Health screening sign-up", "note": "Illustrative scores. Score from the customer’s side, ideally after talking to five of them.", "v": {"a1": 3, "a2": 2, "a3": 4, "a4": 1, "a5": 2, "g1": 5, "g2": 0, "g3": 2, "g4": 1, "g5": 2, "g6": 3}}};
+
+  var hbars=function(rows,c,o){o=o||{};var el=$('chart');if(!el)return;rows=rows.filter(function(r){return isFinite(r.v)&&r.v>=0;});if(!rows.length){el.innerHTML='';return;}
+    var W=680,rh=34,lw=o.lw||170,bw=W-lw-130,mx=Math.max.apply(null,rows.map(function(r){return r.v;}))||1,h=8+rows.length*rh+4,s='<svg viewBox="0 0 '+W+' '+h+'" role="img" aria-label="'+esc(o.label||'Chart')+'">';
+    rows.forEach(function(r,i){var y=8+i*rh,w=Math.max(2,r.v/mx*bw);s+='<text x="'+(lw-10)+'" y="'+(y+19)+'" text-anchor="end" font-size="13" fill="#C7CDD6" font-family="Inter,system-ui">'+esc(String(r.n).slice(0,26))+'</text><rect x="'+lw+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="18" rx="4" fill="'+(r.col||'#33C4C4')+'"/><text x="'+(lw+w+8)+'" y="'+(y+19)+'" font-size="13" fill="#F3EFE7" font-family="Inter,system-ui" font-weight="600">'+esc(r.t!==undefined?r.t:fm(r.v,c))+'</text>';});
+    el.innerHTML=s+'</svg>';};
+  var work=function(lines){var el=$('work');if(el)el.innerHTML=lines.map(function(l){return '<li>'+esc(l)+'</li>';}).join('');};
+  var nextUp=function(items){var el=$('nx');if(!el)return;el.innerHTML=items.map(function(it){return '<li>'+esc(it.t)+(it.href?' <a href="'+esc(it.href)+'">'+esc(it.a)+' &rarr;</a>':'')+'</li>';}).join('');};
+  var shareEv=function(m){try{window.track&&window.track('tool_share',{tool:SLUG,method:m});}catch(e){}};
+  var flash=function(t){var el=$('shok');if(!el)return;el.textContent=t;setTimeout(function(){el.textContent='';},2600);};
+  function applyPreset(k,run){var p=PRESETS[k];if(!p)return;Object.keys(p.v).forEach(function(id){if($(id))$(id).value=p.v[id];});$('pnote').textContent=p.note||'';if(run)run();}
+  function initPicker(run){var s=$('ind');if(!s)return;var q=null;try{q=new URLSearchParams(location.search);}catch(e){}
+    var fromUrl=q&&[...q.keys()].some(function(k){return k!=='ind'&&!!$(k);});if(q&&q.get('ind')&&PRESETS[q.get('ind')])s.value=q.get('ind');
+    if(fromUrl&&!(q&&q.get('ind'))&&PRESETS.custom)s.value='custom';if(!fromUrl)applyPreset(s.value);else $('pnote').textContent=(PRESETS[s.value]||{}).note||'';
+    s.addEventListener('change',function(){applyPreset(s.value,run);try{window.track&&window.track('tool_preset',{tool:SLUG,preset:s.value});}catch(e){}});}
+  function wrapText(ctx,t,x,y,mw,lh,maxL){var w=t.split(' '),line='',n=0;for(var i=0;i<w.length;i++){var tl=line+w[i]+' ';if(ctx.measureText(tl).width>mw&&line){ctx.fillText(line,x,y);y+=lh;line=w[i]+' ';if(++n>=maxL-1){var rest=w.slice(i).join(' ');while(ctx.measureText(rest+'…').width>mw&&rest.length)rest=rest.slice(0,-1);ctx.fillText(rest+(rest.length<w.slice(i).join(' ').length?'…':''),x,y);return;}}else line=tl;}ctx.fillText(line,x,y);}
+  function card(){var c=document.createElement('canvas');c.width=1200;c.height=630;var x=c.getContext('2d');var F='Manrope, Inter, system-ui, sans-serif';
+    x.fillStyle='#0B0F14';x.fillRect(0,0,1200,630);x.fillStyle='#33C4C4';x.fillRect(0,0,1200,8);
+    x.fillStyle='#7f8894';x.font='600 20px '+F;x.fillText('FREE TOOL',64,72);
+    x.fillStyle='#F3EFE7';x.font='800 44px '+F;wrapText(x,TOOLNAME,64,124,1072,52,2);
+    var ks=[].slice.call(document.querySelectorAll('.out .kpi')).slice(0,4);var cw=1072/Math.max(ks.length,1);
+    ks.forEach(function(k,i){var l=(k.querySelector('.kl')||{}).textContent||'',v=(k.querySelector('.kv')||{}).textContent||'';x.fillStyle='#7f8894';x.font='600 18px '+F;x.fillText(l.toUpperCase().slice(0,26),64+i*cw,268);x.fillStyle='#F3EFE7';var fs=46;x.font='800 '+fs+'px '+F;while(x.measureText(v).width>cw-24&&fs>24){fs-=2;x.font='800 '+fs+'px '+F;}var vv=v;if(x.measureText(vv).width>cw-24){while(x.measureText(vv+'…').width>cw-24&&vv.length>3)vv=vv.slice(0,-1);vv+='…';}x.fillText(vv,64+i*cw,324);});
+    x.fillStyle='#C7CDD6';x.font='400 25px Inter, system-ui, sans-serif';var vt=(($('v')||{}).textContent||'').trim()||(($('say1')||{}).textContent||'').trim()||(($('obj')||{}).textContent||'').trim();wrapText(x,vt,64,ks.length?410:250,1072,36,ks.length?3:6);
+    x.fillStyle='#33C4C4';x.font='700 22px '+F;x.fillText('shafaatalichoyon.com/'+SLUG,64,578);x.fillStyle='#7f8894';x.font='500 20px '+F;x.textAlign='right';x.fillText('Md Shafaat Ali Choyon',1136,578);
+    c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=SLUG+'-result.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},800);});shareEv('card');flash('Result card downloaded');}
+  function initShare(){var b=$('shcard');if(b)b.addEventListener('click',card);
+    var cl=$('shlink');if(cl)cl.addEventListener('click',function(){var u=location.href;try{navigator.clipboard.writeText(u).then(function(){flash('Link with your numbers copied');});}catch(e){prompt('Copy this link',u);}shareEv('link_numbers');});
+    var ln=$('shli');if(ln)ln.addEventListener('click',function(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.origin+location.pathname),'_blank','noopener');shareEv('linkedin');});
+    var mf=$('mailf');if(mf)mf.addEventListener('submit',function(){try{window.open('https://buttondown.com/shafaat','popupwindow');window.track&&window.track('subscribe',{from:'tool',tool:SLUG});}catch(e){}});}
+
+  var __tq=toQuery;toQuery=function(a){__tq(a.indexOf('ind')<0?a.concat('ind'):a);};
+  function POST(){var A=['a1','a2','a3','a4','a5'].map(function(k){return +$(k).value;}),G=['g1','g2','g3','g4','g5','g6'].map(function(k){return +$(k).value;});var a=A.reduce(function(s,x){return s+x;},0),top=G.slice().sort(function(x,y){return y-x;}).slice(0,3).reduce(function(s,x){return s+x;},0),r=(top/15)/Math.max(a/25,0.04);
+    work(['Ask: '+A.join(' + ')+' = '+a+' out of 25','Give: the three strongest rewards, '+G.slice().sort(function(x,y){return y-x;}).slice(0,3).join(' + ')+' = '+top+' out of 15','Exchange: ('+top+' ÷ 15) ÷ ('+a+' ÷ 25) = '+r.toFixed(2)+'x']);
+    hbars([{n:'What you ask',v:a/25*100,t:Math.round(a/25*100)+'% of max',col:'#F4A24C'},{n:'What they get',v:top/15*100,t:Math.round(top/15*100)+'% of max',col:r>=1?'#4FC48A':'#F0705A'}],'',{label:'Ask against give'});
+    var nx=[];if(r<1)nx.push({t:'People are asked for more than they get. Remove a step or a data field before adding rewards.'});else nx.push({t:'A fair exchange. Make the main reward visible in the first line people see.'});
+    nx.push({t:'Rewards are counted top-three only on purpose: one strong reward beats many weak ones.'});
+    nx.push({t:'Track whether the exchange changes behaviour.',href:'/campaign-measurement-plan.html',a:'Measurement plan'});nextUp(nx);}
 
   var A=["a1", "a2", "a3", "a4", "a5"],G=["g1", "g2", "g3", "g4", "g5", "g6"],AN=["Time", "Effort or learning", "Personal data", "Money", "Social risk (looking silly)"],GN=["Usefulness", "Entertainment", "Reward or saving", "Status or recognition", "Belonging", "Learning something new"],ids=A.concat(G);fromQuery(ids);
   function f(){ids.forEach(function(k){$(k+'v').textContent=$(k).value;});
@@ -248,7 +315,8 @@
     var hi=A.map(function(k,i){return [+$(k).value,AN[i]];}).sort(function(x,y){return y[0]-x[0];})[0],lo=G.map(function(k,i){return [+$(k).value,GN[i]];}).sort(function(x,y){return y[0]-x[0];})[0];
     $('v').textContent=r>=1.3?'A positive exchange: what people get clearly outweighs what you ask. Lead with "'+lo[1].toLowerCase()+'" in the message.':'The biggest ask is '+hi[1].toLowerCase()+'. Cut it first (fewer steps, fewer fields, a quicker start), or raise what people get back. '+(lo[0]<4?'No single reward is strong yet; make one of them unmistakable.':'');
     toQuery(ids);}
-  bindAll(ids,f,'value_exchange');
+  var __f=f;f=function(){__f();try{POST();}catch(e){}};initPicker(f);bindAll(ids.concat('ind'),f,'value_exchange');
+  initShare();
 })();
 </script>
 <script defer src="/assets/analytics.js"></script>

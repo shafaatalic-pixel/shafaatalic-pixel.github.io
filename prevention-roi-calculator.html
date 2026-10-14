@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Prevention ROI Calculator: Cases Prevented and Cost per Case | Shafaat Ali Choyon</title>
+<meta name="description" content="Free prevention ROI calculator for public health programs: cases prevented, costs averted, return on investment and cost per case prevented, with evidence-based examples." />
+<link rel="canonical" href="https://shafaatalichoyon.com/prevention-roi-calculator.html" />
+<meta name="author" content="Md Shafaat Ali Choyon" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0B0F14" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Md Shafaat Ali Choyon" />
+<meta property="og:title" content="Prevention ROI Calculator: Cases Prevented and Cost per Case | Shafaat Ali Choyon" />
+<meta property="og:description" content="Free prevention ROI calculator for public health programs: cases prevented, costs averted, return on investment and cost per case prevented, with evidence-based examples." />
+<meta property="og:url" content="https://shafaatalichoyon.com/prevention-roi-calculator.html" />
+<meta property="og:image" content="https://shafaatalichoyon.com/assets/og-card.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Prevention ROI Calculator: Cases Prevented and Cost per Case | Shafaat Ali Choyon" />
+<meta name="twitter:description" content="Free prevention ROI calculator for public health programs: cases prevented, costs averted, return on investment and cost per case prevented, with evidence-based examples." />
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "Prevention ROI calculator",
+ "url": "https://shafaatalichoyon.com/prevention-roi-calculator.html",
+ "description": "Free prevention ROI calculator for public health programs: cases prevented, costs averted, return on investment and cost per case prevented, with evidence-based examples.",
+ "applicationCategory": "HealthApplication",
+ "operatingSystem": "Any (web browser)",
+ "isAccessibleForFree": true,
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ },
+ "author": {
+  "@type": "Person",
+  "@id": "https://shafaatalichoyon.com/#person",
+  "name": "Md Shafaat Ali Choyon",
+  "url": "https://shafaatalichoyon.com/"
+ },
+ "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://shafaatalichoyon.com/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Free tools",
+   "item": "https://shafaatalichoyon.com/tools.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Prevention ROI calculator",
+   "item": "https://shafaatalichoyon.com/prevention-roi-calculator.html"
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "How do you calculate the return on a prevention program?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Estimate cases prevented as people reached × take-up × baseline risk × risk reduction. Multiply by the cost of each case to get costs averted, then ROI = (costs averted − program cost) ÷ program cost."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is cost per case prevented?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Program cost divided by cases prevented. It shows what it costs to stop one case, and is easier to compare across programs than ROI."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Which costs should a case include?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "At minimum, treatment costs. A fuller picture adds lost income, school days, carer time and long-term care. State which you included."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Are the program examples real?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The risk reductions come from published trials and reviews, cited under each example. Population, take-up and cost numbers are illustrative."
+   }
+  }
+ ]
+}
+</script>
+
+<link rel="stylesheet" href="/assets/vendor/fonts.css">
+<style>
+  :root{--bg:#0B0F14;--panel:#11161D;--tile:#06090D;--ivory:#F3EFE7;--body:#C7CDD6;--muted:#9AA3AE;--faint:#7f8894;--teal:#33C4C4;--amber:#F4A24C;--red:#F0705A;--green:#4FC48A;--line:rgba(255,255,255,.09);}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--body);font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.66;}
+  a{color:var(--teal);text-decoration:none;} a:hover{text-decoration:underline;}
+  :focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
+  .wrap{max-width:820px;margin:0 auto;padding:34px 22px 80px;}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-bottom:24px;border-bottom:1px solid var(--line);margin-bottom:30px;flex-wrap:wrap;}
+  .brand{display:inline-flex;align-items:center;gap:10px;font-family:'Manrope';font-weight:800;font-size:19px;color:var(--ivory);}
+  .brand span.dot{color:var(--teal);}
+  .navlinks{display:flex;gap:9px;flex-wrap:wrap;}
+  .back{font-family:'Manrope';font-weight:700;font-size:13.5px;color:var(--ivory);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px 15px;}
+  .back:hover{border-color:var(--teal);text-decoration:none;}
+  .back.solid{background:var(--amber);border-color:var(--amber);color:#1a1207;}
+  .eyebrow{font-family:'Inter';font-size:11px;letter-spacing:.16em;color:var(--faint);text-transform:uppercase;}
+  h1{font-family:'Manrope';font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.1;letter-spacing:-.02em;color:var(--ivory);margin:12px 0 0;max-width:24ch;}
+  .lede{font-size:17px;color:var(--body);margin:20px 0 6px;max-width:66ch;}
+  .lede b{color:var(--ivory);font-weight:500;}
+  .updated{font-size:13px;color:var(--faint);margin:14px 0 0;}
+  article h2{font-family:'Manrope';font-weight:700;font-size:clamp(19px,2.6vw,24px);line-height:1.24;letter-spacing:-.01em;color:var(--ivory);margin:40px 0 10px;}
+  article h3{font-family:'Manrope';font-weight:700;font-size:16.5px;color:var(--ivory);margin:24px 0 6px;}
+  article p,article li{font-size:15.5px;color:var(--body);max-width:68ch;}
+  article p{margin:0 0 15px;}
+  article ul{margin:0 0 15px;padding-left:20px;}
+  article li{margin:0 0 8px;}
+  article b{color:var(--ivory);font-weight:500;}
+  .formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;background:var(--tile);border:1px solid var(--line);border-radius:8px;padding:10px 12px;color:var(--body);overflow-x:auto;white-space:nowrap;}
+  .formula .k{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:4px;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:clamp(18px,3vw,26px);}
+  .cta{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;padding:20px 24px;margin:40px 0 0;max-width:68ch;}
+  .cta h2{margin:0 0 6px;font-size:19px;}
+  .faq{margin:44px 0 0;padding-top:26px;border-top:1px solid var(--line);}
+  .faq>h2{margin-top:0;}
+  .privacy-note{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--muted);margin:14px 0 0;}
+  footer.foot{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);}
+  footer.foot a{color:var(--muted);text-decoration:underline;text-underline-offset:3px;}
+
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+  .calc{margin:28px 0 8px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px 18px;}
+  .calc label{display:flex;flex-direction:column;gap:6px;font-family:'Manrope';font-weight:700;font-size:14px;color:var(--ivory);}
+  .hint{font-family:'Inter';font-weight:400;font-size:12px;color:var(--faint);}
+  .calc input,.calc select,.calc textarea{font:500 16px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:10px 12px;width:100%;}
+  .calc input:focus,.calc select:focus,.calc textarea:focus{border-color:var(--teal);outline:none;}
+  .out{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:22px 0 8px;}
+  .kpi{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:2px;}
+  .kl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);}
+  .kv{font-family:'Manrope';font-weight:800;font-size:28px;color:var(--ivory);letter-spacing:-.01em;line-height:1.15;word-break:break-word;}
+  .kb{font-size:13px;color:var(--muted);}
+  .good{color:var(--green)!important;} .warn{color:var(--amber)!important;} .bad{color:var(--red)!important;}
+  .verdict{font-size:15.5px;color:var(--ivory);margin:10px 0 14px;max-width:68ch;}
+  .btn{font-family:'Manrope';font-weight:700;font-size:14px;color:var(--ivory);background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:9px 16px;cursor:pointer;}
+  .btn:hover{border-color:var(--teal);} .btn.solid{background:var(--teal);border-color:var(--teal);color:#04201f;}
+  .seg{display:inline-flex;border:1px solid rgba(255,255,255,.16);border-radius:8px;overflow:hidden;}
+  .bar{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--tile);border:1px solid var(--line);margin:8px 0 4px;}
+  .bar span{display:block;height:100%;}
+  .more{margin:48px 0 0;padding-top:24px;border-top:1px solid var(--line);}
+  .more h2{font-family:'Manrope';font-weight:700;font-size:18px;color:var(--ivory);margin:0 0 12px;}
+  .more .mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
+  .more a{display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--body);font-size:14px;}
+  .more a:hover{border-color:var(--teal);text-decoration:none;}
+  .more a b{display:block;font-family:'Manrope';font-weight:700;font-size:15px;color:var(--ivory);margin-bottom:4px;}
+  .more .all{display:inline-block;margin-top:14px;font-family:'Manrope';font-weight:700;font-size:14px;}
+  .credit{display:block;margin-top:10px;font-size:13.5px;color:var(--faint);}
+  .tbl{width:100%;border-collapse:collapse;font-size:14.5px;margin:12px 0;}
+  .tbl th,.tbl td{border-bottom:1px solid var(--line);padding:8px 8px;text-align:left;vertical-align:top;}
+  .tbl th{font-family:'Manrope';font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);}
+  .tbl input{padding:7px 9px;font-size:14.5px;}
+  .out-doc{background:var(--tile);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:10px;padding:16px 18px;color:var(--ivory);font-size:15px;line-height:1.6;white-space:pre-wrap;max-width:72ch;}
+  .rng{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;margin:8px 0;}
+  .rng input[type=range]{grid-column:1 / -1;padding:0;accent-color:var(--teal);}
+  .rng span{font-size:14px;color:var(--body);} .rng b{font-family:'Manrope';color:var(--ivory);}
+  @media print{header.top,.more,.cta,.faq,footer.foot,.privacy-note,.btn,.lede,.eyebrow{display:none!important;} body{background:#fff;color:#000;} .out-doc{border:none;color:#000;background:#fff;}}
+
+  .picker{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:6px 0 18px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;}
+  .picker label{flex-direction:row!important;align-items:center;gap:10px!important;min-width:0;max-width:100%;flex:0 1 auto;}
+  .picker select{width:auto!important;min-width:0;max-width:100%;text-overflow:ellipsis;}
+  @media(max-width:560px){.picker label{flex-direction:column!important;align-items:flex-start;width:100%;} .picker select{width:100%!important;}}
+  .picker .pnote{flex:1 1 260px;font-size:13.5px;color:var(--muted);margin:0;}
+  .picker .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);}
+  .chart{margin:8px 0 6px;} .chart svg{width:100%;height:auto;display:block;}
+  .v2row{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0 6px;}
+  .v2box{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .v2box h3{font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);margin:0 0 10px;}
+  .v2box ol,.v2box ul{margin:0;padding-left:20px;color:var(--body);font-size:14.5px;line-height:1.6;}
+  .v2box li{margin:0 0 6px;}
+  details.work{margin:4px 0 0;} details.work summary{cursor:pointer;font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);list-style:none;}
+  details.work summary::-webkit-details-marker{display:none;} details.work summary:before{content:'+ ';color:var(--teal);} details.work[open] summary:before{content:'\2212  ';}
+  details.work ol{margin-top:10px;font-family:ui-monospace,Menlo,monospace;font-size:13.5px;}
+  .receipt{display:flex;gap:14px;align-items:flex-start;margin:18px 0 0;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;}
+  .receipt .rk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin:0 0 4px;}
+  .receipt p{margin:0;font-size:15px;color:var(--ivory);} .receipt a{font-family:'Manrope';font-weight:700;font-size:14px;}
+  .handoff{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0;}
+  .handoff a{display:inline-flex;flex-direction:column;gap:2px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-size:13px;color:var(--muted);}
+  .handoff a b{font-family:'Manrope';font-size:14.5px;color:var(--ivory);} .handoff a:hover{border-color:var(--teal);text-decoration:none;}
+  .sharebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0;}
+  .sharebar .ok{font-size:13px;color:var(--green);}
+  .mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:26px 0 0;padding:14px 16px;border:1px dashed rgba(255,255,255,.18);border-radius:12px;}
+  .mail p{margin:0;flex:1 1 240px;font-size:14px;color:var(--body);}
+  .mail form{display:flex;gap:8px;flex:1 1 300px;}
+  .mail input{flex:1;font:500 15px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:9px 12px;}
+  @media print{.picker,.sharebar,.mail,.handoff{display:none!important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/">Shafaat Choyon<span class="dot">.</span></a>
+    <nav class="navlinks" aria-label="Site">
+      <a class="back" href="/tools.html">Free tools</a>
+      <a class="back" href="/essays.html">Essays</a>
+      <a class="back" href="/?view=healthcomm">Full portfolio</a>
+      <a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a>
+    </nav>
+  </header>
+  <main>
+  <div class="eyebrow">Free tool &middot; Population health &middot; New</div>
+  <h1>Prevention ROI calculator</h1>
+  <p class="lede">Estimate <b>cases prevented</b>, <b>costs averted</b> and <b>return on investment</b> for a prevention program, and see the break-even effect it needs. Start from a published example or your own numbers.</p>
+  <article>
+<section class="card calc" aria-label="Calculator"><div class="picker"><label><span class="tag">Program</span><select id="ind" aria-label="Load a program example"><option value="diabetes" selected>Diabetes prevention (lifestyle program)</option><option value="handwashing">Handwashing promotion (children)</option><option value="helmets">Motorcycle helmet use</option><option value="custom">Your own program</option></select></label><p class="pnote" id="pnote"></p></div><div class="grid"><label>Currency<select id="cur"><option value="$">US dollar ($)</option><option value="৳">Bangladeshi taka (৳)</option><option value="£">Pound (£)</option><option value="€">Euro (€)</option></select></label>
+<label>People reached <span class="hint">the population your program covers</span><input id="pop" type="number" inputmode="numeric" min="0" step="1" value="2000"></label>
+<label>Take-up (%) <span class="hint">share who actually take part</span><input id="up" type="number" inputmode="decimal" min="0" max="100" step="any" value="50"></label>
+<label>Baseline risk (%) <span class="hint">chance of the condition over the period, without the program</span><input id="base" type="number" inputmode="decimal" min="0" max="100" step="any" value="25"></label>
+<label>Risk reduction (%) <span class="hint">among those who take part, from the evidence</span><input id="rrr" type="number" inputmode="decimal" min="0" max="100" step="any" value="58"></label>
+<label>Cost per case <span class="hint">treatment plus lost income, if you can</span><input id="cpc" type="number" inputmode="decimal" min="0" step="any" value="9000"></label>
+<label>Program cost <span class="hint">total, over the period</span><input id="prog" type="number" inputmode="decimal" min="0" step="any" value="600000"></label>
+<label>Period (years)<input id="yrs" type="number" inputmode="decimal" min="0.1" step="any" value="3"></label>
+</div>
+<div class="out" aria-live="polite">
+<div class="kpi"><span class="kl">Cases prevented</span><span class="kv" id="o1">-</span><span class="kb" id="o1b"></span></div>
+<div class="kpi"><span class="kl">Costs averted</span><span class="kv" id="o2">-</span></div>
+<div class="kpi"><span class="kl">Return on investment</span><span class="kv" id="o3">-</span><span class="kb" id="o3b"></span></div>
+<div class="kpi"><span class="kl">Cost per case prevented</span><span class="kv" id="o4">-</span></div>
+</div>
+<div class="chart" id="chart" aria-hidden="true"></div>
+<p class="verdict" id="v"></p>
+<div class="formula"><span class="k">Formula</span>Cases prevented = people × take-up × baseline risk × risk reduction · ROI = (costs averted − program cost) ÷ program cost</div>
+<div class="v2row"><div class="v2box"><h3>What to do next</h3><ul id="nx"></ul></div><div class="v2box"><details class="work"><summary>Show the working, step by step</summary><ol id="work"></ol></details></div></div><div class="sharebar"><button type="button" class="btn solid" id="shcard">Download result card</button><button type="button" class="btn" id="shlink">Copy link with my numbers</button><button type="button" class="btn" id="shli">Share on LinkedIn</button><span class="ok" id="shok" aria-live="polite"></span></div><div class="receipt"><div><p class="rk">Where I used this</p><p>Through Praava Health&rsquo;s partnership with Lifebuoy, we took health access to population scale, with about 3,000 calls a day.</p><a href="/case/praava-lifebuoy/">Read the case: Population-scale access via the Lifebuoy partnership &rarr;</a></div></div><div class="handoff"><a href="/coverage-gap-calculator.html" id="h-cov"><span>Step before</span><b>Who is missed today: Coverage gap</b></a><a href="/risk-communication-calculator.html" id="h-risk"><span>Next step</span><b>Explain the effect: Risk communication</b></a><a href="/smart-objective-builder.html" id="h-smart"><span>Then</span><b>Set the objective: SMART objective builder</b></a></div><p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
+
+<h2>Prevention pays, if you count the right costs</h2>
+<p>Prevention programs are often judged against treatment budgets alone, and lose. The case usually rests on what illness costs a household and an economy: lost wages, missed school, carer time. This calculator keeps the model simple so the assumptions stay visible: one period, no discounting, and the risk reduction applied to those who take part.</p>
+<ul><li><b>Use the best evidence you have</b> for the risk reduction, ideally a trial or systematic review for the same intervention and population.</li>
+<li><b>Be honest about take-up.</b> A strong effect with low take-up prevents few cases; that is often the real problem to solve.</li>
+<li><b>Report cost per case prevented</b> next to ROI. It lets funders compare programs of very different sizes.</li></ul><div class="mail"><p><b>Get new free tools by email.</b> One short note when a new tool or essay goes live. No spam, unsubscribe any time.</p><form id="mailf" action="https://buttondown.com/api/emails/embed-subscribe/shafaat" method="post" target="popupwindow"><input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required><button type="submit" class="btn solid">Subscribe</button></form></div>
+<div class="cta"><h2>Planning a health program or campaign?</h2><p>I am a CHES&reg;-certified health education specialist with an MPH and 17 years of public-health and behaviour-change work in the US and Bangladesh. A 30-minute call is free.</p><p><a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a></p></div>
+<section class="faq"><h2>Questions</h2>
+<h3>How do you calculate the return on a prevention program?</h3><p>Estimate cases prevented as people reached × take-up × baseline risk × risk reduction. Multiply by the cost of each case to get costs averted, then ROI = (costs averted − program cost) ÷ program cost.</p>
+<h3>What is cost per case prevented?</h3><p>Program cost divided by cases prevented. It shows what it costs to stop one case, and is easier to compare across programs than ROI.</p>
+<h3>Which costs should a case include?</h3><p>At minimum, treatment costs. A fuller picture adds lost income, school days, carer time and long-term care. State which you included.</p>
+<h3>Are the program examples real?</h3><p>The risk reductions come from published trials and reviews, cited under each example. Population, take-up and cost numbers are illustrative.</p>
+</section>
+  </article>
+<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/hotline-staffing-calculator.html"><b>Hotline staffing calculator</b>How many agents a health hotline or call center needs to answer calls fast (Erlang C).</a><a href="/smart-objective-builder.html"><b>SMART objective builder</b>Write a specific, measurable, time-bound objective for a health program or campaign.</a><a href="/campaign-measurement-plan.html"><b>Campaign measurement plan builder</b>Link communication, attitude, behavior and business effects with the right measures.</a></div><a class="all" href="/tools.html">See all 33 free tools &rarr;</a></section>
+  </main>
+  <footer class="foot">
+    <a href="/">&larr; Back to the portfolio</a> &middot; <a href="/essays.html">All essays</a> &middot; <a href="https://www.linkedin.com/in/sacgrowthspecialist">LinkedIn</a>
+    <p class="cr-note" style="margin:10px 0 0;font-size:12px;letter-spacing:.01em;opacity:.72;">&copy; 2026 Md Shafaat Ali Choyon. All rights reserved. &middot; <a href="/tools.html">Free tools</a> &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="/legal.html">Legal</a> &middot; <a href="/accessibility.html">Accessibility</a></p>
+  </footer>
+</div>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var num=function(id){var v=parseFloat(($(id)||{}).value);return isFinite(v)?v:NaN;};
+  var fm=function(n,c,d){if(!isFinite(n))return '-';var a=Math.abs(n);var s=a>=1e7?(n/1e6).toFixed(1)+'M':n.toLocaleString('en-US',{maximumFractionDigits:d===undefined?0:d});return (c||'')+s;};
+  var band=function(el,cls,txt){el.className='kb '+(cls||'');el.textContent=txt;};
+  var esc=function(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');};
+  var __used=false; var used=function(slug){if(__used)return;__used=true;try{window.track&&window.track('tool_use',{tool:slug});}catch(e){}};
+  var bindAll=function(ids,fn,slug){ids.forEach(function(k){var el=$(k);if(!el)return;['input','change'].forEach(function(ev){el.addEventListener(ev,function(){fn();used(slug);});});});fn();};
+  var fromQuery=function(ids){try{var q=new URLSearchParams(location.search);ids.forEach(function(k){var v=q.get(k);if(v!==null&&$(k))$(k).value=v;});}catch(e){}};
+  var toQuery=function(ids){try{var p=new URLSearchParams();ids.forEach(function(k){if($(k))p.set(k,$(k).value);});history.replaceState(null,'','?'+p.toString());}catch(e){}};
+  var ncdf=function(x){var t=1/(1+0.2316419*Math.abs(x)),d=0.3989423*Math.exp(-x*x/2),p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p;};
+  var zfor=function(conf){return {80:1.2816,85:1.4395,90:1.6449,95:1.96,98:2.3263,99:2.5758}[conf]||1.96;};
+var SLUG="prevention-roi-calculator",TOOLNAME="Prevention ROI calculator",PRESETS={"diabetes": {"label": "Diabetes prevention (lifestyle program)", "v": {"pop": 2000, "up": 50, "base": 25, "rrr": 58, "cpc": 9000, "prog": 600000, "yrs": 3}, "note": "The 58% risk reduction is from the US Diabetes Prevention Program trial (Knowler and colleagues, NEJM 2002). Other numbers are illustrative: replace them with local data."}, "handwashing": {"label": "Handwashing promotion (children)", "v": {"pop": 10000, "up": 60, "base": 40, "rrr": 30, "cpc": 40, "prog": 30000, "yrs": 1}, "note": "About 30% fewer diarrhoea episodes with community handwashing promotion (Cochrane review, Ejemot-Nwadiaro and colleagues). Other numbers are illustrative."}, "helmets": {"label": "Motorcycle helmet use", "v": {"pop": 50000, "up": 40, "base": 1, "rrr": 69, "cpc": 15000, "prog": 500000, "yrs": 1}, "note": "Helmets cut the risk of head injury by about 69% (Cochrane review, Liu and colleagues, 2008). Other numbers are illustrative."}, "custom": {"label": "Your own program", "v": {}, "note": "Enter your own population, risk and costs. Use the risk reduction from the best evidence you have for this intervention."}};
+
+  var hbars=function(rows,c,o){o=o||{};var el=$('chart');if(!el)return;rows=rows.filter(function(r){return isFinite(r.v)&&r.v>=0;});if(!rows.length){el.innerHTML='';return;}
+    var W=680,rh=34,lw=o.lw||170,bw=W-lw-130,mx=Math.max.apply(null,rows.map(function(r){return r.v;}))||1,h=8+rows.length*rh+4,s='<svg viewBox="0 0 '+W+' '+h+'" role="img" aria-label="'+esc(o.label||'Chart')+'">';
+    rows.forEach(function(r,i){var y=8+i*rh,w=Math.max(2,r.v/mx*bw);s+='<text x="'+(lw-10)+'" y="'+(y+19)+'" text-anchor="end" font-size="13" fill="#C7CDD6" font-family="Inter,system-ui">'+esc(String(r.n).slice(0,26))+'</text><rect x="'+lw+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="18" rx="4" fill="'+(r.col||'#33C4C4')+'"/><text x="'+(lw+w+8)+'" y="'+(y+19)+'" font-size="13" fill="#F3EFE7" font-family="Inter,system-ui" font-weight="600">'+esc(r.t!==undefined?r.t:fm(r.v,c))+'</text>';});
+    el.innerHTML=s+'</svg>';};
+  var work=function(lines){var el=$('work');if(el)el.innerHTML=lines.map(function(l){return '<li>'+esc(l)+'</li>';}).join('');};
+  var nextUp=function(items){var el=$('nx');if(!el)return;el.innerHTML=items.map(function(it){return '<li>'+esc(it.t)+(it.href?' <a href="'+esc(it.href)+'">'+esc(it.a)+' &rarr;</a>':'')+'</li>';}).join('');};
+  var shareEv=function(m){try{window.track&&window.track('tool_share',{tool:SLUG,method:m});}catch(e){}};
+  var flash=function(t){var el=$('shok');if(!el)return;el.textContent=t;setTimeout(function(){el.textContent='';},2600);};
+  function applyPreset(k,run){var p=PRESETS[k];if(!p)return;Object.keys(p.v).forEach(function(id){if($(id))$(id).value=p.v[id];});$('pnote').textContent=p.note||'';if(run)run();}
+  function initPicker(run){var s=$('ind');if(!s)return;var q=null;try{q=new URLSearchParams(location.search);}catch(e){}
+    var fromUrl=q&&[...q.keys()].some(function(k){return k!=='ind'&&!!$(k);});if(q&&q.get('ind')&&PRESETS[q.get('ind')])s.value=q.get('ind');
+    if(fromUrl&&!(q&&q.get('ind'))&&PRESETS.custom)s.value='custom';if(!fromUrl)applyPreset(s.value);else $('pnote').textContent=(PRESETS[s.value]||{}).note||'';
+    s.addEventListener('change',function(){applyPreset(s.value,run);try{window.track&&window.track('tool_preset',{tool:SLUG,preset:s.value});}catch(e){}});}
+  function wrapText(ctx,t,x,y,mw,lh,maxL){var w=t.split(' '),line='',n=0;for(var i=0;i<w.length;i++){var tl=line+w[i]+' ';if(ctx.measureText(tl).width>mw&&line){ctx.fillText(line,x,y);y+=lh;line=w[i]+' ';if(++n>=maxL-1){var rest=w.slice(i).join(' ');while(ctx.measureText(rest+'…').width>mw&&rest.length)rest=rest.slice(0,-1);ctx.fillText(rest+(rest.length<w.slice(i).join(' ').length?'…':''),x,y);return;}}else line=tl;}ctx.fillText(line,x,y);}
+  function card(){var c=document.createElement('canvas');c.width=1200;c.height=630;var x=c.getContext('2d');var F='Manrope, Inter, system-ui, sans-serif';
+    x.fillStyle='#0B0F14';x.fillRect(0,0,1200,630);x.fillStyle='#33C4C4';x.fillRect(0,0,1200,8);
+    x.fillStyle='#7f8894';x.font='600 20px '+F;x.fillText('FREE TOOL',64,72);
+    x.fillStyle='#F3EFE7';x.font='800 44px '+F;wrapText(x,TOOLNAME,64,124,1072,52,2);
+    var ks=[].slice.call(document.querySelectorAll('.out .kpi')).slice(0,4);var cw=1072/Math.max(ks.length,1);
+    ks.forEach(function(k,i){var l=(k.querySelector('.kl')||{}).textContent||'',v=(k.querySelector('.kv')||{}).textContent||'';x.fillStyle='#7f8894';x.font='600 18px '+F;x.fillText(l.toUpperCase().slice(0,26),64+i*cw,268);x.fillStyle='#F3EFE7';var fs=46;x.font='800 '+fs+'px '+F;while(x.measureText(v).width>cw-24&&fs>24){fs-=2;x.font='800 '+fs+'px '+F;}var vv=v;if(x.measureText(vv).width>cw-24){while(x.measureText(vv+'…').width>cw-24&&vv.length>3)vv=vv.slice(0,-1);vv+='…';}x.fillText(vv,64+i*cw,324);});
+    x.fillStyle='#C7CDD6';x.font='400 25px Inter, system-ui, sans-serif';var vt=(($('v')||{}).textContent||'').trim()||(($('say1')||{}).textContent||'').trim()||(($('obj')||{}).textContent||'').trim();wrapText(x,vt,64,ks.length?410:250,1072,36,ks.length?3:6);
+    x.fillStyle='#33C4C4';x.font='700 22px '+F;x.fillText('shafaatalichoyon.com/'+SLUG,64,578);x.fillStyle='#7f8894';x.font='500 20px '+F;x.textAlign='right';x.fillText('Md Shafaat Ali Choyon',1136,578);
+    c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=SLUG+'-result.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},800);});shareEv('card');flash('Result card downloaded');}
+  function initShare(){var b=$('shcard');if(b)b.addEventListener('click',card);
+    var cl=$('shlink');if(cl)cl.addEventListener('click',function(){var u=location.href;try{navigator.clipboard.writeText(u).then(function(){flash('Link with your numbers copied');});}catch(e){prompt('Copy this link',u);}shareEv('link_numbers');});
+    var ln=$('shli');if(ln)ln.addEventListener('click',function(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.origin+location.pathname),'_blank','noopener');shareEv('linkedin');});
+    var mf=$('mailf');if(mf)mf.addEventListener('submit',function(){try{window.open('https://buttondown.com/shafaat','popupwindow');window.track&&window.track('subscribe',{from:'tool',tool:SLUG});}catch(e){}});}
+
+  var ids=['ind','cur','pop','up','base','rrr','cpc','prog','yrs'];fromQuery(ids);
+  function chart(p,a,c){var W=680,mx=Math.max(p,a,1),bw=W-160-130,s='<svg viewBox="0 0 '+W+' 92" role="img" aria-label="Program cost against costs averted">';
+    [['Program cost',p,'#F4A24C'],['Costs averted',a,a>=p?'#4FC48A':'#F0705A']].forEach(function(r,i){var y=8+i*40,w=Math.max(2,r[1]/mx*bw);s+='<text x="150" y="'+(y+19)+'" text-anchor="end" font-size="13" fill="#C7CDD6" font-family="Inter,system-ui">'+r[0]+'</text><rect x="160" y="'+(y+5)+'" width="'+w.toFixed(1)+'" height="20" rx="4" fill="'+r[2]+'"/><text x="'+(168+w)+'" y="'+(y+19)+'" font-size="13" fill="#F3EFE7" font-weight="600" font-family="Inter,system-ui">'+esc(fm(r[1],c))+'</text>';});
+    $('chart').innerHTML=s+'</svg>';}
+  function f(){var c=$('cur').value,P=num('pop'),u=num('up')/100,b=num('base')/100,r=num('rrr')/100,k=num('cpc'),g=num('prog'),y=num('yrs');
+    if(!(P>0&&u>0&&b>0&&r>0&&k>=0&&g>0)){$('v').textContent='Enter people reached, take-up, baseline risk, risk reduction, cost per case and program cost.';['o1','o2','o3','o4'].forEach(function(id){$(id).textContent='-';});$('chart').innerHTML='';work([]);nextUp([]);toQuery(ids);return;}
+    var part=P*u,cases=part*b*r,av=cases*k,net=av-g,roi=net/g,cpcp=g/cases,nnr=1/(u*b*r),be=g/(part*b*k);
+    $('o1').textContent=fm(cases,'',cases<10?1:0);band($('o1b'),'','1 for every '+fm(nnr)+' people reached');$('o2').textContent=fm(av,c);
+    $('o3').textContent=(roi>=0?'+':'')+Math.round(roi*100)+'%';band($('o3b'),roi>=0?'good':roi>-0.5?'warn':'bad',roi>=0?'returns '+(av/g).toFixed(2)+' per 1 spent':'direct costs only cover '+Math.round(av/g*100)+'%');
+    $('o4').textContent=fm(cpcp,c);chart(g,av,c);
+    $('v').textContent=roi>=0?'Over '+fm(y,'',1)+' year'+(y===1?'':'s')+', the program prevents about '+fm(cases)+' cases and saves '+fm(av,c)+' against a cost of '+fm(g,c)+'. Every 1 spent returns '+(av/g).toFixed(2)+'.':'On direct costs alone, the program recovers '+Math.round(av/g*100)+'% of its cost. Prevention often pays through lost income, school days and quality of life, so add those before judging it.';
+    work(['People taking part: '+fm(P)+' × '+fm(u*100,'',1)+'% = '+fm(part),'Cases prevented: '+fm(part)+' × '+fm(b*100,'',2)+'% risk × '+fm(r*100,'',1)+'% reduction = '+fm(cases,'',1),'Costs averted: '+fm(cases,'',1)+' × '+fm(k,c)+' = '+fm(av,c),'ROI: ('+fm(av,c)+' − '+fm(g,c)+') ÷ '+fm(g,c)+' = '+Math.round(roi*100)+'%','Cost per case prevented: '+fm(g,c)+' ÷ '+fm(cases,'',1)+' = '+fm(cpcp,c),'Break-even risk reduction: '+fm(Math.min(be,9.99)*100,'',1)+'% (the effect needed for costs averted to equal program cost)']);
+    var nx=[],ten=P*0.1*b*r;
+    if(roi<0){nx.push({t:'Add indirect costs to the cost per case: lost wages, school days missed, carer time. Most strong prevention cases rest on them.'});nx.push({t:'Raise take-up: every 10 extra points adds about '+fm(ten,'',1)+' cases prevented at nearly the same cost.'});nx.push({t:'Target higher-risk groups first: doubling the baseline risk doubles the cases prevented for the same spend.'});}
+    else{nx.push({t:'Lead with cost per case prevented ('+fm(cpcp,c)+') when you pitch. Funders compare it across programs more readily than ROI.'});nx.push({t:'Stress-test it: the program still breaks even with a risk reduction as low as '+fm(Math.min(be,9.99)*100,'',1)+'%. Say so; it builds trust.'});}
+    nx.push({t:'Explain the effect honestly to the public, in absolute numbers, not just percentages.',href:'/risk-communication-calculator.html',a:'Risk communication'});
+    nx.push({t:'Turn the target into a measurable objective.',href:'/smart-objective-builder.html',a:'SMART objective builder'});
+    nextUp(nx);toQuery(ids);}
+  initPicker(f);bindAll(ids,f,'prevention_roi');
+  initShare();
+})();
+</script>
+<script defer src="/assets/analytics.js"></script>
+</body>
+</html>

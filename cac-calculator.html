@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Customer Acquisition Cost (CAC) Calculator by Channel | Shafaat Ali Choyon</title>
-<meta name="description" content="Free CAC calculator: per-channel and blended customer acquisition cost, plus fully loaded CAC including sales and tool costs." />
+<meta name="description" content="Free CAC calculator for any industry: per-channel, blended and fully loaded customer acquisition cost, with worked examples for telecom, FMCG, fintech, e-commerce, education, logistics and healthcare." />
 <link rel="canonical" href="https://shafaatalichoyon.com/cac-calculator.html" />
 <meta name="author" content="Md Shafaat Ali Choyon" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
@@ -15,12 +15,12 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Md Shafaat Ali Choyon" />
 <meta property="og:title" content="Customer Acquisition Cost (CAC) Calculator by Channel | Shafaat Ali Choyon" />
-<meta property="og:description" content="Free CAC calculator: per-channel and blended customer acquisition cost, plus fully loaded CAC including sales and tool costs." />
+<meta property="og:description" content="Free CAC calculator for any industry: per-channel, blended and fully loaded customer acquisition cost, with worked examples for telecom, FMCG, fintech, e-commerce, education, logistics and healthcare." />
 <meta property="og:url" content="https://shafaatalichoyon.com/cac-calculator.html" />
 <meta property="og:image" content="https://shafaatalichoyon.com/assets/og-card.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Customer Acquisition Cost (CAC) Calculator by Channel | Shafaat Ali Choyon" />
-<meta name="twitter:description" content="Free CAC calculator: per-channel and blended customer acquisition cost, plus fully loaded CAC including sales and tool costs." />
+<meta name="twitter:description" content="Free CAC calculator for any industry: per-channel, blended and fully loaded customer acquisition cost, with worked examples for telecom, FMCG, fintech, e-commerce, education, logistics and healthcare." />
 
 <script type="application/ld+json">
 {
@@ -28,7 +28,7 @@
  "@type": "WebApplication",
  "name": "Customer acquisition cost (CAC) by channel",
  "url": "https://shafaatalichoyon.com/cac-calculator.html",
- "description": "Free CAC calculator: per-channel and blended customer acquisition cost, plus fully loaded CAC including sales and tool costs.",
+ "description": "Free CAC calculator for any industry: per-channel, blended and fully loaded customer acquisition cost, with worked examples for telecom, FMCG, fintech, e-commerce, education, logistics and healthcare.",
  "applicationCategory": "BusinessApplication",
  "operatingSystem": "Any (web browser)",
  "isAccessibleForFree": true,
@@ -99,6 +99,14 @@
    "acceptedAnswer": {
     "@type": "Answer",
     "text": "One that your customer lifetime value comfortably covers, typically at least three times, with a payback period you can finance."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Are the industry examples benchmarks?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. They are illustrative numbers that show how channels and costs differ by industry. Replace them with your own data."
    }
   }
  ]
@@ -179,6 +187,35 @@
   .rng input[type=range]{grid-column:1 / -1;padding:0;accent-color:var(--teal);}
   .rng span{font-size:14px;color:var(--body);} .rng b{font-family:'Manrope';color:var(--ivory);}
   @media print{header.top,.more,.cta,.faq,footer.foot,.privacy-note,.btn,.lede,.eyebrow{display:none!important;} body{background:#fff;color:#000;} .out-doc{border:none;color:#000;background:#fff;}}
+
+  .picker{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:6px 0 18px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;}
+  .picker label{flex-direction:row!important;align-items:center;gap:10px!important;min-width:0;max-width:100%;flex:0 1 auto;}
+  .picker select{width:auto!important;min-width:0;max-width:100%;text-overflow:ellipsis;}
+  @media(max-width:560px){.picker label{flex-direction:column!important;align-items:flex-start;width:100%;} .picker select{width:100%!important;}}
+  .picker .pnote{flex:1 1 260px;font-size:13.5px;color:var(--muted);margin:0;}
+  .picker .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);}
+  .chart{margin:8px 0 6px;} .chart svg{width:100%;height:auto;display:block;}
+  .v2row{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0 6px;}
+  .v2box{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .v2box h3{font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);margin:0 0 10px;}
+  .v2box ol,.v2box ul{margin:0;padding-left:20px;color:var(--body);font-size:14.5px;line-height:1.6;}
+  .v2box li{margin:0 0 6px;}
+  details.work{margin:4px 0 0;} details.work summary{cursor:pointer;font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);list-style:none;}
+  details.work summary::-webkit-details-marker{display:none;} details.work summary:before{content:'+ ';color:var(--teal);} details.work[open] summary:before{content:'\2212  ';}
+  details.work ol{margin-top:10px;font-family:ui-monospace,Menlo,monospace;font-size:13.5px;}
+  .receipt{display:flex;gap:14px;align-items:flex-start;margin:18px 0 0;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;}
+  .receipt .rk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin:0 0 4px;}
+  .receipt p{margin:0;font-size:15px;color:var(--ivory);} .receipt a{font-family:'Manrope';font-weight:700;font-size:14px;}
+  .handoff{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0;}
+  .handoff a{display:inline-flex;flex-direction:column;gap:2px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-size:13px;color:var(--muted);}
+  .handoff a b{font-family:'Manrope';font-size:14.5px;color:var(--ivory);} .handoff a:hover{border-color:var(--teal);text-decoration:none;}
+  .sharebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0;}
+  .sharebar .ok{font-size:13px;color:var(--green);}
+  .mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:26px 0 0;padding:14px 16px;border:1px dashed rgba(255,255,255,.18);border-radius:12px;}
+  .mail p{margin:0;flex:1 1 240px;font-size:14px;color:var(--body);}
+  .mail form{display:flex;gap:8px;flex:1 1 300px;}
+  .mail input{flex:1;font:500 15px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:9px 12px;}
+  @media print{.picker,.sharebar,.mail,.handoff{display:none!important;}}
 </style>
 </head>
 <body>
@@ -193,33 +230,36 @@
     </nav>
   </header>
   <main>
-  <div class="eyebrow">Free tool &middot; Growth &amp; marketing</div>
+  <div class="eyebrow">Free tool &middot; Growth &middot; Execute by channel</div>
   <h1>Customer acquisition cost (CAC) by channel</h1>
-  <p class="lede">Enter spend and new customers for up to five channels to see <b>CAC per channel</b>, <b>blended CAC</b> and <b>fully loaded CAC</b>, and which channel really wins customers cheaply.</p>
+  <p class="lede">Enter spend and new customers for up to five channels, or load an example from <b>nine industries</b>, to see <b>CAC per channel</b>, <b>blended</b> and <b>fully loaded CAC</b>, and where to move budget next.</p>
   <article>
-<section class="card calc" aria-label="Calculator"><div class="grid"><label>Currency<select id="cur"><option value="$">US dollar ($)</option><option value="৳">Bangladeshi taka (৳)</option><option value="£">Pound (£)</option><option value="€">Euro (€)</option></select></label><label>Other acquisition costs <span class="hint">sales salaries, tools, agency (optional)</span><input id="ov" type="number" inputmode="decimal" min="0" step="any" value="2000"></label></div>
-<table class="tbl"><thead><tr><th>Channel</th><th>Spend</th><th>New customers</th><th>CAC</th></tr></thead><tbody><tr><td><input id="n0" type="text" maxlength="40" value="Paid search" aria-label="Channel 1 name"></td><td><input id="s0" type="number" inputmode="decimal" min="0" step="any" value="3000" aria-label="Channel 1 spend"></td><td><input id="c0" type="number" inputmode="numeric" min="0" step="1" value="60" aria-label="Channel 1 new customers"></td><td id="r0">-</td></tr><tr><td><input id="n1" type="text" maxlength="40" value="Paid social" aria-label="Channel 2 name"></td><td><input id="s1" type="number" inputmode="decimal" min="0" step="any" value="2500" aria-label="Channel 2 spend"></td><td><input id="c1" type="number" inputmode="numeric" min="0" step="1" value="35" aria-label="Channel 2 new customers"></td><td id="r1">-</td></tr><tr><td><input id="n2" type="text" maxlength="40" value="Content and SEO" aria-label="Channel 3 name"></td><td><input id="s2" type="number" inputmode="decimal" min="0" step="any" value="1500" aria-label="Channel 3 spend"></td><td><input id="c2" type="number" inputmode="numeric" min="0" step="1" value="40" aria-label="Channel 3 new customers"></td><td id="r2">-</td></tr><tr><td><input id="n3" type="text" maxlength="40" value="Referral" aria-label="Channel 4 name"></td><td><input id="s3" type="number" inputmode="decimal" min="0" step="any" value="500" aria-label="Channel 4 spend"></td><td><input id="c3" type="number" inputmode="numeric" min="0" step="1" value="20" aria-label="Channel 4 new customers"></td><td id="r3">-</td></tr><tr><td><input id="n4" type="text" maxlength="40" value="" aria-label="Channel 5 name"></td><td><input id="s4" type="number" inputmode="decimal" min="0" step="any" value="" aria-label="Channel 5 spend"></td><td><input id="c4" type="number" inputmode="numeric" min="0" step="1" value="" aria-label="Channel 5 new customers"></td><td id="r4">-</td></tr></tbody></table>
+<section class="card calc" aria-label="Calculator"><div class="picker"><label><span class="tag">Example</span><select id="ind" aria-label="Load an industry example"><option value="telecom">Telecom: prepaid subscriber growth</option><option value="fmcg">FMCG: first-time buyers</option><option value="advertising">Agency: new clients won</option><option value="fintech">Fintech: activated wallet users</option><option value="ecommerce" selected>E-commerce: first orders</option><option value="consumertech">Consumer tech: device launch buyers</option><option value="education">Education: enrolled students</option><option value="logistics">Logistics: new B2B accounts</option><option value="healthcare">Healthcare: new patients</option></select></label><p class="pnote" id="pnote"></p></div><div class="grid"><label>Currency<select id="cur"><option value="$">US dollar ($)</option><option value="৳">Bangladeshi taka (৳)</option><option value="£">Pound (£)</option><option value="€">Euro (€)</option></select></label><label>Other acquisition costs <span class="hint">sales salaries, tools, agency (optional)</span><input id="ov" type="number" inputmode="decimal" min="0" step="any" value="2000"></label></div>
+<div style="overflow-x:auto"><table class="tbl"><thead><tr><th>Channel</th><th>Spend</th><th>New customers</th><th>CAC</th></tr></thead><tbody><tr><td><input id="n0" type="text" maxlength="40" value="Paid search" aria-label="Channel 1 name"></td><td><input id="s0" type="number" inputmode="decimal" min="0" step="any" value="3000" aria-label="Channel 1 spend"></td><td><input id="c0" type="number" inputmode="numeric" min="0" step="1" value="60" aria-label="Channel 1 new customers"></td><td id="r0">-</td></tr><tr><td><input id="n1" type="text" maxlength="40" value="Paid social" aria-label="Channel 2 name"></td><td><input id="s1" type="number" inputmode="decimal" min="0" step="any" value="2500" aria-label="Channel 2 spend"></td><td><input id="c1" type="number" inputmode="numeric" min="0" step="1" value="35" aria-label="Channel 2 new customers"></td><td id="r1">-</td></tr><tr><td><input id="n2" type="text" maxlength="40" value="Marketplace ads" aria-label="Channel 3 name"></td><td><input id="s2" type="number" inputmode="decimal" min="0" step="any" value="2000" aria-label="Channel 3 spend"></td><td><input id="c2" type="number" inputmode="numeric" min="0" step="1" value="50" aria-label="Channel 3 new customers"></td><td id="r2">-</td></tr><tr><td><input id="n3" type="text" maxlength="40" value="Affiliates" aria-label="Channel 4 name"></td><td><input id="s3" type="number" inputmode="decimal" min="0" step="any" value="1000" aria-label="Channel 4 spend"></td><td><input id="c3" type="number" inputmode="numeric" min="0" step="1" value="25" aria-label="Channel 4 new customers"></td><td id="r3">-</td></tr><tr><td><input id="n4" type="text" maxlength="40" value="Email and CRM" aria-label="Channel 5 name"></td><td><input id="s4" type="number" inputmode="decimal" min="0" step="any" value="500" aria-label="Channel 5 spend"></td><td><input id="c4" type="number" inputmode="numeric" min="0" step="1" value="20" aria-label="Channel 5 new customers"></td><td id="r4">-</td></tr></tbody></table></div>
 <div class="out" aria-live="polite">
 <div class="kpi"><span class="kl">Media CAC (blended)</span><span class="kv" id="o1">-</span></div>
 <div class="kpi"><span class="kl">Fully loaded CAC</span><span class="kv" id="o2">-</span><span class="kb">including other costs</span></div>
 <div class="kpi"><span class="kl">Cheapest channel</span><span class="kv" id="o3" style="font-size:20px">-</span></div>
 </div>
+<div class="chart" id="chart" aria-hidden="true"></div>
 <p class="verdict" id="v"></p>
 <div class="formula"><span class="k">Formula</span>CAC = spend ÷ new customers · fully loaded CAC = (all spend + other costs) ÷ all new customers</div>
-<p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
+<div class="v2row"><div class="v2box"><h3>What to do next</h3><ul id="nx"></ul></div><div class="v2box"><details class="work"><summary>Show the working, step by step</summary><ol id="work"></ol></details></div></div><div class="sharebar"><button type="button" class="btn solid" id="shcard">Download result card</button><button type="button" class="btn" id="shlink">Copy link with my numbers</button><button type="button" class="btn" id="shli">Share on LinkedIn</button><span class="ok" id="shok" aria-live="polite"></span></div><div class="receipt"><div><p class="rk">Where I used this</p><p>I built Praava Health&rsquo;s corporate-sales engine from zero, growing corporate clients from 342 to about 1,400 and corporate programs 3.1 times.</p><a href="/case/praava-corp/">Read the case: Building the corporate-sales engine from zero &rarr;</a></div></div><div class="handoff"><a href="/marketing-budget-calculator.html" id="h-budget"><span>Step before</span><b>Set the budget: Marketing budget planner</b></a><a href="/ltv-cac-calculator.html" id="h-ltv"><span>Next step, pre-filled</span><b>Compare with customer value: LTV to CAC</b></a><a href="/roas-calculator.html" id="h-roas"><span>Same stage</span><b>Check each campaign: ROAS and break-even</b></a></div><p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
 
 <h2>Blended CAC hides the story</h2>
-<p>A single blended number can look healthy while one channel quietly burns money. Per-channel CAC shows where each new customer really comes from. Fully loaded CAC, including salaries and tools, is the number to compare against customer value in the <a href="/ltv-cac-calculator.html">LTV to CAC calculator</a>.</p>
+<p>A single blended number can look healthy while one channel quietly burns money. Per-channel CAC shows where each new customer really comes from. Fully loaded CAC, including salaries and tools, is the number to compare against customer value.</p>
 <ul><li><b>Attribution is imperfect.</b> Referral and organic channels often benefit from paid activity; do not cut paid spend on CAC alone.</li>
-<li><b>Compare like with like.</b> Use the same time window and the same definition of "new customer" for every channel.</li></ul>
+<li><b>Compare like with like.</b> Use the same time window and the same definition of "new customer" for every channel.</li>
+<li><b>Every industry counts differently.</b> Pick an example above to see what changes in telecom, FMCG, fintech, education, logistics or healthcare.</li></ul><div class="mail"><p><b>Get new free tools by email.</b> One short note when a new tool or essay goes live. No spam, unsubscribe any time.</p><form id="mailf" action="https://buttondown.com/api/emails/embed-subscribe/shafaat" method="post" target="popupwindow"><input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required><button type="submit" class="btn solid">Subscribe</button></form></div>
 <div class="cta"><h2>Want a second pair of eyes on the numbers?</h2><p>I have built commercial engines from zero in fintech, consumer tech and healthcare, in the US and Bangladesh. A 30-minute call is free.</p><p><a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a></p></div>
 <section class="faq"><h2>Questions</h2>
 <h3>How do you calculate customer acquisition cost?</h3><p>Divide what you spent to acquire customers by the number of new customers in the same period. Per channel, use that channel's spend and the customers it brought.</p>
 <h3>What is fully loaded CAC?</h3><p>CAC that includes all acquisition costs, not just media: sales salaries, agency fees, tools and creative production.</p>
 <h3>What is a good CAC?</h3><p>One that your customer lifetime value comfortably covers, typically at least three times, with a payback period you can finance.</p>
+<h3>Are the industry examples benchmarks?</h3><p>No. They are illustrative numbers that show how channels and costs differ by industry. Replace them with your own data.</p>
 </section>
   </article>
-<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/campaign-pacing-calculator.html"><b>Campaign pacing calculator</b>Are you overspending or underspending against plan, and what should daily spend be now?</a><a href="/marketing-roi-calculator.html"><b>Marketing ROI calculator</b>Return on marketing investment based on incremental profit, not total revenue.</a><a href="/competitor-positioning-map.html"><b>Competitor positioning map</b>Plot your brand against rivals on two axes and spot the white space.</a></div><a class="all" href="/tools.html">See all 32 free tools &rarr;</a></section>
+<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/campaign-pacing-calculator.html"><b>Campaign pacing calculator</b>Are you overspending or underspending against plan, and what should daily spend be now?</a><a href="/marketing-roi-calculator.html"><b>Marketing ROI calculator</b>Return on marketing investment based on incremental profit, not total revenue.</a><a href="/competitor-positioning-map.html"><b>Competitor positioning map</b>Plot your brand against rivals on two axes and spot the white space.</a></div><a class="all" href="/tools.html">See all 33 free tools &rarr;</a></section>
   </main>
   <footer class="foot">
     <a href="/">&larr; Back to the portfolio</a> &middot; <a href="/essays.html">All essays</a> &middot; <a href="https://www.linkedin.com/in/sacgrowthspecialist">LinkedIn</a>
@@ -239,16 +279,65 @@
   var toQuery=function(ids){try{var p=new URLSearchParams();ids.forEach(function(k){if($(k))p.set(k,$(k).value);});history.replaceState(null,'','?'+p.toString());}catch(e){}};
   var ncdf=function(x){var t=1/(1+0.2316419*Math.abs(x)),d=0.3989423*Math.exp(-x*x/2),p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p;};
   var zfor=function(conf){return {80:1.2816,85:1.4395,90:1.6449,95:1.96,98:2.3263,99:2.5758}[conf]||1.96;};
+var SLUG="cac-calculator",TOOLNAME="Customer acquisition cost (CAC) by channel",PRESETS={"telecom": {"label": "Telecom: prepaid subscriber growth", "v": {"ov": 15000, "n0": "Retail partner network", "s0": 40000, "c0": 1600, "n1": "Digital ads", "s1": 25000, "c1": 1250, "n2": "SMS and USSD offers", "s2": 8000, "c2": 900, "n3": "Field activation", "s3": 30000, "c3": 750, "n4": "Referral bonus", "s4": 6000, "c4": 600}, "note": "Count dealer commissions and SIM subsidies as channel spend, or retail will look cheaper than it is."}, "fmcg": {"label": "FMCG: first-time buyers", "v": {"ov": 8000, "n0": "Modern trade promotion", "s0": 20000, "c0": 4000, "n1": "Social ads", "s1": 15000, "c1": 3750, "n2": "Influencers", "s2": 10000, "c2": 1500, "n3": "Sampling", "s3": 25000, "c3": 6250, "n4": "Retail media", "s4": 12000, "c4": 2000}, "note": "A \"customer\" here is a first purchase. Track repeat purchase too: cheap trial that never repeats is the most common trap."}, "advertising": {"label": "Agency: new clients won", "v": {"ov": 20000, "n0": "Competitive pitches", "s0": 30000, "c0": 3, "n1": "Referrals", "s1": 2000, "c1": 2, "n2": "Thought leadership", "s2": 8000, "c2": 2, "n3": "Industry events", "s3": 10000, "c3": 1, "n4": "Outbound", "s4": 6000, "c4": 1}, "note": "Count pitch hours at cost. Unpaid pitching is usually the most expensive channel, and it rarely shows on the P&L."}, "fintech": {"label": "Fintech: activated wallet users", "v": {"ov": 25000, "n0": "Agent network", "s0": 50000, "c0": 5000, "n1": "Paid social", "s1": 30000, "c1": 2400, "n2": "Referral bonus", "s2": 15000, "c2": 3000, "n3": "Partnerships", "s3": 20000, "c3": 1000, "n4": "App store ads", "s4": 10000, "c4": 500}, "note": "Count sign-up bonuses and agent commissions as spend, and measure on activated users, not downloads."}, "ecommerce": {"label": "E-commerce: first orders", "v": {"ov": 2000, "n0": "Paid search", "s0": 3000, "c0": 60, "n1": "Paid social", "s1": 2500, "c1": 35, "n2": "Marketplace ads", "s2": 2000, "c2": 50, "n3": "Affiliates", "s3": 1000, "c3": 25, "n4": "Email and CRM", "s4": 500, "c4": 20}, "note": "Judge CAC against first-order margin as well as lifetime value. A channel that loses money on order one needs strong repeat buying."}, "consumertech": {"label": "Consumer tech: device launch buyers", "v": {"ov": 20000, "n0": "Retail stores", "s0": 60000, "c0": 1200, "n1": "E-commerce partners", "s1": 20000, "c1": 600, "n2": "Paid social", "s2": 25000, "c2": 500, "n3": "Influencers", "s3": 15000, "c3": 250, "n4": "Launch events", "s4": 30000, "c4": 300}, "note": "Separate launch-window spend from always-on spend. Launch CAC is high by design and should be judged against the sales spike."}, "education": {"label": "Education: enrolled students", "v": {"ov": 10000, "n0": "Paid search", "s0": 8000, "c0": 80, "n1": "Social ads", "s1": 6000, "c1": 50, "n2": "School partnerships", "s2": 4000, "c2": 60, "n3": "Webinars", "s3": 2000, "c3": 25, "n4": "Referral", "s4": 1000, "c4": 20}, "note": "Count a customer at enrolment, not enquiry, and use a window of at least one intake: decisions take months."}, "logistics": {"label": "Logistics: new B2B accounts", "v": {"ov": 5000, "n0": "Sales team", "s0": 40000, "c0": 20, "n1": "LinkedIn ads", "s1": 8000, "c1": 4, "n2": "Partnerships", "s2": 5000, "c2": 5, "n3": "SEO content", "s3": 4000, "c3": 4, "n4": "Referral", "s4": 1000, "c4": 3}, "note": "Sales salaries are most of the cost. Put them in the sales-team row, not only in other costs, or field sales will look free."}, "healthcare": {"label": "Healthcare: new patients", "v": {"ov": 6000, "n0": "Paid search", "s0": 5000, "c0": 250, "n1": "Doctor referrals", "s1": 3000, "c1": 300, "n2": "Community health camps", "s2": 4000, "c2": 200, "n3": "Corporate programs", "s3": 8000, "c3": 400, "n4": "WhatsApp and app", "s4": 1500, "c4": 150}, "note": "Keep referral costs transparent. Paying for referrals can look cheap while eroding trust, which is the real asset."}};
 
-  var ids=['cur','ov'];for(var i=0;i<5;i++){ids.push('n'+i,'s'+i,'c'+i);}fromQuery(ids);
-  function f(){var c=$('cur').value,ov=num('ov')||0,S=0,C=0,best=null,worst=null;
+  var hbars=function(rows,c,o){o=o||{};var el=$('chart');if(!el)return;rows=rows.filter(function(r){return isFinite(r.v)&&r.v>=0;});if(!rows.length){el.innerHTML='';return;}
+    var W=680,rh=34,lw=o.lw||170,bw=W-lw-130,mx=Math.max.apply(null,rows.map(function(r){return r.v;}))||1,h=8+rows.length*rh+4,s='<svg viewBox="0 0 '+W+' '+h+'" role="img" aria-label="'+esc(o.label||'Chart')+'">';
+    rows.forEach(function(r,i){var y=8+i*rh,w=Math.max(2,r.v/mx*bw);s+='<text x="'+(lw-10)+'" y="'+(y+19)+'" text-anchor="end" font-size="13" fill="#C7CDD6" font-family="Inter,system-ui">'+esc(String(r.n).slice(0,26))+'</text><rect x="'+lw+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="18" rx="4" fill="'+(r.col||'#33C4C4')+'"/><text x="'+(lw+w+8)+'" y="'+(y+19)+'" font-size="13" fill="#F3EFE7" font-family="Inter,system-ui" font-weight="600">'+esc(r.t!==undefined?r.t:fm(r.v,c))+'</text>';});
+    el.innerHTML=s+'</svg>';};
+  var work=function(lines){var el=$('work');if(el)el.innerHTML=lines.map(function(l){return '<li>'+esc(l)+'</li>';}).join('');};
+  var nextUp=function(items){var el=$('nx');if(!el)return;el.innerHTML=items.map(function(it){return '<li>'+esc(it.t)+(it.href?' <a href="'+esc(it.href)+'">'+esc(it.a)+' &rarr;</a>':'')+'</li>';}).join('');};
+  var shareEv=function(m){try{window.track&&window.track('tool_share',{tool:SLUG,method:m});}catch(e){}};
+  var flash=function(t){var el=$('shok');if(!el)return;el.textContent=t;setTimeout(function(){el.textContent='';},2600);};
+  function applyPreset(k,run){var p=PRESETS[k];if(!p)return;Object.keys(p.v).forEach(function(id){if($(id))$(id).value=p.v[id];});$('pnote').textContent=p.note||'';if(run)run();}
+  function initPicker(run){var s=$('ind');if(!s)return;var q=null;try{q=new URLSearchParams(location.search);}catch(e){}
+    var fromUrl=q&&[...q.keys()].some(function(k){return k!=='ind'&&!!$(k);});if(q&&q.get('ind')&&PRESETS[q.get('ind')])s.value=q.get('ind');
+    if(fromUrl&&!(q&&q.get('ind'))&&PRESETS.custom)s.value='custom';if(!fromUrl)applyPreset(s.value);else $('pnote').textContent=(PRESETS[s.value]||{}).note||'';
+    s.addEventListener('change',function(){applyPreset(s.value,run);try{window.track&&window.track('tool_preset',{tool:SLUG,preset:s.value});}catch(e){}});}
+  function wrapText(ctx,t,x,y,mw,lh,maxL){var w=t.split(' '),line='',n=0;for(var i=0;i<w.length;i++){var tl=line+w[i]+' ';if(ctx.measureText(tl).width>mw&&line){ctx.fillText(line,x,y);y+=lh;line=w[i]+' ';if(++n>=maxL-1){var rest=w.slice(i).join(' ');while(ctx.measureText(rest+'…').width>mw&&rest.length)rest=rest.slice(0,-1);ctx.fillText(rest+(rest.length<w.slice(i).join(' ').length?'…':''),x,y);return;}}else line=tl;}ctx.fillText(line,x,y);}
+  function card(){var c=document.createElement('canvas');c.width=1200;c.height=630;var x=c.getContext('2d');var F='Manrope, Inter, system-ui, sans-serif';
+    x.fillStyle='#0B0F14';x.fillRect(0,0,1200,630);x.fillStyle='#33C4C4';x.fillRect(0,0,1200,8);
+    x.fillStyle='#7f8894';x.font='600 20px '+F;x.fillText('FREE TOOL',64,72);
+    x.fillStyle='#F3EFE7';x.font='800 44px '+F;wrapText(x,TOOLNAME,64,124,1072,52,2);
+    var ks=[].slice.call(document.querySelectorAll('.out .kpi')).slice(0,4);var cw=1072/Math.max(ks.length,1);
+    ks.forEach(function(k,i){var l=(k.querySelector('.kl')||{}).textContent||'',v=(k.querySelector('.kv')||{}).textContent||'';x.fillStyle='#7f8894';x.font='600 18px '+F;x.fillText(l.toUpperCase().slice(0,26),64+i*cw,268);x.fillStyle='#F3EFE7';var fs=46;x.font='800 '+fs+'px '+F;while(x.measureText(v).width>cw-24&&fs>24){fs-=2;x.font='800 '+fs+'px '+F;}var vv=v;if(x.measureText(vv).width>cw-24){while(x.measureText(vv+'…').width>cw-24&&vv.length>3)vv=vv.slice(0,-1);vv+='…';}x.fillText(vv,64+i*cw,324);});
+    x.fillStyle='#C7CDD6';x.font='400 25px Inter, system-ui, sans-serif';var vt=(($('v')||{}).textContent||'').trim()||(($('say1')||{}).textContent||'').trim()||(($('obj')||{}).textContent||'').trim();wrapText(x,vt,64,ks.length?410:250,1072,36,ks.length?3:6);
+    x.fillStyle='#33C4C4';x.font='700 22px '+F;x.fillText('shafaatalichoyon.com/'+SLUG,64,578);x.fillStyle='#7f8894';x.font='500 20px '+F;x.textAlign='right';x.fillText('Md Shafaat Ali Choyon',1136,578);
+    c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=SLUG+'-result.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},800);});shareEv('card');flash('Result card downloaded');}
+  function initShare(){var b=$('shcard');if(b)b.addEventListener('click',card);
+    var cl=$('shlink');if(cl)cl.addEventListener('click',function(){var u=location.href;try{navigator.clipboard.writeText(u).then(function(){flash('Link with your numbers copied');});}catch(e){prompt('Copy this link',u);}shareEv('link_numbers');});
+    var ln=$('shli');if(ln)ln.addEventListener('click',function(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.origin+location.pathname),'_blank','noopener');shareEv('linkedin');});
+    var mf=$('mailf');if(mf)mf.addEventListener('submit',function(){try{window.open('https://buttondown.com/shafaat','popupwindow');window.track&&window.track('subscribe',{from:'tool',tool:SLUG});}catch(e){}});}
+
+  var ids=['ind','cur','ov'];for(var i=0;i<5;i++){ids.push('n'+i,'s'+i,'c'+i);}fromQuery(ids);
+  function chart(rows,blend,c){if(!rows.length){$('chart').innerHTML='';return;}var W=680,rh=34,top=8,lw=170,bw=W-lw-110,mx=Math.max.apply(null,rows.map(function(r){return r.v;}).concat([blend]));
+    var h=top+rows.length*rh+26,s='<svg viewBox="0 0 '+W+' '+h+'" role="img" aria-label="CAC by channel">';var lo=Math.min.apply(null,rows.map(function(r){return r.v;})),hi=Math.max.apply(null,rows.map(function(r){return r.v;}));
+    rows.forEach(function(r,i){var y=top+i*rh,w=Math.max(2,r.v/mx*bw),col=rows.length>1&&r.v===lo?'#4FC48A':rows.length>1&&r.v===hi?'#F0705A':'#33C4C4';
+      s+='<text x="'+(lw-10)+'" y="'+(y+19)+'" text-anchor="end" font-size="13" fill="#C7CDD6" font-family="Inter,system-ui">'+esc(r.n.slice(0,24))+'</text><rect x="'+lw+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="18" rx="4" fill="'+col+'"/><text x="'+(lw+w+8)+'" y="'+(y+19)+'" font-size="13" fill="#F3EFE7" font-family="Inter,system-ui" font-weight="600">'+esc(fm(r.v,c,2))+'</text>';});
+    var bx=lw+blend/mx*bw;s+='<line x1="'+bx.toFixed(1)+'" x2="'+bx.toFixed(1)+'" y1="'+top+'" y2="'+(top+rows.length*rh)+'" stroke="#F4A24C" stroke-dasharray="4 4"/><text x="'+bx.toFixed(1)+'" y="'+(h-6)+'" text-anchor="middle" font-size="12" fill="#F4A24C" font-family="Inter,system-ui">blended '+esc(fm(blend,c,2))+'</text></svg>';$('chart').innerHTML=s;}
+  function f(){var c=$('cur').value,ov=num('ov')||0,S=0,C=0,rows=[],w=[];
     for(var i=0;i<5;i++){var s=num('s'+i),k=num('c'+i),nm=($('n'+i).value||'Channel '+(i+1));if(s>0||k>0){S+=s||0;C+=k||0;}
-      if(s>0&&k>0){var v=s/k;$('r'+i).textContent=fm(v,c,2);if(!best||v<best[1])best=[nm,v];if(!worst||v>worst[1])worst=[nm,v];}else $('r'+i).textContent='-';}
-    if(!(C>0)){$('v').textContent='Enter spend and new customers for at least one channel.';return;}
-    $('o1').textContent=fm(S/C,c,2);$('o2').textContent=fm((S+ov)/C,c,2);$('o3').textContent=best?best[0]+' ('+fm(best[1],c,2)+')':'-';
-    $('v').textContent=(best&&worst&&best[0]!==worst[0])?worst[0]+' costs '+(worst[1]/best[1]).toFixed(1)+'x more per customer than '+best[0]+'. Before shifting budget, check customer quality: cheap customers who churn fast are not cheap.':'Add more channels to compare them.';
+      if(s>0&&k>0){var v=s/k;$('r'+i).textContent=fm(v,c,2);rows.push({n:nm,v:v,s:s,k:k});w.push(nm+': '+fm(s,c)+' ÷ '+fm(k)+' customers = '+fm(v,c,2));}else $('r'+i).textContent='-';}
+    if(!(C>0)){$('v').textContent='Enter spend and new customers for at least one channel.';['o1','o2','o3'].forEach(function(k){$(k).textContent='-';});chart([],0,c);work([]);nextUp([]);toQuery(ids);return;}
+    var bl=S/C,fl=(S+ov)/C,srt=rows.slice().sort(function(a,b){return a.v-b.v;}),best=srt[0],worst=srt[srt.length-1];
+    $('o1').textContent=fm(bl,c,2);$('o2').textContent=fm(fl,c,2);$('o3').textContent=best?best.n+' ('+fm(best.v,c,2)+')':'-';
+    var spread=best&&worst?worst.v/best.v:1,ovs=fl>0?(fl-bl)/fl:0;
+    $('v').textContent=(best&&worst&&best!==worst)?'Per new customer, '+worst.n+' cost '+spread.toFixed(1)+'x as much as '+best.n+'. Fully loaded, each new customer costs '+fm(fl,c,2)+'.':'Add more channels to compare them.';
+    chart(rows,bl,c);
+    w.push('Blended media CAC: '+fm(S,c)+' ÷ '+fm(C)+' customers = '+fm(bl,c,2));
+    w.push('Fully loaded CAC: ('+fm(S,c)+' + '+fm(ov,c)+' other costs) ÷ '+fm(C)+' = '+fm(fl,c,2));
+    if(best&&worst&&best!==worst)w.push('Spread: '+fm(worst.v,c,2)+' ÷ '+fm(best.v,c,2)+' = '+spread.toFixed(1)+'x');work(w);
+    var nx=[];
+    if(spread>=2)nx.push({t:'Move a test slice, 10 to 20%, of '+worst.n+'’s budget to '+best.n+', and watch whether its CAC holds as spend grows. Cheap channels often get dearer at scale.'});
+    else nx.push({t:'Your channels are within 2x of each other, which is healthy. Look for growth in the channel with the most room to scale, not just the cheapest.'});
+    nx.push({t:'Check customer quality before moving money: compare 90-day retention or revenue by channel. A cheap customer who leaves fast is not cheap.'});
+    if(ovs>0.3)nx.push({t:'Other costs are '+Math.round(ovs*100)+'% of fully loaded CAC. Media is not your biggest lever; look at sales time, tools and agency fees.'});
+    nx.push({t:'Compare fully loaded CAC with what a customer is worth.',href:'/ltv-cac-calculator.html?cur='+encodeURIComponent(c)+'&cac='+fl.toFixed(2),a:'LTV to CAC, pre-filled'});
+    nextUp(nx);
+    var hl=$('h-ltv');if(hl)hl.href='/ltv-cac-calculator.html?cur='+encodeURIComponent(c)+'&cac='+fl.toFixed(2);
     toQuery(ids);}
-  bindAll(ids,f,'cac');
+  initPicker(f);bindAll(ids,f,'cac');
+  initShare();
 })();
 </script>
 <script defer src="/assets/analytics.js"></script>

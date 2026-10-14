@@ -179,6 +179,35 @@
   .rng input[type=range]{grid-column:1 / -1;padding:0;accent-color:var(--teal);}
   .rng span{font-size:14px;color:var(--body);} .rng b{font-family:'Manrope';color:var(--ivory);}
   @media print{header.top,.more,.cta,.faq,footer.foot,.privacy-note,.btn,.lede,.eyebrow{display:none!important;} body{background:#fff;color:#000;} .out-doc{border:none;color:#000;background:#fff;}}
+
+  .picker{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:6px 0 18px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;}
+  .picker label{flex-direction:row!important;align-items:center;gap:10px!important;min-width:0;max-width:100%;flex:0 1 auto;}
+  .picker select{width:auto!important;min-width:0;max-width:100%;text-overflow:ellipsis;}
+  @media(max-width:560px){.picker label{flex-direction:column!important;align-items:flex-start;width:100%;} .picker select{width:100%!important;}}
+  .picker .pnote{flex:1 1 260px;font-size:13.5px;color:var(--muted);margin:0;}
+  .picker .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);}
+  .chart{margin:8px 0 6px;} .chart svg{width:100%;height:auto;display:block;}
+  .v2row{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0 6px;}
+  .v2box{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .v2box h3{font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);margin:0 0 10px;}
+  .v2box ol,.v2box ul{margin:0;padding-left:20px;color:var(--body);font-size:14.5px;line-height:1.6;}
+  .v2box li{margin:0 0 6px;}
+  details.work{margin:4px 0 0;} details.work summary{cursor:pointer;font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);list-style:none;}
+  details.work summary::-webkit-details-marker{display:none;} details.work summary:before{content:'+ ';color:var(--teal);} details.work[open] summary:before{content:'\2212  ';}
+  details.work ol{margin-top:10px;font-family:ui-monospace,Menlo,monospace;font-size:13.5px;}
+  .receipt{display:flex;gap:14px;align-items:flex-start;margin:18px 0 0;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;}
+  .receipt .rk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin:0 0 4px;}
+  .receipt p{margin:0;font-size:15px;color:var(--ivory);} .receipt a{font-family:'Manrope';font-weight:700;font-size:14px;}
+  .handoff{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0;}
+  .handoff a{display:inline-flex;flex-direction:column;gap:2px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-size:13px;color:var(--muted);}
+  .handoff a b{font-family:'Manrope';font-size:14.5px;color:var(--ivory);} .handoff a:hover{border-color:var(--teal);text-decoration:none;}
+  .sharebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0;}
+  .sharebar .ok{font-size:13px;color:var(--green);}
+  .mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:26px 0 0;padding:14px 16px;border:1px dashed rgba(255,255,255,.18);border-radius:12px;}
+  .mail p{margin:0;flex:1 1 240px;font-size:14px;color:var(--body);}
+  .mail form{display:flex;gap:8px;flex:1 1 300px;}
+  .mail input{flex:1;font:500 15px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:9px 12px;}
+  @media print{.picker,.sharebar,.mail,.handoff{display:none!important;}}
 </style>
 </head>
 <body>
@@ -193,11 +222,11 @@
     </nav>
   </header>
   <main>
-  <div class="eyebrow">Free tool &middot; Growth &amp; marketing</div>
+  <div class="eyebrow">Free tool &middot; Growth &middot; Plan</div>
   <h1>Revenue goal funnel planner</h1>
-  <p class="lede">Start from the number you have to hit. See how many <b>customers, leads and visitors</b> it takes, what the traffic will cost, and which step is worth fixing first.</p>
+  <p class="lede">Start from the number you have to hit. See how many <b>customers, leads and visitors</b> it takes, what the traffic will cost, and which step is worth fixing first. Load an example from <b>nine industries</b> to see how it changes.</p>
   <article>
-<section class="card calc" aria-label="Calculator"><div class="grid"><label>Currency<select id="cur"><option value="$">US dollar ($)</option><option value="৳">Bangladeshi taka (৳)</option><option value="£">Pound (£)</option><option value="€">Euro (€)</option></select></label>
+<section class="card calc" aria-label="Calculator"><div class="picker"><label><span class="tag">Example</span><select id="ind" aria-label="Load an industry example"><option value="telecom">Telecom: postpaid plan sign-ups</option><option value="fmcg">FMCG: direct-to-consumer subscription</option><option value="advertising">Agency: new retainer clients</option><option value="fintech">Fintech: small-business loans</option><option value="ecommerce">E-commerce: monthly revenue goal</option><option value="consumertech">Consumer tech: online device sales</option><option value="education" selected>Education: course enrolments</option><option value="logistics">Logistics: new B2B contracts</option><option value="healthcare">Healthcare: new clinic patients</option><option value="custom">Your own numbers</option></select></label><p class="pnote" id="pnote"></p></div><div class="grid"><label>Currency<select id="cur"><option value="$">US dollar ($)</option><option value="৳">Bangladeshi taka (৳)</option><option value="£">Pound (£)</option><option value="€">Euro (€)</option></select></label>
 <label>Revenue target <span class="hint">for the period you are planning</span><input id="target" type="number" inputmode="decimal" min="0" step="any" value="100000"></label>
 <label>Average revenue per customer <span class="hint">order value or first-year value</span><input id="aov" type="number" inputmode="decimal" min="0" step="any" value="500"></label>
 <label>Lead to customer rate (%) <span class="hint">close rate</span><input id="close" type="number" inputmode="decimal" min="0" max="100" step="any" value="20"></label>
@@ -210,16 +239,17 @@
 <div class="kpi"><span class="kl">Visitors needed</span><span class="kv" id="o3">-</span></div>
 <div class="kpi"><span class="kl">Media budget</span><span class="kv" id="o4">-</span><span class="kb" id="o4b"></span></div>
 </div>
+<div class="chart" id="chart" aria-hidden="true"></div>
 <p class="verdict" id="v"></p>
 <div class="formula"><span class="k">Formula</span>Customers = target ÷ revenue per customer · Leads = customers ÷ close rate · Visitors = leads ÷ lead rate</div>
-<p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
+<div class="v2row"><div class="v2box"><h3>What to do next</h3><ul id="nx"></ul></div><div class="v2box"><details class="work"><summary>Show the working, step by step</summary><ol id="work"></ol></details></div></div><div class="sharebar"><button type="button" class="btn solid" id="shcard">Download result card</button><button type="button" class="btn" id="shlink">Copy link with my numbers</button><button type="button" class="btn" id="shli">Share on LinkedIn</button><span class="ok" id="shok" aria-live="polite"></span></div><div class="receipt"><div><p class="rk">Where I used this</p><p>At ACCA I designed a member-growth ecosystem that hit 100% of its targets and doubled approved employers from 8 to 16.</p><a href="/case/acca-ecosystem/">Read the case: Designing a member-growth ecosystem, not a calendar of events &rarr;</a></div></div><div class="handoff"><a href="/market-size-calculator.html" id="h1"><span>Step before</span><b>How big is the prize? Market size</b></a><a href="/campaign-pacing-calculator.html" id="h2"><span>Next step, pre-filled</span><b>Spend the budget evenly: Campaign pacing</b></a><a href="/cac-calculator.html" id="h3"><span>Same stage</span><b>Where will customers come from? CAC by channel</b></a></div><p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
 
 <h2>How to use the plan</h2>
 <ul>
 <li><b>Use real rates, not hopes.</b> Take conversion rates from the last 3 to 6 months. If you have none, start conservative and update after the first month.</li>
 <li><b>Find the weakest step.</b> Doubling traffic doubles cost. Improving a weak conversion step often costs far less and compounds through the rest of the funnel.</li>
 <li><b>Check the budget against value.</b> If the media budget per customer is close to what a customer is worth, the plan does not work at any scale. See the <a href="/ltv-cac-calculator.html">LTV to CAC calculator</a>.</li>
-</ul>
+</ul><div class="mail"><p><b>Get new free tools by email.</b> One short note when a new tool or essay goes live. No spam, unsubscribe any time.</p><form id="mailf" action="https://buttondown.com/api/emails/embed-subscribe/shafaat" method="post" target="popupwindow"><input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required><button type="submit" class="btn solid">Subscribe</button></form></div>
 <div class="cta"><h2>Want a second pair of eyes on the numbers?</h2><p>I have built commercial engines from zero in fintech, consumer tech and healthcare, in the US and Bangladesh. A 30-minute call is free.</p><p><a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a></p></div>
 <section class="faq"><h2>Questions</h2>
 <h3>What is a reverse funnel calculation?</h3><p>It starts from the revenue you want and works backwards through each conversion rate to the customers, leads and visitors needed to get there.</p>
@@ -227,7 +257,7 @@
 <h3>Does this include repeat purchases?</h3><p>Only if you enter a revenue per customer that includes them, for example first-year value instead of a single order.</p>
 </section>
   </article>
-<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/ltv-cac-calculator.html"><b>LTV to CAC ratio and payback calculator</b>Does each customer pay back what it cost to win them, and how fast? In dollars or taka.</a><a href="/roas-calculator.html"><b>ROAS and break-even calculator</b>Did the campaign actually make money once margin and other costs are counted?</a><a href="/brand-positioning-ladder.html"><b>Brand positioning ladder</b>Climb from what you make to what you stand for, and write a positioning statement.</a></div><a class="all" href="/tools.html">See all 32 free tools &rarr;</a></section>
+<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/ltv-cac-calculator.html"><b>LTV to CAC ratio and payback calculator</b>Does each customer pay back what it cost to win them, and how fast? In dollars or taka.</a><a href="/roas-calculator.html"><b>ROAS and break-even calculator</b>Did the campaign actually make money once margin and other costs are counted?</a><a href="/brand-positioning-ladder.html"><b>Brand positioning ladder</b>Climb from what you make to what you stand for, and write a positioning statement.</a></div><a class="all" href="/tools.html">See all 33 free tools &rarr;</a></section>
   </main>
   <footer class="foot">
     <a href="/">&larr; Back to the portfolio</a> &middot; <a href="/essays.html">All essays</a> &middot; <a href="https://www.linkedin.com/in/sacgrowthspecialist">LinkedIn</a>
@@ -247,6 +277,46 @@
   var toQuery=function(ids){try{var p=new URLSearchParams();ids.forEach(function(k){if($(k))p.set(k,$(k).value);});history.replaceState(null,'','?'+p.toString());}catch(e){}};
   var ncdf=function(x){var t=1/(1+0.2316419*Math.abs(x)),d=0.3989423*Math.exp(-x*x/2),p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p;};
   var zfor=function(conf){return {80:1.2816,85:1.4395,90:1.6449,95:1.96,98:2.3263,99:2.5758}[conf]||1.96;};
+var SLUG="revenue-goal-funnel-calculator",TOOLNAME="Revenue goal funnel planner",PRESETS={"telecom": {"label": "Telecom: postpaid plan sign-ups", "note": "Use revenue per customer over the plan term, or the funnel will ask for far more people than you need.", "v": {"target": 500000, "aov": 60, "close": 30, "lead": 5, "cpc": 0.4}}, "fmcg": {"label": "FMCG: direct-to-consumer subscription", "note": "A \"lead\" here is a sample request or a filled cart. Trial-to-paid is the close rate that matters.", "v": {"target": 200000, "aov": 40, "close": 25, "lead": 4, "cpc": 0.6}}, "advertising": {"label": "Agency: new retainer clients", "note": "Agency funnels are tiny and slow. A few extra qualified meetings matter more than traffic.", "v": {"target": 600000, "aov": 120000, "close": 25, "lead": 1, "cpc": 4}}, "fintech": {"label": "Fintech: small-business loans", "note": "Approval rates cap the close rate. Model the share of applicants you can actually approve.", "v": {"target": 300000, "aov": 600, "close": 15, "lead": 4, "cpc": 1.2}}, "ecommerce": {"label": "E-commerce: monthly revenue goal", "note": "Here a \"lead\" is an add-to-cart. Abandoned-cart recovery is usually the cheapest lift.", "v": {"target": 150000, "aov": 60, "close": 35, "lead": 8, "cpc": 0.8}}, "consumertech": {"label": "Consumer tech: online device sales", "note": "High prices mean long research. Returning visitors close far better than first-time ones.", "v": {"target": 400000, "aov": 450, "close": 12, "lead": 6, "cpc": 0.9}}, "education": {"label": "Education: course enrolments", "note": "A lead is an enquiry; the close rate is enquiry to paid enrolment. Speed of follow-up moves it most.", "v": {"target": 100000, "aov": 500, "close": 20, "lead": 3, "cpc": 1.5}}, "logistics": {"label": "Logistics: new B2B contracts", "note": "Use first-year contract value per customer. Sales capacity, not traffic, usually limits this funnel.", "v": {"target": 500000, "aov": 25000, "close": 20, "lead": 2, "cpc": 3}}, "healthcare": {"label": "Healthcare: new clinic patients", "note": "A lead is a booking request. No-shows sit between lead and patient; reminders lift the close rate cheaply.", "v": {"target": 120000, "aov": 80, "close": 40, "lead": 5, "cpc": 1}}, "custom": {"label": "Your own numbers", "v": {}, "note": "Enter your own figures. The examples are illustrative, not benchmarks."}};
+
+  var hbars=function(rows,c,o){o=o||{};var el=$('chart');if(!el)return;rows=rows.filter(function(r){return isFinite(r.v)&&r.v>=0;});if(!rows.length){el.innerHTML='';return;}
+    var W=680,rh=34,lw=o.lw||170,bw=W-lw-130,mx=Math.max.apply(null,rows.map(function(r){return r.v;}))||1,h=8+rows.length*rh+4,s='<svg viewBox="0 0 '+W+' '+h+'" role="img" aria-label="'+esc(o.label||'Chart')+'">';
+    rows.forEach(function(r,i){var y=8+i*rh,w=Math.max(2,r.v/mx*bw);s+='<text x="'+(lw-10)+'" y="'+(y+19)+'" text-anchor="end" font-size="13" fill="#C7CDD6" font-family="Inter,system-ui">'+esc(String(r.n).slice(0,26))+'</text><rect x="'+lw+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="18" rx="4" fill="'+(r.col||'#33C4C4')+'"/><text x="'+(lw+w+8)+'" y="'+(y+19)+'" font-size="13" fill="#F3EFE7" font-family="Inter,system-ui" font-weight="600">'+esc(r.t!==undefined?r.t:fm(r.v,c))+'</text>';});
+    el.innerHTML=s+'</svg>';};
+  var work=function(lines){var el=$('work');if(el)el.innerHTML=lines.map(function(l){return '<li>'+esc(l)+'</li>';}).join('');};
+  var nextUp=function(items){var el=$('nx');if(!el)return;el.innerHTML=items.map(function(it){return '<li>'+esc(it.t)+(it.href?' <a href="'+esc(it.href)+'">'+esc(it.a)+' &rarr;</a>':'')+'</li>';}).join('');};
+  var shareEv=function(m){try{window.track&&window.track('tool_share',{tool:SLUG,method:m});}catch(e){}};
+  var flash=function(t){var el=$('shok');if(!el)return;el.textContent=t;setTimeout(function(){el.textContent='';},2600);};
+  function applyPreset(k,run){var p=PRESETS[k];if(!p)return;Object.keys(p.v).forEach(function(id){if($(id))$(id).value=p.v[id];});$('pnote').textContent=p.note||'';if(run)run();}
+  function initPicker(run){var s=$('ind');if(!s)return;var q=null;try{q=new URLSearchParams(location.search);}catch(e){}
+    var fromUrl=q&&[...q.keys()].some(function(k){return k!=='ind'&&!!$(k);});if(q&&q.get('ind')&&PRESETS[q.get('ind')])s.value=q.get('ind');
+    if(fromUrl&&!(q&&q.get('ind'))&&PRESETS.custom)s.value='custom';if(!fromUrl)applyPreset(s.value);else $('pnote').textContent=(PRESETS[s.value]||{}).note||'';
+    s.addEventListener('change',function(){applyPreset(s.value,run);try{window.track&&window.track('tool_preset',{tool:SLUG,preset:s.value});}catch(e){}});}
+  function wrapText(ctx,t,x,y,mw,lh,maxL){var w=t.split(' '),line='',n=0;for(var i=0;i<w.length;i++){var tl=line+w[i]+' ';if(ctx.measureText(tl).width>mw&&line){ctx.fillText(line,x,y);y+=lh;line=w[i]+' ';if(++n>=maxL-1){var rest=w.slice(i).join(' ');while(ctx.measureText(rest+'…').width>mw&&rest.length)rest=rest.slice(0,-1);ctx.fillText(rest+(rest.length<w.slice(i).join(' ').length?'…':''),x,y);return;}}else line=tl;}ctx.fillText(line,x,y);}
+  function card(){var c=document.createElement('canvas');c.width=1200;c.height=630;var x=c.getContext('2d');var F='Manrope, Inter, system-ui, sans-serif';
+    x.fillStyle='#0B0F14';x.fillRect(0,0,1200,630);x.fillStyle='#33C4C4';x.fillRect(0,0,1200,8);
+    x.fillStyle='#7f8894';x.font='600 20px '+F;x.fillText('FREE TOOL',64,72);
+    x.fillStyle='#F3EFE7';x.font='800 44px '+F;wrapText(x,TOOLNAME,64,124,1072,52,2);
+    var ks=[].slice.call(document.querySelectorAll('.out .kpi')).slice(0,4);var cw=1072/Math.max(ks.length,1);
+    ks.forEach(function(k,i){var l=(k.querySelector('.kl')||{}).textContent||'',v=(k.querySelector('.kv')||{}).textContent||'';x.fillStyle='#7f8894';x.font='600 18px '+F;x.fillText(l.toUpperCase().slice(0,26),64+i*cw,268);x.fillStyle='#F3EFE7';var fs=46;x.font='800 '+fs+'px '+F;while(x.measureText(v).width>cw-24&&fs>24){fs-=2;x.font='800 '+fs+'px '+F;}var vv=v;if(x.measureText(vv).width>cw-24){while(x.measureText(vv+'…').width>cw-24&&vv.length>3)vv=vv.slice(0,-1);vv+='…';}x.fillText(vv,64+i*cw,324);});
+    x.fillStyle='#C7CDD6';x.font='400 25px Inter, system-ui, sans-serif';var vt=(($('v')||{}).textContent||'').trim()||(($('say1')||{}).textContent||'').trim()||(($('obj')||{}).textContent||'').trim();wrapText(x,vt,64,ks.length?410:250,1072,36,ks.length?3:6);
+    x.fillStyle='#33C4C4';x.font='700 22px '+F;x.fillText('shafaatalichoyon.com/'+SLUG,64,578);x.fillStyle='#7f8894';x.font='500 20px '+F;x.textAlign='right';x.fillText('Md Shafaat Ali Choyon',1136,578);
+    c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=SLUG+'-result.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},800);});shareEv('card');flash('Result card downloaded');}
+  function initShare(){var b=$('shcard');if(b)b.addEventListener('click',card);
+    var cl=$('shlink');if(cl)cl.addEventListener('click',function(){var u=location.href;try{navigator.clipboard.writeText(u).then(function(){flash('Link with your numbers copied');});}catch(e){prompt('Copy this link',u);}shareEv('link_numbers');});
+    var ln=$('shli');if(ln)ln.addEventListener('click',function(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.origin+location.pathname),'_blank','noopener');shareEv('linkedin');});
+    var mf=$('mailf');if(mf)mf.addEventListener('submit',function(){try{window.open('https://buttondown.com/shafaat','popupwindow');window.track&&window.track('subscribe',{from:'tool',tool:SLUG});}catch(e){}});}
+
+  var __tq=toQuery;toQuery=function(a){__tq(a.indexOf('ind')<0?a.concat('ind'):a);};
+  function POST(){var c=$('cur').value,t=num('target'),a=num('aov'),cl=num('close')/100,l=num('lead')/100,cpc=num('cpc');if(!(t>0&&a>0&&cl>0&&l>0)){work([]);nextUp([]);hbars([]);return;}
+    var cu=Math.ceil(t/a),le=Math.ceil(cu/cl),vi=Math.ceil(le/l),b=cpc>0?vi*cpc:NaN;
+    work(['Customers: '+fm(t,c)+' ÷ '+fm(a,c)+' per customer = '+fm(cu),'Leads: '+fm(cu)+' ÷ '+fm(cl*100,'',1)+'% close rate = '+fm(le),'Visitors: '+fm(le)+' ÷ '+fm(l*100,'',1)+'% lead rate = '+fm(vi)].concat(cpc>0?['Media budget: '+fm(vi)+' visitors × '+fm(cpc,c,2)+' = '+fm(b,c)]:[]));
+    hbars([{n:'Visitors',v:vi,t:fm(vi)},{n:'Leads',v:le,t:fm(le)},{n:'Customers',v:cu,t:fm(cu),col:'#4FC48A'}],c,{label:'Funnel volumes'});
+    var nx=[],weak=cl<0.2?'close rate':'lead rate';
+    nx.push({t:'Work on the weaker stage first. Your '+weak+' has the most room: improving it by a quarter cuts the visitors you need by a fifth.'});
+    nx.push({t:'Test the cheapest lever first: faster follow-up for the close rate, a clearer offer or landing page for the lead rate.'});
+    if(cpc>0){var u='/campaign-pacing-calculator.html?cur='+encodeURIComponent(c)+'&b='+Math.round(b);nx.push({t:'Plan the spend of '+fm(b,c)+' across the campaign.',href:u,a:'Campaign pacing, pre-filled'});if($('h2'))$('h2').href=u;}
+    nextUp(nx);}
 
   var ids=['cur','target','aov','close','lead','cpc'];fromQuery(ids);
   function f(){var c=$('cur').value,t=num('target'),a=num('aov'),cl=num('close')/100,l=num('lead')/100,cpc=num('cpc');
@@ -257,7 +327,8 @@
     var le2=Math.ceil(cu/(cl*1.25)),vi2=Math.ceil(le2/l);
     $('v').textContent='To hit '+fm(t,c)+' you need about '+fm(vi)+' visitors. Lifting the close rate by a quarter, from '+(cl*100).toFixed(1)+'% to '+(cl*125).toFixed(1)+'%, would cut that to '+fm(vi2)+'. Conversion is usually cheaper to fix than traffic.';
     toQuery(ids);}
-  bindAll(ids,f,'funnel');
+  var __f=f;f=function(){__f();try{POST();}catch(e){}};initPicker(f);bindAll(ids.concat('ind'),f,'funnel');
+  initShare();
 })();
 </script>
 <script defer src="/assets/analytics.js"></script>
