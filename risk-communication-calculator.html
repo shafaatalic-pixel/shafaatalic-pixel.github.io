@@ -277,7 +277,8 @@
 (function(){
   var $=function(id){return document.getElementById(id);};
   var num=function(id){var v=parseFloat(($(id)||{}).value);return isFinite(v)?v:NaN;};
-  var fm=function(n,c,d){if(!isFinite(n))return '-';var a=Math.abs(n);var s=a>=1e7?(n/1e6).toFixed(1)+'M':n.toLocaleString('en-US',{maximumFractionDigits:d===undefined?0:d});return (c||'')+s;};
+  var an=function(x){var t=String(x);return /^(8|11$|18$|11\d{3}$|18\d{3}$)/.test(t)?'An ':'A ';};
+  var fm=function(n,c,d){if(!isFinite(n))return '-';var a=Math.abs(n);var s=a>=1e9?(n/1e9).toFixed(1)+'B':a>=1e7?(n/1e6).toFixed(1)+'M':n.toLocaleString('en-US',{maximumFractionDigits:d===undefined?0:d});return (c&&s.charAt(0)==='-')?'-'+c+s.slice(1):(c||'')+s;};
   var band=function(el,cls,txt){el.className='kb '+(cls||'');el.textContent=txt;};
   var esc=function(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');};
   var __used=false; var used=function(slug){if(__used)return;__used=true;try{window.track&&window.track('tool_use',{tool:slug});}catch(e){}};
