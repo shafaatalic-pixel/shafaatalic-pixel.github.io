@@ -252,6 +252,7 @@
   .l2 .eyebrow a{color:var(--cat);text-decoration:none;font-weight:600;}
   .l2 .eyebrow a:hover{text-decoration:underline;}
   .l2 .eyebrow .st{color:var(--faint);}
+  .l2 .eyebrow .advl{display:block;margin-top:6px;font-size:13px;letter-spacing:0;text-transform:none;color:var(--teal);font-weight:700;}
   .l2 .cred{font-size:14px;color:var(--muted);margin:8px 0 0;max-width:72ch;}
   .l2 .cred b{color:var(--ivory);font-weight:600;}
   .l2 .cred a{font-weight:700;}
@@ -308,7 +309,7 @@
     </nav>
   </header>
   <main>
-  <div class="eyebrow"><a href="/growth-os.html">Growth system</a> &middot; <a href="/growth-os.html#measure">Measure and optimize</a> &middot; <span class="st">Step 1 of 9</span></div>
+  <div class="eyebrow"><a href="/growth-os.html">Growth system</a> &middot; <a href="/growth-os.html#measure">Measure and optimize</a> &middot; <span class="st">Step 1 of 9</span><a class="advl" href="/advisor.html" data-from="campaign-measurement-plan">Not sure this is the right tool? Ask the advisor &rarr;</a></div>
   <h1>Campaign measurement plan builder</h1>
   <p class="lede">Build the chain from <b>seen</b> to <b>felt</b> to <b>did</b> to <b>paid off</b>. Pick measures and targets for each level and copy a plan into your brief or proposal. Load a worked example from <b>15 industries</b>; every brand in them is fictional. <span class="credit">Built from the planning practice I learned in my agency years at Asiatic (JWT), adapted for today&rsquo;s channels.</span></p><p class="cred">Built from my own work: <a href="/case/praava-dataengine/">A data engine for product and growth decisions</a></p>
   <article>
@@ -363,7 +364,7 @@ var SLUG="campaign-measurement-plan",TOOLNAME="Campaign measurement plan builder
   function applyPreset(k,run){var p=PRESETS[k];if(!p)return;Object.keys(p.v).forEach(function(id){if($(id))$(id).value=p.v[id];});$('pnote').textContent=p.note||'';if(run)run();}
   function initPicker(run){var s=$('ind');if(!s)return;var q=null;try{q=new URLSearchParams(location.search);}catch(e){}
     var fromUrl=q&&[...q.keys()].some(function(k){return k!=='ind'&&!!$(k);});if(q&&q.get('ind')&&PRESETS[q.get('ind')])s.value=q.get('ind');
-    if(fromUrl&&!(q&&q.get('ind'))&&PRESETS.custom)s.value='custom';if(!fromUrl)applyPreset(s.value);else $('pnote').textContent=(PRESETS[s.value]||{}).note||'';
+    if(fromUrl&&!(q&&q.get('ind'))&&PRESETS.custom)s.value='custom';if(!fromUrl)applyPreset(s.value);else{var pi=q&&q.get('ind');if(pi&&PRESETS[pi]){var pv=PRESETS[pi].v;Object.keys(pv).forEach(function(id){if(!q.has(id)&&$(id))$(id).value=pv[id];});}$('pnote').textContent=(PRESETS[s.value]||{}).note||'';}
     s.addEventListener('change',function(){applyPreset(s.value,run);try{window.track&&window.track('tool_preset',{tool:SLUG,preset:s.value});}catch(e){}});}
   function wrapText(ctx,t,x,y,mw,lh,maxL){var w=t.split(' '),line='',n=0;for(var i=0;i<w.length;i++){var tl=line+w[i]+' ';if(ctx.measureText(tl).width>mw&&line){ctx.fillText(line,x,y);y+=lh;line=w[i]+' ';if(++n>=maxL-1){var rest=w.slice(i).join(' ');while(ctx.measureText(rest+'…').width>mw&&rest.length)rest=rest.slice(0,-1);ctx.fillText(rest+(rest.length<w.slice(i).join(' ').length?'…':''),x,y);return;}}else line=tl;}ctx.fillText(line,x,y);}
   function card(){var c=document.createElement('canvas');c.width=1200;c.height=630;var x=c.getContext('2d');var F='Manrope, Inter, system-ui, sans-serif';
@@ -420,6 +421,7 @@ var SLUG="campaign-measurement-plan",TOOLNAME="Campaign measurement plan builder
     var t=lines.join('\n'),done=function(){var o=b.textContent;b.textContent='Summary copied';setTimeout(function(){b.textContent=o;},2000);};
     try{navigator.clipboard.writeText(t).then(done,function(){prompt('Copy this summary',t);});}catch(e){prompt('Copy this summary',t);}
     try{window.track&&window.track('tool_share',{tool:location.pathname.replace(/^\/|\.html$/g,''),method:'summary'});}catch(e){}});
+  document.querySelectorAll('.advl').forEach(function(a){a.addEventListener('click',function(){try{window.track&&window.track('advisor_entry',{from:a.dataset.from});}catch(e){}});});
   var c=document.getElementById('cta-call');if(c)c.addEventListener('click',function(){try{window.track&&window.track('tool_cta',{tool:location.pathname.replace(/^\/|\.html$/g,'')});}catch(e){}});
 })();</script>
 <script>(function(){
