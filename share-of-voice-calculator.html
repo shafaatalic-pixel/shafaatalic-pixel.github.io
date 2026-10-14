@@ -157,6 +157,7 @@
   :root[data-theme="light"] .mail input,:root[data-theme="light"] textarea{border-color:var(--pill-border);}
   :root[data-theme="light"] .tool .tag.b,:root[data-theme="light"] .steps.borrow a::before{color:#5B3FB0;}
   :root[data-theme="light"] mark{background:rgba(181,112,31,.18);}
+  :root[data-theme="light"] .legend{color:var(--body);}
   :root[data-theme="light"] input[type=range]{accent-color:var(--teal);}
   /* Charts are drawn with fixed colors; remap them for the light background. */
   :root[data-theme="light"] svg [fill="#C7CDD6"]{fill:var(--body);}
@@ -168,8 +169,8 @@
   :root[data-theme="light"] svg [stroke="#4FC48A"]{stroke:#1D7346;}
   :root[data-theme="light"] svg [fill="#F0705A"]{fill:#B23A26;}
   :root[data-theme="light"] svg [stroke="#F0705A"]{stroke:#B23A26;}
-  :root[data-theme="light"] svg [fill="#F4A24C"]{fill:#9A5E14;}
-  :root[data-theme="light"] svg [stroke="#F4A24C"]{stroke:#9A5E14;}
+  :root[data-theme="light"] svg [fill="#F4A24C"]{fill:#7F4D0D;}
+  :root[data-theme="light"] svg [stroke="#F4A24C"]{stroke:#7F4D0D;}
   :root[data-theme="light"] svg [stroke="#2A323D"]{stroke:rgba(20,17,12,.25);}
   :root[data-theme="light"] svg [fill="#2A323D"]{fill:rgba(20,17,12,.12);}
   :root[data-theme="light"] svg [fill="#11161D"],:root[data-theme="light"] svg [fill="#06090D"]{fill:var(--tile);}
@@ -244,10 +245,58 @@
   .mail form{display:flex;gap:8px;flex:1 1 300px;}
   .mail input{flex:1;font:500 15px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:9px 12px;}
   @media print{.picker,.sharebar,.mail,.handoff{display:none!important;}}
-</style>
+
+  .wrap.l2{max-width:1140px;}
+  .l2 article>:not(.calc):not(.tshare){max-width:780px;}
+  .l2 h1{max-width:30ch;}
+  .l2 .eyebrow a{color:var(--cat);text-decoration:none;font-weight:600;}
+  .l2 .eyebrow a:hover{text-decoration:underline;}
+  .l2 .eyebrow .st{color:var(--faint);}
+  .l2 .cred{font-size:14px;color:var(--muted);margin:8px 0 0;max-width:72ch;}
+  .l2 .cred b{color:var(--ivory);font-weight:600;}
+  .l2 .cred a{font-weight:700;}
+  .l2 .calc{border-top:3px solid var(--cat);padding:clamp(16px,2.6vw,26px);}
+  .l2 .tgrid{display:grid;gap:20px;}
+  @media(min-width:980px){.l2 .tgrid{grid-template-columns:minmax(0,1fr) minmax(0,1.04fr);align-items:start;}.l2 .tres{position:sticky;top:14px;}}
+  .l2 .tin .grid{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));}
+  .l2 .tres{background:var(--tile);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;}
+  .l2 .tres>*{order:5;}
+  .l2 .tres>.out{order:1;margin:0;grid-template-columns:repeat(2,minmax(0,1fr));}
+  .l2 .tres>.verdict{order:2;}
+  .l2 .tres>.chart{order:3;margin:10px 0 4px;}
+  .l2 .tres>.formula{order:4;margin-top:12px;}
+  .l2 .tres .kpi{background:var(--panel);}
+  .l2 .tres .out .kpi:first-child{grid-column:1/-1;border-left:4px solid var(--cat);padding:16px 18px;}
+  .l2 .tres .out .kpi:first-child .kv{font-size:clamp(34px,4.2vw,48px);}
+  .l2 .tres .out .kpi:first-child:has(.kb.good){border-left-color:var(--green);}
+  .l2 .tres .out .kpi:first-child:has(.kb.warn){border-left-color:var(--amber);}
+  .l2 .tres .out .kpi:first-child:has(.kb.bad){border-left-color:var(--red);}
+  .l2 .tres .kpi:not(:first-child) .kv{font-size:22px;}
+  .l2 .tres .verdict{font-family:'Manrope';font-size:17px;font-weight:700;color:var(--ivory);line-height:1.45;margin:16px 0 4px;padding:2px 0 2px 12px;border-left:3px solid var(--cat);max-width:none;}
+  .formula{white-space:normal!important;overflow-wrap:anywhere;}
+  .l2 .tin label{font-size:13.5px;}
+  :root[data-theme="light"] .l2 .calc input,:root[data-theme="light"] .l2 .calc select,:root[data-theme="light"] .l2 .calc textarea{background:#FFFDF9;}
+  .l2 .v2row{grid-template-columns:1fr;}
+  .l2 .sharebar{padding-top:14px;border-top:1px solid var(--line);}
+  .l2 .handoff a{flex:1 1 200px;}
+  .l2 .cta{border-left-color:var(--cat);}
+  .l2 .cta .back.solid{display:inline-block;}
+  @media(max-width:600px){
+    .l2 header.top{padding-bottom:16px;margin-bottom:20px;}
+    .l2 header.top .navlinks a.back:not(.solid):not([href="/tools.html"]){display:none;}
+    .l2 .tbl thead{display:none;}
+    .l2 .tbl,.l2 .tbl tbody{display:block;}
+    .l2 .tbl tr{display:grid;grid-template-columns:1fr 1fr 64px;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);}
+    .l2 .tbl td{border:none;padding:0;}
+    .l2 .tbl td:first-child{grid-column:1/-1;}
+    .l2 .tbl td[data-l]::before{content:attr(data-l);display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin:0 0 3px;}
+    .l2 .tres{padding:12px;}
+    .l2 .tres>.out{grid-template-columns:1fr 1fr;}
+  }
+:root{--cat:#F4A24C;} :root[data-theme="light"]{--cat:#8A540F;}</style>
 </head>
 <body>
-<div class="wrap">
+<div class="wrap l2">
   <header class="top">
     <a class="brand" href="/">Shafaat Choyon<span class="dot">.</span></a>
     <nav class="navlinks" aria-label="Site">
@@ -259,16 +308,16 @@
     </nav>
   </header>
   <main>
-  <div class="eyebrow">Free tool &middot; Growth &middot; Plan</div>
+  <div class="eyebrow"><a href="/growth-os.html">Growth system</a> &middot; <a href="/growth-os.html#plan">Plan</a> &middot; <span class="st">Step 2 of 9</span></div>
   <h1>Share of voice (ESOV) calculator</h1>
-  <p class="lede">Compare your share of category ad spend with your market share to see if you are <b>set up to grow</b>, and what it would take to <b>hold your share</b>. Load an example from <b>15 industries</b>, nine of them where I have worked, to see how it changes.</p>
+  <p class="lede">Compare your share of category ad spend with your market share to see if you are <b>set up to grow</b>, and what it would take to <b>hold your share</b>. Load an example from <b>15 industries</b>, nine of them where I have worked, to see how it changes.</p><p class="cred">Built from my own work: <a href="/case/note9/">Galaxy Note9: engineering a record-setting flagship launch</a></p>
   <article>
-<div class="tshare"><button type="button" class="tsb" id="tshare" aria-label="Share this tool"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span id="tshare-l">Share this tool</span></button><a class="tsb tsli" id="tshare-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https://shafaatalichoyon.com/share-of-voice-calculator.html" target="_blank" rel="noopener">LinkedIn</a><a class="tsb tsli" id="tshare-wa" href="https://wa.me/?text=Share%20of%20voice%20%28ESOV%29%20calculator%20%28free%20tool%29%3A%20https%3A//shafaatalichoyon.com/share-of-voice-calculator.html" target="_blank" rel="noopener">WhatsApp</a></div><section class="card calc" aria-label="Calculator"><div class="picker"><label><span class="tag">Example</span><select id="ind" aria-label="Load an industry example"><optgroup label="Industries I have worked in"><option value="telecom">Telecom: national operator</option><option value="fmcg" selected>FMCG: packaged food brand</option><option value="advertising">Agency: your own brand among agencies</option><option value="fintech">Fintech: mobile wallet</option><option value="ecommerce">E-commerce: category retailer</option><option value="consumertech">Consumer tech: smartphone brand</option><option value="education">Education: university admissions</option><option value="logistics">Logistics: B2B carrier</option><option value="healthcare">Healthcare: diagnostics brand</option></optgroup><optgroup label="Other industries (examples only)"><option value="saas">SaaS: workflow software</option><option value="pharma">Pharma and medtech: a treatment category</option><option value="insurance">Insurance: health plans</option><option value="retail">Retail and QSR: a regional chain</option><option value="hospitality">Hospitality and travel: city hotels</option><option value="nonprofit">Nonprofit: a cause area</option></optgroup><option value="custom">Your own numbers</option></select></label><p class="pnote" id="pnote"></p></div><div class="grid">
+<div class="tshare"><button type="button" class="tsb" id="tshare" aria-label="Share this tool"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span id="tshare-l">Share this tool</span></button><a class="tsb tsli" id="tshare-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https://shafaatalichoyon.com/share-of-voice-calculator.html" target="_blank" rel="noopener">LinkedIn</a><a class="tsb tsli" id="tshare-wa" href="https://wa.me/?text=Share%20of%20voice%20%28ESOV%29%20calculator%20%28free%20tool%29%3A%20https%3A//shafaatalichoyon.com/share-of-voice-calculator.html" target="_blank" rel="noopener">WhatsApp</a></div><section class="card calc" aria-label="Calculator"><div class="picker"><label><span class="tag">Example</span><select id="ind" aria-label="Load an industry example"><optgroup label="Industries I have worked in"><option value="telecom">Telecom: national operator</option><option value="fmcg" selected>FMCG: packaged food brand</option><option value="advertising">Agency: your own brand among agencies</option><option value="fintech">Fintech: mobile wallet</option><option value="ecommerce">E-commerce: category retailer</option><option value="consumertech">Consumer tech: smartphone brand</option><option value="education">Education: university admissions</option><option value="logistics">Logistics: B2B carrier</option><option value="healthcare">Healthcare: diagnostics brand</option></optgroup><optgroup label="Other industries (examples only)"><option value="saas">SaaS: workflow software</option><option value="pharma">Pharma and medtech: a treatment category</option><option value="insurance">Insurance: health plans</option><option value="retail">Retail and QSR: a regional chain</option><option value="hospitality">Hospitality and travel: city hotels</option><option value="nonprofit">Nonprofit: a cause area</option></optgroup><option value="custom">Your own numbers</option></select></label><p class="pnote" id="pnote"></p></div><div class="tgrid"><div class="tin"><div class="grid">
 <label>Your ad spend <span class="hint">this year, any currency</span><input id="you" type="number" inputmode="decimal" min="0" step="any" value="2000000"></label>
 <label>Total category ad spend <span class="hint">you plus all competitors</span><input id="cat" type="number" inputmode="decimal" min="0" step="any" value="10000000"></label>
 <label>Your market share (%)<input id="som" type="number" inputmode="decimal" min="0" max="100" step="any" value="15"></label>
 </div>
-<div class="out" aria-live="polite">
+</div><div class="tres" aria-live="polite"><div class="out" aria-live="polite">
 <div class="kpi"><span class="kl">Share of voice</span><span class="kv" id="o1">-</span></div>
 <div class="kpi"><span class="kl">Excess share of voice</span><span class="kv" id="o2">-</span><span class="kb" id="o2b"></span></div>
 <div class="kpi"><span class="kl">Expected share change</span><span class="kv" id="o3">-</span><span class="kb">per year, rule of thumb</span></div>
@@ -277,13 +326,13 @@
 <div class="chart" id="chart" aria-hidden="true"></div>
 <p class="verdict" id="v"></p>
 <div class="formula"><span class="k">Formula</span>SOV = your spend ÷ category spend · ESOV = SOV − SOM · share change ≈ 0.5 points per 10 points of ESOV a year</div>
-<div class="v2row"><div class="v2box"><h3>What to do next</h3><ul id="nx"></ul></div><div class="v2box"><details class="work"><summary>Show the working, step by step</summary><ol id="work"></ol></details></div></div><div class="sharebar"><button type="button" class="btn solid" id="shcard">Download result card</button><button type="button" class="btn" id="shlink">Copy link with my numbers</button><button type="button" class="btn" id="shli">Share on LinkedIn</button><span class="ok" id="shok" aria-live="polite"></span></div><div class="receipt"><div><p class="rk">Where I used this</p><p>My Galaxy Note9 launch work delivered 1.54 times year-on-year growth, No. 1 globally for launch growth.</p><a href="/case/note9/">Read the case: Galaxy Note9: engineering a record-setting flagship launch &rarr;</a></div></div><div class="handoff"><a href="/market-size-calculator.html" id="h1"><span>Step before</span><b>How big is the prize? Market size</b></a><a href="/marketing-budget-calculator.html" id="h2"><span>Next step</span><b>Set the split: Marketing budget planner</b></a><a href="/reach-frequency-calculator.html" id="h3"><span>Same stage</span><b>Plan the media: Reach and frequency</b></a></div><p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
+</div></div><div class="v2row"><div class="v2box"><h3>What to do next</h3><ul id="nx"></ul></div><div class="v2box"><details class="work"><summary>Show the working, step by step</summary><ol id="work"></ol></details></div></div><div class="sharebar"><button type="button" class="btn solid" id="shcard">Download result card</button><button type="button" class="btn" id="shsum">Copy summary</button><button type="button" class="btn" id="shlink">Copy link with my numbers</button><button type="button" class="btn" id="shli">Share on LinkedIn</button><span class="ok" id="shok" aria-live="polite"></span></div><div class="receipt"><div><p class="rk">Where I used this</p><p>My Galaxy Note9 launch work delivered 1.54 times year-on-year growth, No. 1 globally for launch growth.</p><a href="/case/note9/">Read the case: Galaxy Note9: engineering a record-setting flagship launch &rarr;</a></div></div><div class="handoff"><a href="/market-size-calculator.html" id="h1"><span>Step before</span><b>How big is the prize? Market size</b></a><a href="/marketing-budget-calculator.html" id="h2"><span>Next step</span><b>Set the split: Marketing budget planner</b></a><a href="/reach-frequency-calculator.html" id="h3"><span>Same stage</span><b>Plan the media: Reach and frequency</b></a></div><p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
 
 <h2>The idea behind ESOV</h2>
 <p>Brands whose share of category advertising (share of voice) is higher than their share of the market tend to grow; brands below it tend to shrink. The commonly quoted rule of thumb from IPA effectiveness research is about half a share point of growth a year for every 10 points of excess share of voice. It varies by category, by brand size and, above all, by how good the work is.</p>
 <ul><li><b>Small brands</b> can usually afford a higher ESOV relative to their size; market leaders often grow with less.</li>
 <li><b>Estimate competitor spend honestly.</b> Use media monitoring data or a reasoned range, and test both ends.</li></ul><div class="mail"><p><b>Get new free tools by email.</b> One short note when a new tool or essay goes live. No spam, unsubscribe any time.</p><form id="mailf" action="https://buttondown.com/api/emails/embed-subscribe/shafaat" method="post" target="popupwindow"><input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required><button type="submit" class="btn solid">Subscribe</button></form></div>
-<div class="cta"><h2>Want a second pair of eyes on the numbers?</h2><p>I have built commercial engines from zero in fintech, consumer tech and healthcare, in the US and Bangladesh. A 30-minute call is free.</p><p><a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a></p></div>
+<div class="cta"><h2>Want a second opinion on these numbers?</h2><p>Bring this result to a free 30-minute call. I have built commercial engines from zero in fintech, consumer tech and healthcare, in the US and Bangladesh.</p><p><a class="back solid" href="https://calendly.com/shafaat-alic/30min" id="cta-call">Book a free call</a></p></div>
 <section class="faq"><h2>Questions</h2>
 <h3>What is share of voice?</h3><p>Your share of all advertising in your category, usually measured by spend or impressions. If the category spends 10 million and you spend 2 million, your share of voice is 20%.</p>
 <h3>What is excess share of voice (ESOV)?</h3><p>Share of voice minus share of market. Positive ESOV is associated with market share growth; negative ESOV with decline.</p>
@@ -314,8 +363,8 @@
 var SLUG="share-of-voice-calculator",TOOLNAME="Share of voice (ESOV) calculator",PRESETS={"telecom": {"label": "Telecom: national operator", "note": "Network ads and retail visibility both count as voice. Include point-of-sale spend if competitor figures do.", "v": {"you": 8000000, "cat": 40000000, "som": 25}}, "fmcg": {"label": "FMCG: packaged food brand", "note": "FMCG is where the share-of-voice rule was studied most. It holds best for established brands in stable categories.", "v": {"you": 2000000, "cat": 10000000, "som": 15}}, "advertising": {"label": "Agency: your own brand among agencies", "note": "For agencies, voice includes awards, talks and press, not only paid media. Estimate it honestly.", "v": {"you": 200000, "cat": 3000000, "som": 5}}, "fintech": {"label": "Fintech: mobile wallet", "note": "Fast-growing categories shift quickly. Recheck category spend every quarter.", "v": {"you": 5000000, "cat": 20000000, "som": 30}}, "ecommerce": {"label": "E-commerce: category retailer", "note": "Search and marketplace ads dominate e-commerce voice. Use impression share where spend data is missing.", "v": {"you": 3000000, "cat": 25000000, "som": 10}}, "consumertech": {"label": "Consumer tech: smartphone brand", "note": "Launch months distort share of voice. Judge it over 12 months.", "v": {"you": 10000000, "cat": 50000000, "som": 22}}, "education": {"label": "Education: university admissions", "note": "Admissions spend clusters around intakes. Compare the same windows year to year.", "v": {"you": 1000000, "cat": 8000000, "som": 9}}, "logistics": {"label": "Logistics: B2B carrier", "note": "B2B voice is thin, so trade press, LinkedIn and events weigh more. Small, steady spend goes far.", "v": {"you": 500000, "cat": 6000000, "som": 12}}, "healthcare": {"label": "Healthcare: diagnostics brand", "note": "Health advertising faces rules on claims. Voice built on trust and access tends to last longer.", "v": {"you": 600000, "cat": 4000000, "som": 12}}, "saas": {"label": "SaaS: workflow software", "note": "Much SaaS voice is search, review sites and content. Include them, not only paid media.", "v": {"you": 400000, "cat": 6000000, "som": 5}}, "pharma": {"label": "Pharma and medtech: a treatment category", "note": "Count spend aimed at doctors as well as consumers, where rules allow consumer advertising at all.", "v": {"you": 2000000, "cat": 15000000, "som": 18}}, "insurance": {"label": "Insurance: health plans", "note": "Comparison sites carry a large share of voice. Count your spend there.", "v": {"you": 5000000, "cat": 40000000, "som": 10}}, "retail": {"label": "Retail and QSR: a regional chain", "note": "For a local chain, measure voice in your trading areas, not nationally.", "v": {"you": 1500000, "cat": 12000000, "som": 15}}, "hospitality": {"label": "Hospitality and travel: city hotels", "note": "Online travel agencies carry much of the voice. Decide whether to count their ads as rivals.", "v": {"you": 300000, "cat": 3000000, "som": 8}}, "nonprofit": {"label": "Nonprofit: a cause area", "note": "Donated media and earned coverage count as voice too, so estimate them.", "v": {"you": 200000, "cat": 2500000, "som": 6}}, "custom": {"label": "Your own numbers", "v": {}, "note": "Enter your own figures. The examples are illustrative, not benchmarks."}};
 
   var hbars=function(rows,c,o){o=o||{};var el=$('chart');if(!el)return;rows=rows.filter(function(r){return isFinite(r.v)&&r.v>=0;});if(!rows.length){el.innerHTML='';return;}
-    var W=680,rh=34,lw=o.lw||170,bw=W-lw-130,mx=Math.max.apply(null,rows.map(function(r){return r.v;}))||1,h=8+rows.length*rh+4,s='<svg viewBox="0 0 '+W+' '+h+'" role="img" aria-label="'+esc(o.label||'Chart')+'">';
-    rows.forEach(function(r,i){var y=8+i*rh,w=Math.max(2,r.v/mx*bw);s+='<text x="'+(lw-10)+'" y="'+(y+19)+'" text-anchor="end" font-size="13" fill="#C7CDD6" font-family="Inter,system-ui">'+esc(String(r.n).slice(0,26))+'</text><rect x="'+lw+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="18" rx="4" fill="'+(r.col||'#33C4C4')+'"/><text x="'+(lw+w+8)+'" y="'+(y+19)+'" font-size="13" fill="#F3EFE7" font-family="Inter,system-ui" font-weight="600">'+esc(r.t!==undefined?r.t:fm(r.v,c))+'</text>';});
+    var W=Math.max(300,Math.min(760,el.clientWidth||680)),rh=34,lw=Math.min(o.lw||170,Math.round(W*(W<460?.4:.32))),bw=W-lw-112,mx=Math.max.apply(null,rows.map(function(r){return r.v;}))||1,h=8+rows.length*rh+4,s='<svg viewBox="0 0 '+W+' '+h+'" role="img" aria-label="'+esc(o.label||'Chart')+'">';
+    rows.forEach(function(r,i){var y=8+i*rh,w=Math.max(2,r.v/mx*bw);s+='<text x="'+(lw-10)+'" y="'+(y+19)+'" text-anchor="end" font-size="13" fill="#C7CDD6" font-family="Inter,system-ui">'+esc(String(r.n).slice(0,Math.max(8,Math.floor((lw-14)/7.3))))+'</text><rect x="'+lw+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="18" rx="4" fill="'+(r.col||'#33C4C4')+'"/><text x="'+(lw+w+8)+'" y="'+(y+19)+'" font-size="13" fill="#F3EFE7" font-family="Inter,system-ui" font-weight="600">'+esc(r.t!==undefined?r.t:fm(r.v,c))+'</text>';});
     el.innerHTML=s+'</svg>';};
   var work=function(lines){var el=$('work');if(el)el.innerHTML=lines.map(function(l){return '<li>'+esc(l)+'</li>';}).join('');};
   var nextUp=function(items){var el=$('nx');if(!el)return;el.innerHTML=items.map(function(it){return '<li>'+esc(it.t)+(it.href?' <a href="'+esc(it.href)+'">'+esc(it.a)+' &rarr;</a>':'')+'</li>';}).join('');};
@@ -336,7 +385,7 @@ var SLUG="share-of-voice-calculator",TOOLNAME="Share of voice (ESOV) calculator"
     x.fillStyle='#C7CDD6';x.font='400 25px Inter, system-ui, sans-serif';var vt=(($('v')||{}).textContent||'').trim()||(($('say1')||{}).textContent||'').trim()||(($('obj')||{}).textContent||'').trim();wrapText(x,vt,64,ks.length?410:250,1072,36,ks.length?3:6);
     x.fillStyle='#33C4C4';x.font='700 22px '+F;x.fillText('shafaatalichoyon.com/'+SLUG,64,578);x.fillStyle='#7f8894';x.font='500 20px '+F;x.textAlign='right';x.fillText('Md Shafaat Ali Choyon',1136,578);
     c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=SLUG+'-result.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},800);});shareEv('card');flash('Result card downloaded');}
-  function initShare(){var b=$('shcard');if(b)b.addEventListener('click',card);
+  function initShare(){var __rt;window.addEventListener('resize',function(){clearTimeout(__rt);__rt=setTimeout(function(){try{if(typeof f==='function')f();}catch(e){}},180);});var b=$('shcard');if(b)b.addEventListener('click',card);
     var cl=$('shlink');if(cl)cl.addEventListener('click',function(){var u=location.href;try{navigator.clipboard.writeText(u).then(function(){flash('Link with your numbers copied');});}catch(e){prompt('Copy this link',u);}shareEv('link_numbers');});
     var ln=$('shli');if(ln)ln.addEventListener('click',function(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.origin+location.pathname),'_blank','noopener');shareEv('linkedin');});
     var mf=$('mailf');if(mf)mf.addEventListener('submit',function(){try{window.open('https://buttondown.com/shafaat','popupwindow');window.track&&window.track('subscribe',{from:'tool',tool:SLUG});}catch(e){}});}
@@ -372,6 +421,17 @@ var SLUG="share-of-voice-calculator",TOOLNAME="Share of voice (ESOV) calculator"
     try{navigator.clipboard.writeText(url).then(done,function(){prompt('Copy this link',url);ev('copy_link');});}catch(e){prompt('Copy this link',url);ev('copy_link');}});
   var li=document.getElementById('tshare-li'),wa=document.getElementById('tshare-wa');
   if(li)li.addEventListener('click',function(){ev('linkedin');});if(wa)wa.addEventListener('click',function(){ev('whatsapp');});
+})();</script><script>(function(){var b=document.getElementById('shsum');if(!b)return;
+  b.addEventListener('click',function(){var h=(document.querySelector('h1')||{}).textContent||document.title;
+    var lines=[h.trim()];document.querySelectorAll('.tres .kpi, .out .kpi').forEach(function(k,i){if(i>5)return;var l=(k.querySelector('.kl')||{}).textContent||'',v=(k.querySelector('.kv')||{}).textContent||'',d=(k.querySelector('.kb')||{}).textContent||'';
+      if(l&&v&&v!=='-')lines.push('- '+l.trim()+': '+v.trim()+(d.trim()?' ('+d.trim()+')':''));});
+    var v=(document.getElementById('v')||{}).textContent||'';if(v.trim())lines.push('',v.trim());
+    var nx=document.querySelectorAll('#nx li');if(nx.length){lines.push('','Next: '+nx[0].textContent.replace(/\s*\u2192\s*$/,'').trim());}
+    lines.push('','Worked out with '+location.origin+location.pathname);
+    var t=lines.join('\n'),done=function(){var o=b.textContent;b.textContent='Summary copied';setTimeout(function(){b.textContent=o;},2000);};
+    try{navigator.clipboard.writeText(t).then(done,function(){prompt('Copy this summary',t);});}catch(e){prompt('Copy this summary',t);}
+    try{window.track&&window.track('tool_share',{tool:location.pathname.replace(/^\/|\.html$/g,''),method:'summary'});}catch(e){}});
+  var c=document.getElementById('cta-call');if(c)c.addEventListener('click',function(){try{window.track&&window.track('tool_cta',{tool:location.pathname.replace(/^\/|\.html$/g,'')});}catch(e){}});
 })();</script>
 <script>(function(){
   var SUN='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
