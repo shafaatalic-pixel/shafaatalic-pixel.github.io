@@ -273,6 +273,7 @@
 </script>
 <link rel="alternate" type="application/rss+xml" title="Shafaat Ali Choyon - Essays" href="/feed.xml">
 <style id="sc-theme-fix">html body .cf-chip.active,html body .cf-chip.active:hover,html body .cf-chip.active .cf-ct{color:#04201f;} html body .mb-cap{color:rgba(255,255,255,.72);} html:root[data-theme="light"] .cf-hl b{color:#8A540F;} html:root[data-theme="light"] .cg-srclink,html:root[data-theme="light"] .cg-photos-h,html:root[data-theme="light"] .cg-note>summary{color:#0A7373;}</style>
+<style id="sc-lens-fix">html body .hsrep-card .gt-btn{color:#F3EFE7;border-color:rgba(243,239,231,.55);}</style>
 </head>
 <body>
 <noscript>
@@ -1672,7 +1673,7 @@ class Component extends DCLogic {
  order:['samsung','praava','surecash','ekhanei','acca','asiatic'], comp:[0,1,2],
  focus:'', blurb:'See the complete body of work.', forWho:'The complete picture' },
  growth:{ id:'growth', whoFor:'For founders, CEOs and growth teams that need the number to move, in the US or Bangladesh. <span style="color:var(--accent-text);">Diagnosis first, then the lever.</span>', label:'Growth &amp; Marketing', short:'Growth &amp; Marketing', icon:'trending-up',
- accent:'#E0892E', deep:'#A85A12', ink:'#1c1303', soft:'rgba(224,137,46,.15)',
+ accent:'#E0892E', deep:'#8F4C0E', ink:'#1c1303', soft:'rgba(224,137,46,.15)',
  eyebrow:'Growth &amp; Marketing Strategy',
  headline:'Clarity under pressure that turns system complexity into <span>measurable growth.</span>',
  subhead:'Growth &amp; marketing strategy leader with 17 years across telecom, advertising, fintech, e-commerce, consumer tech, education and healthcare. I find the real growth constraint and build the strategy, channels, products and teams that move the number.',
@@ -1690,7 +1691,7 @@ class Component extends DCLogic {
  focus:'Leading with communication that changed behavior, embedded health hotlines, trust-by-design campaigns, harm-reduction and thought leadership. See Published Writing below for the 14 articles.',
  blurb:'Behavior-change campaigns, health literacy and published thought leadership.', forWho:'For behavior-change & comms roles' },
  healthtech:{ id:'healthtech', whoFor:'For digital-health founders and product teams turning a good product into a growing one. <span style="color:var(--accent-text);">Product sense with commercial rigor.</span>', label:'Health-Tech Product', short:'Health-Tech', icon:'cpu',
- accent:'#3B82C4', deep:'#245C92', ink:'#f6fbff', soft:'rgba(59,130,196,.15)',
+ accent:'#3B82C4', deep:'#245C92', lite:'#5C9BD6', ink:'#06121f', soft:'rgba(59,130,196,.15)',
  eyebrow:'Health-Tech Product &amp; Growth',
  headline:'Strategy that turns digital health products into <span>compounding growth.</span>',
  subhead:'Product, data and operations leader who builds digital health products and the growth loops behind them, home diagnostics, a 6-hour traveler-testing protocol, ERP/BI transformation, and decisions run on ARPU, CLV and cohorts.',
@@ -1699,7 +1700,7 @@ class Component extends DCLogic {
  focus:'Leading with product and platform work, digital health products, e-commerce and loyalty platforms, marketplace quality systems and an end-to-end ERP/BI transformation.',
  blurb:'Digital health products, data-driven growth loops and platform transformation.', forWho:'For product & digital-health teams' },
  pophealth:{ id:'pophealth', whoFor:'For public-health agencies, funders and programs that need reach at national scale. <span style="color:var(--accent-text);">And proof that it worked.</span>', label:'Population Health', short:'Pop Health', icon:'globe',
- accent:'#E85C42', deep:'#B23A26', ink:'#fff5f2', soft:'rgba(232,92,66,.14)',
+ accent:'#E85C42', deep:'#B23A26', ink:'#1f0904', soft:'rgba(232,92,66,.14)',
  eyebrow:'Population Health',
  headline:'Systems thinking that turns population-scale problems into <span>measurable health impact.</span>',
  subhead:'Public-health practitioner (MPH, CHES®) who has reached people at national scale, a 10-million-beneficiary disbursement, a hotline taking ~3,000 calls a day, district-level illness mapping shared with government, and health-system-resilience advocacy.',
@@ -2160,7 +2161,7 @@ class Component extends DCLogic {
  d.setProperty('--accent',cfg.accent);
  d.setProperty('--accent-soft',cfg.soft);
  d.setProperty('--accent-ink',cfg.ink);
- d.setProperty('--accent-text', light?cfg.deep:cfg.accent);
+ d.setProperty('--accent-text', light?cfg.deep:(cfg.lite||cfg.accent));
  }
  applyLens(id, opts){
  opts=opts||{};
