@@ -309,6 +309,13 @@
   if(btn)btn.addEventListener('click',function(){var next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
     document.documentElement.setAttribute('data-theme',next);try{localStorage.setItem('shafaat_theme',next);}catch(e){}paint();
     try{window.track&&window.track('theme_toggle',{theme:next,page:location.pathname});}catch(e){}});
+  /* Stay in sync: back/forward cache, other tabs, and device day/night changes. */
+  function sync(){var t=null;try{t=localStorage.getItem('shafaat_theme');}catch(e){}
+    if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}
+    if(document.documentElement.getAttribute('data-theme')!==t){document.documentElement.setAttribute('data-theme',t);paint();}}
+  window.addEventListener('pageshow',sync);window.addEventListener('storage',function(e){if(!e.key||e.key==='shafaat_theme')sync();});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)sync();});
+  try{var mq=window.matchMedia('(prefers-color-scheme: dark)');(mq.addEventListener?mq.addEventListener('change',sync):mq.addListener(sync));}catch(e){}
 })();</script>
 </body>
 </html>

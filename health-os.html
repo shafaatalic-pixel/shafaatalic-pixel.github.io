@@ -213,6 +213,11 @@
   :root[data-theme="light"] svg [fill="#2A323D"]{fill:rgba(20,17,12,.12);}
   :root[data-theme="light"] svg [fill="#11161D"],:root[data-theme="light"] svg [fill="#06090D"]{fill:var(--tile);}
 
+  .tshare{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0;}
+  .tsb{display:inline-flex;align-items:center;gap:7px;font-family:'Manrope';font-weight:700;font-size:13.5px;color:var(--ivory);background:transparent;border:1px solid var(--pill-border,rgba(255,255,255,.2));border-radius:8px;padding:8px 14px;cursor:pointer;text-decoration:none;}
+  .tsb:hover{border-color:var(--teal);color:var(--teal);text-decoration:none;}
+  #tshare{border-color:var(--teal);color:var(--teal);}
+
   .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
   .calc{margin:28px 0 8px;}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px 18px;}
@@ -367,6 +372,13 @@
   if(btn)btn.addEventListener('click',function(){var next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
     document.documentElement.setAttribute('data-theme',next);try{localStorage.setItem('shafaat_theme',next);}catch(e){}paint();
     try{window.track&&window.track('theme_toggle',{theme:next,page:location.pathname});}catch(e){}});
+  /* Stay in sync: back/forward cache, other tabs, and device day/night changes. */
+  function sync(){var t=null;try{t=localStorage.getItem('shafaat_theme');}catch(e){}
+    if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}
+    if(document.documentElement.getAttribute('data-theme')!==t){document.documentElement.setAttribute('data-theme',t);paint();}}
+  window.addEventListener('pageshow',sync);window.addEventListener('storage',function(e){if(!e.key||e.key==='shafaat_theme')sync();});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)sync();});
+  try{var mq=window.matchMedia('(prefers-color-scheme: dark)');(mq.addEventListener?mq.addEventListener('change',sync):mq.addListener(sync));}catch(e){}
 })();</script>
 <script defer src="/assets/analytics.js"></script>
 </body>

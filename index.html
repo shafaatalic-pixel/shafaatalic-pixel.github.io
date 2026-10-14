@@ -3854,5 +3854,16 @@ document.addEventListener('click',function(e){var t=e.target&&e.target.closest?e
 </script>
 <script>/* featured strip: open + scroll to #press. Delegated because the runtime strips inline handlers inside #site-root (2026-10-13) */document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('#featured .fi-go');if(!a)return;e.preventDefault();e.stopPropagation();try{window.track&&window.track('featured_click',{})}catch(_){}var p=document.getElementById('press');if(!p)return;if(!p.classList.contains('gt-open')){var b=p.querySelector('[data-gt-toggle]');if(b)b.click();}var go=function(){var t=p.getBoundingClientRect().top+window.scrollY-70;window.scrollTo({top:t<0?0:t,behavior:'instant'});};go();setTimeout(go,450);setTimeout(go,1300);},true);</script>
 <script>/* free tools entry clicks (delegated; inline handlers are stripped inside #site-root) */document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-tools-entry]');if(!a)return;try{window.track&&window.track('tools_entry',{from:a.getAttribute('data-tools-entry'),tool:(a.getAttribute('href')||'').replace(/\.html$/,'')})}catch(_){}},true);</script>
+<script id="sc-theme-sync">(function(){
+  function want(){var t=null;try{t=localStorage.getItem('shafaat_theme');}catch(e){}if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}return t;}
+  function cur(){return document.documentElement.getAttribute('data-theme')==='light'?'light':'dark';}
+  function sync(){var t=want();if(cur()===t)return;var ic=document.getElementById('theme-icon');
+    var b=document.querySelector('#theme-toggle,#tgl')||(ic&&ic.closest?ic.closest('button'):null);
+    if(b){var tr=window.track;window.track=function(){};try{b.click();}catch(e){}window.track=tr;if(cur()===t)return;}
+    document.documentElement.setAttribute('data-theme',t);}
+  window.addEventListener('pageshow',sync);window.addEventListener('storage',function(e){if(!e.key||e.key==='shafaat_theme')sync();});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)sync();});
+  try{var mq=window.matchMedia('(prefers-color-scheme: dark)');(mq.addEventListener?mq.addEventListener('change',sync):mq.addListener(sync));}catch(e){}
+})();</script>
 </body>
 </html>
