@@ -418,7 +418,7 @@
   try{var mq=window.matchMedia('(prefers-color-scheme: dark)');(mq.addEventListener?mq.addEventListener('change',sync):mq.addListener(sync));}catch(e){}
 })();</script>
 <script id="ai-advisor">(function(){
-  var CFG={api:'/api',ts:'REPLACE_TURNSTILE_SITE_KEY',cal:'https://calendly.com/shafaat-alic/30min',max:8};
+  var CFG={api:'/api',ts:'0x4AAAAAAFX9JOBFpuSWsf5E',cal:'https://calendly.com/shafaat-alic/30min',max:8};
   var SUGG=[['Why have you worked in so many industries?','story'],['Which tool helps me cut customer acquisition cost?','tool'],['Show me proof you can grow a health business','proof'],['Are you the right fit for a company my size?','fit'],['What is the Impact map and how do I read it?','impact']];
   var chat=document.getElementById('aichat'),form=document.getElementById('aiform'),q=document.getElementById('aiq'),send=document.getElementById('aisend'),rest=document.getElementById('airest'),sugg=document.getElementById('sugg'),left=document.getElementById('aileft');
   var pres=document.getElementById('presenter'),pst=document.getElementById('pstate'),hear=document.getElementById('hear'),lastText='',RM=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -459,9 +459,12 @@
   /* Turnstile: loaded only when the AI mode opens; runs invisibly once per session. */
   function loadTs(){if(!CFG.ts||CFG.ts.indexOf('REPLACE')===0||session)return;if(window.turnstile){renderTs();return;}
     var s=document.createElement('script');s.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';s.async=true;s.defer=true;s.onload=renderTs;document.head.appendChild(s);}
-  function renderTs(){try{tsId=window.turnstile.render('#ts',{sitekey:CFG.ts,appearance:'interaction-only',execution:'execute',callback:function(tok){tsTok=tok;if(tsWait){tsWait(tok);tsWait=null;}},'error-callback':function(){tsTok=null;if(tsWait){tsWait(null);tsWait=null;}}});}catch(e){}}
-  function getTs(){return new Promise(function(res){if(!CFG.ts||CFG.ts.indexOf('REPLACE')===0||!window.turnstile||tsId===null){res(null);return;}
-    if(tsTok){var k=tsTok;tsTok=null;res(k);return;}tsWait=res;try{window.turnstile.execute(tsId);}catch(e){res(null);}setTimeout(function(){if(tsWait){tsWait=null;res(null);}},15000);});}
+  function renderTs(){try{tsId=window.turnstile.render('#ts',{sitekey:CFG.ts,appearance:'interaction-only',callback:function(tok){tsTok=tok;if(tsWait){tsWait(tok);tsWait=null;}},'expired-callback':function(){tsTok=null;},'error-callback':function(){tsTok=null;if(tsWait){tsWait(null);tsWait=null;}}});}catch(e){}}
+  function getTs(){return new Promise(function(res){if(!CFG.ts||CFG.ts.indexOf('REPLACE')===0||!window.turnstile){res(null);return;}
+    if(tsId===null){renderTs();}
+    if(tsTok){var k=tsTok;tsTok=null;res(k);return;}
+    tsWait=res;if(tsId!==null){try{window.turnstile.reset(tsId);}catch(e){}}
+    setTimeout(function(){if(tsWait){tsWait=null;res(null);}},20000);});}
   function ask(){var text=q.value.trim();if(!text||busy||turns>=CFG.max)return;busy=true;send.disabled=true;sugg.style.display='none';me(text);q.value='';q.style.height='';
     hist.push({role:'user',content:text});pose('thinking');try{window.speechSynthesis&&window.speechSynthesis.cancel();}catch(e){}var typing=bot('<span class="typing"><i></i><i></i><i></i></span>');var t0=Date.now();t('ai_ask',{step:turns+1});
     var ind='';try{ind=new URLSearchParams(location.search).get('ind')||'';}catch(e){}
@@ -471,7 +474,7 @@
     .then(function(r){return r.json().then(function(j){j.__s=r.status;return j;});})
     .then(function(j){typing.remove();
       if(j.paused){pose('idle');paused(j.reason);hist.pop();return;}
-      if(j.error){hist.pop();var msg=j.needTurnstile?'I could not confirm you are a person (a blocker or a very old browser can cause this). Try again, or use the guided walkthrough below.':(j.__s===429?'Too many questions in a short time. Give it a minute, or use the guided walkthrough.':'Something went wrong on my side. Try again in a moment, or use the guided walkthrough.');
+      if(j.error){pose('idle');hist.pop();var msg=j.needTurnstile?'I could not confirm you are a person (a blocker or a very old browser can cause this). Try again, or use the guided walkthrough below.':(j.__s===429?'Too many questions in a short time. Give it a minute, or use the guided walkthrough.':'Something went wrong on my side. Try again in a moment, or use the guided walkthrough.');
         bot(msg);t('ai_error',{reason:String(j.error).slice(0,40)});busy=false;send.disabled=false;return;}
       if(j.session){session=j.session;try{sessionStorage.setItem('sa_session',session);}catch(e){}}
       turns=j.turns||turns+1;try{sessionStorage.setItem('sa_turns',String(turns));}catch(e){}
