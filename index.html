@@ -3867,5 +3867,47 @@ document.addEventListener('click',function(e){var t=e.target&&e.target.closest?e
   document.addEventListener('visibilitychange',function(){if(!document.hidden)sync();});
   try{var mq=window.matchMedia('(prefers-color-scheme: dark)');(mq.addEventListener?mq.addEventListener('change',sync):mq.addListener(sync));}catch(e){}
 })();</script>
+<!--AI-LAUNCH--><style id="sa-launch-css">
+#sa-launch{position:fixed;right:18px;bottom:18px;z-index:9500;display:inline-flex;align-items:center;gap:9px;padding:10px 14px 10px 10px;border-radius:999px;border:1px solid rgba(51,196,196,.55);background:rgba(11,15,20,.88);color:#F3EFE7;font:700 13.5px/1 Manrope,Inter,system-ui,sans-serif;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.35);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:transform .15s,border-color .15s;}
+#sa-launch:hover{transform:translateY(-1px);border-color:#33C4C4;}
+#sa-launch .p{width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #33C4C4;flex:0 0 30px;}
+#sa-launch .s{display:block;font:500 11px/1.2 Inter,system-ui,sans-serif;color:#9AA3AE;margin-top:3px;}
+:root[data-theme="light"] #sa-launch{background:rgba(255,255,255,.94);color:#10151B;border-color:rgba(10,115,115,.5);box-shadow:0 10px 30px rgba(20,17,12,.18);}
+:root[data-theme="light"] #sa-launch .p{border-color:#0FB3B3;} :root[data-theme="light"] #sa-launch .s{color:#5E6772;}
+body:has(#cookie-consent) #sa-launch{bottom:112px;}
+#sl-fab{bottom:82px!important;}
+#sa-wrap{position:fixed;inset:0;z-index:9600;display:none;}
+#sa-wrap.on{display:block;}
+#sa-dim{position:absolute;inset:0;background:rgba(4,7,11,.45);}
+#sa-panel{position:absolute;right:0;top:0;height:100%;width:min(100vw,440px);background:#0B0F14;border-left:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;box-shadow:-20px 0 50px rgba(0,0,0,.4);transform:translateX(100%);transition:transform .25s ease;}
+#sa-wrap.on #sa-panel{transform:none;}
+:root[data-theme="light"] #sa-panel{background:#FBF8F1;border-color:rgba(20,17,12,.14);}
+#sa-head{display:flex;align-items:center;gap:10px;padding:14px 14px 12px 16px;border-bottom:1px solid rgba(255,255,255,.1);}
+:root[data-theme="light"] #sa-head{border-color:rgba(20,17,12,.12);}
+#sa-head .p{width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid #33C4C4;flex:0 0 34px;}
+:root[data-theme="light"] #sa-head .p{border-color:#0FB3B3;}
+#sa-head b{display:block;font:800 15px/1.2 Manrope,sans-serif;color:#F3EFE7;} #sa-head span{display:block;font:400 12.5px/1.3 Inter,system-ui,sans-serif;color:#9AA3AE;}
+:root[data-theme="light"] #sa-head b{color:#10151B;} :root[data-theme="light"] #sa-head span{color:#5E6772;}
+#sa-head .x{margin-left:auto;background:transparent;border:1px solid rgba(255,255,255,.2);color:inherit;border-radius:8px;width:34px;height:34px;cursor:pointer;font:400 20px/1 Inter,sans-serif;color:#F3EFE7;}
+:root[data-theme="light"] #sa-head .x{color:#10151B;border-color:rgba(20,17,12,.22);}
+#sa-frame{flex:1;width:100%;border:0;background:transparent;}
+@media (prefers-reduced-motion:reduce){#sa-panel{transition:none;}}
+@media print{#sa-launch,#sa-wrap{display:none!important;}}
+</style>
+<button type="button" id="sa-launch" aria-haspopup="dialog" aria-controls="sa-wrap"><img class="p" src="/assets/advisor-avatar.webp" alt="" width="30" height="30"><span>Ask Shafaat<span class="s">about my work, tools and story</span></span></button>
+<div id="sa-wrap" role="dialog" aria-modal="true" aria-label="Ask Shafaat"><div id="sa-dim"></div><div id="sa-panel"><div id="sa-head"><img class="p" src="/assets/advisor-avatar.webp" alt="" width="34" height="34"><div><b>Ask Shafaat</b><span>An AI version of me, answering from my own writing.</span></div><button type="button" class="x" id="sa-close" aria-label="Close">&times;</button></div><iframe id="sa-frame" title="Ask Shafaat" loading="lazy"></iframe></div></div>
+<script id="sa-launch-js">(function(){
+  var L=document.getElementById('sa-launch'),W=document.getElementById('sa-wrap'),F=document.getElementById('sa-frame'),X=document.getElementById('sa-close'),D=document.getElementById('sa-dim'),last=null;
+  if(!L||!W)return;
+  function t(e,a,n){n=n||0;try{if(window.__gaOn&&window.track){window.track(e,a||{});}else if(n<40){setTimeout(function(){t(e,a,n+1);},250);}}catch(_){}}
+  function open(){if(!F.getAttribute('src'))F.setAttribute('src','/advisor.html?mode=ai&embed=1&from='+encodeURIComponent(location.pathname.replace(/^\/|\.html$/g,'')||'home'));
+    last=document.activeElement;W.classList.add('on');document.body.style.overflow='hidden';setTimeout(function(){try{F.contentWindow.focus();}catch(e){}},300);
+    t('ai_launcher_open',{page:location.pathname});}
+  function close(){W.classList.remove('on');document.body.style.overflow='';if(last&&last.focus)last.focus();t('ai_launcher_close');}
+  L.addEventListener('click',open);X.addEventListener('click',close);D.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&W.classList.contains('on'))close();});
+  /* Deep link: /?ask=1 opens the panel (used from LinkedIn and email). */
+  try{if(new URLSearchParams(location.search).get('ask')==='1')setTimeout(open,600);}catch(e){}
+})();</script><!--/AI-LAUNCH-->
 </body>
 </html>

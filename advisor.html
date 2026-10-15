@@ -234,7 +234,71 @@
     .pdfhead b{font-family:Manrope,Inter,sans-serif;font-size:11pt;color:#111;}
     .pdffoot{display:block!important;border-top:1pt solid #bbb;margin-top:14pt;padding-top:8pt;font:9.5pt/1.5 Inter,system-ui,sans-serif;color:#444;word-break:break-all;}
   }
-:root{--cat:#F4A24C} :root[data-theme="light"]{--cat:#8A540F}</style>
+/*AI-ADV-CSS*/
+  /* AI mode */
+  .modes{display:flex;gap:6px;margin:18px 0 0;padding:4px;background:var(--tile);border:1px solid var(--line);border-radius:12px;width:max-content;max-width:100%;}
+  .mode{font-family:'Manrope';font-weight:800;font-size:13.5px;color:var(--muted);background:transparent;border:0;border-radius:9px;padding:9px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;}
+  .mode[aria-selected="true"]{background:var(--panel);color:var(--ivory);box-shadow:0 1px 0 rgba(0,0,0,.15);}
+  .mode .new{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber);border-radius:6px;padding:2px 6px;}
+  :root[data-theme="light"] .mode[aria-selected="true"]{box-shadow:0 1px 2px rgba(20,17,12,.12);}
+  #ai{display:none;} body.ai-on #ai{display:block;} body.ai-on #chat,body.ai-on .safe{display:none;}
+  .aiav{flex:0 0 34px;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:800 11px/1 'Manrope';letter-spacing:.06em;color:#04201f;background:var(--teal);border:1px solid var(--line);}
+  :root[data-theme="light"] .aiav{background:#0FB3B3;}
+  .aichat{display:flex;flex-direction:column;gap:14px;margin:18px 0 10px;}
+  .aichat .bub p{margin:0 0 10px;} .aichat .bub p:last-child{margin:0;}
+  .aichat .bub ul{margin:0 0 10px;padding-left:18px;} .aichat .bub li{margin:0 0 4px;}
+  .aichat .bub a{word-break:break-word;}
+  .aitools{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0;}
+  .aitools a.opt{text-decoration:none;color:var(--teal);border-color:var(--teal);}
+  .aitools a.book{color:#1a1207;background:#F4A24C;border-color:#F4A24C;display:inline-flex;align-items:center;gap:8px;}
+  .aitools a.book img{width:22px;height:22px;border-radius:50%;object-fit:cover;}
+  .sugg{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0;}
+  .sugg .opt{font-weight:600;font-size:13.5px;}
+  .aiform{display:flex;gap:8px;align-items:flex-end;margin:14px 0 0;}
+  .aiform textarea{flex:1;resize:none;min-height:46px;max-height:140px;font:500 15.5px/1.45 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid var(--pill-border,rgba(255,255,255,.16));border-radius:12px;padding:11px 14px;}
+  .aiform textarea:focus{outline:none;border-color:var(--teal);}
+  .aiform .go{margin:0;height:46px;white-space:nowrap;}
+  .aiform .go[disabled]{opacity:.5;cursor:default;}
+  .aimeta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12.5px;color:var(--faint);margin:8px 0 0;}
+  .aimeta a{color:var(--muted);}
+  .typing{display:inline-flex;gap:4px;align-items:center;height:18px;} .typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:tdot 1s infinite;} .typing i:nth-child(2){animation-delay:.15s;} .typing i:nth-child(3){animation-delay:.3s;}
+  @keyframes tdot{0%,80%,100%{opacity:.25;}40%{opacity:1;}}
+  .airest{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;padding:14px 16px;font-size:14.5px;color:var(--body);margin:14px 0 0;}
+  .airest b{color:var(--ivory);}
+  #ts{margin:8px 0 0;min-height:0;}
+  body.embed header.top,body.embed .eyebrow,body.embed h1,body.embed .lede,body.embed .modes,body.embed .who,body.embed .mail,body.embed footer.foot{display:none!important;}
+  body.embed .wrap{padding:14px 16px 24px;max-width:none;} body.embed .aichat{margin-top:4px;}
+
+  /* Presenter: short real clips of Shafaat beside the chat (greeting, listening, thinking, answering) */
+  .aistage{display:grid;grid-template-columns:210px minmax(0,1fr);gap:18px;align-items:end;margin:18px 0 0;}
+  .aicol{min-width:0;}
+  .presenter{position:sticky;bottom:12px;align-self:end;display:flex;flex-direction:column;align-items:center;gap:8px;}
+  .presenter .pwrap{position:relative;width:200px;aspect-ratio:3/4;border-radius:18px;overflow:hidden;background:#2a2622;box-shadow:0 18px 40px rgba(0,0,0,.45);transition:transform .5s ease,box-shadow .5s ease;}
+  :root[data-theme="light"] .presenter .pwrap{box-shadow:0 18px 40px rgba(20,17,12,.22);}
+  .presenter .pv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease;}
+  .presenter .pv.on{opacity:1;}
+  .presenter .pwrap:after{content:'';position:absolute;inset:0;border-radius:18px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);pointer-events:none;}
+  .presenter.thinking .pwrap{transform:scale(1.03);}
+  .presenter.talking .pwrap{box-shadow:0 18px 40px rgba(0,0,0,.45),0 0 0 3px rgba(51,196,196,.55);}
+  :root[data-theme="light"] .presenter.talking .pwrap{box-shadow:0 18px 40px rgba(20,17,12,.22),0 0 0 3px rgba(15,179,179,.6);}
+  .presenter .state{display:inline-flex;align-items:center;gap:7px;font:600 11.5px/1 'Inter',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);min-height:12px;}
+  .presenter .state:before{content:'';width:7px;height:7px;border-radius:50%;background:var(--faint);opacity:.6;}
+  .presenter.talking .state:before{background:var(--teal);opacity:1;animation:pDot 1s ease-in-out infinite;}
+  .presenter.thinking .state:before{background:var(--amber);opacity:1;animation:pDot 1.4s ease-in-out infinite;}
+  @keyframes pDot{0%,100%{transform:scale(1);}50%{transform:scale(1.5);}}
+  .aistage .aichat{margin-top:0;}
+  .aistage .aichat .msg:not(.me) .av{display:none;}
+  @media(max-width:880px){
+    .aistage{grid-template-columns:1fr;gap:10px;align-items:start;}
+    .presenter{position:static;flex-direction:row;align-items:flex-end;gap:12px;justify-content:flex-start;}
+    .presenter .pwrap{width:126px;border-radius:14px;}
+    .presenter .state{margin:0 0 10px;}
+    .aistage .aichat .msg:not(.me) .av{display:block;}
+  }
+  .hear{font:600 12.5px/1 'Inter',system-ui,sans-serif;color:var(--muted);background:transparent;border:1px solid var(--pill-border);border-radius:7px;padding:5px 9px;cursor:pointer;margin-left:8px;}
+  .hear:hover{border-color:var(--teal);color:var(--teal);}
+  @media print{.modes,#ai{display:none!important;}}
+/*/AI-ADV-CSS*/:root{--cat:#F4A24C} :root[data-theme="light"]{--cat:#8A540F}</style>
 </head>
 <body data-pdfname="tool advisor">
 <div class="wrap">
@@ -253,7 +317,7 @@
   <h1>Not sure where to start?</h1>
   <p class="lede">Tell me what you are trying to fix. In under a minute you get a <b>three-step plan</b> using my free tools, each one <b>already filled in with your numbers</b>. It is the same sequence I would walk a client through.</p>
   <article>
-<div class="adv"><div class="who"><img src="/assets/advisor-avatar.webp" alt="Shafaat Ali Choyon" width="48" height="48"><div><b>Shafaat's tool advisor</b><span>A guided walkthrough I built, not a live chat. Want to talk to me? <a href="https://calendly.com/shafaat-alic/30min" id="who-call">Book a free call</a>.</span></div></div><div class="chat" id="chat" aria-live="polite"></div><p class="safe">Runs entirely in your browser: nothing you choose or type is sent or stored. The plan links to free tools; the examples are illustrative, not benchmarks.</p></div><div class="mail"><p><b>Get new free tools by email.</b> One short note when a new tool or essay goes live. No spam, unsubscribe any time.</p><form id="mailf" action="https://buttondown.com/api/emails/embed-subscribe/shafaat" method="post" target="popupwindow"><input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required><button type="submit" class="btn solid">Subscribe</button></form></div>
+<div class="adv"><div class="who"><img src="/assets/advisor-avatar.webp" alt="Shafaat Ali Choyon" width="48" height="48"><div><b>Shafaat's tool advisor</b><span>A guided walkthrough I built, plus an AI version of me that answers from my own writing. Want to talk to me? <a href="https://calendly.com/shafaat-alic/30min" id="who-call">Book a free call</a>.</span></div></div><!--AI-ADV-MODES--><div class="modes" role="tablist" aria-label="Advisor mode" id="modes"><button type="button" class="mode" role="tab" aria-selected="true" data-m="guided">Guided walkthrough</button><button type="button" class="mode" role="tab" aria-selected="false" data-m="ai">Ask Shafaat <span class="new">New</span></button></div><!--/AI-ADV-MODES--><div class="chat" id="chat" aria-live="polite"></div><p class="safe">Runs entirely in your browser: nothing you choose or type is sent or stored. The plan links to free tools; the examples are illustrative, not benchmarks.</p><!--AI-ADV-PANEL--><div id="ai" role="tabpanel"><div class="aistage"><div class="presenter" id="presenter" aria-hidden="true"><div class="pwrap"><video class="pv on" id="pv0" muted playsinline loop preload="none" poster="/assets/presenter/poster.jpg" width="450" height="600"></video><video class="pv" id="pv1" muted playsinline loop preload="none" width="450" height="600"></video></div><div class="state" id="pstate">Listening</div></div><div class="aicol"><div class="aichat" id="aichat" aria-live="polite"></div><div id="airest"></div><div class="sugg" id="sugg"></div><form class="aiform" id="aiform"><textarea id="aiq" rows="1" maxlength="600" placeholder="Ask me about a tool or my work" aria-label="Your question"></textarea><button type="submit" class="go" id="aisend">Ask</button></form><div id="ts"></div><p class="aimeta"><span id="aileft">Up to 8 questions per visit.</span><span>An AI version of me, answering from my own writing. <a href="/privacy.html#ai">How questions are handled</a><button type="button" class="hear" id="hear" hidden>Hear it</button></span></p></div></div></div><!--/AI-ADV-PANEL--></div><div class="mail"><p><b>Get new free tools by email.</b> One short note when a new tool or essay goes live. No spam, unsubscribe any time.</p><form id="mailf" action="https://buttondown.com/api/emails/embed-subscribe/shafaat" method="post" target="popupwindow"><input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required><button type="submit" class="btn solid">Subscribe</button></form></div>
   </article>
 
   </main>
@@ -353,6 +417,84 @@
   document.addEventListener('visibilitychange',function(){if(!document.hidden)sync();});
   try{var mq=window.matchMedia('(prefers-color-scheme: dark)');(mq.addEventListener?mq.addEventListener('change',sync):mq.addListener(sync));}catch(e){}
 })();</script>
+<script id="ai-advisor">(function(){
+  var CFG={api:'/api',ts:'REPLACE_TURNSTILE_SITE_KEY',cal:'https://calendly.com/shafaat-alic/30min',max:8};
+  var SUGG=[['Why have you worked in so many industries?','story'],['Which tool helps me cut customer acquisition cost?','tool'],['Show me proof you can grow a health business','proof'],['Are you the right fit for a company my size?','fit'],['What is the Impact map and how do I read it?','impact']];
+  var chat=document.getElementById('aichat'),form=document.getElementById('aiform'),q=document.getElementById('aiq'),send=document.getElementById('aisend'),rest=document.getElementById('airest'),sugg=document.getElementById('sugg'),left=document.getElementById('aileft');
+  var pres=document.getElementById('presenter'),pst=document.getElementById('pstate'),hear=document.getElementById('hear'),lastText='',RM=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var CLIP={idle:'/assets/presenter/idle.mp4',greet:'/assets/presenter/greet.mp4',thinking:'/assets/presenter/think.mp4',talking:'/assets/presenter/talk.mp4'},PV=[document.getElementById('pv0'),document.getElementById('pv1')],pvCur=0,curClip='',greetT=null,videoOK=!RM&&!!(PV[0]&&PV[0].canPlayType&&PV[0].canPlayType('video/mp4'));
+  function clip(name){if(!videoOK||curClip===name)return;curClip=name;var nxt=PV[1-pvCur],prev=PV[pvCur];nxt.src=CLIP[name];nxt.currentTime=0;var pr=nxt.play();
+    function swap(){nxt.classList.add('on');prev.classList.remove('on');setTimeout(function(){try{prev.pause();}catch(e){}},500);pvCur=1-pvCur;}
+    if(pr&&pr.then){pr.then(swap).catch(function(e){if(e&&e.name==='NotAllowedError'){videoOK=false;PV[0].classList.add('on');}});}else swap();}
+  function pose(n){if(!pres)return;clearTimeout(greetT);pres.className='presenter '+n;if(pst)pst.textContent=n==='thinking'?'Thinking':n==='talking'?'Answering':n==='greet'?'Hello':'Listening';
+    if(n==='greet'){clip('greet');greetT=setTimeout(function(){pose('idle');},3600);}else clip(n);}
+  function typeOut(el,html,done){var tmp=document.createElement('div');tmp.innerHTML=html;var words=(tmp.textContent||'').split(/\s+/).filter(Boolean);if(RM||words.length<4){el.innerHTML=html;done();return;}var i=0,step=Math.max(1,Math.round(words.length/60));(function tick(){i=Math.min(words.length,i+step);el.textContent=words.slice(0,i).join(' ');if(i<words.length){setTimeout(tick,28);}else{el.innerHTML=html;done();}})();}
+  function speak(text){try{var S=window.speechSynthesis;if(!S)return;if(S.speaking){S.cancel();hear.textContent='Hear it';return;}var u=new SpeechSynthesisUtterance(text);u.lang=/[\u0980-\u09FF]/.test(text)?'bn-BD':'en-US';u.rate=1;u.onend=function(){hear.textContent='Hear it';pose('greet');};u.onstart=function(){pose('talking');};hear.textContent='Stop';S.speak(u);t('ai_hear');}catch(e){}}
+  if(hear){hear.addEventListener('click',function(){if(lastText)speak(lastText);});}
+  if(!chat||!form)return;
+  var hist=[],turns=0,busy=false,session=null,tsId=null,tsTok=null,tsWait=null,state='unknown',opened=false;
+  try{session=sessionStorage.getItem('sa_session')||null;turns=parseInt(sessionStorage.getItem('sa_turns')||'0',10)||0;}catch(e){}
+  function t(e,a,n){n=n||0;try{if(window.__gaOn&&window.track){window.track(e,a||{});}else if(n<40){setTimeout(function(){t(e,a,n+1);},250);}}catch(_){}}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function fmt(s){ /* escape, link URLs, paragraphs and hyphen lists */
+    var out=[],para=[],list=null;
+    function flush(){if(para.length){out.push('<p>'+para.join(' ')+'</p>');para=[];}if(list){out.push('<ul>'+list.join('')+'</ul>');list=null;}}
+    esc(s).split('\n').forEach(function(ln){var l=ln.trim();
+      if(!l){flush();return;}
+      var m=l.match(/^[-•*]\s+(.*)$/);
+      if(m){if(para.length){out.push('<p>'+para.join(' ')+'</p>');para=[];}list=list||[];list.push('<li>'+m[1]+'</li>');return;}
+      if(list){out.push('<ul>'+list.join('')+'</ul>');list=null;}
+      para.push(l);});
+    flush();
+    return out.join('').replace(/(https?:\/\/[^\s<)]+[^\s<).,;:])/g,function(u){var same=/^https?:\/\/(www\.)?shafaatalichoyon\.com/.test(u),h=same?u.replace(/^https?:\/\/(www\.)?shafaatalichoyon\.com/,''):u;var label=same?('shafaatalichoyon.com'+(h==='/'?'':h)):u.replace(/^https?:\/\//,'');return '<a href="'+h+'"'+(same?'':' rel="noopener" target="_blank"')+'>'+label+'</a>';});}
+  function bot(html,cls){var d=document.createElement('div');d.className='msg'+(cls?' '+cls:'');d.innerHTML='<img class="av" src="/assets/advisor-avatar.webp" alt="" width="34" height="34"><div class="bub">'+html+'</div>';chat.appendChild(d);d.scrollIntoView({behavior:'smooth',block:'nearest'});return d;}
+  function me(text){var d=document.createElement('div');d.className='msg me';d.innerHTML='<div class="bub">'+esc(text)+'</div>';chat.appendChild(d);}
+  function setLeft(){var n=Math.max(0,CFG.max-turns);left.textContent=n?(n+' question'+(n===1?'':'s')+' left this visit.'):'Question limit reached for this visit.';if(!n){send.disabled=true;q.disabled=true;}}
+  function paused(reason){state='off';rest.innerHTML='<div class="airest"><b>My AI stand-in is resting right now'+(reason==='daily cap'?' (it has answered its share for today)':'')+'.</b> The guided walkthrough works the same way: pick a goal and get a three-step plan. Or <a href="'+CFG.cal+'">book a free call</a> with me.</div>';form.style.display='none';sugg.style.display='none';t('ai_paused',{reason:String(reason||'')});}
+  function showSugg(){sugg.innerHTML='';SUGG.forEach(function(s){var b=document.createElement('button');b.type='button';b.className='opt';b.textContent=s[0];b.addEventListener('click',function(){q.value=s[0];t('ai_suggest',{tool:s[1]});form.requestSubmit?form.requestSubmit():ask();});sugg.appendChild(b);});}
+  function intro(){if(chat.querySelector('.msg'))return;bot('<b>Ask me anything about my work.</b> Why I moved across six industries, what the Impact map shows, which tool fits your problem, whether I am the right fit for you. I answer from my own essays, tools and cases, and I can open a tool with your numbers filled in. Want the real conversation? <a href="'+CFG.cal+'">Book a free call</a>.');showSugg();}
+  function open(){opened=true;document.body.classList.add('ai-on');pose('greet');intro();setLeft();if(state==='unknown'){fetch(CFG.api+'/health',{credentials:'omit'}).then(function(r){return r.json();}).then(function(j){if(j&&j.assistant==='on'){state='on';loadTs();}else paused(j&&j.reason);}).catch(function(){paused('network');});}
+    t('ai_open',{from:document.referrer?document.referrer.replace(/^https?:\/\/[^/]+/,'').slice(0,60):'direct'});setTimeout(function(){q.focus();},50);}
+  function close(){document.body.classList.remove('ai-on');}
+  /* Turnstile: loaded only when the AI mode opens; runs invisibly once per session. */
+  function loadTs(){if(!CFG.ts||CFG.ts.indexOf('REPLACE')===0||session)return;if(window.turnstile){renderTs();return;}
+    var s=document.createElement('script');s.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';s.async=true;s.defer=true;s.onload=renderTs;document.head.appendChild(s);}
+  function renderTs(){try{tsId=window.turnstile.render('#ts',{sitekey:CFG.ts,appearance:'interaction-only',execution:'execute',callback:function(tok){tsTok=tok;if(tsWait){tsWait(tok);tsWait=null;}},'error-callback':function(){tsTok=null;if(tsWait){tsWait(null);tsWait=null;}}});}catch(e){}}
+  function getTs(){return new Promise(function(res){if(!CFG.ts||CFG.ts.indexOf('REPLACE')===0||!window.turnstile||tsId===null){res(null);return;}
+    if(tsTok){var k=tsTok;tsTok=null;res(k);return;}tsWait=res;try{window.turnstile.execute(tsId);}catch(e){res(null);}setTimeout(function(){if(tsWait){tsWait=null;res(null);}},15000);});}
+  function ask(){var text=q.value.trim();if(!text||busy||turns>=CFG.max)return;busy=true;send.disabled=true;sugg.style.display='none';me(text);q.value='';q.style.height='';
+    hist.push({role:'user',content:text});pose('thinking');try{window.speechSynthesis&&window.speechSynthesis.cancel();}catch(e){}var typing=bot('<span class="typing"><i></i><i></i><i></i></span>');var t0=Date.now();t('ai_ask',{step:turns+1});
+    var ind='';try{ind=new URLSearchParams(location.search).get('ind')||'';}catch(e){}
+    var from='';try{from=new URLSearchParams(location.search).get('from')||((document.referrer&&document.referrer.indexOf(location.origin)===0)?document.referrer.replace(location.origin,'').replace(/^\/|\.html$|\?.*$/g,'').slice(0,60):'');}catch(e){}
+    (session?Promise.resolve(null):getTs()).then(function(tok){
+      return fetch(CFG.api+'/ask',{method:'POST',headers:{'content-type':'application/json'},credentials:'omit',body:JSON.stringify({messages:hist.slice(-8),session:session,turnstile:tok,ind:ind,from:from})});})
+    .then(function(r){return r.json().then(function(j){j.__s=r.status;return j;});})
+    .then(function(j){typing.remove();
+      if(j.paused){pose('idle');paused(j.reason);hist.pop();return;}
+      if(j.error){hist.pop();var msg=j.needTurnstile?'I could not confirm you are a person (a blocker or a very old browser can cause this). Try again, or use the guided walkthrough below.':(j.__s===429?'Too many questions in a short time. Give it a minute, or use the guided walkthrough.':'Something went wrong on my side. Try again in a moment, or use the guided walkthrough.');
+        bot(msg);t('ai_error',{reason:String(j.error).slice(0,40)});busy=false;send.disabled=false;return;}
+      if(j.session){session=j.session;try{sessionStorage.setItem('sa_session',session);}catch(e){}}
+      turns=j.turns||turns+1;try{sessionStorage.setItem('sa_turns',String(turns));}catch(e){}
+      hist.push({role:'assistant',content:j.reply||''});
+      var html=fmt(j.reply||'');var tools=j.tools||[];var needBook=/calendly\.com/.test(j.reply||'')||turns>=CFG.max;
+      if(tools.length||needBook){html+='<div class="aitools">';tools.forEach(function(tl){var p=new URLSearchParams();Object.keys(tl.params||{}).forEach(function(k){p.set(k,tl.params[k]);});if(ind&&!p.get('ind'))p.set('ind',ind);var qs=p.toString();
+          html+='<a class="opt" href="/'+esc(tl.slug)+'.html'+(qs?'?'+qs:'')+'" data-tool="'+esc(tl.slug)+'">Open '+esc(tl.name||tl.slug)+(Object.keys(tl.params||{}).length?' with your numbers':'')+' &rarr;</a>';});
+        if(needBook)html+='<a class="opt book" href="'+CFG.cal+'" data-book="1">Book a free call with me</a>';html+='</div>';}
+      var d=bot('');pose('talking');lastText=(j.reply||'').replace(/https?:\/\/\S+/g,'');if(hear)hear.hidden=!window.speechSynthesis;typeOut(d.querySelector('.bub'),html,function(){pose('greet');d.scrollIntoView({behavior:'smooth',block:'nearest'});});t('ai_reply',{seconds:Math.round((Date.now()-t0)/1000),step:turns,tool:tools.length?tools[0].slug:'none'});
+      d.querySelectorAll('[data-tool]').forEach(function(a){a.addEventListener('click',function(){t('ai_tool_open',{tool:a.dataset.tool,step:turns});});});
+      d.querySelectorAll('[data-book]').forEach(function(a){a.addEventListener('click',function(){t('ai_book',{step:turns});});});
+      busy=false;send.disabled=false;setLeft();if(turns<CFG.max)q.focus();})
+    .catch(function(){pose('idle');typing.remove();hist.pop();bot('I could not reach the assistant. Check your connection and try again, or use the guided walkthrough below.');busy=false;send.disabled=false;});}
+  form.addEventListener('submit',function(e){e.preventDefault();ask();});
+  q.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();ask();}});
+  q.addEventListener('input',function(){q.style.height='auto';q.style.height=Math.min(140,q.scrollHeight)+'px';});
+  document.getElementById('modes').addEventListener('click',function(e){var b=e.target.closest('.mode');if(!b)return;
+    document.querySelectorAll('#modes .mode').forEach(function(x){x.setAttribute('aria-selected',x===b?'true':'false');});
+    if(b.dataset.m==='ai')open();else{close();t('ai_close');}
+    try{history.replaceState(null,'',location.pathname+(b.dataset.m==='ai'?'?mode=ai':'')+location.hash);}catch(_){}});
+  try{var sp=new URLSearchParams(location.search);if(sp.get('embed')==='1'){document.body.classList.add('embed');CFG.embed=true;}if(sp.get('mode')==='ai'||CFG.embed){document.querySelector('#modes [data-m="ai"]').click();}}catch(e){}
+  if(CFG.embed){chat.addEventListener('click',function(e){var a=e.target.closest('a');if(a&&!a.target)a.target='_top';});rest.addEventListener('click',function(e){var a=e.target.closest('a');if(a)a.target='_top';});}
+})();</script><!--/AI-ADV-JS-->
 <script defer src="/assets/analytics.js"></script>
 </body>
 </html>
