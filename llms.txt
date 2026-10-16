@@ -164,7 +164,7 @@ Md Shafaat Ali Choyon is the founder of HSREP (https://hsraep.org), an independe
 
 ## Free tools (interactive, on-site)
 33 free calculators and planning templates, arranged as two operating systems. Each loads worked examples, shows the working step by step, and links to the real case where he used it.
-- Growth operating system (26 tools: plan, execute by channel, measure and optimize; examples from 15 industries: nine he has worked in (telecom, FMCG, advertising, fintech, e-commerce, consumer tech, education, logistics, healthcare) and six more as examples only (SaaS, pharma and medtech, insurance, retail and QSR, hospitality and travel, nonprofit)): https://shafaatalichoyon.com/growth-os.html
+- Growth operating system (26 tools: plan, execute by channel, measure and optimize; examples from 15 industries: eight he has worked in (telecom, logistics, advertising, fintech, e-commerce, consumer tech, education, healthcare) and seven more as examples only (FMCG, SaaS, pharma and medtech, insurance, retail and QSR, hospitality and travel, nonprofit)): https://shafaatalichoyon.com/growth-os.html
 - Health operating system (7 tools: public health and systems, population health, health communication): https://shafaatalichoyon.com/health-os.html
 - All tools: https://shafaatalichoyon.com/tools.html
 - Tool advisor (answer three questions, get a three-step plan with the right tools, your numbers filled in), with "Ask Shafaat", an AI version of him that answers from this site: https://shafaatalichoyon.com/advisor.html
