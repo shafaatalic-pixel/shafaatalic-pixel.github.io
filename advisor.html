@@ -451,7 +451,7 @@
   function me(text){var d=document.createElement('div');d.className='msg me';d.innerHTML='<div class="bub">'+esc(text)+'</div>';chat.appendChild(d);}
   function setLeft(){var n=Math.max(0,CFG.max-turns);left.textContent=n?(n+' question'+(n===1?'':'s')+' left this visit.'):'Question limit reached for this visit.';if(!n){send.disabled=true;q.disabled=true;}}
   function paused(reason){state='off';rest.innerHTML='<div class="airest"><b>My AI stand-in is resting right now'+(reason==='daily cap'?' (it has answered its share for today)':'')+'.</b> The guided walkthrough works the same way: pick a goal and get a three-step plan. Or <a href="'+CFG.cal+'">book a free call</a> with me.</div>';form.style.display='none';sugg.style.display='none';t('ai_paused',{reason:String(reason||'')});}
-  function showSugg(){sugg.innerHTML='';SUGG.forEach(function(s){var b=document.createElement('button');b.type='button';b.className='opt';b.textContent=s[0];b.addEventListener('click',function(){q.value=s[0];t('ai_suggest',{tool:s[1]});form.requestSubmit?form.requestSubmit():ask();});sugg.appendChild(b);});}
+  function showSugg(){sugg.innerHTML='';SUGG.forEach(function(s){var b=document.createElement('button');b.type='button';b.className='opt';b.textContent=s[0];b.addEventListener('click',function(){q.value=s[0];chipPick=s[1];t('ai_suggest',{tool:s[1]});form.requestSubmit?form.requestSubmit():ask();});sugg.appendChild(b);});}
   function intro(){if(chat.querySelector('.msg'))return;bot('<b>Ask me anything about my work.</b> Why I moved across eight industries, how I grow a business in any of them, what the Impact map shows, which tool fits your problem, whether I am the right fit for you. I answer from my own essays, tools and cases, and I can open a tool with your numbers filled in. Want the real conversation? <a href="'+CFG.cal+'">Book a free call</a>.');showSugg();}
   function open(){opened=true;document.body.classList.add('ai-on');pose('greet');intro();setLeft();if(state==='unknown'){fetch(CFG.api+'/health',{credentials:'omit'}).then(function(r){return r.json();}).then(function(j){if(j&&j.assistant==='on'){state='on';loadTs();}else paused(j&&j.reason);}).catch(function(){paused('network');});}
     t('ai_open',{from:document.referrer?document.referrer.replace(/^https?:\/\/[^/]+/,'').slice(0,60):'direct'});setTimeout(function(){q.focus();},50);}
@@ -465,12 +465,12 @@
     if(tsTok){var k=tsTok;tsTok=null;res(k);return;}
     tsWait=res;if(tsId!==null){try{window.turnstile.reset(tsId);}catch(e){}}
     setTimeout(function(){if(tsWait){tsWait=null;res(null);}},20000);});}
-  function ask(){var text=q.value.trim();if(!text||busy||turns>=CFG.max)return;busy=true;send.disabled=true;sugg.style.display='none';me(text);q.value='';q.style.height='';
+  var chipPick='';function ask(){var text=q.value.trim();if(!text||busy||turns>=CFG.max)return;var chipNow=chipPick;chipPick='';busy=true;send.disabled=true;sugg.style.display='none';me(text);q.value='';q.style.height='';
     hist.push({role:'user',content:text});pose('thinking');try{window.speechSynthesis&&window.speechSynthesis.cancel();}catch(e){}var typing=bot('<span class="typing"><i></i><i></i><i></i></span>');var t0=Date.now();t('ai_ask',{step:turns+1});
     var ind='';try{ind=new URLSearchParams(location.search).get('ind')||'';}catch(e){}
     var from='';try{from=new URLSearchParams(location.search).get('from')||((document.referrer&&document.referrer.indexOf(location.origin)===0)?document.referrer.replace(location.origin,'').replace(/^\/|\.html$|\?.*$/g,'').slice(0,60):'');}catch(e){}
     (session?Promise.resolve(null):getTs()).then(function(tok){
-      return fetch(CFG.api+'/ask',{method:'POST',headers:{'content-type':'application/json'},credentials:'omit',body:JSON.stringify({messages:hist.slice(-8),session:session,turnstile:tok,ind:ind,from:from})});})
+      return fetch(CFG.api+'/ask',{method:'POST',headers:{'content-type':'application/json'},credentials:'omit',body:JSON.stringify({messages:hist.slice(-8),session:session,turnstile:tok,ind:ind,from:from,chip:chipNow})});})
     .then(function(r){return r.json().then(function(j){j.__s=r.status;return j;});})
     .then(function(j){typing.remove();
       if(j.paused){pose('idle');paused(j.reason);hist.pop();return;}
