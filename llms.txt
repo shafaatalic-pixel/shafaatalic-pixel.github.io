@@ -168,6 +168,7 @@ Md Shafaat Ali Choyon is the founder of HSREP (https://hsraep.org), an independe
 - Health operating system (7 tools: public health and systems, population health, health communication): https://shafaatalichoyon.com/health-os.html
 - All tools: https://shafaatalichoyon.com/tools.html
 - Tool advisor (answer three questions, get a three-step plan with the right tools, your numbers filled in), with "Ask Shafaat", an AI version of him that answers from this site: https://shafaatalichoyon.com/advisor.html
+- Questions people ask (straight answers in his own words: why eight industries in seventeen years, whether the MPH limits growth work, results outside and inside health, fit, fees): https://shafaatalichoyon.com/questions.html
 - Growth Readiness Score (fifteen questions across Plan, Execute and Measure; a score out of 100, the weakest stage and the first three tools to fix it): https://shafaatalichoyon.com/growth-readiness.html
 
 ## Contact
