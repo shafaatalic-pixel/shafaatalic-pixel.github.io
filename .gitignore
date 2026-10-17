@@ -19,6 +19,9 @@
 /index-test.html
 /index.prerendered.html
 
+# private analytics dashboards must never be published
+analytics-command-center*.html
+
 # tooling and OS cruft
 node_modules/
 package.json
