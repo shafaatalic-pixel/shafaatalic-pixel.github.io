@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Churn and Retention Calculator: Lifetime, Revenue Lost | Shafaat Ali Choyon</title>
+<meta name="description" content="Free churn calculator: monthly churn rate, customers kept after a year, average lifetime and revenue lost to churn, with examples from 15 industries." />
+<link rel="canonical" href="https://shafaatalichoyon.com/churn-retention-calculator.html" />
+<meta name="author" content="Md Shafaat Ali Choyon" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0B0F14" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Md Shafaat Ali Choyon" />
+<meta property="og:title" content="Churn and Retention Calculator: Lifetime, Revenue Lost | Shafaat Ali Choyon" />
+<meta property="og:description" content="Free churn calculator: monthly churn rate, customers kept after a year, average lifetime and revenue lost to churn, with examples from 15 industries." />
+<meta property="og:url" content="https://shafaatalichoyon.com/churn-retention-calculator.html" />
+<meta property="og:image" content="https://shafaatalichoyon.com/assets/og/tools/churn-retention-calculator.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Churn and Retention Calculator: Lifetime, Revenue Lost | Shafaat Ali Choyon" />
+<meta name="twitter:image" content="https://shafaatalichoyon.com/assets/og/tools/churn-retention-calculator.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Churn and Retention Calculator: Lifetime, Revenue Lost | Shafaat Ali Choyon" />
+<meta name="twitter:description" content="Free churn calculator: monthly churn rate, customers kept after a year, average lifetime and revenue lost to churn, with examples from 15 industries." />
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "Churn and retention calculator",
+ "url": "https://shafaatalichoyon.com/churn-retention-calculator.html",
+ "description": "Free churn calculator: monthly churn rate, customers kept after a year, average lifetime and revenue lost to churn, with examples from 15 industries.",
+ "applicationCategory": "BusinessApplication",
+ "operatingSystem": "Any (web browser)",
+ "isAccessibleForFree": true,
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ },
+ "author": {
+  "@type": "Person",
+  "@id": "https://shafaatalichoyon.com/#person",
+  "name": "Md Shafaat Ali Choyon",
+  "url": "https://shafaatalichoyon.com/"
+ },
+ "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://shafaatalichoyon.com/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Free tools",
+   "item": "https://shafaatalichoyon.com/tools.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Churn and retention calculator",
+   "item": "https://shafaatalichoyon.com/churn-retention-calculator.html"
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "How do you calculate churn rate?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Divide the customers lost during a period by the customers you had at the start of it. Losing 100 of 2,000 customers in a month is a 5% monthly churn rate."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is the difference between customer churn and revenue churn?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Customer churn counts people; revenue churn counts money. Losing a few large accounts can mean low customer churn but high revenue churn, so track both."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How does churn affect customer lifetime value?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The average customer lifetime is roughly 1 divided by monthly churn. Halving churn roughly doubles how long a customer stays, and the lifetime value with it."
+   }
+  }
+ ]
+}
+</script>
+
+<script>(function(){try{var t=localStorage.getItem('shafaat_theme');if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',t==='light'?'#FBF8F1':'#0B0F14');}catch(e){}})();</script>
+<link rel="stylesheet" href="/assets/vendor/fonts.css">
+<style>
+  :root{--bg:#0B0F14;--panel:#11161D;--tile:#06090D;--ivory:#F3EFE7;--body:#C7CDD6;--muted:#9AA3AE;--faint:#7f8894;--teal:#33C4C4;--amber:#F4A24C;--red:#F0705A;--green:#4FC48A;--line:rgba(255,255,255,.09);}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--body);font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.66;}
+  a{color:var(--teal);text-decoration:none;} a:hover{text-decoration:underline;}
+  :focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
+  .wrap{max-width:820px;margin:0 auto;padding:34px 22px 80px;}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-bottom:24px;border-bottom:1px solid var(--line);margin-bottom:30px;flex-wrap:wrap;}
+  .brand{display:inline-flex;align-items:center;gap:10px;font-family:'Manrope';font-weight:800;font-size:19px;color:var(--ivory);}
+  .brand span.dot{color:var(--teal);}
+  .navlinks{display:flex;gap:9px;flex-wrap:wrap;}
+  .back{font-family:'Manrope';font-weight:700;font-size:13.5px;color:var(--ivory);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px 15px;}
+  .back:hover{border-color:var(--teal);text-decoration:none;}
+  .back.solid{background:var(--amber);border-color:var(--amber);color:#1a1207;}
+  .eyebrow{font-family:'Inter';font-size:11px;letter-spacing:.16em;color:var(--faint);text-transform:uppercase;}
+  h1{font-family:'Manrope';font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.1;letter-spacing:-.02em;color:var(--ivory);margin:12px 0 0;max-width:24ch;}
+  .lede{font-size:17px;color:var(--body);margin:20px 0 6px;max-width:66ch;}
+  .lede b{color:var(--ivory);font-weight:500;}
+  .updated{font-size:13px;color:var(--faint);margin:14px 0 0;}
+  article h2{font-family:'Manrope';font-weight:700;font-size:clamp(19px,2.6vw,24px);line-height:1.24;letter-spacing:-.01em;color:var(--ivory);margin:40px 0 10px;}
+  article h3{font-family:'Manrope';font-weight:700;font-size:16.5px;color:var(--ivory);margin:24px 0 6px;}
+  article p,article li{font-size:15.5px;color:var(--body);max-width:68ch;}
+  article p{margin:0 0 15px;}
+  article ul{margin:0 0 15px;padding-left:20px;}
+  article li{margin:0 0 8px;}
+  article b{color:var(--ivory);font-weight:500;}
+  .formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;background:var(--tile);border:1px solid var(--line);border-radius:8px;padding:10px 12px;color:var(--body);overflow-x:auto;white-space:nowrap;}
+  .formula .k{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:4px;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:clamp(18px,3vw,26px);}
+  .cta{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;padding:20px 24px;margin:40px 0 0;max-width:68ch;}
+  .cta h2{margin:0 0 6px;font-size:19px;}
+  .faq{margin:44px 0 0;padding-top:26px;border-top:1px solid var(--line);}
+  .faq>h2{margin-top:0;}
+  .privacy-note{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--muted);margin:14px 0 0;}
+  footer.foot{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);}
+  footer.foot a{color:var(--muted);text-decoration:underline;text-underline-offset:3px;}
+
+  :root{--pill-border:rgba(255,255,255,.2);}
+  :root[data-theme="light"]{--bg:#FBF8F1;--panel:#FFFFFF;--tile:#F1ECE1;--ivory:#10151B;--body:#3D4651;--muted:#5E6772;--faint:#5C636D;--teal:#0A7373;--amber:#8A540F;--red:#B23A26;--green:#1D7346;--line:rgba(20,17,12,.12);--pill-border:rgba(20,17,12,.22);}
+  :root[data-theme="light"] body{background:var(--bg);}
+  .tgl{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--pill-border);border-radius:8px;background:transparent;color:var(--ivory);cursor:pointer;padding:7px 11px;transition:border-color .15s,color .15s;line-height:0;}
+  .tgl:hover{border-color:var(--teal);color:var(--teal);}
+  :root[data-theme="light"] .back{border-color:var(--pill-border);}
+  :root[data-theme="light"] .back.solid{background:#F4A24C;border-color:#F4A24C;color:#1a1207;}
+  :root[data-theme="light"] .btn.solid,:root[data-theme="light"] .chip[aria-pressed="true"],:root[data-theme="light"] .cbtn{background:#0FB3B3;border-color:#0FB3B3;color:#04201f;}
+  :root[data-theme="light"] .btn,:root[data-theme="light"] .chip,:root[data-theme="light"] .mail,
+  :root[data-theme="light"] .calc input,:root[data-theme="light"] .calc select,:root[data-theme="light"] .calc textarea,
+  :root[data-theme="light"] .mail input,:root[data-theme="light"] textarea{border-color:var(--pill-border);}
+  :root[data-theme="light"] .tool .tag.b,:root[data-theme="light"] .steps.borrow a::before{color:#5B3FB0;}
+  :root[data-theme="light"] mark{background:rgba(181,112,31,.18);}
+  :root[data-theme="light"] .legend{color:var(--body);}
+  :root[data-theme="light"] input[type=range]{accent-color:var(--teal);}
+  /* Charts are drawn with fixed colors; remap them for the light background. */
+  :root[data-theme="light"] svg [fill="#C7CDD6"]{fill:var(--body);}
+  :root[data-theme="light"] svg [fill="#F3EFE7"]{fill:var(--ivory);}
+  :root[data-theme="light"] svg [fill="#9AA3AE"],:root[data-theme="light"] svg [fill="#7f8894"]{fill:var(--muted);}
+  :root[data-theme="light"] svg [fill="#33C4C4"]{fill:#0A7373;}
+  :root[data-theme="light"] svg [stroke="#33C4C4"]{stroke:#0A7373;}
+  :root[data-theme="light"] svg [fill="#4FC48A"]{fill:#1D7346;}
+  :root[data-theme="light"] svg [stroke="#4FC48A"]{stroke:#1D7346;}
+  :root[data-theme="light"] svg [fill="#F0705A"]{fill:#B23A26;}
+  :root[data-theme="light"] svg [stroke="#F0705A"]{stroke:#B23A26;}
+  :root[data-theme="light"] svg [fill="#F4A24C"]{fill:#7F4D0D;}
+  :root[data-theme="light"] svg [stroke="#F4A24C"]{stroke:#7F4D0D;}
+  :root[data-theme="light"] svg [stroke="#2A323D"]{stroke:rgba(20,17,12,.25);}
+  :root[data-theme="light"] svg [fill="#2A323D"]{fill:rgba(20,17,12,.12);}
+  :root[data-theme="light"] svg [fill="#11161D"],:root[data-theme="light"] svg [fill="#06090D"]{fill:var(--tile);}
+
+  .tshare{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0;}
+  .tsb{display:inline-flex;align-items:center;gap:7px;font-family:'Manrope';font-weight:700;font-size:13.5px;color:var(--ivory);background:transparent;border:1px solid var(--pill-border,rgba(255,255,255,.2));border-radius:8px;padding:8px 14px;cursor:pointer;text-decoration:none;}
+  .tsb:hover{border-color:var(--teal);color:var(--teal);text-decoration:none;}
+  #tshare{border-color:var(--teal);color:var(--teal);}
+
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+  .calc{margin:28px 0 8px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px 18px;}
+  .calc label{display:flex;flex-direction:column;gap:6px;font-family:'Manrope';font-weight:700;font-size:14px;color:var(--ivory);}
+  .hint{font-family:'Inter';font-weight:400;font-size:12px;color:var(--faint);}
+  .calc input,.calc select,.calc textarea{font:500 16px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:10px 12px;width:100%;}
+  .calc input:focus,.calc select:focus,.calc textarea:focus{border-color:var(--teal);outline:none;}
+  .out{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:22px 0 8px;}
+  .kpi{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:2px;}
+  .kl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);}
+  .kv{font-family:'Manrope';font-weight:800;font-size:28px;color:var(--ivory);letter-spacing:-.01em;line-height:1.15;word-break:break-word;}
+  .kb{font-size:13px;color:var(--muted);}
+  .good{color:var(--green)!important;} .warn{color:var(--amber)!important;} .bad{color:var(--red)!important;}
+  .verdict{font-size:15.5px;color:var(--ivory);margin:10px 0 14px;max-width:68ch;}
+  .btn{font-family:'Manrope';font-weight:700;font-size:14px;color:var(--ivory);background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:9px 16px;cursor:pointer;}
+  .btn:hover{border-color:var(--teal);} .btn.solid{background:var(--teal);border-color:var(--teal);color:#04201f;}
+  .seg{display:inline-flex;border:1px solid rgba(255,255,255,.16);border-radius:8px;overflow:hidden;}
+  .bar{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--tile);border:1px solid var(--line);margin:8px 0 4px;}
+  .bar span{display:block;height:100%;}
+  .more{margin:48px 0 0;padding-top:24px;border-top:1px solid var(--line);}
+  .more h2{font-family:'Manrope';font-weight:700;font-size:18px;color:var(--ivory);margin:0 0 12px;}
+  .more .mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
+  .more a{display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--body);font-size:14px;}
+  .more a:hover{border-color:var(--teal);text-decoration:none;}
+  .more a b{display:block;font-family:'Manrope';font-weight:700;font-size:15px;color:var(--ivory);margin-bottom:4px;}
+  .more .all{display:inline-block;margin-top:14px;font-family:'Manrope';font-weight:700;font-size:14px;}
+  .credit{display:block;margin-top:10px;font-size:13.5px;color:var(--faint);}
+  .tbl{width:100%;border-collapse:collapse;font-size:14.5px;margin:12px 0;}
+  .tbl th,.tbl td{border-bottom:1px solid var(--line);padding:8px 8px;text-align:left;vertical-align:top;}
+  .tbl th{font-family:'Manrope';font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);}
+  .tbl input{padding:7px 9px;font-size:14.5px;}
+  .out-doc{background:var(--tile);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:10px;padding:16px 18px;color:var(--ivory);font-size:15px;line-height:1.6;white-space:pre-wrap;max-width:72ch;}
+  .rng{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;margin:8px 0;}
+  .rng input[type=range]{grid-column:1 / -1;padding:0;accent-color:var(--teal);}
+  .rng span{font-size:14px;color:var(--body);} .rng b{font-family:'Manrope';color:var(--ivory);}
+  @media print{header.top,.more,.cta,.faq,footer.foot,.privacy-note,.btn,.lede,.eyebrow{display:none!important;} body{background:#fff;color:#000;} .out-doc{border:none;color:#000;background:#fff;}}
+
+  .picker{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:6px 0 18px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;}
+  .picker label{flex-direction:row!important;align-items:center;gap:10px!important;min-width:0;max-width:100%;flex:0 1 auto;}
+  .picker select{width:auto!important;min-width:0;max-width:100%;text-overflow:ellipsis;}
+  @media(max-width:560px){.picker label{flex-direction:column!important;align-items:flex-start;width:100%;} .picker select{width:100%!important;}}
+  .picker .pnote{flex:1 1 260px;font-size:13.5px;color:var(--muted);margin:0;}
+  .picker .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);}
+  .chart{margin:8px 0 6px;} .chart svg{width:100%;height:auto;display:block;}
+  .v2row{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0 6px;}
+  .v2box{background:var(--tile);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .v2box h3{font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);margin:0 0 10px;}
+  .v2box ol,.v2box ul{margin:0;padding-left:20px;color:var(--body);font-size:14.5px;line-height:1.6;}
+  .v2box li{margin:0 0 6px;}
+  details.work{margin:4px 0 0;} details.work summary{cursor:pointer;font-family:'Manrope';font-weight:800;font-size:15px;color:var(--ivory);list-style:none;}
+  details.work summary::-webkit-details-marker{display:none;} details.work summary:before{content:'+ ';color:var(--teal);} details.work[open] summary:before{content:'\2212  ';}
+  details.work ol{margin-top:10px;font-family:ui-monospace,Menlo,monospace;font-size:13.5px;}
+  .receipt{display:flex;gap:14px;align-items:flex-start;margin:18px 0 0;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;}
+  .receipt .rk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin:0 0 4px;}
+  .receipt p{margin:0;font-size:15px;color:var(--ivory);} .receipt a{font-family:'Manrope';font-weight:700;font-size:14px;}
+  .handoff{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0;}
+  .handoff a{display:inline-flex;flex-direction:column;gap:2px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-size:13px;color:var(--muted);}
+  .handoff a b{font-family:'Manrope';font-size:14.5px;color:var(--ivory);} .handoff a:hover{border-color:var(--teal);text-decoration:none;}
+  .sharebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0;}
+  .sharebar .ok{font-size:13px;color:var(--green);}
+  .mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:26px 0 0;padding:14px 16px;border:1px dashed rgba(255,255,255,.18);border-radius:12px;}
+  .mail p{margin:0;flex:1 1 240px;font-size:14px;color:var(--body);}
+  .mail form{display:flex;gap:8px;flex:1 1 300px;}
+  .mail input{flex:1;font:500 15px 'Inter',system-ui,sans-serif;color:var(--ivory);background:var(--tile);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:9px 12px;}
+  @media print{.picker,.sharebar,.mail,.handoff{display:none!important;}}
+
+  .wrap.l2{max-width:1140px;}
+  .l2 article>:not(.calc):not(.tshare){max-width:780px;}
+  .l2 h1{max-width:30ch;}
+  .l2 .eyebrow a{color:var(--cat);text-decoration:none;font-weight:600;}
+  .l2 .eyebrow a:hover{text-decoration:underline;}
+  .l2 .eyebrow .st{color:var(--faint);}
+  .l2 .eyebrow .advl{display:block;margin-top:6px;font-size:13px;letter-spacing:0;text-transform:none;color:var(--teal);font-weight:700;}
+  .l2 .cred{font-size:14px;color:var(--muted);margin:8px 0 0;max-width:72ch;}
+  .l2 .cred b{color:var(--ivory);font-weight:600;}
+  .l2 .cred a{font-weight:700;}
+  .l2 .calc{border-top:3px solid var(--cat);padding:clamp(16px,2.6vw,26px);}
+  .l2 .tgrid{display:grid;gap:20px;}
+  @media(min-width:980px){.l2 .tgrid{grid-template-columns:minmax(0,1fr) minmax(0,1.04fr);align-items:start;}.l2 .tres{position:sticky;top:14px;}}
+  .l2 .tin .grid{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));}
+  .l2 .tres{background:var(--tile);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;}
+  .l2 .tres>*{order:5;}
+  .l2 .tres>.out{order:1;margin:0;grid-template-columns:repeat(2,minmax(0,1fr));}
+  .l2 .tres>.verdict{order:2;}
+  .l2 .tres>.chart{order:3;margin:10px 0 4px;}
+  .l2 .tres>.formula{order:4;margin-top:12px;}
+  .l2 .tres .kpi{background:var(--panel);}
+  .l2 .tres .out .kpi:first-child{grid-column:1/-1;border-left:4px solid var(--cat);padding:16px 18px;}
+  .l2 .tres .out .kpi:first-child .kv{font-size:clamp(34px,4.2vw,48px);}
+  .l2 .tres .out .kpi:first-child:has(.kb.good){border-left-color:var(--green);}
+  .l2 .tres .out .kpi:first-child:has(.kb.warn){border-left-color:var(--amber);}
+  .l2 .tres .out .kpi:first-child:has(.kb.bad){border-left-color:var(--red);}
+  .l2 .tres .kpi:not(:first-child) .kv{font-size:22px;}
+  .l2 .tres .verdict{font-family:'Manrope';font-size:17px;font-weight:700;color:var(--ivory);line-height:1.45;margin:16px 0 4px;padding:2px 0 2px 12px;border-left:3px solid var(--cat);max-width:none;}
+  .formula{white-space:normal!important;overflow-wrap:anywhere;}
+  .l2 .tin label{font-size:13.5px;}
+  :root[data-theme="light"] .l2 .calc input,:root[data-theme="light"] .l2 .calc select,:root[data-theme="light"] .l2 .calc textarea{background:#FFFDF9;}
+  .l2 .v2row{grid-template-columns:1fr;}
+  .l2 .sharebar{padding-top:14px;border-top:1px solid var(--line);}
+  .l2 .handoff a{flex:1 1 200px;}
+  .l2 .cta{border-left-color:var(--cat);}
+  .l2 .cta .back.solid{display:inline-block;}
+  @media(max-width:600px){
+    .l2 header.top{padding-bottom:16px;margin-bottom:20px;}
+    .l2 header.top .navlinks a.back:not(.solid):not([href="/tools.html"]){display:none;}
+    .l2 .tbl thead{display:none;}
+    .l2 .tbl,.l2 .tbl tbody{display:block;}
+    .l2 .tbl tr{display:grid;grid-template-columns:1fr 1fr 64px;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);}
+    .l2 .tbl td{border:none;padding:0;}
+    .l2 .tbl td:first-child{grid-column:1/-1;}
+    .l2 .tbl td[data-l]::before{content:attr(data-l);display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin:0 0 3px;}
+    .l2 .tres{padding:12px;}
+    .l2 .tres>.out{grid-template-columns:1fr 1fr;}
+  }
+:root{--cat:#F4A24C;} :root[data-theme="light"]{--cat:#8A540F;}
+  .pdfhead,.pdffoot{display:none;}
+  @media print{
+    @page{margin:14mm 14mm 16mm;}
+    html,body{background:#fff!important;}
+    header.top,.eyebrow,.lede,.cred,.tshare,.picker,.sharebar,.handoff,.mail,.cta,.faq,section.more,footer.foot,.advl,.tgl,
+    article>h2,article>ul,article>p,article>ol,.privacy-note,.who,.safe,.acts,.opt.ghost,#skip{display:none!important;}
+    .wrap{max-width:none!important;padding:0!important;}
+    h1{font-size:24pt!important;margin:6pt 0 10pt!important;}
+    .card.calc{border:none!important;box-shadow:none!important;padding:0!important;background:#fff!important;}
+    .tgrid{display:block!important;}
+    .card.calc:has(.out-doc)>.grid,.card.calc:has(.out-doc)>.checks{display:none!important;}
+    .tres{position:static!important;margin-top:12pt!important;}
+    .kpi,.v2box,.receipt,.chart,.formula,.pstep,.msg,table{break-inside:avoid;}
+    details.work>summary{list-style:none;}
+    a{text-decoration:none!important;}
+    .pdfhead{display:block!important;border-bottom:1.5pt solid #0A7373;padding:0 0 8pt;margin:0 0 6pt;font:10pt/1.45 Inter,system-ui,sans-serif;color:#333;}
+    .pdfhead b{font-family:Manrope,Inter,sans-serif;font-size:11pt;color:#111;}
+    .pdffoot{display:block!important;border-top:1pt solid #bbb;margin-top:14pt;padding-top:8pt;font:9.5pt/1.5 Inter,system-ui,sans-serif;color:#444;word-break:break-all;}
+  }
+</style>
+</head>
+<body data-pdfname="Churn and retention calculator">
+<div class="wrap l2">
+  <header class="top">
+    <a class="brand" href="/">Shafaat Choyon<span class="dot">.</span></a>
+    <nav class="navlinks" aria-label="Site">
+      <a class="back" href="/tools.html">Free tools</a>
+      <a class="back" href="/essays.html">Essays</a>
+      <a class="back" href="/?view=growth">Full portfolio</a>
+      <a class="back solid" href="https://calendly.com/shafaat-alic/30min">Book a call</a>
+      <button class="tgl" id="theme-toggle" type="button" aria-label="Toggle light or dark theme"><span id="tgl-ico" aria-hidden="true"></span></button>
+    </nav>
+  </header>
+  <main>
+  <div class="eyebrow"><a href="/growth-os.html">Growth system</a> &middot; <a href="/growth-os.html#measure">Measure and optimize</a> &middot; <span class="st">Step 6 of 12</span><a class="advl" href="/advisor.html" data-from="churn-retention-calculator">Not sure this is the right tool? Ask the advisor &rarr;</a></div>
+  <h1>Churn and retention calculator</h1>
+  <p class="lede">How many customers are you losing, and what does it cost you? See your <b>monthly churn rate</b>, how many of today&rsquo;s customers you will <b>still have in a year</b>, the <b>average customer lifetime</b> and the <b>revenue churn takes</b> every month. Load an example from <b>15 industries</b>, nine of them where I have worked.</p><p class="cred">Built from my own work: <a href="/case/laser-treat/">Digitizing a multi-entity clinical group</a></p>
+  <article>
+<div class="tshare"><button type="button" class="tsb" id="tshare" aria-label="Share this tool"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span id="tshare-l">Share this tool</span></button><a class="tsb tsli" id="tshare-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https://shafaatalichoyon.com/churn-retention-calculator.html" target="_blank" rel="noopener">LinkedIn</a><a class="tsb tsli" id="tshare-wa" href="https://wa.me/?text=Churn%20and%20retention%20calculator%20%28free%20tool%29%3A%20https%3A//shafaatalichoyon.com/churn-retention-calculator.html" target="_blank" rel="noopener">WhatsApp</a></div><section class="card calc" aria-label="Calculator"><div class="picker"><label><span class="tag">Example</span><select id="ind" aria-label="Load an industry example"><optgroup label="Industries I have worked in"><option value="telecom">Telecom: prepaid subscribers</option><option value="fmcg">FMCG: repeat buyers</option><option value="advertising">Agency: retainer clients</option><option value="fintech">Fintech: active wallet users</option><option value="ecommerce">E-commerce: repeat customers</option><option value="consumertech">Consumer tech: device protection plan</option><option value="education">Education: monthly course subscribers</option><option value="logistics">Logistics: business shipping accounts</option><option value="healthcare" selected>Healthcare: care-plan members</option></optgroup><optgroup label="Other industries (examples only)"><option value="saas">SaaS: business subscribers</option><option value="pharma">Pharma and medtech: clinics on a supply contract</option><option value="insurance">Insurance: monthly policies</option><option value="retail">Retail and QSR: loyalty members</option><option value="hospitality">Hospitality and travel: corporate accounts</option><option value="nonprofit">Nonprofit: monthly donors</option></optgroup><option value="custom">Your own numbers</option></select></label><p class="pnote" id="pnote"></p></div><div class="tgrid"><div class="tin"><div class="grid"><label>Currency<select id="cur"><option value="$">US dollar ($)</option><option value="৳">Bangladeshi taka (৳)</option><option value="£">Pound (£)</option><option value="€">Euro (€)</option></select></label>
+<label>Customers at the start of the month<input id="s" type="number" inputmode="numeric" min="0" step="1" value="3000"></label>
+<label>Customers lost during the month <span class="hint">cancelled, lapsed or gone quiet</span><input id="l" type="number" inputmode="numeric" min="0" step="1" value="120"></label>
+<label>New customers won during the month <span class="hint">optional</span><input id="n" type="number" inputmode="numeric" min="0" step="1" value="160"></label>
+<label>Revenue per customer, per month <span class="hint">optional</span><input id="arpu" type="number" inputmode="decimal" min="0" step="any" value="20"></label>
+<label>Gross margin (%) <span class="hint">optional, for lifetime profit</span><input id="gm" type="number" inputmode="decimal" min="0" max="100" step="any" value="45"></label>
+</div>
+</div><div class="tres" aria-live="polite"><div class="out" aria-live="polite">
+<div class="kpi"><span class="kl">Monthly churn</span><span class="kv" id="o1">-</span><span class="kb" id="o1b"></span></div>
+<div class="kpi"><span class="kl">Still here in a year</span><span class="kv" id="o2">-</span><span class="kb" id="o2b"></span></div>
+<div class="kpi"><span class="kl">Average lifetime</span><span class="kv" id="o3">-</span><span class="kb" id="o3b"></span></div>
+<div class="kpi"><span class="kl">Revenue lost a month</span><span class="kv" id="o4">-</span><span class="kb" id="o4b"></span></div>
+</div>
+<div class="chart" id="chart" aria-hidden="true"></div>
+<p class="verdict" id="v"></p>
+<div class="formula"><span class="k">Formula</span>Monthly churn = customers lost ÷ customers at the start · average lifetime ≈ 1 ÷ churn · still here after 12 months = (1 − churn)<sup>12</sup></div>
+</div></div><div class="v2row"><div class="v2box"><h3>What to do next</h3><ul id="nx"></ul></div><div class="v2box"><details class="work"><summary>Show the working, step by step</summary><ol id="work"></ol></details></div></div><div class="sharebar"><button type="button" class="btn solid" id="shcard">Download result card</button><button type="button" class="btn" id="shsum">Copy summary</button><button type="button" class="btn" id="shpdf">Save as PDF</button><button type="button" class="btn" id="shlink">Copy link with my numbers</button><button type="button" class="btn" id="shli">Share on LinkedIn</button><span class="ok" id="shok" aria-live="polite"></span></div><div class="receipt"><div><p class="rk">Where I used this</p><p>At Laser Treat I brought patient records and customer experience systems onto one platform across the group, and patient retention rose 13%.</p><a href="/case/laser-treat/">Read the case: Digitizing a multi-entity clinical group &rarr;</a></div></div><div class="handoff"><a href="/nps-calculator.html" id="h1"><span>Step before</span><b>Ask why they stay: NPS calculator</b></a><a href="/ltv-cac-calculator.html" id="h2"><span>Next step</span><b>Put a value on each customer: LTV:CAC</b></a><a href="/recurring-revenue-calculator.html" id="h3"><span>Same stage</span><b>See it in revenue: Recurring revenue bridge</b></a></div><p class="privacy-note">Everything is calculated in your browser. Nothing you type is sent or stored.</p></section>
+
+<h2>Where churn usually comes from</h2>
+<ul><li><b>The first weeks.</b> Customers who never get the first result they came for leave early. Look at churn by joining month, not only in total.</li>
+<li><b>Service failures.</b> A missed delivery, a long queue or an unanswered complaint. These show up in support logs before they show up in churn.</li>
+<li><b>Value for money.</b> When the price rises or a cheaper option appears. Ask the customers who leave, and check your <a href="/price-increase-calculator.html">price increase math</a> first.</li></ul><div class="mail"><p><b>Get new free tools by email.</b> One short note when a new tool or essay goes live. No spam, unsubscribe any time.</p><form id="mailf" action="https://buttondown.com/api/emails/embed-subscribe/shafaat" method="post" target="popupwindow"><input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required><button type="submit" class="btn solid">Subscribe</button></form></div>
+<div class="cta"><h2>Losing customers faster than you win them?</h2><p>Bring your numbers to a free 30-minute call, and I will help you find where customers leave and what to fix first.</p><p><a class="back solid" href="https://calendly.com/shafaat-alic/30min" id="cta-call">Book a free call</a></p></div>
+<section class="faq"><h2>Questions</h2>
+<h3>How do you calculate churn rate?</h3><p>Divide the customers lost during a period by the customers you had at the start of it. Losing 100 of 2,000 customers in a month is a 5% monthly churn rate.</p>
+<h3>What is the difference between customer churn and revenue churn?</h3><p>Customer churn counts people; revenue churn counts money. Losing a few large accounts can mean low customer churn but high revenue churn, so track both.</p>
+<h3>How does churn affect customer lifetime value?</h3><p>The average customer lifetime is roughly 1 divided by monthly churn. Halving churn roughly doubles how long a customer stays, and the lifetime value with it.</p>
+</section>
+  </article>
+<section class="more" aria-label="More free tools"><h2>More free tools</h2><div class="mg"><a href="/ltv-cac-calculator.html"><b>LTV:CAC calculator</b>What is a customer worth, and how fast do you earn back what you paid to win them?</a><a href="/nps-calculator.html"><b>NPS calculator</b>Net Promoter Score from your survey counts, with the share of promoters and detractors.</a><a href="/recurring-revenue-calculator.html"><b>Recurring revenue bridge</b>New, expansion and lost revenue in one view, with net revenue retention.</a></div><a class="all" href="/tools.html">See all 38 free tools &rarr;</a></section>
+  </main>
+  <footer class="foot">
+    <a href="/">&larr; Back to the portfolio</a> &middot; <a href="/essays.html">All essays</a> &middot; <a href="https://www.linkedin.com/in/sacgrowthspecialist">LinkedIn</a>
+    <p class="cr-note" style="margin:10px 0 0;font-size:12px;letter-spacing:.01em;opacity:.72;">&copy; 2026 Md Shafaat Ali Choyon. All rights reserved. &middot; <a href="/tools.html">Free tools</a> &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="/legal.html">Legal</a> &middot; <a href="/accessibility.html">Accessibility</a></p>
+  </footer>
+</div>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var num=function(id){var v=parseFloat(($(id)||{}).value);return isFinite(v)?v:NaN;};
+  var an=function(x){var t=String(x);return /^(8|11$|18$|11\d{3}$|18\d{3}$)/.test(t)?'An ':'A ';};
+  var fm=function(n,c,d){if(!isFinite(n))return '-';var a=Math.abs(n);var s=a>=1e9?(n/1e9).toFixed(1)+'B':a>=1e7?(n/1e6).toFixed(1)+'M':n.toLocaleString('en-US',{maximumFractionDigits:d===undefined?0:d});return (c&&s.charAt(0)==='-')?'-'+c+s.slice(1):(c||'')+s;};
+  var band=function(el,cls,txt){el.className='kb '+(cls||'');el.textContent=txt;};
+  var esc=function(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');};
+  var __used=false; var used=function(slug){if(__used)return;__used=true;try{window.track&&window.track('tool_use',{tool:slug});}catch(e){}};
+  var bindAll=function(ids,fn,slug){ids.forEach(function(k){var el=$(k);if(!el)return;['input','change'].forEach(function(ev){el.addEventListener(ev,function(){fn();used(slug);});});});fn();};
+  var fromQuery=function(ids){try{var q=new URLSearchParams(location.search);ids.forEach(function(k){var v=q.get(k);if(v!==null&&$(k))$(k).value=v;});}catch(e){}};
+  var toQuery=function(ids){try{var p=new URLSearchParams();ids.forEach(function(k){if($(k))p.set(k,$(k).value);});history.replaceState(null,'','?'+p.toString());}catch(e){}};
+  var ncdf=function(x){var t=1/(1+0.2316419*Math.abs(x)),d=0.3989423*Math.exp(-x*x/2),p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p;};
+  var zfor=function(conf){return {80:1.2816,85:1.4395,90:1.6449,95:1.96,98:2.3263,99:2.5758}[conf]||1.96;};
+var SLUG="churn-retention-calculator",TOOLNAME="Churn and retention calculator",PRESETS={"telecom": {"label": "Telecom: prepaid subscribers", "note": "Count a SIM as lost when it stops recharging, even if it was never cancelled.", "v": {"s": 50000, "l": 1500, "n": 1800, "arpu": 5, "gm": 55}}, "fmcg": {"label": "FMCG: repeat buyers", "note": "Count a buyer as lost once they miss their usual repurchase cycle.", "v": {"s": 8000, "l": 560, "n": 700, "arpu": 12, "gm": 35}}, "advertising": {"label": "Agency: retainer clients", "note": "One lost retainer can be a tenth of revenue. Watch revenue churn, not only client count.", "v": {"s": 30, "l": 1, "n": 2, "arpu": 8000, "gm": 40}}, "fintech": {"label": "Fintech: active wallet users", "note": "Define active first, for example one transaction in 30 days, then measure who stops.", "v": {"s": 100000, "l": 6000, "n": 9000, "arpu": 1.5, "gm": 50}}, "ecommerce": {"label": "E-commerce: repeat customers", "note": "Without subscriptions, count a customer as lost when they miss their normal buying cycle.", "v": {"s": 12000, "l": 1100, "n": 1500, "arpu": 30, "gm": 30}}, "consumertech": {"label": "Consumer tech: device protection plan", "note": "Plans sold with the device often lapse at the first renewal. Remind people before it.", "v": {"s": 20000, "l": 600, "n": 900, "arpu": 6, "gm": 60}}, "education": {"label": "Education: monthly course subscribers", "note": "Learners who miss two sessions in a row are early churn. A personal nudge helps.", "v": {"s": 1500, "l": 120, "n": 150, "arpu": 25, "gm": 70}}, "logistics": {"label": "Logistics: business shipping accounts", "note": "Accounts rarely cancel; their volume fades. Track accounts that halve their shipments.", "v": {"s": 400, "l": 10, "n": 18, "arpu": 900, "gm": 20}}, "healthcare": {"label": "Healthcare: care-plan members", "note": "Patients who skip a planned follow-up are early churn. A reminder call is the cheapest fix.", "v": {"s": 3000, "l": 120, "n": 160, "arpu": 20, "gm": 45}}, "saas": {"label": "SaaS: business subscribers", "note": "Smaller customers usually churn faster than large accounts, so split the two.", "v": {"s": 1200, "l": 30, "n": 55, "arpu": 100, "gm": 80}}, "pharma": {"label": "Pharma and medtech: clinics on a supply contract", "note": "Losses cluster at contract renewal. Start the renewal talk three months early.", "v": {"s": 250, "l": 5, "n": 8, "arpu": 1500, "gm": 45}}, "insurance": {"label": "Insurance: monthly policies", "note": "Lapses cluster around the first renewal. Watch new policyholders most closely.", "v": {"s": 20000, "l": 300, "n": 450, "arpu": 45, "gm": 25}}, "retail": {"label": "Retail and QSR: loyalty members", "note": "Loyalty churn is quiet. Count a member as lost after two months with no visit.", "v": {"s": 25000, "l": 2500, "n": 3000, "arpu": 15, "gm": 30}}, "hospitality": {"label": "Hospitality and travel: corporate accounts", "note": "A corporate account that books less each quarter is leaving slowly. Track volume too.", "v": {"s": 120, "l": 4, "n": 6, "arpu": 3000, "gm": 35}}, "nonprofit": {"label": "Nonprofit: monthly donors", "note": "For donors, margin is what is left after payment fees. Failed card payments are a hidden churn.", "v": {"s": 2000, "l": 60, "n": 90, "arpu": 20, "gm": 95}}, "custom": {"label": "Your own numbers", "v": {}, "note": "Enter your own figures. The examples are illustrative, not benchmarks."}};
+
+  var hbars=function(rows,c,o){o=o||{};var el=$('chart');if(!el)return;rows=rows.filter(function(r){return isFinite(r.v)&&r.v>=0;});if(!rows.length){el.innerHTML='';return;}
+    var W=Math.max(300,Math.min(760,el.clientWidth||680)),rh=34,lw=Math.min(o.lw||170,Math.round(W*(W<460?.4:.32))),bw=W-lw-112,mx=Math.max.apply(null,rows.map(function(r){return r.v;}))||1,h=8+rows.length*rh+4,s='<svg viewBox="0 0 '+W+' '+h+'" role="img" aria-label="'+esc(o.label||'Chart')+'">';
+    rows.forEach(function(r,i){var y=8+i*rh,w=Math.max(2,r.v/mx*bw);s+='<text x="'+(lw-10)+'" y="'+(y+19)+'" text-anchor="end" font-size="13" fill="#C7CDD6" font-family="Inter,system-ui">'+esc(String(r.n).slice(0,Math.max(8,Math.floor((lw-14)/7.3))))+'</text><rect x="'+lw+'" y="'+(y+6)+'" width="'+w.toFixed(1)+'" height="18" rx="4" fill="'+(r.col||'#33C4C4')+'"/><text x="'+(lw+w+8)+'" y="'+(y+19)+'" font-size="13" fill="#F3EFE7" font-family="Inter,system-ui" font-weight="600">'+esc(r.t!==undefined?r.t:fm(r.v,c))+'</text>';});
+    el.innerHTML=s+'</svg>';};
+  var work=function(lines){var el=$('work');if(el)el.innerHTML=lines.map(function(l){return '<li>'+esc(l)+'</li>';}).join('');};
+  var nextUp=function(items){var el=$('nx');if(!el)return;el.innerHTML=items.map(function(it){return '<li>'+esc(it.t)+(it.href?' <a href="'+esc(it.href)+'">'+esc(it.a)+' &rarr;</a>':'')+'</li>';}).join('');};
+  var shareEv=function(m){try{window.track&&window.track('tool_share',{tool:SLUG,method:m});}catch(e){}};
+  var flash=function(t){var el=$('shok');if(!el)return;el.textContent=t;setTimeout(function(){el.textContent='';},2600);};
+  function applyPreset(k,run){var p=PRESETS[k];if(!p)return;Object.keys(p.v).forEach(function(id){if($(id))$(id).value=p.v[id];});$('pnote').textContent=p.note||'';if(run)run();}
+  function initPicker(run){var s=$('ind');if(!s)return;var q=null;try{q=new URLSearchParams(location.search);}catch(e){}
+    var fromUrl=q&&[...q.keys()].some(function(k){return k!=='ind'&&!!$(k);});if(q&&q.get('ind')&&PRESETS[q.get('ind')])s.value=q.get('ind');
+    if(fromUrl&&!(q&&q.get('ind'))&&PRESETS.custom)s.value='custom';if(!fromUrl)applyPreset(s.value);else{var pi=q&&q.get('ind');if(pi&&PRESETS[pi]){var pv=PRESETS[pi].v;Object.keys(pv).forEach(function(id){if(!q.has(id)&&$(id))$(id).value=pv[id];});}$('pnote').textContent=(PRESETS[s.value]||{}).note||'';}
+    s.addEventListener('change',function(){applyPreset(s.value,run);try{window.track&&window.track('tool_preset',{tool:SLUG,preset:s.value});}catch(e){}});}
+  function wrapText(ctx,t,x,y,mw,lh,maxL){var w=t.split(' '),line='',n=0;for(var i=0;i<w.length;i++){var tl=line+w[i]+' ';if(ctx.measureText(tl).width>mw&&line){ctx.fillText(line,x,y);y+=lh;line=w[i]+' ';if(++n>=maxL-1){var rest=w.slice(i).join(' ');while(ctx.measureText(rest+'…').width>mw&&rest.length)rest=rest.slice(0,-1);ctx.fillText(rest+(rest.length<w.slice(i).join(' ').length?'…':''),x,y);return;}}else line=tl;}ctx.fillText(line,x,y);}
+  function card(){var c=document.createElement('canvas');c.width=1200;c.height=630;var x=c.getContext('2d');var F='Manrope, Inter, system-ui, sans-serif';
+    x.fillStyle='#0B0F14';x.fillRect(0,0,1200,630);x.fillStyle='#33C4C4';x.fillRect(0,0,1200,8);
+    x.fillStyle='#7f8894';x.font='600 20px '+F;x.fillText('FREE TOOL',64,72);
+    x.fillStyle='#F3EFE7';x.font='800 44px '+F;wrapText(x,TOOLNAME,64,124,1072,52,2);
+    var ks=[].slice.call(document.querySelectorAll('.out .kpi')).slice(0,4);var cw=1072/Math.max(ks.length,1);
+    ks.forEach(function(k,i){var l=(k.querySelector('.kl')||{}).textContent||'',v=(k.querySelector('.kv')||{}).textContent||'';x.fillStyle='#7f8894';x.font='600 18px '+F;x.fillText(l.toUpperCase().slice(0,26),64+i*cw,268);x.fillStyle='#F3EFE7';var fs=46;x.font='800 '+fs+'px '+F;while(x.measureText(v).width>cw-24&&fs>24){fs-=2;x.font='800 '+fs+'px '+F;}var vv=v;if(x.measureText(vv).width>cw-24){while(x.measureText(vv+'…').width>cw-24&&vv.length>3)vv=vv.slice(0,-1);vv+='…';}x.fillText(vv,64+i*cw,324);});
+    x.fillStyle='#C7CDD6';x.font='400 25px Inter, system-ui, sans-serif';var vt=(($('v')||{}).textContent||'').trim()||(($('say1')||{}).textContent||'').trim()||(($('obj')||{}).textContent||'').trim();wrapText(x,vt,64,ks.length?410:250,1072,36,ks.length?3:6);
+    x.fillStyle='#33C4C4';x.font='700 22px '+F;x.fillText('shafaatalichoyon.com/'+SLUG,64,578);x.fillStyle='#7f8894';x.font='500 20px '+F;x.textAlign='right';x.fillText('Md Shafaat Ali Choyon',1136,578);
+    c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=SLUG+'-result.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},800);});shareEv('card');flash('Result card downloaded');}
+  function initShare(){var __rt;window.addEventListener('resize',function(){clearTimeout(__rt);__rt=setTimeout(function(){try{if(typeof f==='function')f();}catch(e){}},180);});var b=$('shcard');if(b)b.addEventListener('click',card);
+    var cl=$('shlink');if(cl)cl.addEventListener('click',function(){var u=location.href;try{navigator.clipboard.writeText(u).then(function(){flash('Link with your numbers copied');});}catch(e){prompt('Copy this link',u);}shareEv('link_numbers');});
+    var ln=$('shli');if(ln)ln.addEventListener('click',function(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.origin+location.pathname),'_blank','noopener');shareEv('linkedin');});
+    var mf=$('mailf');if(mf)mf.addEventListener('submit',function(){try{window.open('https://buttondown.com/shafaat','popupwindow');window.track&&window.track('subscribe',{from:'tool',tool:SLUG});}catch(e){}});}
+
+  var __tq=toQuery;toQuery=function(a){__tq(a.indexOf('ind')<0?a.concat('ind'):a);};
+  var ids=['cur','s','l','n','arpu','gm'];fromQuery(ids);
+  var pc=function(x,d){return (x*100).toFixed(d===undefined?1:d).replace(/\.0$/,'')+'%';};
+  var dur=function(m){if(!isFinite(m))return 'no churn yet';if(m>=120)return '10+ years';if(m>=24)return (m/12).toFixed(1).replace(/\.0$/,'')+' years';return m.toFixed(1).replace(/\.0$/,'')+' months';};
+  function f(){var c=$('cur').value,s=num('s'),l=num('l'),n=num('n'),a=num('arpu'),g=num('gm');
+    if(!(s>0&&l>=0)){['o1','o2','o3','o4'].forEach(function(k){$(k).textContent='-';$(k+'b').textContent='';});$('v').textContent='Enter the customers you started the month with and how many you lost.';toQuery(ids);return;}
+    if(l>s){['o1','o2','o3','o4'].forEach(function(k){$(k).textContent='-';$(k+'b').textContent='';});$('v').textContent='Customers lost cannot be more than the customers you started with.';toQuery(ids);return;}
+    var ch=l/s,r12=Math.pow(1-ch,12),life=ch>0?1/ch:Infinity;
+    $('o1').textContent=pc(ch);band($('o1b'),ch<=0.02?'good':ch<=0.05?'warn':'bad',ch<=0.02?'low':ch<=0.05?'moderate':'high: fix this first');
+    $('o2').textContent=pc(r12,0);band($('o2b'),r12>=0.75?'good':r12>=0.45?'warn':'bad','of today’s customers');
+    $('o3').textContent=dur(life);band($('o3b'),'',isFinite(life)?'before the average customer leaves':'add a longer period');
+    if(a>0){$('o4').textContent=fm(l*a,c);band($('o4b'),'',fm(l*a*12,c)+' a year at this rate');}else{$('o4').textContent='-';band($('o4b'),'','add revenue per customer');}
+    var t='At '+pc(ch)+' monthly churn, '+pc(r12,0)+' of today’s customers will still be with you in a year.';
+    if(n>=0&&isFinite(n)){var net=n-l;var pl=function(x){return fm(x)+(x===1?' customer':' customers');};t=net>0?'You win '+pl(n)+' and lose '+fm(l)+' a month, so the base grows by '+pl(net)+'. '+t:net<0?'You lose more customers than you win: the base shrinks by '+pl(-net)+' a month. '+t:'You win as many customers as you lose, so the base is flat. '+t;}
+    $('v').textContent=t;toQuery(ids);}
+  function POST(){var c=$('cur').value,s=num('s'),l=num('l'),n=num('n'),a=num('arpu'),g=num('gm');
+    if(!(s>0&&l>=0&&l<=s)){work([]);nextUp([]);hbars([]);return;}
+    var ch=l/s,life=ch>0?1/ch:Infinity;
+    var w=['Monthly churn: '+fm(l)+' lost ÷ '+fm(s)+' at the start = '+pc(ch,2),'Still here after 12 months: (1 − '+pc(ch,2)+')^12 = '+pc(Math.pow(1-ch,12),1)];
+    if(ch>0)w.push('Average lifetime: 1 ÷ '+pc(ch,2)+' = '+(1/ch).toFixed(1)+' months');
+    if(a>0)w.push('Revenue lost: '+fm(l)+' customers × '+fm(a,c,2)+' = '+fm(l*a,c)+' a month');
+    if(isFinite(n)&&n>=0)w.push('Net change: '+fm(n)+' won − '+fm(l)+' lost = '+(n-l>=0?'+':'')+fm(n-l));
+    work(w);
+    var col=function(r){return r>=75?'#4FC48A':r>=45?'#F4A24C':'#F0705A';};
+    hbars([1,3,6,12,24].map(function(m){var r=Math.pow(1-ch,m)*100;return {n:'After '+m+(m===1?' month':' months'),v:r,t:r.toFixed(0)+'%',col:col(r)};}),c,{label:'Share of today’s customers still with you',lw:150});
+    var nx=[];
+    if(isFinite(n)&&n<l)nx.push({t:'You lose more customers than you win. Fix why they leave before adding acquisition spend, or new customers leak out too.'});
+    if(ch>0){var c2=ch*0.8,add=1/c2-1/ch;var tx='Cutting churn by a fifth, from '+pc(ch)+' to '+pc(c2)+', adds '+add.toFixed(1)+' months to the average customer lifetime';
+      if(a>0&&g>0)tx+=' and about '+fm(a*g/100*add,c)+' of gross profit per customer';nx.push({t:tx+'.'});}
+    else nx.push({t:'No customers lost this month. Check a longer period; one good month can flatter you.'});
+    if(a>0&&ch>0)nx.push({t:'Put a value on each customer and compare it with what you pay to win one.',href:'/ltv-cac-calculator.html?cur='+encodeURIComponent(c)+'&arpu='+a+(g>0?'&gm='+g:'')+'&churn='+(ch*100).toFixed(2),a:'LTV:CAC, pre-filled'});
+    nx.push({t:'Find out why people stay or leave with a short survey.',href:'/nps-calculator.html',a:'NPS calculator'});
+    nextUp(nx);}
+  var __f=f;f=function(){__f();try{POST();}catch(e){}};initPicker(f);bindAll(ids.concat('ind'),f,'churn_retention');
+  initShare();
+})();
+</script><script>(function(){var b=document.getElementById('tshare'),l=document.getElementById('tshare-l');if(!b)return;
+  var url=location.origin+location.pathname,title=document.title.split(' | ')[0];
+  function ev(m){try{window.track&&window.track('tool_share',{tool:location.pathname.replace(/^\/|\.html$/g,''),method:m});}catch(e){}}
+  b.addEventListener('click',function(){
+    if(navigator.share&&window.matchMedia&&window.matchMedia('(pointer:coarse)').matches){navigator.share({title:title,text:title+', a free tool by Shafaat Ali Choyon',url:url}).then(function(){ev('native');}).catch(function(){});return;}
+    var done=function(){l.textContent='Link copied';setTimeout(function(){l.textContent='Share this tool';},2200);ev('copy_link');};
+    try{navigator.clipboard.writeText(url).then(done,function(){prompt('Copy this link',url);ev('copy_link');});}catch(e){prompt('Copy this link',url);ev('copy_link');}});
+  var li=document.getElementById('tshare-li'),wa=document.getElementById('tshare-wa');
+  if(li)li.addEventListener('click',function(){ev('linkedin');});if(wa)wa.addEventListener('click',function(){ev('whatsapp');});
+})();</script><script>(function(){var b=document.getElementById('shsum');if(!b)return;
+  b.addEventListener('click',function(){var h=(document.querySelector('h1')||{}).textContent||document.title;
+    var lines=[h.trim()];document.querySelectorAll('.tres .kpi, .out .kpi').forEach(function(k,i){if(i>5)return;var l=(k.querySelector('.kl')||{}).textContent||'',v=(k.querySelector('.kv')||{}).textContent||'',d=(k.querySelector('.kb')||{}).textContent||'';
+      if(l&&v&&v!=='-')lines.push('- '+l.trim()+': '+v.trim()+(d.trim()?' ('+d.trim()+')':''));});
+    var v=(document.getElementById('v')||{}).textContent||'';if(v.trim())lines.push('',v.trim());
+    var nx=document.querySelectorAll('#nx li');if(nx.length){lines.push('','Next: '+nx[0].textContent.replace(/\s*\u2192\s*$/,'').trim());}
+    lines.push('','Worked out with '+location.origin+location.pathname);
+    var t=lines.join('\n'),done=function(){var o=b.textContent;b.textContent='Summary copied';setTimeout(function(){b.textContent=o;},2000);};
+    try{navigator.clipboard.writeText(t).then(done,function(){prompt('Copy this summary',t);});}catch(e){prompt('Copy this summary',t);}
+    try{window.track&&window.track('tool_share',{tool:location.pathname.replace(/^\/|\.html$/g,''),method:'summary'});}catch(e){}});
+  document.querySelectorAll('.advl').forEach(function(a){a.addEventListener('click',function(){try{window.track&&window.track('advisor_entry',{from:a.dataset.from});}catch(e){}});});
+  var c=document.getElementById('cta-call');if(c)c.addEventListener('click',function(){try{window.track&&window.track('tool_cta',{tool:location.pathname.replace(/^\/|\.html$/g,'')});}catch(e){}});
+})();</script><script>(function(){
+  var prevTheme=null,opened=[],added=[],active=false;
+  function slug(){return location.pathname.replace(/^\/|\.html$/g,'')||'home';}
+  function before(){if(active)return;active=true;
+    var h=document.documentElement;prevTheme=h.getAttribute('data-theme');h.setAttribute('data-theme','light');
+    try{window.dispatchEvent(new Event('resize'));}catch(e){}
+    document.querySelectorAll('details.work:not([open])').forEach(function(d){d.open=true;opened.push(d);});
+    var main=document.querySelector('main')||document.body,t=((document.querySelector('h1')||{}).textContent||document.title).trim();
+    var d=new Date(),ds=d.toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
+    var hd=document.createElement('div');hd.className='pdfhead';
+    hd.innerHTML='<b>Shafaat Ali Choyon</b> &middot; Growth and public health strategist &middot; shafaatalichoyon.com<br>Prepared '+ds+' with the free '+(document.body.dataset.pdfname||'tool')+' at shafaatalichoyon.com/'+slug()+(slug()==='advisor'?'':'.html');
+    main.insertBefore(hd,main.firstChild);added.push(hd);
+    var ft=document.createElement('div');ft.className='pdffoot';
+    ft.textContent='Open this again: '+location.href.split('#')[0]+'   |   Examples are illustrative, not benchmarks. Want help applying this? Book a free call: calendly.com/shafaat-alic/30min';
+    main.appendChild(ft);added.push(ft);
+  }
+  function after(){if(!active)return;active=false;
+    var h=document.documentElement;if(prevTheme===null)h.removeAttribute('data-theme');else h.setAttribute('data-theme',prevTheme);
+    try{window.dispatchEvent(new Event('resize'));}catch(e){}
+    opened.forEach(function(d){d.open=false;});opened=[];added.forEach(function(e){e.remove();});added=[];
+  }
+  window.addEventListener('beforeprint',before);window.addEventListener('afterprint',after);
+  document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#shpdf,#pdfplan');if(!b)return;
+    try{window.track&&window.track('tool_share',{tool:slug(),method:'pdf'});}catch(_){}
+    window.print();});
+})();</script>
+<script>(function(){
+  var SUN='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  var MOON='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  var btn=document.getElementById('theme-toggle'),ico=document.getElementById('tgl-ico');
+  function paint(){var dark=document.documentElement.getAttribute('data-theme')!=='light';if(ico)ico.innerHTML=dark?SUN:MOON;if(btn)btn.setAttribute('aria-label',dark?'Switch to light theme':'Switch to dark theme');
+    var m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',dark?'#0B0F14':'#FBF8F1');}
+  paint();
+  if(btn)btn.addEventListener('click',function(){var next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+    document.documentElement.setAttribute('data-theme',next);try{localStorage.setItem('shafaat_theme',next);}catch(e){}paint();
+    try{window.track&&window.track('theme_toggle',{theme:next,page:location.pathname});}catch(e){}});
+  /* Stay in sync: back/forward cache, other tabs, and device day/night changes. */
+  function sync(){var t=null;try{t=localStorage.getItem('shafaat_theme');}catch(e){}
+    if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}
+    if(document.documentElement.getAttribute('data-theme')!==t){document.documentElement.setAttribute('data-theme',t);paint();}}
+  window.addEventListener('pageshow',sync);window.addEventListener('storage',function(e){if(!e.key||e.key==='shafaat_theme')sync();});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)sync();});
+  try{var mq=window.matchMedia('(prefers-color-scheme: dark)');(mq.addEventListener?mq.addEventListener('change',sync):mq.addListener(sync));}catch(e){}
+})();</script>
+<script defer src="/assets/analytics.js"></script>
+</body>
+</html>
