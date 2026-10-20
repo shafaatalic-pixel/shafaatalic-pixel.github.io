@@ -70,7 +70,7 @@ Md Shafaat Ali Choyon is the founder of HSREP (https://hsraep.org), an independe
 
 ## Essays (original, on-site)
 
-93 original essays, dual-market field notes (US & Bangladesh) on AI, public health, health-tech and growth, each with a short FAQ. Full filterable index: https://shafaatalichoyon.com/essays.html
+94 original essays, dual-market field notes (US & Bangladesh) on AI, public health, health-tech and growth, each with a short FAQ. Full filterable index: https://shafaatalichoyon.com/essays.html
 
 - [The Verification Gap in AI Code](https://shafaatalichoyon.com/the-verification-gap-in-ai-code.html), 96% of developers don't fully trust AI-generated code, only 48% verify it every time. The risk was never bad code, it's shipping with no verification layer.
 - [The Shrinking CMO](https://shafaatalichoyon.com/the-shrinking-cmo.html), Marketing budgets are flat at 7.7% of revenue, 95% of CMOs feel ROI pressure, and tenure hit a 10-year low of 4.1 years. What keeps a growth leader standing.
@@ -124,6 +124,7 @@ Md Shafaat Ali Choyon is the founder of HSREP (https://hsraep.org), an independe
 - [Air quality is a health emergency nobody owns](https://shafaatalichoyon.com/air-quality-health-emergency.html), Dhaka's air ranks among the world's worst: PM2.5 ~13x the WHO limit: and US wildfire smoke made the threat American. High-leverage, and no one owns it.
 - [Zero Digital Health IPOs in Six Months: the Exit Bar Just Changed](https://shafaatalichoyon.com/zero-digital-health-ipos.html), Zero digital health IPOs landed in H1 2026. Hinge Health's stock doubled anyway, because it cleared the Rule of 40. Here's what changed.
 - [Financing the uninsured: the missing rail in health](https://shafaatalichoyon.com/financing-the-uninsured.html), In Bangladesh, out-of-pocket costs are ~68.5% of health spending; ~70M face hardship. The fix isn't a clinic: it's a payment rail I built at national scale.
+- [Medicaid work rules are a paperwork test, not a work test](https://shafaatalichoyon.com/medicaid-work-rules-paperwork-test.html), From 1 January 2027, adults on Medicaid expansion in 43 states must prove 80 hours a month of work or study. Most already qualify. The ones who lose coverage will mostly lose it to paperwork, and outreach is the intervention.
 - [The authenticity dividend - your last real moat](https://shafaatalichoyon.com/authenticity-dividend.html), In a feed drowning in AI sameness, the scarce thing is proof a person made it. Notes on trust: from Dhaka's markets to the backlash against AI slop.
 - [The First Fully AI-Designed Drug Could Get FDA Approval Within the Year](https://shafaatalichoyon.com/first-ai-designed-drug.html), Insilico's rentosertib is the first fully AI-designed drug in Phase IIb, with a 60% shot at approval by 2027. Why verification, not design, is the real bottleneck.
 - [Companion Bots Just Got Regulated Like a Health Product](https://shafaatalichoyon.com/companion-bots-get-regulated.html), California's SB 243 and a parallel New York law now require AI companion apps to disclose, detect self-harm risk, and protect minors, after 72% of teens used one.
