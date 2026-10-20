@@ -441,12 +441,13 @@
     function flush(){if(para.length){out.push('<p>'+para.join(' ')+'</p>');para=[];}if(list){out.push('<ul>'+list.join('')+'</ul>');list=null;}}
     esc(s).split('\n').forEach(function(ln){var l=ln.trim();
       if(!l){flush();return;}
+      var hd=l.match(/^#{1,4}\s+(.*)$/);if(hd){flush();out.push('<p><b>'+hd[1].replace(/\*\*/g,'')+'</b></p>');return;}
       var m=l.match(/^[-•*]\s+(.*)$/);
       if(m){if(para.length){out.push('<p>'+para.join(' ')+'</p>');para=[];}list=list||[];list.push('<li>'+m[1]+'</li>');return;}
       if(list){out.push('<ul>'+list.join('')+'</ul>');list=null;}
       para.push(l);});
     flush();
-    return out.join('').replace(/(https?:\/\/[^\s<)]+[^\s<).,;:])/g,function(u){var same=/^https?:\/\/(www\.)?shafaatalichoyon\.com/.test(u),h=same?u.replace(/^https?:\/\/(www\.)?shafaatalichoyon\.com/,''):u;var label=same?('shafaatalichoyon.com'+(h==='/'?'':h)):u.replace(/^https?:\/\//,'');return '<a href="'+h+'"'+(same?'':' rel="noopener" target="_blank"')+'>'+label+'</a>';});}
+    return out.join('').replace(/\*\*([^*<]+)\*\*/g,'<b>$1</b>').replace(/\*\*/g,'').replace(/(^|[\s(>])\*([^*<\s][^*<]*)\*(?=[\s.,;:)<]|$)/g,'$1<i>$2</i>').replace(/(https?:\/\/[^\s<)]+[^\s<).,;:])/g,function(u){var same=/^https?:\/\/(www\.)?shafaatalichoyon\.com/.test(u),h=same?u.replace(/^https?:\/\/(www\.)?shafaatalichoyon\.com/,''):u;var label=same?('shafaatalichoyon.com'+(h==='/'?'':h)):u.replace(/^https?:\/\//,'');return '<a href="'+h+'"'+(same?'':' rel="noopener" target="_blank"')+'>'+label+'</a>';});}
   function bot(html,cls){var d=document.createElement('div');d.className='msg'+(cls?' '+cls:'');d.innerHTML='<img class="av" src="/assets/advisor-avatar.webp" alt="" width="34" height="34"><div class="bub">'+html+'</div>';chat.appendChild(d);d.scrollIntoView({behavior:'smooth',block:'nearest'});return d;}
   function me(text){var d=document.createElement('div');d.className='msg me';d.innerHTML='<div class="bub">'+esc(text)+'</div>';chat.appendChild(d);}
   function setLeft(){var n=Math.max(0,CFG.max-turns);left.textContent=n?(n+' question'+(n===1?'':'s')+' left this visit.'):'Question limit reached for this visit.';if(!n){send.disabled=true;q.disabled=true;}}
@@ -483,7 +484,7 @@
       if(tools.length||needBook){html+='<div class="aitools">';tools.forEach(function(tl){var p=new URLSearchParams();Object.keys(tl.params||{}).forEach(function(k){p.set(k,tl.params[k]);});if(ind&&!p.get('ind'))p.set('ind',ind);var qs=p.toString();
           html+='<a class="opt" href="/'+esc(tl.slug)+'.html'+(qs?'?'+qs:'')+'" data-tool="'+esc(tl.slug)+'">Open '+esc(tl.name||tl.slug)+(Object.keys(tl.params||{}).length?' with your numbers':'')+' &rarr;</a>';});
         if(needBook)html+='<a class="opt book" href="'+CFG.cal+'" data-book="1">Book a free call with me</a>';html+='</div>';}
-      var d=bot('');pose('talking');lastText=(j.reply||'').replace(/https?:\/\/\S+/g,'');if(hear)hear.hidden=!window.speechSynthesis;typeOut(d.querySelector('.bub'),html,function(){pose('greet');d.scrollIntoView({behavior:'smooth',block:'nearest'});});t('ai_reply',{seconds:Math.round((Date.now()-t0)/1000),step:turns,tool:tools.length?tools[0].slug:'none'});
+      var d=bot('');pose('talking');lastText=(j.reply||'').replace(/https?:\/\/\S+/g,'').replace(/\*\*|^#+\s*/gm,'');if(hear)hear.hidden=!window.speechSynthesis;typeOut(d.querySelector('.bub'),html,function(){pose('greet');d.scrollIntoView({behavior:'smooth',block:'nearest'});});t('ai_reply',{seconds:Math.round((Date.now()-t0)/1000),step:turns,tool:tools.length?tools[0].slug:'none'});
       d.querySelectorAll('[data-tool]').forEach(function(a){a.addEventListener('click',function(){t('ai_tool_open',{tool:a.dataset.tool,step:turns});});});
       d.querySelectorAll('[data-book]').forEach(function(a){a.addEventListener('click',function(){t('ai_book',{step:turns});});});
       busy=false;send.disabled=false;setLeft();if(turns<CFG.max)q.focus();})
