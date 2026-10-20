@@ -70,7 +70,7 @@ Md Shafaat Ali Choyon is the founder of HSREP (https://hsraep.org), an independe
 
 ## Essays (original, on-site)
 
-92 original essays, dual-market field notes (US & Bangladesh) on AI, public health, health-tech and growth, each with a short FAQ. Full filterable index: https://shafaatalichoyon.com/essays.html
+93 original essays, dual-market field notes (US & Bangladesh) on AI, public health, health-tech and growth, each with a short FAQ. Full filterable index: https://shafaatalichoyon.com/essays.html
 
 - [The Verification Gap in AI Code](https://shafaatalichoyon.com/the-verification-gap-in-ai-code.html), 96% of developers don't fully trust AI-generated code, only 48% verify it every time. The risk was never bad code, it's shipping with no verification layer.
 - [The Shrinking CMO](https://shafaatalichoyon.com/the-shrinking-cmo.html), Marketing budgets are flat at 7.7% of revenue, 95% of CMOs feel ROI pressure, and tenure hit a 10-year low of 4.1 years. What keeps a growth leader standing.
@@ -100,6 +100,7 @@ Md Shafaat Ali Choyon is the founder of HSREP (https://hsraep.org), an independe
 - [FemTech's £1.5M Government Check Is an Anchor, Not Just Funding](https://shafaatalichoyon.com/femtech-gets-a-government-check.html), The UK launched a £1.5M FemTech fund under its Women's Health Strategy, public money now formally backing a category private demand alone couldn't scale.
 - [The remittance-to-health pipeline](https://shafaatalichoyon.com/remittance-health-pipeline.html), Bangladesh took in a record $35.56B in remittances while ~70M face health hardship. Connect them: the country's biggest untapped health-financing rail.
 - [The mosquito economy: dengue is a climate problem now](https://shafaatalichoyon.com/dengue-climate-health.html), Bangladesh logged 102,000+ dengue cases last year; 2026 is climbing. It's no longer only ours: local dengue is turning up in the US. Climate rewrote the map.
+- [Dengue 2026: 114,000 admissions, and the peak arrived on schedule](https://shafaatalichoyon.com/dengue-plan-the-peak.html), Bangladesh has admitted 114,251 dengue patients and lost 352 lives this year, most of them since August. The surge is seasonal and predictable. Florida, with its biggest outbreak in a decade, is learning the same lesson.
 - [The call-center cliff and AI voice agents](https://shafaatalichoyon.com/the-call-center-cliff.html), AI voice agents are coming for the call-center economy: Bangladesh built ~$850M and 85,000 jobs on it. Can we move people up the value chain fast enough?
 - [Trust in the pill: the counterfeit-medicine problem](https://shafaatalichoyon.com/trust-in-the-pill.html), One in ten medicines in poorer countries is substandard or fake: a trust collapse you engineer out of the supply. Rich-world shortages open the same door.
 - [Measure the number you're avoiding](https://shafaatalichoyon.com/measure-what-you-avoid.html), Every team measures something. The winning ones measure the number they'd rather not look at: and decide what to count before they start, not after.
@@ -166,9 +167,10 @@ Md Shafaat Ali Choyon is the founder of HSREP (https://hsraep.org), an independe
 - [Health communication that changes behavior](https://shafaatalichoyon.com/health-communication-behavior-change.html), Field notes on segmentation, friction, framing and measurement: the principles behind campaigns that move behavior, not just awareness.
 
 ## Free tools (interactive, on-site)
-41 free calculators and planning templates, arranged as two operating systems. Each loads worked examples, shows the working step by step, and links to the real case where he used it.
+42 free calculators and planning templates, arranged as two operating systems. Each loads worked examples, shows the working step by step, and links to the real case where he used it.
 - Growth operating system (31 tools: plan, execute by channel, measure and optimize; examples from 15 industries: eight he has worked in (telecom, logistics, advertising, fintech, e-commerce, consumer tech, education, healthcare) and seven more as examples only (FMCG, SaaS, pharma and medtech, insurance, retail and QSR, hospitality and travel, nonprofit)): https://shafaatalichoyon.com/growth-os.html
-- Health operating system (7 tools: public health and systems, population health, health communication): https://shafaatalichoyon.com/health-os.html
+- Health operating system (8 tools: public health and systems, population health, health communication): https://shafaatalichoyon.com/health-os.html
+- Herd immunity gap calculator: vaccination coverage a disease needs, the gap, how many each case infects and the catch-up doses (https://shafaatalichoyon.com/herd-immunity-gap-calculator.html)
 - All tools: https://shafaatalichoyon.com/tools.html
 - AI in production: AI use-case risk triage, ten questions that place an AI use case in an EU AI Act risk tier (as amended by the Digital Omnibus, July 2026) with the date the rules apply, the human oversight it needs and Colorado duties from 1 January 2027 (https://shafaatalichoyon.com/ai-risk-triage.html)
 - AI share-of-answer tracker: how often ChatGPT, Gemini, Perplexity and Google AI Overviews name a brand against its top rival for the same buyer questions, the gap and the engine to fix first (https://shafaatalichoyon.com/ai-share-of-answer.html)
