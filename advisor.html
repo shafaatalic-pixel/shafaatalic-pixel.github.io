@@ -441,7 +441,7 @@
     function flush(){if(para.length){out.push('<p>'+para.join(' ')+'</p>');para=[];}if(list){out.push('<ul>'+list.join('')+'</ul>');list=null;}}
     esc(s).split('\n').forEach(function(ln){var l=ln.trim();
       if(!l){flush();return;}
-      var hd=l.match(/^#{1,4}\s+(.*)$/);if(hd){flush();out.push('<p><b>'+hd[1].replace(/\*\*/g,'')+'</b></p>');return;}
+      var hd=l.match(/^#{1,4}\s+(.*)$/)||l.match(/^\*\*([^*]+)\*\*:?$/);if(hd){flush();out.push('<p><b>'+hd[1].replace(/\*\*/g,'')+'</b></p>');return;}
       var m=l.match(/^[-•*]\s+(.*)$/);
       if(m){if(para.length){out.push('<p>'+para.join(' ')+'</p>');para=[];}list=list||[];list.push('<li>'+m[1]+'</li>');return;}
       if(list){out.push('<ul>'+list.join('')+'</ul>');list=null;}
