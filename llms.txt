@@ -168,9 +168,10 @@ Md Shafaat Ali Choyon is the founder of HSREP (https://hsraep.org), an independe
 - [Health communication that changes behavior](https://shafaatalichoyon.com/health-communication-behavior-change.html), Field notes on segmentation, friction, framing and measurement: the principles behind campaigns that move behavior, not just awareness.
 
 ## Free tools (interactive, on-site)
-42 free calculators and planning templates, arranged as two operating systems. Each loads worked examples, shows the working step by step, and links to the real case where he used it.
+43 free calculators and planning templates, arranged as two operating systems. Each loads worked examples, shows the working step by step, and links to the real case where he used it.
 - Growth operating system (31 tools: plan, execute by channel, measure and optimize; examples from 15 industries: eight he has worked in (telecom, logistics, advertising, fintech, e-commerce, consumer tech, education, healthcare) and seven more as examples only (FMCG, SaaS, pharma and medtech, insurance, retail and QSR, hospitality and travel, nonprofit)): https://shafaatalichoyon.com/growth-os.html
-- Health operating system (8 tools: public health and systems, population health, health communication): https://shafaatalichoyon.com/health-os.html
+- Health operating system (9 tools: public health and systems, population health, health communication): https://shafaatalichoyon.com/health-os.html
+- Renewal outreach planner: people who could lapse over paperwork at a Medicaid, SNAP, marketplace or stipend renewal, how many outreach keeps and the outreach workers needed (https://shafaatalichoyon.com/renewal-outreach-planner.html)
 - Herd immunity gap calculator: vaccination coverage a disease needs, the gap, how many each case infects and the catch-up doses (https://shafaatalichoyon.com/herd-immunity-gap-calculator.html)
 - All tools: https://shafaatalichoyon.com/tools.html
 - AI in production: AI use-case risk triage, ten questions that place an AI use case in an EU AI Act risk tier (as amended by the Digital Omnibus, July 2026) with the date the rules apply, the human oversight it needs and Colorado duties from 1 January 2027 (https://shafaatalichoyon.com/ai-risk-triage.html)
