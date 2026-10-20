@@ -70,7 +70,7 @@ Md Shafaat Ali Choyon is the founder of HSREP (https://hsraep.org), an independe
 
 ## Essays (original, on-site)
 
-91 original essays, dual-market field notes (US & Bangladesh) on AI, public health, health-tech and growth, each with a short FAQ. Full filterable index: https://shafaatalichoyon.com/essays.html
+92 original essays, dual-market field notes (US & Bangladesh) on AI, public health, health-tech and growth, each with a short FAQ. Full filterable index: https://shafaatalichoyon.com/essays.html
 
 - [The Verification Gap in AI Code](https://shafaatalichoyon.com/the-verification-gap-in-ai-code.html), 96% of developers don't fully trust AI-generated code, only 48% verify it every time. The risk was never bad code, it's shipping with no verification layer.
 - [The Shrinking CMO](https://shafaatalichoyon.com/the-shrinking-cmo.html), Marketing budgets are flat at 7.7% of revenue, 95% of CMOs feel ROI pressure, and tenure hit a 10-year low of 4.1 years. What keeps a growth leader standing.
@@ -142,6 +142,7 @@ Md Shafaat Ali Choyon is the founder of HSREP (https://hsraep.org), an independe
 - [How mental health became the premium category](https://shafaatalichoyon.com/category-nobody-would-fund.html), Investors once treated mental health as charity. In 2026 a mental-health app sold for $865M. The demand was always there: someone designed around the barrier.
 - [After the scribe: where health AI goes next](https://shafaatalichoyon.com/after-the-scribe.html), The AI scribe was the easy win. The real 2026 question is what AI does after the note: in the back office where the money and the misery live.
 - [The EU AI Act's Enforcement Deadline Is a Redesign Brief](https://shafaatalichoyon.com/eu-ai-act-enforcement.html), The EU AI Act high-risk rules now start 2 December 2027, with fines up to €35M or 7% of global turnover. Compliance is a redesign problem, not a legal one.
+- [The EU blinked on AI. Use the extra 16 months to build, not wait](https://shafaatalichoyon.com/eu-ai-act-delay-design-window.html), The Digital Omnibus pushed the EU AI Act's high-risk rules to December 2027. The bans, the transparency rules and the fines did not move. Here is what changed, what did not, and what to build in the gap.
 - [Stop throwing away what you publish](https://shafaatalichoyon.com/stop-throwing-away-what-you-publish.html), The most wasteful thing in content isn't a bad idea: it's a good one you published once and dropped. Atomize a few durable assets instead of churning posts.
 - [Telehealth's second act: care that comes to you](https://shafaatalichoyon.com/telehealth-second-act.html), Telehealth's first act was pandemic video for the waiting room. The second act is less a video call and more care delivered to your home, on your schedule.
 - [Shame is a design flaw: not a personal failing](https://shafaatalichoyon.com/shame-is-a-design-flaw.html), Shame feels like clarity but works like a wall. In health comms, stigma is a barrier you design around: channel, framing, segmentation: not lecture away.
@@ -165,11 +166,12 @@ Md Shafaat Ali Choyon is the founder of HSREP (https://hsraep.org), an independe
 - [Health communication that changes behavior](https://shafaatalichoyon.com/health-communication-behavior-change.html), Field notes on segmentation, friction, framing and measurement: the principles behind campaigns that move behavior, not just awareness.
 
 ## Free tools (interactive, on-site)
-40 free calculators and planning templates, arranged as two operating systems. Each loads worked examples, shows the working step by step, and links to the real case where he used it.
+41 free calculators and planning templates, arranged as two operating systems. Each loads worked examples, shows the working step by step, and links to the real case where he used it.
 - Growth operating system (31 tools: plan, execute by channel, measure and optimize; examples from 15 industries: eight he has worked in (telecom, logistics, advertising, fintech, e-commerce, consumer tech, education, healthcare) and seven more as examples only (FMCG, SaaS, pharma and medtech, insurance, retail and QSR, hospitality and travel, nonprofit)): https://shafaatalichoyon.com/growth-os.html
 - Health operating system (7 tools: public health and systems, population health, health communication): https://shafaatalichoyon.com/health-os.html
 - All tools: https://shafaatalichoyon.com/tools.html
 - AI in production: AI use-case risk triage, ten questions that place an AI use case in an EU AI Act risk tier (as amended by the Digital Omnibus, July 2026) with the date the rules apply, the human oversight it needs and Colorado duties from 1 January 2027 (https://shafaatalichoyon.com/ai-risk-triage.html)
+- AI share-of-answer tracker: how often ChatGPT, Gemini, Perplexity and Google AI Overviews name a brand against its top rival for the same buyer questions, the gap and the engine to fix first (https://shafaatalichoyon.com/ai-share-of-answer.html)
 - AI agent vs human cost calculator: monthly saving, staff hours freed, break-even containment rate and payback for an AI agent on a contact center or hotline (https://shafaatalichoyon.com/ai-agent-cost-calculator.html)
 - Retention, growth and cash tools for operators: churn and retention (https://shafaatalichoyon.com/churn-retention-calculator.html), growth rate and CAGR (https://shafaatalichoyon.com/growth-rate-calculator.html), recurring revenue bridge with net revenue retention (https://shafaatalichoyon.com/recurring-revenue-calculator.html), product-market fit survey, the 40% test (https://shafaatalichoyon.com/product-market-fit-survey.html), cash runway and burn (https://shafaatalichoyon.com/cash-runway-calculator.html)
 - Tool advisor (answer three questions, get a three-step plan with the right tools, your numbers filled in), with "Ask Shafaat", an AI version of him that answers from this site: https://shafaatalichoyon.com/advisor.html
