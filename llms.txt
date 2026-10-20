@@ -70,7 +70,7 @@ Md Shafaat Ali Choyon is the founder of HSREP (https://hsraep.org), an independe
 
 ## Essays (original, on-site)
 
-90 original essays, dual-market field notes (US & Bangladesh) on AI, public health, health-tech and growth, each with a short FAQ. Full filterable index: https://shafaatalichoyon.com/essays.html
+91 original essays, dual-market field notes (US & Bangladesh) on AI, public health, health-tech and growth, each with a short FAQ. Full filterable index: https://shafaatalichoyon.com/essays.html
 
 - [The Verification Gap in AI Code](https://shafaatalichoyon.com/the-verification-gap-in-ai-code.html), 96% of developers don't fully trust AI-generated code, only 48% verify it every time. The risk was never bad code, it's shipping with no verification layer.
 - [The Shrinking CMO](https://shafaatalichoyon.com/the-shrinking-cmo.html), Marketing budgets are flat at 7.7% of revenue, 95% of CMOs feel ROI pressure, and tenure hit a 10-year low of 4.1 years. What keeps a growth leader standing.
@@ -148,6 +148,7 @@ Md Shafaat Ali Choyon is the founder of HSREP (https://hsraep.org), an independe
 - [Provenance over volume - AI's next health win](https://shafaatalichoyon.com/provenance-over-volume.html), The AI health rush chases the wrong verb. Everyone races to generate more; the scarce thing was never volume: it's proving what's true and where it came from.
 - [Retention is the real growth engine](https://shafaatalichoyon.com/retention-is-the-real-growth.html), Acquisition costs rose ~60% in five years. Winners obsess over the leaky bucket: cash markets taught me retention, not reach, is the growth engine.
 - [When patients pay cash, everything about the product changes](https://shafaatalichoyon.com/when-patients-pay-cash.html), In the US, health products are built for a payer. In most of the world the patient pays: and that fact is a design discipline the US is drifting toward.
+- [The ACA cliff turned patients into cash buyers](https://shafaatalichoyon.com/aca-cliff-cash-buyers.html), Marketplace deductibles jumped 37% to $3,786 and 2027 premiums are set to rise again. Millions of insured Americans now pay cash for most of their care, and Bangladesh shows what that market rewards.
 - [A hotline on a bar of soap - distribution wins](https://shafaatalichoyon.com/hotline-on-a-bar-of-soap.html), The best health channel I ever used wasn't an app or an ad: it was a bar of soap. Putting a clinic inside a product people owned took ~3,000 calls a day.
 - [AI for the two-person Dhaka business](https://shafaatalichoyon.com/ai-for-dhaka-sme.html), Everyone tells the enterprise AI story. The one that matters: a two-person Dhaka shop running like a twenty-person one: an SME's first affordable team.
 - [When nobody trusts anybody, trust is the growth strategy](https://shafaatalichoyon.com/trust-is-the-growth-strategy.html), In low-trust categories, trust isn't a brand value: it's the growth engine. From moving 10 million onto digital payments where trust was the entire barrier.
@@ -164,11 +165,12 @@ Md Shafaat Ali Choyon is the founder of HSREP (https://hsraep.org), an independe
 - [Health communication that changes behavior](https://shafaatalichoyon.com/health-communication-behavior-change.html), Field notes on segmentation, friction, framing and measurement: the principles behind campaigns that move behavior, not just awareness.
 
 ## Free tools (interactive, on-site)
-39 free calculators and planning templates, arranged as two operating systems. Each loads worked examples, shows the working step by step, and links to the real case where he used it.
+40 free calculators and planning templates, arranged as two operating systems. Each loads worked examples, shows the working step by step, and links to the real case where he used it.
 - Growth operating system (31 tools: plan, execute by channel, measure and optimize; examples from 15 industries: eight he has worked in (telecom, logistics, advertising, fintech, e-commerce, consumer tech, education, healthcare) and seven more as examples only (FMCG, SaaS, pharma and medtech, insurance, retail and QSR, hospitality and travel, nonprofit)): https://shafaatalichoyon.com/growth-os.html
 - Health operating system (7 tools: public health and systems, population health, health communication): https://shafaatalichoyon.com/health-os.html
 - All tools: https://shafaatalichoyon.com/tools.html
 - AI in production: AI use-case risk triage, ten questions that place an AI use case in an EU AI Act risk tier (as amended by the Digital Omnibus, July 2026) with the date the rules apply, the human oversight it needs and Colorado duties from 1 January 2027 (https://shafaatalichoyon.com/ai-risk-triage.html)
+- AI agent vs human cost calculator: monthly saving, staff hours freed, break-even containment rate and payback for an AI agent on a contact center or hotline (https://shafaatalichoyon.com/ai-agent-cost-calculator.html)
 - Retention, growth and cash tools for operators: churn and retention (https://shafaatalichoyon.com/churn-retention-calculator.html), growth rate and CAGR (https://shafaatalichoyon.com/growth-rate-calculator.html), recurring revenue bridge with net revenue retention (https://shafaatalichoyon.com/recurring-revenue-calculator.html), product-market fit survey, the 40% test (https://shafaatalichoyon.com/product-market-fit-survey.html), cash runway and burn (https://shafaatalichoyon.com/cash-runway-calculator.html)
 - Tool advisor (answer three questions, get a three-step plan with the right tools, your numbers filled in), with "Ask Shafaat", an AI version of him that answers from this site: https://shafaatalichoyon.com/advisor.html
 - Questions people ask (straight answers in his own words: why eight industries in seventeen years, whether the MPH limits growth work, results outside and inside health, fit, fees): https://shafaatalichoyon.com/questions.html
