@@ -168,10 +168,11 @@ Md Shafaat Ali Choyon is the founder of HSREP (https://hsraep.org), an independe
 - [Health communication that changes behavior](https://shafaatalichoyon.com/health-communication-behavior-change.html), Field notes on segmentation, friction, framing and measurement: the principles behind campaigns that move behavior, not just awareness.
 
 ## Free tools (interactive, on-site)
-45 free calculators and planning templates, arranged as two operating systems. Each loads worked examples, shows the working step by step, and links to the real case where he used it.
+46 free calculators and planning templates, arranged as two operating systems. Each loads worked examples, shows the working step by step, and links to the real case where he used it.
 - Growth operating system (32 tools: plan, execute by channel, measure and optimize; examples from 15 industries: eight he has worked in (telecom, logistics, advertising, fintech, e-commerce, consumer tech, education, healthcare) and seven more as examples only (FMCG, SaaS, pharma and medtech, insurance, retail and QSR, hospitality and travel, nonprofit)): https://shafaatalichoyon.com/growth-os.html
 - Cash-pay price setter for clinics, labs and imaging: the self-pay price at a target margin against the insured billed rate and local cash prices (https://shafaatalichoyon.com/cash-pay-price-setter.html)
-- Health operating system (10 tools: public health and systems, population health, health communication): https://shafaatalichoyon.com/health-os.html
+- Health operating system (11 tools: public health and systems, population health, health communication): https://shafaatalichoyon.com/health-os.html
+- Outbreak surge planner: from cases a day, doubling time, admission rate and length of stay, the beds and nurses needed at the peak and the date beds run out; dengue, cholera, flu, measles, heat, Ebola and RSV examples (https://shafaatalichoyon.com/outbreak-surge-planner.html)
 - Staff turnover cost calculator: what each nurse, clinician or employee who leaves costs in empty days, hiring, training and ramp-up, the yearly turnover bill and what a one-point cut saves (https://shafaatalichoyon.com/staff-turnover-cost-calculator.html)
 - Renewal outreach planner: people who could lapse over paperwork at a Medicaid, SNAP, marketplace or stipend renewal, how many outreach keeps and the outreach workers needed (https://shafaatalichoyon.com/renewal-outreach-planner.html)
 - Herd immunity gap calculator: vaccination coverage a disease needs, the gap, how many each case infects and the catch-up doses (https://shafaatalichoyon.com/herd-immunity-gap-calculator.html)
