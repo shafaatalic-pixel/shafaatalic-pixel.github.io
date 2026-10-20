@@ -496,6 +496,8 @@
     if(b.dataset.m==='ai')open();else{close();t('ai_close');}
     try{history.replaceState(null,'',location.pathname+(b.dataset.m==='ai'?'?mode=ai':'')+location.hash);}catch(_){}});
   try{var sp=new URLSearchParams(location.search);if(sp.get('embed')==='1'){document.body.classList.add('embed');CFG.embed=true;}if(sp.get('mode')==='ai'||CFG.embed){document.querySelector('#modes [data-m="ai"]').click();}}catch(e){}
+  /* ?q=<question> types a question into the AI box (from LinkedIn and essay links); the reader still presses Send. */
+  try{var pq=((typeof sp!=='undefined'&&sp?sp:new URLSearchParams(location.search)).get('q')||'').replace(/\s+/g,' ').trim().slice(0,300);if(pq&&!q.disabled){q.value=pq;q.dispatchEvent(new Event('input'));setTimeout(function(){try{q.focus();q.setSelectionRange(pq.length,pq.length);}catch(_){}},80);t('ai_prefill',{len:pq.length});}}catch(e){}
   if(CFG.embed){chat.addEventListener('click',function(e){var a=e.target.closest('a');if(a&&!a.target)a.target='_top';});rest.addEventListener('click',function(e){var a=e.target.closest('a');if(a)a.target='_top';});}
 })();</script><!--/AI-ADV-JS-->
 <script defer src="/assets/analytics.js"></script>

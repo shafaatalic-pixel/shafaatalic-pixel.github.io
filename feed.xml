@@ -6,7 +6,15 @@
     <atom:link href="https://shafaatalichoyon.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Essays on AI, growth, health-tech and public health by Md Shafaat Ali Choyon.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 07 Oct 2026 09:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 20 Oct 2026 09:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Losing measles elimination is a trust bill coming due</title>
+      <link>https://shafaatalichoyon.com/measles-elimination-trust-bill.html</link>
+      <guid isPermaLink="true">https://shafaatalichoyon.com/measles-elimination-trust-bill.html</guid>
+      <category>Public Health</category>
+      <pubDate>Tue, 20 Oct 2026 09:00:00 +0000</pubDate>
+      <description>The US could lose its measles-free status in November, and Bangladesh just fought a far deadlier outbreak. One ran out of trust, the other ran out of vaccine. Only one is fast to fix.</description>
+    </item>
     <item>
       <title>The Verification Gap in AI Code</title>
       <link>https://shafaatalichoyon.com/the-verification-gap-in-ai-code.html</link>

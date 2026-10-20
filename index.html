@@ -1032,7 +1032,7 @@
  <a class="tb" href="prevention-roi-calculator.html" data-tools-entry="band"><span class="tb-k">Health &middot; New</span><span class="tb-t">Prevention ROI</span><span class="tb-d">Cases prevented, costs averted and cost per case, from published evidence.</span></a>
  </div>
  <a class="tb tb-adv" href="advisor.html" data-tools-entry="band-advisor"><img src="assets/advisor-avatar.webp" alt="" width="52" height="52" loading="lazy"><span class="tb-adv-b"><span class="tb-k">New &middot; Tool advisor</span><span class="tb-t">Not sure where to start? Answer a few quick questions.</span><span class="tb-d">Get a three-step plan using these tools, each one filled in with your numbers. A guided walkthrough, plus an AI version of me you can ask.</span></span><span class="tb-adv-go">Open the advisor &rarr;</span></a>
- <div class="tb-more"><a class="tb-all" href="tools.html" data-tools-entry="band-all">See all 38 free tools &rarr;</a><a class="tb-all" href="growth-readiness.html" data-tools-entry="band-readiness">Take the Growth Readiness Score &rarr;</a><a class="tb-all" href="questions.html" data-tools-entry="band-questions">Questions people ask me &rarr;</a></div>
+ <div class="tb-more"><a class="tb-all" href="tools.html" data-tools-entry="band-all">See all 39 free tools &rarr;</a><a class="tb-all" href="growth-readiness.html" data-tools-entry="band-readiness">Take the Growth Readiness Score &rarr;</a><a class="tb-all" href="questions.html" data-tools-entry="band-questions">Questions people ask me &rarr;</a></div>
  </div>
  </section>
 
@@ -3911,15 +3911,17 @@ body:has(#cookie-consent) #sa-launch{bottom:112px;}
 <div id="sa-wrap" role="dialog" aria-modal="true" aria-label="Ask Shafaat"><div id="sa-dim"></div><div id="sa-panel"><div id="sa-head"><img class="p" src="/assets/advisor-avatar.webp" alt="" width="34" height="34"><div><b>Ask Shafaat</b><span>An AI version of me, answering from my own writing.</span></div><button type="button" class="x" id="sa-close" aria-label="Close">&times;</button></div><iframe id="sa-frame" title="Ask Shafaat" loading="lazy"></iframe></div></div>
 <script id="sa-launch-js">(function(){
   var L=document.getElementById('sa-launch'),W=document.getElementById('sa-wrap'),F=document.getElementById('sa-frame'),X=document.getElementById('sa-close'),D=document.getElementById('sa-dim'),last=null;
+  /* read ?q= now: other scripts tidy the address bar before the panel opens */
+  var AQ='';try{AQ=(new URLSearchParams(location.search).get('q')||'').slice(0,300);}catch(_){}
   if(!L||!W)return;
   function t(e,a,n){n=n||0;try{if(window.__gaOn&&window.track){window.track(e,a||{});}else if(n<40){setTimeout(function(){t(e,a,n+1);},250);}}catch(_){}}
-  function open(){if(!F.getAttribute('src'))F.setAttribute('src','/advisor.html?mode=ai&embed=1&from='+encodeURIComponent(location.pathname.replace(/^\/|\.html$/g,'')||'home'));
+  function open(){if(!F.getAttribute('src')){var aq=AQ;AQ='';F.setAttribute('src','/advisor.html?mode=ai&embed=1&from='+encodeURIComponent(location.pathname.replace(/^\/|\.html$/g,'')||'home')+(aq?'&q='+encodeURIComponent(aq):''));}
     last=document.activeElement;W.classList.add('on');document.body.style.overflow='hidden';setTimeout(function(){try{F.contentWindow.focus();}catch(e){}},300);
     t('ai_launcher_open',{page:location.pathname});}
   function close(){W.classList.remove('on');document.body.style.overflow='';if(last&&last.focus)last.focus();t('ai_launcher_close');}
   L.addEventListener('click',open);X.addEventListener('click',close);D.addEventListener('click',close);
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&W.classList.contains('on'))close();});
-  /* Deep link: /?ask=1 opens the panel (used from LinkedIn and email). */
+  /* Deep link: /?ask=1 opens the panel (used from LinkedIn and email); &q=<question> arrives already typed. */
   try{if(new URLSearchParams(location.search).get('ask')==='1')setTimeout(open,600);}catch(e){}
 })();</script><!--/AI-LAUNCH-->
 </body>
