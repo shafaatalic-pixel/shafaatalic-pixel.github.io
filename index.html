@@ -1544,7 +1544,7 @@
  <div class="orlens rv" style="transition-delay:.22s">OR PICK YOUR LENS</div>
  <div id="landing-cards" class="cards"></div>
  <div class="acts rv" style="transition-delay:.46s">
- <button id="landing-tour" type="button" class="ghost"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Take the 70-second tour</button>
+ <button id="landing-tour" type="button" class="ghost"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Take the 80-second tour</button>
  <button id="landing-scroll" type="button" class="scrollh">Scroll to explore &darr;</button>
  </div>
  <div class="fineln rv" style="transition-delay:.52s">Every lens shows the complete work &middot; switch any time from the top bar.</div>
@@ -3420,25 +3420,26 @@ class Component extends DCLogic {
 <script>
 (function(){
   var STEPS=[
-    {sel:'#top',ms:7000,eye:'Who I am',title:'I started by listening, not selling.',line:'Seventeen years and roughly 80,000 customer conversations. Growth is the one capability I carry everywhere, and every number begins with a person.'},
-    {sel:'#approach',ms:7000,eye:'How I work',title:'Read the system, find the lever, move the number.',line:'Every result follows the same logic: challenge, insight, execution, number. That is the engine, and I carry it into each new industry I enter.'},
-    {sel:'#cases',ms:7500,eye:'Where it proved itself',title:'It worked everywhere I took it.',line:'Telecom, fintech, e-commerce, consumer tech, education and health. One growth engine, every arena, each result with a real number. Filter by the lens that matters to you.'},
-    {sel:'#impact-map',ms:7000,eye:'The whole story, one screen',title:'Watch one capability travel.',line:'The interactive impact map lays out seventeen years across eight sectors and two countries, mapped four ways. Open it and play the seventy-second story.'},
-    {sel:'#hsrep',ms:10500,eye:'How I went deeper',title:"Then I aimed it at health, and earned the depth.",line:'When the pandemic hit I moved the whole engine into healthcare. HSREP is the platform I built for it: 57,274 gross platform-reported views and impressions at zero ad spend across two countries, an MPH and CHES behind it. I use AI to move faster, never to think for me.'},
-    {sel:'#writing',ms:6000,eye:'The thinking',title:'I turn the work into ideas others can use.',line:'Essays on growth, AI, health-tech and public health. Hard-won experience, written down so it travels further than I can.'},
-    {sel:'#tools-band',ms:6500,eye:'Free tools',title:'Use the thinking, not just read it.',line:'48 free tools turn the same playbook into calculators and planners for growth and health teams. No sign-up, and nothing you type leaves your browser.'},
-    {sel:'[data-ai-entry="nav"], #top',ms:6500,eye:'How I work with AI',title:'AI is the multiplier. Judgment is the advantage.',line:'Every AI project I run sits on one page, with its evidence, its limits and a public test lab that shows what failed and what I fixed. Find it under Applied AI in the menu.'},
-    {sel:'#press',ms:4500,eye:'In the press',title:'Recognized beyond my own pages.',line:'Featured across national media, from The Daily Star to Prothom Alo.'},
-    {sel:'#sa-launch',ms:6500,eye:'Ask me anything',title:'Or just ask the AI version of me.',line:'It answers from my own essays, cases and tools, on every page of this site, and says plainly that it is an AI. On an essay or a tool, it can explain that page.'},
-    {sel:'#contact',ms:6000,eye:'Where I am headed',title:'One capability that goes anywhere.',line:'Growth is the constant. Health is where I aim it now, not the ceiling. Explore the impact map, read the essays, or get in touch.'}
+    {sel:"#top",ms:7000,eye:"Who I am",title:"I started by listening.",line:"My first job was customer service: about 80,000 conversations that taught me how people decide. Every number I have moved since starts there."},
+    {sel:"#approach",ms:6500,eye:"How I work",title:"Read the system, find the lever, move the number.",line:"Listening became a method: find what people actually need, the one lever that changes what they do, and the number that proves it."},
+    {sel:"#cases",ms:7000,eye:"Where it proved itself",title:"Eight industries. One engine.",line:"Telecom, logistics, advertising, fintech, e-commerce, consumer tech, education and health. The industries changed; the method did not, and every case ends in a real number."},
+    {sel:"#press",ms:5000,eye:"Proof from outside",title:"Others noticed.",line:"19 independent mentions across 12 outlets, from appointment news to live TV."},
+    {sel:"#experience",ms:9500,eye:"The turn",title:"Then the pandemic changed what growth was for.",line:"At Praava Health growth meant access: a hotline taking about 3,000 calls a day, and corporate clients grown from 342 to about 1,400. Then, as COO at Laser Treat, I ran operations and finance as well as growth, because the operator's chair is where outcomes are decided."},
+    {sel:"#impact-map",ms:6000,eye:"The whole story",title:"See it all on one screen.",line:"21 results across 9 organizations, eight sectors and two countries. Open the map and play the story."},
+    {sel:"#hsrep",ms:8500,eye:"Going deeper",title:"So I went deeper.",line:"An MPH and CHES in the US, and HSREP, the independent platform I founded to argue that health protection is economic protection: 57,274 platform-reported views and impressions at zero ad spend, across two countries."},
+    {sel:"#writing",ms:5500,eye:"The thinking",title:"I write it down so it travels further than I can.",line:"120 essays on growth, AI, health tech and public health, written from the work, for both markets."},
+    {sel:"#tools-band",ms:6000,eye:"Free tools",title:"Then I turned the playbook into tools.",line:"48 free calculators and planners for growth and health teams. No sign-up, and nothing you type leaves your browser."},
+    {sel:"[data-ai-entry=\"nav\"], #top",ms:7000,eye:"How I work with AI",title:"AI is the multiplier. Judgment is the advantage.",line:"I build with AI every day under rules I publish: evidence first, a person approves before anything ships, and a public test lab that shows what failed and what I fixed. Find it under Applied AI."},
+    {sel:"#sa-launch",ms:6000,eye:"Ask me anything",title:"Or just ask the AI version of me.",line:"It answers from my own essays, cases and tools, on every page, and can explain whatever you are reading. It says plainly that it is an AI."},
+    {sel:"#contact",ms:6000,eye:"Where I am headed",title:"Growth is the constant. Your problem is the next chapter.",line:"I lead growth and operations where the number and the human outcome move together, in any industry, in the US or Bangladesh. If that is your problem, let's talk."}
   ];
   var i=-1,timer=null,paused=false,focusEl=null,startedFromLanding=false;
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var DUR=8750;
   var launch=document.createElement('button');
   launch.className='st-launch';launch.type='button';
-  launch.innerHTML='▶ 75-second tour';
-  launch.setAttribute('aria-label','Play a 75 second guided tour of the site');
+  launch.innerHTML='▶ 80-second tour';
+  launch.setAttribute('aria-label','Play an 80 second guided tour of the site');
   launch.addEventListener('click',function(){ start(false); });
   var bar=document.createElement('div');
   bar.className='st-bar';bar.setAttribute('role','dialog');bar.setAttribute('aria-live','polite');bar.setAttribute('aria-label','Guided site tour');
