@@ -3395,6 +3395,16 @@ class Component extends DCLogic {
 :root[data-theme="light"] .st-dim{background:rgba(18,24,30,.30);backdrop-filter:blur(.5px);-webkit-backdrop-filter:blur(.5px);}
 .st-dim.on{opacity:1;}
 .st-lift{z-index:9995!important;}
+.st-peek{margin:12px 0 14px;border:1px solid var(--border-hairline);border-radius:12px;padding:12px;background:var(--surface-base);}
+.st-peek .sp-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.st-peek .sp-head img{width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);}
+.st-peek .sp-head b{display:block;font-family:var(--disp);font-size:13.5px;color:var(--text-strong);}
+.st-peek .sp-head span{display:block;font-size:11.5px;color:var(--text-muted);}
+.st-peek .sp-msg{font-size:13px;line-height:1.45;color:var(--text-body);background:var(--surface-raised);border:1px solid var(--border-hairline);border-radius:10px;padding:9px 11px;}
+.st-peek .sp-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;}
+.st-peek .sp-chips span{font-size:12px;border:1px solid var(--border-hairline);border-radius:999px;padding:5px 10px;color:var(--text-muted);}
+.st-try{background:transparent;border:1px solid var(--accent);color:var(--accent-text);font-weight:700;}
+@media (max-width:560px){.st-peek .sp-chips span:nth-child(2){display:none}.st-peek .sp-msg{font-size:12.5px}}
 .st-focus{position:relative;z-index:9994;outline:2px solid var(--accent);outline-offset:5px;border-radius:14px;transition:outline-color .3s;}
 .st-launch{position:fixed;left:16px;bottom:16px;z-index:290;display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 13px;border-radius:999px;border:1px solid var(--border-hairline);background:var(--nav-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--accent-text);font-family:var(--disp);font-weight:700;font-size:12px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.16);opacity:.8;transition:opacity .2s,border-color .2s;}
 .st-launch:hover{opacity:1;border-color:var(--accent);}
@@ -3431,12 +3441,16 @@ class Component extends DCLogic {
     {sel:"#writing",ms:5500,eye:"The thinking",title:"I write it down so it travels further than I can.",line:"120 essays on growth, AI, health tech and public health, written from the work, for both markets."},
     {sel:"#tools-band",ms:6000,eye:"Free tools",title:"Then I turned the playbook into tools.",line:"48 free calculators and planners for growth and health teams. No sign-up, and nothing you type leaves your browser."},
     {sel:"[data-ai-entry=\"nav\"], #top",ms:7000,eye:"How I work with AI",title:"AI is the multiplier. Judgment is the advantage.",line:"I build with AI every day under rules I publish: evidence first, a person approves before anything ships, and a public test lab that shows what failed and what I fixed. Find it under Applied AI."},
-    {sel:"#sa-launch",ms:6000,eye:"Ask me anything",title:"Or just ask the AI version of me.",line:"It answers from my own essays, cases and tools, on every page, and can explain whatever you are reading. It says plainly that it is an AI."},
+    {sel:"#sa-launch",peek:1,ms:6000,eye:"Ask me anything",title:"Or just ask the AI version of me.",line:"It answers from my own essays, cases and tools, on every page, and can explain whatever you are reading. It says plainly that it is an AI."},
     {sel:"#contact",ms:6000,eye:"Where I am headed",title:"Growth is the constant. Your problem is the next chapter.",line:"I lead growth and operations where the number and the human outcome move together, in any industry, in the US or Bangladesh. If that is your problem, let's talk."}
   ];
   var i=-1,timer=null,paused=false,focusEl=null,startedFromLanding=false;
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var DUR=8750;
+  /* A preview of Ask Shafaat drawn inside the tour caption: nothing loads, nothing is counted, until the visitor taps Try it now. */
+  var PEEK='<div class="st-peek" aria-hidden="true"><div class="sp-head"><img src="/assets/advisor-avatar.webp" alt="" width="30" height="30"><div><b>Ask Shafaat</b><span>An AI version of me, answering from my own writing.</span></div></div>'+
+    '<div class="sp-msg">Ask me anything about my work: why I moved across eight industries, which tool fits your problem, what the Impact map shows.</div>'+
+    '<div class="sp-chips"><span>Why have you worked in so many industries?</span><span>Which tool helps me cut customer acquisition cost?</span></div></div>';
   var launch=document.createElement('button');
   launch.className='st-launch';launch.type='button';
   launch.innerHTML='▶ 80-second tour';
@@ -3456,18 +3470,19 @@ class Component extends DCLogic {
     var dots=STEPS.map(function(_,k){return '<i class="'+(k===i?'on':'')+'"></i>';}).join('');
     var last=i===STEPS.length-1;
     bar.innerHTML='<button class="st-close" aria-label="Close tour">×</button>'+
-      '<div class="st-eye">'+s.eye+'</div><h3>'+s.title+'</h3><p>'+s.line+'</p>'+
+      '<div class="st-eye">'+s.eye+'</div><h3>'+s.title+'</h3><p>'+s.line+'</p>'+(s.peek?PEEK:'')+
       '<div class="st-ctrls"><div class="st-dots" aria-hidden="true">'+dots+'</div>'+
       '<div class="st-btns"><span class="st-count">'+(i+1)+' / '+STEPS.length+'</span>'+
       '<button class="st-prev" aria-label="Previous"'+(i===0?' disabled':'')+'>←</button>'+
       (reduce?'':'<button class="st-pause" aria-label="Pause or play">'+(paused?'▶':'❙❙')+'</button>')+
-      (last?'<button class="st-primary st-done">Done</button>':'<button class="st-primary st-next">Next →</button>')+
+      (s.peek?'<button class="st-try">Try it now</button>':'')+(last?'<button class="st-primary st-done">Done</button>':'<button class="st-primary st-next">Next →</button>')+
       '</div></div>';
     bar.querySelector('.st-close').onclick=stop;
     var pv=bar.querySelector('.st-prev'); if(pv) pv.onclick=function(){go(i-1);};
     var nx=bar.querySelector('.st-next'); if(nx) nx.onclick=function(){go(i+1);};
     var dn=bar.querySelector('.st-done'); if(dn) dn.onclick=finish;
     var pa=bar.querySelector('.st-pause'); if(pa) pa.onclick=togglePause;
+    var tr=bar.querySelector('.st-try'); if(tr) tr.onclick=function(){ if(window.track) try{ window.track('site_tour_try_ask',{}); }catch(e){} startedFromLanding=false; stop(); if(window.openAskShafaat) window.openAskShafaat(); };
     document.body.classList.toggle('st-ask',s.sel==='#sa-launch'); var _sl=document.getElementById('sa-launch'); if(_sl) _sl.style.bottom=s.sel==='#sa-launch'?(bar.offsetHeight+36)+'px':''; document.querySelectorAll('.st-lift').forEach(function(n){ n.classList.remove('st-lift'); }); var el=null; s.sel.split(',').some(function(q){ var c=document.querySelector(q.trim()); if(c&&(c.offsetParent!==null||getComputedStyle(c).position==='fixed')){ el=c; return true; } return false; }); if(el){ var _p=el.parentElement; while(_p&&_p!==document.body){ var _ps=getComputedStyle(_p).position; if(_ps==='fixed'||_ps==='sticky'){ _p.classList.add('st-lift'); break; } _p=_p.parentElement; } } if(el){ var _gs=el.closest('section'); if(_gs&&!_gs.classList.contains('gt-open')){ _gs.classList.add('gt-open'); _gs.setAttribute('data-gt-tour','1'); var _gb=_gs.querySelector('[data-gt-toggle]'); if(_gb)_gb.setAttribute('aria-expanded','true'); } }
     if(el){ setFocus(el); try{ el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}); }catch(e){ el.scrollIntoView(); } }
   }
