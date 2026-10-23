@@ -1545,6 +1545,7 @@
  <div id="landing-cards" class="cards"></div>
  <div class="acts rv" style="transition-delay:.46s">
  <button id="landing-tour" type="button" class="ghost"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Take the 80-second tour</button>
+ <button id="landing-tour-voice" type="button" class="ghost" aria-label="Take the tour narrated in my voice, about 2.5 minutes"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 10v4h4l5 4V6L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg> Or hear it in my voice</button>
  <button id="landing-scroll" type="button" class="scrollh">Scroll to explore &darr;</button>
  </div>
  <div class="fineln rv" style="transition-delay:.52s">Every lens shows the complete work &middot; switch any time from the top bar.</div>
@@ -3425,8 +3426,16 @@ class Component extends DCLogic {
 .st-btns button:disabled{opacity:.4;cursor:default;}
 .st-close{position:absolute;top:12px;right:12px;background:transparent;border:0;color:var(--text-muted);cursor:pointer;font-size:20px;line-height:1;}
 .st-count{font-family:var(--mono);font-size:11px;color:var(--text-faint);margin-right:4px;}
+.st-btns .st-voice{display:inline-flex;align-items:center;gap:6px;}
+.st-btns .st-voice svg{width:15px;height:15px;fill:currentColor;flex:none;}
+.st-btns .st-voice[aria-pressed="true"]{border-color:var(--accent);color:var(--accent-text);font-weight:700;}
+.st-vo-note{display:flex;align-items:center;gap:7px;margin:-6px 0 12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--text-muted);}
+.st-vo-note i{width:6px;height:6px;border-radius:50%;background:var(--accent-text);flex:none;animation:st-vo 1.2s ease-in-out infinite;}
+.st-vo-note.paused i{animation:none;opacity:.5;}
+@keyframes st-vo{50%{opacity:.25;}}
+@media (max-width:560px){.st-btns{flex-wrap:wrap;justify-content:flex-end;}.st-btns .st-voice span{display:none;}}
 @media (max-width:560px){.st-launch{left:14px;bottom:72px;height:38px;font-size:13px;}.st-bar{bottom:14px;padding:15px 16px;}.st-bar h3{font-size:17px;}}
-@media (prefers-reduced-motion:reduce){.st-bar.on{animation:none;}.st-focus{transition:none;}}
+@media (prefers-reduced-motion:reduce){.st-bar.on{animation:none;}.st-focus{transition:none;}.st-vo-note i{animation:none;}}
 </style>
 <script>
 (function(){
@@ -3445,6 +3454,22 @@ class Component extends DCLogic {
     {sel:"#contact",ms:6000,eye:"Where I am headed",title:"Growth is the constant. Your problem is the next chapter.",line:"I lead growth and operations where the number and the human outcome move together, in any industry, in the US or Bangladesh. If that is your problem, let's talk."}
   ];
   var i=-1,timer=null,paused=false,focusEl=null,startedFromLanding=false;
+  /* Optional narration: one clip per step, in an AI version of my own voice. Off by default; when on, each step advances when its clip ends. */
+  var VO=false,aud=null,voEnded=false,VOV='20261023';
+  var SPK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10v4h4l5 4V6L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>';
+  var MUTE='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10v4h4l5 4V6L7 10H3zm13.6 2 2.4-2.4-1.1-1.1-2.4 2.4-2.4-2.4-1.1 1.1 2.4 2.4-2.4 2.4 1.1 1.1 2.4-2.4 2.4 2.4 1.1-1.1z"/></svg>';
+  function clip(k){ return '/assets/tour-vo/step-'+(k<9?'0':'')+(k+1)+'.mp3?v='+VOV; }
+  function stopVO(){ if(aud){ aud.onended=null; aud.onerror=null; try{ aud.pause(); }catch(e){} aud=null; } voEnded=false; }
+  function voFallback(){ stopVO(); VO=false; render(); schedule(); }
+  function playVO(){
+    stopVO(); if(!VO||i<0) return;
+    var k=i; aud=new Audio(clip(k)); aud.preload='auto';
+    aud.onended=function(){ voEnded=true; if(paused||reduce||!VO) return; if(timer) clearTimeout(timer); timer=setTimeout(function(){ if(k>=STEPS.length-1){ if(window.track) try{ window.track('site_tour_voice_complete',{}); }catch(e){} finish(); } else go(k+1); },650); };
+    aud.onerror=voFallback;
+    if(!paused){ var pr=aud.play(); if(pr&&pr.catch) pr.catch(voFallback); }
+    if(k+1<STEPS.length){ try{ var nx=new Audio(); nx.preload='auto'; nx.src=clip(k+1); }catch(e){} }
+  }
+  function setVoice(on){ VO=!!on; if(window.track) try{ window.track(VO?'site_tour_voice_on':'site_tour_voice_off',{step:i+1}); }catch(e){} if(timer) clearTimeout(timer); if(VO){ paused=false; render(); playVO(); } else { stopVO(); render(); schedule(); } }
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var DUR=8750;
   /* A preview of Ask Shafaat drawn inside the tour caption: nothing loads, nothing is counted, until the visitor taps Try it now. */
@@ -3470,11 +3495,12 @@ class Component extends DCLogic {
     var dots=STEPS.map(function(_,k){return '<i class="'+(k===i?'on':'')+'"></i>';}).join('');
     var last=i===STEPS.length-1;
     bar.innerHTML='<button class="st-close" aria-label="Close tour">×</button>'+
-      '<div class="st-eye">'+s.eye+'</div><h3>'+s.title+'</h3><p>'+s.line+'</p>'+(s.peek?PEEK:'')+
+      '<div class="st-eye">'+s.eye+'</div><h3>'+s.title+'</h3><p>'+s.line+'</p>'+(VO?'<div class="st-vo-note'+(paused?' paused':'')+'"><i></i>Narrated by an AI version of my voice</div>':'')+(s.peek?PEEK:'')+
       '<div class="st-ctrls"><div class="st-dots" aria-hidden="true">'+dots+'</div>'+
       '<div class="st-btns"><span class="st-count">'+(i+1)+' / '+STEPS.length+'</span>'+
+      '<button class="st-voice" aria-pressed="'+(VO?'true':'false')+'" aria-label="'+(VO?'Turn off narration':'Play with my voice')+'" title="'+(VO?'Turn off narration':'Play with my voice (an AI version of it)')+'">'+(VO?SPK:MUTE)+'<span>'+(VO?'Voice on':'My voice')+'</span></button>'+
       '<button class="st-prev" aria-label="Previous"'+(i===0?' disabled':'')+'>←</button>'+
-      (reduce?'':'<button class="st-pause" aria-label="Pause or play">'+(paused?'▶':'❙❙')+'</button>')+
+      ((reduce&&!VO)?'':'<button class="st-pause" aria-label="Pause or play">'+(paused?'▶':'❙❙')+'</button>')+
       (s.peek?'<button class="st-try">Try it now</button>':'')+(last?'<button class="st-primary st-done">Done</button>':'<button class="st-primary st-next">Next →</button>')+
       '</div></div>';
     bar.querySelector('.st-close').onclick=stop;
@@ -3482,24 +3508,27 @@ class Component extends DCLogic {
     var nx=bar.querySelector('.st-next'); if(nx) nx.onclick=function(){go(i+1);};
     var dn=bar.querySelector('.st-done'); if(dn) dn.onclick=finish;
     var pa=bar.querySelector('.st-pause'); if(pa) pa.onclick=togglePause;
+    var vb=bar.querySelector('.st-voice'); if(vb) vb.onclick=function(){ setVoice(!VO); };
     var tr=bar.querySelector('.st-try'); if(tr) tr.onclick=function(){ if(window.track) try{ window.track('site_tour_try_ask',{}); }catch(e){} startedFromLanding=false; stop(); if(window.openAskShafaat) window.openAskShafaat(); };
     document.body.classList.toggle('st-ask',s.sel==='#sa-launch'); var _sl=document.getElementById('sa-launch'); if(_sl) _sl.style.bottom=s.sel==='#sa-launch'?(bar.offsetHeight+36)+'px':''; document.querySelectorAll('.st-lift').forEach(function(n){ n.classList.remove('st-lift'); }); var el=null; s.sel.split(',').some(function(q){ var c=document.querySelector(q.trim()); if(c&&(c.offsetParent!==null||getComputedStyle(c).position==='fixed')){ el=c; return true; } return false; }); if(el){ var _p=el.parentElement; while(_p&&_p!==document.body){ var _ps=getComputedStyle(_p).position; if(_ps==='fixed'||_ps==='sticky'){ _p.classList.add('st-lift'); break; } _p=_p.parentElement; } } if(el){ var _gs=el.closest('section'); if(_gs&&!_gs.classList.contains('gt-open')){ _gs.classList.add('gt-open'); _gs.setAttribute('data-gt-tour','1'); var _gb=_gs.querySelector('[data-gt-toggle]'); if(_gb)_gb.setAttribute('aria-expanded','true'); } }
     if(el){ setFocus(el); try{ el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}); }catch(e){ el.scrollIntoView(); } }
   }
-  function schedule(){ if(timer) clearTimeout(timer); if(paused||reduce) return; var d=(STEPS[i]&&STEPS[i].ms)||DUR; if(i>=STEPS.length-1){ timer=setTimeout(finish,d); return; } timer=setTimeout(function(){go(i+1);},d); }
-  function go(n){ if(n<0)n=0; if(n>STEPS.length-1)n=STEPS.length-1; i=n; render(); schedule(); }
-  function togglePause(){ paused=!paused; render(); schedule(); }
-  function start(auto){
+  function schedule(){ if(timer) clearTimeout(timer); if(paused||reduce||VO) return; var d=(STEPS[i]&&STEPS[i].ms)||DUR; if(i>=STEPS.length-1){ timer=setTimeout(finish,d); return; } timer=setTimeout(function(){go(i+1);},d); }
+  function go(n){ if(n<0)n=0; if(n>STEPS.length-1)n=STEPS.length-1; i=n; render(); if(VO) playVO(); else schedule(); }
+  function togglePause(){ paused=!paused; render(); if(VO){ if(timer) clearTimeout(timer); if(paused){ if(aud) try{ aud.pause(); }catch(e){} } else if(voEnded||!aud){ if(i>=STEPS.length-1) finish(); else go(i+1); } else { var pr=aud.play(); if(pr&&pr.catch) pr.catch(voFallback); } } else schedule(); }
+  function start(auto,voice){
     var l=document.getElementById('landing'); startedFromLanding=!!(l&&getComputedStyle(l).display!=='none'); if(l&&getComputedStyle(l).display!=='none'){ l.style.display='none'; document.body.style.overflow=''; }
-    launch.classList.add('hide'); dim.classList.add('on'); bar.classList.add('on'); paused=false; i=-1; go(0);
+    launch.classList.add('hide'); dim.classList.add('on'); bar.classList.add('on'); paused=false; i=-1; stopVO(); VO=!!voice; if(VO&&window.track) try{ window.track('site_tour_voice_on',{step:1,from:'start'}); }catch(e){} go(0);
     window.__stTourActive=true; document.body.classList.add('st-touring'); var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display='none';
     try{ localStorage.setItem('sc_site_tour_seen','1'); }catch(e){}
     if(window.track) try{ window.track(auto?'site_tour_autostart':'site_tour_start',{}); }catch(e){}
   }
   function gtTourReset(){ try{ document.querySelectorAll('section[data-gt-tour]').forEach(function(x){ x.classList.remove('gt-open'); x.removeAttribute('data-gt-tour'); var b=x.querySelector('[data-gt-toggle]'); if(b)b.setAttribute('aria-expanded','false'); }); }catch(e){} }
-  function stop(){ gtTourReset(); if(window.track) try{ window.track('site_tour_cancel',{}); }catch(e){} if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; document.body.classList.remove('st-touring','st-ask'); var _sl2=document.getElementById('sa-launch'); if(_sl2) _sl2.style.bottom=''; document.querySelectorAll('.st-lift').forEach(function(n){ n.classList.remove('st-lift'); }); var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; if(startedFromLanding){ var l=document.getElementById('landing'); if(l){ l.style.display='flex'; document.body.style.overflow='hidden'; } try{ window.scrollTo(0,0); }catch(e){} } else { try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } } try{ window.dispatchEvent(new Event('scroll')); }catch(e){} }
-  function finish(){ gtTourReset(); if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; document.body.classList.remove('st-touring','st-ask'); var _sl2=document.getElementById('sa-launch'); if(_sl2) _sl2.style.bottom=''; document.querySelectorAll('.st-lift').forEach(function(n){ n.classList.remove('st-lift'); }); var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; if(startedFromLanding){ var l=document.getElementById('landing'); if(l){ l.style.display='flex'; document.body.style.overflow='hidden'; } try{ window.scrollTo(0,0); }catch(e){} } else { try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } } if(window.track) try{ window.track('site_tour_complete',{}); }catch(e){} }
+  function stop(){ stopVO(); gtTourReset(); if(window.track) try{ window.track('site_tour_cancel',{}); }catch(e){} if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; document.body.classList.remove('st-touring','st-ask'); var _sl2=document.getElementById('sa-launch'); if(_sl2) _sl2.style.bottom=''; document.querySelectorAll('.st-lift').forEach(function(n){ n.classList.remove('st-lift'); }); var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; if(startedFromLanding){ var l=document.getElementById('landing'); if(l){ l.style.display='flex'; document.body.style.overflow='hidden'; } try{ window.scrollTo(0,0); }catch(e){} } else { try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } } try{ window.dispatchEvent(new Event('scroll')); }catch(e){} }
+  function finish(){ stopVO(); gtTourReset(); if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; document.body.classList.remove('st-touring','st-ask'); var _sl2=document.getElementById('sa-launch'); if(_sl2) _sl2.style.bottom=''; document.querySelectorAll('.st-lift').forEach(function(n){ n.classList.remove('st-lift'); }); var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; if(startedFromLanding){ var l=document.getElementById('landing'); if(l){ l.style.display='flex'; document.body.style.overflow='hidden'; } try{ window.scrollTo(0,0); }catch(e){} } else { try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } } if(window.track) try{ window.track('site_tour_complete',{}); }catch(e){} }
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&bar.classList.contains('on')) stop(); });
+  document.addEventListener('click',function(e){ var t=e.target&&e.target.closest?e.target.closest('#landing-tour-voice'):null; if(!t) return; e.preventDefault(); start(false,true); });
+  window.startSiteTour=function(voice){ start(false,!!voice); };
   setTimeout(function(){
     try{ if(localStorage.getItem('sc_site_tour_seen')) return; }catch(e){}
     if(reduce||document.hidden) return;
