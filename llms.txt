@@ -193,6 +193,9 @@ Md Shafaat Ali Choyon is the founder of HSREP (https://hsraep.org), an independe
 - [Bangla-first AI: the market the giants keep skipping](https://shafaatalichoyon.com/bangla-first-ai.html), Bengali is a top-seven world language and barely a fraction of the web. A builder's dual-market case for the opportunity the giants overlook.
 - [Health communication that changes behavior](https://shafaatalichoyon.com/health-communication-behavior-change.html), Field notes on segmentation, friction, framing and measurement: the principles behind campaigns that move behavior, not just awareness.
 
+## Applied AI (how he works with AI, with evidence)
+- [Applied AI](https://shafaatalichoyon.com/ai/): eight case files with problem, AI contribution, his role, evidence, status and honest limits: Ask Shafaat and Ask HSREP (live assistants grounded in his published work, with a number guard), HSREP Season 1, the Prevention Adoption Initiative (rules before models), AI Risk Triage, the content and tools engine, the Analytics Command Center, the Impact System Map and his model routing playbook. He designs and directs AI-assisted builds; he does not train machine-learning models.
+
 ## Free tools (interactive, on-site)
 48 free calculators and planning templates, arranged as two operating systems. Each loads worked examples, shows the working step by step, and links to the real case where he used it.
 - Growth operating system (34 tools: plan, execute by channel, measure and optimize; examples from 15 industries: eight he has worked in (telecom, logistics, advertising, fintech, e-commerce, consumer tech, education, healthcare) and seven more as examples only (FMCG, SaaS, pharma and medtech, insurance, retail and QSR, hospitality and travel, nonprofit)): https://shafaatalichoyon.com/growth-os.html
