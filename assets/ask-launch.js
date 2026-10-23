@@ -1,0 +1,34 @@
+/* Ask Shafaat launcher: the button and slide-in panel on every public page.
+   It tells the assistant which page the visitor is on (page, kind, title), so it can explain that essay, tool or the Impact map.
+   Deep link on any page: ?ask=1 opens the panel, &q=<question> arrives already typed. */
+(function(){
+  if(window.__saLaunch||document.getElementById('sa-launch'))return;window.__saLaunch=1;
+  var CSS="#sa-launch{position:fixed;right:18px;bottom:18px;z-index:9500;display:inline-flex;align-items:center;gap:9px;padding:10px 14px 10px 10px;border-radius:999px;border:1px solid rgba(51,196,196,.55);background:rgba(11,15,20,.88);color:#F3EFE7;font:700 13.5px/1 Manrope,Inter,system-ui,sans-serif;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.35);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:transform .15s,border-color .15s;}\n#sa-launch:hover{transform:translateY(-1px);border-color:#33C4C4;}\n#sa-launch .p{width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #33C4C4;flex:0 0 30px;}\n#sa-launch .s{display:block;font:500 11px/1.2 Inter,system-ui,sans-serif;color:#9AA3AE;margin-top:3px;}\n:root[data-theme=\"light\"] #sa-launch{background:rgba(255,255,255,.94);color:#10151B;border-color:rgba(10,115,115,.5);box-shadow:0 10px 30px rgba(20,17,12,.18);}\n:root[data-theme=\"light\"] #sa-launch .p{border-color:#0FB3B3;} :root[data-theme=\"light\"] #sa-launch .s{color:#5E6772;}\nbody:has(#cookie-consent) #sa-launch{bottom:112px;}\n#sl-fab{bottom:82px!important;}\n#sa-wrap{position:fixed;inset:0;z-index:9600;display:none;}\n#sa-wrap.on{display:block;}\n#sa-dim{position:absolute;inset:0;background:rgba(4,7,11,.45);}\n#sa-panel{position:absolute;right:0;top:0;height:100%;width:min(100vw,440px);background:#0B0F14;border-left:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;box-shadow:-20px 0 50px rgba(0,0,0,.4);transform:translateX(100%);transition:transform .25s ease;}\n#sa-wrap.on #sa-panel{transform:none;}\n:root[data-theme=\"light\"] #sa-panel{background:#FBF8F1;border-color:rgba(20,17,12,.14);}\n#sa-head{display:flex;align-items:center;gap:10px;padding:14px 14px 12px 16px;border-bottom:1px solid rgba(255,255,255,.1);}\n:root[data-theme=\"light\"] #sa-head{border-color:rgba(20,17,12,.12);}\n#sa-head .p{width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid #33C4C4;flex:0 0 34px;}\n:root[data-theme=\"light\"] #sa-head .p{border-color:#0FB3B3;}\n#sa-head b{display:block;font:800 15px/1.2 Manrope,sans-serif;color:#F3EFE7;} #sa-head span{display:block;font:400 12.5px/1.3 Inter,system-ui,sans-serif;color:#9AA3AE;}\n:root[data-theme=\"light\"] #sa-head b{color:#10151B;} :root[data-theme=\"light\"] #sa-head span{color:#5E6772;}\n#sa-head .x{margin-left:auto;background:transparent;border:1px solid rgba(255,255,255,.2);color:inherit;border-radius:8px;width:34px;height:34px;cursor:pointer;font:400 20px/1 Inter,sans-serif;color:#F3EFE7;}\n:root[data-theme=\"light\"] #sa-head .x{color:#10151B;border-color:rgba(20,17,12,.22);}\n#sa-frame{flex:1;width:100%;border:0;background:transparent;}\n@media (prefers-reduced-motion:reduce){#sa-panel{transition:none;}}\n@media print{#sa-launch,#sa-wrap{display:none!important;}}\nbody.st-touring #sa-launch{display:none;}\nbody.st-touring.st-ask #sa-launch{display:inline-flex;z-index:10001;}\n#sa-launch.st-focus{outline:3px solid #E8B84B;outline-offset:4px;}", HTML="<button type=\"button\" id=\"sa-launch\" aria-haspopup=\"dialog\" aria-controls=\"sa-wrap\"><img class=\"p\" src=\"/assets/advisor-avatar.webp\" alt=\"\" width=\"30\" height=\"30\"><span>Ask Shafaat<span class=\"s\">about my work, tools and story</span></span></button>\n<div id=\"sa-wrap\" role=\"dialog\" aria-modal=\"true\" aria-label=\"Ask Shafaat\"><div id=\"sa-dim\"></div><div id=\"sa-panel\"><div id=\"sa-head\"><img class=\"p\" src=\"/assets/advisor-avatar.webp\" alt=\"\" width=\"34\" height=\"34\"><div><b>Ask Shafaat</b><span>An AI version of me, answering from my own writing.</span></div><button type=\"button\" class=\"x\" id=\"sa-close\" aria-label=\"Close\">&times;</button></div><iframe id=\"sa-frame\" title=\"Ask Shafaat\" loading=\"lazy\"></iframe></div></div>";
+  var path=location.pathname, kind='', page='';
+  if(/^\/impact\/?$/.test(path)){kind='impact';page='/impact/';}
+  else if(/^\/ai\/?$/.test(path)){kind='ai';page='/ai/';}
+  else if(path!=='/index.html'&&/^\/[a-z0-9-]+\.html$/.test(path)){page=path;
+    var og=document.querySelector('meta[property="og:type"]'),ld='';
+    document.querySelectorAll('script[type="application/ld+json"]').forEach(function(s){ld+=s.textContent;});
+    kind=(og&&og.content==='article')?'essay':/"WebApplication"/.test(ld)?'tool':'page';}
+  var title=(document.title||'').split(/\s+[|\u2014\u2013\u00b7]\s+/)[0].trim().slice(0,140);
+  var SUB={essay:'Ask about this essay',tool:'Help with this tool',impact:'Help reading the map',ai:'Ask how I work with AI'};
+  function mount(){
+    var st=document.createElement('style');st.id='sa-launch-css';st.textContent=CSS;document.head.appendChild(st);
+    var box=document.createElement('div');box.innerHTML=HTML;while(box.firstChild)document.body.appendChild(box.firstChild);
+    var L=document.getElementById('sa-launch'),W=document.getElementById('sa-wrap'),F=document.getElementById('sa-frame'),X=document.getElementById('sa-close'),D=document.getElementById('sa-dim'),last=null;
+    if(SUB[kind]){var s=L.querySelector('.s');if(s)s.textContent=SUB[kind];}
+    var AQ='';try{AQ=(new URLSearchParams(location.search).get('q')||'').slice(0,300);}catch(_){}
+    function t(e,a,n){n=n||0;try{if(window.__gaOn&&window.track){window.track(e,a||{});}else if(n<40){setTimeout(function(){t(e,a,n+1);},250);}}catch(_){}}
+    function open(){if(!F.getAttribute('src')){var aq=AQ;AQ='';
+        F.setAttribute('src','/advisor.html?mode=ai&embed=1&from='+encodeURIComponent(path.replace(/^\/|\.html$|\/$/g,'').replace(/\//g,'-')||'home')+(page?'&page='+encodeURIComponent(page)+'&kind='+kind+'&title='+encodeURIComponent(title):'')+(aq?'&q='+encodeURIComponent(aq):''));}
+      last=document.activeElement;W.classList.add('on');document.body.style.overflow='hidden';setTimeout(function(){try{F.contentWindow.focus();}catch(e){}},300);
+      t('ai_launcher_open',{page:path,kind:kind||'home'});}
+    function close(){W.classList.remove('on');document.body.style.overflow='';if(last&&last.focus)last.focus();t('ai_launcher_close');}
+    L.addEventListener('click',open);X.addEventListener('click',close);D.addEventListener('click',close);
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&W.classList.contains('on'))close();});
+    window.openAskShafaat=open;
+    try{if(new URLSearchParams(location.search).get('ask')==='1')setTimeout(open,600);}catch(e){}
+  }
+  if(document.body)mount();else document.addEventListener('DOMContentLoaded',mount);
+})();

@@ -3420,22 +3420,25 @@ class Component extends DCLogic {
 <script>
 (function(){
   var STEPS=[
-    {sel:'#top',ms:8500,eye:'Who I am',title:'I started by listening, not selling.',line:'Seventeen years and roughly 80,000 customer conversations. Growth is the one capability I carry everywhere, and every number begins with a person.'},
-    {sel:'#approach',ms:9000,eye:'How I work',title:'Read the system, find the lever, move the number.',line:'Every result follows the same logic: challenge, insight, execution, number. That is the engine, and I carry it into each new industry I enter.'},
-    {sel:'#cases',ms:9000,eye:'Where it proved itself',title:'It worked everywhere I took it.',line:'Telecom, fintech, e-commerce, consumer tech, education and health. One growth engine, every arena, each result with a real number. Filter by the lens that matters to you.'},
-    {sel:'#impact-map',ms:8000,eye:'The whole story, one screen',title:'Watch one capability travel.',line:'The interactive impact map lays out seventeen years across eight sectors and two countries, mapped four ways. Open it and play the seventy-second story.'},
-    {sel:'#hsrep',ms:14000,eye:'How I went deeper',title:"Then I aimed it at health, and earned the depth.",line:'When the pandemic hit I moved the whole engine into healthcare. HSREP is the platform I built for it: 57,274 gross platform-reported views and impressions at zero ad spend across two countries, an MPH and CHES behind it. I use AI to move faster, never to think for me.'},
-    {sel:'#writing',ms:8000,eye:'The thinking',title:'I turn the work into ideas others can use.',line:'Essays on growth, AI, health-tech and public health. Hard-won experience, written down so it travels further than I can.'},
-    {sel:'#press',ms:6000,eye:'In the press',title:'Recognized beyond my own pages.',line:'Featured across national media, from The Daily Star to Prothom Alo.'},
-    {sel:'#contact',ms:7500,eye:'Where I am headed',title:'One capability that goes anywhere.',line:'Growth is the constant. Health is where I aim it now, not the ceiling. Explore the impact map, read the essays, or get in touch.'}
+    {sel:'#top',ms:7000,eye:'Who I am',title:'I started by listening, not selling.',line:'Seventeen years and roughly 80,000 customer conversations. Growth is the one capability I carry everywhere, and every number begins with a person.'},
+    {sel:'#approach',ms:7000,eye:'How I work',title:'Read the system, find the lever, move the number.',line:'Every result follows the same logic: challenge, insight, execution, number. That is the engine, and I carry it into each new industry I enter.'},
+    {sel:'#cases',ms:7500,eye:'Where it proved itself',title:'It worked everywhere I took it.',line:'Telecom, fintech, e-commerce, consumer tech, education and health. One growth engine, every arena, each result with a real number. Filter by the lens that matters to you.'},
+    {sel:'#impact-map',ms:7000,eye:'The whole story, one screen',title:'Watch one capability travel.',line:'The interactive impact map lays out seventeen years across eight sectors and two countries, mapped four ways. Open it and play the seventy-second story.'},
+    {sel:'#hsrep',ms:10500,eye:'How I went deeper',title:"Then I aimed it at health, and earned the depth.",line:'When the pandemic hit I moved the whole engine into healthcare. HSREP is the platform I built for it: 57,274 gross platform-reported views and impressions at zero ad spend across two countries, an MPH and CHES behind it. I use AI to move faster, never to think for me.'},
+    {sel:'#writing',ms:6000,eye:'The thinking',title:'I turn the work into ideas others can use.',line:'Essays on growth, AI, health-tech and public health. Hard-won experience, written down so it travels further than I can.'},
+    {sel:'#tools-band',ms:6500,eye:'Free tools',title:'Use the thinking, not just read it.',line:'48 free tools turn the same playbook into calculators and planners for growth and health teams. No sign-up, and nothing you type leaves your browser.'},
+    {sel:'[data-ai-entry="nav"], #top',ms:6500,eye:'How I work with AI',title:'AI is the multiplier. Judgment is the advantage.',line:'Every AI project I run sits on one page, with its evidence, its limits and a public test lab that shows what failed and what I fixed. Find it under Applied AI in the menu.'},
+    {sel:'#press',ms:4500,eye:'In the press',title:'Recognized beyond my own pages.',line:'Featured across national media, from The Daily Star to Prothom Alo.'},
+    {sel:'#sa-launch',ms:6500,eye:'Ask me anything',title:'Or just ask the AI version of me.',line:'It answers from my own essays, cases and tools, on every page of this site, and says plainly that it is an AI. On an essay or a tool, it can explain that page.'},
+    {sel:'#contact',ms:6000,eye:'Where I am headed',title:'One capability that goes anywhere.',line:'Growth is the constant. Health is where I aim it now, not the ceiling. Explore the impact map, read the essays, or get in touch.'}
   ];
   var i=-1,timer=null,paused=false,focusEl=null,startedFromLanding=false;
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var DUR=8750;
   var launch=document.createElement('button');
   launch.className='st-launch';launch.type='button';
-  launch.innerHTML='▶ 70-second tour';
-  launch.setAttribute('aria-label','Play a 70 second guided tour of the site');
+  launch.innerHTML='▶ 75-second tour';
+  launch.setAttribute('aria-label','Play a 75 second guided tour of the site');
   launch.addEventListener('click',function(){ start(false); });
   var bar=document.createElement('div');
   bar.className='st-bar';bar.setAttribute('role','dialog');bar.setAttribute('aria-live','polite');bar.setAttribute('aria-label','Guided site tour');
@@ -3461,7 +3464,7 @@ class Component extends DCLogic {
     var nx=bar.querySelector('.st-next'); if(nx) nx.onclick=function(){go(i+1);};
     var dn=bar.querySelector('.st-done'); if(dn) dn.onclick=finish;
     var pa=bar.querySelector('.st-pause'); if(pa) pa.onclick=togglePause;
-    var el=document.querySelector(s.sel); if(el){ var _gs=el.closest('section'); if(_gs&&!_gs.classList.contains('gt-open')){ _gs.classList.add('gt-open'); _gs.setAttribute('data-gt-tour','1'); var _gb=_gs.querySelector('[data-gt-toggle]'); if(_gb)_gb.setAttribute('aria-expanded','true'); } }
+    document.body.classList.toggle('st-ask',s.sel==='#sa-launch'); var _sl=document.getElementById('sa-launch'); if(_sl) _sl.style.bottom=s.sel==='#sa-launch'?(bar.offsetHeight+36)+'px':''; var el=null; s.sel.split(',').some(function(q){ var c=document.querySelector(q.trim()); if(c&&(c.offsetParent!==null||getComputedStyle(c).position==='fixed')){ el=c; return true; } return false; }); if(el){ var _gs=el.closest('section'); if(_gs&&!_gs.classList.contains('gt-open')){ _gs.classList.add('gt-open'); _gs.setAttribute('data-gt-tour','1'); var _gb=_gs.querySelector('[data-gt-toggle]'); if(_gb)_gb.setAttribute('aria-expanded','true'); } }
     if(el){ setFocus(el); try{ el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}); }catch(e){ el.scrollIntoView(); } }
   }
   function schedule(){ if(timer) clearTimeout(timer); if(paused||reduce) return; var d=(STEPS[i]&&STEPS[i].ms)||DUR; if(i>=STEPS.length-1){ timer=setTimeout(finish,d); return; } timer=setTimeout(function(){go(i+1);},d); }
@@ -3470,13 +3473,13 @@ class Component extends DCLogic {
   function start(auto){
     var l=document.getElementById('landing'); startedFromLanding=!!(l&&getComputedStyle(l).display!=='none'); if(l&&getComputedStyle(l).display!=='none'){ l.style.display='none'; document.body.style.overflow=''; }
     launch.classList.add('hide'); dim.classList.add('on'); bar.classList.add('on'); paused=false; i=-1; go(0);
-    window.__stTourActive=true; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display='none';
+    window.__stTourActive=true; document.body.classList.add('st-touring'); var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display='none';
     try{ localStorage.setItem('sc_site_tour_seen','1'); }catch(e){}
     if(window.track) try{ window.track(auto?'site_tour_autostart':'site_tour_start',{}); }catch(e){}
   }
   function gtTourReset(){ try{ document.querySelectorAll('section[data-gt-tour]').forEach(function(x){ x.classList.remove('gt-open'); x.removeAttribute('data-gt-tour'); var b=x.querySelector('[data-gt-toggle]'); if(b)b.setAttribute('aria-expanded','false'); }); }catch(e){} }
-  function stop(){ gtTourReset(); if(window.track) try{ window.track('site_tour_cancel',{}); }catch(e){} if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; if(startedFromLanding){ var l=document.getElementById('landing'); if(l){ l.style.display='flex'; document.body.style.overflow='hidden'; } try{ window.scrollTo(0,0); }catch(e){} } else { try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } } try{ window.dispatchEvent(new Event('scroll')); }catch(e){} }
-  function finish(){ gtTourReset(); if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; if(startedFromLanding){ var l=document.getElementById('landing'); if(l){ l.style.display='flex'; document.body.style.overflow='hidden'; } try{ window.scrollTo(0,0); }catch(e){} } else { try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } } if(window.track) try{ window.track('site_tour_complete',{}); }catch(e){} }
+  function stop(){ gtTourReset(); if(window.track) try{ window.track('site_tour_cancel',{}); }catch(e){} if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; document.body.classList.remove('st-touring','st-ask'); var _sl2=document.getElementById('sa-launch'); if(_sl2) _sl2.style.bottom=''; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; if(startedFromLanding){ var l=document.getElementById('landing'); if(l){ l.style.display='flex'; document.body.style.overflow='hidden'; } try{ window.scrollTo(0,0); }catch(e){} } else { try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } } try{ window.dispatchEvent(new Event('scroll')); }catch(e){} }
+  function finish(){ gtTourReset(); if(timer) clearTimeout(timer); bar.classList.remove('on'); dim.classList.remove('on'); launch.classList.remove('hide'); clearFocus(); i=-1; window.__stTourActive=false; document.body.classList.remove('st-touring','st-ask'); var _sl2=document.getElementById('sa-launch'); if(_sl2) _sl2.style.bottom=''; var _fab=document.getElementById('sl-fab'); if(_fab) _fab.style.display=''; if(startedFromLanding){ var l=document.getElementById('landing'); if(l){ l.style.display='flex'; document.body.style.overflow='hidden'; } try{ window.scrollTo(0,0); }catch(e){} } else { try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } } if(window.track) try{ window.track('site_tour_complete',{}); }catch(e){} }
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&bar.classList.contains('on')) stop(); });
   setTimeout(function(){
     try{ if(localStorage.getItem('sc_site_tour_seen')) return; }catch(e){}
@@ -3879,50 +3882,7 @@ document.addEventListener('click',function(e){var t=e.target&&e.target.closest?e
   document.addEventListener('visibilitychange',function(){if(!document.hidden)sync();});
   try{var mq=window.matchMedia('(prefers-color-scheme: dark)');(mq.addEventListener?mq.addEventListener('change',sync):mq.addListener(sync));}catch(e){}
 })();</script>
-<!--AI-LAUNCH--><style id="sa-launch-css">
-#sa-launch{position:fixed;right:18px;bottom:18px;z-index:9500;display:inline-flex;align-items:center;gap:9px;padding:10px 14px 10px 10px;border-radius:999px;border:1px solid rgba(51,196,196,.55);background:rgba(11,15,20,.88);color:#F3EFE7;font:700 13.5px/1 Manrope,Inter,system-ui,sans-serif;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.35);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:transform .15s,border-color .15s;}
-#sa-launch:hover{transform:translateY(-1px);border-color:#33C4C4;}
-#sa-launch .p{width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #33C4C4;flex:0 0 30px;}
-#sa-launch .s{display:block;font:500 11px/1.2 Inter,system-ui,sans-serif;color:#9AA3AE;margin-top:3px;}
-:root[data-theme="light"] #sa-launch{background:rgba(255,255,255,.94);color:#10151B;border-color:rgba(10,115,115,.5);box-shadow:0 10px 30px rgba(20,17,12,.18);}
-:root[data-theme="light"] #sa-launch .p{border-color:#0FB3B3;} :root[data-theme="light"] #sa-launch .s{color:#5E6772;}
-body:has(#cookie-consent) #sa-launch{bottom:112px;}
-#sl-fab{bottom:82px!important;}
-#sa-wrap{position:fixed;inset:0;z-index:9600;display:none;}
-#sa-wrap.on{display:block;}
-#sa-dim{position:absolute;inset:0;background:rgba(4,7,11,.45);}
-#sa-panel{position:absolute;right:0;top:0;height:100%;width:min(100vw,440px);background:#0B0F14;border-left:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;box-shadow:-20px 0 50px rgba(0,0,0,.4);transform:translateX(100%);transition:transform .25s ease;}
-#sa-wrap.on #sa-panel{transform:none;}
-:root[data-theme="light"] #sa-panel{background:#FBF8F1;border-color:rgba(20,17,12,.14);}
-#sa-head{display:flex;align-items:center;gap:10px;padding:14px 14px 12px 16px;border-bottom:1px solid rgba(255,255,255,.1);}
-:root[data-theme="light"] #sa-head{border-color:rgba(20,17,12,.12);}
-#sa-head .p{width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid #33C4C4;flex:0 0 34px;}
-:root[data-theme="light"] #sa-head .p{border-color:#0FB3B3;}
-#sa-head b{display:block;font:800 15px/1.2 Manrope,sans-serif;color:#F3EFE7;} #sa-head span{display:block;font:400 12.5px/1.3 Inter,system-ui,sans-serif;color:#9AA3AE;}
-:root[data-theme="light"] #sa-head b{color:#10151B;} :root[data-theme="light"] #sa-head span{color:#5E6772;}
-#sa-head .x{margin-left:auto;background:transparent;border:1px solid rgba(255,255,255,.2);color:inherit;border-radius:8px;width:34px;height:34px;cursor:pointer;font:400 20px/1 Inter,sans-serif;color:#F3EFE7;}
-:root[data-theme="light"] #sa-head .x{color:#10151B;border-color:rgba(20,17,12,.22);}
-#sa-frame{flex:1;width:100%;border:0;background:transparent;}
-@media (prefers-reduced-motion:reduce){#sa-panel{transition:none;}}
-@media print{#sa-launch,#sa-wrap{display:none!important;}}
-</style>
-<button type="button" id="sa-launch" aria-haspopup="dialog" aria-controls="sa-wrap"><img class="p" src="/assets/advisor-avatar.webp" alt="" width="30" height="30"><span>Ask Shafaat<span class="s">about my work, tools and story</span></span></button>
-<div id="sa-wrap" role="dialog" aria-modal="true" aria-label="Ask Shafaat"><div id="sa-dim"></div><div id="sa-panel"><div id="sa-head"><img class="p" src="/assets/advisor-avatar.webp" alt="" width="34" height="34"><div><b>Ask Shafaat</b><span>An AI version of me, answering from my own writing.</span></div><button type="button" class="x" id="sa-close" aria-label="Close">&times;</button></div><iframe id="sa-frame" title="Ask Shafaat" loading="lazy"></iframe></div></div>
-<script id="sa-launch-js">(function(){
-  var L=document.getElementById('sa-launch'),W=document.getElementById('sa-wrap'),F=document.getElementById('sa-frame'),X=document.getElementById('sa-close'),D=document.getElementById('sa-dim'),last=null;
-  /* read ?q= now: other scripts tidy the address bar before the panel opens */
-  var AQ='';try{AQ=(new URLSearchParams(location.search).get('q')||'').slice(0,300);}catch(_){}
-  if(!L||!W)return;
-  function t(e,a,n){n=n||0;try{if(window.__gaOn&&window.track){window.track(e,a||{});}else if(n<40){setTimeout(function(){t(e,a,n+1);},250);}}catch(_){}}
-  function open(){if(!F.getAttribute('src')){var aq=AQ;AQ='';F.setAttribute('src','/advisor.html?mode=ai&embed=1&from='+encodeURIComponent(location.pathname.replace(/^\/|\.html$/g,'')||'home')+(aq?'&q='+encodeURIComponent(aq):''));}
-    last=document.activeElement;W.classList.add('on');document.body.style.overflow='hidden';setTimeout(function(){try{F.contentWindow.focus();}catch(e){}},300);
-    t('ai_launcher_open',{page:location.pathname});}
-  function close(){W.classList.remove('on');document.body.style.overflow='';if(last&&last.focus)last.focus();t('ai_launcher_close');}
-  L.addEventListener('click',open);X.addEventListener('click',close);D.addEventListener('click',close);
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&W.classList.contains('on'))close();});
-  /* Deep link: /?ask=1 opens the panel (used from LinkedIn and email); &q=<question> arrives already typed. */
-  try{if(new URLSearchParams(location.search).get('ask')==='1')setTimeout(open,600);}catch(e){}
-})();</script><!--/AI-LAUNCH-->
+<!--AI-LAUNCH--><script src="/assets/ask-launch.js?v=20261023a" defer></script><!--/AI-LAUNCH-->
 <script id="ai-entry-track">document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ai-entry]');if(a&&window.track)try{window.track('ai_page_entry',{from:a.getAttribute('data-ai-entry')});}catch(_){}},true);</script>
 </body>
 </html>

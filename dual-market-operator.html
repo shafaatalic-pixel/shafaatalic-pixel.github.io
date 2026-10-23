@@ -298,5 +298,6 @@
   try{var mq=window.matchMedia('(prefers-color-scheme: dark)');(mq.addEventListener?mq.addEventListener('change',sync):mq.addListener(sync));}catch(e){}
 })();</script>
 <script>document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-adv-entry]");if(!a)return;var p={from:a.getAttribute("data-adv-entry"),page:location.pathname.replace(/^\/|\.html$/g,""),goal:a.getAttribute("data-goal")||"none"};try{if(window.track)window.track("advisor_entry",p);else if(window.gtag)gtag("event","advisor_entry",p);}catch(_){}},true);</script>
+<script src="/assets/ask-launch.js?v=20261023a" defer></script>
 </body>
 </html>
