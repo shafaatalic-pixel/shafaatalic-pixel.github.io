@@ -3454,7 +3454,7 @@ class Component extends DCLogic {
     {sel:"#contact",ms:6000,eye:"Where I am headed",title:"Growth is the constant. Your problem is the next chapter.",line:"I lead growth and operations where the number and the human outcome move together, in any industry, in the US or Bangladesh. If that is your problem, let's talk."}
   ];
   var i=-1,timer=null,paused=false,focusEl=null,startedFromLanding=false;
-  /* Optional narration: one clip per step, in an AI version of my own voice. Off by default; when on, each step advances when its clip ends. */
+  /* Optional narration: one clip per step, in my voice. Off by default; when on, each step advances when its clip ends. */
   var VO=false,aud=null,voEnded=false,VOV='20261023';
   var SPK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10v4h4l5 4V6L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>';
   var MUTE='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10v4h4l5 4V6L7 10H3zm13.6 2 2.4-2.4-1.1-1.1-2.4 2.4-2.4-2.4-1.1 1.1 2.4 2.4-2.4 2.4 1.1 1.1 2.4-2.4 2.4 2.4 1.1-1.1z"/></svg>';
@@ -3495,7 +3495,7 @@ class Component extends DCLogic {
     var dots=STEPS.map(function(_,k){return '<i class="'+(k===i?'on':'')+'"></i>';}).join('');
     var last=i===STEPS.length-1;
     bar.innerHTML='<button class="st-close" aria-label="Close tour">×</button>'+
-      '<div class="st-eye">'+s.eye+'</div><h3>'+s.title+'</h3><p>'+s.line+'</p>'+(VO?'<div class="st-vo-note'+(paused?' paused':'')+'"><i></i>Narrated by an AI version of my voice</div>':'')+(s.peek?PEEK:'')+
+      '<div class="st-eye">'+s.eye+'</div><h3>'+s.title+'</h3><p>'+s.line+'</p>'+(s.peek?PEEK:'')+
       '<div class="st-ctrls"><div class="st-dots" aria-hidden="true">'+dots+'</div>'+
       '<div class="st-btns"><span class="st-count">'+(i+1)+' / '+STEPS.length+'</span>'+
       '<button class="st-voice" aria-pressed="'+(VO?'true':'false')+'" aria-label="'+(VO?'Turn off narration':'Play with my voice')+'" title="'+(VO?'Turn off narration':'Play with my voice (an AI version of it)')+'">'+(VO?SPK:MUTE)+'<span>'+(VO?'Voice on':'My voice')+'</span></button>'+
