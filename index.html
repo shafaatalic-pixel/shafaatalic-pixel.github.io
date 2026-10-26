@@ -24,6 +24,8 @@
     taps a lens before gtag.js finishes loading (slow mobile), and send an open that happened
     before consent resolved (first-time visitors). Scoped to this link only. */
  if(/[?&]view=choose(&|#|$)/.test(window.__landingHref||'')) _cfg.page_location = window.__landingHref;
+ /* Campaign links (utm_*): pin the landing URL so the tags survive the SPA's address cleanup on slow loads. */
+ if(/[?&]utm_[a-z]+=/.test(window.__landingHref||'')) _cfg.page_location = window.__landingHref;
  gtag('config', 'G-RN7EPJQQPC', _cfg);
  if(window.__chooseOpen && !window.__chooseSent){ window.__chooseSent = 1; gtag('event', 'choose_link_open', {}); }
  };

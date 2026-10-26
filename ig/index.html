@@ -328,6 +328,11 @@ ol.list,ul.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:c
     $$('#rlist a').forEach(function(a){a.addEventListener('click',function(){t('ig_reel',{k:a.closest('.reel').dataset.k,to:a.dataset.to||'main'})})});})();
   $$('.qa a').forEach(function(a){a.addEventListener('click',function(){t('ig_quick',{k:a.dataset.k})})});
   $$('.prow a').forEach(function(a,i){a.addEventListener('click',function(){t('ig_press',{i:i+1})})});
+  /* Every other link on the page (header, footer, essay-list fallback text): one generic event so no tap goes uncounted. */
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a||a.closest('#rlist,.qa,#list,.prow'))return;
+    var area=a.closest('.hd')?'header':a.closest('.ft')?'footer':'body',to='';try{var u=new URL(a.href,location.href);to=u.host===location.host?u.pathname:u.host;}catch(_){}
+    t('ig_link',{area:area,to:to});});
+  $('#tgl').addEventListener('click',function(){setTimeout(function(){t('ig_theme',{mode:document.documentElement.getAttribute('data-theme')||'auto'})},0)});
   /* theme */
   var tgl=$('#tgl');tgl.addEventListener('click',function(){var light=document.documentElement.getAttribute('data-theme')==='light';
     if(light){document.documentElement.removeAttribute('data-theme');try{localStorage.setItem('shafaat_theme','dark')}catch(e){}}
