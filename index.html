@@ -44,7 +44,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <!-- Perf: warm the critical path in parallel with HTML parse (CSS/fonts are otherwise injected only after the JS runtime boots) -->
 <link rel="preload" as="image" href="/assets/hero/hero-poster.webp" fetchpriority="high">
-<link rel="preload" as="image" href="/assets/growth-hero-first.webp">
+<link rel="preload" as="image" href="/assets/growth-hero-first.webp?v=20261027">
 <!-- Perf: warm the React UMD bundles in parallel with support.js/lucide so they are cached before support.js injects them (matches crossorigin+SRI of the runtime fetch). -->
 <link rel="preload" as="script" href="/assets/vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous">
 <link rel="preload" as="script" href="/assets/vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous">
@@ -3668,12 +3668,12 @@ function build(){
  wrap=document.createElement("div");wrap.id="gvh-wrap";
  v=document.createElement("video");
  v.muted=true;v.playsInline=true;v.setAttribute("playsinline","");v.setAttribute("muted","");
- v.preload=(LOWDATA||GVH_SEEN_AT_LOAD)?"none":"metadata";v.poster="assets/growth-hero-first.webp";
- var s1=document.createElement("source");s1.src="assets/growth-hero.webm";s1.type="video/webm";
- var s2=document.createElement("source");s2.src="assets/growth-hero.mp4";s2.type="video/mp4";
+ v.preload=(LOWDATA||GVH_SEEN_AT_LOAD)?"none":"metadata";v.poster="assets/growth-hero-first.webp?v=20261027";
+ var s1=document.createElement("source");s1.src="assets/growth-hero.webm?v=20261027";s1.type="video/webm";
+ var s2=document.createElement("source");s2.src="assets/growth-hero.mp4?v=20261027";s2.type="video/mp4";
  v.appendChild(s1);v.appendChild(s2);
  try{v.load();}catch(e){}
- still=document.createElement("img");still.id="gvh-still";still.src="assets/growth-hero-settled.webp";still.alt="";
+ still=document.createElement("img");still.id="gvh-still";still.src="assets/growth-hero-settled.webp?v=20261027";still.alt="";
  sh=document.createElement("div");sh.id="gvh-sh";
  sv=document.createElement("div");sv.id="gvh-sv";
  mt=document.createElement("div");mt.id="gvh-mt";
