@@ -58,6 +58,15 @@ h2{font:500 11px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.16e
 .mark li h3 span{color:var(--c)}
 .mark li p{font-size:14px;color:var(--txt);margin-top:3px}
 .mark .sum{font:500 12.5px/1.5 'JetBrains Mono',ui-monospace,monospace;color:var(--mut);padding:12px 2px 10px;border-top:1px solid var(--line)}
+.more{border-top:1px solid var(--line);margin-top:4px}
+.more summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 2px;font:600 15px/1.3 Inter,sans-serif;color:var(--teal);-webkit-tap-highlight-color:transparent}
+.more summary::-webkit-details-marker{display:none}
+.more summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+.more .chev{width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin:-4px 6px 0 0;transition:transform .2s}
+.more[open] .chev{transform:rotate(-135deg);margin-top:4px}
+.more[open] summary .lbl{color:var(--mut)}
+.mark .fig{cursor:pointer}
+@media (prefers-reduced-motion:reduce){.more .chev{transition:none}}
 .hs{display:block;border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none;color:var(--ink);font:600 16px/1.3 Inter,sans-serif}
 .hs small{display:block;font:400 13.5px/1.45 Inter,sans-serif;color:var(--mut);margin-top:3px}
 .foot{margin-top:28px;display:flex;gap:16px;flex-wrap:wrap;font:400 13px 'JetBrains Mono',ui-monospace,monospace}
@@ -103,6 +112,8 @@ h2{font:500 11px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.16e
   <span class="pin" style="--c:#F0A83C;left:65%;top:3%">6</span>
  </div>
  <p class="intro">Every element stands for one part of how I work. Read it from the outside in.</p>
+ <details class="more" id="mark-more">
+ <summary><span class="lbl">Read what each element means</span><span class="chev" aria-hidden="true"></span></summary>
  <ol>
   <li style="--c:#F6F1E6"><span class="b">1</span><div><h3>The crest: <span>proof before promises</span></h3><p>A crest is something you put your name under. Every claim on this card links to a case study with the numbers behind it.</p></div></li>
   <li style="--c:#F6F1E6"><span class="b">2</span><div><h3>The interlocked S and C: <span>one system</span></h3><p>The two letters lock together and can't be pulled apart. Growth and health aren't two careers. They are one way of working.</p></div></li>
@@ -112,6 +123,7 @@ h2{font:500 11px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.16e
   <li style="--c:#F0A83C"><span class="b">6</span><div><h3>The amber point at the top: <span>the outcome</span></h3><p>Everything in the crest rises to one point: a result you can measure. Amber is the colour of outcomes.</p></div></li>
  </ol>
  <p class="sum">Teal catches the signal. Amber moves the number. Attention, then intelligence, then outcomes.</p>
+ </details>
 </section>
 
 <h2>Also</h2>
@@ -132,6 +144,9 @@ h2{font:500 11px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.16e
   if(a.dataset.a){t('card_action',{a:a.dataset.a});}
  });
  var seen=false,m=document.getElementById('mark');
+ var d=document.getElementById('mark-more');
+ if(d){d.addEventListener('toggle',function(){var l=d.querySelector('.lbl');l.textContent=d.open?'Hide the meanings':'Read what each element means';if(d.open)t('card_mark_open',{});});
+  var fg=document.querySelector('.mark .fig');if(fg)fg.addEventListener('click',function(){if(!d.open){d.open=true;}d.scrollIntoView({behavior:'smooth',block:'start'});});}
  if('IntersectionObserver' in window&&m){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!seen){seen=true;t('card_mark_view',{});io.disconnect();}});},{threshold:.4});io.observe(m);}
 })();
 </script>
