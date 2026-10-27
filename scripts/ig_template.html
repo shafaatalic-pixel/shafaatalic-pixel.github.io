@@ -208,8 +208,8 @@ ol.list,ul.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:c
   function fromHash(){var h=(location.hash||'').replace(/^#e?/,'');if(/^\d+$/.test(h))go(parseInt(h,10),'link');}
   fromHash();window.addEventListener('hashchange',fromHash);
   list.addEventListener('click',function(e){var a=e.target.closest('a');if(a){var r=a.closest('.row');t('ig_open_essay',{n:+r.dataset.n,slug:a.dataset.slug});}});
-  /* Reels: each card appears on its publish date, newest first. */
-  (function(){var rs=$$('#rlist .reel');var vis=0;rs.forEach(function(r){var on=r.dataset.date<=iso;r.hidden=!on;if(on)vis++;});
+  /* Reels: each card appears when its Reel goes live (7:30 PM Michigan time, same moment for every visitor), newest first. */
+  (function(){var rs=$$('#rlist .reel');var vis=0;rs.forEach(function(r){var on=r.dataset.at?Date.now()>=+r.dataset.at:r.dataset.date<=iso;r.hidden=!on;if(on)vis++;});
     rs.sort(function(a,b){return a.dataset.date<b.dataset.date?1:-1}).forEach(function(r){$('#rlist').appendChild(r)});
     $('#reels').hidden=vis===0;
     $$('#rlist a').forEach(function(a){a.addEventListener('click',function(){t('ig_reel',{k:a.closest('.reel').dataset.k,to:a.dataset.to||'main'})})});})();

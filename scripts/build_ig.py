@@ -9,6 +9,7 @@ their publish date without a rebuild, and keep their number.
 Usage: python3 scripts/build_ig.py [site_root]
 """
 import datetime, html, json, os, re, sys
+from zoneinfo import ZoneInfo
 
 ROOT = sys.argv[1] if len(sys.argv) > 1 else os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://shafaatalichoyon.com"
@@ -38,8 +39,20 @@ def press_items(index_html):
     return out
 
 
+# Each card switches on when its Reel goes live: 7:30 PM Michigan time on its date (Business Suite posting time).
+REEL_LIVE = datetime.time(19, 30)
+REEL_TZ = ZoneInfo("America/Detroit")
+
+
+def live_ms(d, at=None):
+    t = datetime.datetime.combine(datetime.date.fromisoformat(d), at or REEL_LIVE, tzinfo=REEL_TZ)
+    return int(t.timestamp() * 1000)
+
+
 REEL_UTM = "utm_source=instagram&utm_medium=social&utm_campaign={d}-reel-{k}&utm_content={c}"
-# (date, key, label, hook from the IG caption, destination label, url, utm_content, optional second link)
+# (date, key, label, hook from the IG caption, destination label, url, utm_content, optional second link[, "HH:MM"])
+# Second link: (label, url, utm_content) or None. Optional 9th item: go-live time in Michigan time ("18:00")
+# when the Reel is not scheduled at the usual 7:30 PM. Never edit or remove past entries; append new ones in date order.
 REELS = [
     ("2026-11-02", "start-here", "Start here", "Growth and public health aren't two careers. For me, they're one skill.",
      "My portfolio, with sources", SITE + "/", "home", None),
@@ -65,11 +78,12 @@ def utm(url, d, k, c):
 
 
 def reel_row(r):
-    d, k, label, hook, dest, url, c, also = r
+    d, k, label, hook, dest, url, c, also = r[:8]
+    at = datetime.time.fromisoformat(r[8]) if len(r) > 8 else None
     ext = not url.startswith(SITE)
     tgt = ' target="_blank" rel="noopener"' if ext else ""
     when = datetime.date.fromisoformat(d).strftime("%b %-d")
-    row = (f'<li class="reel" data-date="{d}" data-k="{k}"><a href="{E(utm(url, d, k, c))}"{tgt}>'
+    row = (f'<li class="reel" data-date="{d}" data-at="{live_ms(d, at)}" data-k="{k}"><a href="{E(utm(url, d, k, c))}"{tgt}>'
            f'<span class="rk">{E(label)}</span>'
            f'<span class="body"><span class="meta"><time datetime="{d}">{when}</time></span>'
            f'<span class="tt">{E(hook)}</span><span class="dest">{E(dest)}</span></span>'
