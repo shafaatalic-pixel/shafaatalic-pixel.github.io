@@ -20,7 +20,7 @@ E = lambda s: html.escape(str(s), quote=True)
 
 # Essays added after the run was numbered keep a fixed number, so the numbers already on
 # finished videos and captions do not shift (Shafaat's call, 30 Oct 2026).
-FIXED_N = {"ldc-graduation-extra-time": 121}
+FIXED_N = {"ldc-graduation-extra-time": 121, "ldc-growth-operations-job": 122, "drug-regulator-goes-digital": 123, "ai-builds-the-origin-file": 124}
 
 
 def numbered(essays):
