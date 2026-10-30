@@ -116,3 +116,24 @@
   function vis() { (document.visibilityState === 'visible') ? start() : stop(); }
   document.addEventListener('visibilitychange', vis); vis();
 })();
+
+
+/* Contact intent on every page except the homepage (which has its own handler), added 2026-10-30.
+   Until now essays, tools and case pages sent no contact event, so "contact intent (30d) 0" in the
+   Command Center only measured the homepage. Fires contact_intent{method, page} once per click on
+   Calendly, email, phone, contact card (.vcf) or LinkedIn profile links. Consent-gated via window.track. */
+(function () {
+  if (window.__contactTrackOn || /^\/(index\.html)?$/.test(location.pathname)) return;
+  window.__contactTrackOn = true;
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null; if (!a) return;
+    var h = a.getAttribute('href') || '', m = '';
+    if (/calendly\.com/i.test(h)) m = 'book_call';
+    else if (/^mailto:/i.test(h)) m = 'email';
+    else if (/^tel:/i.test(h)) m = 'phone';
+    else if (/\.vcf(\?|$)/i.test(h)) m = 'save_contact';
+    else if (/linkedin\.com\/in\//i.test(h)) m = 'linkedin';
+    if (!m) return;
+    try { if (window.track) window.track('contact_intent', { method: m, page: location.pathname.slice(0, 100) }); } catch (err) {}
+  }, true);
+})();
