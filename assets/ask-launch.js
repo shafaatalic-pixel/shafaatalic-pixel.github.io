@@ -28,6 +28,21 @@
     L.addEventListener('click',open);X.addEventListener('click',close);D.addEventListener('click',close);
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&W.classList.contains('on'))close();});
     window.openAskShafaat=open;
+    /* Essay-end card (2026-10-30): on essays, a closing card before "Related essays" with two next steps:
+       ask Ask Shafaat about this essay (question pre-typed, visitor sends it) or book 30 minutes. */
+    function askWith(q){var src='/advisor.html?mode=ai&embed=1&from='+encodeURIComponent(path.replace(/^\/|\.html$|\/$/g,'').replace(/\//g,'-')||'home')+(page?'&page='+encodeURIComponent(page)+'&kind='+kind+'&title='+encodeURIComponent(title):'')+'&q='+encodeURIComponent(q);F.setAttribute('src',src);AQ='';open();}
+    if(kind==='essay'){try{
+      var rel=document.querySelector('section.related'), host=rel||document.querySelector('article');
+      if(host&&!document.getElementById('sa-endcard')){
+        var c=document.createElement('section');c.id='sa-endcard';c.setAttribute('aria-label','Next steps');
+        c.innerHTML='<style>#sa-endcard{margin:36px 0 8px;padding:20px 22px;border:1px solid var(--line,rgba(127,127,127,.3));border-left:4px solid var(--teal,#0FB3B3);border-radius:12px;font-family:inherit}#sa-endcard h2{margin:0 0 6px;font-size:1.15rem;line-height:1.3}#sa-endcard p{margin:0 0 14px;color:var(--muted,inherit);font-size:.95rem;line-height:1.55}#sa-endcard .r{display:flex;flex-wrap:wrap;gap:10px}#sa-endcard a,#sa-endcard button{font:600 14px/1 inherit;font-family:inherit;padding:11px 16px;border-radius:999px;cursor:pointer;text-decoration:none;border:1px solid var(--teal,#0FB3B3)}#sa-endcard .p{background:var(--teal,#0FB3B3);color:var(--bg,#fff)}#sa-endcard .s{background:transparent;color:inherit}#sa-endcard small{display:block;margin-top:10px;color:var(--muted,inherit);font-size:12px}</style>'+
+          '<h2>Does this apply to your organization?</h2><p>Ask the AI version of me how this essay applies to your situation, or bring the question to the real me in a 30-minute call.</p>'+
+          '<div class="r"><button type="button" class="p" id="sa-end-ask">Ask about this essay</button><a class="s" id="sa-end-book" href="https://calendly.com/shafaat-alic/30min" target="_blank" rel="noopener">Book 30 minutes</a></div>'+
+          '<small>The assistant is labelled as AI and answers from my published writing. Questions are stored without names.</small>';
+        if(rel) rel.parentNode.insertBefore(c,rel); else host.appendChild(c);
+        document.getElementById('sa-end-ask').addEventListener('click',function(){t('essay_end_ask',{page:path});askWith('How would the argument in "'+title.slice(0,120)+'" apply to my organization?');});
+        document.getElementById('sa-end-book').addEventListener('click',function(){t('essay_end_book',{page:path});});
+      }}catch(e){}}
     try{if(new URLSearchParams(location.search).get('ask')==='1')setTimeout(open,600);}catch(e){}
   }
   if(document.body)mount();else document.addEventListener('DOMContentLoaded',mount);
