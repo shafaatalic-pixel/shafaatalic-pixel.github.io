@@ -67,6 +67,8 @@ REEL_UTM = "utm_source=instagram&utm_medium=social&utm_campaign={d}-reel-{k}&utm
 # Second link: (label, url, utm_content) or None. Optional 9th item: go-live time in Michigan time ("18:00")
 # when the Reel is not scheduled at the usual 7:30 PM. Never edit or remove past entries; append new ones in date order.
 REELS = [
+    ("2026-10-31", "reel-2026-10-31-ldc", "New essay", "Bangladesh now leaves the UN's least developed country group on 24 November 2029, not this November.",
+     "The essay: three more years as an LDC", SITE + "/ldc-graduation-extra-time.html", "essay", None),
     ("2026-11-02", "start-here", "Start here", "Growth and public health aren't two careers. For me, they're one skill.",
      "My portfolio, with sources", SITE + "/", "home", None),
     ("2026-11-03", "ch1", "Chapter 1", "80,000 customer conversations taught me how people decide.",
