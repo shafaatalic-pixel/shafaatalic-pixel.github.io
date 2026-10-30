@@ -18,10 +18,23 @@ TODAY = datetime.date.today().isoformat()
 E = lambda s: html.escape(str(s), quote=True)
 
 
+# Essays added after the run was numbered keep a fixed number, so the numbers already on
+# finished videos and captions do not shift (Shafaat's call, 30 Oct 2026).
+FIXED_N = {"ldc-graduation-extra-time": 121}
+
+
 def numbered(essays):
-    """Stable numbering: by date, then by position in essays.json."""
+    """Stable numbering: by date, then by position in essays.json; FIXED_N entries keep their number."""
     order = sorted(range(len(essays)), key=lambda i: (essays[i]["date"], i))
-    return [dict(essays[i], n=k + 1) for k, i in enumerate(order)]
+    out, k = [], 0
+    for i in order:
+        s = essays[i]["slug"]
+        if s in FIXED_N:
+            out.append(dict(essays[i], n=FIXED_N[s]))
+        else:
+            k += 1
+            out.append(dict(essays[i], n=k))
+    return out
 
 
 def press_items(index_html):
