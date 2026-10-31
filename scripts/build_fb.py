@@ -132,6 +132,46 @@ def reel_posts():
     return out
 
 
+LAUNCH_LAB = {  # (button, line under it) for the launch posts' non-essay links
+    "intro": ("My work, in one place", "Essays, case studies, tools and Ask Shafaat"),
+    "start": ("Start at the home page", "Essays, case studies, tools and Ask Shafaat"),
+    "home": ("Start at the home page", "Essays, case studies, tools and Ask Shafaat"),
+    "impact": ("All 22 case studies", "Every role, with the numbers, mapped as one system"),
+    "essays": ("All essays", "120+ essays on growth, AI, health tech and public health"),
+    "tools": ("All 48 free tools", "Run them with your own numbers, no sign-up"),
+    "advisor": ("Not sure which tool fits?", "Answer a few questions"),
+    "identity": ("The mark and the theme", "Chapter by chapter, on hsraep.org"),
+    "hsrep": ("HSREP", "The policy-research and advocacy platform I founded"),
+}
+
+
+def launch_posts(path):
+    """The 11 posts that opened the Facebook Page (20 Oct 2026). Their first comments now point here."""
+    out = []
+    for r in json.load(open(path, encoding="utf-8")):
+        d = datetime.date(2026, 10, 20)
+        hh, mm = (int(x) for x in r["time"].split(":"))
+        links = []
+        for line in r["comment"].splitlines():
+            m = re.match(r"\s*(.*?):\s*(https://\S+)\s*$", line)
+            if not m:
+                continue
+            text, url = m.groups()
+            c = re.search(r"utm_content=([a-z0-9]+)", url).group(1)
+            essay_post = re.search(r"utm_content=essay(?![a-z])", r["comment"]) is not None
+            if essay_post and c in KIND:
+                links.append({"kind": c, "url": fb_url(url), "sub": sub_label(text, c), "text": text})
+            else:
+                lab, sub = LAUNCH_LAB.get(c, ("Open", text)) if c != "ask" else ("Ask Shafaat", "The AI version of me, from my published work")
+                if c == "case":
+                    lab, sub = "How it was built", "The HSREP case, with the numbers"
+                links.append({"kind": "ask" if c == "ask" else ("essay" if c in ("intro", "start", "home") else "case"),
+                              "url": fb_url(url), "sub": sub, "text": text, "label": lab})
+        out.append({"d": d, "at": at_ms(d, hh, mm), "kind": "launch", "key": r["key"], "title": r["title"],
+                    "order": r["order"], "links": links})
+    return out
+
+
 def card(p, emap):
     ess = next((l for l in p["links"] if l["kind"] == "essay"), None)
     e = None
@@ -141,7 +181,7 @@ def card(p, emap):
     n = e["n"] if e else None
     title = e["title"] if e else p["title"]
     lens = (f'<span class="lens l-{E(e["lens"])}">{E(e["lensLabel"])}</span>' if e else "")
-    tag = {"post": "Post", "archive": "From the archive", "reel": "Reel"}[p["kind"]]
+    tag = {"post": "Post", "archive": "From the archive", "reel": "Reel", "launch": "Launch post"}[p["kind"]]
     when = p["d"].strftime("%b %-d")
     btns = []
     for l in p["links"]:
@@ -149,13 +189,16 @@ def card(p, emap):
         if p["kind"] == "reel" and l["kind"] not in ("ask", "hsrep"):
             lab = {"essay": "Read the essay", "case": "See the case", "case2": "See the case", "home": "Start here",
                    "initiative": "The initiative", "ai": "Applied AI"}.get(l["kind"], "Open")
+        if l.get("label"):
+            lab = l["label"]
         if l["kind"] == "essay" and not l["sub"] and e:
             l = dict(l, sub=f"Essay #{e['n']}, with its sources")
         btns.append(f'<a class="b b-{cls}" href="{E(l["url"])}" data-to="{E(l["kind"])}"><b>{E(lab)}</b>'
                     + (f'<span>{E(l["sub"])}</span>' if l["sub"] else "") + "</a>")
     num = f'<span class="num">#{n}</span>' if n else '<span class="num nn">&middot;</span>'
     kid = f' data-k="{E(p["key"])}"' if p.get("key") else ""
-    return (f'<li class="post"{kid} data-n="{n or ""}" data-at="{p["at"]}" data-date="{p["d"].isoformat()}" data-q="{E((title + " " + p["title"]).lower())}" hidden>'
+    hid = "" if p["kind"] == "launch" else " hidden"
+    return (f'<li class="post"{kid} data-n="{n or ""}" data-at="{p["at"]}" data-date="{p["d"].isoformat()}" data-q="{E((title + " " + p["title"]).lower())}"{hid}>'
             f'<div class="ph">{num}<div class="body"><span class="meta"><span class="pk">{tag}</span>{lens}<time datetime="{p["d"].isoformat()}">{when}</time></span>'
             f'<span class="tt">{E(title)}</span></div></div>'
             f'<div class="btns n{len(btns)}">{"".join(btns)}</div></li>')
@@ -166,6 +209,8 @@ EXTRA_CSS = """
 .post.hit{border-color:var(--amb);box-shadow:0 0 0 4px var(--amb-soft)}
 .ph{display:flex;gap:12px;align-items:flex-start}
 .num.nn{color:var(--tx-4)}
+#slist .num.nn{display:none}
+#slist .post{scroll-margin-top:80px}
 .pk{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx-4)}
 .btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
 .btns.n1{grid-template-columns:1fr}
@@ -210,6 +255,13 @@ BODY = """<body>
     <p class="empty" id="none" hidden>No post matches that. Try another word, or <a href="/?ask=1&amp;utm_source=facebook&amp;utm_medium=social&amp;utm_term=fb-hub&amp;utm_content=ask">ask the AI version of me</a>.</p>
   </section>
 
+  <section class="sec" id="start" style="padding-top:26px" aria-labelledby="sh2">
+    <div class="sh"><h2 id="sh2">Start here</h2><span class="cnt">The 11 posts that opened this Page, 20 Oct 2026</span></div>
+    <ol class="list" id="slist">
+{{LAUNCH}}
+    </ol>
+  </section>
+
   <nav class="qa" aria-label="Quick links" style="margin-top:26px">
     <a class="ask" href="/?ask=1&amp;utm_source=facebook&amp;utm_medium=social&amp;utm_term=fb-hub&amp;utm_content=ask" data-k="ask"><img src="/assets/advisor-avatar.webp" alt="" width="46" height="46"><span style="display:flex;flex-direction:column;gap:3px"><i>Live &middot; AI</i><b>Ask the AI version of me</b><span>Answers only from my published work, with sources.</span></span></a>
     <a href="/tools.html?utm_source=facebook&amp;utm_medium=social&amp;utm_term=fb-hub" data-k="tools"><i>Free</i><b>48 free tools</b><span>Calculators and checkers for growth and health teams.</span></a>
@@ -232,7 +284,7 @@ BODY = """<body>
   cards.sort(function(a,b){return b.dataset.at-a.dataset.at}).forEach(function(c){c.hidden=false;list.appendChild(c)});
   $('#pcnt').textContent=cards.length+' posts, newest first';
   /* "#125" opens the newest card for essay 125 */
-  var seen={};cards.forEach(function(c){var n=c.dataset.n;if(n&&!seen[n]){seen[n]=1;c.id='p'+n;}});
+  var seen={};cards.concat($$('#slist .post')).forEach(function(c){var n=c.dataset.n;if(n&&!seen[n]){seen[n]=1;c.id='p'+n;}});
   function apply(){var shown=0;cards.forEach(function(c){var ok=!q||c.dataset.q.indexOf(q)>-1;c.hidden=!ok;if(ok)shown++;});$('#none').hidden=shown>0;}
   var qi=$('#q'),qt;qi.addEventListener('input',function(){q=qi.value.trim().toLowerCase();apply();clearTimeout(qt);qt=setTimeout(function(){if(q)t('fb_search',{len:q.length})},900);});
   function go(n,src){var c=document.getElementById('p'+n),m=$('#jmsg');
@@ -242,9 +294,9 @@ BODY = """<body>
   function fromHash(){var raw=(location.hash||'').slice(1),h=raw.replace(/^[ep]?/,'');if(/^\\d+$/.test(h)){go(parseInt(h,10),'link');return;}
     var c=raw&&document.querySelector('.post[data-k="'+raw.replace(/[^a-z0-9-]/gi,'')+'"]');if(c&&!c.hidden){q='';qi.value='';apply();$$('.post.hit').forEach(function(x){x.classList.remove('hit')});c.classList.add('hit');c.scrollIntoView({block:'center'});t('fb_jump',{k:raw,from:'link'});}}
   fromHash();window.addEventListener('hashchange',fromHash);
-  list.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;var c=a.closest('.post');t('fb_open',{n:+c.dataset.n||0,to:a.dataset.to,date:c.dataset.date});});
+  [list,$('#slist')].forEach(function(L){L.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;var c=a.closest('.post');t('fb_open',{n:+c.dataset.n||0,to:a.dataset.to,date:c.dataset.date,k:c.dataset.k||''});});});
   $$('.qa a').forEach(function(a){a.addEventListener('click',function(){t('fb_quick',{k:a.dataset.k})})});
-  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a||a.closest('#plist,.qa'))return;var to='';try{var u=new URL(a.href,location.href);to=u.host===location.host?u.pathname:u.host;}catch(_){}t('fb_link',{area:a.closest('.hd')?'header':a.closest('.ft')?'footer':'body',to:to});});
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a||a.closest('#plist,#slist,.qa'))return;var to='';try{var u=new URL(a.href,location.href);to=u.host===location.host?u.pathname:u.host;}catch(_){}t('fb_link',{area:a.closest('.hd')?'header':a.closest('.ft')?'footer':'body',to:to});});
 })();
 </script>
 <script src="/assets/ask-launch.js?v=20261023a" defer></script>
@@ -268,11 +320,14 @@ def main():
                 .replace('content="Every post, one tap away"', 'content="Every link from every post"')
                 .replace("Every essay from Instagram, numbered. Type the number from the post, or browse them all.", "Type the number from the Facebook post: essay, case, tool and Ask Shafaat, one tap each.")
                 .replace('<script type="application/ld+json">{{LD}}</script>\n', ""))
-    out = head + BODY.replace("{{CARDS}}", "\n".join(card(p, emap) for p in posts)).replace("{{CALL}}", ig.CALL)
+    launch = sorted(launch_posts(os.path.join(ROOT, "_local_archive", "fb", "launch", "launch_comments.json")),
+                    key=lambda p: (p["order"] != 11, p["order"]))  # "Start here" first, then posting order
+    out = (head + BODY.replace("{{CARDS}}", "\n".join(card(p, emap) for p in posts))
+           .replace("{{LAUNCH}}", "\n".join(card(p, emap) for p in launch)).replace("{{CALL}}", ig.CALL))
     os.makedirs(os.path.join(ROOT, "fb"), exist_ok=True)
     open(os.path.join(ROOT, "fb", "index.html"), "w", encoding="utf-8").write(out)
     nolink = [p["d"].isoformat() for p in posts if len(p["links"]) < (1 if p["kind"] == "reel" else 4)]
-    print(f"fb/index.html: {len(posts)} cards ({sum(p['kind']=='post' for p in posts)} posts, {sum(p['kind']=='archive' for p in posts)} archive, {sum(p['kind']=='reel' for p in posts)} reels); under 4 links: {nolink}")
+    print(f"fb/index.html: {len(launch)} launch cards + {len(posts)} cards ({sum(p['kind']=='post' for p in posts)} posts, {sum(p['kind']=='archive' for p in posts)} archive, {sum(p['kind']=='reel' for p in posts)} reels); under 4 links: {nolink}")
 
 
 if __name__ == "__main__":
