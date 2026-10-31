@@ -112,7 +112,7 @@ def reel_posts():
     fbc = {}
     try:
         for r in json.load(open(os.path.join(ROOT, "_local_archive", "reels-video", "reels_posts.json"))):
-            fbc[r["key"]] = r.get("fb_comment", "")
+            fbc[r["key"]] = r.get("fb_comment_links") or r.get("fb_comment", "")
     except FileNotFoundError:
         pass
     out = []
