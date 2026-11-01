@@ -47,9 +47,41 @@ h2{font:500 11px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.16e
 .res .p{font:600 16.5px/1.3 Inter,sans-serif;color:var(--ink);margin-top:4px}
 .res .r{font:400 12.5px/1.4 'JetBrains Mono',ui-monospace,monospace;color:var(--mut);margin-top:6px}
 .mark{background:var(--panel);border-radius:14px;padding:18px 16px 8px}
-.mark .fig{position:relative;width:min(200px,56%);margin:0 auto 6px}
-.mark .fig img{width:100%;height:auto;display:block}
-.pin{position:absolute;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;background:var(--bg);border:1.5px solid var(--c);color:var(--c);font:600 12px/21px 'JetBrains Mono',monospace;text-align:center}
+.mark .fig{position:relative;width:min(220px,62%);margin:6px auto 4px}
+.mark .fig svg{width:100%;height:auto;display:block;overflow:visible}
+.pin{position:absolute;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;background:var(--bg);border:1.5px solid var(--c);color:var(--c);font:600 12px/21px 'JetBrains Mono',monospace;text-align:center;transition:opacity .5s,box-shadow .5s}
+/* ---- the crest, built one element at a time ---- */
+.cr image,.cr .fr{transform-box:view-box;transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .95s cubic-bezier(.2,.7,.2,1),filter .5s}
+.cr .l.off{opacity:0}.cr .l.gh{opacity:.18}.cr .l.on{opacity:1;transform:none}
+#cl-s.off{transform:translateX(-22px)}#cl-c.off{transform:translateX(22px)}
+#cl-bar{transform-origin:200px 90px}#cl-bar.off{transform:scaleX(.35)}
+#cl-ring{transform-origin:199px 253px}#cl-ring.off{transform:rotate(-70deg)}
+#cl-star{transform-origin:200px 258px}#cl-star.off{transform:scale(.2) rotate(-90deg)}
+#cl-point{transform-origin:200px 40px}#cl-point.off{transform:translateY(-24px)}
+.cr .l.hi.k-cream{filter:drop-shadow(0 0 9px rgba(246,241,230,.28))}
+.cr .l.hi.k-teal{filter:drop-shadow(0 0 11px rgba(46,196,189,.55))}
+.cr .l.hi.k-amb{filter:drop-shadow(0 0 11px rgba(240,168,60,.6))}
+.cr .fr{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round;opacity:0;stroke-dasharray:1500;stroke-dashoffset:1500}
+.cr .fr.draw{opacity:.7;stroke-dashoffset:0;transition:stroke-dashoffset 2.6s cubic-bezier(.2,.7,.2,1),opacity .5s}
+.cr .fr.fade{opacity:0;stroke-dashoffset:0}
+.mk-anim .pin{display:none}
+.chap{margin:14px 2px 0;min-height:var(--chh,0px)}
+.chap .cn{font:500 11px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--c,var(--mut))}
+.chap .ch{font:800 21px/1.2 Manrope,Inter,sans-serif;color:var(--ink);margin-top:6px;text-wrap:balance}
+.chap .cb{font-size:14.5px;color:var(--txt);margin-top:6px}
+.chap.sw{animation:chin .45s cubic-bezier(.2,.7,.2,1)}
+@keyframes chin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.mrail{display:flex;align-items:center;gap:6px;margin:14px 2px 2px}
+.mrail button.st{width:26px;height:18px;border:0;padding:0;background:transparent;position:relative;cursor:pointer}
+.mrail button.st::before{content:"";position:absolute;left:0;right:0;top:8px;height:2px;border-radius:2px;background:rgba(255,255,255,.16)}
+.mrail button.st.done::before{background:rgba(246,241,230,.45)}
+.mrail button.st.on::after{content:"";position:absolute;left:0;right:0;top:8px;height:2px;border-radius:2px;background:var(--teal);transform-origin:0 50%;transform:scaleX(0);animation:mfill var(--dur,5.6s) linear forwards}
+.mrail.paused button.st.on::after{animation-play-state:paused}
+.mrail.still button.st.on::after{animation:none;transform:scaleX(1)}
+@keyframes mfill{to{transform:scaleX(1)}}
+.mrail .pp{margin-left:auto;border:0;background:rgba(255,255,255,.05);color:var(--mut);border-radius:999px;padding:6px 11px;font:500 10.5px/1.2 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.mrail button:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.cr image,.cr .fr{transition:none}.mrail button.st.on::after{animation:none;transform:scaleX(1)}.chap.sw{animation:none}}
 .mark .intro{font-size:14.5px;color:var(--txt);margin:14px 2px 6px}
 .mark ol{list-style:none}
 .mark li{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:12px 2px;border-top:1px solid var(--line)}
@@ -135,16 +167,25 @@ body.has-bar{padding-bottom:132px}
 <h2 id="mark">The mark on the card</h2>
 <section class="mark" aria-labelledby="mark">
  <div class="fig">
-  <img src="/card/crest.png" alt="The SC crest, with six numbered elements" width="400" height="506">
-  <span class="pin" style="--c:#F6F1E6;left:50%;top:99%">1</span>
-  <span class="pin" style="--c:#F6F1E6;left:7%;top:50%">2</span>
-  <span class="pin" style="--c:#2EC4BD;left:96%;top:17%">3</span>
-  <span class="pin" style="--c:#2EC4BD;left:76%;top:33%">4</span>
-  <span class="pin" style="--c:#F0A83C;left:64%;top:61%">5</span>
-  <span class="pin" style="--c:#F0A83C;left:65%;top:3%">6</span>
+  <svg class="cr" viewBox="-12 -12 424 530" role="img" aria-label="The SC crest, with six numbered elements">
+   <path class="fr" id="cfr" d="M21 115 H379 V300 C379 384 294 446 200 490 C106 446 21 384 21 300 Z"/>
+   <image class="l k-cream" id="cl-s" href="/card/crest/s.png" width="400" height="506"/>
+   <image class="l k-cream" id="cl-c" href="/card/crest/c.png" width="400" height="506"/>
+   <image class="l k-teal" id="cl-bar" href="/card/crest/bar.png" width="400" height="506"/>
+   <image class="l k-teal" id="cl-ring" href="/card/crest/ring.png" width="400" height="506"/>
+   <image class="l k-amb" id="cl-star" href="/card/crest/star.png" width="400" height="506"/>
+   <image class="l k-amb" id="cl-point" href="/card/crest/point.png" width="400" height="506"/>
+  </svg>
+  <span class="pin" style="--c:#F6F1E6;left:50%;top:99%" data-n="1">1</span>
+  <span class="pin" style="--c:#F6F1E6;left:7%;top:50%" data-n="2">2</span>
+  <span class="pin" style="--c:#2EC4BD;left:96%;top:17%" data-n="3">3</span>
+  <span class="pin" style="--c:#2EC4BD;left:76%;top:33%" data-n="4">4</span>
+  <span class="pin" style="--c:#F0A83C;left:64%;top:61%" data-n="5">5</span>
+  <span class="pin" style="--c:#F0A83C;left:65%;top:3%" data-n="6">6</span>
  </div>
- <p class="intro">Every element stands for one part of how I work. Read it from the outside in.</p>
- <div class="aud" style="margin:0 2px 14px"><button type="button" class="pl" data-clip="mark" aria-pressed="false" aria-label="Listen: Hear it explained, 0:39"><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h3v11H4zM9 2.5h3v11H9z"/></svg><span>Hear it explained</span><span class="d">0:39</span></button></div>
+ <div class="chap" id="chap" aria-live="polite" style="--c:#F6F1E6"><div class="cn" id="chap-n">01 / 07 · The crest</div><div class="ch" id="chap-h">Proof before promises</div><p class="cb" id="chap-b">Every element stands for one part of how I work. Read it from the outside in.</p></div>
+ <div class="mrail" id="mrail" aria-label="Chapters of the crest" hidden><button type="button" class="pp" id="mpp" aria-pressed="false">Pause</button></div>
+ <div class="aud" style="margin:14px 2px 14px"><button type="button" class="pl" data-clip="mark" aria-pressed="false" aria-label="Listen: Hear it explained, 0:39"><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h3v11H4zM9 2.5h3v11H9z"/></svg><span>Hear it explained</span><span class="d">0:39</span></button></div>
  <details class="more" id="mark-more">
  <summary><span class="lbl">Read what each element means</span><span class="chev" aria-hidden="true"></span></summary>
  <ol>
@@ -197,6 +238,62 @@ body.has-bar{padding-bottom:132px}
 </script>
 <script>
 (function(){
+ var sec=document.querySelector('section.mark');if(!sec||!document.getElementById('cl-s'))return;
+ function t(e,p,n){n=n||0;try{if(window.__gaOn&&window.track){window.track(e,p||{});}else if(n<40){setTimeout(function(){t(e,p,n+1);},250);}}catch(_){}}
+ var CH=[
+  {n:'The crest',h:'Proof before promises',b:'A crest is something you put your name under. Every claim on this card links to a case study with the numbers behind it.',c:'#F6F1E6',built:'',hot:'frame',pin:'1'},
+  {n:'The interlocked S and C',h:'One system',b:'The two letters lock together and can’t be pulled apart. Growth and health aren’t two careers. They are one way of working.',c:'#F6F1E6',built:'s c',hot:'s c',pin:'2'},
+  {n:'The teal crossbar',h:'Breadth',b:'Eight industries, from telecom and fintech to consumer tech and healthcare, carried by one transferable skill.',c:'#2EC4BD',built:'s c bar',hot:'bar',pin:'3'},
+  {n:'The teal ring',h:'Listen first',b:'I started in customer service, talking with about 80,000 customers. Every strategy since starts with how people actually decide.',c:'#2EC4BD',built:'s c bar ring',hot:'ring',pin:'4'},
+  {n:'The amber compass-star',h:'Direction, set',b:'Diagnosis first, then the lever. Once the system is read, the star points to the one move that matters.',c:'#F0A83C',built:'s c bar ring star',hot:'star',pin:'5'},
+  {n:'The amber point at the top',h:'The outcome',b:'Everything in the crest rises to one point: a result you can measure. Amber is the colour of outcomes.',c:'#F0A83C',built:'s c bar ring star point',hot:'point',pin:'6'},
+  {n:'The mark, in full',h:'Teal catches the signal. Amber moves the number.',b:'Attention, then intelligence, then outcomes. The crest is how I work, drawn as one mark.',c:'#F6F1E6',built:'s c bar ring star point',hot:'all',pin:'all'}
+ ];
+ /* chapter starts in /card/audio/mark.mp3, in seconds, taken from the pauses in the narration */
+ var CUES=[0,9.3,15.3,20.7,27.2,30.95,35.3],AEND=38.6,BEAT=5.6,N=CH.length;
+ var L=['s','c','bar','ring','star','point'],fr=document.getElementById('cfr');
+ var box=document.getElementById('chap'),cn=document.getElementById('chap-n'),chh=document.getElementById('chap-h'),cb=document.getElementById('chap-b');
+ var rail=document.getElementById('mrail'),pp=document.getElementById('mpp'),pins=[].slice.call(sec.querySelectorAll('.pin'));
+ var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ var cur=-1,timer=null,paused=false,visible=false,voice=false;
+ if(!reduce){sec.classList.add('mk-anim');}rail.hidden=false;
+ var bars=CH.map(function(c,i){var b=document.createElement('button');b.type='button';b.className='st';b.setAttribute('aria-label','Chapter '+(i+1)+': '+c.h);
+  b.addEventListener('click',function(e){e.stopPropagation();t('card_mark_step',{n:i+1});if(voice){try{document.dispatchEvent(new CustomEvent('card-audio-seek',{detail:{clip:'mark',t:CUES[i]+.05}}));}catch(_){}return;}go(i,BEAT);schedule();});
+  rail.insertBefore(b,pp);return b;});
+ function paint(i){
+  var c=CH[i],built=c.built.split(' ');
+  L.forEach(function(k){var el=document.getElementById('cl-'+k),tone=el.classList[1],st;
+   if(i===0){st='gh';}else if(built.indexOf(k)<0){st='off';}else if(c.hot==='all'||c.hot.split(' ').indexOf(k)>=0){st='on hi';}else{st='gh';}
+   el.setAttribute('class','l '+tone+' '+st);});
+  if(i===0){fr.setAttribute('class','fr');void fr.getBoundingClientRect();fr.setAttribute('class','fr draw');}else{fr.setAttribute('class','fr fade');}
+  pins.forEach(function(p){p.classList.toggle('cur',c.pin==='all'||p.dataset.n===c.pin);});
+  box.style.setProperty('--c',c.c);cn.textContent=String(i+1).padStart(2,'0')+' / 07 · '+c.n;chh.textContent=c.h;cb.textContent=c.b;
+  box.classList.remove('sw');void box.offsetWidth;box.classList.add('sw');
+  bars.forEach(function(b,j){b.classList.toggle('on',j===i);b.classList.toggle('done',j<i);b.setAttribute('aria-current',j===i?'step':'false');});
+ }
+ function go(i,dur){cur=i;paint(i);var b=bars[i];b.style.setProperty('--dur',(dur||BEAT)+'s');b.classList.remove('on');void b.offsetWidth;b.classList.add('on');}
+ function schedule(){clearTimeout(timer);if(paused||voice||reduce||!visible)return;timer=setTimeout(function(){go((cur+1)%N,BEAT);schedule();},BEAT*1000);}
+ /* hold every chapter's caption at the tallest one, so the page below never jumps */
+ function fit(){var keep=[cn.textContent,chh.textContent,cb.textContent],m=0;box.style.setProperty('--chh','0px');
+  CH.forEach(function(c,i){cn.textContent='00 / 07 · '+c.n;chh.textContent=c.h;cb.textContent=c.b;m=Math.max(m,box.offsetHeight);});
+  cn.textContent=keep[0];chh.textContent=keep[1];cb.textContent=keep[2];box.style.setProperty('--chh',m+'px');}
+ fit();window.addEventListener('resize',fit);
+ pp.addEventListener('click',function(e){e.stopPropagation();paused=!paused;pp.textContent=paused?'Play':'Pause';pp.setAttribute('aria-pressed',String(paused));rail.classList.toggle('paused',paused);if(!paused&&!voice){go(cur,BEAT);}schedule();});
+ /* the narration drives the chapters while it plays */
+ document.addEventListener('card-audio',function(e){var d=e.detail||{};
+  if(d.clip!=='mark'){return;}
+  if(d.playing){if(!voice){voice=true;clearTimeout(timer);rail.classList.remove('paused','still');}
+   var i=0;for(var k=0;k<N;k++){if(d.t>=CUES[k])i=k;}
+   if(i!==cur){var end=i+1<N?CUES[i+1]:AEND;go(i,Math.max(.5,end-d.t));}}
+  else{voice=false;if(d.ended){rail.classList.add('still');setTimeout(function(){rail.classList.remove('still');schedule();},4000);}else{rail.classList.add('paused');}}
+ });
+ if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(x){visible=x.isIntersecting;if(visible&&!voice&&!reduce){if(cur<0){go(0,BEAT);}else{go(cur,BEAT);}schedule();}else{clearTimeout(timer);}});},{threshold:.35}).observe(sec);}else{visible=true;}
+ document.addEventListener('visibilitychange',function(){if(document.hidden){clearTimeout(timer);}else{schedule();}});
+ if(reduce){rail.classList.add('still');go(6,BEAT);}else{paint(0);cur=0;}
+})();
+</script>
+<script>
+(function(){
  var C={"intro": {"src": "/card/audio/intro.mp3", "d": "0:28", "title": "My 30-second intro", "text": "Hi, I'm Shafaat. Thanks for scanning my card. I'm a growth leader with an MPH. For 17 years I've helped businesses and health programs get people to act, across eight industries, from telecom and fintech to consumer tech and health care, most recently as COO of a clinical group. Below are the four results on my card, each with the story behind it. If you'd like to talk, save my contact or book 30 minutes. I'd love to hear what you're working on."}, "samsung": {"src": "/card/audio/samsung.mp3", "d": "0:25", "title": "Growth: Galaxy Note9", "text": "Galaxy Note9. A $1,000 flagship, in a value-driven market that bought phones only in stores. So we re-engineered affordability with cashback and financing, broke the telco exclusivity, and added our first e-commerce partner. Preorders grew 1.54 times over the year before, and the launch was recognised #1 globally for growth. The price wasn't the problem. Access to it was."}, "lifebuoy": {"src": "/card/audio/lifebuoy.mp3", "d": "0:20", "title": "Health communication: the Lifebuoy hotline", "text": "How do you get a doctor into millions of homes? At Praava Health, we printed a health hotline on Lifebuoy soap, sold nationwide. Doctors answered about 3,000 calls a day, triaged and referred patients, and we shared district illness data with the government's health directorate. The message and the service were the same object, already in people's hands."}, "surecash": {"src": "/card/audio/surecash.mp3", "d": "0:24", "title": "Population health: SureCash", "text": "A government stipend, paid by mobile money to people in rural areas, many with limited literacy. At SureCash I ran brand, trade and PR for it. We mapped cash-out points to where people actually lived, onboarded them through voice calls instead of text, and met them where communities already gather, including local mosques. About 10 million beneficiaries reached, and a Banking Fair Award of Excellence."}, "lasertreat": {"src": "/card/audio/lasertreat.mp3", "d": "0:26", "title": "Health-tech: Laser Treat Group", "text": "As COO of Laser Treat Group, a clinical group with several entities, I rebuilt the operating system behind patient care: one ERP across the group, digital records, BI dashboards, and patient satisfaction tracked with CSAT and NPS. Revenue grew 16% year to date, patient retention rose 13%, and about half a million dollars a year in operating cost was freed up and reinvested into care."}, "mark": {"src": "/card/audio/mark.mp3", "d": "0:39", "title": "The mark on the card", "text": "The crest on my card is how I work, drawn as one mark. The shield is proof before promises: everything I claim has a case behind it. The S and the C lock together, because growth and health are one way of working, not two careers. The teal bar across the top is breadth: eight industries, carried by one skill. The teal ring is listening. I started in customer service, talking with about 80,000 customers. The amber star is direction, the one move that matters. And the amber point at the top is the outcome, a result you can measure. Teal catches the signal. Amber moves the number."}},ORDER=["intro", "samsung", "lifebuoy", "surecash", "lasertreat", "mark"],V='20261027';
  function t(e,p,n){n=n||0;try{if(window.__gaOn&&window.track){window.track(e,p||{});}else if(n<40){setTimeout(function(){t(e,p,n+1);},250);}}catch(_){}}
  var a=new Audio();a.preload='none';
@@ -231,6 +328,9 @@ body.has-bar{padding-bottom:132px}
  document.getElementById('ab-x').addEventListener('click',function(){a.pause();all=false;q=[];bar.hidden=true;document.body.classList.remove('has-bar');sync();});
  tx.addEventListener('click',function(){tr.hidden=!tr.hidden;tx.setAttribute('aria-expanded',tr.hidden?'false':'true');tx.textContent=tr.hidden?'Transcript':'Hide';});
  pg.addEventListener('click',function(e){if(!a.duration)return;var r=pg.getBoundingClientRect();a.currentTime=Math.min(a.duration,Math.max(0,(e.clientX-r.left)/r.width*a.duration));});
+ function emit(){try{document.dispatchEvent(new CustomEvent('card-audio',{detail:{clip:cur,t:a.currentTime,playing:!a.paused&&!a.ended,ended:a.ended}}));}catch(_){}}
+ document.addEventListener('card-audio-seek',function(e){var d=e.detail||{};if(d.clip===cur&&!a.ended){try{a.currentTime=d.t;}catch(_){}}});
+ a.addEventListener('timeupdate',emit);a.addEventListener('play',emit);a.addEventListener('pause',emit);a.addEventListener('ended',emit);
  a.addEventListener('timeupdate',function(){if(!a.duration)return;pb.style.width=(a.currentTime/a.duration*100)+'%';tm.textContent=f(a.currentTime)+' / '+f(a.duration);});
  a.addEventListener('play',sync);a.addEventListener('pause',sync);
  a.addEventListener('ended',function(){if(!done[cur]){done[cur]=1;}t('card_audio_complete',{clip:cur});if(all&&q.length){play(q.shift(),true);}else{if(all)t('card_audio_playall_complete',{});all=false;sync();}});
