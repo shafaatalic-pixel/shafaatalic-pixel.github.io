@@ -30,7 +30,8 @@ START = datetime.date(2026, 10, 20)  # first Facebook post with four links
 
 KIND = {"essay": ("Read the essay", "e"), "case": ("See the receipt", "c"), "case2": ("See the receipt", "c"),
         "tool": ("Run the tool", "t"), "ask": ("Ask Shafaat", "a"), "hsrep": ("Ask HSREP", "h"),
-        "home": ("Start here", "c"), "initiative": ("The initiative", "c"), "ai": ("Applied AI", "c")}
+        "home": ("Start here", "c"), "initiative": ("The initiative", "c"), "ai": ("Applied AI", "c"),
+        "card": ("The crest story", "c")}
 
 
 def at_ms(d, hh, mm):
@@ -188,7 +189,7 @@ def card(p, emap):
         lab, cls = KIND.get(l["kind"], ("Open", "e"))
         if p["kind"] == "reel" and l["kind"] not in ("ask", "hsrep"):
             lab = {"essay": "Read the essay", "case": "See the case", "case2": "See the case", "home": "Start here",
-                   "initiative": "The initiative", "ai": "Applied AI"}.get(l["kind"], "Open")
+                   "initiative": "The initiative", "ai": "Applied AI", "card": "The crest story"}.get(l["kind"], "Open")
         if l.get("label"):
             lab = l["label"]
         if l["kind"] == "essay" and not l["sub"] and e:
