@@ -137,3 +137,6 @@
     try { if (window.track) window.track('contact_intent', { method: m, page: location.pathname.slice(0, 100) }); } catch (err) {}
   }, true);
 })();
+
+/* Media tracking: load the shared tracker for every audio/video play (media_* GA events). Added 2026-11-02. */
+(function(){try{if(window.__mediaTrack||document.querySelector('script[src*="media-track.js"]'))return;var s=document.createElement('script');s.src='/assets/media-track.js?v=20261102';s.defer=true;(document.head||document.documentElement).appendChild(s);}catch(e){}})();
