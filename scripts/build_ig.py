@@ -91,8 +91,8 @@ REELS = [
      "The essay: after LDC, growth is an operations job", SITE + "/ldc-growth-operations-job.html", "essay", None),
     ("2026-11-24", "reel-2026-11-24-drug-regulator", "New essay", "Today was supposed to be Bangladesh's LDC graduation day. The three extra years are a registration window for affordable generics.",
      "The essay: the drug regulator has to go digital", SITE + "/drug-regulator-goes-digital.html", "essay", None, "12:30"),
-    ("2026-12-03", "reel-2026-12-03-origin-file", "New essay", "After LDC graduation, every shipment has to prove where it came from.",
-     "The essay: let AI build the origin file", SITE + "/ai-builds-the-origin-file.html", "essay", None),
+    ("2026-11-05", "reel-2026-11-05-origin-file", "New essay", "After LDC graduation, every shipment has to prove where it came from.",
+     "The essay: let AI build the origin file", SITE + "/ai-builds-the-origin-file.html", "essay", None, "15:10"),
 ]
 
 
