@@ -87,6 +87,8 @@ REELS = [
      "The Applied AI page", SITE + "/ai/", "ai", None),
     ("2026-11-10", "logo", "The mark", "Every part of my logo stands for one part of how I work.",
      "The crest story, with the narration", SITE + "/card/", "card", None),
+    ("2026-11-12", "reel-2026-11-12-creator-economy", "Essay #44", "207 million people call themselves creators. Only 4% earn over $100K a year.",
+     "The essay: the creator economy's math problem", SITE + "/creator-economy-math.html", "essay", None),
     ("2026-11-19", "reel-2026-11-19-ldc-growth", "New essay", "Bangladesh has three more years before it leaves the UN's least developed country group. What ends is the price advantage.",
      "The essay: after LDC, growth is an operations job", SITE + "/ldc-growth-operations-job.html", "essay", None),
     ("2026-11-24", "reel-2026-11-24-drug-regulator", "New essay", "Today was supposed to be Bangladesh's LDC graduation day. The three extra years are a registration window for affordable generics.",
