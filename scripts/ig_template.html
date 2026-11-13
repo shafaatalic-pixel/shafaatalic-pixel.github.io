@@ -189,8 +189,8 @@ ol.list,ul.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:c
   /* Scheduled essays appear on their date, with the same number the build would give them. */
   fetch('/essays.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(all){
     var idx=all.map(function(e,i){return i}).sort(function(a,b){return all[a].date<all[b].date?-1:all[a].date>all[b].date?1:a-b});
-    var rows=[];idx.forEach(function(i,k){var e=all[i];if(e.date>iso)return;var d=e.date.split('-');
-      rows.push('<li class="row" id="e'+(k+1)+'" data-n="'+(k+1)+'" data-lens="'+esc(e.lens)+'" data-q="'+esc((e.title+' '+e.dek).toLowerCase())+'"><a href="'+esc(e.url)+'" data-slug="'+esc(e.slug)+'"><span class="num">#'+(k+1)+'</span><span class="body"><span class="meta"><span class="lens l-'+esc(e.lens)+'">'+esc(e.lensLabel)+'</span><time datetime="'+e.date+'">'+MON[+d[1]-1]+' '+(+d[2])+', '+d[0]+'</time></span><span class="tt">'+esc(e.title)+'</span><span class="dk">'+esc(e.dek)+'</span></span><span class="go" aria-hidden="true">&rarr;</span></a></li>')});
+    var FIX={{FIXED_N}},k=0,rows=[];idx.forEach(function(i){var e=all[i],n=FIX[e.slug]||++k;if(e.date>iso)return;var d=e.date.split('-');
+      rows.push('<li class="row" id="e'+n+'" data-n="'+n+'" data-lens="'+esc(e.lens)+'" data-q="'+esc((e.title+' '+e.dek).toLowerCase())+'"><a href="'+esc(e.url)+'" data-slug="'+esc(e.slug)+'"><span class="num">#'+n+'</span><span class="body"><span class="meta"><span class="lens l-'+esc(e.lens)+'">'+esc(e.lensLabel)+'</span><time datetime="'+e.date+'">'+MON[+d[1]-1]+' '+(+d[2])+', '+d[0]+'</time></span><span class="tt">'+esc(e.title)+'</span><span class="dk">'+esc(e.dek)+'</span></span><span class="go" aria-hidden="true">&rarr;</span></a></li>')});
     if(rows.length&&rows.length!==list.children.length){list.innerHTML=rows.join('');$('#ecnt').innerHTML=rows.length+' essays &middot; #1 is the first';order();apply();fromHash();}
   }).catch(function(){});
   function apply(){var shown=0;$$('#list .row').forEach(function(r){var ok=(!lens||r.dataset.lens===lens)&&(!q||r.dataset.q.indexOf(q)>-1);r.hidden=!ok;if(ok)shown++;});

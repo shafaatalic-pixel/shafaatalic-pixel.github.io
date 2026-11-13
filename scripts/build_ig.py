@@ -19,8 +19,9 @@ E = lambda s: html.escape(str(s), quote=True)
 
 
 # Essays added after the run was numbered keep a fixed number, so the numbers already on
-# finished videos and captions do not shift (Shafaat's call, 30 Oct 2026).
-FIXED_N = {"ldc-graduation-extra-time": 121, "ldc-growth-operations-job": 122, "drug-regulator-goes-digital": 123, "ai-builds-the-origin-file": 124}
+# finished videos and captions do not shift (Shafaat's call, 30 Oct 2026). #120 (the e-health
+# hackathon essay) was published early on 13 Nov 2026 and keeps its number.
+FIXED_N = {"ldc-graduation-extra-time": 121, "ldc-growth-operations-job": 122, "drug-regulator-goes-digital": 123, "ai-builds-the-origin-file": 124, "bangladesh-ehealth-hackathon-rails": 120}
 
 
 def numbered(essays):
@@ -160,6 +161,7 @@ def main():
               .replace("{{LENS_CHIPS}}", "".join(f'<button type="button" class="chip" data-lens="{E(k)}" aria-pressed="false">{E(v)}</button>' for k, v in lenses))
               .replace("{{LD}}", json.dumps(ld, ensure_ascii=False))
               .replace("{{CALL}}", CALL)
+              .replace("{{FIXED_N}}", json.dumps(FIXED_N))
               .replace("{{BUILT}}", TODAY))
     os.makedirs(os.path.join(ROOT, "ig"), exist_ok=True)
     open(os.path.join(ROOT, "ig", "index.html"), "w", encoding="utf-8").write(out)
