@@ -72,6 +72,7 @@ Md Shafaat Ali Choyon is the founder of HSREP (https://hsraep.org), an independe
 ## Essays (original, on-site)
 
 120 original essays, dual-market field notes (US & Bangladesh) on AI, public health, health-tech and growth, each with a short FAQ. Full filterable index: https://shafaatalichoyon.com/essays.html
+Essays by topic: Growth https://shafaatalichoyon.com/essays-growth.html, AI https://shafaatalichoyon.com/essays-ai.html, Health-Tech https://shafaatalichoyon.com/essays-healthtech.html, Public Health https://shafaatalichoyon.com/essays-public-health.html.
 
 - [Who is accountable when the agent decides?](https://shafaatalichoyon.com/ai-agent-accountability.html), In three months, two vendors in Medicare's AI prior authorization pilot denied 5,944 requests. The same government is spending $62.7 million on heart failure agents with accountability built in. The difference is an owner and an audit trail.
 - [Your next customer reads an AI answer first](https://shafaatalichoyon.com/ai-answer-comes-first.html), Google now shows an AI Overview on 83% of branded US desktop searches, and most searches end without a click. The first sales conversation now happens in an answer you did not write. Here is how to earn your place in it.
