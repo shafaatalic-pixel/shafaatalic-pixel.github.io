@@ -140,3 +140,22 @@
 
 /* Media tracking: load the shared tracker for every audio/video play (media_* GA events). Added 2026-11-02. */
 (function(){try{if(window.__mediaTrack||document.querySelector('script[src*="media-track.js"]'))return;var s=document.createElement('script');s.src='/assets/media-track.js?v=20261102';s.defer=true;(document.head||document.documentElement).appendChild(s);}catch(e){}})();
+
+/* Social profile clicks (Find me on row, essay Follow line, any rel="me" link). Added 2026-11-13.
+   Fires social_click{network, placement, page}. Consent-gated via window.track. */
+(function(){
+  if (window.__socialTrackOn) return; window.__socialTrackOn = true;
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null; if (!a) return;
+    var h = a.getAttribute('href') || '', n = '';
+    if (/linkedin\.com\/(in|company)\//i.test(h) && /\bme\b/.test(a.rel || '')) n = 'linkedin';
+    else if (/youtube\.com\/(@|channel|playlist)/i.test(h)) n = 'youtube';
+    else if (/instagram\.com\//i.test(h)) n = 'instagram';
+    else if (/tiktok\.com\/@/i.test(h)) n = 'tiktok';
+    else if (/facebook\.com\/(?!sharer)/i.test(h)) n = 'facebook';
+    else if (a.getAttribute('data-social') === 'hsrep') n = 'hsrep';
+    if (!n) return;
+    var pl = a.closest('#find-me') ? 'home_find_me' : (a.closest('.find-me') ? 'essay_follow' : 'other');
+    try { if (window.track) window.track('social_click', { network: n, placement: pl, page: location.pathname.slice(0, 100) }); } catch (err) {}
+  }, true);
+})();
