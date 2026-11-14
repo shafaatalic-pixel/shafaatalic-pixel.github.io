@@ -96,6 +96,10 @@ REELS = [
      "The essay: the drug regulator has to go digital", SITE + "/drug-regulator-goes-digital.html", "essay", None, "12:30"),
     ("2026-11-05", "reel-2026-11-05-origin-file", "New essay", "After LDC graduation, every shipment has to prove where it came from.",
      "The essay: let AI build the origin file", SITE + "/ai-builds-the-origin-file.html", "essay", None, "15:10"),
+    ("2026-11-13", "reel-2026-11-13-wdd-bn", "World Diabetes Day", "গত বছর আমার ডিকেএ হয়েছিল। আমি প্রায় মরতে বসেছিলাম।",
+     "ডায়াবেটিস গাইড, বাংলায়: ঝুঁকি যাচাই, লক্ষণ, কাকে ফোন করবেন", "https://hsraep.org/diabetes.html?lang=bn", "diabetes-bn", ("Ask HSREP, in Bangla or English", "https://hsraep.org/?ask=1", "ask"), "23:50"),
+    ("2026-11-14", "reel-2026-11-14-wdd-en", "World Diabetes Day", "Last year, I had DKA. I almost died.",
+     "The diabetes guide: risk test, symptoms, who to call, care for type 1 and type 2", "https://hsraep.org/diabetes.html", "diabetes", ("Ask HSREP, in English or Bangla", "https://hsraep.org/?ask=1", "ask"), "09:00"),
 ]
 
 
