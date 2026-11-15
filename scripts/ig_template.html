@@ -199,10 +199,13 @@ ol.list,ul.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:c
   $$('.chip').forEach(function(c){c.addEventListener('click',function(){lens=c.dataset.lens;$$('.chip').forEach(function(x){x.setAttribute('aria-pressed',x===c?'true':'false')});apply();t('ig_filter',{lens:lens||'all'});});});
   var qi=$('#q'),qt;qi.addEventListener('input',function(){q=qi.value.trim().toLowerCase();apply();clearTimeout(qt);qt=setTimeout(function(){if(q)t('ig_search',{len:q.length})},900);});
   $('#ord').addEventListener('click',function(){newest=!newest;this.innerHTML=(newest?'Newest first':'Oldest first')+' <span aria-hidden="true">&darr;</span>';order();apply();t('ig_order',{newest:newest});});
+  var moved=false;['wheel','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,function(){moved=true},{passive:true})});
+  /* Land on the post even if the page shifts while loading (redirects, fonts, images): re-centre a few times unless the visitor scrolls. */
+  function land(el){moved=false;var f=function(){if(!moved)el.scrollIntoView({block:'center',behavior:'instant'})};f();[300,800,1600].forEach(function(ms){setTimeout(f,ms)});if(document.readyState!=='complete')window.addEventListener('load',f,{once:true});}
   function go(n,src){var r=document.getElementById('e'+n);var m=$('#jmsg');
     if(!r){var max=list.children.length;m.textContent=n>max?'#'+n+' is not published yet. The latest is #'+max+'.':'No post #'+n+'.';t('ig_jump_miss',{n:n});return;}
     lens='';q='';qi.value='';$$('.chip').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.lens===''?'true':'false')});apply();
-    m.textContent='';$$('.row.hit').forEach(function(x){x.classList.remove('hit')});r.classList.add('hit');r.scrollIntoView({block:'center'});
+    m.textContent='';$$('.row.hit').forEach(function(x){x.classList.remove('hit')});r.classList.add('hit');land(r);
     r.querySelector('a').focus({preventScroll:true});t('ig_jump',{n:n,from:src});}
   $('#jump').addEventListener('submit',function(e){e.preventDefault();var n=parseInt(($('#jn').value||'').replace(/\D/g,''),10);if(n)go(n,'box');});
   function fromHash(){var h=(location.hash||'').replace(/^#e?/,'');if(/^\d+$/.test(h))go(parseInt(h,10),'link');}
