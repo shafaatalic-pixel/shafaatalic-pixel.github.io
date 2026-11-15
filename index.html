@@ -1330,11 +1330,11 @@
  <div style="width:40px;height:3px;background:var(--accent);border-radius:2px;margin:10px 0 18px;"></div>
  <h2 data-reveal style="font-family:var(--disp);font-weight:700;font-size:clamp(32px,5.4vw,56px);line-height:1.02;letter-spacing:-.02em;color:var(--text-strong);margin:0 0 14px;max-width:18ch;">Bring me the system others can't read.</h2>
  <p data-reveal style="font-family:var(--body);font-size:clamp(16px,1.6vw,19px);line-height:1.45;color:var(--text-muted);margin:0 0 32px;max-width:46ch;">Growth, health tech, health communication, or health-system strategy? <span style="font-family:var(--disp);font-weight:800;color:var(--accent-text);white-space:nowrap;">Better Call Shafaat<span style="color:var(--accent);">.</span></span></p>
- <div data-reveal style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:48px;">
- <a href="mailto:hello@shafaatalichoyon.com" data-btn-solid style="display:inline-flex;align-items:center;gap:9px;height:54px;padding:0 28px;text-decoration:none;background:var(--accent);color:var(--accent-ink);border:1.5px solid var(--accent);border-radius:8px;font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:-.01em;transition:filter .12s,transform .12s;">Send the brief <span aria-hidden="true">→</span></a>
- <a href="https://www.linkedin.com/in/sacgrowthspecialist" target="_blank" rel="noopener" data-btn-ghost style="display:inline-flex;align-items:center;height:54px;padding:0 26px;text-decoration:none;background:transparent;color:var(--text-strong);border:1.5px solid var(--border-strong);border-radius:8px;font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:-.01em;transition:border-color .12s,transform .12s;">LinkedIn</a>
- <a id="cv-download" href="assets/cv/Md_Shafaat_Ali_Choyon_Strategic_Portfolio.pdf" download data-btn-ghost style="display:inline-flex;align-items:center;gap:8px;height:54px;padding:0 26px;text-decoration:none;background:transparent;color:var(--text-strong);border:1.5px solid var(--border-strong);border-radius:8px;font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:-.01em;transition:border-color .12s,transform .12s;">Download portfolio ↓</a>
+ <div data-reveal style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:14px;">
+ <a href="https://calendly.com/shafaat-alic/30min" target="_blank" rel="noopener" data-btn-solid data-ccta="book_call" style="display:inline-flex;align-items:center;gap:9px;height:54px;padding:0 28px;text-decoration:none;background:var(--accent);color:var(--accent-ink);border:1.5px solid var(--accent);border-radius:8px;font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:-.01em;transition:filter .12s,transform .12s;">Book a 30-minute call <span aria-hidden="true">→</span></a>
+ <a href="mailto:hello@shafaatalichoyon.com" data-btn-ghost data-ccta="brief" style="display:inline-flex;align-items:center;height:54px;padding:0 26px;text-decoration:none;background:transparent;color:var(--text-strong);border:1.5px solid var(--border-strong);border-radius:8px;font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:-.01em;transition:border-color .12s,transform .12s;">Send the brief</a>
  </div>
+ <p style="margin:0 0 48px;font-family:var(--body);font-size:15.5px;line-height:1.7;color:var(--text-muted);">Calendar not loading? Email <a href="mailto:hello@shafaatalichoyon.com" data-ccta="fallback_email" style="color:var(--accent-text);font-weight:700;text-decoration:none;">hello@shafaatalichoyon.com</a><br><a href="https://www.linkedin.com/in/sacgrowthspecialist" target="_blank" rel="noopener" data-ccta="linkedin" style="color:var(--accent-text);font-weight:700;text-decoration:none;">LinkedIn</a> &middot; <a id="cv-download" href="assets/cv/Md_Shafaat_Ali_Choyon_Strategic_Portfolio.pdf" download data-ccta="portfolio" style="color:var(--accent-text);font-weight:700;text-decoration:none;">Download portfolio&nbsp;↓</a></p>
  <p style="margin:-30px 0 40px;font-family:var(--body);font-size:15.5px;line-height:1.5;color:var(--text-muted);">Not ready for a call? <a href="advisor.html" data-tools-entry="contact-advisor" style="color:var(--accent-text);font-weight:700;text-decoration:none;">Get a free three-step plan first with the tool advisor&nbsp;&rarr;</a></p>
  <div style="display:flex;flex-wrap:wrap;gap:24px 48px;border-top:1px solid var(--border-hairline);padding-top:32px;font-size:14px;color:var(--text-body);">
  <div><div style="font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);margin-bottom:6px;">Email</div><a href="mailto:hello@shafaatalichoyon.com" style="color:var(--text-body);text-decoration:none;border-bottom:1px solid var(--border-strong);">hello@shafaatalichoyon.com</a></div>
@@ -4053,6 +4053,18 @@ body.cv-has-bar #sa-launch{bottom:112px!important}body.cv-has-bar #sl-fab{bottom
  try{new MutationObserver(later).observe(document.body,{childList:true,subtree:true});}catch(_){}
  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',ensure);}else{ensure();}
  window.addEventListener('load',ensure);
+})();
+</script>
+<style id="contact-cta-css">@media (max-width:860px){html.in-contact .st-launch,html.in-contact #sa-launch{opacity:0!important;pointer-events:none!important;transition:opacity .2s}}</style>
+<script>/* Contact section (bettercallshafaat.com lands here), 15 Nov 2026: track which contact button is used, and on phones hide the floating tour and Ask bubbles while the section is on screen so they don't cover the buttons. #contact lives inside #dc-root (re-rendered on lens switch), so both use document-level handlers and re-find #contact each time. */
+(function(){
+  document.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('#contact [data-ccta]'):null;if(!a)return;
+    try{if(window.track)window.track('contact_cta',{cta:a.getAttribute('data-ccta'),lens:(new URLSearchParams(location.search).get('view')||'')});}catch(_){}},true);
+  var raf=0;function chk(){raf=0;var c=document.getElementById('contact');if(!c)return;var r=c.getBoundingClientRect();
+    document.documentElement.classList.toggle('in-contact',r.top<innerHeight*0.85&&r.bottom>0);}
+  function q(){if(!raf)raf=requestAnimationFrame(chk);}
+  addEventListener('scroll',q,{passive:true});addEventListener('resize',q);addEventListener('hashchange',function(){setTimeout(chk,400)});
+  setTimeout(chk,800);setTimeout(chk,2500);
 })();
 </script>
 </body>
