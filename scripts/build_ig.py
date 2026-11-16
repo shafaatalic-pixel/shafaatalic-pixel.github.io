@@ -100,6 +100,8 @@ REELS = [
      "ডায়াবেটিস গাইড, বাংলায়: ঝুঁকি যাচাই, লক্ষণ, কাকে ফোন করবেন", "https://hsraep.org/diabetes.html?lang=bn", "diabetes-bn", ("Ask HSREP, in Bangla or English", "https://hsraep.org/?ask=1", "ask"), "23:50"),
     ("2026-11-14", "reel-2026-11-14-wdd-en", "World Diabetes Day", "Last year, I had DKA. I almost died.",
      "The diabetes guide: risk test, symptoms, who to call, care for type 1 and type 2", "https://hsraep.org/diabetes.html", "diabetes", ("Ask HSREP, in English or Bangla", "https://hsraep.org/?ask=1", "ask"), "09:00"),
+    ("2026-11-17", "reel-2026-11-17-cold-chain", "Essay #53", "A perfect medicine that arrives warm, late, or not at all is a failed medicine.",
+     "The essay: the cold chain is the product, not the pill", SITE + "/cold-chain-is-the-product.html", "essay", None),
 ]
 
 
