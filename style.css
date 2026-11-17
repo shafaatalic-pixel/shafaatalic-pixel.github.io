@@ -232,6 +232,7 @@ html:is([data-lens="growth"],[data-lens="healthtech"],[data-lens="healthcomm"],[
 html:is([data-lens="growth"],[data-lens="healthtech"]) #hsrep:not(.gt-open) .hsrep-metrics,
 html:is([data-lens="growth"],[data-lens="healthtech"]) #hsrep:not(.gt-open) .hsrep-thesis,
 html:is([data-lens="growth"],[data-lens="healthtech"]) #hsrep:not(.gt-open) .hsrep-cta,
+html:is([data-lens="growth"],[data-lens="healthtech"]) #hsrep:not(.gt-open) .hsrep-camp,
 html:is([data-lens="growth"],[data-lens="healthtech"]) #writing:not(.gt-open) #essay-showcase,
 html:is([data-lens="growth"],[data-lens="healthtech"]) #writing:not(.gt-open) #essay-showcase ~ *{display:none!important}
 html:is([data-lens="healthcomm"],[data-lens="pophealth"]) :is(#hsrep,#writing) .gt-btn{display:none!important}
@@ -374,3 +375,22 @@ body.at-foot .st-launch,body.at-foot #sl-fab{opacity:0!important;transform:trans
 .mb-go:hover{text-decoration:underline;text-underline-offset:3px;}
 @media(prefers-reduced-motion:reduce){.mb-map,.mb-go span{transition:none;}.mb-map:hover{transform:none;}}
 
+
+/* -- HSREP latest campaign card (2026-11-17): World Diabetes Day guide -- */
+.hsrep-camp{margin:26px 0 0;display:grid;grid-template-columns:1.45fr 1fr;gap:clamp(20px,3vw,40px);align-items:start;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);border-left:3px solid var(--amber);border-radius:12px;padding:clamp(20px,2.6vw,30px);}
+.hc-eye{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-400);display:flex;align-items:center;gap:9px;}
+.hc-dot{width:7px;height:7px;border-radius:50%;background:var(--teal-400);box-shadow:0 0 8px var(--teal-400);flex:0 0 auto;}
+.hc-h{font-family:var(--disp);font-weight:800;font-size:clamp(20px,2.3vw,26px);line-height:1.15;letter-spacing:-.015em;color:var(--ivory-100);margin:10px 0 10px;}
+.hc-b{font-family:var(--body);font-size:14.5px;line-height:1.6;color:var(--ivory-200);margin:0 0 12px;max-width:62ch;}
+.hc-learn{font-family:var(--body);font-size:13.5px;line-height:1.55;color:#B4BDC8;margin:0 0 18px;max-width:62ch;}
+.hc-learn b{color:var(--ivory-100);font-weight:700;}
+.hc-cta{display:flex;flex-wrap:wrap;gap:10px;}
+.hc-cta .hsrep-btn{font-size:13.5px;padding:11px 16px;}
+.hc-cta [lang="bn"]{font-family:"Noto Sans Bengali","Hind Siliguri",var(--body);}
+.hc-stats{display:grid;gap:16px;padding-left:clamp(0px,2vw,24px);border-left:1px solid rgba(255,255,255,.09);}
+.hc-dl{margin:0;display:grid;gap:16px;}
+.hc-stats dt{font-family:var(--disp);font-weight:800;font-size:clamp(22px,2.4vw,28px);letter-spacing:-.02em;color:var(--amber);line-height:1;}
+.hc-stats dd{margin:6px 0 0;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:#97A2B0;line-height:1.45;}
+.hc-note{margin:0;font-family:var(--body);font-size:11.5px;line-height:1.5;color:#7E8896;}
+@media(max-width:760px){.hsrep-camp{grid-template-columns:1fr;}.hc-stats{border-left:0;padding-left:0;border-top:1px solid rgba(255,255,255,.09);padding-top:18px;}.hc-dl{grid-template-columns:repeat(3,1fr);gap:14px;}}
+@media(max-width:480px){.hc-dl{grid-template-columns:1fr;}.hc-cta{flex-direction:column;}.hc-cta .hsrep-btn{width:100%;justify-content:center;}}
