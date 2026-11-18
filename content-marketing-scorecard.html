@@ -456,7 +456,7 @@ var SLUG="content-marketing-scorecard",TOOLNAME="Content marketing scorecard",PR
     var main=document.querySelector('main')||document.body,t=((document.querySelector('h1')||{}).textContent||document.title).trim();
     var d=new Date(),ds=d.toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
     var hd=document.createElement('div');hd.className='pdfhead';
-    hd.innerHTML='<b>Shafaat Ali Choyon</b> &middot; Growth and public health strategist &middot; shafaatalichoyon.com<br>Prepared '+ds+' with the free '+(document.body.dataset.pdfname||'tool')+' at shafaatalichoyon.com/'+slug()+(slug()==='advisor'?'':'.html');
+    hd.innerHTML='<b>Shafaat Ali Choyon</b> &middot; Growth, marketing and health strategist &middot; shafaatalichoyon.com<br>Prepared '+ds+' with the free '+(document.body.dataset.pdfname||'tool')+' at shafaatalichoyon.com/'+slug()+(slug()==='advisor'?'':'.html');
     main.insertBefore(hd,main.firstChild);added.push(hd);
     var ft=document.createElement('div');ft.className='pdffoot';
     ft.textContent='Open this again: '+location.href.split('#')[0]+'   |   Examples are illustrative, not benchmarks. Want help applying this? Book a free call: calendly.com/shafaat-alic/30min';
