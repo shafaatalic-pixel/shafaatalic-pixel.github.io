@@ -104,6 +104,16 @@ REELS = [
      "The diabetes guide: risk test, symptoms, who to call, care for type 1 and type 2", "https://hsraep.org/diabetes.html", "diabetes", ("Ask HSREP, in English or Bangla", "https://hsraep.org/?ask=1", "ask"), "09:00"),
     ("2026-11-17", "reel-2026-11-17-cold-chain", "Essay #53", "A perfect medicine that arrives warm, late, or not at all is a failed medicine.",
      "The essay: the cold chain is the product, not the pill", SITE + "/cold-chain-is-the-product.html", "essay", None),
+    ("2026-12-01", "reel-2026-12-01-social-commerce", "Essay #73", "Bangladesh's biggest store has no website.",
+     "The essay: commerce runs on chat, not storefronts", SITE + "/social-commerce-growth.html", "essay", None, "09:00"),
+    ("2026-12-02", "reel-2026-12-02-pharmacy", "Essay #74", "Cough in Dhaka? You don't see a doctor first. You see the pharmacist.",
+     "The essay: the pharmacy is the front door of care", SITE + "/pharmacy-front-door.html", "essay", None, "09:00"),
+    ("2026-12-03", "reel-2026-12-03-localize", "Essay #75", "AI can translate your ad in seconds. It can't tell you it now sounds like a scam.",
+     "The essay: AI can translate words, not localize culture", SITE + "/ai-cant-localize-culture.html", "essay", None, "09:00"),
+    ("2026-12-04", "reel-2026-12-04-amr", "Essay #76", "In Bangladesh, you can buy antibiotics without a prescription.",
+     "The essay: the slow pandemic, antimicrobial resistance", SITE + "/amr-slow-pandemic.html", "essay", None, "09:00"),
+    ("2026-12-05", "reel-2026-12-05-voice-first", "Essay #77", "My best health service was a phone number on a bar of soap.",
+     "The essay: voice-first AI for the next billion", SITE + "/voice-first-ai.html", "essay", None, "09:00"),
 ]
 
 
