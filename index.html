@@ -2270,15 +2270,17 @@ class Component extends DCLogic {
  this.tryGeo();
  }
  tryGeo(){
+ /* Bangladesh visitors on a plain "/" are sent to /?view=growth by a Cloudflare redirect rule (26 Nov 2026).
+    This fallback covers "/" links that carry a query string (utm, trk...). It reuses Cloudflare's own
+    /cdn-cgi/trace answer, shared with the consent banner: same domain, no third-party lookup. */
  if(this._userPicked) return;
  let done=false;
- const ctrl = (typeof AbortController!=='undefined') ? new AbortController() : null;
- const to = setTimeout(()=>{ if(ctrl) try{ctrl.abort();}catch(e){} }, 2500);
+ const to = setTimeout(()=>{ done=true; }, 2500);
  try{
- fetch('https://ipapi.co/country/', ctrl?{signal:ctrl.signal}:{})
- .then(r=>r.ok?r.text():Promise.reject())
- .then(txt=>{ clearTimeout(to); if(done) return; done=true;
- if(!this._userPicked && String(txt).trim().toUpperCase()==='BD'){ this.applyLens('growth',{}); this.hideLanding(); } })
+ (window.__cfTrace||(window.__cfTrace=fetch('/cdn-cgi/trace',{cache:'no-store'}).then(function(r){return r.text();})))
+ .then(t=>{ clearTimeout(to); if(done) return; done=true;
+ const m=/(?:^|\n)loc=([A-Z]{2})/.exec(t||'');
+ if(!this._userPicked && m && m[1]==='BD'){ this.applyLens('growth',{}); this.hideLanding(); } })
  .catch(()=>{ clearTimeout(to); });
  }catch(e){ clearTimeout(to); }
  }
@@ -2798,7 +2800,7 @@ class Component extends DCLogic {
  b.querySelector('#cc-yes').addEventListener('click',function(){ setC('granted'); if(window.loadGA) window.loadGA(); if(window.__reobserveSections) window.__reobserveSections(); hideBanner(); });
  b.querySelector('#cc-no').addEventListener('click',function(){ setC('denied'); hideBanner(); });
  }
- (function(){var GATED={AT:1,BE:1,BG:1,HR:1,CY:1,CZ:1,DK:1,EE:1,FI:1,FR:1,DE:1,GR:1,HU:1,IE:1,IT:1,LV:1,LT:1,LU:1,MT:1,NL:1,PL:1,PT:1,RO:1,SK:1,SI:1,ES:1,SE:1,IS:1,LI:1,NO:1,GB:1,CH:1};function euTZ(){ try{ return /^Europe\//.test((Intl.DateTimeFormat().resolvedOptions().timeZone)||''); }catch(e){ return true; } }function decide(cc){ var prior=getC(); if(prior){ if(prior==='granted' && window.loadGA){ window.loadGA(); if(window.__reobserveSections) window.__reobserveSections(); } return; } var gated = cc ? !!GATED[cc] : euTZ(); if(gated){ setTimeout(showBanner,600); } else { try{ setC('granted'); }catch(e){} if(window.loadGA) window.loadGA(); if(window.__reobserveSections) window.__reobserveSections(); } }try{ fetch('/cdn-cgi/trace',{cache:'no-store'}).then(function(r){return r.text();}).then(function(t){ var m=/(?:^|\n)loc=([A-Z]{2})/.exec(t); decide(m?m[1]:null); }).catch(function(){ decide(null); }); }catch(e){ decide(null); }})();
+ (function(){var GATED={AT:1,BE:1,BG:1,HR:1,CY:1,CZ:1,DK:1,EE:1,FI:1,FR:1,DE:1,GR:1,HU:1,IE:1,IT:1,LV:1,LT:1,LU:1,MT:1,NL:1,PL:1,PT:1,RO:1,SK:1,SI:1,ES:1,SE:1,IS:1,LI:1,NO:1,GB:1,CH:1};function euTZ(){ try{ return /^Europe\//.test((Intl.DateTimeFormat().resolvedOptions().timeZone)||''); }catch(e){ return true; } }function decide(cc){ var prior=getC(); if(prior){ if(prior==='granted' && window.loadGA){ window.loadGA(); if(window.__reobserveSections) window.__reobserveSections(); } return; } var gated = cc ? !!GATED[cc] : euTZ(); if(gated){ setTimeout(showBanner,600); } else { try{ setC('granted'); }catch(e){} if(window.loadGA) window.loadGA(); if(window.__reobserveSections) window.__reobserveSections(); } }try{ (window.__cfTrace||(window.__cfTrace=fetch('/cdn-cgi/trace',{cache:'no-store'}).then(function(r){return r.text();}))).then(function(t){ var m=/(?:^|\n)loc=([A-Z]{2})/.exec(t); decide(m?m[1]:null); }).catch(function(){ decide(null); }); }catch(e){ decide(null); }})();
 
  /* ---------- engagement events (sent to GA4 only after consent) ---------- */
  var T=function(n,p){ if(window.track) window.track(n,p); };
