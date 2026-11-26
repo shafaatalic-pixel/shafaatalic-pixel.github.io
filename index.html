@@ -1636,19 +1636,22 @@
    this shows a copy of the page's own nav + hero (cloned from the static <x-dc> markup, Growth copy filled in
    from the lens config) straight away, then steps aside once the real hero has finished drawing.
    The copy never mutates <x-dc> (the runtime reads its innerHTML as the template), carries no
-   data-screen-label/data-reveal/data-nav hooks (so analytics and reveal logic never see it), sits after <x-dc>
-   in document order (so getElementById keeps finding the real nodes), and holds taps until the real page can
-   take them. Debug: ?view=growth&sf=keep keeps it on screen; &sf=off disables it. */
+   data-screen-label/data-reveal/data-navlink hooks and uses sf-* ids (so analytics, reveals and id lookups never
+   land in it), and holds taps until the real page can take them. A scroll ends it as soon as the real page is
+   drawn underneath. Debug: ?view=growth&sf=keep keeps it on screen until the first touch or scroll; &sf=off disables it.
+   Hardened 26 Nov after an independent review: scroll handover, failure-only rescue, failsafe, rotation, a11y. */
 (function(){
 "use strict";
 try{
  var Q=location.search||"";
- if(!/[?&]view=growth(&|#|$)/.test(Q)||/[?&]sf=off/.test(Q))return;
+ if(!/[?&]view=growth(&|#|$)/.test(Q)||/[?&]sf=off(&|#|$)/.test(Q))return;
  if(location.hash&&location.hash.length>1)return;
  if(!window.matchMedia||!matchMedia("(max-width:860px)").matches)return;
  var dc=document.querySelector("x-dc");if(!dc)return;
+ /* support.js hides <x-dc> before the body parses; if it did not (support.js failed), the static page is already showing: leave it alone. */
+ try{if(getComputedStyle(dc).display!=="none")return;}catch(e){return;}
  var srcTop=dc.querySelector("#top"),srcNav=dc.querySelector("nav[data-nav]");if(!srcTop||!srcNav)return;
- var KEEP=/[?&]sf=keep/.test(Q);
+ var KEEP=/[?&]sf=keep(&|#|$)/.test(Q);
  var R=document.documentElement;
 
  /* Growth lens copy, embedded so the copy can paint before the 200KB logic script has arrived.
@@ -1686,8 +1689,9 @@ try{
 
  var css=document.createElement("style");css.id="sf-css";
  css.textContent=[
-  "#sf-ov{position:fixed;inset:0;z-index:2147483000;overflow:hidden;background:var(--surface-base);transition:opacity .18s ease}",
+  "#sf-ov{position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483000;overflow:hidden;background:var(--surface-base);transition:opacity .18s ease}",
   "#sf-ov.sf-out{opacity:0;pointer-events:none}",
+  "#sf-ov .sf-press{opacity:.55;transition:opacity .1s}",
   "#sf-ov .sf-site{position:relative;overflow-x:clip;background:var(--surface-base);min-height:100vh}",
   /* nav at phone width: logo + menu only (mirrors the mobile-menu block) */
   "#sf-nav-lens,#sf-theme-toggle,#sf-ov [data-cta],#sf-ov .nav-links{display:none!important}",
@@ -1727,7 +1731,7 @@ try{
   set("#sf-hero-headline",cfg.headline.replace("<span>",'<span style="color:var(--accent-text);">'));
   set("#sf-hero-subhead",cfg.subhead);
   set("#sf-lens-cue-lead","You are viewing the "+String(cfg.label||cfg.short).replace(/&amp;/g,"&")+" lens");
-  set("#sf-lens-cue-cta",'<span style="display:inline-block;padding:7px 5px;margin:-7px -5px;">See all four</span>, or <span style="display:inline-block;padding:7px 10px;margin:-7px -10px;">everything →</span>');
+  set("#sf-lens-cue-cta",'<span style="display:inline-block;position:relative;z-index:1;padding:7px 5px 3px;margin:-7px -5px -3px;">See all four</span>, or <span style="display:inline-block;padding:3px 10px 7px;margin:-3px -10px -7px;">everything →</span>');
   var wf=top.querySelector("#sf-hero-whofor");if(wf){wf.style.display="";if(cfg.whoFor)wf.innerHTML=cfg.whoFor;}
   set("#sf-hero-pills",(cfg.pills||[]).map(function(p,k){return '<span style="display:inline-flex;align-items:center;height:34px;padding:0 16px;border-radius:999px;border:1.5px solid '+(k===0?"var(--accent)":"var(--border-strong)")+";background:"+(k===0?"var(--accent-soft)":"transparent")+";color:"+(k===0?"var(--accent-text)":"var(--text-body)")+';font-family:var(--body);font-weight:600;font-size:14px;">'+p+"</span>";}).join(""));
   var nl=nav.querySelector("#sf-nav-lens-label");if(nl)nl.innerHTML=cfg.short;
@@ -1761,31 +1765,64 @@ try{
  }
  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",sync);else sync();
 
- /* Taps before the real page is ready: hold them and replay on the real element after handover. */
- var queued=null;
+ /* Taps before the real page is ready: show they registered, hold them, and replay them on the matching real
+    control after handover (only controls; taps on plain text are just absorbed). Stale taps (>5s) are dropped. */
+ var queued=null,queuedAt=0,pressed=null;
+ function hrefKey(a){var h=a.getAttribute("href")||"";if(/^(https?:|mailto:|tel:)/i.test(h))return null;
+  var sel='a[href="'+h.replace(/"/g,"")+'"]';return (a.closest("#sf-top")?"#top ":a.closest("[data-sf-nav]")?"nav[data-nav] ":"")+sel+"|"+sel;}
  function goKey(el){
   var g=el.closest("[data-sf-go]");if(g)return g.getAttribute("data-sf-go");
-  var a=el.closest("a[href]");if(a){var h=a.getAttribute("href")||"";if(/^https?:/i.test(h))return null;return 'a[href="'+h.replace(/"/g,"")+'"]';}
-  var cue=el.closest("#sf-lens-cue");if(cue){var sp=el.closest("#sf-lens-cue-cta span");if(sp)return /everything/i.test(sp.textContent)?'[data-gvh-act="all"]':'[data-gvh-act="four"]';return "#lens-cue";}
-  var idd=el.closest("[id]");return idd?"#"+idd.id.replace(/^sf-/,""):"";
+  var cue=el.closest("#sf-lens-cue");if(cue){var sp=el.closest("#sf-lens-cue-cta span");if(sp)return (/everything/i.test(sp.textContent)?'[data-gvh-act="all"]':'[data-gvh-act="four"]')+"|#lens-cue";return "#lens-cue";}
+  var a=el.closest("a[href]");if(a)return hrefKey(a);
+  var b=el.closest("button");if(b&&b.id)return "#"+b.id.replace(/^sf-/,"");
+  return "";
  }
+ function find(key){var root=document.getElementById("dc-root");if(!root||!key)return null;var p=key.split("|");
+  for(var i=0;i<p.length;i++){try{var el=root.querySelector(p[i]);if(el)return el;}catch(e){}}return null;}
  function hold(e){
   var t=e.target;if(!t||!t.closest||!ov.contains(t))return;
   var k=goKey(t);
-  if(k===null)return; /* external link (Book a call): let the browser follow it */
+  if(k===null)return; /* external link: let the browser follow it */
   e.preventDefault();e.stopImmediatePropagation();
-  if(e.type==="click"&&k)queued=k;
+  if(k){queued=k;queuedAt=Date.now();
+   var c=t.closest("a,button,[data-sf-go],#sf-lens-cue-cta span,#sf-lens-cue");if(c){if(pressed)pressed.classList.remove("sf-press");pressed=c;c.classList.add("sf-press");}}
  }
  window.addEventListener("click",hold,true);
 
- var t0=Date.now(),seenRoot=0,done=false;
+ /* Scrolling: the copy cannot scroll, so a scroll attempt ends it as soon as the real page is drawn underneath
+    (the gesture then carries on in the real page). Before that there is nothing to scroll, so it is blocked. */
+ function realUp(){var root=document.getElementById("dc-root");return !!(root&&root.querySelector("#top"));}
+ function intent(e){if(done)return;if(realUp())finish();else if(e.cancelable)e.preventDefault();}
+ /* touch: once the real hero is fully drawn, a finger-down ends the copy, so the coming swipe scrolls the real page
+    and a tap goes straight to the real control. Before that, a tap lands on the copy and is held/replayed, a
+    one-finger swipe ends the copy as soon as the real page exists (and is blocked before, when there is nothing to
+    scroll). Pinch-zoom (two fingers) is never blocked. */
+ function onTouch(){if(!done&&ready())finish();}
+ function onTouchMove(e){if(done)return;if(e.touches&&e.touches.length>1)return;if(realUp())finish();else if(e.cancelable)e.preventDefault();}
+ function onKey(e){if(done)return;if(/^(ArrowDown|ArrowUp|PageDown|PageUp|End|Home| |Spacebar)$/.test(e.key||""))intent(e);}
+ function onScroll(){if(!done&&(window.pageYOffset||0)>0&&realUp())finish();}
+ var LO={passive:false,capture:true};
+ window.addEventListener("wheel",intent,LO);window.addEventListener("touchmove",onTouchMove,LO);
+ window.addEventListener("touchstart",onTouch,{passive:true,capture:true});
+ window.addEventListener("keydown",onKey,true);window.addEventListener("scroll",onScroll,{passive:true});
+
+ /* Rotating or resizing past phone width: the copy only has the phone layout, so hand over as soon as possible. */
+ var wide=false,mq=matchMedia("(max-width:860px)");
+ function onMq(){if(!mq.matches)wide=true;}
+ try{mq.addEventListener?mq.addEventListener("change",onMq):mq.addListener(onMq);}catch(e){}
+
+ var t0=Date.now(),seenRoot=0,done=false,loadedAt=0;
+ window.addEventListener("load",function(){loadedAt=Date.now();});
  function ready(){
   var root=document.getElementById("dc-root");if(!root)return false;
   if(!seenRoot)seenRoot=Date.now();
   var rt=root.querySelector("#top");if(!rt)return false;
+  if(!ov.hasAttribute("aria-hidden")){ov.setAttribute("aria-hidden","true"); /* the real page exists now; screen readers and Tab should only reach it */
+   [].forEach.call(ov.querySelectorAll("a,button,[tabindex]"),function(el){el.setAttribute("tabindex","-1");});}
   if(!R.hasAttribute("data-gvh")||!rt.querySelector("#gvh-wrap"))return false;
   if(!root.querySelector("#sc-menu-btn"))return false;
   if(R.getAttribute("data-lens")!=="growth")return false;
+  var cta=root.querySelector("#lens-cue-cta");if(cta&&/everything/i.test(cta.textContent||"")&&!cta.querySelector("[data-gvh-act]"))return false;
   var rev=rt.querySelectorAll("[data-reveal]");
   /* only items the page reveals on load (its own rule: top above 92% of the screen); the rest fade in on scroll */
   var vh=window.innerHeight||document.documentElement.clientHeight;
@@ -1794,25 +1831,38 @@ try{
  }
  function finish(){
   if(done)return;done=true;
-  window.removeEventListener("click",hold,true);
+  window.removeEventListener("wheel",intent,LO);window.removeEventListener("touchmove",onTouchMove,LO);window.removeEventListener("touchstart",onTouch,{passive:true,capture:true});
+  window.removeEventListener("keydown",onKey,true);window.removeEventListener("scroll",onScroll,{passive:true});
+  var focusKey=null;try{var ae=document.activeElement;if(ae&&ov.contains(ae))focusKey=goKey(ae)||"#top";}catch(e){}
   ov.classList.add("sf-out");
-  setTimeout(function(){try{ov.remove();css.remove();}catch(e){}window.__sfOn=0;
-   if(queued){try{var root=document.getElementById("dc-root");var el=root&&root.querySelector(queued);if(el)el.click();}catch(e){}}
-  },200);
+  setTimeout(function(){window.removeEventListener("click",hold,true); /* .sf-out has pointer-events:none, so taps during the fade reach the real page */try{ov.remove();css.remove();}catch(e){}window.__sfOn=0;
+   if(focusKey){try{var f=find(focusKey);if(f&&f.closest)f=f.closest("a,button,[tabindex]")||f;if(f&&f.focus)f.focus({preventScroll:true});}catch(e){}}
+   if(queued&&Date.now()-queuedAt<5000){try{var el=find(queued);if(el)el.click();}catch(e){}}
+  },300);
  }
  function rescue(){
-  /* React never booted: drop the copy and show the static page underneath rather than leave a frozen screen. */
-  var s=document.createElement("style");s.textContent="html x-dc{display:block!important}";document.head.appendChild(s);
+  /* React never booted: drop the copy and show the static page underneath (without its lens chooser, whose
+     buttons need React) rather than leave a frozen screen. */
+  var s=document.createElement("style");s.textContent="html x-dc{display:block!important}html x-dc #landing{display:none!important}";document.head.appendChild(s);
+  try{document.body.style.overflow="";}catch(e){}
   finish();
  }
  (function poll(){
-  if(done)return;
-  if(KEEP)return;
-  var now=Date.now();
-  if(ready()){requestAnimationFrame(function(){requestAnimationFrame(finish);});return;}
-  if(seenRoot&&now-seenRoot>3000){finish();return;}
-  if(!seenRoot&&now-t0>15000){rescue();return;}
-  setTimeout(poll,80);
+  try{
+   if(done||KEEP)return;
+   var now=Date.now();
+   if(ready()){requestAnimationFrame(function(){requestAnimationFrame(finish);});return;}
+   if(seenRoot){
+    if(wide&&realUp()){finish();return;}
+    if(now-seenRoot>3000){finish();return;}
+   }else{
+    /* rescue only on a real failure: in every working load #dc-root exists before the load event (React's script
+       runs, then boot at DOMContentLoaded), so 2.5s after load without it means boot failed; 30s is the backstop. */
+    var failed=loadedAt&&now-loadedAt>2500;
+    if(failed||now-t0>30000){rescue();return;}
+   }
+   setTimeout(poll,80);
+  }catch(e){try{if(document.getElementById("dc-root"))finish();else rescue();}catch(_){}}
  })();
 }catch(e){try{var o=document.getElementById("sf-ov");if(o)o.remove();}catch(_){}}
 })();
@@ -3425,7 +3475,7 @@ class Component extends DCLogic {
 #sc-menu-btn{display:none;width:40px;height:40px;border-radius:9px;border:1px solid var(--border-strong);background:transparent;color:var(--text-strong);cursor:pointer;align-items:center;justify-content:center;flex:0 0 auto;}
 #sc-menu-ov{position:fixed;inset:0;z-index:6000;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s;}
 #sc-menu-ov.on{opacity:1;pointer-events:auto;}
-#sc-menu{position:fixed;top:0;right:0;height:100%;width:min(87vw,350px);background:var(--surface-base);border-left:1px solid var(--border-strong);box-shadow:-20px 0 50px -20px rgba(0,0,0,.55);transform:translateX(102%);transition:transform .28s cubic-bezier(.2,.7,.2,1);z-index:6001;display:flex;flex-direction:column;padding:16px 16px calc(20px + env(safe-area-inset-bottom));overflow-y:auto;font-family:var(--body);}
+#sc-menu{position:fixed;top:0;right:0;height:100%;width:min(87vw,350px);background:var(--surface-base);border-left:1px solid var(--border-strong);box-shadow:-20px 0 50px -20px rgba(0,0,0,.55);transform:translateX(calc(102% + 40px));transition:transform .28s cubic-bezier(.2,.7,.2,1);z-index:6001;display:flex;flex-direction:column;padding:16px 16px calc(20px + env(safe-area-inset-bottom));overflow-y:auto;font-family:var(--body);}
 #sc-menu.on{transform:none;}
 #sc-menu .m-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
 #sc-menu .m-title{font-family:var(--disp);font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);}
@@ -4048,7 +4098,8 @@ function gvhWireCue(){
  if(cta.querySelector("[data-gvh-act]"))return;
  var tx=cta.textContent||"";
  if(!/everything/i.test(tx))return;
- cta.innerHTML='<span data-gvh-act="four" style="display:inline-block;padding:7px 5px;margin:-7px -5px;">See all four</span>, or <span data-gvh-act="all" style="display:inline-block;padding:7px 10px;margin:-7px -10px;">everything \u2192</span>';
+ /* 26 Nov 2026: the two tap areas used to overlap when the cue wraps on phones, and "everything" won, so "See all four" opened the full view. "See all four" now sits on top and the paddings meet at the line break. */
+ cta.innerHTML='<span data-gvh-act="four" style="display:inline-block;position:relative;z-index:1;padding:7px 5px 3px;margin:-7px -5px -3px;">See all four</span>, or <span data-gvh-act="all" style="display:inline-block;padding:3px 10px 7px;margin:-3px -10px -7px;">everything \u2192</span>';
 }
 try{new MutationObserver(function(){gvhWireCue();}).observe(document.getElementById("lens-cue")||document.body,{childList:true,subtree:true,characterData:true});}catch(e){}
 setTimeout(gvhWireCue,300);setTimeout(gvhWireCue,1200);setTimeout(gvhWireCue,3000);
@@ -4130,8 +4181,12 @@ document.addEventListener('click',function(e){var t=e.target&&e.target.closest?e
   function T(n,p){ try{ if(window.track) window.track(n,p); }catch(e){} }
   var SP=[25,50,75,100], sf={};
   function frac(){ var de=document.documentElement, b=document.body;
+    /* 26 Nov 2026: until the runtime has rendered the real page (#dc-root #top) the document is one screen tall
+       (x-dc hidden, or #dc-root still empty on cached reloads), which used to log 25/50/75/100 on load for every
+       consented visitor. Count nothing until the real page exists. */
+    if(!document.querySelector('#dc-root #top')) return 0;
     var h=Math.max(de.scrollHeight, b?b.scrollHeight:0)-window.innerHeight;
-    if(h<=0) return 100;
+    if(h<=0) return 0;
     return Math.min(100, Math.round((window.pageYOffset||de.scrollTop||0)/h*100)); }
   function onScroll(){ var f=frac();
     for(var i=0;i<SP.length;i++){ var m=SP[i]; if(f>=m && !sf[m]){ sf[m]=1; T('scroll_depth',{percent:m}); } } }
