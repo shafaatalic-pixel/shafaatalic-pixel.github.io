@@ -1631,6 +1631,192 @@
 
 </div>
 </x-dc>
+<script id="sf-js">/* Step 5, 26 Nov 2026: static-first Growth hero on phones.
+   The real page stays hidden until React boots (about 3-4s on a mid phone). On /?view=growth at phone width
+   this shows a copy of the page's own nav + hero (cloned from the static <x-dc> markup, Growth copy filled in
+   from the lens config) straight away, then steps aside once the real hero has finished drawing.
+   The copy never mutates <x-dc> (the runtime reads its innerHTML as the template), carries no
+   data-screen-label/data-reveal/data-nav hooks (so analytics and reveal logic never see it), sits after <x-dc>
+   in document order (so getElementById keeps finding the real nodes), and holds taps until the real page can
+   take them. Debug: ?view=growth&sf=keep keeps it on screen; &sf=off disables it. */
+(function(){
+"use strict";
+try{
+ var Q=location.search||"";
+ if(!/[?&]view=growth(&|#|$)/.test(Q)||/[?&]sf=off/.test(Q))return;
+ if(location.hash&&location.hash.length>1)return;
+ if(!window.matchMedia||!matchMedia("(max-width:860px)").matches)return;
+ var dc=document.querySelector("x-dc");if(!dc)return;
+ var srcTop=dc.querySelector("#top"),srcNav=dc.querySelector("nav[data-nav]");if(!srcTop||!srcNav)return;
+ var KEEP=/[?&]sf=keep/.test(Q);
+ var R=document.documentElement;
+
+ /* Growth lens copy, embedded so the copy can paint before the 200KB logic script has arrived.
+    Generated from the logic script's growth entry; checked against it on DOMContentLoaded (see sync()). */
+ var cfg={"eyebrow":"Growth &amp; Marketing Strategy","headline":"Clarity under pressure that turns system complexity into <span>measurable growth.</span>","subhead":"Growth &amp; marketing strategy leader with 17 years across telecom, advertising, fintech, e-commerce, consumer tech, education and healthcare. I find the real growth constraint and build the strategy, channels, products and teams that move the number.","whoFor":"For founders, CEOs and growth teams that need the number to move, in the US or Bangladesh. <span style=\"color:var(--accent-text);\">Diagnosis first, then the lever.</span>","pills":["clear-eyed","pressure-tested","evidence-led","commercially sharp"],"label":"Growth &amp; Marketing","short":"Growth &amp; Marketing","accent":"#E0892E","deep":"#8F4C0E","ink":"#1c1303","soft":"rgba(224,137,46,.15)"};
+ function readCfg(){
+  try{
+   var js=(document.querySelector("script[data-dc-script]")||{}).textContent||"";
+   var i=js.indexOf("growth:{ id:'growth'");if(i<0)return null;
+   var s=js.indexOf("{",i),d=0,j=s,q=null;
+   for(;j<js.length;j++){var c=js[j];
+    if(q){if(c==="\\"){j++;continue;}if(c===q)q=null;continue;}
+    if(c==="'"||c==='"'||c==="`"){q=c;continue;}
+    if(c==="{")d++;else if(c==="}"){d--;if(!d)break;}}
+   return Function("return ("+js.slice(s,j+1)+")")();
+  }catch(e){return null;}
+ }
+ if(!cfg||!cfg.headline)return;
+
+ /* Theme: same rule as initTheme(); setting it early only does sooner what initTheme does on boot. */
+ if(!R.getAttribute("data-theme")){
+  var t=null;try{t=localStorage.getItem("shafaat_theme");}catch(e){}
+  if(!t){try{t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}catch(e){t="light";}}
+  R.setAttribute("data-theme",t);
+ }
+ var light=R.getAttribute("data-theme")==="light";
+ var bg=light?"251,248,241":"11,15,20";
+
+ /* Which hero image the real page will show first (mirrors the gvh-js mobile branch). */
+ var REDUCE=false,LOWDATA=false,SEEN=false;
+ try{REDUCE=matchMedia("(prefers-reduced-motion: reduce)").matches;}catch(e){}
+ try{var cn=navigator.connection||navigator.mozConnection||navigator.webkitConnection;LOWDATA=!!(cn&&(cn.saveData===true||/(^2g$|slow-2g|^3g$)/.test(cn.effectiveType||"")));}catch(e){}
+ try{SEEN=sessionStorage.getItem("sc_gvh_seen")==="1";}catch(e){}
+ var IMG=(REDUCE||LOWDATA||SEEN)?"assets/growth-hero-settled.webp?v=20261027":"assets/growth-hero-first.webp?v=20261027";
+
+ var css=document.createElement("style");css.id="sf-css";
+ css.textContent=[
+  "#sf-ov{position:fixed;inset:0;z-index:2147483000;overflow:hidden;background:var(--surface-base);transition:opacity .18s ease}",
+  "#sf-ov.sf-out{opacity:0;pointer-events:none}",
+  "#sf-ov .sf-site{position:relative;overflow-x:clip;background:var(--surface-base);min-height:100vh}",
+  /* nav at phone width: logo + menu only (mirrors the mobile-menu block) */
+  "#sf-nav-lens,#sf-theme-toggle,#sf-ov [data-cta],#sf-ov .nav-links{display:none!important}",
+  "#sf-ov .sf-menu{display:inline-flex;width:40px;height:40px;border-radius:9px;align-items:center;justify-content:center;flex:0 0 auto;cursor:pointer;background:rgba(247,242,232,.95);border:1px solid rgba(16,21,27,.2);box-shadow:0 2px 10px rgba(0,0,0,.28);color:#10151B;padding:0}",
+  /* hero at phone width (mirrors the gvh-css max-width:860px rules) */
+  "#sf-top{display:block!important;padding:0 0 40px!important;min-height:0!important}",
+  "#sf-top>div[data-grid],#sf-hero-fx,#sf-top>a[href='#proof'],#sf-top .hero-photo{display:none!important}",
+  "#sf-ov .sf-wrap{position:relative;height:54vh;overflow:hidden;pointer-events:none;z-index:0}",
+  "#sf-ov .sf-wrap img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:50% 24%;display:block}",
+  "#sf-ov .sf-mt{position:absolute;top:0;left:0;right:0;height:66px;background:linear-gradient(180deg,rgba(0,0,0,.36),transparent)}",
+  "#sf-ov .sf-mb{position:absolute;left:0;right:0;bottom:0;height:185px;background:linear-gradient(180deg,rgba("+bg+",0),rgb("+bg+"))}",
+  "#sf-top .hero-grid{display:block!important;position:static!important;padding:14px 22px 0;max-width:none!important}",
+  "#sf-top .hero-grid>div:first-child>div:first-child{position:absolute;top:calc(54vh - 102px);left:22px;right:22px;z-index:4;margin:0!important}",
+  "#sf-lens-cue{position:absolute;top:calc(54vh - 64px);left:22px;right:22px;z-index:4;margin:0!important;text-align:left}",
+  "#sf-hero-headline{font-size:clamp(30px,8.2vw,44px)!important;max-width:none!important}",
+  "#sf-hero-pills{flex-wrap:wrap!important;gap:7px!important;row-gap:7px!important}",
+  "#sf-hero-pills>*{font-size:clamp(10.5px,2.9vw,12.5px)!important;padding:5px 11px!important;white-space:nowrap!important;letter-spacing:0!important}",
+  "#sf-top .hero-grid a[data-btn-solid],#sf-top .hero-grid a[data-btn-ghost]{height:46px!important;padding:0 17px!important;font-size:14.5px!important}",
+  "#sf-top .hero-grid div:has(>a[data-btn-solid]){flex-wrap:nowrap!important;gap:10px!important}",
+  "#sf-ov .sf-rp{position:absolute;right:14px;top:calc(54vh - 168px);z-index:6;display:inline-flex;align-items:center;gap:8px;background:rgba(11,15,20,.6);border:1px solid rgba(255,255,255,.16);color:#F7F2E8;font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:9px 14px;border-radius:999px;cursor:pointer;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}",
+  "html[data-theme=light] #sf-ov .sf-rp{background:rgba(251,248,241,.75);border-color:#D8D2C4;color:#10151B}"
+ ].join("\n");
+ document.head.appendChild(css);
+
+ function strip(root){
+  var all=[root].concat([].slice.call(root.querySelectorAll("*")));
+  all.forEach(function(el){["data-screen-label","data-reveal","data-reveal-delay","data-navlink","data-open-lenses","data-dc-tpl"].forEach(function(a){el.removeAttribute(a);});});
+ }
+ var nav=srcNav.cloneNode(true),top=srcTop.cloneNode(true);
+ strip(nav);strip(top);
+ /* Own ids for the copy: while React swaps <x-dc> for #dc-root the copy would otherwise be the only #theme-toggle, #lens-cue... in the page, and id lookups (menu button, cue wiring) would land in it. */
+ [nav,top].forEach(function(r){[r].concat([].slice.call(r.querySelectorAll("[id]"))).forEach(function(el){if(el.id)el.id="sf-"+el.id;});});
+ nav.setAttribute("data-sf-nav","");
+ function fill(cfg){
+ var set=function(sel,html){var el=top.querySelector(sel);if(el)el.innerHTML=html;};
+  set("#sf-hero-eyebrow",cfg.eyebrow);
+  set("#sf-hero-headline",cfg.headline.replace("<span>",'<span style="color:var(--accent-text);">'));
+  set("#sf-hero-subhead",cfg.subhead);
+  set("#sf-lens-cue-lead","You are viewing the "+String(cfg.label||cfg.short).replace(/&amp;/g,"&")+" lens");
+  set("#sf-lens-cue-cta",'<span style="display:inline-block;padding:7px 5px;margin:-7px -5px;">See all four</span>, or <span style="display:inline-block;padding:7px 10px;margin:-7px -10px;">everything →</span>');
+  var wf=top.querySelector("#sf-hero-whofor");if(wf){wf.style.display="";if(cfg.whoFor)wf.innerHTML=cfg.whoFor;}
+  set("#sf-hero-pills",(cfg.pills||[]).map(function(p,k){return '<span style="display:inline-flex;align-items:center;height:34px;padding:0 16px;border-radius:999px;border:1.5px solid '+(k===0?"var(--accent)":"var(--border-strong)")+";background:"+(k===0?"var(--accent-soft)":"transparent")+";color:"+(k===0?"var(--accent-text)":"var(--text-body)")+';font-family:var(--body);font-weight:600;font-size:14px;">'+p+"</span>";}).join(""));
+  var nl=nav.querySelector("#sf-nav-lens-label");if(nl)nl.innerHTML=cfg.short;
+ }
+ fill(cfg);
+
+ var tt=nav.querySelector("#sf-theme-toggle");
+ if(tt&&tt.parentNode){var mb=document.createElement("button");mb.type="button";mb.className="sf-menu";mb.setAttribute("aria-label","Menu");mb.setAttribute("data-sf-go","#sc-menu-btn");
+  mb.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>';tt.parentNode.insertBefore(mb,tt);}
+ var wrap=document.createElement("div");wrap.className="sf-wrap";
+ wrap.innerHTML='<img src="'+IMG+'" alt="" fetchpriority="high" decoding="sync"><div class="sf-mt"></div><div class="sf-mb"></div>';
+ top.insertBefore(wrap,top.firstChild);
+ var rp=document.createElement("button");rp.type="button";rp.className="sf-rp";rp.setAttribute("data-sf-go","#gvh-rp");rp.innerHTML="&#8635;&nbsp;REPLAY ENTRANCE";top.appendChild(rp);
+
+ var ov=document.createElement("div");ov.id="sf-ov";
+ /* Growth accent on the copy only (same values setAccent() puts on <html> at boot). */
+ function accent(cfg){ov.style.setProperty("--accent",cfg.accent);ov.style.setProperty("--accent-soft",cfg.soft);ov.style.setProperty("--accent-ink",cfg.ink);
+  ov.style.setProperty("--accent-text",light?cfg.deep:(cfg.lite||cfg.accent));}
+ accent(cfg);
+ var site=document.createElement("div");site.className="sf-site";
+ var main=document.createElement("main");main.appendChild(top);
+ site.appendChild(nav);site.appendChild(main);ov.appendChild(site);
+ dc.parentNode.insertBefore(ov,dc.nextSibling);
+ window.__sfOn=1;
+ /* If the lens copy was edited without regenerating the embedded copy above, correct it before React boots. */
+ function sync(){var live=readCfg();if(!live||done)return;
+  var keys=["eyebrow","headline","subhead","whoFor","label","short","accent","deep","ink","soft","lite"],diff=false;
+  for(var k=0;k<keys.length;k++){if(String(live[keys[k]])!==String(cfg[keys[k]]))diff=true;}
+  if(String(live.pills)!==String(cfg.pills))diff=true;
+  if(diff){try{console.warn("[sf] embedded Growth copy is out of date; regenerate it from the lens config");}catch(e){}fill(live);accent(live);}
+ }
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",sync);else sync();
+
+ /* Taps before the real page is ready: hold them and replay on the real element after handover. */
+ var queued=null;
+ function goKey(el){
+  var g=el.closest("[data-sf-go]");if(g)return g.getAttribute("data-sf-go");
+  var a=el.closest("a[href]");if(a){var h=a.getAttribute("href")||"";if(/^https?:/i.test(h))return null;return 'a[href="'+h.replace(/"/g,"")+'"]';}
+  var cue=el.closest("#sf-lens-cue");if(cue){var sp=el.closest("#sf-lens-cue-cta span");if(sp)return /everything/i.test(sp.textContent)?'[data-gvh-act="all"]':'[data-gvh-act="four"]';return "#lens-cue";}
+  var idd=el.closest("[id]");return idd?"#"+idd.id.replace(/^sf-/,""):"";
+ }
+ function hold(e){
+  var t=e.target;if(!t||!t.closest||!ov.contains(t))return;
+  var k=goKey(t);
+  if(k===null)return; /* external link (Book a call): let the browser follow it */
+  e.preventDefault();e.stopImmediatePropagation();
+  if(e.type==="click"&&k)queued=k;
+ }
+ window.addEventListener("click",hold,true);
+
+ var t0=Date.now(),seenRoot=0,done=false;
+ function ready(){
+  var root=document.getElementById("dc-root");if(!root)return false;
+  if(!seenRoot)seenRoot=Date.now();
+  var rt=root.querySelector("#top");if(!rt)return false;
+  if(!R.hasAttribute("data-gvh")||!rt.querySelector("#gvh-wrap"))return false;
+  if(!root.querySelector("#sc-menu-btn"))return false;
+  if(R.getAttribute("data-lens")!=="growth")return false;
+  var rev=rt.querySelectorAll("[data-reveal]");
+  /* only items the page reveals on load (its own rule: top above 92% of the screen); the rest fade in on scroll */
+  var vh=window.innerHeight||document.documentElement.clientHeight;
+  for(var k=0;k<rev.length;k++){var el=rev[k];if(!el.offsetParent)continue;var r=el.getBoundingClientRect();if(r.top>=vh*0.92||r.bottom<=0)continue;if(parseFloat(getComputedStyle(el).opacity)<0.99)return false;}
+  return true;
+ }
+ function finish(){
+  if(done)return;done=true;
+  window.removeEventListener("click",hold,true);
+  ov.classList.add("sf-out");
+  setTimeout(function(){try{ov.remove();css.remove();}catch(e){}window.__sfOn=0;
+   if(queued){try{var root=document.getElementById("dc-root");var el=root&&root.querySelector(queued);if(el)el.click();}catch(e){}}
+  },200);
+ }
+ function rescue(){
+  /* React never booted: drop the copy and show the static page underneath rather than leave a frozen screen. */
+  var s=document.createElement("style");s.textContent="html x-dc{display:block!important}";document.head.appendChild(s);
+  finish();
+ }
+ (function poll(){
+  if(done)return;
+  if(KEEP)return;
+  var now=Date.now();
+  if(ready()){requestAnimationFrame(function(){requestAnimationFrame(finish);});return;}
+  if(seenRoot&&now-seenRoot>3000){finish();return;}
+  if(!seenRoot&&now-t0>15000){rescue();return;}
+  setTimeout(poll,80);
+ })();
+}catch(e){try{var o=document.getElementById("sf-ov");if(o)o.remove();}catch(_){}}
+})();
+</script>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;100%&quot;}}">
 class Component extends DCLogic {
  renderVals(){
