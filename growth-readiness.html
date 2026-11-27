@@ -395,7 +395,7 @@
     +'<div class="row"><span class="lbl">Team size</span>'+D.sizes.map(function(x){return '<button type="button" class="opt" data-size="'+x[0]+'" aria-pressed="false">'+esc(x[1])+'</button>';}).join('')+'</div></div>'
     +'<div class="qnav"><span></span><button type="button" class="go" id="begin">Start the fifteen questions &rarr;</button></div></div>';
     quiz.querySelectorAll('[data-size]').forEach(function(b){b.addEventListener('click',function(){size=(size===b.dataset.size)?'':b.dataset.size;quiz.querySelectorAll('[data-size]').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.size===size?'true':'false');});});});
-    document.getElementById('begin').addEventListener('click',function(){ind=document.getElementById('pind').value||'';started=true;t('assess_start',{tool:D.slug,industry:ind||'none'});i=0;ask();});}
+    document.getElementById('begin').addEventListener('click',function(){ind=document.getElementById('pind').value||'';started=true;tsLib().catch(function(){});t('assess_start',{tool:D.slug,industry:ind||'none'});i=0;ask();});}
   function ask(){var q=D.q[i];prog.hidden=false;pstg.textContent=stageName(q.s);pcount.textContent=(i+1)+' of '+D.q.length;pbar.style.width=Math.round(i/D.q.length*100)+'%';
     quiz.innerHTML='<div class="qcard"><h2>'+esc(q.q)+'</h2><p class="k">'+esc(q.short)+' &middot; question '+(i+1)+' of 15</p><div class="qopts">'+q.o.map(function(o,k){return '<button type="button" class="opt" data-v="'+k+'" aria-pressed="'+(A[i]===k?'true':'false')+'"><span class="n">'+(k+1)+'</span><span>'+esc(o)+'</span></button>';}).join('')+'</div>'
       +'<div class="qnav"><button type="button" class="opt ghost" id="back">'+(i?'&larr; Back':'&larr; Details')+'</button><span></span></div></div>';
@@ -428,8 +428,17 @@
     res.querySelectorAll('[data-tool]').forEach(function(a){a.addEventListener('click',function(){t('assess_tool_open',{tool:a.dataset.tool,step:a.dataset.step});});});
     store(S);}
   function store(S){if(posted)return;posted=true;var cmp=document.getElementById('cmp');
-    fetch(D.api+'/assess',{method:'POST',headers:{'content-type':'application/json'},credentials:'omit',body:JSON.stringify({a:D.slug,answers:A,ind:ind,size:size})})
-      .then(function(r){return r.json();}).then(function(j){if(j&&j.avg!=null&&cmp){cmp.textContent='Average so far across '+j.n+' teams: '+j.avg+' of 100.';}}).catch(function(){});}
+    tsToken(function(tok){if(!tok)return;
+    fetch(D.api+'/assess',{method:'POST',headers:{'content-type':'application/json'},credentials:'omit',body:JSON.stringify({a:D.slug,answers:A,ind:ind,size:size,turnstile:tok})})
+      .then(function(r){return r.json();}).then(function(j){if(j&&j.avg!=null&&cmp){cmp.textContent='Average so far across '+j.n+' teams: '+j.avg+' of 100.';}}).catch(function(){});});}
+  /* Bot check (Cloudflare Turnstile, same widget as Ask Shafaat): invisible unless a visitor looks automated; the result is stored only with a passed check. */
+  var TSK='0x4AAAAAAFX9JOBFpuSWsf5E',tsLoad=null;
+  function tsLib(){if(!tsLoad){tsLoad=new Promise(function(ok,no){if(window.turnstile){ok();return;}var s=document.createElement('script');s.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';s.async=true;s.onload=function(){ok();};s.onerror=function(){no();};document.head.appendChild(s);});}return tsLoad;}
+  function tsToken(cb){var done=false;function fin(v){if(!done){done=true;cb(v);}}
+    tsLib().then(function(){var box=document.createElement('div');box.id='ts';box.style.marginTop='12px';res.appendChild(box);
+      try{window.turnstile.render(box,{sitekey:TSK,appearance:'interaction-only',callback:function(v){fin(v);},'error-callback':function(){fin(null);}});}catch(e){fin(null);}
+    }).catch(function(){fin(null);});
+    setTimeout(function(){fin(null);},120000);}
   function drawCard(S,B,weak){var c=document.createElement('canvas');c.width=1200;c.height=630;var x=c.getContext('2d');
     x.fillStyle='#0B0F14';x.fillRect(0,0,1200,630);x.fillStyle='#F4A24C';x.fillRect(0,0,14,630);
     x.fillStyle='#9AA3AE';x.font='600 22px Inter,system-ui,sans-serif';x.fillText('GROWTH READINESS SCORE  ·  shafaatalichoyon.com',70,80);
